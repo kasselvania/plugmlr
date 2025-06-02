@@ -359,7 +359,7 @@
 #N canvas 0 22 450 300 arrays-samples 1;
 #X obj 123 141 sample-data 1;
 #X obj 123 179 sample-data 2;
-#X obj 400 141 sample-playback 1;
+#X obj 400 185 sample-playback 1;
 #X msg 403 108 1;
 #X obj 400 36 loadbang;
 #X obj 565 141 sample-playback 2;
@@ -378,8 +378,9 @@
 #X obj 123 316 sample-data 6;
 #X obj 225 456 sample-data-new 1;
 #X obj 405 456 sample_playback_new 1;
+#X obj 132 384 sampler_playback_third 1;
+#X connect 3 0 21 0;
 #X connect 3 0 2 0;
-#X connect 3 0 20 0;
 #X connect 4 0 3 0;
 #X connect 4 0 6 0;
 #X connect 4 0 8 0;
