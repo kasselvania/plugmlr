@@ -1,5 +1,5 @@
-#N struct 2002-cell float x float y float cellsize float color;
-#N struct 2004-cell float x float y float cellsize float color;
+#N struct 1173-cell float x float y float cellsize float color;
+#N struct 1175-cell float x float y float cellsize float color;
 #N canvas 827 239 527 327 12;
 #N canvas 733 172 450 300 start-end-sliders 0;
 #X obj 1287 426 hsl 338 17 0 631881 0 0 empty empty empty -2 -8 0 10 #333333 #eeeeee #e4e4e4 0 1;
@@ -417,9 +417,11 @@
 #X text 766 47 Set default loop buffer;
 #X obj 774 232 + 1;
 #X obj 189 107 live_buffer 1;
-#X obj 189 146 live_buffer 2;
-#X obj 189 185 live_buffer 3;
-#X obj 189 224 live_buffer 4;
+#X obj 189 143 live_buffer 2;
+#X obj 189 176 live_buffer 3;
+#X obj 189 212 live_buffer 4;
+#X obj 189 251 live_buffer 5;
+#X obj 189 287 live_buffer 6;
 #X connect 12 0 13 0;
 #X connect 13 0 14 0;
 #X connect 13 0 15 0;
