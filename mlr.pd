@@ -23,7 +23,7 @@
 #X obj 36 101 tgl 25 0 1-quantizer empty empty 17 7 0 10 #333333 #eeeeee #111111 0 1;
 #X obj 148 101 tgl 25 0 empty empty empty 17 7 0 10 #333333 #eeeeee #111111 0 1;
 #X obj 260 101 tgl 25 0 empty empty empty 17 7 0 10 #333333 #eeeeee #111111 0 1;
-#N canvas 733 172 450 300 mixer 0;
+#N canvas 733 172 450 300 mixer 1;
 #X obj -77 630 *~;
 #X obj -12 630 *~;
 #X obj 148 645 knob 50 0 1 0 0 empty empty #333333 #696969 #EEEEEE 1 0 0 0 1 270 0 0 0 empty empty 0 0 0 0 0 0 0 0;
