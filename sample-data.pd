@@ -36,6 +36,7 @@
 #X obj 108 391 t b b f b;
 #X obj -63 656 pack f f f f f f;
 #X msg 292 529 1;
+#X floatatom 15 582 5 0 0 0 - - - 12;
 #X connect 2 0 4 0;
 #X connect 2 1 6 0;
 #X connect 3 0 11 0;
@@ -57,7 +58,7 @@
 #X connect 17 0 12 1;
 #X connect 19 0 29 2;
 #X connect 21 0 29 4;
-#X connect 23 0 29 5;
+#X connect 23 0 31 0;
 #X connect 25 0 29 3;
 #X connect 27 0 29 0;
 #X connect 28 0 27 0;
@@ -67,3 +68,4 @@
 #X connect 28 3 30 0;
 #X connect 29 0 18 0;
 #X connect 30 0 29 1;
+#X connect 31 0 29 5;
