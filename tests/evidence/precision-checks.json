@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "host_48000": true,
+    "finite": true,
+    "left_110_Hz": true,
+    "right_165_Hz": true,
+    "audible": true
+  },
+  "all_pass": true,
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "region_seconds": [
+    9,
+    11
+  ],
+  "seek_seconds": 10,
+  "rate": 0.5,
+  "measured_Hz": [
+    109.9999999999989,
+    164.9999999999997
+  ],
+  "capture_sha256": "5e2b65f9f21bed3354a453ab89ca0fd4f1f49f586be7bfb47c162f45c2ee0b5e"
+}
