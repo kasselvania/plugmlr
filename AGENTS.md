@@ -20,5 +20,6 @@
   Do not launch additional audio-producing test patches into the user's session
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
-  push completed work, and leave any PR unmerged. For this observation update,
-  only documentation changes are authorized; Pd/Lua/audio files stay unchanged.
+  push completed work, and leave any PR unmerged. The observation baseline is
+  preserved in STATUS; the user has now authorized the small post-load metadata
+  refresh repair. Keep implementation and validation confined to that candidate.

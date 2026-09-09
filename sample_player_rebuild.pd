@@ -179,7 +179,7 @@
 #X floatatom 242 193 5 0 0 0 - - - 12;
 #X obj 221 384 s \$0-slice_size_val;
 #X obj 186 144 r s_b_buffer_states;
-#X obj 186 439 s \$0-loaded_update_indexes;
+#X obj 186 439 sel 1;
 #X obj 499 329 s \$0-live_buffer_content;
 #X obj 389 72 r \$0-incoming_global_buffer_route, f 32;
 #X obj 838 67 r \$0-send_target;
@@ -247,6 +247,7 @@
 #X connect 42 0 67 0;
 #X connect 46 0 42 1;
 #X connect 48 0 42 0;
+#X connect 49 0 64 0;
 #X connect 51 0 46 0;
 #X connect 51 0 39 0;
 #X connect 51 0 74 0;
