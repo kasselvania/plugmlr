@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-09",
+  "platform": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "macOS": "26.4.1 (25E253)",
+  "application": "/Applications/plugdata.app",
+  "bundle_version": "0.9.4",
+  "nightly_build": "98ae0f78b",
+  "suffix": "-test3",
+  "Pd": "0.56.3",
+  "Pd_Lua": "0.12.23",
+  "binary_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+  "device_buffer_frames": 512,
+  "component_block_frames": 64,
+  "original_audio_setup_restored": true,
+  "capture_devices": {
+    "48k": "CoreAudio: MOTU 8A / Opal C1 Audio Mic",
+    "44k": "CoreAudio: MacBook Pro Speakers / MacBook Pro Microphone",
+    "mismatch": "CoreAudio: MacBook Pro Speakers / Opal C1 Audio Mic"
+  },
+  "engine_sha256": {
+    "engine/r1-buffer-control.pd_lua": "625e9dc1e3f89e9b65562e6e0a27401176803fa90abe9ce802e26bac96e2ac4e",
+    "engine/r1-buffer.pd": "b3e3381b73e8a799464be8bcd107584506aaec589c149d3ea00e624d3bcd00bf",
+    "engine/r1-common.lua": "94a3552fbe7a6e85a6885b5502c5f39fea41f1b9606d04c17d6417b7e7c76e45",
+    "engine/r1-head-control.pd_lua": "6b28ee1235afd30c4d0352919d0dc4cfba16aec40cbc1cab4d685f8e6b3649e7",
+    "engine/r1-head~.pd": "d297eb4ff0eb6b6557299cd059087134a7552b4cf5b34778eb98f102047479b1",
+    "engine/r1-reader~.pd": "292732e709a772080970b856cb86a6b1860e1a5c37edf589d77ce5cc9a976199"
+  },
+  "scope": "Actual local standalone plugdata writesf~ output; no replacement runtime or DSP model. No human listening or Bitwig validation.",
+  "precision_device": "CoreAudio: MOTU 8A / Opal C1 Audio Mic"
+}

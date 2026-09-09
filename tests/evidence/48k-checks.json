@@ -1,0 +1,650 @@
+{
+  "capture_sha256": "358da7ece737e126bb1a178377400a22a126f8905987601c58a3bd1d941cee75",
+  "host_rate": 48000,
+  "frames": 527871,
+  "channels": 10,
+  "global_max_sample_step": 0.028778155334293842,
+  "checks": {
+    "host_rate": {
+      "pass": true,
+      "measurement": 48000
+    },
+    "duration": {
+      "pass": true,
+      "measurement": 10.9973125
+    },
+    "finite": {
+      "pass": true,
+      "measurement": 0
+    },
+    "bounded_peak": {
+      "pass": true,
+      "measurement": 0.2500114440917969
+    },
+    "B_matches_independent_instance_despite_A_commands": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "A_matches_other_A_before_changes": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "forward_frequency": {
+      "pass": true,
+      "measurement": {
+        "Hz": 219.99999999999093,
+        "expected_Hz": 220
+      }
+    },
+    "reverse_frequency": {
+      "pass": true,
+      "measurement": {
+        "Hz": 219.99999999999093,
+        "expected_Hz": 220
+      }
+    },
+    "slow_frequency": {
+      "pass": true,
+      "measurement": {
+        "Hz": 109.99999999992767,
+        "expected_Hz": 110
+      }
+    },
+    "fast_frequency": {
+      "pass": true,
+      "measurement": {
+        "Hz": 440.00000447196777,
+        "expected_Hz": 440
+      }
+    },
+    "max_forward_frequency": {
+      "pass": true,
+      "measurement": {
+        "Hz": 880.0527710576345,
+        "expected_Hz": 880
+      }
+    },
+    "max_reverse_frequency": {
+      "pass": true,
+      "measurement": {
+        "Hz": 880.0000168553544,
+        "expected_Hz": 880
+      }
+    },
+    "stereo_order_and_ratio": {
+      "pass": true,
+      "measurement": {
+        "L_Hz": 219.99999999999093,
+        "R_Hz": 329.99999999999727,
+        "R_over_L_rms": 0.4999976352792525
+      }
+    },
+    "third_head_gain": {
+      "pass": true,
+      "measurement": 0.10000000149011612
+    },
+    "B_gain_unchanged": {
+      "pass": true,
+      "measurement": 0.15000687539577484
+    },
+    "independent_gain_change": {
+      "pass": true,
+      "measurement": 0.12500014901161194
+    },
+    "rate_zero_silent": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "explicit_stop_silent": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "one_shot_forward_ends": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "one_shot_reverse_ends": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "audio_survives_failed_replacements": {
+      "pass": true,
+      "measurement": 0.25
+    },
+    "final_stop_silent": {
+      "pass": true,
+      "measurement": 0.0
+    },
+    "rapid_transition_step_bound": {
+      "pass": true,
+      "measurement": 0.0144043262116611
+    },
+    "rapid_commands_recover_audio": {
+      "pass": true,
+      "measurement": 0.17660496145024374
+    },
+    "untouched_B_no_dropout": {
+      "pass": true,
+      "measurement": {
+        "longest_near_zero_frames": 1
+      }
+    },
+    "individual_transition_steps_and_dropouts": {
+      "pass": true,
+      "measurement": {
+        "2100": {
+          "max_sample_step": 0.007202188018709421,
+          "near_zero_frames": 1
+        },
+        "3100": {
+          "max_sample_step": 0.0072631388902664185,
+          "near_zero_frames": 1
+        },
+        "4100": {
+          "max_sample_step": 0.014404296875,
+          "near_zero_frames": 1
+        },
+        "4800": {
+          "max_sample_step": 0.028778076171875,
+          "near_zero_frames": 1
+        },
+        "5100": {
+          "max_sample_step": 0.028778076171875,
+          "near_zero_frames": 1
+        },
+        "6100": {
+          "max_sample_step": 0.007202207110822201,
+          "near_zero_frames": 0
+        },
+        "6300": {
+          "max_sample_step": 0.007202188018709421,
+          "near_zero_frames": 0
+        },
+        "6400": {
+          "max_sample_step": 0.007202304434031248,
+          "near_zero_frames": 0
+        },
+        "6700": {
+          "max_sample_step": 0.0072021484375,
+          "near_zero_frames": 1
+        },
+        "8800": {
+          "max_sample_step": 0.0072021484375,
+          "near_zero_frames": 1
+        },
+        "8820": {
+          "max_sample_step": 0.0072021484375,
+          "near_zero_frames": 1
+        }
+      }
+    },
+    "sole_rate_zero_user_blocks_replacement": {
+      "pass": true,
+      "measurement": [
+        "11450 error 1003-main shared buffer-in-use;"
+      ]
+    },
+    "DSP_paused_stop_keeps_buffer_locked": {
+      "pass": true,
+      "measurement": [
+        "12014 error 1003-main shared buffer-in-use;"
+      ]
+    },
+    "DSP_resumed_stop_releases_buffer": {
+      "pass": true,
+      "measurement": [
+        "12100 loaded 1003-main shared 96000 48000 2 3;"
+      ]
+    },
+    "expected_loads": {
+      "pass": true,
+      "measurement": [
+        "500 loaded 1003-main shared 96000 48000 2 1;",
+        "600 loaded 1003-other shared 96000 48000 2 1;",
+        "10900 loaded 1003-main shared 96000 48000 2 2;",
+        "12100 loaded 1003-main shared 96000 48000 2 3;"
+      ]
+    },
+    "replacement_locked_during_use_and_stop_fade": {
+      "pass": true,
+      "measurement": [
+        "200 error 1003-main missing absent missing-buffer;",
+        "210 error 1003-main empty empty missing-buffer;",
+        "250 error 1003-main empty invalid-stereo-file;",
+        "5450 error 1003-main shared buffer-in-use;",
+        "7000 error 1003-main A shared out-of-range rate;",
+        "7005 error 1003-main A shared invalid-command rate;",
+        "7010 error 1003-main A shared invalid-command rate;",
+        "7020 error 1003-main A shared invalid-command rate;",
+        "7030 error 1003-main A shared invalid-position;",
+        "7040 error 1003-main A shared invalid-position;",
+        "7050 error 1003-main A shared invalid-region;",
+        "7060 error 1003-main A shared invalid-region;",
+        "7070 error 1003-main A shared invalid-region;",
+        "7080 error 1003-main A shared out-of-range loop;",
+        "7090 error 1003-main A shared out-of-range gain;",
+        "7100 error 1003-main A shared invalid-command unknown;",
+        "10401 error 1003-main shared buffer-in-use;",
+        "10500 error 1003-main shared invalid-stereo-file;",
+        "10600 error 1003-main shared invalid-stereo-file;",
+        "10700 error 1003-main shared invalid-stereo-file;",
+        "11450 error 1003-main shared buffer-in-use;",
+        "12014 error 1003-main shared buffer-in-use;"
+      ]
+    },
+    "invalid_commands_rejected": {
+      "pass": true,
+      "measurement": [
+        "7000 error 1003-main A shared out-of-range rate;",
+        "7005 error 1003-main A shared invalid-command rate;",
+        "7010 error 1003-main A shared invalid-command rate;",
+        "7020 error 1003-main A shared invalid-command rate;",
+        "7030 error 1003-main A shared invalid-position;",
+        "7040 error 1003-main A shared invalid-position;",
+        "7050 error 1003-main A shared invalid-region;",
+        "7060 error 1003-main A shared invalid-region;",
+        "7070 error 1003-main A shared invalid-region;",
+        "7080 error 1003-main A shared out-of-range loop;",
+        "7090 error 1003-main A shared out-of-range gain;",
+        "7100 error 1003-main A shared invalid-command unknown;"
+      ]
+    },
+    "missing_and_empty_rejected": {
+      "pass": true,
+      "measurement": [
+        "200 error 1003-main missing absent missing-buffer;",
+        "210 error 1003-main empty empty missing-buffer;",
+        "250 error 1003-main empty invalid-stereo-file;"
+      ]
+    },
+    "failed_replacements_leave_version_one": {
+      "pass": true,
+      "measurement": [
+        "10800 buffer 1003-main shared 96000 48000 1 1;"
+      ]
+    },
+    "forward_position_direction": {
+      "pass": true,
+      "measurement": [
+        0.5,
+        0.52,
+        0.54,
+        0.56,
+        0.58,
+        0.6,
+        0.62,
+        0.64,
+        0.66,
+        0.68,
+        0.7,
+        0.72,
+        0.74,
+        0.76,
+        0.78,
+        0.8,
+        0.82,
+        0.84,
+        0.86,
+        0.88,
+        0.9
+      ]
+    },
+    "reverse_position_direction": {
+      "pass": true,
+      "measurement": [
+        0.9,
+        0.88,
+        0.86,
+        0.84,
+        0.82,
+        0.8,
+        0.78,
+        0.76,
+        0.74,
+        0.72,
+        0.7,
+        0.68,
+        0.66,
+        0.64,
+        0.62,
+        0.6,
+        0.58,
+        0.56,
+        0.54,
+        0.52,
+        0.5
+      ]
+    },
+    "forward_holds_completed_boundary": {
+      "pass": true,
+      "measurement": [
+        [
+          9100.0,
+          0.0,
+          0.8,
+          1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          9120.0,
+          0.0,
+          0.8,
+          1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          9140.0,
+          0.0,
+          0.8,
+          1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ]
+      ]
+    },
+    "reverse_holds_completed_boundary": {
+      "pass": true,
+      "measurement": [
+        [
+          9560.0,
+          0.0,
+          0.3,
+          -1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          9580.0,
+          0.0,
+          0.3,
+          -1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ]
+      ]
+    },
+    "reverse_restart_from_completed_boundary": {
+      "pass": true,
+      "measurement": [
+        [
+          9660.0,
+          1.0,
+          0.759979,
+          -1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          9680.0,
+          1.0,
+          0.739979,
+          -1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          9700.0,
+          1.0,
+          0.719979,
+          -1.0,
+          0.3,
+          0.8,
+          0.0,
+          1.0,
+          0.0,
+          48000.0
+        ]
+      ]
+    },
+    "invalid_inputs_preserve_controls": {
+      "pass": true,
+      "measurement": [
+        [
+          7160.0,
+          1.0,
+          0.76,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7180.0,
+          1.0,
+          0.78,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7200.0,
+          1.0,
+          0.3,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7220.0,
+          1.0,
+          0.32,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7240.0,
+          1.0,
+          0.34,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7260.0,
+          1.0,
+          0.36,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7280.0,
+          1.0,
+          0.38,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7300.0,
+          1.0,
+          0.4,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7320.0,
+          1.0,
+          0.42,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7340.0,
+          1.0,
+          0.44,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7360.0,
+          1.0,
+          0.46,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7380.0,
+          1.0,
+          0.48,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ],
+        [
+          7400.0,
+          1.0,
+          0.5,
+          1.0,
+          0.3,
+          0.8,
+          1.0,
+          1.0,
+          0.0,
+          48000.0
+        ]
+      ]
+    },
+    "short_loop_bounds": {
+      "pass": true,
+      "measurement": [
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979,
+        0.519979
+      ]
+    }
+  },
+  "errors": [
+    "200 error 1003-main missing absent missing-buffer;",
+    "210 error 1003-main empty empty missing-buffer;",
+    "250 error 1003-main empty invalid-stereo-file;",
+    "5450 error 1003-main shared buffer-in-use;",
+    "7000 error 1003-main A shared out-of-range rate;",
+    "7005 error 1003-main A shared invalid-command rate;",
+    "7010 error 1003-main A shared invalid-command rate;",
+    "7020 error 1003-main A shared invalid-command rate;",
+    "7030 error 1003-main A shared invalid-position;",
+    "7040 error 1003-main A shared invalid-position;",
+    "7050 error 1003-main A shared invalid-region;",
+    "7060 error 1003-main A shared invalid-region;",
+    "7070 error 1003-main A shared invalid-region;",
+    "7080 error 1003-main A shared out-of-range loop;",
+    "7090 error 1003-main A shared out-of-range gain;",
+    "7100 error 1003-main A shared invalid-command unknown;",
+    "10401 error 1003-main shared buffer-in-use;",
+    "10500 error 1003-main shared invalid-stereo-file;",
+    "10600 error 1003-main shared invalid-stereo-file;",
+    "10700 error 1003-main shared invalid-stereo-file;",
+    "11450 error 1003-main shared buffer-in-use;",
+    "12014 error 1003-main shared buffer-in-use;"
+  ],
+  "loads": [
+    "500 loaded 1003-main shared 96000 48000 2 1;",
+    "600 loaded 1003-other shared 96000 48000 2 1;",
+    "10900 loaded 1003-main shared 96000 48000 2 2;",
+    "12100 loaded 1003-main shared 96000 48000 2 3;"
+  ],
+  "ended": [
+    "8920 ended 1003-main A shared;",
+    "9500 ended 1003-main A shared;"
+  ],
+  "all_pass": true
+}

@@ -1,0 +1,612 @@
+[
+  {
+    "ms": 200,
+    "target": "missing",
+    "message": "start"
+  },
+  {
+    "ms": 210,
+    "target": "empty",
+    "message": "start"
+  },
+  {
+    "ms": 250,
+    "target": "empty-buffer",
+    "message": "load ../tests/empty.wav"
+  },
+  {
+    "ms": 500,
+    "target": "buffer",
+    "message": "load ../tests/stereo-44100.wav"
+  },
+  {
+    "ms": 600,
+    "target": "other-buffer",
+    "message": "load ../tests/stereo-44100.wav"
+  },
+  {
+    "ms": 750,
+    "target": "A",
+    "message": "region 0.2 1.8"
+  },
+  {
+    "ms": 750,
+    "target": "other-A",
+    "message": "region 0.2 1.8"
+  },
+  {
+    "ms": 750,
+    "target": "B",
+    "message": "region 0.4 1.4"
+  },
+  {
+    "ms": 770,
+    "target": "B",
+    "message": "rate 0.5"
+  },
+  {
+    "ms": 790,
+    "target": "B",
+    "message": "gain 0.6"
+  },
+  {
+    "ms": 750,
+    "target": "other-B",
+    "message": "region 0.4 1.4"
+  },
+  {
+    "ms": 770,
+    "target": "other-B",
+    "message": "rate 0.5"
+  },
+  {
+    "ms": 790,
+    "target": "other-B",
+    "message": "gain 0.6"
+  },
+  {
+    "ms": 750,
+    "target": "C",
+    "message": "region 0.6 1.6"
+  },
+  {
+    "ms": 770,
+    "target": "C",
+    "message": "rate -1"
+  },
+  {
+    "ms": 790,
+    "target": "C",
+    "message": "seek 1.5"
+  },
+  {
+    "ms": 810,
+    "target": "C",
+    "message": "gain 0.4"
+  },
+  {
+    "ms": 900,
+    "target": null,
+    "message": "open -bytes 4 evidence/mismatch-full.wav"
+  },
+  {
+    "ms": 1000,
+    "target": null,
+    "message": "start"
+  },
+  {
+    "ms": 1100,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 1100,
+    "target": "B",
+    "message": "start"
+  },
+  {
+    "ms": 1100,
+    "target": "C",
+    "message": "start"
+  },
+  {
+    "ms": 1100,
+    "target": "other-B",
+    "message": "start"
+  },
+  {
+    "ms": 1100,
+    "target": "other-A",
+    "message": "start"
+  },
+  {
+    "ms": 2100,
+    "target": "A",
+    "message": "rate -1"
+  },
+  {
+    "ms": 3100,
+    "target": "A",
+    "message": "rate 0.5"
+  },
+  {
+    "ms": 4100,
+    "target": "A",
+    "message": "rate 2"
+  },
+  {
+    "ms": 4800,
+    "target": "A",
+    "message": "rate 4"
+  },
+  {
+    "ms": 5100,
+    "target": "A",
+    "message": "rate -4"
+  },
+  {
+    "ms": 5400,
+    "target": "A",
+    "message": "rate 0"
+  },
+  {
+    "ms": 5450,
+    "target": "buffer",
+    "message": "load ../tests/stereo-48000.wav"
+  },
+  {
+    "ms": 5900,
+    "target": "A",
+    "message": "rate 1"
+  },
+  {
+    "ms": 6100,
+    "target": "A",
+    "message": "gain 0.5"
+  },
+  {
+    "ms": 6300,
+    "target": "A",
+    "message": "gain 1"
+  },
+  {
+    "ms": 6400,
+    "target": "A",
+    "message": "seek 1.25"
+  },
+  {
+    "ms": 6700,
+    "target": "A",
+    "message": "region 0.3 0.8"
+  },
+  {
+    "ms": 7000,
+    "target": "A",
+    "message": "rate 9"
+  },
+  {
+    "ms": 7005,
+    "target": "A",
+    "message": "rate 1e+40"
+  },
+  {
+    "ms": 7010,
+    "target": "A",
+    "message": "rate nan"
+  },
+  {
+    "ms": 7020,
+    "target": "A",
+    "message": "rate 1 2"
+  },
+  {
+    "ms": 7030,
+    "target": "A",
+    "message": "seek -1"
+  },
+  {
+    "ms": 7040,
+    "target": "A",
+    "message": "seek 0.8"
+  },
+  {
+    "ms": 7050,
+    "target": "A",
+    "message": "region 1 0"
+  },
+  {
+    "ms": 7060,
+    "target": "A",
+    "message": "region 0 9"
+  },
+  {
+    "ms": 7070,
+    "target": "A",
+    "message": "region 0.1 0.101"
+  },
+  {
+    "ms": 7080,
+    "target": "A",
+    "message": "loop 2"
+  },
+  {
+    "ms": 7090,
+    "target": "A",
+    "message": "gain -1"
+  },
+  {
+    "ms": 7100,
+    "target": "A",
+    "message": "unknown 5"
+  },
+  {
+    "ms": 7500,
+    "target": "A",
+    "message": "seek 0.35"
+  },
+  {
+    "ms": 7501,
+    "target": "A",
+    "message": "rate -2"
+  },
+  {
+    "ms": 7502,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 7503,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 7504,
+    "target": "A",
+    "message": "seek 0.65"
+  },
+  {
+    "ms": 7505,
+    "target": "A",
+    "message": "rate 2"
+  },
+  {
+    "ms": 7506,
+    "target": "A",
+    "message": "seek 0.35"
+  },
+  {
+    "ms": 7507,
+    "target": "A",
+    "message": "rate -2"
+  },
+  {
+    "ms": 7508,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 7509,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 7510,
+    "target": "A",
+    "message": "seek 0.65"
+  },
+  {
+    "ms": 7511,
+    "target": "A",
+    "message": "rate 2"
+  },
+  {
+    "ms": 7512,
+    "target": "A",
+    "message": "seek 0.35"
+  },
+  {
+    "ms": 7513,
+    "target": "A",
+    "message": "rate -2"
+  },
+  {
+    "ms": 7514,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 7515,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 7516,
+    "target": "A",
+    "message": "seek 0.65"
+  },
+  {
+    "ms": 7517,
+    "target": "A",
+    "message": "rate 2"
+  },
+  {
+    "ms": 7518,
+    "target": "A",
+    "message": "seek 0.35"
+  },
+  {
+    "ms": 7519,
+    "target": "A",
+    "message": "rate -2"
+  },
+  {
+    "ms": 7520,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 7521,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 7522,
+    "target": "A",
+    "message": "seek 0.65"
+  },
+  {
+    "ms": 7523,
+    "target": "A",
+    "message": "rate 2"
+  },
+  {
+    "ms": 7524,
+    "target": "A",
+    "message": "seek 0.35"
+  },
+  {
+    "ms": 7525,
+    "target": "A",
+    "message": "rate -2"
+  },
+  {
+    "ms": 7526,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 7527,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 7528,
+    "target": "A",
+    "message": "seek 0.65"
+  },
+  {
+    "ms": 7529,
+    "target": "A",
+    "message": "rate 2"
+  },
+  {
+    "ms": 7540,
+    "target": "A",
+    "message": "rate 1"
+  },
+  {
+    "ms": 7550,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 7570,
+    "target": "A",
+    "message": "seek 0.4"
+  },
+  {
+    "ms": 8100,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 8110,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 8300,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 8310,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 8800,
+    "target": "A",
+    "message": "loop 0"
+  },
+  {
+    "ms": 8820,
+    "target": "A",
+    "message": "seek 0.7"
+  },
+  {
+    "ms": 9400,
+    "target": "A",
+    "message": "rate -1"
+  },
+  {
+    "ms": 9420,
+    "target": "A",
+    "message": "seek 0.35"
+  },
+  {
+    "ms": 9440,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 9620,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 9900,
+    "target": "A",
+    "message": "loop 1"
+  },
+  {
+    "ms": 9920,
+    "target": "A",
+    "message": "region 0.5 0.52"
+  },
+  {
+    "ms": 9940,
+    "target": "A",
+    "message": "rate 4"
+  },
+  {
+    "ms": 9960,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 10400,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 10400,
+    "target": "B",
+    "message": "stop"
+  },
+  {
+    "ms": 10400,
+    "target": "C",
+    "message": "stop"
+  },
+  {
+    "ms": 10400,
+    "target": "other-B",
+    "message": "stop"
+  },
+  {
+    "ms": 10400,
+    "target": "other-A",
+    "message": "stop"
+  },
+  {
+    "ms": 10401,
+    "target": "buffer",
+    "message": "load ../tests/stereo-48000.wav"
+  },
+  {
+    "ms": 10500,
+    "target": "buffer",
+    "message": "load ../tests/does-not-exist.wav"
+  },
+  {
+    "ms": 10600,
+    "target": "buffer",
+    "message": "load ../tests/mono.wav"
+  },
+  {
+    "ms": 10700,
+    "target": "buffer",
+    "message": "load ../tests/empty.wav"
+  },
+  {
+    "ms": 10800,
+    "target": "buffer",
+    "message": "status"
+  },
+  {
+    "ms": 10750,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 10850,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 10900,
+    "target": "buffer",
+    "message": "load ../tests/stereo-48000.wav"
+  },
+  {
+    "ms": 11200,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 11400,
+    "target": "A",
+    "message": "rate 0"
+  },
+  {
+    "ms": 11450,
+    "target": "buffer",
+    "message": "load ../tests/stereo-44100.wav"
+  },
+  {
+    "ms": 11520,
+    "target": "A",
+    "message": "rate 1"
+  },
+  {
+    "ms": 11600,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 12000,
+    "target": null,
+    "message": "stop"
+  },
+  {
+    "ms": 12010,
+    "target": "A",
+    "message": "start"
+  },
+  {
+    "ms": 12012,
+    "target": null,
+    "message": "bang"
+  },
+  {
+    "ms": 12013,
+    "target": "A",
+    "message": "stop"
+  },
+  {
+    "ms": 12014,
+    "target": "buffer",
+    "message": "load ../tests/stereo-48000.wav"
+  },
+  {
+    "ms": 12060,
+    "target": null,
+    "message": "bang"
+  },
+  {
+    "ms": 12100,
+    "target": "buffer",
+    "message": "load ../tests/stereo-48000.wav"
+  },
+  {
+    "ms": 12200,
+    "target": null,
+    "message": "write evidence/mismatch-states.txt"
+  },
+  {
+    "ms": 12300,
+    "target": null,
+    "message": "mismatch"
+  }
+]
