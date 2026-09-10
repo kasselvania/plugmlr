@@ -1,0 +1,895 @@
+{
+  "host_rate": 48000,
+  "configured_mixer_gain": 0.41100000000000003,
+  "cases": {
+    "baseline-constant": {
+      "frames": 335918,
+      "reader_frames": 335918,
+      "all_samples_finite": true,
+      "peak_player_LR_mixer_LR": [
+        0.0799865797162056,
+        0.0400085486471653,
+        0.03287448361515999,
+        0.016443513333797455
+      ],
+      "max_adjacent_step_player_LR_mixer_LR": [
+        0.079986572265625,
+        0.040008544921875,
+        0.03287447988986969,
+        0.016443511471152306
+      ],
+      "final_tail_zero": true,
+      "steady_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.18
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.54,
+            0.64
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.94,
+            1.04
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.35,
+            1.4500000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.75,
+            1.85
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.16,
+            2.2600000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.66,
+            2.7600000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            3.56,
+            3.66
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.06,
+            4.159999999999999
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.46,
+            4.56
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            5.1,
+            5.199999999999999
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 13,
+          "nonzero_gain_before_off": 3,
+          "maximum_gain_before_off": 1.0
+        },
+        {
+          "count": 10,
+          "nonzero_gain_before_off": 9,
+          "maximum_gain_before_off": 1.0
+        }
+      ]
+    },
+    "candidate-constant": {
+      "frames": 335918,
+      "reader_frames": 335918,
+      "all_samples_finite": true,
+      "peak_player_LR_mixer_LR": [
+        0.0799865797162056,
+        0.0400085486471653,
+        0.03287448361515999,
+        0.016443513333797455
+      ],
+      "max_adjacent_step_player_LR_mixer_LR": [
+        0.0005390709266066551,
+        0.00026963837444782257,
+        0.0002283230423927307,
+        0.00011420436203479767
+      ],
+      "final_tail_zero": true,
+      "steady_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.18
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.54,
+            0.64
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.94,
+            1.04
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.35,
+            1.4500000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.75,
+            1.85
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.16,
+            2.2600000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.66,
+            2.7600000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            3.56,
+            3.66
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.06,
+            4.159999999999999
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.46,
+            4.56
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            5.1,
+            5.199999999999999
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 12,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        },
+        {
+          "count": 11,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        }
+      ],
+      "start_times_ms": [
+        50.0,
+        500.0,
+        909.0,
+        1309.0,
+        1709.0,
+        2115.0,
+        2613.0,
+        3500.0,
+        4009.0,
+        4412.0,
+        5050.0
+      ]
+    },
+    "baseline-wave": {
+      "frames": 335918,
+      "reader_frames": 335918,
+      "all_samples_finite": true,
+      "peak_player_LR_mixer_LR": [
+        0.07998669147491455,
+        0.04998788237571716,
+        0.03287452831864357,
+        0.02054501883685589
+      ],
+      "max_adjacent_step_player_LR_mixer_LR": [
+        0.074188232421875,
+        0.040740966796875,
+        0.030491363257169724,
+        0.01674453541636467
+      ],
+      "final_tail_zero": true,
+      "steady_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.18
+          ],
+          "rms_LR": [
+            0.04482020065188408,
+            0.029229188337922096
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.54,
+            0.64
+          ],
+          "rms_LR": [
+            0.04446953162550926,
+            0.02920796163380146
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.94,
+            1.04
+          ],
+          "rms_LR": [
+            0.04485549405217171,
+            0.02919059433043003
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.35,
+            1.4500000000000002
+          ],
+          "rms_LR": [
+            0.0447944812476635,
+            0.02912001870572567
+          ],
+          "mixer_gain_error": 7.450580596923828e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.75,
+            1.85
+          ],
+          "rms_LR": [
+            0.044811658561229706,
+            0.02922234870493412
+          ],
+          "mixer_gain_error": 7.450580596923828e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.16,
+            2.2600000000000002
+          ],
+          "rms_LR": [
+            0.044636957347393036,
+            0.02917492762207985
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.66,
+            2.7600000000000002
+          ],
+          "rms_LR": [
+            0.04474509507417679,
+            0.029192086309194565
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            3.56,
+            3.66
+          ],
+          "rms_LR": [
+            0.044866934418678284,
+            0.029081281274557114
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.06,
+            4.159999999999999
+          ],
+          "rms_LR": [
+            0.04486694931983948,
+            0.029081298038363457
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.46,
+            4.56
+          ],
+          "rms_LR": [
+            0.044745124876499176,
+            0.029192086309194565
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            5.1,
+            5.199999999999999
+          ],
+          "rms_LR": [
+            0.04477177932858467,
+            0.029136624187231064
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 13,
+          "nonzero_gain_before_off": 3,
+          "maximum_gain_before_off": 1.0
+        },
+        {
+          "count": 10,
+          "nonzero_gain_before_off": 9,
+          "maximum_gain_before_off": 1.0
+        }
+      ]
+    },
+    "candidate-wave": {
+      "frames": 335918,
+      "reader_frames": 335918,
+      "all_samples_finite": true,
+      "peak_player_LR_mixer_LR": [
+        0.07998669147491455,
+        0.04998788237571716,
+        0.03287452831864357,
+        0.02054501883685589
+      ],
+      "max_adjacent_step_player_LR_mixer_LR": [
+        0.003173828125,
+        0.002777164103463292,
+        0.0013044433435425162,
+        0.001141414511948824
+      ],
+      "final_tail_zero": true,
+      "steady_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.18
+          ],
+          "rms_LR": [
+            0.04482020065188408,
+            0.029229188337922096
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.54,
+            0.64
+          ],
+          "rms_LR": [
+            0.04446953162550926,
+            0.02920796163380146
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.94,
+            1.04
+          ],
+          "rms_LR": [
+            0.044731300324201584,
+            0.029145894572138786
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.35,
+            1.4500000000000002
+          ],
+          "rms_LR": [
+            0.04470717906951904,
+            0.029121369123458862
+          ],
+          "mixer_gain_error": 7.450580596923828e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.75,
+            1.85
+          ],
+          "rms_LR": [
+            0.04470719024538994,
+            0.029121363535523415
+          ],
+          "mixer_gain_error": 7.450580596923828e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.16,
+            2.2600000000000002
+          ],
+          "rms_LR": [
+            0.044636957347393036,
+            0.02917492762207985
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.66,
+            2.7600000000000002
+          ],
+          "rms_LR": [
+            0.04490429908037186,
+            0.0291946679353714
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            3.56,
+            3.66
+          ],
+          "rms_LR": [
+            0.044866934418678284,
+            0.029081281274557114
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.06,
+            4.159999999999999
+          ],
+          "rms_LR": [
+            0.04482392221689224,
+            0.029147418215870857
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.46,
+            4.56
+          ],
+          "rms_LR": [
+            0.04460221901535988,
+            0.029109494760632515
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            5.1,
+            5.199999999999999
+          ],
+          "rms_LR": [
+            0.04477177932858467,
+            0.029136624187231064
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 12,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        },
+        {
+          "count": 11,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        }
+      ],
+      "start_times_ms": [
+        50.0,
+        500.0,
+        909.0,
+        1309.0,
+        1709.0,
+        2115.0,
+        2613.0,
+        3500.0,
+        4009.0,
+        4412.0,
+        5050.0
+      ]
+    },
+    "candidate-cancel": {
+      "frames": 335918,
+      "reader_frames": 335918,
+      "all_samples_finite": true,
+      "peak_player_LR_mixer_LR": [
+        0.07998669147491455,
+        0.04998786747455597,
+        0.03287452831864357,
+        0.02054501324892044
+      ],
+      "max_adjacent_step_player_LR_mixer_LR": [
+        0.003173828125,
+        0.0027771592140197754,
+        0.0013044433435425162,
+        0.001141412416473031
+      ],
+      "final_tail_zero": true,
+      "steady_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.18
+          ],
+          "rms_LR": [
+            0.04482020065188408,
+            0.029229188337922096
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.04,
+            1.1400000000000001
+          ],
+          "rms_LR": [
+            0.04446953535079956,
+            0.029207969084382057
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.09,
+            2.19
+          ],
+          "rms_LR": [
+            0.044469546526670456,
+            0.02920798771083355
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.55,
+            2.65
+          ],
+          "rms_LR": [
+            0.04470717906951904,
+            0.02912137471139431
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            3.6,
+            3.7
+          ],
+          "rms_LR": [
+            0.044771816581487656,
+            0.02913663350045681
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.25,
+            4.35
+          ],
+          "rms_LR": [
+            0.04477181285619736,
+            0.02913663722574711
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 6,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        },
+        {
+          "count": 6,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        }
+      ],
+      "start_times_ms": [
+        50.0,
+        1000.0,
+        2050.0,
+        2509.0,
+        3550.0,
+        4200.0
+      ],
+      "stopped_windows": [
+        {
+          "seconds": [
+            0.53,
+            0.99
+          ],
+          "exact_zero": true
+        },
+        {
+          "seconds": [
+            1.33,
+            2.04
+          ],
+          "exact_zero": true
+        },
+        {
+          "seconds": [
+            3.03,
+            3.54
+          ],
+          "exact_zero": true
+        },
+        {
+          "seconds": [
+            4.03,
+            4.19
+          ],
+          "exact_zero": true
+        },
+        {
+          "seconds": [
+            4.53,
+            6.99
+          ],
+          "exact_zero": true
+        }
+      ]
+    }
+  },
+  "recording": {
+    "baseline": {
+      "content_frames": 15616,
+      "loaded_ms": 378.0,
+      "nonfinite_position_times_ms": [
+        50.0,
+        375.0,
+        1900.0,
+        2020.0
+      ],
+      "local_array_sha256": "a710db76973e898fc68c9702667729514dfccc32e968f437048e9a6584e81922"
+    },
+    "candidate": {
+      "content_frames": 15616,
+      "loaded_ms": 378.0,
+      "nonfinite_position_times_ms": [],
+      "local_array_sha256": "a87aee9560391b5d6f8413f0efb2ad357d238266c5aa80344d661b3952571db6"
+    }
+  },
+  "checks": {
+    "constant_baseline_exposes_hard_cut": true,
+    "constant_candidate_step_bounded": true,
+    "constant_peak_unchanged": true,
+    "constant_queued_restart_timing": true,
+    "wave_baseline_exposes_hard_cut": true,
+    "wave_candidate_step_bounded": true,
+    "wave_peak_unchanged": true,
+    "wave_queued_restart_timing": true,
+    "baseline-constant_finite_bounded_capture": true,
+    "baseline-constant_stopped_tail": true,
+    "baseline-constant_steady_audio_and_gain": true,
+    "candidate-constant_finite_bounded_capture": true,
+    "candidate-constant_stopped_tail": true,
+    "candidate-constant_steady_audio_and_gain": true,
+    "candidate-constant_readers_fade_before_off": true,
+    "baseline-wave_finite_bounded_capture": true,
+    "baseline-wave_stopped_tail": true,
+    "baseline-wave_steady_audio_and_gain": true,
+    "candidate-wave_finite_bounded_capture": true,
+    "candidate-wave_stopped_tail": true,
+    "candidate-wave_steady_audio_and_gain": true,
+    "candidate-wave_readers_fade_before_off": true,
+    "candidate-cancel_finite_bounded_capture": true,
+    "candidate-cancel_stopped_tail": true,
+    "candidate-cancel_steady_audio_and_gain": true,
+    "candidate-cancel_readers_fade_before_off": true,
+    "baseline_reader_shutdown_exposes_nonzero_gain": true,
+    "pending_play_cancelled_coalesced_and_reload_stops": true,
+    "cancelled_starts_remain_silent": true,
+    "baseline_record_stop_direct": true,
+    "baseline_retained_record_capacity": true,
+    "candidate_record_stop_direct": true,
+    "candidate_retained_record_capacity": true,
+    "baseline_exposes_empty_position_nan": true,
+    "candidate_empty_positions_finite": true
+  },
+  "passed": true,
+  "scope": "Actual native 48 kHz captures. Baseline defects are expected controls. No listening judgment, universal click-free claim, pause, reverse-slew, 44.1 kHz host or DAW acceptance."
+}

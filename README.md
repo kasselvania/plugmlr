@@ -14,6 +14,12 @@ The [48 kHz recording checkpoint](docs/STATUS.md#recording-checkpoint-with-the-n
 now includes real hardware takes, early Stop, recorded/imported switching, and the
 user's report of useful levels with no audible problems in those captures.
 
+The separate [Stop/restart repair](docs/STATUS.md#stoprestart-follow-up) fades the
+existing readers for 6 ms before shutdown. Play during that interval waits for
+cleanup at 9 ms; another Stop cancels it. Recording Stop remains direct, and empty
+buffer playbars report zero. Paired native audio/state checks cover rapid commands
+at 48 kHz; broader transition and host-rate qualification remains separate.
+
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
 reverse or an audible tape slew, with timing drift allowed. The
@@ -114,8 +120,8 @@ message interfaces and native test steps are documented in STATUS.
    an active writer; reselect that live buffer to Stop it early.
 
 Known playback limit: captures still show abrupt steps on some instant-reverse
-and Stop commands. The early-take loop gap is repaired, but this candidate does
-not claim click-free transport.
+commands. The early-take loop gap and hard Stop now have localized repairs, with
+retained evidence; this does not establish click-free transport for every signal.
 
 Takes exist in memory; project recall and exporting recordings through a product
 UI are not implemented. See STATUS for bounded test captures and remaining gates.

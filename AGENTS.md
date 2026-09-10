@@ -35,6 +35,9 @@
   Validate type AND number selection, reselection, empty buffers, interrupted
   switches, stereo ordering and safe load/clear in the native original player.
   Keep the 6/9 ms fades and shutdown cancellation; test loops, cuts and interrupted transport in the actual player.
+  Playback Stop must finish its fade/cleanup before a queued Play rechecks buffer
+  readiness. Another Stop cancels that Play. Keep recording Stop's direct timing
+  separate from playback shutdown, and check empty-buffer playbar output is finite.
   At a speed-boundary collision, the loop handler owns the jump; retime from a
   fresh snapshot after the block. Keep failing recordings bound to their source.
   First-pass crossover evidence does not accept later untested edits. Direction

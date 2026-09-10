@@ -1,0 +1,82 @@
+[
+  {
+    "wav": "baseline-constant-player-mixer-48.wav",
+    "wav_sha256": "72dbd8a7d4d2fd413bba5717779b529b5dac056eb0becd4799107d990d860b20",
+    "npz": "baseline-constant-player-mixer-48.npz",
+    "sample_shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "baseline-constant-readers-48.wav",
+    "wav_sha256": "1d651cfca81c28ced3f9539de47bcf454ef744c20b330592f81bc38718d9d06d",
+    "npz": "baseline-constant-readers-48.npz",
+    "sample_shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "baseline-wave-readers-48.wav",
+    "wav_sha256": "7ac08b70db7b3f48f1e831449376fec8ab1b25a8e756eb315cca9b4ee1e43f28",
+    "npz": "baseline-wave-readers-48.npz",
+    "sample_shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-cancel-player-mixer-48.wav",
+    "wav_sha256": "f91a6ea9d0ae595d6a1ac9a84a3f834945f7be1f0c3f0920830c0f5acf10a178",
+    "npz": "candidate-cancel-player-mixer-48.npz",
+    "sample_shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-cancel-readers-48.wav",
+    "wav_sha256": "535ca90e8aab4d2c0604fad486f6baa71510e14bb0d3f59020b6cb6769fe9384",
+    "npz": "candidate-cancel-readers-48.npz",
+    "sample_shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-constant-player-mixer-48.wav",
+    "wav_sha256": "2b8b69569de3884314ebb7017c5e49bc513abe446c692a48e2f4029a8e91a8de",
+    "npz": "candidate-constant-player-mixer-48.npz",
+    "sample_shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-constant-readers-48.wav",
+    "wav_sha256": "c0d0ea2d7c6d288807d451b0ae612ca82459bdf5353d15a2c6fe41da0b9b8e53",
+    "npz": "candidate-constant-readers-48.npz",
+    "sample_shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-wave-readers-48.wav",
+    "wav_sha256": "e718127f260a8c13c5524124481110917638e67b574fb8f8a06173312c196997",
+    "npz": "candidate-wave-readers-48.npz",
+    "sample_shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  }
+]

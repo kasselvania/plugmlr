@@ -7,6 +7,145 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Stop/restart follow-up
+
+Separate branch `codex/fix-stop-restart`, based on the recording checkpoint
+`2b5ff88dfa6fce61f96f8b253acc5f4269fe19fc`. Remote main was verified as
+`9358537d48c549c26778f8d533ec870a7c5538ff` before edits; PR #11 remains separate.
+
+Contract for this repair: Stop ends recording through its existing direct,
+block-resolved route. Playback enters stopped state immediately, cancels pending
+slice/gain dispatch, and uses the existing 6 ms reader gain fades before its
+legacy reset/DSP/mixer shutdown. A short settling interval defers a new Play
+until the old fade and cleanup finish at 9 ms after the latest Stop.
+Repeated Stop cancels a pending Play; multiple Play requests during that interval
+coalesce into one start, rechecking the current buffer before starting. A cleanup
+from an earlier Stop must never execute after that new start. Buffer selection's
+existing 6 ms fade, 20 ms commit and metadata ordering remain intact. Empty/equal
+or inverted playbar bounds report zero; valid spans retain the original unclipped
+linear normalization. No recording-length,
+buffer-storage, reverse or tape-slew behavior is being redesigned. Actual baseline
+and repaired player/mixer audio, including both reader states, determine acceptance.
+
+### Source repair
+
+Only `sample_player_rebuild.pd` changes in the application. Its new local
+`pd stop_transition` orders the existing Stop and initial-start bodies; it has
+one pending-start flag and one cancellable timer. Stop marks playback stopped
+immediately, resets the UI, closes gain-dispatch gates and sends `0 6` to both
+existing reader gain envelopes. It also cancels the slice/speed retry dispatch
+and each reader's pending 12 ms DSP-off timer so they cannot cut the fade short.
+At 9 ms it runs the old cleanup first, then rechecks buffer readiness before any
+queued start. Another Stop clears that request and restarts the timer.
+
+The original Stop instead jumped the playhead, zeroed reader gain/DSP and closed
+the mixer immediately. Moving only the mixer close would still leave those
+reader cutoffs. This repair reuses the original readers, fades, cleanup and
+selection logic; `record-controls.pd`, buffer storage and `mixer.pd` are unchanged.
+The playbar's divide-by-zero `scale` is replaced with one guarded expression.
+There is no new engine, external, global control scheme or GUI redesign.
+
+### Actual native results
+
+Same standalone runtime: **plugdata 0.9.4 nightly `98ae0f78b`, Pd 0.56.3**,
+CoreAudio **8A input/output, 48000 Hz, 512 hardware frames, 1x**. Baseline and
+candidate captures used track 1 gain **0.548**, master **0.75**. The global output
+was muted for synthetic/DC diagnostics; actual pre-output player and post-master
+mixer signals were captured. Neither hardware clock nor Bitwig was changed.
+
+| Check | Baseline | Repaired candidate |
+| --- | ---: | ---: |
+| Constant signal, largest player L/R step | 0.079987 / 0.040009 | 0.000539 / 0.000270 |
+| Changing signal, largest player L/R step | 0.074188 / 0.040741 | 0.003174 / 0.002777 |
+| Constant signal, largest mixer L/R step | 0.032874 / 0.016444 | 0.000228 / 0.000114 |
+| Reader shutdowns preceded by nonzero gain, constant score | 12 | 0 |
+| Main Stop during recording at 375 ms | 15616 frames; Loaded at 378 ms | Same |
+| Empty-buffer playbar | NaNs at 50, 375, 1900, 2020 ms | Finite zero |
+
+Both channels' peaks remain unchanged within 2e-6. Measured steady windows after
+each restart contain audio, no whole-block silent gap, and the expected mixer gain
+`0.548 * 0.75 = 0.411` within 2e-6. Every retained synthetic sample is finite;
+final player/mixer tails are exactly zero. The constant score's isolated Stops
+retain approximately 6 ms more audio than the abrupt baseline, matching the fade.
+An adjacent-sample step bound is evidence about these signals, not an audibility
+threshold or proof of universally click-free playback.
+
+The seven-second scores exercise Stop at a loop wrap, Stop during a slice fade,
+Play 0/1/4/8/15 ms after Stop, overlapping Stops, and Stop during a buffer switch.
+Candidate starts occur only after the old cleanup. A separate score verifies that
+another Stop cancels a queued Play; two Play requests coalesce; selecting empty
+Live 5 cancels the pending start; and reloading the active imported slot stops
+playback until a fresh Play. All five expected stopped windows are exactly silent.
+The recording comparison uses fresh diagnostic Live 4, leaving its 96000-frame
+capacity intact and unwritten tail zero; the writer's direct Stop is unchanged.
+
+**Listening:** a separate musical capture uses the preserved two-second live take
+and the included 44.1 kHz drum file at the 48 kHz host rate. The listening copy
+extracts post-master L/R and applies the user's 0.90 output setting without
+normalization. The user reported **“Clean stops and restarts.”** This listening
+result applies to that capture and is separate from the numerical checks.
+
+Actual UI/console inspection accompanied setup and every bounded run; both
+`capture-stopped` and `record-check-stopped` were observed before continuing.
+Temporary missing-send messages occurred before mixer taps were connected; two
+`No object found` messages came from navigating before loadbang-opened tabs
+settled. Those setup mistakes were corrected before the candidate captures.
+No new runtime object/connection errors were observed in completed candidate runs.
+The baseline's NaN values remain in its retained event log.
+
+### Evidence and repeat procedure
+
+`docs/evidence/stop-restart` contains paired changing-signal WAVs, exact decoded
+float samples of the remaining synthetic captures in compressed NPZ files, event
+logs, `checks-48.json`, compression hashes and a source/evidence manifest.
+NPZ keys are `samples` and `sample_rate`; conversion was checked for exact equality.
+Six-channel captures are generated input L/R (source bus off), player L/R,
+post-master mixer L/R. Ten-channel captures are player L/R, master frame, rate,
+reader 0 frame/gain, reader 1 frame/gain, and reader 0/1 DSP flags. Reader taps can
+hold old values after DSP shutdown; analysis checks gain immediately before off.
+Hardware music and raw archival WAV copies remain local and ignored.
+
+1. Preserve loaded takes before reloading the original `mlr.pd`. Use the native
+   runtime/configuration above, with one application. Mute global output for the
+   DC test; **do not play `stop-constant-48.wav` through speakers**.
+2. Temporarily attach `tests/live-record-check $0` and
+   `tests/bounded-player-capture 1 $0` in player 1. Attach the two named mixer
+   sends to post-master objects 20/21 as in the recording procedure below. Activate
+   DSP after all taps are connected, with playback stopped. These diagnostic
+   additions are not saved to the application.
+3. Load `tests/fixtures/stop-constant-48.wav` into imported slots 3 and 4, set
+   track/master gains above, and send `record-check symbol fixtures/stop-restart.txt`.
+   Both captures arm their seven-second stop before recording. Wait for both
+   stopped messages; retain `/tmp/plugmlr-record-check.wav`,
+   `/tmp/plugmlr-stop-readers.wav` and `/tmp/plugmlr-record-check-events.txt` before
+   another run. Repeat with `stop-wave-48.wav` in both slots, then
+   `stop-cancelled-start.txt` with that changing signal and empty Live 5.
+4. For `stop-recording-and-empty.txt`, use an unused Live 4 and empty Live 5.
+   That score deliberately clears Live 4. Connect companion bus 1 and arm input;
+   its writer also has an independent two-second duration stop. Add a temporary
+   `r record-check-export` into `soundfiler` in the fixture; the score exports
+   `/tmp/plugmlr-stop-live4.wav`. Retain the export with its event log. For a public
+   reproduction a generated local input can replace the private hardware source.
+5. Run `python3 tests/analyze_stop_restart.py docs/evidence/stop-restart` with
+   NumPy and ffmpeg. The analyzer accepts raw WAV or compressed NPZ. Baseline
+   hard cuts/NaNs are expected failing controls, explicitly identified in the
+   checks. `tests/make_stop_fixtures.py` regenerates both PCM16 fixtures byte for
+   byte. `tests/check_patch_connections.py sample_player_rebuild.pd` checks indices
+   separately; it does not test DSP. Current result: **35 numerical checks pass**:
+   33 use public evidence and two additionally check the local hardware arrays.
+
+After the captures, temporary taps/test slots were removed by reloading. All
+three original live takes were restored and re-exported byte-identically; Live 3
+retains 60032 usable frames inside 192000-frame capacity. Both original imported
+samples were restored. Final UI: Live 2 selected, Loaded, stopped; input disarmed;
+global output 0.90. The existing companion remains on channels 3/4, gain 1.10,
+bus 1, monitor 0. Preservation hashes are retained without private source paths.
+
+Open limits: 44.1 kHz host qualification of this repair; Pause transitions;
+instant-reverse continuity and tape slew;
+broader DAW/device/recall behavior. The drum capture exercises a file/host mismatch,
+not a 44.1 kHz host. No next slice is included here.
+
 ## Current input/recording recovery contract
 
 Candidate on `codex/fixed-live-recording`, based on main
@@ -144,10 +283,10 @@ zero**. Largest adjacent player step changed L/R from **0.07986 / 0.03987** to
 captures retain the evidence. Reader instrumentation is before the new lookup clamp.
 These measured loop results do **not** establish universally click-free playback.
 
-**Known transition failures remain:** the generated captures still show abrupt
+**Failures observed in the recording checkpoint:** its generated captures show abrupt
 steps at instant reverse and hard Stop (up to about 0.084 at player level in this
 fixture). The existing Stop path explicitly zeros reader gains/DSP and closes the
-mixer immediately; this recording slice has not replaced that transport behavior.
+mixer immediately; the separate Stop/restart repair above addresses that path.
 Instant-reverse continuity also needs its own bounded trace/repair. Earlier clean
 listening reports do not close these newly measured gaps. JSON `passed` flags mean
 only their named recording/steady-window checks, not overall transport acceptance.

@@ -1,0 +1,18 @@
+1-test-capture start /tmp/plugmlr-stop-readers.wav 7000;
+record-check-player stop;
+record-check-player speed 2;
+record-check-bus 0;
+4_l_b_delete_buffer bang;
+4_l_b_length seconds 2;
+1-buffer-select live 4;
+50 4_l_b_record start;
+325 record-check-player stop;
+125 record-check-export write -wave -bytes 4 /tmp/plugmlr-stop-live4.wav 0-live_buffer_4 1-live_buffer_4;
+record-check-player play;
+1000 record-check-player stop;
+200 1-buffer-select live 5;
+100 record-check-player play;
+100 record-check-player stop;
+100 1-buffer-select live 4;
+100 record-check-player play;
+1000 record-check-player stop;
