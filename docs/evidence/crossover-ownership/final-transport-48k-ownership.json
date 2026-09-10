@@ -1,0 +1,100 @@
+{
+  "sample_rate": 48000,
+  "frames": 383906,
+  "channels": 10,
+  "duration_s": 7.9980416666666665,
+  "nonfinite_samples": 0,
+  "handoffs": [
+    {
+      "time_s": 1.0023333333333333,
+      "master_from_to": [
+        44144.09765625,
+        315941.40625
+      ],
+      "reader_frame_deltas": [
+        0.91796875,
+        -315939.59375
+      ],
+      "gain_taps_at_jump": [
+        0.9976866245269775,
+        0.002313371282070875
+      ],
+      "audio_step_at_jump": [
+        0.0001560754608362913,
+        0.003051087725907564
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 1.0123333333333333,
+      "master_from_to": [
+        220.49940490722656,
+        157971.171875
+      ],
+      "reader_frame_deltas": [
+        0.91876220703125,
+        157971.171875
+      ],
+      "gain_taps_at_jump": [
+        0.834867537021637,
+        0.002313355915248394
+      ],
+      "audio_step_at_jump": [
+        0.016942858695983887,
+        0.016799747943878174
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 4.0023333333333335,
+      "master_from_to": [
+        39734.09765625,
+        473911.65625
+      ],
+      "reader_frame_deltas": [
+        0.91796875,
+        473911.65625
+      ],
+      "gain_taps_at_jump": [
+        0.9976909756660461,
+        0.002309046220034361
+      ],
+      "audio_step_at_jump": [
+        0.06338299810886383,
+        0.06063865125179291
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    }
+  ],
+  "ownership_failures": 0,
+  "incoming_reuse_above_005": 0,
+  "audio_peak": [
+    0.9824618697166443,
+    0.9759158492088318
+  ],
+  "dsp_flags_present": true,
+  "gain_windows": [
+    {
+      "time_s": 1.0023333333333333,
+      "gain_sum_min": 0.0,
+      "gain_sum_max": 1.1111074686050415
+    },
+    {
+      "time_s": 1.0123333333333333,
+      "gain_sum_min": 0.8371808929368854,
+      "gain_sum_max": 1.0
+    },
+    {
+      "time_s": 4.0023333333333335,
+      "gain_sum_min": 0.0,
+      "gain_sum_max": 1.0000000298023224
+    }
+  ],
+  "gain_limit": "DSP flags and raw ramps are block-ordered probes; compare any deficit with actual stereo output before attributing an audible dropout."
+}

@@ -1,0 +1,193 @@
+{
+  "sample_rate": 48000,
+  "frames": 383906,
+  "channels": 10,
+  "duration_s": 7.9980416666666665,
+  "nonfinite_samples": 0,
+  "handoffs": [
+    {
+      "time_s": 1.0023333333333333,
+      "master_from_to": [
+        44144.09765625,
+        315941.40625
+      ],
+      "reader_frame_deltas": [
+        0.91796875,
+        -315939.59375
+      ],
+      "gain_taps_at_jump": [
+        0.9976866245269775,
+        0.0023133710492402315
+      ],
+      "audio_step_at_jump": [
+        0.0001560754608362913,
+        0.003051087725907564
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 1.0123333333333333,
+      "master_from_to": [
+        220.49940490722656,
+        157971.171875
+      ],
+      "reader_frame_deltas": [
+        0.91876220703125,
+        157971.171875
+      ],
+      "gain_taps_at_jump": [
+        0.834867537021637,
+        0.0023133556824177504
+      ],
+      "audio_step_at_jump": [
+        0.016942858695983887,
+        0.016799747943878174
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 4.0023333333333335,
+      "master_from_to": [
+        39734.09765625,
+        473911.65625
+      ],
+      "reader_frame_deltas": [
+        0.91796875,
+        473911.65625
+      ],
+      "gain_taps_at_jump": [
+        0.9976909756660461,
+        0.0023090459872037172
+      ],
+      "audio_step_at_jump": [
+        0.06338299810886383,
+        0.06063865125179291
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    }
+  ],
+  "ownership_failures": 0,
+  "incoming_reuse_above_005": 0,
+  "audio_peak": [
+    0.9824618697166443,
+    0.9759158492088318
+  ],
+  "transport_windows": [
+    {
+      "interval_s": [
+        1.05,
+        1.15
+      ],
+      "mean_frames_per_sample": 0.9187493488226713,
+      "audio_rms": [
+        0.4189864504830779,
+        0.48326475422980963
+      ],
+      "audio_peak": [
+        0.9697614312171936,
+        0.9631526470184326
+      ]
+    },
+    {
+      "interval_s": [
+        2.01,
+        2.1
+      ],
+      "mean_frames_per_sample": -0.9187492764528826,
+      "audio_rms": [
+        0.163880056927745,
+        0.16672144844632067
+      ],
+      "audio_peak": [
+        0.9688091278076172,
+        0.9652929306030273
+      ]
+    },
+    {
+      "interval_s": [
+        3.02,
+        3.09
+      ],
+      "mean_frames_per_sample": 0.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_peak": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "interval_s": [
+        3.12,
+        3.22
+      ],
+      "mean_frames_per_sample": 0.9187499084281882,
+      "audio_rms": [
+        0.5012306335009475,
+        0.5656240726585102
+      ],
+      "audio_peak": [
+        0.969765305519104,
+        0.9697654843330383
+      ]
+    },
+    {
+      "interval_s": [
+        4.02,
+        4.12
+      ],
+      "mean_frames_per_sample": 0.9187499974563386,
+      "audio_rms": [
+        0.5333485177274965,
+        0.5829337383784525
+      ],
+      "audio_peak": [
+        0.969765305519104,
+        0.9697654843330383
+      ]
+    },
+    {
+      "interval_s": [
+        7.02,
+        7.5
+      ],
+      "mean_frames_per_sample": 0.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_peak": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "dsp_flags_present": true,
+  "gain_windows": [
+    {
+      "time_s": 1.0023333333333333,
+      "gain_sum_min": 0.0,
+      "gain_sum_max": 1.1111074686050415
+    },
+    {
+      "time_s": 1.0123333333333333,
+      "gain_sum_min": 0.8371808927040547,
+      "gain_sum_max": 1.0
+    },
+    {
+      "time_s": 4.0023333333333335,
+      "gain_sum_min": 0.0,
+      "gain_sum_max": 1.0000000298023224
+    }
+  ],
+  "gain_limit": "DSP flags and raw ramps are block-ordered probes; compare any deficit with actual stereo output before attributing an audible dropout.",
+  "input_sha256": "96733db70aa7f028ed764d737c0eb2e94e091d042a89902c80c63d3110c7aa58"
+}

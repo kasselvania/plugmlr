@@ -1,0 +1,277 @@
+{
+  "sample_rate": 48000,
+  "frames": 1152000,
+  "channels": 8,
+  "duration_s": 24.0,
+  "nonfinite_samples": 0,
+  "handoffs": [
+    {
+      "time_s": 2.001333333333333,
+      "master_from_to": [
+        132300.0,
+        44100.45703125
+      ],
+      "reader_frame_deltas": [
+        -88199.54296875,
+        -88199.54296875
+      ],
+      "gain_taps_at_jump": [
+        0.5520833134651184,
+        0.4479166567325592
+      ],
+      "audio_step_at_jump": [
+        0.008475996553897858,
+        0.047567173140123487
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.501333333333333,
+      "master_from_to": [
+        132300.0,
+        44101.8359375
+      ],
+      "reader_frame_deltas": [
+        -28.9375,
+        -88198.1640625
+      ],
+      "gain_taps_at_jump": [
+        0.0,
+        1.0
+      ],
+      "audio_step_at_jump": [
+        0.009215628262609243,
+        0.0478452960960567
+      ],
+      "only_incoming_retargeted": false,
+      "incoming_reader": 1,
+      "incoming_above_005": true
+    },
+    {
+      "time_s": 5.501333333333333,
+      "master_from_to": [
+        132300.0,
+        44101.8359375
+      ],
+      "reader_frame_deltas": [
+        -88198.1640625,
+        -88198.1640625
+      ],
+      "gain_taps_at_jump": [
+        0.4479166567325592,
+        0.5520833134651184
+      ],
+      "audio_step_at_jump": [
+        0.009215628262609243,
+        0.0478452960960567
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 10.001333333333333,
+      "master_from_to": [
+        132300.0,
+        44103.65625
+      ],
+      "reader_frame_deltas": [
+        -88196.34375,
+        -88196.34375
+      ],
+      "gain_taps_at_jump": [
+        0.5520833134651184,
+        0.4479166567325592
+      ],
+      "audio_step_at_jump": [
+        0.006146449828520417,
+        0.049797495536040515
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 10.502666666666666,
+      "master_from_to": [
+        132300.0,
+        44103.67578125
+      ],
+      "reader_frame_deltas": [
+        -88196.32421875,
+        -88196.32421875
+      ],
+      "gain_taps_at_jump": [
+        0.6701388955116272,
+        0.3298611044883728
+      ],
+      "audio_step_at_jump": [
+        0.006098347366787493,
+        0.04982946824748069
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 11.002666666666666,
+      "master_from_to": [
+        132300.0,
+        44103.67578125
+      ],
+      "reader_frame_deltas": [
+        -88196.32421875,
+        -1172.32421875
+      ],
+      "gain_taps_at_jump": [
+        0.5520833134651184,
+        0.4479166567325592
+      ],
+      "audio_step_at_jump": [
+        0.001779738930054009,
+        0.028647299972362816
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 11.502666666666666,
+      "master_from_to": [
+        132300.0,
+        44103.67578125
+      ],
+      "reader_frame_deltas": [
+        -1407.5234375,
+        -88196.32421875
+      ],
+      "gain_taps_at_jump": [
+        0.4479166567325592,
+        0.5520833134651184
+      ],
+      "audio_step_at_jump": [
+        0.0027423539431765676,
+        0.02812772069592029
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 12.008,
+      "master_from_to": [
+        132300.0,
+        44100.91796875
+      ],
+      "reader_frame_deltas": [
+        -88199.08203125,
+        -88199.08203125
+      ],
+      "gain_taps_at_jump": [
+        0.7789472341537476,
+        0.22105276584625244
+      ],
+      "audio_step_at_jump": [
+        0.008992967661470175,
+        0.0478384755551815
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 14.009333333333334,
+      "master_from_to": [
+        132300.0,
+        44100.9140625
+      ],
+      "reader_frame_deltas": [
+        -88199.0859375,
+        -88199.0859375
+      ],
+      "gain_taps_at_jump": [
+        0.3298611044883728,
+        0.6701388955116272
+      ],
+      "audio_step_at_jump": [
+        0.008989631431177258,
+        0.047836680663749576
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 15.290666666666667,
+      "master_from_to": [
+        132300.0,
+        44101.8359375
+      ],
+      "reader_frame_deltas": [
+        -88198.1640625,
+        -88198.1640625
+      ],
+      "gain_taps_at_jump": [
+        0.4479166567325592,
+        0.5520833134651184
+      ],
+      "audio_step_at_jump": [
+        0.009215628262609243,
+        0.0478452960960567
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 16.713333333333335,
+      "master_from_to": [
+        44100.0,
+        132298.15625
+      ],
+      "reader_frame_deltas": [
+        88198.15625,
+        88198.15625
+      ],
+      "gain_taps_at_jump": [
+        0.3298611044883728,
+        0.6701388955116272
+      ],
+      "audio_step_at_jump": [
+        0.007248030975461006,
+        0.010176561772823334
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 17.714666666666666,
+      "master_from_to": [
+        44100.0,
+        132298.15625
+      ],
+      "reader_frame_deltas": [
+        88198.15625,
+        88198.15625
+      ],
+      "gain_taps_at_jump": [
+        0.6701388955116272,
+        0.3298611044883728
+      ],
+      "audio_step_at_jump": [
+        0.007248030975461006,
+        0.010176561772823334
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 19.429333333333332,
+      "master_from_to": [
+        44100.0,
+        132299.078125
+      ],
+      "reader_frame_deltas": [
+        88199.078125,
+        88199.078125
+      ],
+      "gain_taps_at_jump": [
+        0.3298611044883728,
+        0.6701388955116272
+      ],
+      "audio_step_at_jump": [
+        0.007933410815894604,
+        0.03437698259949684
+      ],
+      "only_incoming_retargeted": false
+    }
+  ],
+  "ownership_failures": 13,
+  "incoming_reuse_above_005": 1,
+  "audio_peak": [
+    0.9755260348320007,
+    0.9759867191314697
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "sample_rate": 48000,
+  "channels": 10,
+  "frames": 1151718,
+  "duration_s": 23.994125,
+  "nonfinite_samples": 0,
+  "audio_peak": [
+    0.9755260348320007,
+    0.9760098457336426
+  ],
+  "constant_position_runs": [
+    {
+      "interval_s": [
+        0.1,
+        20
+      ],
+      "start_s": 16.965333333333334,
+      "duration_s": 0.0013125
+    },
+    {
+      "interval_s": [
+        22.1,
+        23
+      ],
+      "start_s": 22.1,
+      "duration_s": 0.0
+    }
+  ],
+  "windows": [
+    {
+      "start_s": 0.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.9999996456546989,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.38732468578558016,
+        0.4151684086064115
+      ],
+      "audio_step_max": [
+        0.23933762311935425,
+        0.1828470230102539
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999791800489934,
+          0.999978967289532
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0001661620669724,
+          1.0001574881601003
+        ]
+      }
+    },
+    {
+      "start_s": 2.5,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.9999996456546989,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.38732468578558016,
+        0.4151684086064115
+      ],
+      "audio_step_max": [
+        0.23933762311935425,
+        0.1828470230102539
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999791800489934,
+          0.999978967289532
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0001661620669724,
+          1.0001574881601003
+        ]
+      }
+    },
+    {
+      "start_s": 4.5,
+      "rate_control_median": 2.0,
+      "moving_rate_mean": 0.49999982282734945,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.000865472218563617,
+        0.00101795569690269
+      ],
+      "audio_step_max": [
+        0.0004054453456774354,
+        0.00042726623360067606
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9998692870270828,
+          0.9999142529765841
+        ],
+        "lag_samples": 2,
+        "gain": [
+          1.000740812476726,
+          1.0006389415883978
+        ]
+      }
+    },
+    {
+      "start_s": 6.5,
+      "rate_control_median": 0.25,
+      "moving_rate_mean": 0.24999946848204851,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.0014665421500847026,
+        0.0015830948875366405
+      ],
+      "audio_step_max": [
+        0.0012055124389007688,
+        0.0014713597483932972
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9966094831065538,
+          0.9963444384192244
+        ],
+        "lag_samples": 4,
+        "gain": [
+          1.0135268388238179,
+          1.0137744065990673
+        ]
+      }
+    },
+    {
+      "start_s": 10.5,
+      "rate_control_median": 4.0,
+      "moving_rate_mean": 0.24999991141367472,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.07445039978895451,
+        0.14205610977878133
+      ],
+      "audio_step_max": [
+        0.09539035055786371,
+        0.08479900751262903
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9971938027962081,
+          0.9990703392609174
+        ],
+        "lag_samples": 4,
+        "gain": [
+          1.024382693248132,
+          1.0075325621468405
+        ]
+      }
+    },
+    {
+      "start_s": 12.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 1.0000005315179514,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.03999368300566957,
+        0.041727476794199435
+      ],
+      "audio_step_max": [
+        0.38876616954803467,
+        0.3964828997850418
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9953855659879596,
+          0.9953008625031331
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0597443805786473,
+          1.0596889406860546
+        ]
+      }
+    },
+    {
+      "start_s": 15.2,
+      "rate_control_median": 2.0,
+      "moving_rate_mean": 1.9999997342410243,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.2747849211830922,
+        0.29761161295521765
+      ],
+      "audio_step_max": [
+        0.34863269329071045,
+        0.3331319987773895
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9989524751040502,
+          0.9990216997344666
+        ],
+        "lag_samples": 1,
+        "gain": [
+          0.9992160852467656,
+          0.9992942035620824
+        ]
+      }
+    },
+    {
+      "start_s": 16.5,
+      "rate_control_median": 2.0,
+      "moving_rate_mean": -2.0000001771726503,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.2738930891425394,
+        0.2935860147072877
+      ],
+      "audio_step_max": [
+        0.3453313112258911,
+        0.3317101448774338
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9989616484927007,
+          0.9990290852021738
+        ],
+        "lag_samples": -1,
+        "gain": [
+          0.9992243492103446,
+          0.9993108761348531
+        ]
+      }
+    },
+    {
+      "start_s": 18.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": -0.9999996456546989,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.4029180609955803,
+        0.43324539793647354
+      ],
+      "audio_step_max": [
+        0.03378589451313019,
+        0.029916392639279366
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999991251238649,
+          0.9999992432237275
+        ],
+        "lag_samples": -1,
+        "gain": [
+          1.0000210311308726,
+          1.0000180915603425
+        ]
+      }
+    },
+    {
+      "start_s": 20.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 21.5,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 22.3,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.49999993356025607,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        8.661806139240486e-08,
+        8.831713749692223e-08
+      ],
+      "audio_step_max": [
+        4.2366727370790613e-07,
+        3.6950338255792303e-07
+      ]
+    },
+    {
+      "start_s": 23.3,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "slew_control_medians": {
+    "14.1": 0.9099558591842651,
+    "14.2": 0.848832905292511,
+    "14.3": 1.0433835983276367,
+    "14.9": 2.0
+  },
+  "simultaneous_reader_jumps": [],
+  "gain_tap_limit": "Disabled switch~ readers repeat their final s~ block; raw gain sum is not output gain.",
+  "source_sample_rate": 44100,
+  "source_sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+  "input_sha256": "65219f7849e671211626a19354469898e81cbf13d8c8951b8336121b1ad76b2b",
+  "sequence": "speed-sequence.pd"
+}

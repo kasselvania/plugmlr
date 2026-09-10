@@ -1,0 +1,396 @@
+{
+  "base_commit": "f7aadb82bca4dcd6fb689b458a4954a9dad38014",
+  "runtime": {
+    "version_observed": "0.9.4",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "binary_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+    "sampled_pid": 27699,
+    "native_player_id": 4581,
+    "host_rate_from_native_capture": 48000,
+    "device_and_buffer": "Fresh native UI readback on resumed run: CoreAudio, 512 samples, MacBook Pro Speakers/Microphone. Host switched 48000 to 44100 for tests. Output 0.8 except constant-array tests muted at 0.",
+    "resumed_player_before_repair": 4818,
+    "repaired_player": 5056,
+    "restored_player_id": 5532,
+    "final_settings": "Native readback: 48000 Hz, 512 samples, same CoreAudio devices, output 0.8. Original main visible, DrumLoop loaded, stopped; temporary attachments removed by close/reload."
+  },
+  "source_audio": {
+    "path": "DrumLoop.wav",
+    "sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+    "sample_rate": 44100,
+    "frames": 631881,
+    "channels": 2
+  },
+  "native_capture_scope": "First-pass files cover the earlier source. final-* filenames are the resumed 87e491f stop-gate validation, including the failing 44.1 kHz control. repaired-* files cover the subsequent endpoint/shutdown repair, bound by source hashes below.",
+  "first_pass_player_sha256": "561259e6e13aa0100c167c28f0956d01103db523ac148506e05d5de9a67dc36a",
+  "current_player_sha256": "7ca0c6a2d4923ec175f76cfffc57d10f6f29020bf0f6f633fac7b1218b53dafd",
+  "first_pass_source_reconstruction": "Apply first-pass-source.patch to sample_player_rebuild.pd at 87e491f8879b6bb4073379d27f06d578fa3983f9. Reconstructed from known edit sequence, not native UI export.",
+  "first_pass_recorder": "tests/bounded-player-capture.pd at base_commit (8 channels).",
+  "first_pass_recorder_sha256": "34152fdb1f3e41f59b479c27f42c1d830dd89ea37a3f14cb9fbac01791527d65",
+  "current_source_and_test_sha256": {
+    "sample_player_rebuild.pd": "7ca0c6a2d4923ec175f76cfffc57d10f6f29020bf0f6f633fac7b1218b53dafd",
+    "tests/bounded-player-capture.pd": "77c73f7e816b61a312a417383a896b28eb2a76df1853d842003853de5311ec66",
+    "tests/speed-sequence.pd": "e4221628d7cfcfee9bb0e69627b3a685183473b22ad2a0d5683bbac34d1e3b78",
+    "tests/cut-sequence.pd": "41a5dfa6befee16e5b3b2bc7a0d700348e9470eb4b1049bd4d9a147e88701c66",
+    "tests/crossover-transport.pd": "de005291d755de15eb0545565da00d530b24ba30367d6cf0e28d272afcf14c71",
+    "tests/analyze_crossover.py": "d7b5622569d735ffb5bcb73f7a735af260a44d58126b3593237564cdd41154b1",
+    "tests/analyze_speed_capture.py": "981e8d07543071032a68f1a031c005d0a8425f64cb5c992d7d85e46bf1216c0e"
+  },
+  "recording_safety": "Existing Pd capture timer armed before writesf~ start; transport and capture stopped before the chooser interruption. No native unbounded recording used.",
+  "listening": "User heard no clicks, pops or other artifacts in final-speed-48k.flac and final-cuts-48k.flac (87e491f source). Does not accept the later repaired-* files or the failing 44.1 kHz control.",
+  "validation_open": [
+    "Fresh listening of verified-* final-source captures",
+    "Arbitrary-source rapid-reader-reuse audibility and policy",
+    "Foreground/background reliability, other rates/block sizes, full DAW lifecycle",
+    "Existing stereo file-loader channel ordering and direction slew remain separate work"
+  ],
+  "artifacts": {
+    "checks.json": {
+      "bytes": 3008,
+      "sha256": "b92c5e5dab59fa3dc365e1c3db5a193970162706b2f53c2a3e7e296f173bdd5a"
+    },
+    "constant-pre-fix-441k.json": {
+      "bytes": 7378,
+      "sha256": "1054585bd1970a981fdca3effd9482f2ea831d740902fb77622eb31fe1b92dea"
+    },
+    "constant-pre-fix-441k.npz": {
+      "bytes": 1462512,
+      "sha256": "9d4dc25f0e1f2eaaa996138546b24da306c0188f618cede880d166406d7bc28e"
+    },
+    "cuts-48k-ownership.json": {
+      "bytes": 4801,
+      "sha256": "ddca119ec98000e193abfd324c2e589a9d96c233d4247bc00316f4e41b750b07"
+    },
+    "cuts-48k-v1-ownership.json": {
+      "bytes": 5272,
+      "sha256": "087ee3eb26768657e1e3286a110e824251effe8b6da78a9810b0bbce6d7f5094"
+    },
+    "endpoint-skip-only.patch": {
+      "bytes": 2629,
+      "sha256": "59d52a4ee7416f7e34898295b850f50f63ca2f5eefd7f0d2fdad66b21924272a"
+    },
+    "final-cuts-441k-ownership.json": {
+      "bytes": 6740,
+      "sha256": "896e88f91bec99a6bb0c84057d68c868b5ba996be48031c903f903bbabef731e"
+    },
+    "final-cuts-441k.flac": {
+      "bytes": 817360,
+      "sha256": "b437b2e3a77c029cc0de711a25fe721b8fbb9aa8d2a68e50f6b110656a112a4b"
+    },
+    "final-cuts-441k.npz": {
+      "bytes": 4057592,
+      "sha256": "d52a6633e965fdb3559e895a01970be6e80c32b43e1970b3a3a042cdb0152822"
+    },
+    "final-cuts-48k-ownership.json": {
+      "bytes": 6811,
+      "sha256": "ba8b90988f2da3c70295ad2b4fe769a596a5db09300220563c5ae396528d3331"
+    },
+    "final-cuts-48k.flac": {
+      "bytes": 870103,
+      "sha256": "2c7c2d5c13d8cda284f592c81197f53637e1e6843a5d2075fc208a31451f07c0"
+    },
+    "final-cuts-48k.json": {
+      "bytes": 3641,
+      "sha256": "a449e012f148a8519be30c5dc6bf0b790a310e0d893456f7c851f0125f046a0f"
+    },
+    "final-cuts-48k.npz": {
+      "bytes": 4680763,
+      "sha256": "0f193d741f3e55fca19ca7557c0bcf06def90edb9ff49457911ec072ca58b251"
+    },
+    "final-speed-441k-ownership.json": {
+      "bytes": 8484,
+      "sha256": "8616b813cc64497cc1fff3917b56a673c15a0b8f294abf40ca3adef3166d53a4"
+    },
+    "final-speed-441k.flac": {
+      "bytes": 2647199,
+      "sha256": "2baa40684cc602a1724994a2b4d73498e268cb131c2b4e8aeeeefee3fe474f57"
+    },
+    "final-speed-441k.json": {
+      "bytes": 7976,
+      "sha256": "980e4fc55824b6909be4a9d71d6485214e26bfbb7dc3e9bb601dd811925c71d3"
+    },
+    "final-speed-441k.npz": {
+      "bytes": 10721538,
+      "sha256": "4794d1a764137e0a780f271191fb837b0fb8ea89e8fd90c18f410a0afbd58f3d"
+    },
+    "final-speed-48k-ownership.json": {
+      "bytes": 8641,
+      "sha256": "50f65e3b62561b1634d225a030a66bb99e860030e7a50c9f3c56621f6b3db5e6"
+    },
+    "final-speed-48k.flac": {
+      "bytes": 2820729,
+      "sha256": "d7d24430e047d3bada7c43f714246b850531955dead6c8aac7de08137fa9381e"
+    },
+    "final-speed-48k.json": {
+      "bytes": 8127,
+      "sha256": "312c372c075a205177dbc938273d4813b03eb8b611ad5c79ab281d3981721442"
+    },
+    "final-speed-48k.npz": {
+      "bytes": 13310506,
+      "sha256": "32fa921b20e9b456e00b62dea39a1cf3f134274e78d292b5bed96d88eff34501"
+    },
+    "final-transport-441k-ownership.json": {
+      "bytes": 2335,
+      "sha256": "8f86d9f61b56bbdf6a5ca0593a96ab9af624f5b5c4ad31145aca69a7eae9a9cc"
+    },
+    "final-transport-441k.flac": {
+      "bytes": 770491,
+      "sha256": "4c93dda6b017f9795e42594576efbeb15386d917c5e429912fd55d9cca9a56ae"
+    },
+    "final-transport-441k.npz": {
+      "bytes": 3894784,
+      "sha256": "ba7c98c20cc9491ffcf21a432ab2e66975eef24bd0ac0cd09c01c96777d37d41"
+    },
+    "final-transport-48k-ownership.json": {
+      "bytes": 2361,
+      "sha256": "31dc3324653632c1033db8ed2ebb77b6fcc4b77aa2aacf5ed2bac3792259beac"
+    },
+    "final-transport-48k.flac": {
+      "bytes": 828813,
+      "sha256": "1f8dae732580443fad5a288244c669e4335485f40faf7dbff57037b4bba7d4a2"
+    },
+    "final-transport-48k.npz": {
+      "bytes": 4709215,
+      "sha256": "7ef4984ae44c01f33d74cf3a81f439345c2d4196feefad4a0be478dd9d525b9a"
+    },
+    "first-pass-cuts-48k.flac": {
+      "bytes": 870089,
+      "sha256": "f7ed5f714845cf3ff2f1d3c413cd25a69dca3dff8a4581e49189147bc6883ce9"
+    },
+    "first-pass-cuts-48k.json": {
+      "bytes": 3622,
+      "sha256": "719619e422c14ef696d9b08f1497fcbb0919d86c690bf9792a10cb0c85f16ffd"
+    },
+    "first-pass-cuts-48k.npz": {
+      "bytes": 4495850,
+      "sha256": "37c2f9841aa08ea1657ec86d032a2dbf108db415656c6156e726a6a3d69c909c"
+    },
+    "first-pass-source.patch": {
+      "bytes": 430,
+      "sha256": "eb176e9d4e9447236164e4076c28b80f8c789d43326b3154d8dccffbaa55b2c2"
+    },
+    "first-pass-speed-48k.flac": {
+      "bytes": 2820667,
+      "sha256": "1421295ed438193684a5d086d4b5d7d68c0b087e63a6400103a71b9f752f6924"
+    },
+    "first-pass-speed-48k.json": {
+      "bytes": 8117,
+      "sha256": "7ac35061cba01c126d8772799609cfa791b5b9d53421e481a8c7b4cb10ce5a00"
+    },
+    "first-pass-speed-48k.npz": {
+      "bytes": 12790021,
+      "sha256": "6d53edbf9332b2366695bd9a6fb6af76e562650d23eb16c5a339dbc19dbb687c"
+    },
+    "repaired-48k-ownership.json": {
+      "bytes": 5997,
+      "sha256": "f042da41272f7045181d96eaa007b4e3d6d8f15cdd2478974ff6fcfad59bbbcf"
+    },
+    "repaired-constant-441k-ownership.json": {
+      "bytes": 7308,
+      "sha256": "ab27f1ee109ffbd5100b9dd6281bb3adb81def728e36070b7d45f130498ac66a"
+    },
+    "repaired-constant-441k.npz": {
+      "bytes": 1463176,
+      "sha256": "c59c3f4f24500c9d8ff0fc398249cbbc7cc0330ba19485888434fe64e8376594"
+    },
+    "repaired-constant-48k-ownership.json": {
+      "bytes": 7369,
+      "sha256": "148577c6d1e24c9016616f4a825d530b4a55e78064ab023ddc43f3159e006080"
+    },
+    "repaired-constant-48k.npz": {
+      "bytes": 1942276,
+      "sha256": "6e49907f7d8ba60476cb28019d91898108d88deb140972af4db386e8affa648d"
+    },
+    "repaired-cuts-441k-ownership.json": {
+      "bytes": 6830,
+      "sha256": "87a29f1f5d31c4a0e4d265051ed3eb763c8664ff3aba9d3edfc5294bf4d88bea"
+    },
+    "repaired-cuts-441k.flac": {
+      "bytes": 817363,
+      "sha256": "a8f99eaf0371d0610113b5e2c9a4352f0781ee23dc6a1e2e6ee99374e996fd11"
+    },
+    "repaired-cuts-441k.json": {
+      "bytes": 3579,
+      "sha256": "09ca6dc01d7fa9bf4ea7f53519a024f821efd84a3e42d4d710358a4ab0b1f449"
+    },
+    "repaired-cuts-441k.npz": {
+      "bytes": 4058059,
+      "sha256": "e7261a9a9c1716aca733478a1ddf9619d8624961192653e087637d770f19a506"
+    },
+    "repaired-speed-441k-ownership.json": {
+      "bytes": 8614,
+      "sha256": "cb1cd693ec994c780cfaeef39a864655d45c54dba2847783407a2b64662c1965"
+    },
+    "repaired-speed-441k.flac": {
+      "bytes": 2647232,
+      "sha256": "04b844496d221f2f9805b52bae8c0e085392c941c4b62948a1af114e62a5031f"
+    },
+    "repaired-speed-441k.json": {
+      "bytes": 7976,
+      "sha256": "41fa704b84d8488a2df3cac554fd415a761e39b7d25d1a355cb1bd99f8a4156f"
+    },
+    "repaired-speed-441k.npz": {
+      "bytes": 10529760,
+      "sha256": "9beddb04060750bc2a191f87ee1712c96ad8ec33934e0138d4c7bbe4902ff10c"
+    },
+    "repaired-speed-48k-ownership.json": {
+      "bytes": 5552,
+      "sha256": "7c03357859f57118930710012c8895e093a55faf32ddc7cbb283fd9ecb1e4e92"
+    },
+    "repaired-speed-48k.flac": {
+      "bytes": 2607461,
+      "sha256": "a0c95c433373d5aafd096e976f3fded53db95148397d267159757fcc025290e7"
+    },
+    "repaired-speed-48k.json": {
+      "bytes": 8081,
+      "sha256": "983d0f81853418d0716c1e5f8c32bb076d58a19b9af3212babd12b32e7d1190b"
+    },
+    "repaired-speed-48k.npz": {
+      "bytes": 13138156,
+      "sha256": "cade7e68f1d5122464092da7e1b9001962092f8881ba2a218c6622fdbd173290"
+    },
+    "repaired-transport-441k-ownership.json": {
+      "bytes": 4028,
+      "sha256": "0009cf3f18d83e9b198b3a3e1624a3a020219d5fc983a973662efd2be42812a2"
+    },
+    "repaired-transport-441k.flac": {
+      "bytes": 770490,
+      "sha256": "e107a251daea383ea781303468b17f66eeff74194940dc69de8f74a05b5ebed3"
+    },
+    "repaired-transport-441k.npz": {
+      "bytes": 3880565,
+      "sha256": "6cff5d4674b19fabe29a6dd907f1d471abb961c3e0690504d4376f0a28a7b4e4"
+    },
+    "speed-48k-v1-ownership.json": {
+      "bytes": 6714,
+      "sha256": "581d1db93ea682b9a43a5e0574da7bfd7cbcf3805fde63c27905f2fd833d286f"
+    },
+    "verified-cuts-441k-ownership.json": {
+      "bytes": 6830,
+      "sha256": "e473bac5d56b6468a9ff9d14d288f84e29fea53c0fd391269226e906160365b5"
+    },
+    "verified-cuts-441k.flac": {
+      "bytes": 817360,
+      "sha256": "365f7b1849e6e7a7b68d4b598b44f8a0dd84af135c761f8f1c58fdcae3e67c04"
+    },
+    "verified-cuts-441k.json": {
+      "bytes": 3579,
+      "sha256": "eac1a7985d145ddcef0c8ded1bf4f5a0c9f29446d6e9fecd29090d0f11765d94"
+    },
+    "verified-cuts-441k.npz": {
+      "bytes": 4058069,
+      "sha256": "91f518f57bb3fd2c1d2415bb467b591c9bba34b186e5ee784daeeb20606b7c46"
+    },
+    "verified-cuts-48k-ownership.json": {
+      "bytes": 6898,
+      "sha256": "a140355b116663e435af6241a9b9f21041243487523324bc77d6a2b1082869e1"
+    },
+    "verified-cuts-48k.flac": {
+      "bytes": 870104,
+      "sha256": "dec3476c7923c8c7619059eb34fba4cf71d8444aa7efda54ca2b4792eb7c7e24"
+    },
+    "verified-cuts-48k.json": {
+      "bytes": 3641,
+      "sha256": "92fc2a79af5175e2411106af44fbd4cac5b836bc8fd1abe3ef8cfdb93a4de79c"
+    },
+    "verified-cuts-48k.npz": {
+      "bytes": 4769918,
+      "sha256": "65e0ba2e5c1ec5220af38948c3d54ca615da070955dd1ef9040e9b4d89a2adb7"
+    },
+    "verified-speed-441k-ownership.json": {
+      "bytes": 8619,
+      "sha256": "554c30a02672d1ea51fd162900972dc65fa3687136053178898f89ff285275c9"
+    },
+    "verified-speed-441k.flac": {
+      "bytes": 2647319,
+      "sha256": "e2cf53cde0048aacdae1dafeac41f1f9d48f39298eca8d5f861ae3250b189d16"
+    },
+    "verified-speed-441k.json": {
+      "bytes": 7976,
+      "sha256": "4e24a0c212b8f0e0036809014fa8a9a3ebb9a9e41c56a2119e80e97be15af3d8"
+    },
+    "verified-speed-441k.npz": {
+      "bytes": 10638667,
+      "sha256": "3846373c77d9f54f3324a2155b2b0acd1238bb1ccbb97c0c5fe26cf72f5bbc6f"
+    },
+    "verified-speed-48k-ownership.json": {
+      "bytes": 8670,
+      "sha256": "20b3510b0d4298d8685ed69c1c443713d68d6cc79572e02fff1e9d1758100ff3"
+    },
+    "verified-speed-48k.flac": {
+      "bytes": 2829916,
+      "sha256": "c60eb4c809fd62aa2b1f02c065a7566150ef402505a7264d68cd290af6857c4d"
+    },
+    "verified-speed-48k.json": {
+      "bytes": 8128,
+      "sha256": "421d06a2741d74f41e8d9155fcc92ae00071e0c501862de33e9775c0cf3eecfe"
+    },
+    "verified-speed-48k.npz": {
+      "bytes": 13232009,
+      "sha256": "290b56ced9138b8ef29915452d7494b1c1bb622787ddc4ec7e4a72ee5d9d6544"
+    },
+    "verified-transport-441k-ownership.json": {
+      "bytes": 4027,
+      "sha256": "a0ee1e459df837049d9f7da139be20331f796df2c82c5cac82febfb565cd3d3b"
+    },
+    "verified-transport-441k.flac": {
+      "bytes": 770490,
+      "sha256": "defc8b01d4fe0f896f83b9646d2e112297c670be320105316c84dac3aa4e3a68"
+    },
+    "verified-transport-441k.npz": {
+      "bytes": 3880565,
+      "sha256": "7b48afcf5b1413aaa8f162541734e508ad599e5d801b5424daabec238975748d"
+    },
+    "verified-transport-48k-ownership.json": {
+      "bytes": 4085,
+      "sha256": "bc0d4d3709ddd007a3224a87be60a12fdbda8c1ab492c0e49678a44c9bccda5b"
+    },
+    "verified-transport-48k.flac": {
+      "bytes": 828814,
+      "sha256": "270d7f202ef0a7fdeaa5cdfbe470a50c698c92f7a24479df0702ccee559c3215"
+    },
+    "verified-transport-48k.npz": {
+      "bytes": 4707342,
+      "sha256": "92f98635d2934921f4891c07f5e4f87c385ce2a54d42bc34e0487f7bdec0381d"
+    }
+  },
+  "stages": [
+    {
+      "name": "first-pass",
+      "source_sha256": "561259e6e13aa0100c167c28f0956d01103db523ac148506e05d5de9a67dc36a",
+      "recording_prefix": "first-pass-",
+      "player_id": 4581
+    },
+    {
+      "name": "stop-gates-loaded",
+      "commit": "87e491f8879b6bb4073379d27f06d578fa3983f9",
+      "source_sha256": "f6f32abd53219f3a1b6a1795760f56f64df2a841d96afd68de8b7696d0856179",
+      "recording_prefixes": [
+        "final-",
+        "constant-pre-fix-"
+      ],
+      "player_id": 4818,
+      "result": "48k speed and cuts listened clean. 44.1k speed has one common-jump failure; constant burst has 1.5004 percent actual gain loss."
+    },
+    {
+      "name": "endpoint-skip-and-12ms-shutdown",
+      "source_sha256": "7da62a79d2910a463b498e7c199c12a664a48ee19527f19ea3cbf28de7d36f80",
+      "reconstruction": "Apply endpoint-skip-only.patch to player at 87e491f",
+      "recording_prefix": "repaired-",
+      "player_id": 5056,
+      "result": "44.1k speed/cuts/transport pass. Constants stay level at both rates. 48k speed fails rate responsiveness; not accepted as final."
+    },
+    {
+      "name": "deferred-endpoint-snapshot",
+      "source_sha256": "7ca0c6a2d4923ec175f76cfffc57d10f6f29020bf0f6f633fac7b1218b53dafd",
+      "recording_prefix": "verified-",
+      "result": "Final-source speed/cut/transport checks pass at both 44100 and 48000 Hz. See checks.json.",
+      "player_id": 5294
+    }
+  ],
+  "fixture_limits": [
+    "Ten-channel WAV headers underreport a few milliseconds of final data. Analysis/NPZ/FLAC use the declared data chunk decoded by ffmpeg; every tested event precedes capture end by at least about one second. This is not recording-feature acceptance.",
+    "DSP flags and raw signal taps have different block timing; constant-array actual stereo output is the gain test.",
+    "Temporary diagnostics only attach to the original player; no substitute runtime."
+  ]
+}

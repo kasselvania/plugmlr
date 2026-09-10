@@ -1,0 +1,13 @@
+--- a/sample_player_rebuild.pd
++++ b/sample_player_rebuild.pd
+@@ -881,10 +881,6 @@
+ #X obj 620 600 r \$0-zero_playstates;
+ #X msg 620 635 stop;
+ #X text 620 690 The incoming gate opens before its new ramp. Stop cancels pending gain dispatch., f 38;
+-#X msg 805 635 main_vline_gate 0;
+-#X connect 109 0 112 0;
+-#X connect 112 0 77 0;
+-#X connect 112 0 78 0;
+ #X connect 109 0 110 0;
+ #X connect 110 0 66 0;
+ #X connect 110 0 67 0;

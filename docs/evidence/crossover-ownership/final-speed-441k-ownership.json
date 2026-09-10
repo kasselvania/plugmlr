@@ -1,0 +1,368 @@
+{
+  "sample_rate": 44100,
+  "frames": 1058110,
+  "channels": 10,
+  "duration_s": 23.99342403628118,
+  "nonfinite_samples": 0,
+  "handoffs": [
+    {
+      "time_s": 2.0027210884353743,
+      "master_from_to": [
+        132300.0,
+        44100.5
+      ],
+      "reader_frame_deltas": [
+        0.0,
+        -62974.3046875
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        3.225356340408325e-05,
+        0.00017988309264183044
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 4.503219954648526,
+      "master_from_to": [
+        132300.0,
+        44102.0
+      ],
+      "reader_frame_deltas": [
+        -88198.0,
+        0.0
+      ],
+      "gain_taps_at_jump": [
+        0.0037792851217091084,
+        0.9962207078933716
+      ],
+      "audio_step_at_jump": [
+        3.452785313129425e-05,
+        0.000180903822183609
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 0,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 5.504580498866213,
+      "master_from_to": [
+        132300.0,
+        44102.0
+      ],
+      "reader_frame_deltas": [
+        0.0,
+        -88198.0
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        3.452785313129425e-05,
+        0.000180903822183609
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 10.00344671201814,
+      "master_from_to": [
+        132300.0,
+        44104.0
+      ],
+      "reader_frame_deltas": [
+        -88196.0,
+        0.0
+      ],
+      "gain_taps_at_jump": [
+        0.0037792851217091084,
+        0.9962207078933716
+      ],
+      "audio_step_at_jump": [
+        2.0273495465517044e-05,
+        0.00019040703773498535
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 0,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 10.504126984126984,
+      "master_from_to": [
+        132300.0,
+        44104.0
+      ],
+      "reader_frame_deltas": [
+        0.0,
+        -88196.0
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        2.0273495465517044e-05,
+        0.00019040703773498535
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 11.004807256235827,
+      "master_from_to": [
+        132300.0,
+        44104.0
+      ],
+      "reader_frame_deltas": [
+        -88196.0,
+        0.0
+      ],
+      "gain_taps_at_jump": [
+        0.0037792851217091084,
+        0.9962207078933716
+      ],
+      "audio_step_at_jump": [
+        2.0273495465517044e-05,
+        0.00019040703773498535
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 0,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 11.505487528344672,
+      "master_from_to": [
+        132300.0,
+        44104.0
+      ],
+      "reader_frame_deltas": [
+        0.0,
+        -88196.0
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        2.0273495465517044e-05,
+        0.00019040703773498535
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 12.022131519274376,
+      "master_from_to": [
+        132300.0,
+        44101.0
+      ],
+      "reader_frame_deltas": [
+        -88199.0,
+        0.0
+      ],
+      "gain_taps_at_jump": [
+        0.0037792851217091084,
+        0.9962207078933716
+      ],
+      "audio_step_at_jump": [
+        3.423541784286499e-05,
+        0.00018092989921569824
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 0,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 14.023401360544218,
+      "master_from_to": [
+        132300.0,
+        44100.98046875
+      ],
+      "reader_frame_deltas": [
+        -88199.01953125,
+        -88199.01953125
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        0.00904381275177002,
+        0.04786592174787074
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 15.297596371882086,
+      "master_from_to": [
+        132300.0,
+        44102.0
+      ],
+      "reader_frame_deltas": [
+        -375.03515625,
+        0.0
+      ],
+      "gain_taps_at_jump": [
+        0.0037792851217091084,
+        0.9962207078933716
+      ],
+      "audio_step_at_jump": [
+        3.452785313129425e-05,
+        0.000180903822183609
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 0,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 16.70675736961451,
+      "master_from_to": [
+        44100.0,
+        132298.0
+      ],
+      "reader_frame_deltas": [
+        0.0,
+        -2.0
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        3.7463847547769547e-05,
+        2.5022076442837715e-05
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 17.7081179138322,
+      "master_from_to": [
+        44100.0,
+        132298.0
+      ],
+      "reader_frame_deltas": [
+        88198.0,
+        0.0
+      ],
+      "gain_taps_at_jump": [
+        0.0037792851217091084,
+        0.9962207078933716
+      ],
+      "audio_step_at_jump": [
+        3.7463847547769547e-05,
+        2.5022076442837715e-05
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 0,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 19.416235827664398,
+      "master_from_to": [
+        44100.0,
+        132299.0
+      ],
+      "reader_frame_deltas": [
+        0.0,
+        88199.0
+      ],
+      "gain_taps_at_jump": [
+        0.9962207078933716,
+        0.0037792851217091084
+      ],
+      "audio_step_at_jump": [
+        2.7130707167088985e-05,
+        0.00012263399548828602
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    }
+  ],
+  "ownership_failures": 1,
+  "incoming_reuse_above_005": 0,
+  "audio_peak": [
+    0.9765035510063171,
+    0.9759867191314697
+  ],
+  "dsp_flags_present": true,
+  "gain_windows": [
+    {
+      "time_s": 2.0027210884353743,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 4.503219954648526,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 5.504580498866213,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 10.00344671201814,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 10.504126984126984,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 11.004807256235827,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 11.505487528344672,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 12.022131519274376,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 14.023401360544218,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 15.297596371882086,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 16.70675736961451,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 17.7081179138322,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 19.416235827664398,
+      "gain_sum_min": 0.9999999701976776,
+      "gain_sum_max": 1.0000000298023224
+    }
+  ],
+  "gain_limit": "DSP flags and raw ramps are block-ordered probes; compare any deficit with actual stereo output before attributing an audible dropout."
+}

@@ -36,8 +36,8 @@ def longest_run(mask):
 
 
 def analyze(source, sr, x, host, cuts):
-    if x.shape[1] not in (4, 8) or source.shape[1] != 2:
-        raise ValueError('Expected stereo source and 4/8-channel native capture')
+    if x.shape[1] not in (4, 8, 10) or source.shape[1] != 2:
+        raise ValueError('Expected stereo source and 4/8/10-channel native capture')
     result = {'sample_rate': host, 'channels': x.shape[1], 'frames': len(x),
               'duration_s': len(x) / host,
               'nonfinite_samples': int((~np.isfinite(x)).sum())}
@@ -95,7 +95,7 @@ def analyze(source, sr, x, host, cuts):
         result['slew_control_medians'] = {
             str(t): float(np.median(x[round(t*host):round((t+.02)*host), 3]))
             for t in (14.1, 14.2, 14.3, 14.9)}
-    if x.shape[1] == 8:
+    if x.shape[1] >= 8:
         d0, d1 = np.diff(x[:, 4]), np.diff(x[:, 6])
         # The large same-frame jumps at nonzero gains expose common trajectory
         # retargeting. Raw s~ taps repeat their last block while switch~ is off;
