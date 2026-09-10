@@ -768,3 +768,169 @@ console inspected, PCM analysis executed, FLAC crop identity checked, Python
 syntax/JSON parsing and `git diff --check` passed. Listening/transition acceptance,
 reverse timing accuracy and immediate speed/slew transitions remain open. Do not
 start another repair automatically; these findings support the next scoped review.
+
+## Free-form tape direction
+
+The subsequent user discussion sets the near-term musical direction: reverse
+immediately at the current position, or use the existing tape-slew idea and allow
+the resulting timing drift. There is no automatic catch-up to an imagined
+unaffected playhead. Clock locking, continuous/pitched speed controls and more
+elaborate Arc manipulation can be considered after the current motion works.
+
+The intended instant gesture flips direction without deliberately waiting,
+seeking to another position or restarting the loop. The intended slew gesture
+decelerates, passes through zero and accelerates in the other direction, keeping
+the position reached by that motion. Neither gesture promises universal
+click-free output. In particular, the measured extra reverse-loop block above
+is an implementation defect to address, not intentional tape drift.
+
+This is a behavior decision and source review, **not a new DSP implementation**.
+PR #6 still has the speed/trajectory ordering and nonzero-slew gaps recorded
+above. The existing controls and two readers are the starting point; the
+unconnected direction-slew branches do not constitute a working feature.
+
+### Tape reference catalogue
+
+These are ideas to revisit, not a commitment to clone every device or its sound.
+Sources were read on 2026-09-09; no reference hardware was auditioned here.
+
+| Reference | Useful musical ideas | Relationship to plugmlr |
+| --- | --- | --- |
+| OP-1 field: tape transport | Reverse, brake/stop, fine speed and scrubbing. | Immediate direction and slew are the current focus; brake/scrub can follow. |
+| OP-1 field: tape tricks and editing | Tempo-based chop, loop in/out, parameter memories, lift/drop, split/join and undo. | Future loop gestures and editing references. |
+| OP-1 field: tape styles | Studio, vintage, portable-tape and disc characters. | Later coloration; no modeled tape sound is implemented here. |
+| OP-XY: Tape auxiliary track | Play captured clips, change pitch/speed/loop length, blend with the original, choose source tracks; filter and modulate. | Later live capture and performance routing. |
+| OP-XY: punch-in FX | Perform and record momentary effects for individual tracks or groups. | Later gesture mapping, independent of buffer motion. |
+| mlre: tape performance | Reverse, octave speeds, scale transpose, rate slew and probabilistic warble. | Preserve free tape motion first; add pitch choices and modulation later. |
+| mlre: interaction | Cuts/loops, pattern recording, snapshots, punch-ins and temporary parameter morphs. Arc adds scrub/warble and loop-window controls. | References for musical controls over an understood player. |
+| mlre: tape management | Splices, main/temp sides, backup/undo and overdub fade-out. | Later recording and audio-management work. |
+| Maschine: Stutter | Adjustable loop length, pitch and gate; forward/reverse; optional time quantization. | Useful free-versus-quantized performance reference for later. |
+| Maschine: Scratcher | Brake, scratch, and a feedback delay with frequency shifting; release bypasses the effect. | Later gesture/effect idea. |
+| Maschine: Saturator, Tape mode | Compression/coloration with frequency shaping. | Later audio effect, separate from tape transport. |
+
+Primary references: [OP-1 field firmware 1.7.0, REV10 guide, Tape](https://assets.teenage.engineering/_img/69f248938d433104c4dd1846_original.pdf),
+[OP-XY auxiliary guide, sections 15.2 and 15.6](https://teenage.engineering/guides/op-xy/auxiliary),
+[mlre v2.2 manual](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/doc/mlre%20v2.2%20-%20user%20manual.pdf),
+and [Maschine software effect reference](https://docs.native-instruments.com/ni-tech-manuals/maschine-software-manual/en/effect-reference).
+The OP-XY and Maschine references are the online manuals as read, not tests of
+a pinned device/software build. mlre's manual describes periodic track reset
+as an optional way to realign motion after rate changes; it is not required
+for free tape play. It also warns that rapid repeated punch-ins may fail to
+restore prior state. Reference behavior is subject to review too.
+
+### From the current player toward mlre
+
+The source reference is [sonocircuit/mlre](https://github.com/sonocircuit/mlre/tree/ba88531bd31656ec33b54beee4f67c5438ae7d35),
+commit `ba88531bd31656ec33b54beee4f67c5438ae7d35`, whose code identifies itself
+as v2.2.0 and requires norns version `231114`. It extends Brian Crabtree's mlr
+and uses Ezra Buchla's softcut. It is a behavioral reference, not code that
+currently runs inside plugdata.
+
+Its [main source](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/mlre.lua)
+imports `musicutil` and `lattice`, plus its own UI, Grid, compatibility, LFO,
+scales and pattern-time modules. It also uses norns clock/metro, params and
+presets, file/audio operations, waveform/position callbacks, screen, MIDI, Grid
+and Arc APIs. The broader phrase **basic norns tools remains undefined** pending
+the user's clarification; this inventory does not authorize a whole norns
+runtime or compatibility layer.
+
+There is a channel-model decision before a literal port: mlre configures six
+softcut voices and uses mono buffer read/write/copy operations and voice pan.
+Its tape-side selection maps to softcut buffers. plugmlr currently reads paired
+stereo arrays. Keep that stereo behavior while repairing its known ordering
+defect; do not silently convert it to mono to match the reference. Buffer,
+musical track and internal crossfade reader are distinct concepts.
+
+| Chunk | Existing plugmlr path and remaining work |
+| --- | --- |
+| Playback motion | Follow `sample_player_rebuild.pd` rate/curve → position snapshot → trajectory → loop boundary → readers. Resolve stale updates, zero-rate behavior and direction slew; test both readers through interrupted gestures. |
+| Cuts, regions and feedback | Keep the existing slice/loop UI and playbar. Repair slice offset/clamping, trace boundary changes and reconcile visual/Grid feedback with actual playback. Quantized launch/reset is a separate choice. |
+| Recording and tape management | Trace `live_buffer.pd` and the historical writers already mapped here. The active record button has no completed writer path. File replacement, overdub, safe ownership, undo and splice operations need their own bounded jobs. |
+| Controller connection | Adapt musical input/output to the new device package below. Existing global names and legacy Grid routing need review before multi-instance use. |
+| Musical helpers | Add only the chosen parameter, pattern/macro, scale and modulation behaviors after their playback operations work. Choose which norns tools to share before implementing them. |
+| Community delivery | Provide a runnable example using the actual package, explicit dependencies and credits. Source review and device-workbench acceptance do not establish an integrated instrument release. |
+
+The next concrete repair candidate is the existing **speed and direction slew
+path**, including how its two readers handle an interrupted trajectory. First
+observe the current control and console, then trace all triggers for one speed
+change and one slewed reversal. Define zero-rate and interruption behavior before
+editing. Compare instant/slewed gestures and both loop boundaries in native audio,
+with listening and numerical evidence kept separate. This note does not start
+recording, controller migration or the rest of the catalogue automatically.
+
+## Monome suite and leased SerialOSC
+
+The user confirmed `kasselvania/PlugData-Monome-Devices` as the companion device
+package and explicitly included the lease/release SerialOSC work in the suite.
+The intended dependency path is:
+
+```text
+plugmlr musical controls and playback
+  ↕ normalized device events, LED output and connection state
+PlugData-Monome-Devices (selection and session ownership)
+  ↕ OSC with opt-in leased destinations
+kasselvania/serialosc (device worker and lease expiry)
+  ↕ USB
+Grid / Arc
+```
+
+Source pins were resolved from the remotes during this review. They identify
+development candidates, not an installer bundle or the currently running service.
+
+| Project | Relevant branch and exact reviewed revision | Responsibility |
+| --- | --- | --- |
+| plugmlr | Playback PR #6: `codex/fix-reverse-loop`, `a6aea1e83c4800632782b05132b8bedff7df6ef0`; main `fc17d598a60d4531b3beac78d1a49eccc5ad660d` | Instrument, buffer/player behavior and musical mapping. This documentation branch adds no DSP changes. |
+| [PlugData-Monome-Devices](https://github.com/kasselvania/PlugData-Monome-Devices/tree/09c820e751525903ec61da00c5be1cb0ccd63a2b) | `feature/serialosc-leases`, `09c820e751525903ec61da00c5be1cb0ccd63a2b` | Discovery, explicit selection, session claim/renew/release, normalized Grid/Arc APIs; macOS candidate packaging. |
+| [SerialOSC fork](https://github.com/kasselvania/serialosc/tree/7187832c349202b1a94a9b10080ae57d40069946) | `feature/leased-destinations`, `7187832c349202b1a94a9b10080ae57d40069946` | Version 1 lease protocol and worker-side expiry/darkening. macOS candidate reports `serialoscd 1.4.8 (7187832)`; this is not an upstream release. |
+| [SerialOSC Steam Deck packaging](https://github.com/kasselvania/serialOSC-steam-deck/tree/ec2ff3b5dca5330b83946310a19bb90a0b66498f) | `codex/lease-candidate-packaging`, `ec2ff3b5dca5330b83946310a19bb90a0b66498f` | Rootless SteamOS build/install/rollback of the same pinned fork. The documented public rollback release remains upstream 1.4.7. |
+
+The device package's main at `d90445162975519a7096120d58bc8964fa27d1b6`
+is the older pre-lease path. SerialOSC main is
+`c96ea389dbf82c84d17f6f7adddaf311aed49438`; Deck packaging main is
+`bfad5fb7d5e84fba66333a7ee1b7d3df1993abb1`. A generic instruction to clone
+all three default branches would miss the intended lease stack.
+
+The package implements `monome-discovery`, `monome-registry`, `monome-session`,
+`monome-grid` and `monome-arc`. Its live slots explicitly opt into lease mode;
+the session abstraction defaults to legacy policy. In lease mode, unsupported
+capability is not a claim and does not silently fall back. The client renews
+every 2 seconds under a 6-second TTL, verifies ownership, and exposes legacy
+takeover separately. SerialOSC handles expiry even if the client can no longer
+send release. This addresses abandoned callbacks and lit hardware after host
+death; it does not repair playback DSP or guarantee that the plugin host cannot
+crash. See the pinned [lease workbench](https://github.com/kasselvania/PlugData-Monome-Devices/blob/09c820e751525903ec61da00c5be1cb0ccd63a2b/docs/LEASE-WORKBENCH.md)
+and [fork protocol](https://github.com/kasselvania/serialosc/blob/7187832c349202b1a94a9b10080ae57d40069946/docs/leased-destinations.md).
+
+**Reported companion-project evidence, not tests executed in this review:**
+the device project's [macOS record](https://github.com/kasselvania/PlugData-Monome-Devices/blob/09c820e751525903ec61da00c5be1cb0ccd63a2b/docs/MACOS-LEASE-CANDIDATE.md)
+includes two Grids and a four-ring Arc, simultaneous standalone lifecycle and
+automatic dark/free recovery after Bitwig plugin-host termination. Its
+[SteamOS record](https://github.com/kasselvania/PlugData-Monome-Devices/blob/09c820e751525903ec61da00c5be1cb0ccd63a2b/docs/STEAMOS-LEASE-CANDIDATE.md)
+includes bounded standalone single/pair/all-three device tests, with an
+intermittent dock reset documented. The [Deck Bitwig record](https://github.com/kasselvania/PlugData-Monome-Devices/blob/09c820e751525903ec61da00c5be1cb0ccd63a2b/docs/PLUGDATA-BITWIG-AB.md)
+retains graphical selection and broader lifecycle gaps; terminal selection
+does not establish usable graphical integration. These results apply to their
+pinned builds, not all plugdata versions or this instrument.
+
+**Integration gap:** `mlr.pd` still uses its legacy `monome-object.pd` path.
+The new package has not been wired into it. When that job is chosen, use the
+package's device events/LED/state interface and surface selection and release
+through its session controls. Keep lease timers, raw ownership OSC and service
+installation out of the musical player. Verify real Grid input → slice/playback
+→ LED feedback plus release/reconnect in the actual application. Keep callback
+resources distinct between instrument instances; device serial identity is not
+a track or buffer ID.
+
+For future setup, use the companion's pinned macOS candidate guide above or the
+Deck packaging guide, including their preserved rollback paths. This review
+changed no installed services, claimed no devices and added no new dependencies.
+The companion provides a [development workbench bundle](https://github.com/kasselvania/PlugData-Monome-Devices/blob/09c820e751525903ec61da00c5be1cb0ccd63a2b/docs/WORKBENCH-BUNDLE.md),
+not a finished end-user package. Its [project map](https://github.com/kasselvania/PlugData-Monome-Devices/blob/09c820e751525903ec61da00c5be1cb0ccd63a2b/docs/PROJECT-MAP.md)
+also records an explicit license/package-layout gap before publication. The
+reviewed mlre tree has no root LICENSE file; clarify reuse terms and preserve
+attribution before distributing copied source.
+
+Validation of this documentation update: remote revisions, primary manuals,
+mlre imports/buffer operations and companion lease records were inspected;
+relative links and `git diff --check` were checked. No new audio, device,
+listening, installed-runtime or DAW acceptance is claimed.

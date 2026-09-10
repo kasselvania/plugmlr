@@ -4,6 +4,12 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
+The musical direction is free-form tape manipulation, growing toward an
+mlre-inspired community instrument. The immediate behavior to finish is instant
+reverse or an audible tape slew, with timing drift allowed. The
+[tape reference catalogue and next work](docs/STATUS.md#free-form-tape-direction)
+separate that decision from functions already tested.
+
 The runnable entry point is **[mlr.pd](mlr.pd)**. Small repairs now restore both
 reader turns and bidirectional looping in the existing player. Direction Change
 reverses playback; reverse wraps return to the region end. The current native
@@ -44,6 +50,16 @@ bundled ELSE/Cyclone environment. This is not a verified vanilla-Pd setup guide.
 The existing Grid path uses `monome-object.pd` and SerialOSC; physical Grid
 operation was not validated in this session. No dependency installation was
 needed for the observed Sample 1 playback path.
+
+The intended community suite pairs plugmlr with
+[PlugData-Monome-Devices](https://github.com/kasselvania/PlugData-Monome-Devices/tree/feature/serialosc-leases)
+and the [lease-aware SerialOSC fork](https://github.com/kasselvania/serialosc/tree/feature/leased-destinations).
+The device package handles selection, claim, renewal and release; SerialOSC can
+expire abandoned leases and darken the hardware after a client dies. The
+[suite map](docs/STATUS.md#monome-suite-and-leased-serialosc) records exact source
+pins, platform packaging and reported acceptance. This application still uses
+its legacy connection patch: integration with the new device package remains
+work to do, and installing a lease daemon alone does not migrate that path.
 
 Alternative and historical patches remain alongside the entry point. Their names
 do not establish which behavior works. The rejected shared-playback rewrite is
