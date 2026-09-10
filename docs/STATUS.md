@@ -7,6 +7,150 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Instant-reverse continuity follow-up
+
+Recording PR #11 merged as `b0884baf8e7e63daad22c094c1efa25866347547`;
+Stop/restart PR #12 merged as `c4abb9c1440951989147729d86cb1731ab032820`.
+The new `codex/fix-instant-reverse` branch starts at the latter commit.
+
+Contract before implementation: with direction slew disabled, Direction Change
+reverses the running trajectory at its current position, keeps the selected rate
+magnitude and loop region, and adds no deceleration or catch-up. The audio-rate
+readers should remain position-continuous through the turn; loop wraps and slices
+retain their existing handoffs. Internal positions remain zero-based file frames;
+rate magnitude uses the existing five presets and speed slew. This is a repair of
+the existing instant mode, not implementation of the disconnected tape-slew mode.
+Stopped or paused direction changes must not start audio. Stop and buffer replacement
+retain their current authority over pending playback. No storage, writer, mixer,
+controller or host-clock change is included. Qualification will use paired native
+48 kHz player/mixer/reader captures, including reversals at loop and fade boundaries,
+rapid toggles, all speed presets and an interrupted speed slew. The shared 8A stays
+at 48 kHz; 44.1 kHz host qualification and tape slew remain separate.
+
+### Source trace and repair
+
+Direction Change already toggles `$0-playback_direction`, checks playing/paused
+state and rebuilds the existing trajectory. The fault was its `snapshot~` start
+position: the current ramp continues during the remainder of the control block,
+then jumps back to that older position before running in reverse. The native
+baseline shows a 49-frame jump on the first 1x turn and about 196 frames on a 4x
+turn. The [upstream Pd signal-control source](https://github.com/pure-data/pure-data/blob/master/src/d_ctl.c)
+also shows ordinary `snapshot~` retaining the last sample of the processed block;
+`vsnapshot~` selects within that existing block. Source inspection informed the
+repair; the installed runtime's captures, not that upstream revision, qualify it.
+
+The only application edit is 23 lines in `sample_player_rebuild.pd`: redirect the
+guarded direction query to local `pd reverse_position`. The existing
+`$0-loop_target_index` already publishes `[start_frame target_frame duration_ms]`
+for each calculated playback trajectory, in the same synchronous chain that drives `vline~`.
+The new subpatch stores those three numbers and resets a Pd logical `timer` on
+each ramp. A direction query computes:
+
+`start + clamp(elapsed_ms / duration_ms, 0, 1) * (target - start)`
+
+Stop/Pause have separate direct holds; the existing state guards prevent a direction
+query from starting either of them. Zero duration returns the target. This is one on-demand control calculation,
+not a periodic timer or replacement audio engine. The existing `vline~` objects
+still generate every audio-rate frame position. Their direction changes now
+start at the current trajectory position, preserving magnitude without an added
+fade, deceleration, resynchronization or catch-up. The normal loop/slice crossovers,
+reader gates, speed-slew calculation, Stop queue, Pause path, buffer storage,
+recording and mixer remain unchanged. The unsupported tape-slew branch is not
+reconnected or presented as working functionality.
+
+### Native evidence and listening
+
+Actual original application and console: **plugdata 0.9.4 nightly `98ae0f78b`,
+Pd 0.56.3**, CoreAudio **8A at 48000 Hz, 512 frames, 1x**. Track gain 0.548,
+master 0.75. Global output was muted during synthetic/DC diagnostics and restored
+to 0.90 afterwards. The companion stayed on input 3/4, gain 1.10, local bus 1,
+monitor 0; neither Bitwig nor the shared hardware clock changed.
+
+| Measured check | Baseline | Candidate |
+| --- | ---: | ---: |
+| First 1x turn, largest frame step | 49 frames | 1 frame |
+| 4x turn, largest frame step | 195.995 frames | 4 frames |
+| Largest L/R audio step at the 17 paired active turns | 0.095053 / 0.075712 | 0.004059 / 0.005432 |
+| Additional narrow-loop/rapid-turn test | Not run on baseline | 18 turns preserve position continuity and flip signed speed |
+| Constant stereo signal through loops/turns | Additional candidate check | Maximum gain error below 9.4e-8 |
+| Merged Stop/restart score | Prior accepted evidence | Same expected start times; zero gain before reader shutdown; finite/stopped output |
+
+The paired seven-second score includes every speed preset, a six-turn 2 ms burst,
+an interrupted 400 ms speed slew, turns at loop edges and during a slice fade, plus
+paused/stopped turns. The additional score uses `[3000,9000]` and `[4500,7500]`
+file-frame regions, turns 0.2 ms apart, 4x loop motion, empty Live 5, Stop/Play
+overlap and imported-buffer switches. All checked active spans contain audio with
+no whole-block silent gap, expected mixer gain within 2e-6 and finite samples.
+The actual reader and master frame steps at each checked turn remain within the
+selected per-sample magnitude plus 0.02 frame; before/after signed slopes flip
+without changing magnitude within 0.01 frame/sample. These fixture tolerances do
+not establish a general click-audibility threshold.
+
+Play/Pause at 3450 ms in the additional score pauses the automatic start after
+selecting sample 4. Its held pre-mixer reader value is the existing Pause behavior;
+the actual mixer is exactly silent. Empty-buffer and stopped-turn windows are
+also silent. This observation must not be mislabeled a stuck-playing regression.
+
+The separate musical score uses the preserved two-second live take and the included
+44.1 kHz drum file at the 48 kHz host. Measured drum reader speeds after reversal
+match +0.5x, -2x and +1x with the file/host conversion within 1e-4 frame/host sample.
+Its listening copy extracts post-master L/R and applies output gain 0.90, without
+normalization. **User listening report: “Clean direction changes.”** This report
+is independent of the numerical results and applies to that musical capture.
+
+**Remaining failures/limits:** the wider candidate score still contains a
+0.036193 left-channel step around 3085.67 ms during ongoing speed slew, away from
+a Reverse command. That path still uses its older block snapshot and has not
+been repaired here. Pause still closes the mixer abruptly and holds reader DC
+upstream. This repair does not accept those transitions, tape slew, 44.1 kHz host
+operation, multiple application instances, DAW lifecycle or project recall.
+There is no universal click-free claim.
+
+### Retained evidence and reproduction
+
+`docs/evidence/instant-reverse` contains paired native player/mixer WAVs, exact
+decoded float reader/additional capture data in NPZ, state events, numerical JSON
+and source/evidence hashes. `capture-compression.json` records raw WAV hashes and
+verified lossless conversion. NPZ keys and channel layout match the Stop/restart
+evidence below. Private hardware/music WAVs remain local and ignored.
+
+1. Preserve existing takes before reloading. Use one original `mlr.pd`, the native
+   configuration above, and muted global output for the DC check. Reuse
+   `tests/fixtures/stop-wave-48.wav` and `stop-constant-48.wav`; the latter must
+   not be played through speakers.
+2. Add temporary post-master sends to mixer objects 20/21 as in the Stop test.
+   In player 1, instantiate `tests/instant-reverse-check $0` and
+   `tests/bounded-player-capture 1 $0`. The new helper reuses the existing bounded
+   `live-record-check` and adds only control adapters for speed-slew duration and
+   internal loop bounds. Activate DSP after all taps are connected, while stopped.
+3. Load the wave fixture into sample 3. Send
+   `record-check symbol fixtures/instant-reverse.txt`. Each recorder arms its
+   seven-second stop before starting. Wait for both `capture-stopped` and
+   `record-check-stopped` in the actual console. Retain
+   `/tmp/plugmlr-record-check.wav`, `/tmp/plugmlr-reverse-readers.wav` and
+   `/tmp/plugmlr-record-check-events.txt` before another run.
+4. Load the wave into slots 3/4, leave Live 5 empty, and run
+   `instant-reverse-edges.txt`; repeat with the constant fixture in both slots.
+   Run the existing `stop-restart.txt` for regression; its reader output is named
+   `/tmp/plugmlr-stop-readers.wav`. For listening, put a musical take in sample 3
+   and `DrumLoop.wav` in sample 4, then run `instant-reverse-music.txt`.
+5. Run `python3 tests/analyze_instant_reverse.py docs/evidence/instant-reverse`
+   with NumPy and ffmpeg. **27 checks pass**: 25 use public evidence; two use the
+   optional local musical captures. Connection-index and whitespace checks also
+   pass separately; they do not substitute for native DSP testing.
+
+All completed runs were observed to stop in the native console. Initial temporary
+missing-mixer-send warnings were resolved by attaching both taps before the baseline
+run; candidate setup attached those sends first. No new runtime object/connection
+errors were observed during the completed candidate runs. No recording was left
+running between operations.
+
+After testing, the original application was reloaded to remove temporary taps and
+test slots. All three live takes were restored and re-exported byte-identically;
+Live 3 keeps 60032 content frames inside 192000-frame capacity. Original imported
+samples 1/2 were restored. Final UI: Live 2 Loaded and selected, playback stopped,
+recording disarmed, global output 0.90. The failed R1 experiment remains untouched.
+
 ## Stop/restart follow-up
 
 Separate branch `codex/fix-stop-restart`, based on the recording checkpoint

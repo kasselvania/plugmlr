@@ -1,0 +1,176 @@
+{
+  "recorded_utc": "2026-09-10T21:14:32.162941+00:00",
+  "base_commit": "c4abb9c1440951989147729d86cb1731ab032820",
+  "verified_remote_main": "c4abb9c1440951989147729d86cb1731ab032820",
+  "branch": "codex/fix-instant-reverse",
+  "prior_merged_prs": {
+    "11": "b0884baf8e7e63daad22c094c1efa25866347547",
+    "12": "c4abb9c1440951989147729d86cb1731ab032820"
+  },
+  "baseline_player_sha256": "418ca95159c73bdaf945a1dc1d00c82acccb4ab81e4295727c257f4667e4eb23",
+  "source_sha256": {
+    "sample_player_rebuild.pd": "682716b1dd3f236bc6f95aa7895d2062778a0bc6a5d584cf989146fd5fe419e1",
+    "mlr.pd": "20349d2e9a8e21c2ad593e8a69d285e087b6300a54013a8b96493b93305e2d55",
+    "mixer.pd": "fda6d15a2a236a142e97d09bf60a167d676ca8c71501bd713024ced6d1c67f95",
+    "buffer-selection.pd": "1b93a9b2307db9efb6fd5b714d24d2ddda10d516bd4abaf2ed6ccbc1987944cb",
+    "live_buffer.pd": "84f98b4bfe8a49b0a496e8e482a9fd3367206fea6c57e96f303b3d381085e4ab",
+    "record-controls.pd": "1ed0455c500e47b39756fe25618b4046e213fd204f1237205fb02cbed20578d0",
+    "fixed-record~.pd": "f8f113efe9812ce7a277607c1726ec666d7da72b7d21e83a39217ab22707d4f9",
+    "tests/instant-reverse-check.pd": "0f980e980ef4944e7ab2456a1b6f43774e1a9db91f67346037909ac8cefb18dd",
+    "tests/live-record-check.pd": "b25281eec52fca32286f2ebefb044e08d469f28e4e65b73880168f65df659777",
+    "tests/bounded-player-capture.pd": "77c73f7e816b61a312a417383a896b28eb2a76df1853d842003853de5311ec66",
+    "tests/analyze_instant_reverse.py": "6107f55b9bbbe4d5ce3e8f85d74eb53cc41bc94bd16a8aff38e1fcdd91d4638f",
+    "tests/analyze_stop_restart.py": "b8e29c1e3dfe544126afbdc711eca6fc8a35f6472a0186393c5a534ca1040446",
+    "tests/make_stop_fixtures.py": "2495960576e9a1348218ba6778bd85ad44f6ad3d79b7452955a85c0ad358aed3",
+    "tests/fixtures/instant-reverse.txt": "95bb99b37b085e0da641288bc4dd3d8f57b38122911cc59ff9b686229f77b330",
+    "tests/fixtures/instant-reverse-edges.txt": "781666cf08635c049782df84e4491ad9160c9e06f67417fd902c91a4837abffe",
+    "tests/fixtures/instant-reverse-music.txt": "6280e7e5d93d73a18c2cedf8fe7cbe288445ad7cbc65ff0f8bde2235ad720423",
+    "tests/fixtures/stop-restart.txt": "b63071a93d486ba7c0fa5238a2ae1703b3b939f1273a466a8f8c9760ff370951",
+    "tests/fixtures/stop-wave-48.wav": "35aab01dd8331051158fdee27a0409f3d72a58f3297f80a373dae81a083bdddc",
+    "tests/fixtures/stop-constant-48.wav": "7dd25b8680bba53bcbb646e4549670546966fd3357f199086ecccdfee3c9cb61"
+  },
+  "runtime": {
+    "app": "plugdata",
+    "version": "0.9.4 nightly",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "backend": "CoreAudio",
+    "input_output_device": "8A",
+    "sample_rate": 48000,
+    "hardware_frames": 512,
+    "oversampling": "1x",
+    "observed_in_native_ui": true
+  },
+  "capture_setup": {
+    "player": 1,
+    "track_gain": 0.548,
+    "master_gain": 0.75,
+    "global_output_during_diagnostics": 0,
+    "global_output_restored": 0.9,
+    "companion_bus": 1,
+    "host_channels_LR": [
+      3,
+      4
+    ],
+    "companion_gain": 1.1,
+    "monitor": 0,
+    "capture_deadline_ms": 7000,
+    "stop_observed_in_native_console_each_run": true,
+    "signal_capture_latency_frames": 64
+  },
+  "channel_order_one_based": {
+    "player_mixer": [
+      "generated source L (bus disabled)",
+      "generated source R (bus disabled)",
+      "actual player L",
+      "actual player R",
+      "post-master L",
+      "post-master R"
+    ],
+    "readers": [
+      "actual player L",
+      "actual player R",
+      "master frame",
+      "rate magnitude",
+      "reader 0 frame",
+      "reader 0 gain",
+      "reader 1 frame",
+      "reader 1 gain",
+      "reader 0 DSP flag",
+      "reader 1 DSP flag"
+    ]
+  },
+  "storage": {
+    "npz_keys": [
+      "samples",
+      "sample_rate"
+    ],
+    "npz_samples": "Exact decoded float32 samples; verified against native WAV before compression. See capture-compression.json.",
+    "private_audio": "local-input/ and local-raw/ are ignored; only hashes are published."
+  },
+  "checks": {
+    "report": "checks-48.json",
+    "passed": true,
+    "total": 27,
+    "public": 25,
+    "optional_local_music": 2,
+    "structural": "Connection-index and whitespace checks passed separately; not DSP acceptance."
+  },
+  "listening": {
+    "file": "local-input/candidate-music-listen-48.wav",
+    "source": "candidate-music-player-mixer-48.wav channels 5/6, gain 0.90, no normalization",
+    "user_report": "Clean direction changes",
+    "automated_listening_claim": false
+  },
+  "preserved_live_takes": [
+    {
+      "live_buffer": 1,
+      "content_frames": 96000,
+      "capacity_frames": 96000,
+      "next_recording_seconds": 2,
+      "original_and_restored_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+      "byte_identical": true
+    },
+    {
+      "live_buffer": 2,
+      "content_frames": 96000,
+      "capacity_frames": 96000,
+      "next_recording_seconds": 2,
+      "original_and_restored_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+      "byte_identical": true
+    },
+    {
+      "live_buffer": 3,
+      "content_frames": 60032,
+      "capacity_frames": 192000,
+      "next_recording_seconds": 4,
+      "original_and_restored_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+      "byte_identical": true
+    }
+  ],
+  "final_native_state": "Original application reloaded with temporary taps/test slots removed; original samples 1/2 restored; Live 2 Loaded and selected; playback stopped; recording disarmed; global output 0.90. Companion remains open. Bitwig and shared hardware clock unchanged.",
+  "evidence_sha256": {
+    "docs/evidence/instant-reverse/.gitignore": "b84f3971fe53f2d7dfbf8edb4f48c78b7d3eb846c549d8ea63b17878572458d0",
+    "docs/evidence/instant-reverse/baseline-wave-events.txt": "d630aa861e773e6e2578345275f57d923a2fcb6986847f96c491eca555aad225",
+    "docs/evidence/instant-reverse/baseline-wave-player-mixer-48.wav": "34d2a2c786c1f1c9e5063131aaeb70c1b0a553302fcf13c8f7e1ceffe0c54f0a",
+    "docs/evidence/instant-reverse/baseline-wave-readers-48.npz": "885d72481b1fd10ec04dffdad837f2aeed19c93d81bf79066c7a10c97678212c",
+    "docs/evidence/instant-reverse/candidate-constant-events.txt": "b9bffb87a7738124f69b2d05728bc71ae9dbbbaea7c3972cc00eb8557d2f2aa4",
+    "docs/evidence/instant-reverse/candidate-constant-player-mixer-48.npz": "60655b8f542f89687a4da6c0f318ca6b69bb28cdc92325122382fc71feb1338c",
+    "docs/evidence/instant-reverse/candidate-constant-readers-48.npz": "52ef07b1de8c9579be988086830bffc886fa2f4d1c72f8b068c82c73d850debe",
+    "docs/evidence/instant-reverse/candidate-edges-events.txt": "b9bffb87a7738124f69b2d05728bc71ae9dbbbaea7c3972cc00eb8557d2f2aa4",
+    "docs/evidence/instant-reverse/candidate-edges-player-mixer-48.npz": "7e3c2971f3244022a05648ed848a042844d39a5fafc3b58bcf55e041e71572e8",
+    "docs/evidence/instant-reverse/candidate-edges-readers-48.npz": "b6b3c2fe0052418e2e709b84829e326d546edf042ba3e2ad70da371009d18742",
+    "docs/evidence/instant-reverse/candidate-music-events.txt": "010579c497105fda5e1a8a17ca7948666367f1caf788206cef61d55f8a6c438f",
+    "docs/evidence/instant-reverse/candidate-stop-events.txt": "a25c02c605d7b05104b5f0d5799d21096d503280fbb2e8611054e84f97a3ee96",
+    "docs/evidence/instant-reverse/candidate-stop-player-mixer-48.npz": "d75a9bc6da91f67f43de4b735255c93e85344c2f8975eae1a6eddbcc0b510d36",
+    "docs/evidence/instant-reverse/candidate-stop-readers-48.npz": "7e4dc68a228688022cf19c596eb56ff2166dc39863b36c4e0cbb5f2ce3cee197",
+    "docs/evidence/instant-reverse/candidate-wave-events.txt": "718e5c1df4645fd6b8b4e587746f1555913dd886b571b0efa9bc88929006577a",
+    "docs/evidence/instant-reverse/candidate-wave-player-mixer-48.wav": "f94ef782e8be12a54e6c502b4551f13184f53d2870ff83b348d62e5a5c9e46d3",
+    "docs/evidence/instant-reverse/candidate-wave-readers-48.npz": "057122ddb43e6b44520bd956fb712c661d86dcd73292d96f2a80f3cc2f485fef",
+    "docs/evidence/instant-reverse/capture-compression.json": "cfe3b4e9a8829a6a482f472a1ddc5ad8a082e543276d5b620d5648c8de5e776e",
+    "docs/evidence/instant-reverse/checks-48.json": "de95d16210b84afb89e6c96a2e238b9b9313f1dd004bb860b13edbecb0f8c2d1",
+    "docs/evidence/instant-reverse/local-input/candidate-music-listen-48.wav": "d9475289a161434244943a4112778f96f532b035b24c761edb474c4235765728",
+    "docs/evidence/instant-reverse/local-input/candidate-music-player-mixer-48.wav": "8320e21fdcc74566b7a9ab92465de76a82454ce6467349f2065867591884a06e",
+    "docs/evidence/instant-reverse/local-input/candidate-music-readers-48.wav": "2c5031bd77e31ad1dd6c67649ec857195b56639995fa8ed3f47976caab82c74d",
+    "docs/evidence/instant-reverse/local-input/plugmlr-reverse-preserve-live1.wav": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+    "docs/evidence/instant-reverse/local-input/plugmlr-reverse-preserve-live2.wav": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "docs/evidence/instant-reverse/local-input/plugmlr-reverse-preserve-live3.wav": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+    "docs/evidence/instant-reverse/local-raw/baseline-wave-readers-48.wav": "a3073d0734c19dd38f92ea63daae716bbf780a9a1ef5cbfcd5444cb1aae88296",
+    "docs/evidence/instant-reverse/local-raw/candidate-constant-player-mixer-48.wav": "6cb8d4c6baeabf3846e65034f98f4a58f929f07f041a7b750786e98eefd561de",
+    "docs/evidence/instant-reverse/local-raw/candidate-constant-readers-48.wav": "f80c23c838b557b772105f58ebdee4c9693f69810455d55efb1ee5c13e1dc2ac",
+    "docs/evidence/instant-reverse/local-raw/candidate-edges-player-mixer-48.wav": "17698627f159f09bba3a36d66bcff98f8f64e21e4a6567d150f575539d9cb28c",
+    "docs/evidence/instant-reverse/local-raw/candidate-edges-readers-48.wav": "4b2201dde6a8123f5ca3be1933b8092b24d14fdac09d9896676e19a203f1bf4d",
+    "docs/evidence/instant-reverse/local-raw/candidate-stop-player-mixer-48.wav": "16ea7225d0ab348c3f420de55dab9364b3ad40129a0b7fc46cb14b497f4cd308",
+    "docs/evidence/instant-reverse/local-raw/candidate-stop-readers-48.wav": "9da12843d61dfeafd33e882edaf307c22b572dda12725359d67553edc57510ca",
+    "docs/evidence/instant-reverse/local-raw/candidate-wave-readers-48.wav": "702b363f17d927b30f6e8f546920ca2eee982baa52f92ae490a6a295f918b4a9"
+  },
+  "limits": [
+    "Residual speed-slew left-channel step 0.036193 near 3085.67 ms outside reverse-command windows; unchanged older snapshot path.",
+    "Pause still closes mixer abruptly and holds reader DC upstream; only inactive reverse behavior qualified.",
+    "Tape direction slew remains disconnected and unsupported.",
+    "48 kHz host tested; 44.1 kHz file at 48 kHz host tested; 44.1 kHz host not exercised.",
+    "No new recording-writer, multiple-instance, DAW lifecycle, cross-process transport or recall acceptance.",
+    "Private musical WAVs unavailable to remote reviewers; paired synthetic WAV/NPZ and state logs committed.",
+    "No universal click-free claim."
+  ]
+}

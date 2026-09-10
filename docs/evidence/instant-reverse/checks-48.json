@@ -1,0 +1,1394 @@
+{
+  "host_rate": 48000,
+  "cases": {
+    "baseline-wave": {
+      "frames": 335918,
+      "turns": [
+        {
+          "command_ms": 233,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 49.0,
+          "audible_reader_max_frame_step": 49.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.041961669921875,
+            0.011627197265625
+          ]
+        },
+        {
+          "command_ms": 404,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0025939904153347015,
+            0.0021057017147541046
+          ]
+        },
+        {
+          "command_ms": 650,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 32.99958801269531,
+          "audible_reader_max_frame_step": 32.99958801269531,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0780019462108612,
+            0.05365020036697388
+          ]
+        },
+        {
+          "command_ms": 652,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00039667636156082153,
+            0.0007933862507343292
+          ]
+        },
+        {
+          "command_ms": 654,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 32.99958801269531,
+          "audible_reader_max_frame_step": 32.99958801269531,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.020233772695064545,
+            0.06930464506149292
+          ]
+        },
+        {
+          "command_ms": 656,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0026550283655524254,
+            0.0021972637623548508
+          ]
+        },
+        {
+          "command_ms": 658,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 32.99958801269531,
+          "audible_reader_max_frame_step": 32.99958801269531,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.08779788017272949,
+            0.0168447345495224
+          ]
+        },
+        {
+          "command_ms": 660,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00033564493060112,
+            0.0025024237111210823
+          ]
+        },
+        {
+          "command_ms": 1133,
+          "before_after_frames_per_sample": [
+            0.25,
+            -0.25
+          ],
+          "master_max_frame_step": 12.25,
+          "audible_reader_max_frame_step": 12.25,
+          "rate_magnitude": 0.25,
+          "player_max_audio_step_LR": [
+            0.0284271240234375,
+            0.02831101417541504
+          ]
+        },
+        {
+          "command_ms": 1437,
+          "before_after_frames_per_sample": [
+            -0.5,
+            0.5
+          ],
+          "master_max_frame_step": 24.49957275390625,
+          "audible_reader_max_frame_step": 24.49957275390625,
+          "rate_magnitude": 0.5,
+          "player_max_audio_step_LR": [
+            0.05000310763716698,
+            0.04092772305011749
+          ]
+        },
+        {
+          "command_ms": 1739,
+          "before_after_frames_per_sample": [
+            2.0,
+            -2.0
+          ],
+          "master_max_frame_step": 33.998046875,
+          "audible_reader_max_frame_step": 33.998046875,
+          "rate_magnitude": 2.0,
+          "player_max_audio_step_LR": [
+            0.016269199550151825,
+            0.0757121592760086
+          ]
+        },
+        {
+          "command_ms": 2041,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 195.9951171875,
+          "audible_reader_max_frame_step": 195.9951171875,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0472140833735466,
+            0.008742369711399078
+          ]
+        },
+        {
+          "command_ms": 2611,
+          "before_after_frames_per_sample": [
+            0.864990234375,
+            -0.864990234375
+          ],
+          "master_max_frame_step": 14.7041015625,
+          "audible_reader_max_frame_step": 14.7041015625,
+          "rate_magnitude": 0.8650314807891846,
+          "player_max_audio_step_LR": [
+            0.02984098345041275,
+            0.008055102080106735
+          ]
+        },
+        {
+          "command_ms": 2817,
+          "before_after_frames_per_sample": [
+            -1.10009765625,
+            1.10009765625
+          ],
+          "master_max_frame_step": 53.89697265625,
+          "audible_reader_max_frame_step": 53.89697265625,
+          "rate_magnitude": 1.1124752759933472,
+          "player_max_audio_step_LR": [
+            0.09505269676446915,
+            0.03884502500295639
+          ]
+        },
+        {
+          "command_ms": 3500,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 3753,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 48.998046875,
+          "audible_reader_max_frame_step": 48.998046875,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.024477975443005562,
+            0.02883031964302063
+          ]
+        },
+        {
+          "command_ms": 4004,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0014361739158630371,
+            0.0015856754034757614
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            3.19
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.28,
+            4.39
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.68,
+            4.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            5.28,
+            5.94
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "whole_capture_max_step_LR": [
+        0.09505269676446915,
+        0.0757121592760086
+      ]
+    },
+    "candidate-wave": {
+      "frames": 335918,
+      "turns": [
+        {
+          "command_ms": 233,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.001983642578125,
+            0.002716064453125
+          ]
+        },
+        {
+          "command_ms": 404,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0019530914723873138,
+            0.0019531100988388062
+          ]
+        },
+        {
+          "command_ms": 650,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0017088726162910461,
+            0.0005796737968921661
+          ]
+        },
+        {
+          "command_ms": 652,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00250244140625,
+            0.00039659440517425537
+          ]
+        },
+        {
+          "command_ms": 654,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0017088726162910461,
+            0.0005796737968921661
+          ]
+        },
+        {
+          "command_ms": 656,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00250244140625,
+            0.00039659440517425537
+          ]
+        },
+        {
+          "command_ms": 658,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0017088726162910461,
+            0.0005796737968921661
+          ]
+        },
+        {
+          "command_ms": 660,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0025024376809597015,
+            0.00039659440517425537
+          ]
+        },
+        {
+          "command_ms": 1133,
+          "before_after_frames_per_sample": [
+            0.25,
+            -0.25
+          ],
+          "master_max_frame_step": 0.25,
+          "audible_reader_max_frame_step": 0.25,
+          "rate_magnitude": 0.25,
+          "player_max_audio_step_LR": [
+            0.0007183551788330078,
+            0.0006954669952392578
+          ]
+        },
+        {
+          "command_ms": 1437,
+          "before_after_frames_per_sample": [
+            -0.5,
+            0.5
+          ],
+          "master_max_frame_step": 0.5,
+          "audible_reader_max_frame_step": 0.5,
+          "rate_magnitude": 0.5,
+          "player_max_audio_step_LR": [
+            0.0009650886058807373,
+            0.0013751974329352379
+          ]
+        },
+        {
+          "command_ms": 1739,
+          "before_after_frames_per_sample": [
+            2.0,
+            -2.0
+          ],
+          "master_max_frame_step": 2.0,
+          "audible_reader_max_frame_step": 2.0,
+          "rate_magnitude": 2.0,
+          "player_max_audio_step_LR": [
+            0.004058837890625,
+            0.0054322173818945885
+          ]
+        },
+        {
+          "command_ms": 2041,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.001985075417906046,
+            0.001873653382062912
+          ]
+        },
+        {
+          "command_ms": 2611,
+          "before_after_frames_per_sample": [
+            0.864990234375,
+            -0.864990234375
+          ],
+          "master_max_frame_step": 0.864990234375,
+          "audible_reader_max_frame_step": 0.864990234375,
+          "rate_magnitude": 0.8650314807891846,
+          "player_max_audio_step_LR": [
+            0.0013448111712932587,
+            0.0005650334060192108
+          ]
+        },
+        {
+          "command_ms": 2817,
+          "before_after_frames_per_sample": [
+            -1.10009765625,
+            1.10009765625
+          ],
+          "master_max_frame_step": 1.10009765625,
+          "audible_reader_max_frame_step": 1.10009765625,
+          "rate_magnitude": 1.1124752759933472,
+          "player_max_audio_step_LR": [
+            0.0032317470759153366,
+            0.002719782292842865
+          ]
+        },
+        {
+          "command_ms": 3500,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 3753,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0005915574729442596,
+            0.0007006325758993626
+          ]
+        },
+        {
+          "command_ms": 4004,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.001637328416109085,
+            0.0027845846489071846
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            3.19
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 7.450580596923828e-09
+        },
+        {
+          "seconds": [
+            3.28,
+            4.39
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.68,
+            4.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            5.28,
+            5.94
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "whole_capture_max_step_LR": [
+        0.036192767322063446,
+        0.016100570559501648
+      ]
+    },
+    "candidate-edges": {
+      "frames": 335918,
+      "turns": [
+        {
+          "command_ms": 225,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.002197265625,
+            0.00048828125
+          ]
+        },
+        {
+          "command_ms": 227,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.002410888671875,
+            0.000244140625
+          ]
+        },
+        {
+          "command_ms": 229,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.002197265625,
+            0.00048828125
+          ]
+        },
+        {
+          "command_ms": 329,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0015869140625,
+            0.002655029296875
+          ]
+        },
+        {
+          "command_ms": 379,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00225830078125,
+            0.001495361328125
+          ]
+        },
+        {
+          "command_ms": 379.2,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.002728283405303955,
+            0.0004811640828847885
+          ]
+        },
+        {
+          "command_ms": 379.4,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0022358186542987823,
+            0.001459682360291481
+          ]
+        },
+        {
+          "command_ms": 379.6,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00274050235748291,
+            0.0004437752068042755
+          ]
+        },
+        {
+          "command_ms": 379.8,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0022116191685199738,
+            0.0014225337654352188
+          ]
+        },
+        {
+          "command_ms": 380,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.00275266170501709,
+            0.0004069637507200241
+          ]
+        },
+        {
+          "command_ms": 831.25,
+          "before_after_frames_per_sample": [
+            4.0,
+            -4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.008360646665096283,
+            0.00408935546875
+          ]
+        },
+        {
+          "command_ms": 862.5,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.005381995812058449,
+            0.0014003971591591835
+          ]
+        },
+        {
+          "command_ms": 893.75,
+          "before_after_frames_per_sample": [
+            4.0,
+            -4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0089111328125,
+            0.011016845703125
+          ]
+        },
+        {
+          "command_ms": 1204,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.00898553617298603,
+            0.0028861304745078087
+          ]
+        },
+        {
+          "command_ms": 1208,
+          "before_after_frames_per_sample": [
+            4.0,
+            -4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.010563036426901817,
+            0.010030102916061878
+          ]
+        },
+        {
+          "command_ms": 1212,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0072927325963974,
+            0.009856611490249634
+          ]
+        },
+        {
+          "command_ms": 2500,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.000213623046875,
+            0.0025938358157873154
+          ]
+        },
+        {
+          "command_ms": 4433,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0019833743572235107,
+            0.002716019516810775
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            1.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            2.48,
+            2.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.04,
+            3.39
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.43,
+            3.445
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.29,
+            4.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "whole_capture_max_step_LR": [
+        0.04303677752614021,
+        0.06122162193059921
+      ]
+    },
+    "candidate-constant": {
+      "frames": 335918,
+      "turns": [
+        {
+          "command_ms": 225,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 227,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 229,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 329,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 379,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 379.2,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 379.4,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 379.6,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 379.8,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 380,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 831.25,
+          "before_after_frames_per_sample": [
+            4.0,
+            -4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 862.5,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 893.75,
+          "before_after_frames_per_sample": [
+            4.0,
+            -4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 1204,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 1208,
+          "before_after_frames_per_sample": [
+            4.0,
+            -4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 1212,
+          "before_after_frames_per_sample": [
+            -4.0,
+            4.0
+          ],
+          "master_max_frame_step": 4.0,
+          "audible_reader_max_frame_step": 4.0,
+          "rate_magnitude": 4.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 2500,
+          "before_after_frames_per_sample": [
+            -1.0,
+            1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "command_ms": 4433,
+          "before_after_frames_per_sample": [
+            1.0,
+            -1.0
+          ],
+          "master_max_frame_step": 1.0,
+          "audible_reader_max_frame_step": 1.0,
+          "rate_magnitude": 1.0,
+          "player_max_audio_step_LR": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            1.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            2.48,
+            2.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.04,
+            3.39
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.43,
+            3.445
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.29,
+            4.99
+          ],
+          "longest_silent_run_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "whole_capture_max_step_LR": [
+        0.079986572265625,
+        0.040008544921875
+      ],
+      "constant_gain_errors": [
+        9.314789206626983e-08,
+        9.314789206626983e-08,
+        9.314789206626983e-08,
+        0.0,
+        9.314789206626983e-08
+      ]
+    },
+    "candidate-stop": {
+      "frames": 335918,
+      "reader_frames": 335918,
+      "all_samples_finite": true,
+      "peak_player_LR_mixer_LR": [
+        0.0799865797162056,
+        0.0400085486471653,
+        0.03287448361515999,
+        0.016443513333797455
+      ],
+      "max_adjacent_step_player_LR_mixer_LR": [
+        0.0005390709266066551,
+        0.00026963837444782257,
+        0.0002283230423927307,
+        0.00011420436203479767
+      ],
+      "final_tail_zero": true,
+      "steady_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.18
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.54,
+            0.64
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            0.94,
+            1.04
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.35,
+            1.4500000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            1.75,
+            1.85
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.16,
+            2.2600000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            2.66,
+            2.7600000000000002
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            3.56,
+            3.66
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.06,
+            4.159999999999999
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            4.46,
+            4.56
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        },
+        {
+          "seconds": [
+            5.1,
+            5.199999999999999
+          ],
+          "rms_LR": [
+            0.07998526841402054,
+            0.04000918194651604
+          ],
+          "mixer_gain_error": 3.725290298461914e-09,
+          "longest_silent_run_frames": 0
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 12,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        },
+        {
+          "count": 11,
+          "nonzero_gain_before_off": 0,
+          "maximum_gain_before_off": 0.0
+        }
+      ]
+    },
+    "local-music": {
+      "file_44100_host_48000_rates": [
+        {
+          "command_ms": 3483,
+          "expected_frames_per_host_sample": 0.459375,
+          "measured_frames_per_host_sample": 0.45938640832901
+        },
+        {
+          "command_ms": 4237,
+          "expected_frames_per_host_sample": -1.8375,
+          "measured_frames_per_host_sample": -1.837499737739563
+        },
+        {
+          "command_ms": 5000,
+          "expected_frames_per_host_sample": 0.91875,
+          "measured_frames_per_host_sample": 0.9187402129173279
+        }
+      ]
+    }
+  },
+  "checks": {
+    "baseline-wave_bounded_finite_stopped": true,
+    "baseline-wave_active_audio_and_mixer_gain": true,
+    "candidate-wave_bounded_finite_stopped": true,
+    "candidate-wave_active_audio_and_mixer_gain": true,
+    "candidate-wave_turn_position_continuity": true,
+    "candidate-wave_direction_flips_preserve_speed": true,
+    "candidate-wave_turn_audio_step_bounded": true,
+    "candidate-edges_bounded_finite_stopped": true,
+    "candidate-edges_active_audio_and_mixer_gain": true,
+    "candidate-edges_turn_position_continuity": true,
+    "candidate-edges_direction_flips_preserve_speed": true,
+    "candidate-edges_turn_audio_step_bounded": true,
+    "candidate-edges_empty_paused_and_stopped_mixer_silent": true,
+    "candidate-edges_narrow_regions_preserved": true,
+    "candidate-constant_bounded_finite_stopped": true,
+    "candidate-constant_active_audio_and_mixer_gain": true,
+    "candidate-constant_turn_position_continuity": true,
+    "candidate-constant_direction_flips_preserve_speed": true,
+    "candidate-constant_turn_audio_step_bounded": true,
+    "constant_stereo_order_and_unity_through_fades": true,
+    "candidate-constant_empty_paused_and_stopped_mixer_silent": true,
+    "candidate-constant_narrow_regions_preserved": true,
+    "baseline_exposes_reverse_jump": true,
+    "paused_and_stopped_reverse_do_not_start_mixer": true,
+    "stop_restart_regression": true,
+    "local_music_mismatch_rates": true,
+    "local_music_finite_and_stopped": true
+  },
+  "passed": true,
+  "scope": "Actual native samples and existing reader ramps. Direction-change windows are qualified; residual speed-slew and Pause edges, 44.1 kHz host and tape slew are not. No universal click-free claim or automated listening judgment."
+}

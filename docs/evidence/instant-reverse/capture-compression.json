@@ -1,0 +1,82 @@
+[
+  {
+    "wav": "baseline-wave-readers-48.wav",
+    "wav_sha256": "a3073d0734c19dd38f92ea63daae716bbf780a9a1ef5cbfcd5444cb1aae88296",
+    "npz": "baseline-wave-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-constant-player-mixer-48.wav",
+    "wav_sha256": "6cb8d4c6baeabf3846e65034f98f4a58f929f07f041a7b750786e98eefd561de",
+    "npz": "candidate-constant-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-constant-readers-48.wav",
+    "wav_sha256": "f80c23c838b557b772105f58ebdee4c9693f69810455d55efb1ee5c13e1dc2ac",
+    "npz": "candidate-constant-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-edges-player-mixer-48.wav",
+    "wav_sha256": "17698627f159f09bba3a36d66bcff98f8f64e21e4a6567d150f575539d9cb28c",
+    "npz": "candidate-edges-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-edges-readers-48.wav",
+    "wav_sha256": "4b2201dde6a8123f5ca3be1933b8092b24d14fdac09d9896676e19a203f1bf4d",
+    "npz": "candidate-edges-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-stop-player-mixer-48.wav",
+    "wav_sha256": "16ea7225d0ab348c3f420de55dab9364b3ad40129a0b7fc46cb14b497f4cd308",
+    "npz": "candidate-stop-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-stop-readers-48.wav",
+    "wav_sha256": "9da12843d61dfeafd33e882edaf307c22b572dda12725359d67553edc57510ca",
+    "npz": "candidate-stop-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-wave-readers-48.wav",
+    "wav_sha256": "702b363f17d927b30f6e8f546920ca2eee982baa52f92ae490a6a295f918b4a9",
+    "npz": "candidate-wave-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  }
+]
