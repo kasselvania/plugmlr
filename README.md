@@ -24,10 +24,18 @@ orders rate-slew updates and prevents a speed change at the loop endpoint from
 leaving playback stuck. Bounded native captures now cover all five speeds, an
 interrupted slew, instant reverse, and stop/restart at 44.1 and 48 kHz. The
 [retained results and reproduction steps](docs/STATUS.md#native-follow-up-boundary-collision)
-include the failed candidate. Reader probes confirm that both readers jump
-during a fade. The user heard clean changes with no clicks in the repaired drum
+include the failed candidate. That review found both readers jumping during
+a fade. The user heard clean changes with no clicks in the repaired drum
 capture; crossover repair and tape-direction slew remain open. This is still a
 draft candidate, not a universal click-free playback claim.
+
+The [crossover candidate](docs/STATUS.md#incoming-reader-ownership-candidate)
+connects the incoming/outgoing trajectory gates and starts handoffs with their
+new positions. Its first native 48 kHz run preserves the outgoing reader at all
+13 tested wraps and 10 slice jumps. Final stop/restart and 44.1 kHz validation
+remain open after a file-chooser/UI-control interruption. The implementation
+and bounded tests are retained for continuation; no universal click-free claim
+is made for rapid reader reuse.
 
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,

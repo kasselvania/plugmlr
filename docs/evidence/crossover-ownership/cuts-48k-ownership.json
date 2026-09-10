@@ -1,0 +1,217 @@
+{
+  "sample_rate": 48000,
+  "frames": 384000,
+  "channels": 8,
+  "duration_s": 8.0,
+  "nonfinite_samples": 0,
+  "handoffs": [
+    {
+      "time_s": 2.0023333333333335,
+      "master_from_to": [
+        88244.09375,
+        315941.40625
+      ],
+      "reader_frame_deltas": [
+        227697.3125,
+        227697.3125
+      ],
+      "gain_taps_at_jump": [
+        0.886576235294342,
+        0.11342376470565796
+      ],
+      "audio_step_at_jump": [
+        1.43268528063345e-06,
+        2.5783754608710296e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.0023333333333335,
+      "master_from_to": [
+        404140.5,
+        0.9170327186584473
+      ],
+      "reader_frame_deltas": [
+        0.90625,
+        -404139.58296728134
+      ],
+      "gain_taps_at_jump": [
+        0.1458355039358139,
+        1.0
+      ],
+      "audio_step_at_jump": [
+        3.0365732612835927e-05,
+        1.7868292808032038e-05
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": true
+    },
+    {
+      "time_s": 4.004333333333333,
+      "master_from_to": [
+        88.19828033447266,
+        315941.40625
+      ],
+      "reader_frame_deltas": [
+        315853.2079696655,
+        315853.2079696655
+      ],
+      "gain_taps_at_jump": [
+        0.11342159658670425,
+        0.886578381061554
+      ],
+      "audio_step_at_jump": [
+        3.591046720430313e-05,
+        3.387569267943036e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.006333333333333,
+      "master_from_to": [
+        316028.6875,
+        157971.171875
+      ],
+      "reader_frame_deltas": [
+        -158057.515625,
+        -158057.515625
+      ],
+      "gain_taps_at_jump": [
+        0.19906584918498993,
+        0.8009341359138489
+      ],
+      "audio_step_at_jump": [
+        0.00014709716924699023,
+        7.291270594578236e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.008333333333334,
+      "master_from_to": [
+        158058.453125,
+        473911.65625
+      ],
+      "reader_frame_deltas": [
+        315853.203125,
+        315853.203125
+      ],
+      "gain_taps_at_jump": [
+        0.26779064536094666,
+        0.732209324836731
+      ],
+      "audio_step_at_jump": [
+        5.8240111684426665e-06,
+        4.430011904332787e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.0103333333333335,
+      "master_from_to": [
+        473998.9375,
+        39493.48046875
+      ],
+      "reader_frame_deltas": [
+        -434505.45703125,
+        -434505.45703125
+      ],
+      "gain_taps_at_jump": [
+        0.31877401471138,
+        0.6812260150909424
+      ],
+      "audio_step_at_jump": [
+        4.079760401509702e-05,
+        8.329516276717186e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.012333333333333,
+      "master_from_to": [
+        39580.76171875,
+        355433.96875
+      ],
+      "reader_frame_deltas": [
+        315853.20703125,
+        315853.20703125
+      ],
+      "gain_taps_at_jump": [
+        0.3606204092502594,
+        0.639379620552063
+      ],
+      "audio_step_at_jump": [
+        1.1915602954104543e-05,
+        2.48828437179327e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.014333333333333,
+      "master_from_to": [
+        355521.25,
+        78986.0390625
+      ],
+      "reader_frame_deltas": [
+        -276535.2109375,
+        -276535.2109375
+      ],
+      "gain_taps_at_jump": [
+        0.3907604515552521,
+        0.6092395782470703
+      ],
+      "audio_step_at_jump": [
+        0.0001520380610600114,
+        0.00010182852565776557
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.016333333333334,
+      "master_from_to": [
+        79073.3203125,
+        394926.53125
+      ],
+      "reader_frame_deltas": [
+        315853.2109375,
+        315853.2109375
+      ],
+      "gain_taps_at_jump": [
+        0.41644352674484253,
+        0.5835564732551575
+      ],
+      "audio_step_at_jump": [
+        3.70828274753876e-05,
+        7.380700117209926e-05
+      ],
+      "only_incoming_retargeted": false
+    },
+    {
+      "time_s": 4.0183333333333335,
+      "master_from_to": [
+        395013.8125,
+        0.9170258641242981
+      ],
+      "reader_frame_deltas": [
+        -395012.8954741359,
+        -395012.8954741359
+      ],
+      "gain_taps_at_jump": [
+        0.43404945731163025,
+        0.5659505724906921
+      ],
+      "audio_step_at_jump": [
+        0.00011843553171075882,
+        2.103805822173399e-05
+      ],
+      "only_incoming_retargeted": false
+    }
+  ],
+  "ownership_failures": 9,
+  "incoming_reuse_above_005": 1,
+  "audio_peak": [
+    0.975941002368927,
+    0.9759158492088318
+  ]
+}

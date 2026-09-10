@@ -1,0 +1,96 @@
+{
+  "base_commit": "f7aadb82bca4dcd6fb689b458a4954a9dad38014",
+  "runtime": {
+    "version_observed": "0.9.4",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "binary_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+    "sampled_pid": 27699,
+    "native_player_id": 4581,
+    "host_rate_from_native_capture": 48000,
+    "device_and_buffer": "Unchanged by agent. Last native settings readback was preceding PR8 session; not freshly verified in this pass."
+  },
+  "source_audio": {
+    "path": "DrumLoop.wav",
+    "sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+    "sample_rate": 44100,
+    "frames": 631881,
+    "channels": 2
+  },
+  "native_capture_scope": "First pass only. Final stop-gate edit, ten-channel recorder, and transport schedule not loaded/executed after chooser/UI access interruption.",
+  "first_pass_player_sha256": "561259e6e13aa0100c167c28f0956d01103db523ac148506e05d5de9a67dc36a",
+  "current_player_sha256": "f6f32abd53219f3a1b6a1795760f56f64df2a841d96afd68de8b7696d0856179",
+  "first_pass_source_reconstruction": "Apply first-pass-source.patch to current player. Removes only the later stop-gate message and three connections. Reconstructed from known edit sequence, not a native saved snapshot.",
+  "first_pass_recorder": "tests/bounded-player-capture.pd at base_commit (8 channels).",
+  "first_pass_recorder_sha256": "34152fdb1f3e41f59b479c27f42c1d830dd89ea37a3f14cb9fbac01791527d65",
+  "current_source_and_test_sha256": {
+    "sample_player_rebuild.pd": "f6f32abd53219f3a1b6a1795760f56f64df2a841d96afd68de8b7696d0856179",
+    "tests/bounded-player-capture.pd": "77c73f7e816b61a312a417383a896b28eb2a76df1853d842003853de5311ec66",
+    "tests/speed-sequence.pd": "e4221628d7cfcfee9bb0e69627b3a685183473b22ad2a0d5683bbac34d1e3b78",
+    "tests/cut-sequence.pd": "41a5dfa6befee16e5b3b2bc7a0d700348e9470eb4b1049bd4d9a147e88701c66",
+    "tests/crossover-transport.pd": "de005291d755de15eb0545565da00d530b24ba30367d6cf0e28d272afcf14c71",
+    "tests/analyze_crossover.py": "a5cfad88e0a797393c93141149a14d41d00e81a375b9c1cd145d841a7896abcd",
+    "tests/analyze_speed_capture.py": "981e8d07543071032a68f1a031c005d0a8425f64cb5c992d7d85e46bf1216c0e"
+  },
+  "recording_safety": "Existing Pd capture timer armed before writesf~ start; transport and capture stopped before the chooser interruption. No native unbounded recording used.",
+  "listening": "No new listening verdict for these crossover captures. PR8 listening report is not transferred.",
+  "validation_open": [
+    "Native reload of final stop-gate edit",
+    "Ten-channel recorder validation",
+    "Transport during overlapping fades",
+    "Reader shutdown and actual output gain",
+    "44.1 kHz final-source run",
+    "New listening verdict",
+    "UI restoration"
+  ],
+  "artifacts": {
+    "checks.json": {
+      "bytes": 720,
+      "sha256": "4c6555cfe73ba48e54fe6748a26ce0cf31e44a9ebe18b05b0cf9c2cbda285c8e"
+    },
+    "cuts-48k-ownership.json": {
+      "bytes": 4801,
+      "sha256": "ddca119ec98000e193abfd324c2e589a9d96c233d4247bc00316f4e41b750b07"
+    },
+    "cuts-48k-v1-ownership.json": {
+      "bytes": 5272,
+      "sha256": "087ee3eb26768657e1e3286a110e824251effe8b6da78a9810b0bbce6d7f5094"
+    },
+    "first-pass-cuts-48k.flac": {
+      "bytes": 870089,
+      "sha256": "f7ed5f714845cf3ff2f1d3c413cd25a69dca3dff8a4581e49189147bc6883ce9"
+    },
+    "first-pass-cuts-48k.json": {
+      "bytes": 3622,
+      "sha256": "719619e422c14ef696d9b08f1497fcbb0919d86c690bf9792a10cb0c85f16ffd"
+    },
+    "first-pass-cuts-48k.npz": {
+      "bytes": 4495850,
+      "sha256": "37c2f9841aa08ea1657ec86d032a2dbf108db415656c6156e726a6a3d69c909c"
+    },
+    "first-pass-source.patch": {
+      "bytes": 430,
+      "sha256": "eb176e9d4e9447236164e4076c28b80f8c789d43326b3154d8dccffbaa55b2c2"
+    },
+    "first-pass-speed-48k.flac": {
+      "bytes": 2820667,
+      "sha256": "1421295ed438193684a5d086d4b5d7d68c0b087e63a6400103a71b9f752f6924"
+    },
+    "first-pass-speed-48k.json": {
+      "bytes": 8117,
+      "sha256": "7ac35061cba01c126d8772799609cfa791b5b9d53421e481a8c7b4cb10ce5a00"
+    },
+    "first-pass-speed-48k.npz": {
+      "bytes": 12790021,
+      "sha256": "6d53edbf9332b2366695bd9a6fb6af76e562650d23eb16c5a339dbc19dbb687c"
+    },
+    "repaired-48k-ownership.json": {
+      "bytes": 5997,
+      "sha256": "f042da41272f7045181d96eaa007b4e3d6d8f15cdd2478974ff6fcfad59bbbcf"
+    },
+    "speed-48k-v1-ownership.json": {
+      "bytes": 6714,
+      "sha256": "581d1db93ea682b9a43a5e0574da7bfd7cbcf3805fde63c27905f2fd833d286f"
+    }
+  }
+}

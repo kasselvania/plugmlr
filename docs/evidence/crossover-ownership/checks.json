@@ -1,0 +1,28 @@
+{
+  "first-pass-speed-48k": {
+    "native_frames": 1152000,
+    "duration_s": 24.0,
+    "handoffs": 13,
+    "ownership_failures": 0,
+    "nonfinite_samples": 0,
+    "incoming_reuse_above_005": 0,
+    "flac_max_quantization_error": 1.1897623153345194e-07
+  },
+  "first-pass-cuts-48k": {
+    "native_frames": 384000,
+    "duration_s": 8.0,
+    "handoffs": 10,
+    "ownership_failures": 0,
+    "nonfinite_samples": 0,
+    "incoming_reuse_above_005": 8,
+    "flac_max_quantization_error": 1.1897623153345194e-07
+  },
+  "prior-repaired-48k": {
+    "expected_ownership_failures": 13,
+    "actual_ownership_failures": 13
+  },
+  "prior-cuts-48k": {
+    "expected_ownership_failures": 9,
+    "actual_ownership_failures": 9
+  }
+}

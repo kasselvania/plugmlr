@@ -22,10 +22,11 @@
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
   push completed work, and leave any PR unmerged unless the user asks to merge.
-  The current candidate repairs speed-control ordering. Direction slew and
-  the two-reader crossover have identified gaps recorded in STATUS; they are
-  not accepted repairs. Preserve the original playback path and validate actual
-  native output before claiming an audio fix.
+  The current candidate repairs incoming/outgoing reader ownership on top of
+  the separate speed-control candidate. Keep the 6/9 ms fades and shutdown
+  cancellation; test loops, cuts and interrupted transport in the actual player.
+  First-pass crossover evidence does not accept later untested edits. Direction
+  slew remains out of scope. Preserve the original playback path.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

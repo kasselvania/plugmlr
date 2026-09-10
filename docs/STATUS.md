@@ -1247,3 +1247,148 @@ trajectory while the outgoing reader finishes its fade, restoring the missing
 input-gate ownership and checking interrupted fades with these same probes.
 That work has not been folded into this speed candidate. PR #8 stays draft and
 unmerged for review; do not turn this evidence pass into another playback rewrite.
+
+## Incoming-reader ownership candidate
+
+This follow-up starts from PR #8, `f7aadb82bca4dcd6fb689b458a4954a9dad38014`,
+on `codex/fix-crossover-ownership`. The checkout was clean, remote main remained
+`fc17d598a60d4531b3beac78d1a49eccc5ad660d`, and the failed-experiment stash was
+preserved. Before editing, the actual original main and console were inspected:
+Sample 1 held DrumLoop.wav (631881 frames), player 4347 was stopped, and DSP was
+on. No diagnostic recording was running.
+
+Contract before implementation: keep the existing two stereo readers, frame
+units, speed calculation, and 6 ms loop / 9 ms slice gain ramps. At a handoff,
+close the outgoing reader's trajectory gate and open the incoming reader's gate
+before issuing the new frame ramp. Leave the outgoing ramp untouched while its
+gain falls. Begin the handoff when the new trajectory is issued, not at the
+old pre-boundary signal or before the slice's existing 1 ms delay. Initial play
+owns reader 0; ordinary speed/direction retiming addresses the selected reader.
+Keep the existing cancellation of each reader's delayed DSP shutdown on reuse.
+Stopping cancels pending slice/fade dispatch and resets selection immediately,
+so an old delayed reset cannot change ownership after a quick restart.
+
+The existing 1 ms slice scheduling remains; commands arriving faster than that
+can replace the pending slice. A command during a 6/9 ms fade reuses one of the
+two readers at its current gain. This slice does not promise that such reuse is
+inaudible, add more readers, or impose a new quantization/queue policy. Measure
+it explicitly with the 2 ms burst. The prior raw signal-tap limitation while
+`switch~` is off still applies; actual output is the level authority.
+
+
+### Source changes and first native pass
+
+Normal gain-target dispatch now sends `main_vline_gate 0/1` before the existing
+DSP command. Voice 1's previously unconnected route outlet now controls its
+`switch`, symmetrically with voice 0; its trajectory gate initializes closed.
+Loop handoff moved from the early threshold to the actual boundary trigger,
+ordered before the new frame ramp. Slice handoff moved after its existing 1 ms
+delay, ordered before the stored position. Gain-dispatch delays and pending
+slice commands are cancelled on stop; the old delayed reader-selection reset
+became immediate. The normal 6/9 ms gain ramp values, per-reader 9 ms shutdown
+cancellation, frame calculations and stereo audio wiring are unchanged.
+
+The first loaded version (player **4581**) ran in actual Mac plugdata **0.9.4**,
+build **98ae0f78b**, Pd **0.56.3**. Its binary matches the prior fixture's recorded
+SHA-256. The float WAV headers confirm **48000 Hz**. Device and 512-sample buffer
+settings were not changed in this pass; their last native readback is the
+preceding speed-validation session. Do not call that a fresh settings readback.
+The original loader loaded **DrumLoop.wav**, 44100 Hz, stereo, 631881 frames.
+The console displayed the new gate commands, reader DSP/position messages,
+scheduled speed steps, and `capture-stopped` after both runs. The player UI
+showed the original buffer selection and moving playbar.
+
+Retained artifacts are in [evidence/crossover-ownership](evidence/crossover-ownership/).
+`first-pass-speed-48k` is the existing 24-second speed/loop sequence;
+`first-pass-cuts-48k` is the existing eight-second slice sequence. Each has full
+float NPZ traces, stereo FLAC, and numerical JSON. The ownership reports also
+check the prior PR #8 recordings as failing controls. `manifest.json` binds
+source, recorder, capture and analysis identities.
+
+| Check | Prior PR #8 audio | First crossover pass |
+| --- | --- | --- |
+| Loop wraps in the speed sequence | 13 events fail the sole-incoming-owner check | **13/13 preserve the outgoing reader**, no ownership failure |
+| Single slice plus nine-cut 2 ms burst | 9 of 10 events fail ownership | **10/10 preserve the outgoing reader**, no ownership failure |
+| Non-finite samples | None | **None** in either capture |
+| Steady speeds / reverse / stopped windows | Recorded in PR #8 | Selected rates still reached; stopped test windows remain silent; longest active master hold remains **1.3125 ms** |
+| Incoming reader above gain 0.05 during rapid reuse | Common-jump wiring confounds ownership | **8 burst cuts reuse an audible incoming reader**; this is an explicit limitation |
+
+At the first loop wrap (**2.001333 s**), reader 0 stays at frame **132300**, while
+reader 1 begins at **44100.457** with gain **0.003472**, reaching full gain across
+the existing 6 ms fade. The stereo adjacent-sample difference at that exact jump
+falls from **0.008476 / 0.047567** to **0.0000294 / 0.0001652**. At the first slice
+(**2.002333 s**), the outgoing reader continues its old ramp (about **0.919
+frames/sample**), while the incoming reader jumps to **315941.406**. This is the
+existing dual-reader design working as a handoff, not a new musical playhead.
+The largest steps across wider windows can still be source transients; the
+single-boundary reduction is not a universal click/audibility threshold.
+
+### Final edits and validation interruption
+
+Source review after the first capture found that stopping could leave the
+previous owner's trajectory gate open. The final edit closes **both** gates on
+stop; initial play then opens reader 0. This extra gate message and three
+connections were **not loaded in native** before UI access failed. The retained
+`first-pass-source.patch`, applied to this candidate's source, reconstructs the
+exact earlier source represented by the recordings. It removes only that later
+stop-gate edit; the snapshot was reconstructed from the known edit sequence,
+not saved by the native patch UI.
+
+The passive recorder was also extended from eight to ten channels, adding the
+two reader DSP flags. This is to distinguish a disabled reader's held `s~` probe
+block from its active gain ramp when examining shutdown timing. It does not
+change the player's audio. **The ten-channel fixture has only passed source
+checks so far.** `tests/crossover-transport.pd` adds a bounded eight-second
+schedule of stop/restart, pause/resume and rapid reversals during cuts; playback
+stops at seven seconds. **That schedule has not yet run in native.**
+
+Both first-pass recordings and playback had stopped before closing the main for
+reload. The last verified UI then showed `mlr.pd` selected in the native file
+chooser but **Open disabled**. Return made no visible change; Escape and later
+accessibility readbacks timed out. Resetting the computer-use connection and
+selecting the app by its discovered bundle ID also timed out. No application,
+service or installed runtime was restarted, and no alternate runtime or message
+socket was substituted. A read-only one-second process sample showed the main
+thread servicing its event loop; it does not identify the chooser/control failure
+cause or establish that all UI paths were responsive. The user was asked to
+cancel the chooser and report whether the main responds. Last verified state
+is that chooser; successful reload/restoration is not claimed.
+
+**Listening:** no new report for the crossover capture yet. The earlier report
+of clean playback/no clicks belongs to PR #8's speed capture and is not silently
+transferred to this candidate.
+
+### Continue validation
+
+Use the bounded-capture attachment/reload procedure above. On the final source,
+attach `[tests/bounded-player-capture 1 ID]`, `[tests/speed-sequence 1 ID]`,
+`[tests/cut-sequence ID]`, and `[tests/crossover-transport ID]` temporarily inside
+the actual player; rebuild the DSP graph after adding the signal recorder.
+Verify the three-second automatic stop before the next run. Do not start a
+second sequence until the previous one has stopped.
+
+- `ID-test-speed symbol /absolute/path/speed.wav`: repeat all preset speeds,
+  the interrupted slew, forward/reverse wraps and stop/restart (24 s).
+- `ID-test-cuts symbol /absolute/path/cuts.wav`: single cut and 2 ms burst (8 s).
+- `ID-test-transport symbol /absolute/path/transport.wav`: stop and restart during
+  a fade, brief pause/resume, rapid reversals, and cancellation of a queued slice
+  by stop (8 s). Inspect the UI and console as well as captured audio/state.
+- `python tests/analyze_crossover.py CAPTURE.wav --mode speed` (or `cuts` /
+  `transport`) inspects outgoing-reader continuity at master jumps. Run the
+  existing `analyze_speed_capture.py` for rates, levels, silence and source
+  alignment. Neither checker alone is a listening or complete audio-fidelity test.
+
+Complete the final ten-channel runs at **48 and 44.1 kHz**, inspect the outgoing
+DSP shutdown relative to the last nonzero gain, and investigate any actual
+output dip or discontinuity. Restore the original 48 kHz host setting afterward.
+Listen separately to the speed/loop and rapid-cut captures. Keep the two-reader
+reuse limitation explicit; any new queue/latency policy needs its own musical
+decision. Then close/reload without saving temporary diagnostics and leave the
+original entry point loaded and stopped.
+
+Final source checks pass: player **10 canvases / 1003 objects / 963 connections**;
+recorder **38 objects / 40 connections**; transport fixture **62 objects / 60
+connections**; `git diff --check` passes. The ownership checker rejects the
+retained common-jump baseline and accepts all first-pass handoffs. These checks
+do not close final-native, shutdown/gain, 44.1 kHz, listening or UI-restoration
+gates. The follow-up PR remains draft and unmerged, separate from PR #8.
