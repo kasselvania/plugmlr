@@ -580,3 +580,191 @@ native captures; Python syntax, JSON parsing, and `git diff --check` also passed
 Next work should remain a single agreed musical behavior from the catalogue.
 Completing reader trajectory ownership and direction-aware boundaries is still
 necessary; it was not started as part of this repair.
+
+## Reverse playback and loop boundaries
+
+Authorized after merging PRs #2–#5. Base:
+`fc17d598a60d4531b3beac78d1a49eccc5ad660d`; branch `codex/fix-reverse-loop`.
+
+Before editing DSP, the existing native player was recorded with `DrumLoop.wav`.
+Direction Change was pressed about 5.47 s after Play. The playbar travelled back
+to the start and remained there; the console issued no reverse wrap. The 24.181 s
+native capture is quiet from about 12.4 s through its end. This was the previously
+used instance, not a fresh initialization: its peak is about twice the earlier
+fresh-run level, consistent with the separately open stop/restart reader-gain
+gap. It establishes the missing wrap, not a matched fresh-run gain baseline.
+
+Repair contract, before implementation:
+
+- Keep the current magnitude presets (0.25, 0.5, 1, 2, 4) and separate direction
+  button. Direction state is 0 forward / 1 reverse; the existing endpoint
+  selector uses 1 forward / 2 reverse. No new signed-rate interface is introduced.
+- Keep frame positions and the loader's existing start/end bounds. Valid test
+  regions satisfy `0 <= start < end <= frame_count`. The end remains the existing
+  trajectory boundary; changing interpolation guards or channel ordering is
+  separate work. File Hz / 1000 × magnitude gives frames per millisecond.
+- With direction slew off, a direction change takes the current position and
+  heads toward the opposite boundary. Reverse wrap goes from start to end;
+  forward wrap goes from end to start. Play from stopped uses the selected
+  direction's entry boundary. Stop keeps its existing reset-to-forward behavior.
+  The direction button toggles the published state, replacing the separate
+  counter; startup explicitly initializes that state to forward.
+- Recover direction-gated comparisons from the earlier player versions inside
+  the existing `loop_logic`. Keep its gain handoff and 3 ms preparation window,
+  mirrored in reverse and refreshed with speed; cap that window to half a region.
+  Disable boundary triggers while stopped/paused or with a non-positive region
+  or speed. Sub-block loops and invalid direct internal messages are unqualified;
+  rate-zero transport and missing-buffer validation remain separate gaps.
+- Direction is implemented by the existing ascending/descending frame ramp.
+  Disconnect the direction button's arming of the unfinished normalized-phase
+  reader branch. Preserve the working ordinary two-reader loop/slice gain path.
+  Do not claim this completes independent reader trajectories, arbitrary
+  click-free transitions, or the disconnected direction-slew gesture.
+
+The repair reuses the frame ramp, endpoint switches, `edge~` event path, both
+readers, and the existing gain fades. The earlier `sample_playback_new.pd` and
+`sampler_playback_third.pd` contain direction-gated comparisons useful to this
+repair. Only `sample_player_rebuild.pd` changes application behavior; `mlr.pd`,
+loader/buffer/mixer patches, historical alternatives, and dependencies are unchanged.
+
+The first changed captures were not accepted as the final direction/rate test:
+offline source matching found reversed startup and a rate command that retained
+the previous rate. Additional repairs therefore make direction initialization
+explicit and store the rate target before starting `curve~` (its zero-duration
+completion can otherwise read the old target). Stop now sends DSP-off to both
+existing readers, preventing a still-enabled reader from doubling the next
+start's gain. A subsequent native capture exposed a brief first-wrap gain spike
+because a disabled reader retained its old envelope. Stop now also resets both
+reader envelopes to zero. The exact restart case was repeated after reloading.
+These are local state-ordering repairs; the broader stop envelope,
+direction-slew gesture, and independent reader trajectories remain separate.
+
+
+### Native results and limits
+
+Actual application: `/Applications/plugdata.app`, About **0.9.4**, executable
+build **`98ae0f78b`**, embedded Pd **0.56.3**. Audio Settings were read directly:
+CoreAudio, **48000 Hz / 512 frames**, 8A USB outputs 1/2. Source: included stereo
+24-bit `DrumLoop.wav`, **44100 Hz**, 631881 frames. Audio 1 Out was 0.4, mixer
+Master 0.75, app output gain 0.8, limiter off. Native recordings were exported
+as stereo 24-bit WAV at 48000 Hz with Normalize No. The final error-only console
+was empty; messages were restored and playback left stopped. No settings or
+installed services were changed. No other audio-producing test patch was opened.
+
+Observed UI/console behavior:
+
+- Fresh Play travels forward. Direction Change commits direction 1 / selector 2
+  and sends a descending frame ramp. At the start boundary it returns to the end
+  and continues; the old recording instead remained silent after reaching start.
+- A region of frames 44100–132300 (source seconds 1–3) wraps in both directions.
+  Endpoint readback agrees with the selected direction. Near-start and near-end
+  seeks continue rather than leaving playback stuck.
+- Stop → Direction Change → Play starts reverse from the file end. Pause →
+  Direction Change → Resume continues in the new direction. Stop/Play currently
+  refreshes bounds from the selected buffer, so an ad hoc region is not preserved
+  by that restart path; this repair does not add region recall.
+- Three direction messages in the same Pd event leave playback running in the
+  expected final direction. This is one bounded overlapping-command check, not
+  acceptance of every pending event or arbitrary rapid transport sequence.
+
+Numerical checks of actual application output:
+
+- The final 100.789 s recording has peaks **0.294218 / 0.292787**, zero full-scale
+  samples, and no ≥0.4 s quiet region except initial lead-in, the source tail,
+  and the deliberate Stop/restart. Quiet bins use RMS <1e-6 in 0.1 s windows;
+  they cannot exclude shorter dropouts.
+- Source matching verifies +1 fresh playback, +2 faster playback, -2 after reverse
+  restart, and +0.5 / -0.5 in the short region. The preceding direction check
+  also verifies -1. Representative aligned windows correlate above 0.998 in both
+  channels with fitted gain near 0.3. All sampled results, including lower scores
+  at wraps/transients, are retained. The drum repeats phrases; global match
+  positions alone are not region-confinement evidence. Region-constrained matches
+  and native endpoint messages provide the additional checks.
+- The pre-envelope-reset restart capture peaked at **0.504924 / 0.503979** on its
+  first reverse wrap. The repeated final restart stayed within the final peaks
+  above. This supports the specific envelope reset, not a universal gain guarantee.
+- Comparing one recorded cycle with the next gives **1.000000 s forward / 1.001333 s
+  reverse at 2x**, and **4.000000 s forward / 4.001333 s reverse at 0.5x**, for the
+  1–3 s region. Correlations are effectively 1. The extra reverse block is a real
+  timing limitation of the current boundary/ramp path, not sample-accurate looping.
+- Largest adjacent-sample steps are **0.390704 / 0.390945**. For scale, a linearly
+  interpolated source reference at 2x and gain 0.3 reaches about **0.386355 /
+  0.386144**. The drum itself has sharp transients. These measurements neither
+  establish audible clicks nor prove their absence. The shared ramp and existing
+  fades still need a focused transition/listening review.
+
+The console exposed **two successive trajectory durations around some speed
+changes**, including a stale duration after the new one. Storing the target before
+starting `curve~` fixes the observed final-target ordering defect, but does not
+resolve the entire speed/slew sequence. Steady rates above are verified; immediate
+rate transitions and nonzero glide are **not accepted**. Trace the remaining
+`curve~`/snapshot/trajectory call order before changing that mechanism. Direction
+slew, beat resets, recording/overdub, invalid/missing-buffer handling, channel-order
+repair, and independent reader trajectories remain outside this change.
+
+**Listening:** no new final-version human listening report is available. The prior
+“solid playback” report belongs to reader-handoff PR #5. An earlier listening
+question during this investigation preceded direction-state corrections and is
+not final-version acceptance. No assistant listening claim is made.
+
+This slice tests **48 kHz host with a 44.1 kHz file**. A 44.1 kHz host, Bitwig,
+multiple instrument instances, and the rejected R1 shared-head interface were not
+tested here. Integer PCM export also cannot establish internal DSP finiteness.
+
+### Retained evidence
+
+[Results](evidence/reverse-loop/results.json) contain full-capture hashes, final
+player-file hash, numerical checks and limitations. [Clip provenance](evidence/reverse-loop/clips.json)
+records exact sample crops; every FLAC was decoded and byte-compared against its
+native PCM crop, with no normalization. Full WAVs and rejected intermediate
+screens/events remain local and ignored. Early intent-only event labels are not
+used as observed state. The transport check's exact event log was not retained;
+its Stop/Pause intervals are identified from native screenshots and recorded silence.
+The [final event log](evidence/reverse-loop/final-events.json) is relative to the
+record-start helper returning, about one second after the native recorder begins.
+
+| Clip | Native capture interval | Evidence |
+| --- | --- | --- |
+| [Before missing wrap](evidence/reverse-loop/before-missing-wrap.flac) | Original direction test, 8–24 s | Reverse reaches start, then sustained silence; previously used instance has higher gain. |
+| [Before restart gain spike](evidence/reverse-loop/before-restart-gain-spike.flac) | Pre-envelope-reset transport, 22.5–25 s | First reverse wrap after restart. |
+| [Repaired forward](evidence/reverse-loop/repaired-forward.flac) | Final, 1–20 s | Fresh forward playback and first full wrap. |
+| [Repaired reverse restart](evidence/reverse-loop/repaired-reverse-restart.flac) | Final, 32–50 s | Reverse startup and two full reverse wraps at 2x. |
+| [Repeated directions](evidence/reverse-loop/repaired-direction-burst.flac) | Final, 54–69 s | Short reverse region, three same-event direction changes, forward continuation. |
+| [Slower directions](evidence/reverse-loop/repaired-slow-directions.flac) | Final, 77–100 s | 0.5x forward, direction change, 0.5x reverse. |
+
+Screenshots retain native About, audio settings, loop-logic objects/connections,
+direction/entry console messages, repeated-command output and the final error view.
+
+### Repeat the direction check
+
+1. Open a fresh single `mlr.pd` from this checkout. Show console messages and
+   errors. Load `DrumLoop.wav` with Sample 1 Load; open arrays-samples →
+   `sample_player_rebuild 1`. Use the existing mixer controls as in the README.
+2. Leave rate slew duration at zero. Start plugdata's native output recorder,
+   then Play. Observe a full forward loop, press Direction Change and observe
+   reverse crossing the start and returning from the end.
+3. Set the fourth speed cell (2x). Stop, press Direction Change while stopped,
+   then Play. Observe two full reverse wraps, checking first-wrap gain as well.
+4. Open `tests/reverse-controls.pd`. Enter the current player number shown in
+   console messages such as `3401-loop_start`; it changes when the app reloads.
+   This panel has no audio objects or buffers and uses existing internal receivers;
+   it is a diagnostic, not a new public engine API.
+5. Press Region_1_to_3s; watch the printed frame bounds and several wraps.
+   Test Toggle_direction, Near_region_start/end, and Three_direction_toggles.
+   Test Half_speed/Normal_speed/Double_speed, checking actual audio and messages.
+   Test Pause → Direction Change → Resume separately. Record the command times.
+6. Stop the native recorder, export 48000 Hz / 24-bit / Normalize No, then Stop
+   playback. Inspect errors without clearing the console. Record listening
+   observations separately; mark clicks, short gaps and gain anomalies explicitly.
+7. With Python and NumPy, run `python3 tests/analyze_handoff.py capture.wav`.
+   For a known steady short-region interval, run
+   `python3 tests/analyze_reverse.py DrumLoop.wav capture.wav 54 --window .2 --region 1 3 --period 1`,
+   replacing time and expected period with the recorded segment. Omit `--region`
+   for full-file matching. Decode retained FLACs to PCM WAV first if needed.
+   Clip timestamps are relative to their crop, unlike full-capture results.
+
+Validation: final patch and panel connection indexes checked, native load and
+console inspected, PCM analysis executed, FLAC crop identity checked, Python
+syntax/JSON parsing and `git diff --check` passed. Listening/transition acceptance,
+reverse timing accuracy and immediate speed/slew transitions remain open. Do not
+start another repair automatically; these findings support the next scoped review.
