@@ -209,8 +209,17 @@ python3 tests/check_patch_connections.py sample_player_rebuild.pd
 capture used track gain 0.2 and master 0.75. The report is separate from the
 measured instant-reverse/Stop steps and does not close those transition gates.
 The previous track gain 0.548 was restored afterward. No recording was started
-while the user changed source. Earlier listening acceptance belongs to earlier
-playback candidates.
+while the user changed source. After the user supplied a new source and requested
+a slight boost, companion input gain was set to 1.10 (+0.83 dB), and plugdata's
+global output was raised from 0.80 to 0.90 (+1.02 dB). The original input knob's
+range is now 0–2, with a numeric readout and a unity label; its initial value stays
+0. The saved companion was reloaded, channels 3/4 and local bus 1 restored, and
+the actual UI read back 1.10 and 0.90. Both input meters were active and below full
+scale in that view. No new take or clipping qualification was performed for the
+changed source. A redundant console `sel` while the knob was already selected
+printed `knob: no method for 'sel'`; this was a console-control error, and the
+subsequent reload/settings commands succeeded. Earlier listening acceptance
+belongs to earlier playback candidates.
 
 **Open:** instant-reverse/hard-Stop transition quality; 44.1 kHz recording and a
 host-rate change after recording; cross-process/Bitwig transport and lifecycle;
@@ -221,7 +230,7 @@ clock to qualify 44.1 kHz. No separate runtime substitutes for those open gates.
 Growing/trim, overdub, pause/resume and quantized recording remain future slices.
 Final native state: this slice's diagnostics and temporary taps closed, original application
 reloaded, Sample 1 DrumLoop and the user's Sample 2 restored. The retained hardware
-take is in live1 (2 seconds), selected in player1. Companion 3/4, gain1, local bus1,
+take is in live1 (2 seconds), selected in player1. Companion 3/4, gain1.10, local bus1,
 monitor0; main input disarmed, playback/recording stopped. The final UI still
 showed both input meters. Takes are volatile until export/recall is implemented.
 The PR is a recording candidate, left unmerged; no next slice starts automatically.

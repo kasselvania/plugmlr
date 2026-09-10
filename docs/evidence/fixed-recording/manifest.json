@@ -30,7 +30,7 @@
     "tests/local-input-check.pd": "99c60340489e6a160b579757ced7de0853ba41a7e8871a5eee35a68f03a2b56f",
     "tests/pdlink-input-receive~.pd": "8f7a0c06df71fb273700b158363deb551b81a7501d809ea176fc00306801ee32",
     "tests/pdlink-stereo-check.pd": "04e1fa7c7aa1e298bbc780bb1e3f77bda3271b218e19f5e3f39be5e037f73c0f",
-    "audio-in-subpatch.pd": "99e92759a981c2aa245112eacb37554cdf5d05c268a2df7280d70dfb63bb5fd0",
+    "audio-in-subpatch.pd": "eefd026a14812a9dd6022fe73dac3bea44647ceca5bdf720645fa526700c898d",
     "buffer-panel.pd": "3046f4ceed6eeb8361b29933696ad8fe95dece2974b600fa92660d1247dde612",
     "live_buffer.pd": "84f98b4bfe8a49b0a496e8e482a9fd3367206fea6c57e96f303b3d381085e4ab",
     "mlr.pd": "20349d2e9a8e21c2ad593e8a69d285e087b6300a54013a8b96493b93305e2d55",
@@ -64,5 +64,11 @@
     "two-mono-hardware-48.wav": "10bd42d273036639260658545bac453f22d8e498e3c5a9d6bde3c5d88bee8f7e",
     "final-hardware-take-playback-48.wav": "40d9392c9bb22d20246eac896e0e187a0ca43f524f93c61921087d67c5e07c24"
   },
-  "qualification": "Named checks only. Instant reverse/Stop transition quality and 44.1 kHz recording remain open. Bars/fixed/early/switch and final hardware playback exercise the repaired content bounds. Final capacity-display refresh and input hint are UI follow-ups; the final patch was reloaded without another recording while the user changed source."
+  "qualification": "Named checks only. Instant reverse/Stop transition quality and 44.1 kHz recording remain open. Bars/fixed/early/switch and final hardware playback exercise the repaired content bounds. Final capacity-display refresh and input hint are UI follow-ups; the final patch was reloaded without another recording while the user changed source.",
+  "input_gain_followup": {
+    "audio_capture_source_sha256": "99e92759a981c2aa245112eacb37554cdf5d05c268a2df7280d70dfb63bb5fd0",
+    "change": "Input knob range 0..2, numeric value and unity label; initial gain remains 0.",
+    "native_readback": "Saved companion reloaded: input gain 1.10, host channels 3/4, local bus 1, monitor 0; plugdata output 0.90.",
+    "qualification": "UI and active stereo meters only. No new audio capture after the source and gain change."
+  }
 }

@@ -28,8 +28,8 @@
 #X obj 526 -26 daw_storage monitor_mix;
 #X obj 33 68 *~;
 #X obj 104 60 *~;
-#X obj 154 36 knob 50 0 1 0 0 empty empty #333333 #696969 #EEEEEE 1 0 0 0 1 270 0 0 0 empty empty 0 12 6 -15 0 1 0 0;
-#X text 177 112 Volume In;
+#X obj 154 36 knob 50 0 2 0 0 empty empty #333333 #696969 #EEEEEE 1 0 0 0 1 270 0 0 0 empty empty 1 12 6 33 0 1 0 0;
+#X text 154 112 Volume In (1=unity);
 #X msg -13 -190 create;
 #X obj -3 -256 lb;
 #X obj -13 -148 param volume-in;

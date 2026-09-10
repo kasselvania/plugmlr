@@ -93,7 +93,7 @@ message interfaces and native test steps are documented in STATUS.
    plugdata application**. This local bus does not cross separate processes.
 2. In plugdata Audio settings, select the interface and enable the required
    input channels. Set **Host_L / Host_R** in the companion (this session: 3/4),
-   raise **Volume In**, and choose **Local input bus 1**. Leave Monitor Mix at 0
+   raise **Volume In** (0–2×; 1 is unity), and choose **Local input bus 1**. Leave Monitor Mix at 0
    unless deliberate direct monitoring is wanted.
 3. On `mlr.pd`, verify both **Recording input** meters, then enable
    **Arm_recording_input**. Arming does not detect a connected source: silence
