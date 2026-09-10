@@ -1000,7 +1000,7 @@ recording, mixer, Grid/Arc and companion repositories are untouched. The remaini
 rows are explicit gaps, not successful tests or promises that the current audio
 path is click-free.
 
-### Native observations and failed capture procedure
+### Initial candidate observations and failed capture procedure
 
 The original application and its console were inspected before source edits.
 The open player identified itself as `3401`; Sample 1 already held the included
@@ -1019,9 +1019,10 @@ were not changed and earlier results are not silently transferred to this one.
 stop and left it running across context compression. The user had to stop it
 after minutes. This was an agent procedure failure, not evidence of a playback
 or machine fault. No controlled baseline/after comparison or numerical audio
-result is claimed from that recording. No new capture is retained by this
-candidate. The agent stopped interacting with the native session after the
-user's correction; the source candidate has not been reloaded there.
+result is claimed from that recording. No controlled capture was retained at that point. The agent stopped interacting
+with the native session after the user's correction. This describes the initial
+`66adfe0` handoff; the resumed, automatically stopped runs and the regression
+they exposed are recorded below.
 
 **Listening:** no new listening acceptance for this candidate. The earlier user
 report of “solid playback” belongs to the prior handoff repair only.
@@ -1035,7 +1036,7 @@ comparison against the base verified identical objects/connections in all nine
 nested canvases, including duration, looping, gain control and both readers.
 `git diff --check` passed. These are structural checks, not audio tests.
 
-### Repeatable validation still required
+### Validation checklist established before native follow-up
 
 Use the original `mlr.pd`, one application instance, its actual player controls
 and the console. Reload this checkout only after dealing with any unsaved native
@@ -1068,8 +1069,181 @@ unchanged for the first comparison and record their identity.
    dropouts, stuck playback and gain sum. That acceptance cannot pass the present
    common-jump wiring merely because both speakers produce sound.
 
-Native load/console acceptance of the edited patch, actual rate and transition
-audio, 44.1/48 kHz host comparison, separately recorded listening, and crossover
-repair all remain open. No Bitwig or DAW lifecycle test was performed. Next work
-is to validate this small rate candidate, then repair the independently traced
-direction/crossover gaps without expanding to another sampler rewrite.
+At the initial handoff, all native validation was open. The follow-up below
+supersedes that status for the exact tested cases; it does not close the entire
+checklist. No Bitwig or DAW lifecycle test was performed.
+
+### Native follow-up: boundary collision
+
+A passive `writesf~` tap with its own Pd stop timer now captures stereo player
+output, master frame position and rate magnitude. A three-second check produced
+exactly 144000 frames at 48 kHz and stopped without further agent action. A
+24-second sequence also schedules transport stop at 23 seconds. Diagnostic
+objects are attached temporarily; they are not added to the saved application.
+
+The first comparison caught a regression in `66adfe0`: a rate change coincident
+with the two-second loop boundary leaves the master held at frame 132300 until
+the later reversal. The native console repeatedly reports that endpoint; the
+capture contains a constant audio value. The prior player reaches every steady
+preset without this freeze. This is a failed candidate result, not acceptance.
+
+Additional repair contract before editing: a speed-change snapshot at or past
+the active traversal endpoint must wrap to the opposite boundary of a valid
+region before recalculating its trajectory. Otherwise an endpoint snapshot can
+overwrite a just-issued wrap with a zero-distance ramp, leaving `edge~` high
+and preventing another rising-edge wrap. Apply this only to speed retiming;
+preserve ordinary interior positions, direction changes and explicit seeks.
+Use the already-published loop bounds and direction. This keeps block-resolution
+loop timing; it does not claim a sample-exact or independent-reader crossover.
+
+
+The localized endpoint guard fixed that same collision in two 48 kHz runs,
+including the final source with reader probes, and a 44.1 kHz run. The final
+player adds four read-only `s~` taps from the existing reader position and gain
+ramps; it adds no musical head or alternate audio generator. Gain and position
+routing in the application remains the original routing. The saved `mlr.pd`,
+loader, buffers, mixer and companion repositories were not edited in this pass.
+
+#### Native fixture and retained results
+
+The actual application was `/Applications/plugdata.app`: About showed **0.9.4**;
+binary build identification was **98ae0f78b**, Pd **0.56.3**. Native Audio Settings
+showed **CoreAudio / MacBook Pro Speakers / MacBook Pro Microphone / 512 samples**,
+output gain 0.8, limiter off, oversampling 1x. Host operation was first 48000 Hz,
+then 44100 Hz; 48000 Hz was restored and read back afterward. The source was the
+included **DrumLoop.wav**, stereo, **44100 Hz / 631881 frames**. Thus the 48 kHz
+runs exercise file/host rate mismatch in the actual original loader/player.
+
+These captures tap the actual player's stereo signal **before the mixer**. They
+do not establish speaker playback, foreground/background stability, controller
+operation, or Bitwig lifecycle acceptance. UI and console were inspected during
+loading and each run; the console showed reader trajectory/DSP messages and the
+automatic stop. No new patch-load error was observed in the visible output.
+Earlier diagnostic console errors (`No object found for: 1` and bad arguments
+for `vis`) came from the agent's object-selection commands. They are not evidence
+of a broken patch object. The shorthand console `NAME > vis 1` lost its argument
+in this build; explicit selection followed by `vis 1` worked.
+
+All files below are in [docs/evidence/speed-slew](evidence/speed-slew/). Each test
+has full **lossless float NPZ samples**, **stereo FLAC listening audio**, and a
+**JSON numerical report**. `manifest.json` binds source/fixture hashes, native
+identity, original capture hashes and each retained artifact. FLAC is 24-bit
+listening material; NPZ retains the original float values for reanalysis.
+
+| Capture | Actual source loaded | Result |
+| --- | --- | --- |
+| `baseline-48k` | Base `51e8f70`, native player 3401 | 24 s, 4 channels. Existing steady presets already worked; longest active master hold 1.3125 ms. |
+| `failed-candidate-48k` | Candidate `66adfe0`, player 3638 | 24 s, 4 channels. Master stuck for **14 s** at the loop end while rate controls continued changing. Kept as failed evidence. |
+| `repaired-48k` | Endpoint guard and four reader taps, player 4110 | 24 s, 8 channels. Presets 0.25/0.5/1/2/4, interrupted 600 ms slew, instant reverse at 2x and speed change to reverse 1x; stop and 0.5x restart. No prolonged freeze; longest active hold **1.3125 ms**. |
+| `repaired-44100` | Same loaded player, host rate changed in native settings | **23.999274 s**, 8 channels. Same sequence completed; longest active hold **1.428571 ms**. File length is 32 frames short of 24 s, within a Pd 64-frame block. |
+| `cuts-48k` | Same player, restored 48 kHz host | 8 s, 8 channels. Original `row_1` slice path: one cut at 2 s, nine cuts 2 ms apart at 4 s, playback stop at 7 s. Master continued after the burst. |
+
+All five captures contain **zero non-finite samples**. The repaired steady motion
+measurements agree with the selected signed rates within 0.0005x in the listed
+windows, excluding large wrap steps and reporting constant-position samples
+separately. Float position quantization makes the *median* single-sample slope a
+biased rate estimator; the retained checker uses the mean of moving steps.
+Short holds and fractional loop timing remain visible and are not renamed
+sample-exact looping. Changing speed while stopped did not start playback in
+the tested sequence; output was zero in the checked stop windows.
+
+The interrupted slew reached its final 2x magnitude by 14.9 s in both host runs.
+Steady 1x windows match the known channel-swapped source with correlation above
+0.9999 and gain near 1. Other windows, notably 2x/reverse and low-level material,
+have lower correlation against the linearly interpolated master-position
+reference (as low as 0.736 in the listed 44.1 kHz windows). The baseline also has
+low matches in those regions. **This comparison does not close waveform or gain
+fidelity acceptance**: it combines interpolation/alignment limitations with
+unrepaired reader behavior. A low source level, including the quiet 0.5x restart
+segment, is not automatically a dropout. No blanket no-dropout or unchanged-gain
+claim is made from this sequence.
+
+The reader traces directly confirm the source finding. At **2.001333 s** in the
+48 kHz run, both positions jump about **-88199.54 frames**, with gains **0.5521 /
+0.4479**. There are ten matching large simultaneous jumps with both gain taps
+above 0.05 in that run and twelve at 44.1 kHz. At **2.002333 s** in the cut test,
+both positions jump about **227697.31 frames** with gains **0.8866 / 0.1134**;
+eight further matching jumps occur in the rapid burst. This is not an independent
+outgoing trajectory. The 48 kHz loop jump has an adjacent stereo output step of
+about **0.00848 / 0.04757**; these are measured differences, not a universal click
+threshold or proof of audibility.
+
+**Probe limitation:** `s~` inside a switched-off reader repeats its final signal
+block. Its raw gain can therefore look nonzero after that reader is disabled.
+Do not add raw gain taps across disabled readers and call that the output gain.
+The retained full traces expose this, and the analysis labels it. Actual stereo
+output remains the authority for audio level and silence. Crossover gain,
+discontinuity and reader reuse need their own repair and output comparison.
+
+**Listening:** after hearing `repaired-48k.flac`, the user reported: **“its clean.
+i dont hear any clicks”**. This accepts the sound of that specific drum capture;
+it does not erase the measured common-jump wiring or establish universal
+click-free output. Earlier “solid playback” acceptance remains attributed to
+the prior handoff fix.
+
+#### Repeat the bounded native checks
+
+1. Open this checkout's `mlr.pd` in the same plugdata build, one application
+   instance. Load `DrumLoop.wav` using Sample 1 Load. Inspect the actual console
+   and buffer selection. Record the host rate/device/buffer before changing them.
+2. Open `pd arrays-samples`, then the actual `sample_player_rebuild 1`. Its
+   console messages show its numeric `$0` ID (for example `4110-loop_end`). To
+   open from this build's console while arrays-samples is selected, use
+   `sel sample_player_rebuild_1_1`, then `vis 1`, then `deselect`.
+3. Temporarily place `[tests/bounded-player-capture 1 ID]` and
+   `[tests/speed-sequence 1 ID]` in that player's canvas, substituting its current
+   ID. These are test attachments, not saved application objects. Console canvas
+   commands are `cnv obj 50 650 tests/bounded-player-capture 1 ID` and
+   `cnv obj 50 710 tests/speed-sequence 1 ID`. Toggle Pd DSP off/on after adding
+   the signal tap so this runtime rebuilds the graph (`pd dsp 0`, `pd dsp 1`).
+4. First check automatic capture stop with
+   `1-test-capture start /absolute/path/check.wav 3000` while playback is stopped.
+   The test tap arms a Pd delay **before** starting `writesf~`, clamps duration
+   to 100–30000 ms, rejects overlapping starts, and has a 250 ms restart cooldown.
+   Inspect `capture-stopped` in the console and the finalized file's length.
+   Stop is also available as `1-test-capture stop`. Do not use the native output
+   recorder without an independent stop. An initial header-only tap capture
+   before the DSP rebuild was rejected; after rebuilding, the check produced
+   exactly 144000 frames at 48 kHz and stopped itself.
+5. Run `ID-test-speed symbol /absolute/path/speed.wav`. The fixture arms its own
+   schedule; it stops playback at 23 s and capture at 24 s. Wait for the console
+   stop and finalized file before proceeding. The first 20 s use source frames
+   44100–132300 (1–3 s); the stop/restart reloads the full buffer region. The
+   complete schedule is in `tests/speed-sequence.pd`.
+6. Repeat at 44100 Hz host operation, then restore the original rate and verify
+   it in native Audio Settings. Do not change device or hardware buffer size.
+7. For cuts, temporarily add `[tests/cut-sequence ID]` and send
+   `ID-test-cuts symbol /absolute/path/cuts.wav`. It uses track 1, sets the
+   existing immediate quantizer mode, and sends through `row_1`. It stops itself
+   after 8 s. Do not overlap this schedule with the speed schedule.
+8. Reanalyze with NumPy and ffmpeg/ffprobe:
+   `python tests/analyze_speed_capture.py DrumLoop.wav CAPTURE.wav` (add `--cuts`
+   for the cut schedule). Use `--retain PREFIX` to retain the full float NPZ and
+   stereo FLAC; NPZ files can be passed back as capture inputs. This is offline
+   analysis of actual native output, not another playback runtime.
+9. When finished, verify capture and playback stopped; close/reload the main
+   without saving temporary test objects. In this session, the original main
+   was left visible, DrumLoop.wav loaded, playback stopped, no recorder attached,
+   and the host restored to 48000 Hz. Mixer settings after reload are defaults;
+   raise track/master for a subsequent speaker listening check.
+
+#### Remaining gates and next repair
+
+Structural checks pass for the final player (10 canvases, 994 objects, 952
+connections) and all three test patches. `git diff --check` passes. These source
+checks are distinct from the native runs above.
+
+The speed/boundary collision has a reproduced failure and a bounded repair.
+The remaining speed checklist includes a fresh first gesture with nonzero slew,
+other curve shapes, invalid selector inputs, paused changes, and instant reverse
+at every preset; the retained schedule does not cover all those combinations.
+Broader listening, waveform/gain fidelity, direction slew, independent crossover,
+stereo ordering, and foreground/background operation remain open. No recording
+or overdub function, multiple musical heads, controller connection, or DAW
+lifecycle acceptance was added in this pass.
+
+The next focused repair should make only the incoming reader receive a new
+trajectory while the outgoing reader finishes its fade, restoring the missing
+input-gate ownership and checking interrupted fades with these same probes.
+That work has not been folded into this speed candidate. PR #8 stays draft and
+unmerged for review; do not turn this evidence pass into another playback rewrite.

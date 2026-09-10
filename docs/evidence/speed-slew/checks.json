@@ -1,0 +1,7 @@
+{
+  "repaired-48k": "PASS: finite, requested signed rates, no prolonged master hold, stopped-window silence, final slew target; common reader jumps remain.",
+  "repaired-44100": "PASS: finite, requested signed rates, no prolonged master hold, stopped-window silence, final slew target; common reader jumps remain.",
+  "failed-candidate-48k": "EXPECTED FAILURE: 14-second held master position reproduced.",
+  "cuts-48k": "PASS: finite, master continues after burst, stop-window silent. FAIL crossover ownership: nine matching audible reader jumps.",
+  "auto-stop-check": "PASS: native timer stopped a 3-second 144000-frame recording at 48 kHz; stereo and position zero, rate one."
+}
