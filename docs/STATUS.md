@@ -357,17 +357,23 @@ They are not a claim that fixing one will resolve every playback fault.
     `main_vline_gate` handler. Thus the two alternating readers do not respond
     to the same setup/control sequence. This is a concrete structural difference;
     its contribution to the reported silent pass still needs an audio check.
+    **Follow-up:** the repair below reproduces that cause, initializes voice 1's
+    direct outlet, and verifies continuous loop turns. The missing trajectory
+    handler remains open.
 15. Both readers contain `expr~ 1 - $v1`, a normalized-phase reversal operation,
     after a `vline~` carrying frame indexes. On that branch, frame 1000 becomes
     -999. The direct and transformed branches also both feed the table index
     inlet. This is an internal units mismatch, not evidence of correctly
     implemented reverse playback.
-16. Loop/play fades use 6 ms, slice fades 9 ms, while reader DSP-off delays use
-    6 ms. DSP-on does not cancel an already pending DSP-off. Voice 0's emitted
+16. Loop/play fades use 6 ms and slice fades 9 ms. The original reader DSP-off
+    objects display `delay 6`, but the routed `dsp_off 0` payload overrides that
+    duration and schedules immediate shutdown. DSP-on does not cancel pending
+    DSP-off. Voice 0's emitted
     fade-bang has no matching handler; voice 1's special fade branch includes
     unconnected continuation messages. Rapid commands can encounter stale
-    delayed actions, and a slice fade can be cut short. The exact audible
-    effect has not been rendered or measured.
+    delayed actions, and a fade can be cut short. **Follow-up:** the repair below
+    converts that payload to a bang, waits 9 ms, and cancels pending local
+    shutdowns on reactivation. The other unfinished fade branches remain open.
 17. Mixer open ramps over 5 ms; mixer close is `0 0`, immediate. Together with
     reader envelopes and the master/reader trajectory split, this needs an
     end-to-end transition check. The source alone does not establish click,
@@ -441,3 +447,136 @@ listen/render where the claim concerns audio. Keep those results separate from
 the source trace. There are no new audio renders, numerical audio results, or
 claims of working recording, reverse, glitch-free transitions, or Grid operation
 in this documentation update. No additional-player expansion is part of it.
+
+## Reader initialization and shutdown repair
+
+Base: `763552816a269d008afcb39b913d970e31980415`; branch
+`codex/fix-reader-handoff`. The user authorized the small reader-handoff repair
+after reviewing the whole-functionality map.
+
+The already-open session did not reproduce full silent passes: its 63.339 s
+native output capture had audio across the loop turns. A fresh opening of the
+same application, with `DrumLoop.wav` loaded before Play, did reproduce them.
+In the fresh capture, 0.1 s RMS bins below 1e-6 cover approximately 15.2–30.0 s,
+43.9–58.7 s, and 72.5–86.0 s. Player 1's console continued reporting loop bounds
+and alternating reader DSP commands. Only one application instance was open.
+
+During that same fresh recording, sending `1` to voice 1's existing `gate~ 2`
+through the native console restored audio on its turns. No patch connection
+was changed for this intervention. The missing initialization connection leaves
+that gate closed on first use; prior control history can mask the failure.
+This intervention establishes the full silent-pass cause, not every short gap
+or transition fault. `DrumLoop.wav` itself contains silence near its end.
+
+Repair contract: retain frame-index playback, the two existing stereo readers,
+and the existing 6 ms loop/play and 9 ms slice gain ramps. Initialize both signal
+gates to their direct-reader outlet. A reader's `dsp_on 1` cancels pending local
+DSP-off delays. Convert the `dsp_off 0` payload to a bang before `delay`: a float
+at that inlet overrides the delay time, so the existing message scheduled an
+immediate shutdown despite the displayed 6 ms argument. Normal delayed shutdown
+now waits 9 ms, covering the longest existing fade. No rate, loop-region,
+direction, or recording interface changes are included. This does not complete
+the unfinished independent reader trajectory gating or promise click-free jumps.
+
+Native settings were freshly inspected: plugdata, CoreAudio, 48000 Hz, 512 frames,
+8A outputs USB 1/2, Opal C1 input; DSP on, app gain 0.8, limiter off, oversampling
+1x. Output recording uses plugdata's built-in recorder, exported at 48000 Hz,
+24-bit stereo WAV, Normalize No. The source file is stereo 44100 Hz; this run
+therefore exercises a file/host rate mismatch. No separate audio patch was loaded.
+The native About view reports 0.9.4; the installed executable contains build
+`98ae0f78b` and `Pd-0.56.3`, matching the earlier session identity. The native
+error-only console view was empty after the repaired test. Message display was
+restored afterward. No console history was deliberately cleared. Earlier console
+navigation mistakes in the pre-repair investigation were operator errors, not
+evidence of a DSP cause.
+
+### Native audio results
+
+These are recordings of this application's output through plugdata's built-in
+recorder, not a separate playback model. Fresh before/after runs used track 1
+gain 0.4 and the saved master gain 0.75. The initial already-open run used its
+prior mixer state and is not a matched level comparison.
+
+| Check | Observed result |
+| --- | --- |
+| Fresh original reader state | Alternating roughly 14.8 s silent intervals, including the file's own tail. Sending `1` to voice 1's signal gate during the same recording restores its turns. |
+| Fresh repaired reader state | 256.299 s capture. After the 1.4 s recording lead-in, no quiet interval of 0.4 s or longer exceeds 0.5 s. Remaining quiet intervals match the source tail. No full silent pass or stuck playback after the burst. |
+| Overlapping slice requests | Control-only panel sends `0, 8, 4, 12, 1, 9, 2, 10, 0`, 2 ms apart. All nine appear in the actual console. Sent about 53.1 s after Play (about 55 s into the recording); subsequent loop turns remain audible in the captured output. |
+| Level through the readers | The first three repaired passes have the same settled 10 s RMS: output channels 1/2 = 0.06389196 / 0.06878518. The working first pre-repair pass has the same values. The fourth comparison window overlaps the burst and is excluded. |
+| Peak and sample steps | Matched fresh before/after captures have identical channel peaks, 0.29312229 / 0.29277468, and identical largest adjacent-sample steps, 0.27922642 / 0.27937114. Neither reaches full scale. These bounds do not establish that every transition is inaudible. |
+| Stop | Existing player Stop returned the visible playbar to the beginning. It was pressed after recording; this is a UI observation, not an audio stop-envelope measurement. |
+| Channel order | Both output channels contain signal, but their relative RMS/DC signs match the source in the opposite order. This agrees with the previously catalogued loader `1,0` versus reader `0,1` mapping; the inline mixer preserves that order. Correct left/right ordering is not accepted or repaired here. |
+
+The before-burst capture was made after manually opening the old reader's gate.
+It also continued playing afterward. Thus this burst is a regression check of
+the repaired scheduling, not evidence that the old delay produced a stuck reader
+in that sequence. The float-to-delay bug is established by the actual message
+trace and Pd's local `delay-help.pd` semantics: a float sets the duration and
+starts the timer; a bang uses the current duration.
+
+**Listening:** the user's report during repaired ordinary looping, before the
+burst, was **“it is solid playback.”** No separate listening verdict was obtained
+for the burst, and no assistant listening claim is made. Quiet-bin and sample-step
+measurements are kept separate from this report.
+
+**Limits:** this repair does not complete independent outgoing/incoming reader
+trajectories, direction-aware wrapping, direction slew, or the stop handler.
+Clicks or short gain disturbances during arbitrary jumps remain an acceptance
+gap. The drum signal has natural transients and end silence; its maximum sample
+step is not a click detector. PCM export cannot prove internal DSP never became
+non-finite. Only the existing forward, unit-rate Sample 1 path and the stated
+burst were exercised. No 44.1 kHz host run, reverse/rate campaign, other-track or
+multi-instance acceptance, recording/overdub, physical Grid, or DAW lifecycle
+test is claimed. The broad rejected R1 acceptance remains superseded by the
+user's original-application recovery scope.
+
+### Retained evidence
+
+Files are in [evidence/reader-handoff](evidence/reader-handoff). Representative
+audio is lossless FLAC, cropped from the native 48 kHz / 24-bit WAV exports with
+ffmpeg 9.0.1. Each decoded clip was compared byte-for-byte with its source PCM
+slice. No normalization or resampling was applied to those clips.
+
+| Retained clip | Native capture interval | Purpose |
+| --- | --- | --- |
+| [fresh-before.flac](evidence/reader-handoff/fresh-before.flac) | Fresh before, 0–45 s | Audible reader, full silent reader pass, audible return. |
+| [manual-gate-recovery.flac](evidence/reader-handoff/manual-gate-recovery.flac) | Same before recording, 80–116 s | Console gate intervention at about 86 s restores audio. |
+| [before-burst.flac](evidence/reader-handoff/before-burst.flac) | Old reader, gate already open, 0–10 s | Pre-repair burst comparison. |
+| [repaired-first-loops.flac](evidence/reader-handoff/repaired-first-loops.flac) | Repaired, 0–45 s | Three successive audible reader turns after fresh initialization. |
+| [repaired-burst-and-loops.flac](evidence/reader-handoff/repaired-burst-and-loops.flac) | Repaired, 52–88 s | Burst followed by two loop boundaries. |
+
+[results.json](evidence/reader-handoff/results.json) retains numerical summaries
+and full-capture hashes; [clips.json](evidence/reader-handoff/clips.json) records
+clip hashes and crop provenance. Large original WAV exports remain locally in
+this folder, ignored by Git. Screenshots retain native settings, original/repaired
+reader views, control prints, export settings, the final error view, and About.
+Static validation found valid object indexes for all 912 player connections and
+36 control-panel connections. The analysis script ran on the source and all four
+native captures; Python syntax, JSON parsing, and `git diff --check` also passed.
+
+### Repeat the handoff check
+
+1. Use only one `mlr.pd` instance. Close and reopen it from this checkout so reader
+   initialization is tested; opening an already-used reader can hide the bug.
+2. Keep the native console's messages and errors visible. Load the included
+   `DrumLoop.wav` with Sample 1 Load, then open `arrays-samples` →
+   `sample_player_rebuild 1`. Confirm `sample_buffer`, `1` is selected.
+3. Set the existing Audio 1 Out control to 0.4 and mixer Master to 0.75. Check
+   your output level first. Record actual audio settings; this run used 48 kHz /
+   512 frames. Start plugdata's output recorder, then the player's Play/Pause.
+4. Observe at least three 14.329 s loop turns. The source's final ~0.5 s is quiet;
+   an entire silent pass is a failure. Watch reader DSP/position console messages.
+5. Open `tests/handoff-commands.pd`, which contains no audio objects or buffers.
+   Select immediate input (main Quantize Track 1 value **1** in this version).
+   Press Slice_burst once; verify all nine prints. Continue for two more loops.
+6. Stop the native recorder and export WAV, 48000 Hz, 24-bit, Normalize No. Stop
+   the player; inspect the console error view and restore message display.
+7. Run `python3 tests/analyze_handoff.py DrumLoop.wav /path/to/capture.wav` with
+   Python and NumPy. For retained clips, decode first with
+   `ffmpeg -i clip.flac -c:a pcm_s24le /tmp/clip.wav`, then use the same script.
+   A quiet interval is a measurement to compare with source/control timing,
+   not automatically a dropout. Obtain a separate listening observation.
+
+Next work should remain a single agreed musical behavior from the catalogue.
+Completing reader trajectory ownership and direction-aware boundaries is still
+necessary; it was not started as part of this repair.

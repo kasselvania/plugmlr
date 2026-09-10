@@ -4,10 +4,11 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
-The runnable entry point is **[mlr.pd](mlr.pd)**. Sample 1 has been heard through
-player/channel 1 and the mixer. Playback currently cuts out during a loop, stays
-silent for another pass, then returns. See [the observation record](docs/STATUS.md)
-for what was actually checked and what remains untested.
+The runnable entry point is **[mlr.pd](mlr.pd)**. The current repair initializes
+the second reader and coordinates delayed shutdown in the existing player.
+Fresh Sample 1 playback now continues across both readers' loop turns; the user
+reported “solid playback.” See [the repair and evidence](docs/STATUS.md#reader-initialization-and-shutdown-repair)
+for the native checks and remaining direction, transition, and channel-order gaps.
 
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
@@ -23,8 +24,14 @@ It is a source review, not a claim that those functions all work in the runtime.
    Open `sample_player_rebuild 1`; its buffer selection should show
    `sample_buffer`, `1` after loading.
 5. Press **Play/Pause** in that player. Open `pd mixer` and raise **track 1 volume**
-   and **Master Volume** as needed, starting quietly. The playbar should move;
-   the looping fault above is still present.
+   and **Master Volume** as needed, starting quietly. The playbar should move
+   and both reader turns should be audible. The included drum file has about
+   half a second of silence at its end; that short pause is in the source.
+
+For the focused handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)
+and optional [control-only slice panel](tests/handoff-commands.pd). This is still
+the original application, with its existing shared global control names; open
+only one copy for this check.
 
 The recorded session used plugdata **0.9.4 nightly, build `98ae0f78b`**, with
 Pd **0.56.3**. The patches use plugdata's multichannel Pd support and library

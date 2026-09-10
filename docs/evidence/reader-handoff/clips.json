@@ -1,0 +1,45 @@
+{
+  "encoding": "ffmpeg 9.0.1, FLAC, original 48000 Hz stereo 24-bit PCM; exact sample crops; no normalization",
+  "clips": [
+    {
+      "file": "fresh-before.flac",
+      "source_capture": "fresh-init-and-gate-open-48k.wav",
+      "start_s": 0,
+      "duration_s": 45,
+      "sha256": "9a44202f9197e040fe1710d7ecc78f34e2bbed693cd73f031ecb51f9dabeffa6",
+      "decoded_pcm_equals_source_slice": true
+    },
+    {
+      "file": "manual-gate-recovery.flac",
+      "source_capture": "fresh-init-and-gate-open-48k.wav",
+      "start_s": 80,
+      "duration_s": 36,
+      "sha256": "4031b352c264b2cbb74021bd7cf57e88ee8980d2524f55d434feac4183f099be",
+      "decoded_pcm_equals_source_slice": true
+    },
+    {
+      "file": "before-burst.flac",
+      "source_capture": "before-burst-48k.wav",
+      "start_s": 0,
+      "duration_s": 10,
+      "sha256": "9beb7099bf6d734bfa5e3f1c89640288e63359070089e000e9358decf0443ba4",
+      "decoded_pcm_equals_source_slice": true
+    },
+    {
+      "file": "repaired-first-loops.flac",
+      "source_capture": "repaired-loops-and-burst-48k.wav",
+      "start_s": 0,
+      "duration_s": 45,
+      "sha256": "fbb4717021de15146d2bbeb83d1bb66e84c288ebe26a18079d9151a095baea89",
+      "decoded_pcm_equals_source_slice": true
+    },
+    {
+      "file": "repaired-burst-and-loops.flac",
+      "source_capture": "repaired-loops-and-burst-48k.wav",
+      "start_s": 52,
+      "duration_s": 36,
+      "sha256": "f9cd968f682daa075ac3c9172d360170f17706171b4fc27cfe9befa629ac6e16",
+      "decoded_pcm_equals_source_slice": true
+    }
+  ]
+}
