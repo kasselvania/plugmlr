@@ -1659,7 +1659,7 @@
 #X connect 268 4 262 0;
 #X connect 268 5 43 0;
 #X connect 269 0 377 0;
-#X connect 269 0 527 0;
+#X connect 269 0 441 0;
 #X connect 269 0 465 0;
 #X connect 269 0 474 0;
 #X connect 269 0 439 0;
@@ -1831,7 +1831,7 @@
 #X connect 437 0 434 0;
 #X connect 438 0 430 0;
 #X connect 438 1 444 0;
-#X connect 441 0 440 0;
+#X connect 441 0 527 0;
 #X connect 442 0 472 0;
 #X connect 442 1 113 0;
 #X connect 442 2 114 0;
@@ -1904,4 +1904,4 @@
 #X connect 517 1 466 0;
 #X connect 517 0 529 0;
 #X connect 529 0 527 1;
-#X connect 527 0 441 0;
+#X connect 527 0 440 0;
