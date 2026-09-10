@@ -934,3 +934,142 @@ Validation of this documentation update: remote revisions, primary manuals,
 mlre imports/buffer operations and companion lease records were inspected;
 relative links and `git diff --check` were checked. No new audio, device,
 listening, installed-runtime or DAW acceptance is claimed.
+
+## Speed control and crossover follow-up
+
+This work starts from `51e8f70d2956c9994e808b2946e8aa5524d45eb4` on
+`codex/fix-speed-slew-crossover`. Remote main remains
+`fc17d598a60d4531b3beac78d1a49eccc5ad660d`; PRs #6 and #7 are still open.
+The rejected R1 stash remains untouched.
+
+### Repair contract, recorded before editing
+
+The bounded implementation repairs the existing speed-selector control path.
+It retains the original master frame ramp, two stereo readers, loop logic and
+musical controls. It does not replace the sampler or claim to repair the separate
+direction-slew sketch or reader crossover merely by repairing rate controls.
+
+- Selector indexes 0 through 4 mean 0.25, 0.5, 1, 2 and 4 times source speed.
+  Other selector values produce no change. Direction remains a separate control.
+- Slew duration is milliseconds, clamped to 0..2000; the existing curve control
+  is clamped to -1..0. Zero duration publishes the exact target synchronously,
+  with interval reporting stopped. A positive duration uses the existing
+  `curve~` and 5 ms control reports, initialized at the normal speed of 1.
+- Each accepted rate report stores the rate before requesting one position
+  snapshot. Completion stops periodic reports before publishing the exact target.
+  A new command cancels the previous curve and replaces its target from the
+  curve's current value. It must not toggle a reporter into an unknown state.
+- These controls never request a zero or negative magnitude. Arbitrary zero-rate
+  control is not a supported interface in this original player; the existing
+  duration division remains unsuitable for tape-slew zero crossings. That gap
+  must be repaired before enabling the direction-slew sketch.
+- Positions and loop boundaries remain source-frame indexes. Duration is
+  `abs(target_frame - current_frame) / (file_sample_rate / 1000 * magnitude)`.
+  This repair does not change the established file/host conversion, endpoints,
+  seek/start/stop semantics or add clock catch-up. Stopped/paused flags continue
+  to prevent rate reports from starting a trajectory.
+- The existing frame snapshots and ramps still approximate motion during a slew.
+  Removing duplicate triggers is not a claim of sample-exact motion or click-free
+  transitions. Native audio validation is required before accepting the repair.
+
+### Trace results and disposition
+
+These are findings from the actual `.pd` connections, not inferred diagnoses of
+the computer or audio driver. The repaired path is still in
+`sample_player_rebuild.pd`; no new playback component or external was introduced.
+
+| Finding | Disposition |
+| --- | --- |
+| `curve~` starts at 0 while the player starts at rate 1. The first nonzero slew can therefore start from the wrong magnitude. | Initialize the existing curve at 1. |
+| The loadbang that sets `cyclone/snapshot~`'s interval also activates reporting. Initial rate reports need not represent a user gesture. | Initialize it explicitly at `5 0 @active 0`; remove the interval-setting loadbang path. |
+| Zero-duration selection still goes through an audio-block snapshot. That path can publish an older signal value instead of the just-selected rate. | Bypass sampling at zero duration: set the curve to the target and publish that target directly. |
+| Both the selector and the sampled curve can request a trajectory. Two separate `change` objects also own publication and update requests. | Remove the extra selector request; use one `change` followed by `t b f`, publishing the magnitude before requesting the position. |
+| Reporting starts/stops by banging a toggle, and completion publishes its target before disabling reporting. The unused stop message points at the interval inlet. | Use explicit 1/0, stop reporting first on completion, and send cancellation to the curve's left inlet before replacing a target. |
+| The direction-slew branch has no hot connection to its four-field pack; the enabled branch's stored value has no outlet connection. | Unrepaired implementation gap. Do not call the existing toggle a working tape-reverse mode. |
+| Direction is published before the intended deceleration. The direction reporter's toggle is connected to its interval inlet, and two midpoint snapshots surround the direction update. | Unrepaired ordering/wiring gaps; reconnecting the pack alone is insufficient. |
+| Direction slew can request zero, but `calc_duration` divides by rate times sample rate. Rate and direction have separate curves publishing into the same selected-rate receiver. | Unrepaired zero-crossing and interrupted-gesture ownership gaps. |
+| `tabread_processing` fans the same `vline_message` to both readers. Their input gates normally stay open. | Confirmed crossover defect: the outgoing reader also jumps. Gain ramps alone do not preserve its old trajectory. |
+| `voice_1` drops `main_vline_gate` at its route outlet; `voice_0` receives that control, but the normal fade path never sends it. | Confirmed asymmetric/incomplete gate wiring. The installed, read-only `mlr-lite` copy contains the symmetric gate pattern, but is not a validated replacement. |
+| Loop preparation starts the 6 ms gain handoff roughly 3 ms before the master wrap. Slice handoff starts 9 ms fades, then sends the shared jump after 1 ms. | Both readers may be audible when that shared discontinuity arrives. True trajectory handoff remains a separate repair. |
+| Reader shutdown uses cancellable 9 ms delays from the previous repair; gain dispatch still uses zero-delay list storage. | Do not discard the proven shutdown repair. Check pending fade dispatch and reader reuse during rapid cuts when repairing the crossover. |
+
+The implementation changes only the first five rows. It retains `curve~`, the
+existing preset values, frame-duration calculation, snapshot-driven trajectory,
+stereo tables and both readers. Loader ordering, slice offsets, beat reset,
+recording, mixer, Grid/Arc and companion repositories are untouched. The remaining
+rows are explicit gaps, not successful tests or promises that the current audio
+path is click-free.
+
+### Native observations and failed capture procedure
+
+The original application and its console were inspected before source edits.
+The open player identified itself as `3401`; Sample 1 already held the included
+44.1 kHz stereo `DrumLoop.wav` (631881 frames). Console messages showed trajectory
+updates and reader DSP handoffs. During the 600 ms rate gesture, repeated
+`voice_1_vline` entries appeared. This supports the source trace of repeated
+updates; it does not measure their audible effect.
+
+The observed runtime was `/Applications/plugdata.app`, plugdata 0.9.4,
+build `98ae0f78b`, Pd 0.56.3. Native Audio Settings showed CoreAudio, 48000 Hz,
+512 samples, MacBook Pro Speakers and MacBook Pro Microphone. This differs from
+the earlier USB-device fixture. The origin of that change is unknown; settings
+were not changed and earlier results are not silently transferred to this one.
+
+**Capture failure:** the agent started the native recorder without an automatic
+stop and left it running across context compression. The user had to stop it
+after minutes. This was an agent procedure failure, not evidence of a playback
+or machine fault. No controlled baseline/after comparison or numerical audio
+result is claimed from that recording. No new capture is retained by this
+candidate. The agent stopped interacting with the native session after the
+user's correction; the source candidate has not been reloaded there.
+
+**Listening:** no new listening acceptance for this candidate. The earlier user
+report of “solid playback” belongs to the prior handoff repair only.
+
+**Executed source checks:** `python3 tests/check_patch_connections.py
+sample_player_rebuild.pd` checked 10 canvases, 988 objects and 944 connections
+without an out-of-range object, connection to text, or invalid trigger/unpack
+port. Negative fixtures for those three failures were rejected. The checker
+does not instantiate externals or verify signal compatibility. A separate
+comparison against the base verified identical objects/connections in all nine
+nested canvases, including duration, looping, gain control and both readers.
+`git diff --check` passed. These are structural checks, not audio tests.
+
+### Repeatable validation still required
+
+Use the original `mlr.pd`, one application instance, its actual player controls
+and the console. Reload this checkout only after dealing with any unsaved native
+edits. Load `DrumLoop.wav`, inspect Sample 1's buffer selection, start playback,
+and raise track 1/master cautiously as in the README. Leave host/device settings
+unchanged for the first comparison and record their identity.
+
+1. Set rate slew duration to 0. Exercise selector indexes 0, 1, 2, 3, 4 and back
+   to 2 while playing. Each final magnitude must match 0.25, 0.5, 1, 2, 4 and 1.
+   Invalid selector values must not request another trajectory.
+2. Set 600 ms duration, exercise 1x to 0.5x to 2x, and interrupt a slew with
+   another selection before it finishes. Repeat with curve 0 and -1. Check the
+   final target and continued playback after several complete loops.
+3. Change speed while stopped and paused; it must not start playback. Resume and
+   confirm the selected target. Check ordinary instant reverse at each speed.
+   Leave direction slew disabled: it is explicitly unrepaired.
+4. Before any audio capture, establish and verify an automatic stop independent
+   of agent/UI progress. Capture the actual application's stereo output with
+   a known-duration command schedule. Retain the schedule, source/capture hashes,
+   host settings and representative audio. Native recorder start/stop clicks
+   alone do not meet this requirement.
+5. Use `tests/analyze_handoff.py` for capture levels/silence and
+   `tests/analyze_reverse.py` for source alignment at its supported 0.5x/1x/2x
+   rates. Extend the reference rates to include 0.25x/4x when checking those
+   captures. Account for source silence and the existing swapped-channel path;
+   a rate match does not establish correct channel ordering.
+6. For crossover acceptance, capture the two reader positions and gains as well
+   as the stereo sum during loops, cuts and commands closer than 9 ms. Verify an
+   outgoing trajectory continues until inaudible, inspect boundary discontinuity,
+   dropouts, stuck playback and gain sum. That acceptance cannot pass the present
+   common-jump wiring merely because both speakers produce sound.
+
+Native load/console acceptance of the edited patch, actual rate and transition
+audio, 44.1/48 kHz host comparison, separately recorded listening, and crossover
+repair all remain open. No Bitwig or DAW lifecycle test was performed. Next work
+is to validate this small rate candidate, then repair the independently traced
+direction/crossover gaps without expanding to another sampler rewrite.

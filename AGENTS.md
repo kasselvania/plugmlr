@@ -22,10 +22,14 @@
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
   push completed work, and leave any PR unmerged unless the user asks to merge.
-  The current repair targets direction changes and bidirectional loop wrapping
-  in the existing player. Preserve rate glide and the two readers. Validate
-  actual native output; direction slew, recording, stereo ordering, and a full
-  crossfade refactor remain separate work.
+  The current candidate repairs speed-control ordering. Direction slew and
+  the two-reader crossover have identified gaps recorded in STATUS; they are
+  not accepted repairs. Preserve the original playback path and validate actual
+  native output before claiming an audio fix.
+- Establish an automatic capture stop before starting any diagnostic recording.
+  Do not leave recording dependent on another agent turn, context compression,
+  UI automation, or the user noticing it. Keep capture setup separate from DSP
+  changes and never treat an abandoned capture as acceptance evidence.
 - The agreed tape direction is free-form: instant reverse at the current position
   or tape slew with permitted drift. Automatic catch-up and clock locking are
   deferred. Keep the reference effect catalogue separate from implementation.

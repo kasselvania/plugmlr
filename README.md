@@ -19,6 +19,12 @@ reverse loop timing, speed/slew ordering, transition quality, and stereo orderin
 still need work. The earlier “solid playback” listening report applies to the
 reader-handoff repair; listening acceptance for this direction repair is open.
 
+The [speed-control candidate](docs/STATUS.md#speed-control-and-crossover-follow-up)
+repairs zero-duration selection and orders rate-slew updates. It has not yet
+passed native audio validation. The crossover review found that both readers
+receive the same position jump during a fade; independent outgoing-reader
+motion and direction slew remain unfinished.
+
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
 identifies incomplete connections, and proposes small refactoring boundaries.
