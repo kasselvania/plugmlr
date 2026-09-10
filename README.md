@@ -23,7 +23,10 @@ from `pd arrays-samples` and use its **Buffer Select** menus. The panel below
 shows the selected buffer, whether it contains audio, and its content duration.
 Selecting while playing uses a short fade and starts the new buffer from its
 beginning (end in reverse); selecting an empty buffer leaves playback stopped.
-Stop cancels a pending restart. This is a fade through silence, not a seamless
+Stop cancels a pending restart. A subsequent one-line mixer-routing repair fixes
+loading another slot muting track 1 while its playhead continues; the
+[paired mixer-output capture](docs/STATUS.md#user-follow-up-loading-another-slot-muted-track-1)
+records the failure and repair. This is a fade through silence, not a seamless
 crossfade between different buffers.
 
 For a selected live buffer, **grow / sec / bars** sets the next recording's

@@ -1,0 +1,123 @@
+{
+  "capture_sha256": "a438b1bdca76dea2b76d90505ae44de0fd81fcd75efa6a49855a7230ae62d38a",
+  "host_rate": 48000,
+  "frames": 239942,
+  "nonfinite_samples": 0,
+  "windows": [
+    {
+      "seconds": [
+        0.3,
+        0.9
+      ],
+      "post_mixer_rms": [
+        0.031041706125538346,
+        0.02217250526543457
+      ],
+      "player_rms": [
+        0.07552726871993799,
+        0.05394770354653717
+      ],
+      "mixer_gain": [
+        0.4109999825446333,
+        0.4109999834619057
+      ],
+      "master_span_frames": 28799.0,
+      "playbar_value_span": 0.5999999940395355
+    },
+    {
+      "seconds": [
+        1.2,
+        1.8
+      ],
+      "post_mixer_rms": [
+        0.031041706125538346,
+        0.02217250526543455
+      ],
+      "player_rms": [
+        0.07552726871993799,
+        0.05394770354653717
+      ],
+      "mixer_gain": [
+        0.4109999825446333,
+        0.4109999834619054
+      ],
+      "master_span_frames": 28799.0,
+      "playbar_value_span": 0.6000000238418579
+    },
+    {
+      "seconds": [
+        2.2,
+        2.7
+      ],
+      "post_mixer_rms": [
+        0.031041705976384507,
+        0.022172505931445107
+      ],
+      "player_rms": [
+        0.0755272682948406,
+        0.0539477050753608
+      ],
+      "mixer_gain": [
+        0.41099998288306977,
+        0.4109999841600643
+      ],
+      "master_span_frames": 23998.99951171875,
+      "playbar_value_span": 0.5
+    },
+    {
+      "seconds": [
+        3,
+        3.4
+      ],
+      "post_mixer_rms": [
+        0.031041466974334814,
+        0.022172319646319424
+      ],
+      "player_rms": [
+        0.07552668662391246,
+        0.05394725193427954
+      ],
+      "mixer_gain": [
+        0.4109999837396123,
+        0.4109999833417008
+      ],
+      "master_span_frames": 17639.08203125,
+      "playbar_value_span": 0.5066666603088379
+    },
+    {
+      "seconds": [
+        4,
+        4.4
+      ],
+      "post_mixer_rms": [
+        0.031041706302128682,
+        0.022172505260406858
+      ],
+      "player_rms": [
+        0.07552726900638627,
+        0.053947703391822845
+      ],
+      "mixer_gain": [
+        0.41099998332395576,
+        0.41099998454739906
+      ],
+      "master_span_frames": 19199.001953125,
+      "playbar_value_span": 0.3800000250339508
+    }
+  ],
+  "track1_close_times_ms": [
+    0.0,
+    120.0,
+    2000.0,
+    2820.0,
+    3820.0,
+    4500.0
+  ],
+  "track2_close_times_ms": [
+    1040.0
+  ],
+  "slot2_load_muted_track1": false,
+  "playbar_updates_after_switches": true,
+  "limits": "Five-second native fixture. Captures the actual mixer, not the physical speaker output. Does not accept every transport transition or diagnose an independently observed GUI freeze.",
+  "passed": true
+}

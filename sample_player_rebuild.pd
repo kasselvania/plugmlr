@@ -1329,7 +1329,7 @@
 #X obj 120 1481 sel 0 1;
 #X obj 120 1359 r \$0-is_paused_flag;
 #X obj 134 1703 t b b;
-#X obj 1490 -164 s 1-mixer_env_close;
+#X obj 1490 -164 s \$1-mixer_env_close;
 #X obj 1335 -371 s \$0-playback_direction;
 #X msg 1335 -406 0;
 #X obj 1699 591 t b f b b b b b b;

@@ -191,6 +191,80 @@ The native console route used here avoids an unattended file chooser. To navigat
 `vis 1`, `deselect`, then `sel sample_player_rebuild_1_1`, `vis 1`, `deselect`
 opens player 1. Object names should be verified with the console `ls` command.
 
+### User follow-up: loading another slot muted track 1
+
+The user exercised the ordinary menus and loaded a second sample. Their report:
+empty selection stopped playback; returning to Sample 1 worked; loading Sample 2
+while Sample 1 played left its playhead moving but silenced its audio. Stop/Play
+restored audio. With both slots loaded, switching restarted the new sample at
+its beginning (end in reverse), retaining player settings. The wording about the
+playhead stopping on each swap was queried separately; a lasting visual freeze
+has not been established. This report is stronger evidence than the earlier
+pre-mixer captures for the lost-output fault.
+
+Source trace at `61ad442d990e9bff83536f09c3e75d68f11841c4`:
+`2-sample-loaded` → player 2 selection → existing internal Stop → hardcoded
+`1-mixer_env_close` → track 1's actual mixer `line~` receives `0 0`.
+Player 1's transport/DSP keeps running. Its next Play reopens that mixer.
+This was the only fixed numeric track send/receive found in the active player.
+The repair changes that send to `$1-mixer_env_close`. No reader DSP, timing,
+selection policy or playbar implementation changes.
+
+A five-second, automatically stopped native comparison captured the original
+player **and the actual mixer output** at 48 kHz / 512 frames / 1x in the same
+plugdata runtime identified above. At the final settings readback, output was
+**8A** and input MacBook Pro Microphone, with 48 kHz / 512 frames / 1x. No device
+selection was changed in this follow-up; the device was not read before the
+baseline capture. The earlier capture session used MacBook Pro Speakers. This
+comparison concerns mixer signals, not equivalence between those physical
+outputs. Quiet A/B fixtures were used, with a Sample 2
+load at 1 second, Stop/Play recovery at 2/2.05 seconds, and buffer switches at
+2.8 and 3.8 seconds (the latter in reverse).
+
+| Observed window | Before repair | After repair |
+| --- | --- | --- |
+| Track 1 player RMS after loading slot 2 | L 0.075527 / R 0.053948 | Same |
+| Actual mixer RMS before loading slot 2 | L 0.031042 / R 0.022173 | Same |
+| Actual mixer RMS after loading slot 2 | Both exactly zero | L 0.031042 / R 0.022173 |
+| Mixer-close event at 1040 ms | Track 1 | Track 2 |
+| Playbar values after loaded-buffer switches | Updated | Updated |
+
+Both captures were finite. The repaired mixer/player gain stays approximately
+0.411 in all five measured active windows. Output gain was matched for the
+comparison (track 1 at 0.548, master at 0.75 after reload). The retained numerical
+check rejects the baseline and passes the repaired capture. The moving playbar
+was also visible in the native UI. This does not establish a separate report
+of a lasting GUI freeze, physical speaker output, or all-transition acceptance.
+No user listening report on the repaired capture has yet been received.
+
+Evidence: [manifest](evidence/buffer-load-isolation/manifest.json),
+[baseline checks](evidence/buffer-load-isolation/baseline-checks.json),
+[repaired checks](evidence/buffer-load-isolation/repaired-checks.json),
+[baseline mixer audio](evidence/buffer-load-isolation/baseline-mixer.flac), and
+[repaired mixer audio](evidence/buffer-load-isolation/repaired-mixer.flac).
+The earlier buffer-selection captures remain tied to their earlier source;
+this paired comparison covers the subsequent one-line mixer repair.
+
+To repeat, use a disposable original-application session with generated Sample A
+loaded in slot 1 and nonzero track/master gain. Temporarily add
+`[tests/load-isolation-check $0]` inside player 1. Its loadbang prints the player
+ID; send loadbang manually when creating it through the console. Add passive
+`[s~ plugmlr-load-check-left]` / `[s~ plugmlr-load-check-right]` taps to the actual
+`pd mixer` master outputs: objects 20/21 outlet 0, the same signals connected to
+`dac~`. On the unmodified mixer, appended tap objects are 47/48; verify those
+indexes before connecting. Cycle DSP after attaching the taps. Send
+`load-isolation-check /ABS/capture.wav /ABS/events.txt`, then allow 5.1 seconds
+for the automatic stop/log. The script `tests/analyze_load_isolation.py` accepts
+those paths (or retained NPZ plus events) and reports the fault and gain checks.
+Close/reopen the application without saving the temporary attachments afterward.
+
+Cleanup restored DrumLoop in slot 1 and the user's
+`SC_ICD_90_synth_chords_sunny_Cmaj.wav` in slot 2 (44100 Hz, 470400 frames,
+10.666667 seconds), both stopped. The console did not accept the escaped space
+in the direct path command; restoration used a temporary filesystem alias to
+the unchanged original file. This was a console-entry workaround, not a loader
+repair. No user audio was copied into retained repository evidence.
+
 ### Review and next boundary
 
 This remains a draft stacked above PR #9, not merged main. Remaining gates:

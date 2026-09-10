@@ -13,6 +13,8 @@
 - Separate direct UI/console observations, user listening reports, source
   findings, and untested hypotheses in `docs/STATUS.md`. An empty error view is
   not proof of correct playback. A model or log is not an audio test.
+  For output-loss or cross-track claims, capture the actual mixer as well as
+  the player; a pre-mixer tap cannot detect a wrongly closed mixer envelope.
 - Keep changes small and within the authorized scope. Do not replace the entry
   point, bulk-format patches, or import an alternative player wholesale. Read
   alternatives where they contain useful behavior; names are not authority.
