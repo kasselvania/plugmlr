@@ -1,0 +1,12 @@
+{
+  "file": "writer-early-48.wav",
+  "sha256": "5f1981176a55db6027a1b4713efe8ba7e3ca301584c319e8518d682b3226e73e",
+  "console_reported_frames": 1408,
+  "checks": {
+    "exported_frames": true,
+    "finite": true,
+    "written_range": true,
+    "unwritten_range": true
+  },
+  "passed": true
+}

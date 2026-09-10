@@ -1,0 +1,12 @@
+record-check-player stop;
+record-check-player speed 2;
+record-check-bus 1;
+1_l_b_delete_buffer bang;
+1_l_b_length seconds 1;
+1-buffer-select live 1;
+50 1_l_b_record start;
+250 record-check-bus 0;
+300 record-check-bus 1;
+700 live-record-export symbol /tmp/plugmlr-record-gap-array.wav;
+record-check-player play;
+3500 record-check-player stop;

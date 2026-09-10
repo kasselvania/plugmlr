@@ -27,8 +27,11 @@
   The accepted checkpoint includes the original playback, crossover, buffer
   selection and mixer-isolation repairs (PRs #6–#10).
   Keep recording-length settings separate from content bounds and capacity:
-  tempo changes affect the next recording, never existing audio. Audio writing,
-  growth/trim, pause/resume recording and recording quantization are deferred.
+  tempo changes affect the next recording, never existing audio. Test early Stop
+  with retained capacity: reader lookups must not enter the unwritten tail. Fixed-length
+  fresh stereo recording is now authorized; growth/trim, pause/resume recording
+  and recording quantization remain deferred. The user chose a local Pd stereo bus between standalone patches for this slice;
+  cross-instance pdlink transport fails stereo timing and remains separate.
   Validate type AND number selection, reselection, empty buffers, interrupted
   switches, stereo ordering and safe load/clear in the native original player.
   Keep the 6/9 ms fades and shutdown cancellation; test loops, cuts and interrupted transport in the actual player.

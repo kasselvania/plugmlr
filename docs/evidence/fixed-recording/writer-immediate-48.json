@@ -1,0 +1,12 @@
+{
+  "file": "writer-immediate-48.wav",
+  "sha256": "f691ef6b9ce65637d2aa4fc9ba35de1daab5d1a7a63df7c2b63e1e3c07fd2032",
+  "console_reported_frames": 0,
+  "checks": {
+    "exported_frames": true,
+    "finite": true,
+    "written_range": true,
+    "unwritten_range": true
+  },
+  "passed": true
+}

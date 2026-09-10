@@ -1,0 +1,147 @@
+{
+  "case": "bars",
+  "host_rate": 48000,
+  "captured_frames": 335918,
+  "capacity_frames": 96000,
+  "content_frames": 96000,
+  "errors_reported": [],
+  "checks": {
+    "capture_present": true,
+    "all_samples_finite": true,
+    "expected_content_frames": true,
+    "capacity_matches_frozen_length": true,
+    "stereo_input_samples_preserved": true,
+    "unwritten_capacity_zero": true,
+    "player_has_audio": true,
+    "mixer_unity_relative_to_configured_gain": true,
+    "no_block_length_dropout_in_playback": true,
+    "stopped_audio": true,
+    "changed_preview_and_selected_elsewhere": true
+  },
+  "input_to_array": {
+    "shared_offset_frames": 2304,
+    "maximum_sample_error": 0.0
+  },
+  "active_mixer_windows": [
+    {
+      "start_frame": 110400,
+      "maximum_gain_error": 0.0013476244639605284
+    },
+    {
+      "start_frame": 115200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 120000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 124800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 129600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 134400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 139200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 144000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 148800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 153600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 158400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 163200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 168000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 172800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 177600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 182400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 187200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 192000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 196800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 201600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 206400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 211200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 216000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 220800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 225600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 230400,
+      "maximum_gain_error": 9.313225746154785e-10
+    }
+  ],
+  "player_maximum_adjacent_step": [
+    0.07990363240242004,
+    0.01586289517581463
+  ],
+  "mixer_maximum_adjacent_step": [
+    0.011985544115304947,
+    0.002379434183239937
+  ],
+  "longest_silent_run_during_playback_frames": 0,
+  "files": {
+    "application-bars-48.wav": "e2ba7d812c76f418c76322abcab6fce1e46628476da2738179482f95d29b6bcf",
+    "application-bars-array-48.wav": "9fb10517d640883557785862891bbf0c86141ebdfc5c833074f60329d80ac869",
+    "application-bars-48-events.txt": "edf71b5d753b4985054ef71c0e15a4f1cfa05aa1b214f5a00d242ad8efc74c5c"
+  },
+  "passed": true,
+  "scope": "Actual recorded arrays and player/mixer samples. No listening, general transition or DAW acceptance."
+}

@@ -1,0 +1,16 @@
+record-check-player stop;
+record-check-bus 1;
+1_l_b_delete_buffer bang;
+1_l_b_length seconds 1;
+1_l_b_record start;
+50 1_l_b_length dynamic;
+1_l_b_record start;
+50 1_l_b_length seconds 0.0001;
+1_l_b_record start;
+50 1_l_b_length seconds 61;
+1_l_b_record start;
+50 1_l_b_length seconds 1;
+1_l_b_record start;
+1_l_b_record stop;
+50 live-record-export symbol /tmp/plugmlr-record-empty-array.wav;
+1_l_b_record get;

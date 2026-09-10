@@ -1,0 +1,7 @@
+#N canvas 100 100 700 320 12;
+#X text 25 15 Local stereo receiver. Argument is input bus 1..16 \, not a buffer or track.;
+#X obj 25 75 catch~ plugmlr-input-\$1 2;
+#X obj 25 145 outlet~;
+#X text 25 210 One receiver owns each local bus. Outlet is a two-channel signal.;
+#X text 25 250 Split with snake~ out 2 when separate L/R inlets are needed.;
+#X connect 1 0 2 0;

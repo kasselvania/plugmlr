@@ -1,0 +1,12 @@
+{
+  "file": "writer-repeat-48.wav",
+  "sha256": "9266909804bf7507a59166bbc9b6738acf68a656f82770275efb7f6877ce314d",
+  "console_reported_frames": 4800,
+  "checks": {
+    "exported_frames": true,
+    "finite": true,
+    "written_range": true,
+    "unwritten_range": true
+  },
+  "passed": true
+}

@@ -1,0 +1,41 @@
+{
+  "windows": [
+    {
+      "buffer": "recorded_hardware",
+      "seconds": [
+        2.5,
+        3.5
+      ],
+      "rms_player_LR_mixer_LR": [
+        0.12952736020088196,
+        0.11499402672052383,
+        0.019429033622145653,
+        0.017249075695872307
+      ],
+      "maximum_mixer_gain_error": 7.450580596923828e-09
+    },
+    {
+      "buffer": "recorded_hardware_loop",
+      "seconds": [
+        4,
+        5
+      ],
+      "rms_player_LR_mixer_LR": [
+        0.17140579223632812,
+        0.0969340056180954,
+        0.0257108174264431,
+        0.014540133066475391
+      ],
+      "maximum_mixer_gain_error": 7.450580596923828e-09
+    }
+  ],
+  "checks": {
+    "finite": true,
+    "audio_in_all_windows": true,
+    "configured_mixer_gain": true,
+    "stopped": true
+  },
+  "passed": true,
+  "sha256": "40d9392c9bb22d20246eac896e0e187a0ca43f524f93c61921087d67c5e07c24",
+  "scope": "Steady playback through the original player/mixer. Transition-edge quality and listening acceptance remain separate."
+}

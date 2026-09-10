@@ -1,0 +1,11 @@
+record-check-player stop;
+record-check-player speed 2;
+record-check-bus 0;
+1_l_b_delete_buffer bang;
+1_l_b_length seconds 2;
+1-buffer-select live 1;
+audio-1-out 0.2;
+50 1_l_b_record start;
+2200 live-record-export symbol /tmp/plugmlr-final-hardware-take.wav;
+record-check-player play;
+3500 record-check-player stop;

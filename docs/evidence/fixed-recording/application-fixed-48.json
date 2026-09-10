@@ -1,0 +1,231 @@
+{
+  "case": "fixed",
+  "host_rate": 48000,
+  "captured_frames": 335918,
+  "capacity_frames": 48000,
+  "content_frames": 48000,
+  "errors_reported": [
+    "250 l_b_record_errors 1 Buffer_busy;",
+    "250 l_b_record_errors 1 Buffer_busy;",
+    "1250 l_b_record_errors 1 Clear_live_buffer_first;"
+  ],
+  "checks": {
+    "capture_present": true,
+    "all_samples_finite": true,
+    "expected_content_frames": true,
+    "capacity_matches_frozen_length": true,
+    "stereo_input_samples_preserved": true,
+    "unwritten_capacity_zero": true,
+    "player_has_audio": true,
+    "mixer_unity_relative_to_configured_gain": true,
+    "no_block_length_dropout_in_playback": true,
+    "stopped_audio": true,
+    "busy_and_overwrite_rejected": true
+  },
+  "input_to_array": {
+    "shared_offset_frames": 2304,
+    "maximum_sample_error": 0.0
+  },
+  "active_mixer_windows": [
+    {
+      "start_frame": 57600,
+      "maximum_gain_error": 0.0013476337771862745
+    },
+    {
+      "start_frame": 62400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 67200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 72000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 76800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 81600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 86400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 91200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 96000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 100800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 105600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 110400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 115200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 120000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 124800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 129600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 134400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 139200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 144000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 148800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 153600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 158400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 163200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 168000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 172800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 177600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 182400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 187200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 192000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 196800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 201600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 206400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 211200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 216000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 220800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 225600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 230400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 235200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 240000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 244800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 249600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 254400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 259200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 264000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 268800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 273600,
+      "maximum_gain_error": 9.313225746154785e-10
+    }
+  ],
+  "player_maximum_adjacent_step": [
+    0.08392541110515594,
+    0.07421892881393433
+  ],
+  "mixer_maximum_adjacent_step": [
+    0.012588812038302422,
+    0.011132839135825634
+  ],
+  "longest_silent_run_during_playback_frames": 0,
+  "files": {
+    "application-fixed-48.wav": "b5aac7a04ecfb2c446f8481d31f1cde2c36a5ba9f7bfc64defc9fe03b3787f02",
+    "application-fixed-array-48.wav": "8d04b9ee2f9bb3a9520e974dfccb32a3ffa347c9ab239f900032417f16f701ad",
+    "application-fixed-48-events.txt": "f8b6c05ff7f60332b365e53d68f02e84fe9c1d0609f96b279cd22210cc31704c"
+  },
+  "passed": true,
+  "scope": "Actual recorded arrays and player/mixer samples. No listening, general transition or DAW acceptance."
+}
