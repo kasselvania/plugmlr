@@ -9,6 +9,11 @@ player/channel 1 and the mixer. Playback currently cuts out during a loop, stays
 silent for another pass, then returns. See [the observation record](docs/STATUS.md)
 for what was actually checked and what remains untested.
 
+The [functionality map](docs/STATUS.md#whole-application-functionality-map)
+traces the existing slice, loop, slew, transport, recording, and feedback paths,
+identifies incomplete connections, and proposes small refactoring boundaries.
+It is a source review, not a claim that those functions all work in the runtime.
+
 ## Run the original application
 
 1. Open this checkout's `mlr.pd` in plugdata. Keep its sibling patches together.

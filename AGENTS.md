@@ -6,9 +6,10 @@
 - Start with the actual plugdata UI and console. Trace the corresponding `.pd`
   objects, connections, trigger order, and send/receive symbols. Existing code
   establishes what is wired, not that it is correct.
-- Work through one part of the musical path at a time: loader, buffer metadata
-  and selection, transport/looping, then the two internal readers and their fades.
-  Preserve and understand connected musical controls while doing so.
+- Catalogue the whole musical path before choosing the next repair: loading,
+  buffer selection, slicing, quantization, transport, loops, speed/direction and
+  their slew, readers/fades, recording, mixer, and visual/controller feedback.
+  Trace each part's state and timing dependencies; do not stop at the first bug.
 - Separate direct UI/console observations, user listening reports, source
   findings, and untested hypotheses in `docs/STATUS.md`. An empty error view is
   not proof of correct playback. A model or log is not an audio test.
@@ -20,6 +21,6 @@
   Do not launch additional audio-producing test patches into the user's session
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
-  push completed work, and leave any PR unmerged. The observation baseline is
-  preserved in STATUS; the user has now authorized the small post-load metadata
-  refresh repair. Keep implementation and validation confined to that candidate.
+  push completed work, and leave any PR unmerged. The current update is a source
+  catalogue and proposed refactoring boundaries in STATUS, with no patch edits.
+  The earlier post-load refresh repair remains a separate review candidate.
