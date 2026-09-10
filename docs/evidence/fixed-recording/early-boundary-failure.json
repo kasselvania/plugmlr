@@ -1,0 +1,10 @@
+{
+  "player_source_sha256_before_clamp": "72975c2fe9720ff5e024166c02aa7811badcd0d0a8c825d7c829399aa31e264b",
+  "host_rate": 48000,
+  "early_content_frames": 15616,
+  "capacity_frames": 96000,
+  "native_reader_capture": "failed-early-readers-48.wav",
+  "observed_failure": "64 silent frames while master and active reader hold index 15616, gain 1. That is the first unwritten frame. Reader fade starts on the following block.",
+  "repair": "Clamp interpolation indices to recorded content, matching the tabread4 physical array bounds. Preserve capacity and all recorded input samples.",
+  "separate_open_limit": "Abrupt steps at instant reverse and Stop are also present in the unchanged transport paths. They are not repaired by this content-bound change."
+}

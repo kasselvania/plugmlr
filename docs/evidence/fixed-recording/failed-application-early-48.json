@@ -1,0 +1,123 @@
+{
+  "case": "early",
+  "host_rate": 48000,
+  "captured_frames": 335918,
+  "capacity_frames": 96000,
+  "content_frames": 15616,
+  "errors_reported": [],
+  "checks": {
+    "capture_present": true,
+    "all_samples_finite": true,
+    "expected_content_frames": true,
+    "capacity_matches_frozen_length": true,
+    "early_stop_block_resolution": true,
+    "stereo_input_samples_preserved": true,
+    "unwritten_capacity_zero": true,
+    "player_has_audio": true,
+    "mixer_unity_relative_to_configured_gain": true,
+    "no_block_length_dropout_in_playback": false,
+    "stopped_audio": true
+  },
+  "input_to_array": {
+    "shared_offset_frames": 2304,
+    "maximum_sample_error": 0.0
+  },
+  "active_mixer_windows": [
+    {
+      "start_frame": 24000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 28800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 33600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 38400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 43200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 48000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 52800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 57600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 62400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 67200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 72000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 76800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 81600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 86400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 91200,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 96000,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 100800,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 105600,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 110400,
+      "maximum_gain_error": 9.313225746154785e-10
+    },
+    {
+      "start_frame": 115200,
+      "maximum_gain_error": 9.313225746154785e-10
+    }
+  ],
+  "player_maximum_adjacent_step": [
+    0.07990363240242004,
+    0.03987252339720726
+  ],
+  "mixer_maximum_adjacent_step": [
+    0.011985544115304947,
+    0.005980878137052059
+  ],
+  "longest_silent_run_during_playback_frames": 64,
+  "files": {
+    "failed-application-early-48.wav": "1e42d290275333f456c08e54be6441d27345646db30ce2ec0498cc0a3afae5a3",
+    "failed-application-early-array-48.wav": "edbff17906e2d9c7368047494c57b1ff33e88dd1acfbbe88c5b41a6a5f44cb12",
+    "failed-application-early-48-events.txt": "fb5b847ffaaa5995cb467be9eefbcb4bdbc1e1dd23aec12318f1a400fae67c33"
+  },
+  "passed": false,
+  "scope": "Actual recorded arrays and player/mixer samples. No listening, general transition or DAW acceptance."
+}

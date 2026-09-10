@@ -7,6 +7,322 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Current input/recording recovery contract
+
+Candidate on `codex/fixed-live-recording`, based on main
+`9358537d48c549c26778f8d533ec870a7c5538ff`. This is fresh, fixed-length recording
+inside the original application. It does not revive the rejected R1 rewrite.
+The user moved the fixture from Bitwig to standalone hardware input 3/4, then
+explicitly chose a local Pd stereo connection after the pdlink tests failed.
+Bitwig and installed services were not changed after that scope change.
+
+### Contract
+
+- Companion channels are one-based Pd/host channels, selected by Host_L/Host_R.
+  Input gain and monitoring remain separate; monitor defaults to zero. Bus 0
+  disconnects, 1–16 selects a local stereo bus. Use one companion and one receiver
+  per bus; multiple senders would sum. This connection is within one Pd environment,
+  not between separate processes. Main receives bus 1 and distributes stereo through
+  its `$0` input namespace. Bus, buffer number and track number remain distinct.
+  Existing global buffer/track names are preserved: multiple copies of the original
+  `mlr.pd` in one environment are still unsupported.
+- Main input meters report dBFS. Arm defaults off and requires running DSP.
+  Arming is a Start precondition, not a source-presence detector or an active-take
+  mute switch. Silence/disconnection records silence; reconnecting resumes input.
+- Public length is seconds or whole 4/4 bars. Freeze `floor(seconds * host_rate)`
+  at Start: minimum 64 frames, maximum 60 seconds. The controller accepts host rates
+  44100/48000 Hz; native recording qualification in this slice covers **48000 only**.
+  Bars use current project tempo at Start. Later tempo/length/rate/direction changes
+  cannot retime the active writer. Growing mode, overdub, recording pause/resume and
+  quantized recording are deferred.
+- `N_l_b_record start|stop|get` addresses live buffer N. Start requires empty,
+  non-busy storage and armed input. Invalid length, unsupported host rate, busy
+  storage or existing content produces visible and console feedback. Unknown
+  commands are ignored. Record/Clear are mutually exclusive, including Clear's
+  existing 20 ms fade interval. Allocate both arrays before starting the writer.
+  Supported controls never resize under an active writer.
+- Bounds are zero-based host frames, exclusive end. Array prefix 0 is left and
+  prefix 1 is right. Early Stop reports completed Pd blocks; immediate Start/Stop
+  can produce zero frames. Done follows 3 ms settling. Capacity stays separate
+  from content; Stop does not shrink it. No fades are baked into recorded input.
+  Reader lookup is clamped to content's interpolation bounds (`first+1` through
+  `max(1,end-3)`), matching existing tabread4 boundary behavior for full arrays.
+  The original two readers, gain fades and musical controls remain.
+- Record/Stop address the selected live buffer. Switching selection does not redirect
+  a running writer; it finishes at its frozen limit. Reselect that buffer to stop
+  early. Record on an imported buffer is ignored, with the panel asking for a live
+  buffer. There is no automatic playback after a take, product export UI or recall.
+- Diagnostic captures always arm an automatic stop before starting. Human listening,
+  recorded samples, state events and source inference are separate evidence.
+
+### Reused path and localized repairs
+
+`audio-in-subpatch.pd` retains the original ADC, input gain, meters, menu, monitor,
+DAW parameters and bundled `daw_storage` dependency. `input-send~` / `input-receive~`
+replace its network route with one multichannel `throw~` / `catch~` bus. The new
+`record-input` panel owns the receiver and input arming. Each existing `live_buffer`
+now receives the instrument namespace and owns `live-record`; the original array
+names, length settings and metadata publication stay in place. `record-controls`
+connects the existing player Record/Stop controls to its selected live buffer.
+
+`fixed-record~` recovers the old stereo `poke~` writer pattern, with one audio-rate
+`cyclone/count~`, a guarded index and bounded Stop. Internal commands are
+`start FRAMES` / `stop`, replies `started` / `done WRITTEN_FRAMES`; the caller owns
+and sizes the arrays. Frame range is integer 64–16777216, busy starts ignored.
+The index becomes -1 when stopped or at the limit; a pre-armed duration timer is a
+second stop path. There is no message-rate audio generation, new external or service.
+
+The early-stop test exposed a real integration bug in reader lookup: content ended
+at 15616 while allocated storage continued to 96000. The active reader held index
+15616 at gain 1 for a whole Pd block, reading the unwritten tail before the next
+loop fade. A small clamp before each existing tabread4 fixes that boundary without
+resizing storage or altering recorded input. Existing mixer DSP is unchanged.
+Historical/alternative patches remain in place; no MLR UI or head-count rewrite.
+
+### Native observations and numerical results
+
+Actual UI/console: **plugdata 0.9.4 nightly `98ae0f78b`, Pd 0.56.3**, bundled
+ELSE rc14/Cyclone; CoreAudio **8A input/output, 48000 Hz, 512 hardware frames, 1x**.
+Inputs 1–4 were enabled so `[adc~ 3 4]` explicitly reads the external stereo pair.
+Before enabling 3/4, the probe meters read zero; afterward 3/4 showed input and 1/2
+remained zero. Companion gain was 1, Host_L/R 3/4; monitor remained zero. Live settings
+were read in the UI, not inferred from the stale saved preferences file.
+
+Two six-second ADC-versus-pdlink captures retained every aligned sample with unity
+gain, but failed stereo alignment. A local-bus capture passed the same four measured
+half-second windows (starting at seconds 1–4): exact stereo samples, unity gain,
+finite values and zero measured relative delay. These are fixture measurements,
+not universal latency or dropout guarantees.
+
+| Input path | Left delay | Right delay | Result at 48 kHz |
+| --- | ---: | ---: | --- |
+| Original two mono pdlink streams | 1152 frames | 1216 frames | Right 64 frames late |
+| One multichannel pdlink stream | 1344 frames | 1408 frames | Right 64 frames late |
+| Local multichannel Pd bus | 0 | 0 | Exact samples in measured windows |
+
+The [upstream ELSE rc14 source](https://github.com/porres/pd-else/blob/v.1.0-rc14/Source/Audio/pdlink~.c)
+discovers channel count during processing and defers DSP rebuilding; this can explain
+one stream beginning a block late. That is an inference from upstream source, not
+proof of the installed binary's implementation. No runtime or library was patched,
+and no fixed channel-delay compensation was added. Failed fixtures are retained in
+`tests/input-link-check.pd`, `pdlink-input-receive~.pd` and `pdlink-stereo-check.pd`.
+The earlier `link-probe-*` Bitwig fixtures were not qualified; their presence is not
+DAW evidence.
+
+Actual writer/array and application tests:
+
+| Check | Observed result |
+| --- | --- |
+| Core 4800-frame take | Exact L=0.125/R=0.25; 64 sentinel guard frames untouched |
+| Core Stop at 30 ms | 1408 frames; remaining capacity untouched |
+| Core repeated Start / immediate Stop | Original 4800-frame take retained / zero-frame take |
+| Main unarmed Record | Refused in actual console and selected-buffer panel |
+| Main two-second hardware take | 96000 frames; both channels nonzero; Loaded and 2 seconds shown |
+| One-second generated take | 48000 exact stereo input frames; later length 3 seconds did not resize it |
+| Record and Clear while busy | Both rejected; original take completed |
+| Start during pending Clear | Rejected through the storage-busy interval |
+| Record over existing content | Refused with Clear_live_buffer_first |
+| Main Stop at 325 ms | 15616 usable frames, capacity 96000; unwritten tail zero |
+| Bars, tempo and selection | One bar at 120 BPM remained 96000 frames after tempo/next-length changes and selection of live buffer 2 |
+| Growth / tiny / 61-second targets | Refused; no content published |
+| Immediate Record/Stop | Empty, zero frames; capacity untouched |
+| Local source bus off/on during take | Defined silent interval; reconnected samples resumed exactly |
+| Recorded/imported switching | Audio in both channels and expected mixer gain in live1 → sample1 → live1 → sample2 steady windows |
+
+The generated application signal is 375 Hz left at 0.08 and 600 Hz right at 0.04.
+Captured channels are input L/R, original player L/R, original post-master mixer L/R.
+Fixed, early and bars array exports match the captured input at one shared offset,
+with **zero sample error** (all usable frames checked). Writer timing and content
+bounds come from actual metadata events. Mixer steady windows match track gain 0.2
+× master 0.75, with errors below 2e-6; actual observed errors are in each JSON.
+All retained application samples are finite; playback stops and does not remain
+stuck. Bus-off silence is intentional recorded content.
+
+The paired early-loop window (0.55–2.3 seconds) changed from **64 silent frames to
+zero**. Largest adjacent player step changed L/R from **0.07986 / 0.03987** to
+**0.00420 / 0.00314**. `early-loop-comparison.json` and the failed/repaired reader
+captures retain the evidence. Reader instrumentation is before the new lookup clamp.
+These measured loop results do **not** establish universally click-free playback.
+
+**Known transition failures remain:** the generated captures still show abrupt
+steps at instant reverse and hard Stop (up to about 0.084 at player level in this
+fixture). The existing Stop path explicitly zeros reader gains/DSP and closes the
+mixer immediately; this recording slice has not replaced that transport behavior.
+Instant-reverse continuity also needs its own bounded trace/repair. Earlier clean
+listening reports do not close these newly measured gaps. JSON `passed` flags mean
+only their named recording/steady-window checks, not overall transport acceptance.
+
+During development the actual console exposed two status-label message errors and
+one test-fixture relative-path failure; these were corrected and reloaded before
+the final checks. A first playback diagnostic wrote an empty file because newly
+attached DSP taps were inactive; it was excluded and repeated after DSP activation.
+Seven-second writesf captures advertise about 6.998 seconds in their WAV headers;
+the checks use the declared frames. Exact take lengths are established separately
+from soundfiler array exports, not inferred from diagnostic file duration.
+
+### Evidence, repeat procedure and open gates
+
+Evidence lives in `docs/evidence/fixed-recording`: generated float WAVs, array
+exports, state logs, source/evidence hashes and numerical JSON. Hardware-source WAVs
+are retained locally in ignored `local-input/`; committed JSON names/hashes them.
+No private sample path or hardware music is published. Core DC/sentinel exports
+are measurements, not listening material; do not play them through speakers.
+
+To repeat the core checks, open `tests/fixed-record-check.pd` in native plugdata
+with DSP on. Send `fixed-record-check start`, `fixed-record-early bang`,
+`fixed-record-repeat bang` or `fixed-record-immediate bang`. Each stops and exports
+`/tmp/plugmlr-fixed-record-check.wav`; copy it before running the next case.
+
+For original-application evidence, disconnect companion bus 0, arm the main input,
+and open `tests/live-record-export.pd`. In player 1, temporarily instantiate
+`tests/live-record-check $0`. Attach `s~ plugmlr-record-check-left` and
+`...-right` to the existing post-master mixer objects 20/21; these temporary taps
+were not saved into the application. Activate DSP after adding the taps.
+Send `record-check symbol fixtures/record-fixed.txt` (or `record-early.txt`,
+`record-bars.txt`, `record-guards.txt`, `record-gap.txt`). Each run stops source,
+writers, player and capture after seven seconds. Wait for `record-check-stopped`
+in the actual console before the next run. Copy `/tmp/plugmlr-record-check.wav`,
+`/tmp/plugmlr-record-check-events.txt` and the array export named in that score.
+The fixture produces a quiet generated signal and deliberately plays it through
+track 1. The main recorder itself also arms its own duration stop before writing.
+
+For switching, first load `tests/fixtures/buffer-a.wav` and `buffer-b.wav` into
+sample slots 1/2, keep a recorded live1, then run `record-switch.txt`.
+`record-hardware-play.txt` plays an existing two-second hardware take;
+`record-hardware-take.txt` records/plays a new one with companion bus 1 connected.
+These hardware captures stay local. For reader evidence, instantiate the existing
+`tests/bounded-player-capture 1 $0` in player1 and send `1-test-capture start PATH
+6000` before the early score; its own Stop is armed independently.
+
+Numerical checks require Python with NumPy and ffmpeg:
+
+```sh
+python3 tests/analyze_fixed_record.py WAV --frames EXPECTED
+python3 tests/analyze_input_link.py FOUR_CHANNEL_WAV --rate 48000
+python3 tests/analyze_live_record.py fixed CAPTURE ARRAY_EXPORT EVENT_LOG
+# Also: early, bars, guards, gap; only CAPTURE needed for switch/hardware/hardware-take.
+python3 tests/check_patch_connections.py sample_player_rebuild.pd
+```
+
+**Listening:** the user reported that `local-input/hardware-playback-mixer-48.wav`
+"sounds fine, but its quiet" and proposed a more audibly coherent source. That
+capture used track gain 0.2 and master 0.75. The report is separate from the
+measured instant-reverse/Stop steps and does not close those transition gates.
+The previous track gain 0.548 was restored afterward. No recording was started
+while the user changed source. After the user supplied a new source and requested
+a slight boost, companion input gain was set to 1.10 (+0.83 dB), and plugdata's
+global output was raised from 0.80 to 0.90 (+1.02 dB). The original input knob's
+range is now 0–2, with a numeric readout and a unity label; its initial value stays
+0. The saved companion was reloaded, channels 3/4 and local bus 1 restored, and
+the actual UI read back 1.10 and 0.90. Both input meters were active and below full
+scale in that view. No new take or clipping qualification was performed for the
+changed source. A redundant console `sel` while the knob was already selected
+printed `knob: no method for 'sel'`; this was a console-control error, and the
+subsequent reload/settings commands succeeded. Earlier listening acceptance
+belongs to earlier playback candidates.
+
+**Open:** instant-reverse/hard-Stop transition quality; 44.1 kHz recording and a
+host-rate change after recording; cross-process/Bitwig transport and lifecycle;
+multiple original instrument instances; unexpected hardware-device loss; full
+recording-length range; recall/export UX. This run kept the shared 8A at 48 kHz
+while the user used Bitwig for controller work. It did not change the interface
+clock to qualify 44.1 kHz. No separate runtime substitutes for those open gates.
+Growing/trim, overdub, pause/resume and quantized recording remain future slices.
+Final native state: this slice's diagnostics and temporary taps closed, original application
+reloaded, Sample 1 DrumLoop and the user's Sample 2 restored. The retained hardware
+take is in live1 (2 seconds), selected in player1. Companion 3/4, gain1.10, local bus1,
+monitor0; main input disarmed, playback/recording stopped. The final UI still
+showed both input meters. Takes are volatile until export/recall is implemented.
+The PR is a recording candidate, left unmerged; no next slice starts automatically.
+
+### Recording checkpoint with the new hardware source
+
+Completed on the product source at `c6d13d519ee2f794f1cb0b36b187bd667c17b395`,
+in the same native runtime and 48 kHz / 512-frame 8A configuration above. This
+follow-up changes test fixtures and documentation only. The original application
+and companion were inspected in the actual UI/console. Input channels 3/4 and
+gain 1.10 were retained, along with track 0.548, master 0.75 and global output 0.90.
+Live 1 was preserved; Live 2 and Live 3 were confirmed Empty before recording.
+
+| Operation | Actual result |
+| --- | --- |
+| Fixed two-second take, Live 2 | Recording → Loaded; 96000 frames and 2 seconds displayed |
+| Early Stop, Live 3, four-second target | Stop through the player's existing control path; 60032 usable frames (1.250667 s), capacity 192000, unwritten tail exactly zero |
+| Both recorded arrays versus raw ADC capture | Every usable stereo frame matches raw input × 1.10 exactly, with one common 2368-frame capture offset for both channels |
+| Recorded/imported switching | Live 2 → Sample 1 → Live 3 → Sample 2 → Live 2; stereo audio in all five steady windows, exact configured track × master gain |
+| Bounded shutdown | Each seven-second fixture printed `record-check-stopped`; final player/mixer samples are zero, all captured audio finite |
+| Cleanup and preservation | Reloaded original application without temporary test objects; all three restored live-array exports are byte-identical to their retained originals |
+
+Live 2 recorded peaks are L/R **0.849287 / 0.692288**; Live 3 peaks are
+**0.758298 / 0.766992**. The array comparison tests the real input-gain path and
+channel ordering; channels were not independently realigned. `checkpoint-48.json`
+contains the numerical checks, steady-window levels and file hashes.
+
+**Listening:** the user reported **"Useful level; no audible problems"** for the
+fixed-take, early-stop and switching captures. Listening files extract the original
+post-master channels and apply the actual 0.90 global output gain; they are not
+normalized. The fixed/early listening files omit the recording interval. This
+report applies to these captures, not to all transitions or the open reverse/Stop
+defects described above. All hardware/listening WAVs remain in ignored `local-input/`.
+
+Two additional findings are retained explicitly:
+
+- **Empty-buffer position-report defect:** reset before usable bounds exist can
+  publish `NaN` to `playbar_data_i`. In `sample_player_rebuild.pd` →
+  `pd playhead_logic`, a reset enters `scale` with equal start/end bounds. The
+  retained logs contain three such stopped-state reports in the fixed case and
+  two in the early case; none occurred while playing. This is an existing UI/control
+  normalization defect, separate from audio finiteness, and needs a small bounds
+  guard in the next playback/UI repair. It was traced but not changed in this check.
+- **Source headroom:** raw ADC channel 3 hit -1.0 for six samples at 6.768583 s in
+  the fixed capture, after both the take and its playback had stopped. An initial
+  assertion covering all six capture channels therefore failed. The retained
+  result reports this source event separately; its passing headroom checks cover
+  the recorded arrays and player/mixer output. No claim is made that the ongoing
+  hardware source is always unclipped. A software gain reduction cannot undo an
+  input that already reaches full scale at the ADC tap.
+
+The ordinary/native workflow above is the 48 kHz recording checkpoint. It does
+not qualify 44.1 kHz recording, interface-rate changes or separate-process/Bitwig
+transport. Those remain open, along with the previously listed limits. The PR is
+ready for review, left unmerged. No playback-transition or UI-refactor slice has
+started automatically.
+
+To reproduce this follow-up without clearing existing audio:
+
+1. Use empty Live 2 and Live 3, the same hardware channels/gains, and the bounded
+   `tests/live-record-check $0` fixture in player 1 with the post-master taps
+   described above. Keep its generated source bus at 0. Before recording, modify
+   only that temporary fixture: disconnect `4 0 → 12 0` and `5 0 → 12 1`, add
+   object 64 `[adc~ 3 4]` and connect its outlets to writesf object 12 inlets 0/1.
+   Add object 65 `[r record-check-export]` → 66 `[soundfiler]`, and object 67
+   `[r record-check-record]` → 68 `[s $1-record_button_bang]`. These are ordinary
+   console `cnv obj/connect/disconnect` operations; do not save them into the
+   application or the shared fixture. Activate DSP after completing the taps.
+2. Arm the main input. Send `record-check symbol fixtures/record-checkpoint-fixed.txt`,
+   then the early and switch scores of the same prefix. Each stops capture and
+   playback at seven seconds. The early score stops Live 3 explicitly, and its
+   writer also retains its independent four-second maximum. Observe Recording,
+   Loaded and `record-check-stopped` in the actual UI/console before proceeding.
+3. After each run, preserve `/tmp/plugmlr-record-check.wav` and its `-events.txt`
+   sibling as `checkpoint-CASE-48.wav` and `checkpoint-CASE-48-events.txt`. Preserve
+   `/tmp/plugmlr-checkpoint-live2.wav` and `...-live3.wav` as `checkpoint-live2-48.wav`
+   and `checkpoint-live3-48.wav`. Place hardware WAVs under ignored `local-input/`,
+   with the event logs in the evidence directory. Run
+   `python3 tests/analyze_record_checkpoint.py docs/evidence/fixed-recording`.
+4. Disarm recording, export all populated live arrays before reloading to remove
+   temporary taps, and restore content bounds separately from capacity. Do not
+   treat reloading as product recall. `checkpoint-restoration.json` records the
+   actual preservation check performed here.
+
+Setup console messages are distinguished from product errors: one empty `cnv`
+command printed `canvas: no method for 'float'`, and the temporary capture receiver
+printed missing-send messages until its mixer taps were attached. The completed
+capture runs reported no recording errors. Final state: Live 2 selected and
+Loaded, Live 1 and Live 3 retained, original sample slots restored, input disarmed,
+recording/playback stopped, companion bus 1 still receiving channels 3/4. Diagnostic
+objects/tabs are closed; the two older control-only tabs remain untouched.
+
 ## Accepted checkpoint, 2026-09-10
 
 The user confirmed the current switching behavior after the mixer-isolation

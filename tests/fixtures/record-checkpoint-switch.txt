@@ -1,0 +1,10 @@
+record-check-player stop;
+record-check-player speed 2;
+record-check-bus 0;
+1-buffer-select live 2;
+100 record-check-player play;
+1400 1-buffer-select sample 1;
+1400 1-buffer-select live 3;
+1400 1-buffer-select sample 2;
+1400 1-buffer-select live 2;
+650 record-check-player stop;

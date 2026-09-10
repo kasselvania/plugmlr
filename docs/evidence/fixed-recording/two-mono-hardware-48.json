@@ -1,0 +1,80 @@
+{
+  "file": "two-mono-hardware-48.wav",
+  "sha256": "10bd42d273036639260658545bac453f22d8e498e3c5a9d6bde3c5d88bee8f7e",
+  "host_rate": 48000,
+  "captured_frames": 288000,
+  "windows": [
+    {
+      "second": 1,
+      "channel": 0,
+      "lag_frames": 1152,
+      "raw_rms": 0.022975679486989975,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 1,
+      "channel": 1,
+      "lag_frames": 1216,
+      "raw_rms": 0.024379421025514603,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 2,
+      "channel": 0,
+      "lag_frames": 1152,
+      "raw_rms": 0.06066269800066948,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 2,
+      "channel": 1,
+      "lag_frames": 1216,
+      "raw_rms": 0.021521933376789093,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 3,
+      "channel": 0,
+      "lag_frames": 1152,
+      "raw_rms": 0.11326927691698074,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 3,
+      "channel": 1,
+      "lag_frames": 1216,
+      "raw_rms": 0.12344526499509811,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 4,
+      "channel": 0,
+      "lag_frames": 1152,
+      "raw_rms": 0.04136906936764717,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    },
+    {
+      "second": 4,
+      "channel": 1,
+      "lag_frames": 1216,
+      "raw_rms": 0.021350331604480743,
+      "gain": 1.0,
+      "maximum_sample_error": 0.0
+    }
+  ],
+  "checks": {
+    "finite": true,
+    "signal_present_in_each_window": true,
+    "window_samples_match_after_independent_alignment": true,
+    "one_shared_stereo_delay": false
+  },
+  "passed": false,
+  "scope": "Measured windows only; no listening or DAW lifecycle claim."
+}

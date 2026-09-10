@@ -1,0 +1,15 @@
+{
+  "file": "final-hardware-take-48.wav",
+  "sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+  "frames": 96000,
+  "finite": true,
+  "peak_LR": [
+    0.8079746961593628,
+    0.5523173809051514
+  ],
+  "rms_LR": [
+    0.12692396342754364,
+    0.08778068423271179
+  ],
+  "scope": "Hardware-source array export. Input waveform and listening remain separate evidence."
+}

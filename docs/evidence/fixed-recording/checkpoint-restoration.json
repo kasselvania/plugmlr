@@ -1,0 +1,24 @@
+{
+  "live_buffers": {
+    "1": {
+      "original_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+      "restored_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+      "identical_export": true,
+      "restored_content_frames": 96000
+    },
+    "2": {
+      "original_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+      "restored_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+      "identical_export": true,
+      "restored_content_frames": 96000
+    },
+    "3": {
+      "original_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+      "restored_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+      "identical_export": true,
+      "restored_content_frames": 60032
+    }
+  },
+  "original_live1_matches_previous_hardware_take": true,
+  "final_state": "Original application reloaded without diagnostic taps. Live 2 selected, input disarmed, playback/recording stopped. Sample slots 1/2 restored. Input gain 1.10, track 0.548, master 0.75, global output 0.90."
+}

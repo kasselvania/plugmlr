@@ -1,0 +1,170 @@
+[
+  {
+    "file": "fixed-record~.pd",
+    "canvases": 1,
+    "objects": 62,
+    "connections": 69,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "input-receive~.pd",
+    "canvases": 1,
+    "objects": 5,
+    "connections": 1,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "input-send~.pd",
+    "canvases": 1,
+    "objects": 17,
+    "connections": 15,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "live-record.pd",
+    "canvases": 1,
+    "objects": 78,
+    "connections": 95,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "record-controls.pd",
+    "canvases": 1,
+    "objects": 11,
+    "connections": 9,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "record-input.pd",
+    "canvases": 1,
+    "objects": 30,
+    "connections": 26,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/fixed-record-check.pd",
+    "canvases": 1,
+    "objects": 37,
+    "connections": 35,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/input-channel-check.pd",
+    "canvases": 1,
+    "objects": 12,
+    "connections": 8,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/input-link-check.pd",
+    "canvases": 1,
+    "objects": 18,
+    "connections": 18,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/link-probe-receive.pd",
+    "canvases": 1,
+    "objects": 20,
+    "connections": 18,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/link-probe-send.pd",
+    "canvases": 1,
+    "objects": 16,
+    "connections": 14,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/live-record-check.pd",
+    "canvases": 1,
+    "objects": 64,
+    "connections": 59,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/live-record-export.pd",
+    "canvases": 1,
+    "objects": 13,
+    "connections": 7,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/local-input-check.pd",
+    "canvases": 1,
+    "objects": 19,
+    "connections": 18,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/pdlink-input-receive~.pd",
+    "canvases": 1,
+    "objects": 19,
+    "connections": 17,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/pdlink-stereo-check.pd",
+    "canvases": 1,
+    "objects": 21,
+    "connections": 21,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "audio-in-subpatch.pd",
+    "canvases": 1,
+    "objects": 52,
+    "connections": 61,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "buffer-panel.pd",
+    "canvases": 1,
+    "objects": 79,
+    "connections": 82,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "live_buffer.pd",
+    "canvases": 1,
+    "objects": 94,
+    "connections": 97,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "mlr.pd",
+    "canvases": 6,
+    "objects": 353,
+    "connections": 212,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "sample_player_rebuild.pd",
+    "canvases": 9,
+    "objects": 984,
+    "connections": 941,
+    "errors": [],
+    "native_load_or_audio_test": false
+  }
+]

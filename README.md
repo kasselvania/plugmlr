@@ -4,9 +4,15 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
-The user accepted the current playback/buffer checkpoint and authorized merging
-PRs #6–#10. STATUS retains each repair's evidence and remaining limits; historical
-draft descriptions refer to its review stage. Recording remains future work.
+The accepted playback/buffer checkpoint is PRs #6–#10. This recording candidate
+adds fresh, fixed-length stereo takes to the original live buffers. It uses a
+local Pd stereo connection between the companion and application, as chosen by
+the user. Separate plugdata-process transport remains unqualified: both tested
+`pdlink~` arrangements shifted the right channel by one Pd block. See the
+[current contract and evidence](docs/STATUS.md#current-inputrecording-recovery-contract).
+The [48 kHz recording checkpoint](docs/STATUS.md#recording-checkpoint-with-the-new-hardware-source)
+now includes real hardware takes, early Stop, recorded/imported switching, and the
+user's report of useful levels with no audible problems in those captures.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
@@ -36,10 +42,10 @@ crossfade between different buffers.
 For a selected live buffer, **grow / sec / bars** sets the next recording's
 length mode; **Amount** sets seconds or whole bars. Bars currently mean 4/4.
 The target duration follows the current project tempo; existing audio does not
-resize or stretch when tempo changes. These are configuration controls only:
-audio recording, growing/trim operations, and recording quantization remain
+resize or stretch when tempo changes. Fixed recording freezes that target at
+Record; grow/trim, pause/resume, overdub and recording quantization remain
 unimplemented. **Clear live** erases the selected live buffer after stopping its
-readers. Imported buffers are replaced through their load controls.
+readers and refuses while recording. Imported buffers use their load controls.
 
 The [speed-control candidate](docs/STATUS.md#speed-control-and-crossover-follow-up)
 orders rate-slew updates and prevents a speed change at the loop endpoint from
@@ -83,6 +89,36 @@ numbered track; passive metadata updates do not redirect other players. Loading
 or clearing stops all players selecting that buffer before changing its arrays.
 Playback remains stopped after a load; press Play when ready. The new ordinary
 message interfaces and native test steps are documented in STATUS.
+
+## Record from standalone hardware input
+
+1. Keep one `mlr.pd` and open **`audio-in-subpatch.pd` in the same standalone
+   plugdata application**. This local bus does not cross separate processes.
+2. In plugdata Audio settings, select the interface and enable the required
+   input channels. Set **Host_L / Host_R** in the companion (this session: 3/4),
+   raise **Volume In** (0–2×; 1 is unity), and choose **Local input bus 1**. Leave Monitor Mix at 0
+   unless deliberate direct monitoring is wanted.
+3. On `mlr.pd`, verify both **Recording input** meters, then enable
+   **Arm_recording_input**. Arming does not detect a connected source: silence
+   will record silence. Keep the companion and DSP running.
+4. Open `pd arrays-samples` → `sample_player_rebuild 1`. Choose an empty
+   `live_buffer` slot, select **sec** or **bars**, and set Amount. This slice
+   accepts 64 host frames through 60 seconds at 44.1/48 kHz; runtime recording
+   evidence currently covers 48 kHz only. Bars use the current 4/4 project tempo.
+5. Press **Record live**. The panel reports Recording, then Loaded and the actual
+   content duration. It stops at the frozen target; **Stop** ends early. A second
+   Record refuses to overwrite existing content; use Clear live deliberately.
+6. Press **Play/Pause**, with track and master gain raised quietly. The existing
+   direction, speed, loop and sample/live-buffer selection operate on the take.
+   No automatic playback follows recording. Switching selection does not redirect
+   an active writer; reselect that live buffer to Stop it early.
+
+Known playback limit: captures still show abrupt steps on some instant-reverse
+and Stop commands. The early-take loop gap is repaired, but this candidate does
+not claim click-free transport.
+
+Takes exist in memory; project recall and exporting recordings through a product
+UI are not implemented. See STATUS for bounded test captures and remaining gates.
 
 For direction/loop checks, use the [repeatable procedure](docs/STATUS.md#repeat-the-direction-check)
 and [control-only panel](tests/reverse-controls.pd). For the prior handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)

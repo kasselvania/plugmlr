@@ -1,0 +1,33 @@
+{
+  "before": {
+    "file": "failed-application-early-48.wav",
+    "sha256": "1e42d290275333f456c08e54be6441d27345646db30ce2ec0498cc0a3afae5a3",
+    "window_seconds": [
+      0.55,
+      2.3
+    ],
+    "max_adjacent_step_player_LR_mixer_LR": [
+      0.07986433804035187,
+      0.03987252339720726,
+      0.011979649774730206,
+      0.005980878137052059
+    ],
+    "longest_silent_run_frames": 64
+  },
+  "after": {
+    "file": "application-early-48.wav",
+    "sha256": "111e8b8a3dc3fef5940e0913f675ddcd0e8a13c9b0b56b96636869d24a57ce6c",
+    "window_seconds": [
+      0.55,
+      2.3
+    ],
+    "max_adjacent_step_player_LR_mixer_LR": [
+      0.0042001851834356785,
+      0.0031383836176246405,
+      0.000630027789156884,
+      0.00047075754264369607
+    ],
+    "longest_silent_run_frames": 0
+  },
+  "scope": "Paired early-take loop window only. Immediate Stop and instant reverse remain separate open transition issues."
+}

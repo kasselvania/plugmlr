@@ -1,0 +1,15 @@
+record-check-player stop;
+record-check-player speed 2;
+record-check-bus 1;
+1_l_b_delete_buffer bang;
+project_bpm 120;
+1_l_b_length bars 1;
+50 1_l_b_record start;
+500 project_bpm 240;
+1_l_b_length bars 4;
+1-buffer-select live 2;
+1700 live-record-export symbol /tmp/plugmlr-record-bars-array.wav;
+1-buffer-select live 1;
+100 record-check-player play;
+2500 record-check-player stop;
+project_bpm 120;

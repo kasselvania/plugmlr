@@ -1,0 +1,29 @@
+{
+  "case": "guards",
+  "host_rate": 48000,
+  "captured_frames": 335918,
+  "capacity_frames": 48000,
+  "content_frames": 0,
+  "errors_reported": [
+    "0 l_b_record_errors 1 Buffer_busy;",
+    "50 l_b_record_errors 1 Set_fixed_length_64_frames_to_60_seconds;",
+    "100 l_b_record_errors 1 Set_fixed_length_64_frames_to_60_seconds;",
+    "150 l_b_record_errors 1 Set_fixed_length_64_frames_to_60_seconds;"
+  ],
+  "checks": {
+    "capture_present": true,
+    "all_samples_finite": true,
+    "expected_content_frames": true,
+    "capacity_matches_frozen_length": true,
+    "empty_arrays_untouched": true,
+    "no_playback": true,
+    "clear_and_invalid_lengths_rejected": true
+  },
+  "files": {
+    "application-guards-48.wav": "3f4578d819570cff0df632750d7346c0dac572a5d8adfad22e3d69b56a7456ac",
+    "application-guards-array-48.wav": "740ff7cc9df23251c3d2c5aa15917183947e740f1414df97898a953f4ad19ce9",
+    "application-guards-48-events.txt": "a5e57e75971180f0101d26be4f9d786d59066d9a21984c5fcfa08ce50faff3b0"
+  },
+  "passed": true,
+  "scope": "Actual recorded arrays and player/mixer samples. No listening, general transition or DAW acceptance."
+}
