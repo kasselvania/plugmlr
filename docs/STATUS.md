@@ -1,4 +1,4 @@
-# Original application: observation and first source trace
+# Original application: observations and functionality map
 
 Recorded 2026-09-09. The baseline is repository main at
 `5f4b801fea36a33599b2a6bb8b2e34eaeeb527a6`, verified against the remote before
@@ -174,17 +174,270 @@ one application instance at a time. Inspect the final loop-bound prints before
 pressing Play. This validates the control-message refresh in the actual patch.
 It is not a rendered-audio test: no new listening verdict, recording, audio
 numerical check, or claim that the alternating silent loops are fixed is made.
-The repaired application is left stopped with its buffer panel open.
+At the end of that comparison, the repaired application was left stopped with
+its buffer panel open. This describes that check, not subsequent user activity.
 
-## Continue in the existing musical order
+## Whole-application functionality map
 
-Finish the loader/metadata handoff, then follow buffer selection and adjustment
-into transport, loop bounds, and play state. Follow those messages into the two
-internal readers and their gain/crossover logic, and then verify the connected
-slice, glide, direction, and visual-feedback paths. Keep the actual patch and
-console visible when reproducing each behavior; record a cause only once the
-source trace and observation support it.
+The user expanded the review to understand **all existing musical functions**
+before choosing further repairs or refactoring. This section reads the actual
+`.pd` declarations, canvas-local `#X connect` edges, trigger order, and matching
+send/receive names. Source references here describe repair candidate
+`0f8c26789ec6e70e815385d6dca88a0c0b92f0ef`; the remote main remains
+`5f4b801fea36a33599b2a6bb8b2e34eaeeb527a6`.
 
-The two readers used for transitions are parts of one musical player. Understand
-and stabilize that player before discussing additional independently controlled
-players. No head-count expansion or new engine framework is part of this update.
+This update changes documentation only. A read-only native UI/console snapshot
+showed the existing application and subsequent user playback messages; it adds
+no controlled behavior or listening result. The observations and load-refresh
+comparison above remain the runtime evidence. Findings below establish wiring
+and gaps, not the audible cause of each reported fault.
+
+### How the existing parts relate
+
+```mermaid
+flowchart LR
+  File[File chooser] --> Sample[Sample arrays and metadata]
+  Live[Live arrays and metadata] --> Selection[Selected buffer and cached bounds]
+  Sample --> Selection
+  Grid[Grid and slice input] --> Quant[Quantization and slice position]
+  Clock[Clock and PPQ] --> Quant
+  Clock --> Motion
+  Quant --> Motion[Transport and frame trajectory]
+  Controls[Play, pause, stop, rate and direction] --> Motion
+  Slew[Rate and direction slew] --> Motion
+  Selection --> Motion
+  Motion --> Loop[Loop boundary detection]
+  Loop --> Motion
+  Motion --> Readers[Two stereo readers and fades]
+  Selection --> Readers
+  Readers --> Mixer[Track and master mixer]
+  Motion --> Display[Local playbar]
+  Rec[Record Arm UI] -. no active writer connection .-> Live
+```
+
+The two readers are internal transition voices within one musical player.
+The active patch also has a master `vline~` used for position snapshots and loop
+detection; each reader has its own `vline~`. They receive related commands but
+are not one physical signal path. This distinction matters when the playbar
+moves during silence.
+
+### Function catalogue
+
+“Connected” below means a source path exists. It is not listening acceptance.
+Player references mean `sample_player_rebuild.pd` unless stated otherwise.
+
+| Function | Actual control, state, and path | Current status |
+| --- | --- | --- |
+| Stereo file load | `sample-data.pd`: `ID-sample-load` → chooser → `soundfiler` → two arrays, frame count, file rate, 16 equal slice lengths, loaded flag. | Load and final bound refresh observed. Success validation, replacement safety, and channel ordering remain open. |
+| Buffer choice and metadata | Main sends default selections for IDs 1–16. Player `buffer_selection_setup_and_logic` and `buffer_&_loop`: type/number select array names, request metadata, and store start/end/rate/slice/content values. Delete dispatches to the selected target. | Substantial selection logic; reselection and type/number identity gaps below. Sample deletion has no handler. |
+| Live storage, clear, and growth metadata | `live_buffer.pd`: two arrays, size query, first-record notifications, first/last indexes, resize, delete/clear, content flag. | Storage/metadata code exists. It does not itself supply an active recording writer. |
+| Play, pause, resume, stop | Player root: flags dispatch initial play or pause/resume; snapshot current frame; rebuild motion; control mixer envelope. Stop clears flags and resets motion/reader selection. | Play and mixer output observed. Pause has a connected mixer-close path. Other transport combinations are not individually validated. |
+| Slicing and jumps | `row_$1` → immediate/quantized selection → slice number × slice size; reverse chooses the next slice boundary; request reader transition and jump after a 1 ms delay. | Existing slicing, not missing by design. A slice jumps into the buffer and continues toward the current loop boundary; it does not automatically loop just that slice. |
+| Position and visual playbar | Internal frame-position messages → ordered bound/rate refresh → duration calculation → `vline~`; 20 ms snapshots update the local playbar. | Moving playbar observed. The visible slider has no outgoing seek connection; it is a display in this version. |
+| Key quantization | PPQ modulo a power-of-two interval; store pending slice; pass it at the selected tick. Immediate and quantized branches share the slice output. | Connected, with toggle meaning and repeated-key ordering problems below. No physical Grid test. |
+| Loop bounds and wrap | `loop_logic`: compare master frame position to end, prepare a reader transition near end, then request start. Bounds are cached from selected-buffer metadata. | Forward-only detector in this version. No complete reverse wrap or dedicated user loop-enable path found. Internal bound controls are present. |
+| Speed | Five presets: 0.25, 0.5, 1, 2, 4. Snapshot position and recalculate remaining duration from rate and file sample rate. | Real speed-control path exists. Magnitude and direction are separate; this is not a signed-rate message contract. |
+| Rate slew/glide | Duration and curve knobs → `curve~` → `cyclone/snapshot~` at a nominal 5 ms interval → updated rate and trajectory; completion latches the target. | Existing glide implementation to retain. Its separate engage toggle has no consumer in this player. |
+| Direction and direction slew | Direction button changes a 0/1 state and chooses the trajectory endpoint. Separate curve/delay logic appears intended to slow to zero, switch direction halfway, and return to the requested speed. | Direction selection exists; loop detection and reader inversion disagree with it. The direction-slew command construction is disconnected. |
+| Clock mode and beat reset | `mlr.pd` derives internal/DAW PPQ and BPM. Player duration calculation has a clock mode; beat-reset selection counts PPQ intervals and emits a reset message. | Clock source code exists. Beat reset ends at an unreceived message; clock-duration inputs include obsolete metadata names. |
+| Reader handoff and crossfade | `tabread_processing` selects stereo arrays. `gain_control_logic` alternates voice 0/1 and sends gain, message-gate, and DSP commands. | Core existing design worth understanding. The two reader implementations and transition handlers are asymmetric. |
+| Recording and overdub | Active player exposes Record Arm and recording flags. Alternative `sampler_playback.pd` contains timed/endless recording decisions and stereo `poke~` writers. | Record Arm has no receiver and there is no writer in the active player. Alternative recording must be traced/recovered as a feature, not inferred from the button. Overdub mixing is unvalidated. |
+| Input, track gain, and master | `mlr.pd` and `mixer.pd`: stereo player output → transport envelope → track gain → master → `dac~`. Separate input/monitoring sketches exist. | Track 1 output heard. Input knobs do not establish a recording route. Track 1 inline mixer duplicates the abstraction used for 2–16. |
+| Grid input and visual feedback | Native OSC/SerialOSC patch routes press coordinates to row messages; LED logic and local playbar messages are separate. Lua handler alternatives are not instantiated by `mlr.pd`. | Only rows 1–6 are connected in the native row dispatcher. LED receives do not match the active player's private playbar publisher. Physical operation unvalidated. |
+
+### Data and state already in use
+
+- **Positions:** buffer metadata, slice offsets, trajectory targets, and reader
+  indexes use sample frames. “End” is populated with frame count `N`, while
+  “first” initially holds zero. There is no consistent checked end-boundary
+  convention around interpolation, wrapping, and reverse entry yet.
+- **Time and rate:** ramp/fade/slew durations use milliseconds; file Hz is divided
+  by 1000 into frames/ms. Free-running duration uses
+  `abs(target - current) / (rate_magnitude * frames_per_ms)`.
+  The active calculation has no explicit zero/invalid-rate guard. Positive
+  rate magnitude plus direction is the existing model; changing that model is
+  outside this catalogue.
+- **Metadata:** sample packets are
+  `ID loaded rate_kHz slice_frames first end`; live packets are
+  `ID rate_kHz first end slice_frames content`. These layouts differ.
+- **Clock subdivisions:** the DAW branch publishes `floor(PPQ * 16)`; the
+  internal branch sends `BPM * 16` to `clock` and counts its events. Key
+  quantization uses `2^menu_index` ticks; beat reset uses `menu_value * 64`
+  ticks for menu values 1–8. `global-transport` can control the internal clock,
+  but no sender for it exists in the active entry graph. Automatic musical
+  alignment is therefore not established simply by selecting clock mode.
+- **Identity:** `$0` isolates much player-local state; `$1` identifies a track/row
+  and its default buffer. Selected buffer type/number can differ from that
+  default, but automatic selection mixes these roles. Arrays, row messages,
+  output buses, BPM, and PPQ remain globally named. Copying a player with the
+  same arguments would not create independent resources.
+- **Timing:** transport flags, selected buffer values, the master trajectory,
+  each reader's trajectory, gain envelopes, and pending delayed DSP-off events
+  are separate state. Refactoring must preserve their ordering while making
+  their owners explicit. Moving boxes into subpatches alone will not do that.
+
+### Concrete gaps and inconsistencies
+
+These are grouped by function rather than reduced to a single suspected cause.
+They are not a claim that fixing one will resolve every playback fault.
+
+**Buffer selection and storage**
+
+1. `sample-data.pd` has no `_s_b_select_bang` or `_s_b_load_up` receiver to return
+   its metadata when a previously loaded buffer is selected. The live equivalent
+   `_l_b_select_bang` is present but unconnected. A selection request does not
+   establish a fresh, complete buffer description. The player also dispatches
+   delete to either buffer type, but only the live buffer has a delete handler.
+2. Both metadata buses in `buffer_&_loop` route on selected number without a
+   corresponding type filter. Sample receipt also fires `$0-loaded_sample`,
+   which selects this player's own `$1` sample number before unpacking the
+   packet. Selecting a different buffer and then loading it needs a specific
+   check for target/cache disagreement; the post-load refresh does not fix this.
+3. Loading directly resizes arrays, publishes a literal loaded flag, and ignores
+   channel metadata. There is no active-reader replacement guard. Live deletion
+   also resizes/clears storage without coordinating readers. Its reset size is
+   a fixed 48000 frames, not a sample-rate-dependent duration.
+4. `live_buffer.pd:18` receives hardcoded `1_l_b_first_record_bang` to obtain the
+   sample rate. Other buffer IDs do not have their own corresponding trigger.
+   The sample loader's `1, 0` channel order differs from the readers' `0, 1`
+   target order; this needs a distinct-channel output check.
+
+**Transport, slices, and clock**
+
+5. Stop uses `s 1-mixer_env_close` at player line 1363, whereas Pause uses
+   `s $1-mixer_env_close` at line 1191. Stopping another track can therefore
+   address channel 1's mixer. Pause itself has both a snapshot/freeze path and
+   that correctly parameterized mixer-close path; it is not wholly absent.
+6. The transition router declares `pause resume stop`, but those outlets have
+   no connections. Stop sends `stop 1` to this unused outlet. Several older
+   envelope/DSP message names likewise have no receivers in the active graph.
+   These branches need classification rather than being carried into a new
+   interface as if they worked.
+7. Slice position uses full-buffer `N / 16` without adding a nonzero first-index
+   offset or clamping the requested slice. Current slicing therefore needs
+   explicit behavior for a changed loop region. The current playbar does not
+   implement mouse seeking.
+8. Quantizer value `1` selects the immediate branch (player lines 410–414),
+   contrary to the apparent “Quantize” checkbox meaning. Its pending-slice `[f]`
+   at line 405 receives new keys at the hot inlet: a second key can pass through
+   an already-open pending gate before the next tick. This is an ordering defect
+   to reproduce with two keys inside one quantization interval.
+9. `$0-reset-sync` at line 394 has no receiver in the active player. The main
+   `stop-playback` button also has no receiver in the active entry graph.
+   `calc_duration` still reads `$1_file_abs_start/end`, published by an alternative
+   loader rather than `sample-data.pd`, and contains load-time placeholder values.
+   Neither beat-reset nor synchronized duration is established by the visible
+   clock controls. Several top-level per-track controls are only wired for track 1.
+
+**Motion, speed, direction, and slew**
+
+10. `loop_logic` (lines 597–648) has only `>=~` end comparisons and restarts from
+    loop start. It has no direction-gated `<=~` start comparison or reverse
+    restart-at-end path. Changing a ramp's direction alone cannot complete this
+    loop implementation.
+11. The pre-transition threshold is `loop_end - samples_per_ms * 3`. Rate changes
+    update the subtraction's cold inlet without recomputing its output. The
+    main update trigger also refreshes bounds before the later duration/rate
+    calculation. Transition lookahead can therefore retain an earlier rate.
+12. Rate slew is connected, but `$0-slew_engaged` has no receiver. Direction slew
+    is more incomplete: `pack f f f f` at line 1338 has no hot-inlet connection;
+    trigger outlets 0 and 1 at line 1336 are unused; the engaged branch's `[f]`
+    at line 1335 has no output connection. Its snapshot toggle is also wired
+    to the interval inlet, unlike the rate-slew path. Reconnecting one wire
+    would not resolve this entire gesture.
+13. The duration calculation divides by rate with no zero case, while the
+    direction-slew sketch targets zero. Stopping at zero, reversing from a
+    boundary, changing bounds during motion, and interrupting a slew need
+    explicit musical behavior before those paths can be made consistent.
+
+**Readers, transitions, and output**
+
+14. Voice 0 connects its initialization counter to `gate~ 2`; voice 1 connects
+    that counter only to a display (lines 965–1151). Voice 1 also lacks voice 0's
+    `main_vline_gate` handler. Thus the two alternating readers do not respond
+    to the same setup/control sequence. This is a concrete structural difference;
+    its contribution to the reported silent pass still needs an audio check.
+15. Both readers contain `expr~ 1 - $v1`, a normalized-phase reversal operation,
+    after a `vline~` carrying frame indexes. On that branch, frame 1000 becomes
+    -999. The direct and transformed branches also both feed the table index
+    inlet. This is an internal units mismatch, not evidence of correctly
+    implemented reverse playback.
+16. Loop/play fades use 6 ms, slice fades 9 ms, while reader DSP-off delays use
+    6 ms. DSP-on does not cancel an already pending DSP-off. Voice 0's emitted
+    fade-bang has no matching handler; voice 1's special fade branch includes
+    unconnected continuation messages. Rapid commands can encounter stale
+    delayed actions, and a slice fade can be cut short. The exact audible
+    effect has not been rendered or measured.
+17. Mixer open ramps over 5 ms; mixer close is `0 0`, immediate. Together with
+    reader envelopes and the master/reader trajectory split, this needs an
+    end-to-end transition check. The source alone does not establish click,
+    dropout, or gain performance.
+
+**Recording, input, and external feedback**
+
+18. Active Record Arm sends `$0-record_button_bang` (line 14) with no receiver.
+    The armed Play outlet is unconnected and there are no `poke~`/`tabwrite~`
+    writers in the active player. Recording flags and live arrays do not make
+    a complete recording path. The alternative writer is described below.
+19. Main Audio 1 input sends `1-live-buffer-in`, which has no active consumer.
+    Other input gain/meter sketches do not complete a writer route. The separate
+    `audio-in-subpatch.pd` input/monitor/`pdlink` patch is not instantiated by
+    `mlr.pd`; its existence is not evidence that main's input controls record.
+20. Local playbar updates use `$0-playbar_data_i`; the main Grid view listens to
+    `1-playbar_data_i` and `2-playhead`. These names do not match the active
+    publisher. Native press dispatch connects rows 1–6, with row 7/8 sends left
+    unwired and no connected row 9–16 dispatcher. Test LED messages and Lua
+    alternatives do not complete that route.
+
+### Useful behavior in the other versions
+
+These references were read for specific behavior, not ranked by filename.
+None was loaded as a replacement, edited, or accepted through runtime testing.
+
+| Source | What is worth understanding or recovering |
+| --- | --- |
+| `sampler_playback.pd` | Has a Record Arm receiver and timed/endless recording decisions, PPQ-aligned record start, first-record metadata, growable storage handling, input gain/gates, and stereo `poke~` writing in `poke_write_processing`. Timed length controls use measures; an existing comment assumes 4/4. “Overdub” controls are present, but input/write gating is not proof of a correct old-audio feedback mix. Full recording behavior remains unvalidated. Also contains the post-load refresh pattern used by the small repair. |
+| `sample_playback_new.pd` and `old-sample_playback_new.pd` | Byte-identical pair. Contains direction-gated forward/reverse boundary comparisons, loop-point messages, and a `play_pause_stop` subpatch. Its very long duration fallback at rate zero is an older choice to inspect, not an adopted pause policy. |
+| `sample-playback.pd` and `old-sample-playback.pd` | Byte-identical pair. Earlier stereo playback, slice/random-slice, loop, beat-reset, quantization, and rate-change paths. The explicit “Slice (plays till end of sample)” comment helps explain the musical meaning of slicing. |
+| `sampler_playback_third.pd` | Earlier rate/curve/snapshot and bidirectional loop work. A reference for those sections; the entire alternative is not independently qualified. |
+| `voice.pd` | Self-contained stereo loading, 16-way and random slice controls, and playback/position experiments. Useful for the simpler original slice path, not the active main abstraction. |
+| `sample-data-new.pd`, `old-sample-data.pd` | Different table/metadata naming schemes. The former publishes `$1_file_abs_start/end`, explaining surviving consumers in the current duration calculation. Do not mix naming schemes without tracing their clients. |
+| `previous_live-buffer.pd` | Separate stereo `poke~` buffer-writer and recording/index metadata. Parent delivery of writer controls needs recovery; not a complete active recorder. |
+| `live-buffer.pd`, `audio-in-subpatch.pd` | Input selection/metering and separate ADC/monitor/`pdlink` routing. `live-buffer.pd` is different from the active `live_buffer.pd` storage component. |
+| `rate-change.pd` | Small snapshot/rate/length sketch with no outlet; not a ready-made reusable speed component. |
+| `monome_grid_handler.pd_lua`, `monome_grid_handler_fixed.pd_lua` | Press filtering, transport/row dispatch, configurable prefix. Both register the same class name; neither is instantiated in the active main path. |
+| Installed `mlr-lite` copy | Its player has bidirectional loop comparisons and simpler direct-index readers with more symmetric gate handling. Writer objects also exist there, but the Record Arm connection is still not established. These are narrow read-only references, not a reason to copy the installed application wholesale. |
+
+### Refactoring boundaries to review
+
+The useful existing design is a buffer-backed musical player with slice/clock
+input, continuous motion, and two readers for transitions. Preserve that story.
+First make the existing subpatches and their state understandable; extract a
+reusable abstraction only when its inputs, outputs, and ordering are clear.
+
+| Part | State it should own | Boundary grounded in the existing code |
+| --- | --- | --- |
+| Buffer storage and description | Arrays, channel order, frame count, file rate, content status; permission to resize/clear. | Build on `sample-data` and `live_buffer`. Selection requests one complete description. Playback rate, transport, and fades do not belong here. |
+| Musical input and timing | Row/column mapping, pending quantized key, interval and clock selection. | Convert controls into slice/jump/transport requests. Keep Grid and beat mapping outside the reader DSP. |
+| Player motion and gestures | Playing/paused state, current frame, loop region, direction, requested/current speed, active slew. | Group existing transport, duration, loop, and slew logic around one ordered trajectory update. Keep rate and direction slew visible subpatches here initially; do not create competing owners of transport flags. |
+| Stereo readers and transition scheduling | Outgoing/incoming reader state, each trajectory, gains, delayed shutdown. | Keep the two-reader design. Make the two command handlers consistent, and coordinate/cancel delayed actions. The readers are not additional musical players. |
+| Recording writer | Write enable/index, first-record length/content, input/overdub behavior. | Recover the existing alternative in a separate later change. Coordinate storage ownership with the buffer; do not hide resize decisions in unrelated playback controls. |
+| Output and feedback | Track/master gain and published display/controller position. | Reuse `mixer.pd`; reconcile track 1's duplicate implementation when appropriate. Report which position is displayed instead of treating the master playbar as proof of an audible reader position. |
+
+Unconnected branches should be marked as unfinished or superseded after checking
+their callers, then repaired or removed in a focused change. They should not
+become new public controls merely because they have names. Historical patches
+remain preserved as references during that work.
+
+The next implementation candidate should be chosen from this map with a concrete
+musical case. Reader setup/command symmetry and coordinated boundary handoff are
+strong candidates for the reported intermittent playback. Direction-aware wrap
+must be assessed with the same reader path. This review does not select an
+unobserved cause or authorize a wholesale replacement.
+
+For each subsequent repair, reproduce the relevant control sequence in the actual
+application with the console visible, inspect the corresponding values, and
+listen/render where the claim concerns audio. Keep those results separate from
+the source trace. There are no new audio renders, numerical audio results, or
+claims of working recording, reverse, glitch-free transitions, or Grid operation
+in this documentation update. No additional-player expansion is part of it.
