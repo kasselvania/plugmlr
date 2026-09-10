@@ -26,3 +26,11 @@
   in the existing player. Preserve rate glide and the two readers. Validate
   actual native output; direction slew, recording, stereo ordering, and a full
   crossfade refactor remain separate work.
+- The agreed tape direction is free-form: instant reverse at the current position
+  or tape slew with permitted drift. Automatic catch-up and clock locking are
+  deferred. Keep the reference effect catalogue separate from implementation.
+- The community device layer is `kasselvania/PlugData-Monome-Devices`, using the
+  lease-aware `kasselvania/serialosc` fork. Follow the pinned suite map in STATUS;
+  their default branches do not identify the lease candidates. Musical mapping
+  belongs here; session ownership, renewal, release and platform installation
+  stay with those projects. Do not claim integration from a documentation link.
