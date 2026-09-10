@@ -1,0 +1,379 @@
+{
+  "capture_sha256": "6e830c6a89e2306a2ba2693f52dee9109c2f1e04c20fdb256f84ced374c44d94",
+  "host_rate": 44100,
+  "frames": 462927,
+  "duration_s": 10.497210884353741,
+  "nonfinite_samples": 0,
+  "peak": [
+    0.10682296752929688,
+    0.07630317658185959
+  ],
+  "windows": [
+    {
+      "seconds": [
+        0.3,
+        1
+      ],
+      "signed_rate": 0.99949951171875,
+      "channel_hz": [
+        220.0,
+        440.0
+      ],
+      "rms": [
+        0.07552726568496929,
+        0.05394769494714677
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        1.3,
+        2
+      ],
+      "signed_rate": 1.0,
+      "channel_hz": [
+        330.0,
+        660.0
+      ],
+      "rms": [
+        0.0752798889674659,
+        0.05379505936630403
+      ],
+      "longest_position_hold_ms": 0.29478458049886624,
+      "passed": true
+    },
+    {
+      "seconds": [
+        2.3,
+        3
+      ],
+      "signed_rate": 1.0,
+      "channel_hz": [
+        550.0,
+        770.0
+      ],
+      "rms": [
+        0.07525144974468623,
+        0.053755318179255815
+      ],
+      "longest_position_hold_ms": 1.3605442176870748,
+      "passed": true
+    },
+    {
+      "seconds": [
+        3.7,
+        4.1
+      ],
+      "signed_rate": -0.99949951171875,
+      "channel_hz": [
+        220.0,
+        440.0
+      ],
+      "rms": [
+        0.07552726616215237,
+        0.05394769383057654
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        4.4,
+        5
+      ],
+      "signed_rate": -0.99949951171875,
+      "channel_hz": [
+        220.0,
+        440.0
+      ],
+      "rms": [
+        0.07552726812302873,
+        0.05394769636896043
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        5.3,
+        5.5
+      ],
+      "signed_rate": 0,
+      "channel_hz": [
+        0.0,
+        0.0
+      ],
+      "rms": [
+        0.0,
+        0.0
+      ],
+      "longest_position_hold_ms": 199.97732426303855,
+      "passed": true
+    },
+    {
+      "seconds": [
+        5.8,
+        6
+      ],
+      "signed_rate": -1.0,
+      "channel_hz": [
+        330.0,
+        660.0
+      ],
+      "rms": [
+        0.07552669683812639,
+        0.05394731687067211
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        6.3,
+        6.5
+      ],
+      "signed_rate": 0,
+      "channel_hz": [
+        0.0,
+        0.0
+      ],
+      "rms": [
+        0.0,
+        0.0
+      ],
+      "longest_position_hold_ms": 199.97732426303855,
+      "passed": true
+    },
+    {
+      "seconds": [
+        6.7,
+        7
+      ],
+      "signed_rate": 0.99949951171875,
+      "channel_hz": [
+        220.0,
+        440.0
+      ],
+      "rms": [
+        0.07552726661933498,
+        0.053947692584892674
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        7.2,
+        7.3
+      ],
+      "signed_rate": 1.0012939453125,
+      "channel_hz": [
+        220.0,
+        440.0
+      ],
+      "rms": [
+        0.07552726617492597,
+        0.05394769454603733
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        7.7,
+        8
+      ],
+      "signed_rate": 1.0,
+      "channel_hz": [
+        330.0,
+        660.0
+      ],
+      "rms": [
+        0.07552669683812639,
+        0.05394731687067211
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        8.4,
+        8.6
+      ],
+      "signed_rate": 0,
+      "channel_hz": [
+        0.0,
+        0.0
+      ],
+      "rms": [
+        0.0,
+        0.0
+      ],
+      "longest_position_hold_ms": 199.97732426303855,
+      "passed": true
+    },
+    {
+      "seconds": [
+        9,
+        9.4
+      ],
+      "signed_rate": 0.99949951171875,
+      "channel_hz": [
+        220.0,
+        440.0
+      ],
+      "rms": [
+        0.07552726614190612,
+        0.05394769485551825
+      ],
+      "longest_position_hold_ms": 0.0,
+      "passed": true
+    },
+    {
+      "seconds": [
+        9.7,
+        10
+      ],
+      "signed_rate": 0,
+      "channel_hz": [
+        0.0,
+        0.0
+      ],
+      "rms": [
+        0.0,
+        0.0
+      ],
+      "longest_position_hold_ms": 299.9773242630385,
+      "passed": true
+    }
+  ],
+  "transitions": [
+    {
+      "command_s": 1.1,
+      "max_sample_step": [
+        0.005035400390625,
+        0.007171630859375
+      ],
+      "longest_near_silence_ms": 14.01360544217687
+    },
+    {
+      "command_s": 2.1,
+      "max_sample_step": [
+        0.008392300456762314,
+        0.008392300456762314
+      ],
+      "longest_near_silence_ms": 14.01360544217687
+    },
+    {
+      "command_s": 3.1,
+      "max_sample_step": [
+        0.01064157485961914,
+        0.05704852379858494
+      ],
+      "longest_near_silence_ms": 0.0
+    },
+    {
+      "command_s": 3.6,
+      "max_sample_step": [
+        0.008392333984375,
+        0.008392333984375
+      ],
+      "longest_near_silence_ms": 14.01360544217687
+    },
+    {
+      "command_s": 4.2,
+      "max_sample_step": [
+        0.0033630530815571547,
+        0.004793249536305666
+      ],
+      "longest_near_silence_ms": 18.004535147392293
+    },
+    {
+      "command_s": 5.1,
+      "max_sample_step": [
+        0.0033600423485040665,
+        0.004786915611475706
+      ],
+      "longest_near_silence_ms": 52.56235827664399
+    },
+    {
+      "command_s": 6.1,
+      "max_sample_step": [
+        0.03257228806614876,
+        0.021171465516090393
+      ],
+      "longest_near_silence_ms": 54.60317460317461
+    },
+    {
+      "command_s": 7.4,
+      "max_sample_step": [
+        0.005035400390625,
+        0.007171630859375
+      ],
+      "longest_near_silence_ms": 14.01360544217687
+    },
+    {
+      "command_s": 8.1,
+      "max_sample_step": [
+        0.008392333984375,
+        0.008392333984375
+      ],
+      "longest_near_silence_ms": 14.01360544217687
+    },
+    {
+      "command_s": 8.3,
+      "max_sample_step": [
+        0.09915009140968323,
+        0.016605550423264503
+      ],
+      "longest_near_silence_ms": 58.86621315192744
+    },
+    {
+      "command_s": 9.5,
+      "max_sample_step": [
+        0.01696685701608658,
+        0.023930778726935387
+      ],
+      "longest_near_silence_ms": 58.68480725623583
+    }
+  ],
+  "switch_steps_below_fixture_limit": true,
+  "selection_events_match": true,
+  "other_kind_update_ignored": true,
+  "stop_cancels_resume": true,
+  "length_configuration_matches": true,
+  "recorded_duration_unchanged": true,
+  "passed": true,
+  "limits": "Short native fixtures; a deliberate fade gap is expected on buffer change. Sample-step and silence measurements are not universal click-free or listening acceptance.",
+  "replacement_checks": {
+    "capture_sha256": "f9c47d085587e715aa60141a6c36d82b3b720f91ba7b5524f5847c28c340a867",
+    "host_rate": 44100,
+    "frames": 44085,
+    "nonfinite_samples": 0,
+    "quiet_windows_s": [
+      [
+        0,
+        0.1
+      ],
+      [
+        0.24,
+        0.49
+      ],
+      [
+        0.53,
+        0.99
+      ]
+    ],
+    "quiet_peaks": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "normal_live_start_rms": [
+      0.07552724695876231,
+      0.05408033273902466
+    ],
+    "passed": true
+  }
+}

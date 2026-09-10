@@ -40,6 +40,8 @@
 #X text 730 375 Mode 0 growing / 1 seconds / 2 bars (4/4).;
 #X text 730 410 Tempo affects this preview only. Content length belongs to the buffer.;
 #X obj 160 665 unpack f f f;
+#X obj 730 465 sel 0;
+#X obj 730 505 t b;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 0;
@@ -92,3 +94,9 @@
 #X connect 40 2 29 2;
 #X connect 40 1 29 1;
 #X connect 40 0 29 0;
+#X connect 8 0 41 0;
+#X connect 9 0 41 0;
+#X connect 41 0 42 0;
+#X connect 4 1 42 0;
+#X connect 5 1 42 0;
+#X connect 42 0 20 0;

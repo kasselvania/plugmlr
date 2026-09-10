@@ -57,6 +57,8 @@ def analyze(path, events_path, config_path):
         result['transitions'].append({'command_s':t,
             'max_sample_step':np.max(abs(np.diff(w,axis=0)),axis=0).tolist(),
             'longest_near_silence_ms':quiet/host*1000})
+    result['switch_steps_below_fixture_limit'] = all(max(t['max_sample_step']) < .025 for t in result['transitions'] if t['command_s'] in (1.1,2.1,3.6,4.2,7.4,8.1))
+    checks.append(result['switch_steps_below_fixture_limit'])
     events = [line.rstrip(';').split() for line in events_path.read_text().splitlines()]
     selections = [(float(e[0]),e[2]) for e in events if e[1]=='buffer']
     expected = [(120,'sample_buffer_1'),(1120,'sample_buffer_2'),(2120,'live_buffer_1'),
@@ -78,8 +80,30 @@ def analyze(path, events_path, config_path):
     result['limits'] = 'Short native fixtures; a deliberate fade gap is expected on buffer change. Sample-step and silence measurements are not universal click-free or listening acceptance.'
     return result
 
+def analyze_replacement(path):
+    x, host = read(path)
+    quiet = [(0, .1), (.24, .49), (.53, .99)]
+    quiet_peaks = [float(abs(x[round(a*host):round(b*host), :2]).max()) for a,b in quiet]
+    w = x[round(.15*host):round(.19*host), :2].astype(float)
+    rms = np.sqrt(np.mean(w*w, axis=0))
+    expected = np.array([3500,2500])/32768/np.sqrt(2)
+    result = {'capture_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+        'host_rate': host, 'frames': len(x),
+        'nonfinite_samples': int((~np.isfinite(x)).sum()),
+        'quiet_windows_s': quiet, 'quiet_peaks': quiet_peaks,
+        'normal_live_start_rms': rms.tolist()}
+    result['passed'] = bool(result['nonfinite_samples'] == 0 and
+        .99 < len(x)/host <= 1.01 and max(quiet_peaks) < 1e-7 and
+        np.all(abs(rms/expected-1) < .025))
+    return result
+
+
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('capture',type=Path);p.add_argument('events',type=Path);p.add_argument('config',type=Path)
+    p.add_argument('--replacement', type=Path, help='Optional one-second replacement race capture')
     a=p.parse_args();r=analyze(a.capture,a.events,a.config)
+    if a.replacement:
+        r['replacement_checks'] = analyze_replacement(a.replacement)
+        r['passed'] = r['passed'] and r['replacement_checks']['passed']
     print(json.dumps(r,indent=2));raise SystemExit(not r['passed'])

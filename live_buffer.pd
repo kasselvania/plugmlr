@@ -76,6 +76,8 @@
 #X obj 1806 10 delay 20;
 #X text 35 540 Selection reports content bounds. Capacity changes do not extend recorded content.;
 #X obj 1960 55 s buffer-will-change;
+#X obj 2050 10 t b b;
+#X text 2050 95 Invalidate content before the clear delay. Selection remains unplayable.;
 #X connect 0 0 1 0;
 #X connect 1 0 19 0;
 #X connect 1 0 59 0;
@@ -152,6 +154,9 @@
 #X connect 71 0 41 0;
 #X connect 71 0 45 0;
 #X connect 72 1 73 0;
+#X connect 72 1 77 0;
+#X connect 77 1 58 0;
+#X connect 77 0 18 0;
 #X connect 72 0 74 0;
 #X connect 74 0 57 0;
 #X connect 73 0 76 0;

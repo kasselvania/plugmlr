@@ -22,9 +22,13 @@
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
   push completed work, and leave any PR unmerged unless the user asks to merge.
-  The current candidate repairs incoming/outgoing reader ownership on top of
-  the separate speed-control candidate. Keep the 6/9 ms fades and shutdown
-  cancellation; test loops, cuts and interrupted transport in the actual player.
+  The buffer-selection candidate sits above the unmerged crossover candidate.
+  Keep recording-length settings separate from content bounds and capacity:
+  tempo changes affect the next recording, never existing audio. Audio writing,
+  growth/trim, pause/resume recording and recording quantization are deferred.
+  Validate type AND number selection, reselection, empty buffers, interrupted
+  switches, stereo ordering and safe load/clear in the native original player.
+  Keep the 6/9 ms fades and shutdown cancellation; test loops, cuts and interrupted transport in the actual player.
   At a speed-boundary collision, the loop handler owns the jump; retime from a
   fresh snapshot after the block. Keep failing recordings bound to their source.
   First-pass crossover evidence does not accept later untested edits. Direction

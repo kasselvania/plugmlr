@@ -53,6 +53,9 @@
 #X text 355 225 Read after the selected players have faded out. No chooser for sample-path.;
 #X text -435 760 Packet: ID content rate_kHz slice_frames first end. Prefix 0 is left.;
 #X obj 730 160 s buffer-will-change;
+#X obj 760 215 t b b;
+#X msg 835 250 0;
+#X text 760 290 Invalidate content during the wait so Play and reselection cannot read changing storage.;
 #X connect 2 0 4 0;
 #X connect 2 1 6 0;
 #X connect 3 0 35 0;
@@ -90,6 +93,11 @@
 #X connect 34 0 35 0;
 #X connect 35 1 39 0;
 #X connect 39 1 38 0;
+#X connect 39 0 48 0;
+#X connect 48 1 49 0;
+#X connect 49 0 29 1;
+#X connect 49 0 41 1;
+#X connect 48 0 27 0;
 #X connect 35 0 40 0;
 #X connect 40 1 36 1;
 #X connect 40 0 37 0;
