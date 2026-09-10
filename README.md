@@ -4,8 +4,8 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
-The accepted playback/buffer checkpoint is PRs #6–#10. This recording candidate
-adds fresh, fixed-length stereo takes to the original live buffers. It uses a
+The accepted checkpoint now includes playback/buffer PRs #6–#10, recording PR #11
+and Stop/restart PR #12. Fresh, fixed-length stereo takes use the original live buffers and a
 local Pd stereo connection between the companion and application, as chosen by
 the user. Separate plugdata-process transport remains unqualified: both tested
 `pdlink~` arrangements shifted the right channel by one Pd block. See the
@@ -19,6 +19,13 @@ existing readers for 6 ms before shutdown. Play during that interval waits for
 cleanup at 9 ms; another Stop cancels it. Recording Stop remains direct, and empty
 buffer playbars report zero. Paired native audio/state checks cover rapid commands
 at 48 kHz; broader transition and host-rate qualification remains separate.
+
+The next [instant-reverse repair](docs/STATUS.md#instant-reverse-continuity-follow-up)
+uses the current ramp position when Direction Change is pressed, eliminating the
+old block-snapshot jump. It keeps the existing readers and loop/slice crossovers.
+Native tests cover all five speeds, rapid turns, loop/fade boundaries and a file/host
+sample-rate mismatch; the user heard clean direction changes in the musical capture.
+Tape-direction slew, remaining speed-slew artifacts and Pause transitions stay open.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
@@ -119,9 +126,10 @@ message interfaces and native test steps are documented in STATUS.
    No automatic playback follows recording. Switching selection does not redirect
    an active writer; reselect that live buffer to Stop it early.
 
-Known playback limit: captures still show abrupt steps on some instant-reverse
-commands. The early-take loop gap and hard Stop now have localized repairs, with
-retained evidence; this does not establish click-free transport for every signal.
+Known playback limits: captures still show abrupt steps during some speed-slew
+and Pause transitions. The early-take loop gap, hard Stop and instant-reverse
+position jump have localized repairs with retained evidence; this does not
+establish click-free transport for every signal.
 
 Takes exist in memory; project recall and exporting recordings through a product
 UI are not implemented. See STATUS for bounded test captures and remaining gates.

@@ -42,6 +42,9 @@
   fresh snapshot after the block. Keep failing recordings bound to their source.
   First-pass crossover evidence does not accept later untested edits. Direction
   slew remains out of scope. Preserve the original playback path.
+  Instant Reverse queries the existing ramp's logical-time position; do not
+  replace it with a stale block snapshot. Check actual reader continuity and
+  signed speed during rapid turns and loop/slice fades, separately from tape slew.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

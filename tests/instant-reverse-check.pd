@@ -1,0 +1,14 @@
+#N canvas 100 80 850 400 12;
+#X text 25 15 Reuse the bounded seven-second capture. Argument: original player dollar-zero.;
+#X obj 25 65 live-record-check \$1;
+#X obj 25 130 r reverse-check-slew;
+#X obj 25 170 s \$1-rate_slew-duration-i;
+#X obj 390 130 r reverse-check-loop;
+#X obj 390 170 unpack f f;
+#X obj 390 220 s \$1-set_active_loop_start;
+#X obj 590 260 s \$1-set_active_loop_end;
+#X text 25 310 Loop controls use original internal file frames. No audio engine or DAC here.;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 5 1 7 0;
