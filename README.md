@@ -4,11 +4,14 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
-The runnable entry point is **[mlr.pd](mlr.pd)**. The current repair initializes
-the second reader and coordinates delayed shutdown in the existing player.
-Fresh Sample 1 playback now continues across both readers' loop turns; the user
-reported “solid playback.” See [the repair and evidence](docs/STATUS.md#reader-initialization-and-shutdown-repair)
-for the native checks and remaining direction, transition, and channel-order gaps.
+The runnable entry point is **[mlr.pd](mlr.pd)**. Small repairs now restore both
+reader turns and bidirectional looping in the existing player. Direction Change
+reverses playback; reverse wraps return to the region end. The current native
+checks also cover reverse startup and repeated direction commands. See
+[the results and remaining limits](docs/STATUS.md#reverse-playback-and-loop-boundaries):
+reverse loop timing, speed/slew ordering, transition quality, and stereo ordering
+still need work. The earlier “solid playback” listening report applies to the
+reader-handoff repair; listening acceptance for this direction repair is open.
 
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
@@ -28,7 +31,8 @@ It is a source review, not a claim that those functions all work in the runtime.
    and both reader turns should be audible. The included drum file has about
    half a second of silence at its end; that short pause is in the source.
 
-For the focused handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)
+For direction/loop checks, use the [repeatable procedure](docs/STATUS.md#repeat-the-direction-check)
+and [control-only panel](tests/reverse-controls.pd). For the prior handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)
 and optional [control-only slice panel](tests/handoff-commands.pd). This is still
 the original application, with its existing shared global control names; open
 only one copy for this check.

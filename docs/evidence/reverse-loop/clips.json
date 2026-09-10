@@ -1,0 +1,56 @@
+[
+  {
+    "clip": "before-missing-wrap.flac",
+    "capture": "before-direction-and-boundary-48k.wav",
+    "start_s": 8,
+    "end_s": 24,
+    "sha256": "172ce830a5e21da8a1da77c21fee3afada841eb49cdad7124fef33433d01e7ef",
+    "capture_sha256": "f9b30cfe3f6e54197c81035206f5e6379821f48f1ad334c76de0dc7d2e66d202",
+    "pcm_exact_to_native_crop": true
+  },
+  {
+    "clip": "before-restart-gain-spike.flac",
+    "capture": "transport-and-boundaries-48k.wav",
+    "start_s": 22.5,
+    "end_s": 25,
+    "sha256": "ec6b05056e0d8daa5a986cd7c534457e107d8f98fac3b0285bbca13ec84780c3",
+    "capture_sha256": "a49b553080628352ab4680f6d98ad9ccfc4a6ca18c847bd9a08c26a6843bfab0",
+    "pcm_exact_to_native_crop": true
+  },
+  {
+    "clip": "repaired-forward.flac",
+    "capture": "final-restart-and-direction-burst-48k.wav",
+    "start_s": 1,
+    "end_s": 20,
+    "sha256": "ffdfd90ba42d10aeb7cfed7ec33f8c26ca5121ad199ef4c636eb70d0730e212f",
+    "capture_sha256": "d062d46c8856d0b1cdcbd977f24d20879a21527c44a55046c71b2b9880ae7963",
+    "pcm_exact_to_native_crop": true
+  },
+  {
+    "clip": "repaired-reverse-restart.flac",
+    "capture": "final-restart-and-direction-burst-48k.wav",
+    "start_s": 32,
+    "end_s": 50,
+    "sha256": "8cbedd58292e775362f18517e4b3510e160cc61160bb140750fba2b6f6091e67",
+    "capture_sha256": "d062d46c8856d0b1cdcbd977f24d20879a21527c44a55046c71b2b9880ae7963",
+    "pcm_exact_to_native_crop": true
+  },
+  {
+    "clip": "repaired-direction-burst.flac",
+    "capture": "final-restart-and-direction-burst-48k.wav",
+    "start_s": 54,
+    "end_s": 69,
+    "sha256": "8fdb1faf7478a5e9b2e8fc212f7401532c64b3771f4e7022665e5a9e7e7d67da",
+    "capture_sha256": "d062d46c8856d0b1cdcbd977f24d20879a21527c44a55046c71b2b9880ae7963",
+    "pcm_exact_to_native_crop": true
+  },
+  {
+    "clip": "repaired-slow-directions.flac",
+    "capture": "final-restart-and-direction-burst-48k.wav",
+    "start_s": 77,
+    "end_s": 100,
+    "sha256": "9b151f157025d4bedcfb3d40876e044f8c29344ea647b6d3b65572748ff1ca62",
+    "capture_sha256": "d062d46c8856d0b1cdcbd977f24d20879a21527c44a55046c71b2b9880ae7963",
+    "pcm_exact_to_native_crop": true
+  }
+]

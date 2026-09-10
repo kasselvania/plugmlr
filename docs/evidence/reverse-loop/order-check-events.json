@@ -1,0 +1,29 @@
+{
+  "time_reference": "Seconds after startRecord returned; native audio starts slightly earlier",
+  "events": [
+    {
+      "s": 0.579,
+      "action": "fresh_play"
+    },
+    {
+      "s": 21.128,
+      "action": "direction_to_reverse"
+    },
+    {
+      "s": 45.975,
+      "action": "region_1_to_3"
+    },
+    {
+      "s": 54.587,
+      "action": "half_speed"
+    },
+    {
+      "s": 78.738,
+      "action": "double_speed"
+    },
+    {
+      "s": 89.111,
+      "action": "direction_to_forward_at_double"
+    }
+  ]
+}

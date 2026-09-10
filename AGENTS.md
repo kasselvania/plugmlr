@@ -21,7 +21,8 @@
   Do not launch additional audio-producing test patches into the user's session
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
-  push completed work, and leave any PR unmerged. The current repair targets
-  reader initialization and shutdown during the existing loop/slice handoff.
-  Validate in the native application with retained output; do not expand this
-  into the remaining direction, recording, or architecture work automatically.
+  push completed work, and leave any PR unmerged unless the user asks to merge.
+  The current repair targets direction changes and bidirectional loop wrapping
+  in the existing player. Preserve rate glide and the two readers. Validate
+  actual native output; direction slew, recording, stereo ordering, and a full
+  crossfade refactor remain separate work.

@@ -1,0 +1,41 @@
+{
+  "time_reference": "Seconds after startRecord returned; native recording starts slightly earlier",
+  "events": [
+    {
+      "s": 0.566,
+      "action": "fresh_forward_play"
+    },
+    {
+      "s": 22.767,
+      "action": "double_speed_forward"
+    },
+    {
+      "s": 31.185,
+      "action": "stop_before_reverse_restart"
+    },
+    {
+      "s": 31.455,
+      "action": "select_reverse_stopped"
+    },
+    {
+      "s": 32.107,
+      "action": "restart_reverse_double"
+    },
+    {
+      "s": 50.679,
+      "action": "region_reverse_1_to_3"
+    },
+    {
+      "s": 61.343,
+      "action": "three_direction_toggles_same_event"
+    },
+    {
+      "s": 71.386,
+      "action": "half_speed_forward"
+    },
+    {
+      "s": 90.952,
+      "action": "direction_reverse_at_half"
+    }
+  ]
+}
