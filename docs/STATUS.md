@@ -7,6 +7,20 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Accepted checkpoint, 2026-09-10
+
+The user confirmed the current switching behavior after the mixer-isolation
+repair at `60ee22c13b081183753228939e4fc118df519c03` and explicitly authorized
+merging the original-application stack, PRs #6 through #10, into main. This is
+acceptance of the working playback/buffer checkpoint. It does not implement
+recording or close the documented transition, DAW, device-integration and
+multi-instance limits. The failed R1 experiment and its stash remain separate.
+
+The sections below preserve observations at their original source revisions.
+Their draft/unmerged descriptions are historical review states, not instructions
+to reopen completed slices. Human confirmation of normal application behavior
+is separate from listening to every retained diagnostic capture.
+
 ## Buffer selection and recording-length settings
 
 Work starts from `33418a6dc7cafe00399b37f4f6a32ff4155f5d49` on
@@ -267,8 +281,9 @@ repair. No user audio was copied into retained repository evidence.
 
 ### Review and next boundary
 
-This remains a draft stacked above PR #9, not merged main. Remaining gates:
-listening to this candidate and normal menu/knob usability; direct Stop/Clear/
+The user accepted the current normal switching behavior and authorized the
+checkpoint merge. Remaining work includes broader menu/knob usability and
+listening coverage; direct Stop/Clear/
 reverse transition repairs; multiple simultaneously selected tracks during
 replacement; huge-length limits for an actual allocator. Recording audio,
 allocation/growth/trim, recording pause/resume, quantization, MIDI/host clock,

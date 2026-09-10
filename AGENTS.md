@@ -24,7 +24,8 @@
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
   push completed work, and leave any PR unmerged unless the user asks to merge.
-  The buffer-selection candidate sits above the unmerged crossover candidate.
+  The accepted checkpoint includes the original playback, crossover, buffer
+  selection and mixer-isolation repairs (PRs #6–#10).
   Keep recording-length settings separate from content bounds and capacity:
   tempo changes affect the next recording, never existing audio. Audio writing,
   growth/trim, pause/resume recording and recording quantization are deferred.

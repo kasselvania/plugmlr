@@ -4,6 +4,10 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
+The user accepted the current playback/buffer checkpoint and authorized merging
+PRs #6–#10. STATUS retains each repair's evidence and remaining limits; historical
+draft descriptions refer to its review stage. Recording remains future work.
+
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
 reverse or an audible tape slew, with timing drift allowed. The
@@ -53,7 +57,7 @@ Native validation found and repaired a competing speed-boundary jump and a
 brief shutdown-related gain dip. The original two readers and 6/9 ms fades are
 retained. Bounded audio/state captures, failing controls and limitations are
 recorded in STATUS. Rapid reader reuse is still not universally click-free;
-tape-direction slew remains separate work. The PR stays unmerged.
+tape-direction slew remains separate work. The user accepted this work as part of the playback/buffer checkpoint.
 
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
