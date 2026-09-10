@@ -1,0 +1,5 @@
+#N canvas 100 80 700 300 12;
+#X text 25 15 Test-only curve adapter. Reuse instant-reverse-check and bounded-player-capture separately.;
+#X obj 25 75 r speed-check-curve;
+#X obj 25 120 s \$1-rate_slew_curve_i;
+#X connect 1 0 2 0;

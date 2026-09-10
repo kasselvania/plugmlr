@@ -5,7 +5,7 @@ slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
 The accepted checkpoint now includes playback/buffer PRs #6–#10, recording PR #11
-and Stop/restart PR #12. Fresh, fixed-length stereo takes use the original live buffers and a
+and Stop/restart/instant-reverse PRs #12–#13. Fresh, fixed-length stereo takes use the original live buffers and a
 local Pd stereo connection between the companion and application, as chosen by
 the user. Separate plugdata-process transport remains unqualified: both tested
 `pdlink~` arrangements shifted the right channel by one Pd block. See the
@@ -20,12 +20,17 @@ cleanup at 9 ms; another Stop cancels it. Recording Stop remains direct, and emp
 buffer playbars report zero. Paired native audio/state checks cover rapid commands
 at 48 kHz; broader transition and host-rate qualification remains separate.
 
-The next [instant-reverse repair](docs/STATUS.md#instant-reverse-continuity-follow-up)
+The merged [instant-reverse repair](docs/STATUS.md#instant-reverse-continuity-follow-up)
 uses the current ramp position when Direction Change is pressed, eliminating the
 old block-snapshot jump. It keeps the existing readers and loop/slice crossovers.
 Native tests cover all five speeds, rapid turns, loop/fade boundaries and a file/host
 sample-rate mismatch; the user heard clean direction changes in the musical capture.
-Tape-direction slew, remaining speed-slew artifacts and Pause transitions stay open.
+Tape-direction slew and Pause transitions remain open; the speed follow-up is below.
+
+The [speed-slew position repair](docs/STATUS.md#speed-slew-position-follow-up) now
+uses that same current-position calculation for rate reports. Paired native
+captures remove the oversized position jumps during glide; the user heard clean
+musical glides/reversals. Pause and simultaneous region/slice changes remain open.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
@@ -126,8 +131,8 @@ message interfaces and native test steps are documented in STATUS.
    No automatic playback follows recording. Switching selection does not redirect
    an active writer; reselect that live buffer to Stop it early.
 
-Known playback limits: captures still show abrupt steps during some speed-slew
-and Pause transitions. The early-take loop gap, hard Stop and instant-reverse
+Known playback limits: simultaneous loop-region/slice changes and Pause can
+still produce abrupt steps. The early-take loop gap, hard Stop and instant-reverse
 position jump have localized repairs with retained evidence; this does not
 establish click-free transport for every signal.
 

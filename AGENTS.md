@@ -38,11 +38,11 @@
   Playback Stop must finish its fade/cleanup before a queued Play rechecks buffer
   readiness. Another Stop cancels that Play. Keep recording Stop's direct timing
   separate from playback shutdown, and check empty-buffer playbar output is finite.
-  At a speed-boundary collision, the loop handler owns the jump; retime from a
-  fresh snapshot after the block. Keep failing recordings bound to their source.
+  At a speed-boundary collision, the loop handler owns the jump; query the current
+  ramp position after the boundary retry. Keep failing recordings bound to their source.
   First-pass crossover evidence does not accept later untested edits. Direction
   slew remains out of scope. Preserve the original playback path.
-  Instant Reverse queries the existing ramp's logical-time position; do not
+  Instant Reverse and speed updates query the existing ramp's logical-time position; do not
   replace it with a stale block snapshot. Check actual reader continuity and
   signed speed during rapid turns and loop/slice fades, separately from tape slew.
 - Establish an automatic capture stop before starting any diagnostic recording.
