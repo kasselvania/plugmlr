@@ -2,8 +2,9 @@
 
 Recorded 2026-09-09. The baseline is repository main at
 `5f4b801fea36a33599b2a6bb8b2e34eaeeb527a6`, verified against the remote before
-creating `codex/original-playback-observations`. This update changes documentation
-only. The current job is to understand and harden the existing musical path in
+creating `codex/original-playback-observations`. That initial update changed
+documentation only; the authorized load-refresh repair is recorded below.
+The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
 ## Preserved work and source map
@@ -109,7 +110,8 @@ This ordering is consistent with the observed console sequence: after loading,
 start `0`. It identifies a metadata handoff problem to isolate. It does **not**
 establish the cause of the subsequent alternating silent passes.
 
-Three local candidates from this trace, with no implementation changes yet:
+Three local candidates recorded by the initial trace (the first is now repaired
+as described below; the other two remain unimplemented):
 
 | Candidate | Existing evidence and narrow next check |
 | --- | --- |
@@ -123,6 +125,56 @@ metadata packets have different layouts (`l_b_buffer_states` is
 has no `_select_bang` or `_load_up` receiver to republish metadata on reselection.
 The loader also resizes its arrays directly. Selection, alignment, swapping, and
 replacement behavior therefore need observation before refactoring.
+
+## Follow-up: complete the post-load refresh
+
+The user advanced the first candidate. On `codex/fix-sample-load-refresh`, the
+active player's unreceived `s $0-loaded_update_indexes` is replaced by `sel 1`,
+and its matching outlet is connected to the existing `s $0-update_indexes` in
+`buffer_&_loop`. This is one object replacement and one connection. It recovers
+the completion behavior found in `sampler_playback.pd` without adding a relay.
+`unpack` emits the loaded flag last, after storing the end, start, slice size,
+and sample rate, so the refresh reads the newly stored values. Object numbering
+and every other existing connection remain unchanged.
+
+Native plugdata checks, in the same runtime identified above:
+
+| Check | Observed result |
+| --- | --- |
+| Fresh original application, load `DrumLoop.wav`, do not press Play. | Console player ID `1471` ends the load with `loop_end: 48000`, `loop_start: 0`. Reproduces stale active bounds. |
+| Close that stopped instance, reopen the repaired `mlr.pd`, load the same file, do not press Play. | Player ID `1753` ends the load with `loop_end: 631881`, `loop_start: 0`. |
+| Load the user's `SC_ICD_90_synth_chords_sunny_Cmaj.wav` into Sample 1 while still stopped. | The same player ends the load with `loop_end: 470400`, `loop_start: 0`. `afinfo` independently reports stereo 24-bit PCM, 44100 Hz, 470400 frames, 10.666667 seconds. The user's file is not included in the repository. |
+| Open another load chooser and cancel it. | No new load-result messages; the buffer panel still shows start `0`, end `470400`, rate `44.1` samples/ms. |
+| Inspect the repaired `buffer_&_loop` in the actual application. | The new `sel 1` connection and those master values are visible. Play has not been pressed during these comparisons. |
+
+The initial selection still prints the previous bounds before completion. The
+repair adds the missing final refresh; it does not make selection/loading atomic
+or make replacement under an active reader safe. Loading while playing was not
+tested. The loader's unchecked success flag and channel-order candidate remain
+unchanged.
+
+The before-repair chooser was opened by clicking Sample 1 Load. Pointer attempts
+after reopening were inconclusive, so the repaired loads used plugdata's console
+to select the same existing `bng_1` (inspector send symbol `1-sample-load`) and
+send `bang`, followed by the native file chooser. No helper audio patch was opened.
+This confirms the existing load-message path; it is not a general pointer/UI test.
+
+An explicit error-only console inspection showed three errors caused by the
+agent's navigation attempts: `canvas: no method for 'sample_player_rebuild_1_1'`,
+`canvas: no method for 'buffer_&_loop'`, and
+`No object found for: pd_buffer_&_loop_indexes_data_1`. These were not emitted by
+loading. The inspection showed no additional errors. Console history was not
+cleared, and both message and error visibility were restored. For future read-only
+inspection, the working console sequence is `ls`, then `sel` with the exact
+listed object ID, then `vis 1` and `deselect`; `cnv` sends a canvas message and
+does not navigate to a child by name.
+
+Repeat the first two rows using the original observation commit and this repair,
+one application instance at a time. Inspect the final loop-bound prints before
+pressing Play. This validates the control-message refresh in the actual patch.
+It is not a rendered-audio test: no new listening verdict, recording, audio
+numerical check, or claim that the alternating silent loops are fixed is made.
+The repaired application is left stopped with its buffer panel open.
 
 ## Continue in the existing musical order
 
