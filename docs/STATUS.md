@@ -7,6 +7,47 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Buffer selection and recording-length settings
+
+Work starts from `33418a6dc7cafe00399b37f4f6a32ff4155f5d49` on
+`codex/buffer-selection-and-length`, above the unmerged crossover candidate.
+Remote main is `fc17d598a60d4531b3beac78d1a49eccc5ad660d`.
+
+### Contract before implementation
+
+- A buffer is identified by its kind (sample/imported or live/recordable) and
+  number, independently of the track selecting it. Preserve the existing stereo
+  arrays and reader DSP. Selection must obtain that buffer's stored metadata;
+  updates for another kind or number must not change the selected player.
+- Recording-length settings belong to the live buffer. Modes are growing,
+  fixed seconds, and fixed bars. Seconds are positive finite values; bars are
+  positive whole numbers. The existing application uses four quarter-note beats
+  per bar. A bars preview is `bars * 4 * 60 / project_bpm` seconds. Invalid or
+  unavailable tempo cannot resolve a bar duration. MIDI clock is not implemented.
+- The user explicitly confirmed: changing tempo does not resize, stretch or
+  otherwise change recorded audio. The next recording will use the new tempo.
+  Configuration and duration preview do not alter arrays, stored content bounds,
+  playback rate or loop points. Actual audio length and allocated capacity are
+  distinct; empty reserved arrays are not recorded content.
+- Growing mode specifies an unknown final duration. The later recording slice
+  must establish the usable end on stop/pause and define resume and allocation
+  behavior. This slice does not implement a writer, physical growth/trim,
+  overdubbing or quantized recording start/stop. Do not advertise those controls
+  as operational. Recording start/stop timing remains separate from length mode.
+- Selection during playback and its fade/restart policy are being clarified with
+  the user before that dependent implementation. Existing playback units remain
+  source frames internally, file rate in frames/ms, and the current five speed
+  magnitudes plus separate direction. This is not a new playback engine.
+
+Source recovery: `sampler_playback.pd` contains the 1–8-measure menu, 4/4 tempo
+conversion, PPQ start logic and stereo capacity-doubling at 90 percent. Those
+recording paths are not connected through the active player. `sample-data.pd`
+does not answer selection requests; `live_buffer.pd` has an unconnected selection
+receiver and treats allocation size as its last index on load-up. The active
+player filters metadata by number without kind isolation and its load side effect
+can override a chosen buffer with the track's own sample number. These are source
+findings, not new recording-runtime evidence.
+
 ## Preserved work and source map
 
 The rejected rewrite is preserved on `codex/r1-shared-buffer-playback` at
