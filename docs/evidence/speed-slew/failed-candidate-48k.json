@@ -1,0 +1,268 @@
+{
+  "sample_rate": 48000,
+  "channels": 4,
+  "frames": 1152000,
+  "duration_s": 24.0,
+  "nonfinite_samples": 0,
+  "audio_peak": [
+    0.9733219742774963,
+    0.9760098457336426
+  ],
+  "constant_position_runs": [
+    {
+      "interval_s": [
+        0.1,
+        20
+      ],
+      "start_s": 2.0013125,
+      "duration_s": 14.0
+    },
+    {
+      "interval_s": [
+        22.1,
+        23
+      ],
+      "start_s": 22.1,
+      "duration_s": 0.0
+    }
+  ],
+  "windows": [
+    {
+      "start_s": 0.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.9999996456546989,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.38732468578558016,
+        0.4151684086064115
+      ],
+      "audio_step_max": [
+        0.23933762311935425,
+        0.1828470230102539
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999791800489934,
+          0.999978967289532
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0001661620669724,
+          1.0001574881601003
+        ]
+      }
+    },
+    {
+      "start_s": 2.5,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.006664633750915527,
+        0.04938924312591553
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 4.5,
+      "rate_control_median": 2.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.006664633750915527,
+        0.04938924312591553
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 6.5,
+      "rate_control_median": 0.25,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.006664633750915527,
+        0.04938924312591553
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 10.5,
+      "rate_control_median": 4.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.006664633750915527,
+        0.04938924312591553
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 12.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.006664633750915527,
+        0.04938924312591553
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 15.2,
+      "rate_control_median": 2.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.006664633750915527,
+        0.04938924312591553
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 16.5,
+      "rate_control_median": 2.0,
+      "moving_rate_mean": -2.0000001771726503,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.1952856368176818,
+        0.22651992013026384
+      ],
+      "audio_step_max": [
+        0.3453313112258911,
+        0.3317101448774338
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9981094869756254,
+          0.9984854942371525
+        ],
+        "lag_samples": -1,
+        "gain": [
+          0.9986069245520282,
+          0.9990160144084861
+        ]
+      }
+    },
+    {
+      "start_s": 18.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": -0.9999996456546989,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.12125493052162413,
+        0.1911403269711363
+      ],
+      "audio_step_max": [
+        0.10175270214676857,
+        0.10968513786792755
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.999971630959502,
+          0.9999893640574344
+        ],
+        "lag_samples": -1,
+        "gain": [
+          1.0001976379544533,
+          1.0000256917270358
+        ]
+      }
+    },
+    {
+      "start_s": 20.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 21.5,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "start_s": 22.3,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.4999999889267094,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        8.662075378687414e-08,
+        8.831581908248354e-08
+      ],
+      "audio_step_max": [
+        4.2345013184785785e-07,
+        3.6971849226574705e-07
+      ]
+    },
+    {
+      "start_s": 23.3,
+      "rate_control_median": 0.5,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "slew_control_medians": {
+    "14.1": 0.9099558591842651,
+    "14.2": 0.848832905292511,
+    "14.3": 1.0433835983276367,
+    "14.9": 2.0
+  },
+  "source_sample_rate": 44100,
+  "source_sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+  "input_sha256": "453efacbb41263b34b339d21f684b974ccf1a935e9bcd31d265d2522dcf31c25",
+  "sequence": "speed-sequence.pd"
+}

@@ -19,6 +19,16 @@ reverse loop timing, speed/slew ordering, transition quality, and stereo orderin
 still need work. The earlier “solid playback” listening report applies to the
 reader-handoff repair; listening acceptance for this direction repair is open.
 
+The [speed-control candidate](docs/STATUS.md#speed-control-and-crossover-follow-up)
+orders rate-slew updates and prevents a speed change at the loop endpoint from
+leaving playback stuck. Bounded native captures now cover all five speeds, an
+interrupted slew, instant reverse, and stop/restart at 44.1 and 48 kHz. The
+[retained results and reproduction steps](docs/STATUS.md#native-follow-up-boundary-collision)
+include the failed candidate. Reader probes confirm that both readers jump
+during a fade. The user heard clean changes with no clicks in the repaired drum
+capture; crossover repair and tape-direction slew remain open. This is still a
+draft candidate, not a universal click-free playback claim.
+
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
 identifies incomplete connections, and proposes small refactoring boundaries.

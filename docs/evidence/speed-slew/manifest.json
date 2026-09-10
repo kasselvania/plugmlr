@@ -1,0 +1,179 @@
+{
+  "purpose": "Actual original plugdata player captures; source review and bounded native evidence for draft PR 8.",
+  "base_commit": "51e8f70d2956c9994e808b2946e8aa5524d45eb4",
+  "failed_candidate_commit": "66adfe08d702d592afe947dd11f2b5e64027be49",
+  "runtime": {
+    "path": "/Applications/plugdata.app",
+    "about_version_observed": "0.9.4",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "binary_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+    "backend": "CoreAudio",
+    "output_device": "MacBook Pro Speakers",
+    "input_device": "MacBook Pro Microphone",
+    "buffer_samples": 512,
+    "host_rates_executed": [
+      48000,
+      44100
+    ],
+    "host_rate_restored": 48000,
+    "output_gain": 0.8,
+    "limiter": false,
+    "oversampling": 1
+  },
+  "source_audio": {
+    "path": "DrumLoop.wav",
+    "sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+    "sample_rate": 44100,
+    "frames": 631881,
+    "channels": 2
+  },
+  "patch_sha256": {
+    "base": "d32045767b48bdd854859e8bf38e647f28b67f8e0bce2efc67810ee8eae45006",
+    "failed_candidate": "2a088c25fce063815950f27172b201377bf3c0994ce38b0a632da01ebde78bd2",
+    "repaired": "d7124ee4b869b6c57ee6ca7ad56e46bac334bfa99db8b116a4e03154bf427941"
+  },
+  "source_and_test_sha256": {
+    "sample_player_rebuild.pd": "d7124ee4b869b6c57ee6ca7ad56e46bac334bfa99db8b116a4e03154bf427941",
+    "tests/bounded-player-capture.pd": "34152fdb1f3e41f59b479c27f42c1d830dd89ea37a3f14cb9fbac01791527d65",
+    "tests/speed-sequence.pd": "e4221628d7cfcfee9bb0e69627b3a685183473b22ad2a0d5683bbac34d1e3b78",
+    "tests/cut-sequence.pd": "41a5dfa6befee16e5b3b2bc7a0d700348e9470eb4b1049bd4d9a147e88701c66",
+    "tests/analyze_speed_capture.py": "04cf461520a6a4909489e3ccc7809034057ebd7fcc79e494ca0ede05e37a8e81"
+  },
+  "capture_channels": [
+    "player_stereo_left",
+    "player_stereo_right",
+    "master_source_frame",
+    "rate_magnitude",
+    "reader_0_source_frame",
+    "reader_0_gain_raw",
+    "reader_1_source_frame",
+    "reader_1_gain_raw"
+  ],
+  "captures": {
+    "baseline-48k": {
+      "native_player_id": 3401,
+      "patch": "base",
+      "channels": 4
+    },
+    "failed-candidate-48k": {
+      "native_player_id": 3638,
+      "patch": "failed_candidate",
+      "channels": 4
+    },
+    "repaired-48k": {
+      "native_player_id": 4110,
+      "patch": "repaired",
+      "channels": 8
+    },
+    "repaired-44100": {
+      "native_player_id": 4110,
+      "patch": "repaired",
+      "channels": 8
+    },
+    "cuts-48k": {
+      "native_player_id": 4110,
+      "patch": "repaired",
+      "channels": 8
+    }
+  },
+  "automatic_stop": {
+    "scheduled_capture_ms": {
+      "speed": 24000,
+      "cuts": 8000,
+      "setup_check": 3000
+    },
+    "scheduled_playback_stop_ms": {
+      "speed": 23000,
+      "cuts": 7000
+    },
+    "setup_check_original_wav_sha256": "91dcf4737007b6569d6d427f20338063ceccd42fc49cc870591b5028d7874b2f"
+  },
+  "exclusions": [
+    "Earlier unbounded native-output recording stopped by user: not acceptance evidence.",
+    "Initial dynamic tap produced header-only file before explicit DSP graph rebuild: rejected."
+  ],
+  "limitations": [
+    "Stereo is pre-mixer actual player output, not physical speaker capture.",
+    "Inside switch~ s~ taps repeat their last block while disabled; raw gain sum is not actual output gain.",
+    "Linear source interpolation and integer lag search do not close waveform/gain fidelity.",
+    "Original channel ordering remains swapped.",
+    "No DAW, background-focus, direction-slew or multi-instance acceptance in this pass."
+  ],
+  "listening": {
+    "artifact": "repaired-48k.flac",
+    "observer": "user",
+    "report": "its clean. i dont hear any clicks",
+    "scope": "Only this capture; not universal click-free acceptance."
+  },
+  "artifacts": {
+    "auto-stop-check.npz": {
+      "bytes": 4908,
+      "sha256": "c23fe7f238185d14333370dd26c6a1fa2c51cba2de396cea601063cf632c4040"
+    },
+    "baseline-48k.flac": {
+      "bytes": 2824533,
+      "sha256": "e73d7afab3cef27cc3a828c3260b9185d986b45661442b1af9df76b1142979e7"
+    },
+    "baseline-48k.json": {
+      "bytes": 7968,
+      "sha256": "24d35727c136b59b57ef16fc9bfeb6d9038e6f14db51464bb120c93880ee04ee"
+    },
+    "baseline-48k.npz": {
+      "bytes": 10238581,
+      "sha256": "8e35eef8af9000f524a0dc7779e0700336c2b341ecdce8ce4f32110eb8c766cd"
+    },
+    "checks.json": {
+      "bytes": 682,
+      "sha256": "cc8bd8f64bfc2898cad1000016c3fb8193488b869cf3192fc401cc97df3f6e4c"
+    },
+    "cuts-48k.flac": {
+      "bytes": 868060,
+      "sha256": "8c910b5f4672933ee9498f6d193ddc8b22246ecef82c3a79bd769d04d50f2f3d"
+    },
+    "cuts-48k.json": {
+      "bytes": 6371,
+      "sha256": "f95cc74db3e9811fdddd7ab60cd5e5a2394461738b83cbb81202da403a39b8c3"
+    },
+    "cuts-48k.npz": {
+      "bytes": 4356962,
+      "sha256": "ff1159889891fe1c8397733cc43dba27a5b314824c12eb57eec51e3cc47a7230"
+    },
+    "failed-candidate-48k.flac": {
+      "bytes": 978005,
+      "sha256": "40fd4628e5e201204afa41e2fa3d82aeba3b2af2d1058179e0ba61cd057bf0ed"
+    },
+    "failed-candidate-48k.json": {
+      "bytes": 5642,
+      "sha256": "57049ad03a84f83e1331f8387d1c90eebc63ef93cdf6f0bc15ffbb23a68eef88"
+    },
+    "failed-candidate-48k.npz": {
+      "bytes": 3473142,
+      "sha256": "9e6a7e199a3e3272bf154f0f31298ccef7a539ff34fd8519679f67eae53cf741"
+    },
+    "repaired-44100.flac": {
+      "bytes": 2647395,
+      "sha256": "8b9a0a226fbb875510460cd36f5adf1849dc1f9efbd975c268a2e011681d8988"
+    },
+    "repaired-44100.json": {
+      "bytes": 11461,
+      "sha256": "621bb96307afa22292d51a620c5bc7aa62a9fe0e1fa8a5fc98fa03d550c62177"
+    },
+    "repaired-44100.npz": {
+      "bytes": 11348111,
+      "sha256": "027ee65cabfff3de636f76b5ff3f3347f1635b1be8a54d1fc8337b383e5a2a07"
+    },
+    "repaired-48k.flac": {
+      "bytes": 2821093,
+      "sha256": "f58cbffedfaab9983d32b13146d6d886aaa79fcd4da8a09c63fae5001c7e796b"
+    },
+    "repaired-48k.json": {
+      "bytes": 11106,
+      "sha256": "0da4a47dd5ceff496c13c6b043ebb56fc15830f9235a7b1b5137367bf01a467c"
+    },
+    "repaired-48k.npz": {
+      "bytes": 13783481,
+      "sha256": "00fc17749cc11b462be3474c5cf1f4e2aa00281dee39452862c27ec471efd173"
+    }
+  }
+}
