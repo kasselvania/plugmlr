@@ -1,0 +1,193 @@
+{
+  "sample_rate": 44100,
+  "frames": 352682,
+  "channels": 10,
+  "duration_s": 7.997324263038549,
+  "nonfinite_samples": 0,
+  "handoffs": [
+    {
+      "time_s": 1.0024489795918368,
+      "master_from_to": [
+        44143.99609375,
+        315941.40625
+      ],
+      "reader_frame_deltas": [
+        1.0,
+        -315939.59375
+      ],
+      "gain_taps_at_jump": [
+        0.9977344274520874,
+        0.0022655841894447803
+      ],
+      "audio_step_at_jump": [
+        0.00013651722110807896,
+        0.003476247424259782
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 1.0124489795918368,
+      "master_from_to": [
+        220.39920043945312,
+        157971.15625
+      ],
+      "reader_frame_deltas": [
+        1.0,
+        157971.15625
+      ],
+      "gain_taps_at_jump": [
+        0.8348360061645508,
+        0.002265564166009426
+      ],
+      "audio_step_at_jump": [
+        0.018548905849456787,
+        0.018344908952713013
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    },
+    {
+      "time_s": 4.002448979591836,
+      "master_from_to": [
+        39733.99609375,
+        473911.65625
+      ],
+      "reader_frame_deltas": [
+        1.0,
+        473911.65625
+      ],
+      "gain_taps_at_jump": [
+        0.9977403879165649,
+        0.0022596244234591722
+      ],
+      "audio_step_at_jump": [
+        0.060812920331954956,
+        0.057907283306121826
+      ],
+      "only_incoming_retargeted": true,
+      "incoming_reader": 1,
+      "incoming_above_005": false
+    }
+  ],
+  "ownership_failures": 0,
+  "incoming_reuse_above_005": 0,
+  "audio_peak": [
+    0.9830549359321594,
+    0.9753605127334595
+  ],
+  "transport_windows": [
+    {
+      "interval_s": [
+        1.05,
+        1.15
+      ],
+      "mean_frames_per_sample": 1.0,
+      "audio_rms": [
+        0.4193466431115406,
+        0.48445392146148425
+      ],
+      "audio_peak": [
+        0.9697603583335876,
+        0.9631540179252625
+      ]
+    },
+    {
+      "interval_s": [
+        2.01,
+        2.1
+      ],
+      "mean_frames_per_sample": -1.0,
+      "audio_rms": [
+        0.164292543249947,
+        0.16718770206563038
+      ],
+      "audio_peak": [
+        0.9696365594863892,
+        0.967197835445404
+      ]
+    },
+    {
+      "interval_s": [
+        3.02,
+        3.09
+      ],
+      "mean_frames_per_sample": 0.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_peak": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "interval_s": [
+        3.12,
+        3.22
+      ],
+      "mean_frames_per_sample": 0.9999999030968261,
+      "audio_rms": [
+        0.5022586739684797,
+        0.5660405183084034
+      ],
+      "audio_peak": [
+        0.9697651863098145,
+        0.9697655439376831
+      ]
+    },
+    {
+      "interval_s": [
+        4.02,
+        4.12
+      ],
+      "mean_frames_per_sample": 0.9999999307834472,
+      "audio_rms": [
+        0.5335181309904539,
+        0.5829973474716057
+      ],
+      "audio_peak": [
+        0.9697679281234741,
+        0.9697604179382324
+      ]
+    },
+    {
+      "interval_s": [
+        7.02,
+        7.5
+      ],
+      "mean_frames_per_sample": 0.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_peak": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "dsp_flags_present": true,
+  "gain_windows": [
+    {
+      "time_s": 1.0024489795918368,
+      "gain_sum_min": 0.0,
+      "gain_sum_max": 1.0000000298023224
+    },
+    {
+      "time_s": 1.0124489795918368,
+      "gain_sum_min": 0.8371015703305602,
+      "gain_sum_max": 1.0
+    },
+    {
+      "time_s": 4.002448979591836,
+      "gain_sum_min": 0.0,
+      "gain_sum_max": 1.0000000298023224
+    }
+  ],
+  "gain_limit": "DSP flags and raw ramps are block-ordered probes; compare any deficit with actual stereo output before attributing an audible dropout.",
+  "input_sha256": "01d65dcfc08721f7cb92ce742bee4b2722eda27d53b8b7b0e3443c7a7e152a03"
+}

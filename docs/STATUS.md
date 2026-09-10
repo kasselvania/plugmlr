@@ -1323,13 +1323,13 @@ existing dual-reader design working as a handoff, not a new musical playhead.
 The largest steps across wider windows can still be source transients; the
 single-boundary reduction is not a universal click/audibility threshold.
 
-### Final edits and validation interruption
+### Earlier validation interruption (subsequently resumed below)
 
 Source review after the first capture found that stopping could leave the
 previous owner's trajectory gate open. The final edit closes **both** gates on
 stop; initial play then opens reader 0. This extra gate message and three
 connections were **not loaded in native** before UI access failed. The retained
-`first-pass-source.patch`, applied to this candidate's source, reconstructs the
+`first-pass-source.patch`, applied to the player at `87e491f`, reconstructs the
 exact earlier source represented by the recordings. It removes only that later
 stop-gate edit; the snapshot was reconstructed from the known edit sequence,
 not saved by the native patch UI.
@@ -1351,14 +1351,14 @@ service or installed runtime was restarted, and no alternate runtime or message
 socket was substituted. A read-only one-second process sample showed the main
 thread servicing its event loop; it does not identify the chooser/control failure
 cause or establish that all UI paths were responsive. The user was asked to
-cancel the chooser and report whether the main responds. Last verified state
-is that chooser; successful reload/restoration is not claimed.
+cancel the chooser and report whether the main responds. At that interruption,
+reload/restoration was unverified. The resumed results below supersede that state.
 
 **Listening:** no new report for the crossover capture yet. The earlier report
 of clean playback/no clicks belongs to PR #8's speed capture and is not silently
 transferred to this candidate.
 
-### Continue validation
+### Procedure used for resumed validation
 
 Use the bounded-capture attachment/reload procedure above. On the final source,
 attach `[tests/bounded-player-capture 1 ID]`, `[tests/speed-sequence 1 ID]`,
@@ -1392,3 +1392,140 @@ connections**; `git diff --check` passes. The ownership checker rejects the
 retained common-jump baseline and accepts all first-pass handoffs. These checks
 do not close final-native, shutdown/gain, 44.1 kHz, listening or UI-restoration
 gates. The follow-up PR remains draft and unmerged, separate from PR #8.
+
+### Resumed native validation: endpoint collision
+
+The user cleared the chooser and native UI readback recovered. The final
+stop-gate source and ten-channel fixture loaded as player 4818. Fresh settings:
+CoreAudio, 48000 Hz, 512 samples, MacBook Pro Speakers/Microphone, 1x oversampling.
+All three bounded schedules ran at 48 and 44.1 kHz and stopped themselves.
+The 48 kHz speed/cut captures passed ownership; the user listened to those
+specific recordings and reported no clicks, pops or other artifacts.
+
+The 44.1 kHz speed recording is a failing control: at 14.023401 s, both readers
+jump from 132300 to 44100.980 while the outgoing gain is 0.996221. The stereo
+adjacent step is 0.009044 / 0.047866. The speed endpoint guard inherited from
+PR #8 starts a loop itself before the signal boundary handler changes reader
+ownership. The two trajectories are individually gated but both jumps can
+reach the same audio block. This is a source implementation failure.
+
+Amended contract before the localized repair: a speed snapshot at the traversal
+endpoint does not issue a new trajectory. The existing signal boundary handler
+owns the wrap and uses the latest rate. Suppress the stale endpoint request
+instead of turning it into another jump; preserve ordinary in-region retiming,
+the 6/9 ms gain ramps, slice delay and shutdown cancellation. Re-run both rates.
+
+The silent constant-array check (0-sample_buffer_1 = 0.125,
+1-sample_buffer_1 = 0.25, same frame count and actual player) isolated output
+gain. Native speaker output was set from 0.8 to 0 during the check. At 44.1 kHz,
+the ordinary cut lost less than 0.0004% level, while the rapid burst briefly
+lost 1.5004%. This actual-output measurement is much smaller than the raw
+DSP-flag/gain-tap deficit, confirming those probes cannot define output gain.
+Amended shutdown contract: retain the 6/9 ms ramps and cancellation on reader
+reuse; wait 12 ms before disabling the outgoing reader. The extra 3 ms covers
+two default 64-sample Pd blocks at the tested 44.1/48 kHz rates. It delays only
+DSP shutdown, not the cut or its fade. No claim for other block sizes/rates.
+
+The first endpoint-suppression candidate passed 44.1 kHz but failed rate
+responsiveness at 48 kHz: the 2.5 s window remained at 1x instead of 0.5x,
+4.5 s stayed at 0.5x instead of 2x, and 10.5 s stayed at 0.25x instead of 4x.
+Its `repaired-speed-48k` filename is historical, not an acceptance label.
+`endpoint-skip-only.patch` reconstructs that source from `87e491f`.
+The endpoint was sometimes a stale snapshot after the wrap had already used
+the preceding rate. Simply dropping it lost the speed update until the next
+wrap. Final amended behavior: defer that position request by 3 ms (two default
+64-sample blocks at the tested rates), then use the existing playing/paused
+guards and a fresh snapshot. Stop cancels the pending request. The boundary
+handler still owns the jump; no new reader, queue or fade policy is introduced.
+
+### Reading the retained crossover evidence
+
+Artifact names reflect when they were made; `final-` and `repaired-` are not
+acceptance labels. `manifest.json` binds these stages explicitly:
+
+- `first-pass-*`: initial ownership source, before the stop-gate edit.
+- `final-*`: source `87e491f`, now loaded with the stop-gate edit. This includes
+  the failed 44.1 kHz speed recording and the two 48 kHz recordings the user
+  listened to.
+- `repaired-*`: endpoint suppression and 12 ms shutdown, before the deferred
+  snapshot correction. The 48 kHz speed result is a retained failure.
+- `verified-*`: the deferred endpoint request plus 12 ms shutdown, tested in
+  player 5294. These are the final source's regression recordings.
+
+The ten-channel native recorder's WAV header underreports the final data chunk
+by a few milliseconds. Retained NPZ/FLAC and analyses use ffmpeg's decoding of
+the declared chunk, not invented/padded duration. All scheduled playback events
+end about one second before recording stops, so those events remain covered.
+This diagnostic fixture is not acceptance of the application's recording tools.
+
+To repeat the constant-level check, stop the actual player and mute plugdata's
+output slider. After loading DrumLoop.wav for the frame count and metadata,
+send `0-sample_buffer_1 const 0.125` and `1-sample_buffer_1 const 0.25` through
+the console, then run the same bounded cut sequence. Analyze with
+`python tests/analyze_crossover.py CAPTURE.wav --mode constant`. The actual
+output should stay at 0.125/0.25 across the 1.99–2.03 and 3.99–4.04 s windows.
+Reload DrumLoop.wav while stopped and restore the output slider afterward.
+The disk file is never edited. This measures gain continuity; constant source
+values cannot establish the audibility of arbitrary-position musical cuts.
+
+### Final crossover results and handoff
+
+The final player source is SHA-256
+`7ca0c6a2d4923ec175f76cfffc57d10f6f29020bf0f6f633fac7b1218b53dafd`.
+It was loaded through the original `mlr.pd` as player **5294** in Mac plugdata
+**0.9.4 / 98ae0f78b / Pd 0.56.3**. Binary identity was rechecked. The actual UI,
+loader messages, playbar and console were inspected; each recorder printed
+`capture-stopped`. Speaker output was muted only for the constant-array checks.
+No other runtime, service, dependency or adjacent repository was changed.
+
+| Final-source check | 48 kHz host | 44.1 kHz host |
+| --- | --- | --- |
+| Loop handoffs preserve outgoing trajectory | 13/13 | 13/13 |
+| Single cut and 2 ms burst preserve outgoing trajectory | 10/10 | 10/10 |
+| Cuts around stop/restart and pause/resume | 3/3 handoffs; resumes correctly | 3/3 handoffs; resumes correctly |
+| Speed windows: 1, 0.5, 2, 0.25, 4, 1, 2, -2, -1, stop, stop, 0.5, stop | Within 0.001 of requested multipliers | Within 0.001 |
+| Longest active master hold in speed schedule | 1.313 ms | 1.429 ms |
+| Brief commanded pause in transport schedule | About 2 ms, then resumes | About 2 ms, then resumes |
+| Stopped windows, including cancelled pending slice | Zero stereo output | Zero stereo output |
+| Non-finite samples | None in all three captures | None in all three captures |
+
+At the formerly failing **14.023401 s** 44.1 kHz boundary, the outgoing reader
+now stays at 132300 while the incoming reader moves to 44100.980. The stereo
+adjacent step falls from **0.009044 / 0.047866** to **0.0000342 / 0.0001809**.
+The 48 kHz source remains the 44.1 kHz drum file, so that run includes file/host
+sample-rate mismatch. All schedules retain the original loader/player path.
+
+Separately, the 12 ms shutdown change passed constant-output cuts at both host
+rates: exactly unity gain in the measured ordinary-cut and burst windows.
+Those `repaired-constant-*` captures precede the final deferred-speed-snapshot
+edit; their source identity is recorded, and they are not mislabeled as final
+source captures. The ordinary 6/9 ms fades and their interruption policy remain.
+Eight rapid cuts still reuse a reader above gain 0.05, so arbitrary-source
+rapid cutting can still create a discontinuity even with correct ownership.
+No universal click-free or waveform-fidelity claim is made.
+
+`checks.json` records numerical assertions and retained-file round trips.
+Final NPZ samples equal the decoded native WAV samples; stereo FLAC conversion
+error is below 1.3e-7. The transport checker was corrected to exclude only actual
+stop-to-zero resets, rather than also hiding musical cuts just before stop.
+It now checks all three scheduled handoffs around transport changes.
+Final structural checks: **10 canvases / 1008 objects / 968 connections**, no
+index errors; recorder and transport fixtures pass their source checks too.
+These checks are separate from the native audio evidence.
+
+**Listening:** the user's “no clicks or pops or other artifacts” report applies
+to `final-speed-48k.flac` and `final-cuts-48k.flac`, source `87e491f`. Fresh
+listening of the later `verified-*` recordings remains open. So do arbitrary
+source/burst audibility, foreground/background reliability, other block sizes
+and host rates, full DAW lifecycle, the existing file-loader channel ordering,
+and direction slew. No new musical head, recording/overdub feature, mapping,
+clock integration, or device-service change was implemented.
+
+After the last capture, the host was restored to **48000 Hz / 512 samples**,
+output **0.8**, with the same devices. The main was closed/reloaded without
+saving temporary diagnostic objects; **DrumLoop.wav is loaded, playback is
+stopped, the original main is visible, and no diagnostic recorder is attached**
+(restored player 5532). Mixer controls are the original reload defaults; raise
+track 1 and Master Volume for speaker playback. The failed-experiment stash is
+unchanged. PR #9 remains draft and unmerged above the separate PR #8 branch.
+Do not start direction slew or another slice automatically.

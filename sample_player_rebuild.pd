@@ -1032,7 +1032,7 @@
 #X obj 195 318 vline~;
 #X obj -110 -237 t b b b;
 #X msg -78 -202 1;
-#X obj 942 168 delay 9;
+#X obj 942 168 delay 12;
 #X msg 942 205 0;
 #X obj 950 409 print dsp_on;
 #X obj 148 -32 lb;
@@ -1057,7 +1057,7 @@
 #X obj 1090 110 sel 1;
 #X msg 1090 151 stop;
 #X text 938 71 Cancel pending shutdown when this reader is reactivated.;
-#X text 934 292 Shutdown waits for the longest existing fade (9 ms).;
+#X text 934 292 9 ms fade plus two 64-sample blocks at 44.1/48 kHz before shutdown.;
 #X obj 942 132 bang;
 #X obj 135 455 s~ \$0-voice_0_position_sig;
 #X obj 430 455 s~ \$0-voice_0_gain_sig;
@@ -1135,7 +1135,7 @@
 #X obj 334 47 f;
 #X obj 345 -76 * 6;
 #X obj 1025 207 print dsp_off;
-#X obj 960 152 delay 9;
+#X obj 960 152 delay 12;
 #X msg 942 205 0;
 #X obj 148 -32 lb;
 #X msg 148 -6 0;
@@ -1165,7 +1165,7 @@
 #X obj 1090 110 sel 1;
 #X msg 1090 151 stop;
 #X text 938 71 Cancel pending shutdown when this reader is reactivated.;
-#X text 934 292 Shutdown waits for the longest existing fade (9 ms).;
+#X text 934 292 9 ms fade plus two 64-sample blocks at 44.1/48 kHz before shutdown.;
 #X text -38 -108 Initialize the direct reader outlet before playback.;
 #X obj 960 119 bang;
 #X obj 135 455 s~ \$0-voice_1_position_sig;
@@ -1507,11 +1507,16 @@
 #X obj -849 1300 t f f;
 #X text -1200 1197 Zero ms: set the curve and publish the target without sampling an older audio block., f 32;
 #X text -1200 1367 Positive ms: curve reports share one ordered rate-then-position update., f 32;
-#X obj 1500 1325 expr if($f3 > $f2 && (($f4 == 0 && $f1 >= $f3) || ($f4 != 0 && $f1 <= $f2)) \, if($f4 == 0 \, $f2 \, $f3) \, $f1), f 62;
-#X text 1500 1240 A speed update at the traversal endpoint starts the next loop. Do not overwrite a wrap with a zero-distance ramp., f 56;
+#X obj 1500 1325 expr if($f3 > $f2 && (($f4 == 0 && $f1 >= $f3) || ($f4 != 0 && $f1 <= $f2)) \, -1 \, $f1), f 62;
+#X text 1500 1240 At the endpoint defer a stale speed snapshot. The signal boundary handler owns the wrap., f 56;
 #X obj 2107 275 t b b b;
 #X msg 1990 238 stop;
 #X text 2370 307 Commit slice ownership immediately before its stored trajectory. Stop cancels a pending slice., f 48;
+#X obj 1500 1380 moses 0;
+#X obj 1430 1420 bang;
+#X obj 1430 1455 delay 3;
+#X obj 1430 1490 s \$0-slew_bang;
+#X text 1500 1450 Retry after two 64-sample blocks. Existing transport guards apply and stop cancels it.;
 #X connect 485 0 508 0;
 #X connect 508 2 483 0;
 #X connect 508 1 481 0;
@@ -1973,4 +1978,9 @@
 #X connect 219 0 506 1;
 #X connect 178 0 506 2;
 #X connect 183 0 506 3;
-#X connect 506 0 240 0;
+#X connect 506 0 511 0;
+#X connect 511 1 240 0;
+#X connect 511 0 512 0;
+#X connect 512 0 513 0;
+#X connect 513 0 514 0;
+#X connect 509 0 513 0;

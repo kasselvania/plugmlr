@@ -1,0 +1,159 @@
+{
+  "sample_rate": 48000,
+  "channels": 10,
+  "frames": 383906,
+  "duration_s": 7.9980416666666665,
+  "nonfinite_samples": 0,
+  "audio_peak": [
+    0.975941002368927,
+    0.9759158492088318
+  ],
+  "constant_position_runs": [
+    {
+      "interval_s": [
+        0.1,
+        7
+      ],
+      "start_s": 0.1,
+      "duration_s": 0.0
+    }
+  ],
+  "windows": [
+    {
+      "start_s": 0.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.9999998671205121,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.21829126976084087,
+        0.19048747171727826
+      ],
+      "audio_step_max": [
+        0.03368775546550751,
+        0.02941056340932846
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999981801554183,
+          0.9999979116186197
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0000901484219766,
+          1.0000695346337662
+        ]
+      }
+    },
+    {
+      "start_s": 2.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.9999978739281941,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.21649389874572345,
+        0.18923232509979593
+      ],
+      "audio_step_max": [
+        0.034374892711639404,
+        0.029998764395713806
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999982899466727,
+          0.9999980927467395
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0000510749232545,
+          1.0000964591835364
+        ]
+      }
+    },
+    {
+      "start_s": 4.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.9999998671205121,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.03669540027331183,
+        0.03657086476667117
+      ],
+      "audio_step_max": [
+        0.022832900285720825,
+        0.023473426699638367
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9999942363623683,
+          0.9999941605889107
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.002192099681229,
+          1.0021510754923184
+        ]
+      }
+    },
+    {
+      "start_s": 6.5,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.9999996456546989,
+      "position_hold_fraction": 0.0,
+      "audio_rms": [
+        0.04172335600096196,
+        0.04156538887407703
+      ],
+      "audio_step_max": [
+        0.4100652299821377,
+        0.30815645307302475
+      ],
+      "source_match": {
+        "channel_mapping": [
+          "source_right",
+          "source_left"
+        ],
+        "correlation": [
+          0.9955751878405839,
+          0.9953403948566747
+        ],
+        "lag_samples": 1,
+        "gain": [
+          1.0567435052439484,
+          1.0592782189904497
+        ]
+      }
+    },
+    {
+      "start_s": 7.3,
+      "rate_control_median": 1.0,
+      "moving_rate_mean": 0.0,
+      "position_hold_fraction": 1.0,
+      "audio_rms": [
+        0.0,
+        0.0
+      ],
+      "audio_step_max": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "simultaneous_reader_jumps": [],
+  "gain_tap_limit": "Disabled switch~ readers repeat their final s~ block; raw gain sum is not output gain.",
+  "source_sample_rate": 44100,
+  "source_sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+  "input_sha256": "c249f3b31e4599979ed99a639e307f61509dc03269804a820c6b5b699710f3c8",
+  "sequence": "cut-sequence.pd"
+}

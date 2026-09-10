@@ -25,6 +25,8 @@
   The current candidate repairs incoming/outgoing reader ownership on top of
   the separate speed-control candidate. Keep the 6/9 ms fades and shutdown
   cancellation; test loops, cuts and interrupted transport in the actual player.
+  At a speed-boundary collision, the loop handler owns the jump; retime from a
+  fresh snapshot after the block. Keep failing recordings bound to their source.
   First-pass crossover evidence does not accept later untested edits. Direction
   slew remains out of scope. Preserve the original playback path.
 - Establish an automatic capture stop before starting any diagnostic recording.

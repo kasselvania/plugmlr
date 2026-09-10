@@ -30,12 +30,12 @@ capture; crossover repair and tape-direction slew remain open. This is still a
 draft candidate, not a universal click-free playback claim.
 
 The [crossover candidate](docs/STATUS.md#incoming-reader-ownership-candidate)
-connects the incoming/outgoing trajectory gates and starts handoffs with their
-new positions. Its first native 48 kHz run preserves the outgoing reader at all
-13 tested wraps and 10 slice jumps. Final stop/restart and 44.1 kHz validation
-remain open after a file-chooser/UI-control interruption. The implementation
-and bounded tests are retained for continuation; no universal click-free claim
-is made for rapid reader reuse.
+keeps the outgoing reader on its old trajectory during a loop or slice fade.
+Native validation found and repaired a competing speed-boundary jump and a
+brief shutdown-related gain dip. The original two readers and 6/9 ms fades are
+retained. Bounded audio/state captures, failing controls and limitations are
+recorded in STATUS. Rapid reader reuse is still not universally click-free;
+tape-direction slew remains separate work. The PR stays unmerged.
 
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
