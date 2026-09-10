@@ -13,6 +13,8 @@
 - Separate direct UI/console observations, user listening reports, source
   findings, and untested hypotheses in `docs/STATUS.md`. An empty error view is
   not proof of correct playback. A model or log is not an audio test.
+  For output-loss or cross-track claims, capture the actual mixer as well as
+  the player; a pre-mixer tap cannot detect a wrongly closed mixer envelope.
 - Keep changes small and within the authorized scope. Do not replace the entry
   point, bulk-format patches, or import an alternative player wholesale. Read
   alternatives where they contain useful behavior; names are not authority.
@@ -22,9 +24,14 @@
   as an incidental diagnostic.
 - Use a dedicated `codex/` branch. Verify the final changed paths, commit and
   push completed work, and leave any PR unmerged unless the user asks to merge.
-  The current candidate repairs incoming/outgoing reader ownership on top of
-  the separate speed-control candidate. Keep the 6/9 ms fades and shutdown
-  cancellation; test loops, cuts and interrupted transport in the actual player.
+  The accepted checkpoint includes the original playback, crossover, buffer
+  selection and mixer-isolation repairs (PRs #6–#10).
+  Keep recording-length settings separate from content bounds and capacity:
+  tempo changes affect the next recording, never existing audio. Audio writing,
+  growth/trim, pause/resume recording and recording quantization are deferred.
+  Validate type AND number selection, reselection, empty buffers, interrupted
+  switches, stereo ordering and safe load/clear in the native original player.
+  Keep the 6/9 ms fades and shutdown cancellation; test loops, cuts and interrupted transport in the actual player.
   At a speed-boundary collision, the loop handler owns the jump; retime from a
   fresh snapshot after the block. Keep failing recordings bound to their source.
   First-pass crossover evidence does not accept later untested edits. Direction

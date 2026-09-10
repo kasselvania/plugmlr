@@ -7,6 +7,291 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Accepted checkpoint, 2026-09-10
+
+The user confirmed the current switching behavior after the mixer-isolation
+repair at `60ee22c13b081183753228939e4fc118df519c03` and explicitly authorized
+merging the original-application stack, PRs #6 through #10, into main. This is
+acceptance of the working playback/buffer checkpoint. It does not implement
+recording or close the documented transition, DAW, device-integration and
+multi-instance limits. The failed R1 experiment and its stash remain separate.
+
+The sections below preserve observations at their original source revisions.
+Their draft/unmerged descriptions are historical review states, not instructions
+to reopen completed slices. Human confirmation of normal application behavior
+is separate from listening to every retained diagnostic capture.
+
+## Buffer selection and recording-length settings
+
+Work starts from `33418a6dc7cafe00399b37f4f6a32ff4155f5d49` on
+`codex/buffer-selection-and-length`, above the unmerged crossover candidate.
+Remote main is `fc17d598a60d4531b3beac78d1a49eccc5ad660d`.
+
+### Contract and candidate behavior
+
+- A buffer is identified by its kind (sample/imported or live/recordable) and
+  number, independently of the track selecting it. Preserve the existing stereo
+  arrays and reader DSP. Selection must obtain that buffer's stored metadata;
+  updates for another kind or number must not change the selected player.
+- Recording-length settings belong to the live buffer. Modes are growing,
+  fixed seconds, and fixed bars. Seconds are positive finite values; bars are
+  positive whole numbers. The existing application uses four quarter-note beats
+  per bar. A bars preview is `bars * 4 * 60 / project_bpm` seconds. Invalid or
+  unavailable tempo cannot resolve a bar duration. MIDI clock is not implemented.
+- The user explicitly confirmed: changing tempo does not resize, stretch or
+  otherwise change recorded audio. The next recording will use the new tempo.
+  Configuration and duration preview do not alter arrays, stored content bounds,
+  playback rate or loop points. Actual audio length and allocated capacity are
+  distinct; empty reserved arrays are not recorded content.
+- Growing mode specifies an unknown final duration. The later recording slice
+  must establish the usable end on stop/pause and define resume and allocation
+  behavior. This slice does not implement a writer, physical growth/trim,
+  overdubbing or quantized recording start/stop. Do not advertise those controls
+  as operational. Recording start/stop timing remains separate from length mode.
+- The contract above was written before implementation. With no preference reply
+  on switching behavior, this candidate uses: fade the existing readers to zero
+  over 6 ms, commit the latest selection after 20 ms, then restart from the new
+  region's beginning (exclusive end in reverse) if the player was running.
+  Stopped/paused selection stays stopped. Stop cancels any pending restart;
+  empty selection rejects Play. The brief silence is intentional. This policy
+  is a candidate default, not a separately confirmed user choice.
+- Existing playback units remain zero-based source frames internally, exclusive
+  end, file rate in frames/ms, and five speed magnitudes plus separate direction.
+  Content seconds are `(end - first) / (rate_kHz * 1000)`. No new seek, rate-zero,
+  slew, or loop-boundary behavior is introduced. The original two internal stereo
+  readers remain one musical player; prefix 0 is left, prefix 1 right.
+- Loading/replacing or clearing announces the affected kind/number, stops selected
+  players, marks its content unavailable during the 20 ms wait, then changes
+  storage. Selection during the wait therefore cannot restore readiness from
+  stale metadata. Loading stays stopped; failed imports become empty/unplayable.
+  This is not seamless live replacement. Direct historical writer messages
+  remain internal, unvalidated paths, not a supported concurrent recording API.
+
+Source recovery: `sampler_playback.pd` contains the 1–8-measure menu, 4/4 tempo
+conversion, PPQ start logic and stereo capacity-doubling at 90 percent. Those
+recording paths are not connected through the active player. `sample-data.pd`
+does not answer selection requests; `live_buffer.pd` has an unconnected selection
+receiver and treats allocation size as its last index on load-up. The active
+player filters metadata by number without kind isolation and its load side effect
+can override a chosen buffer with the track's own sample number. These are source
+findings, not new recording-runtime evidence.
+
+
+### Implemented boundaries and messages
+
+| Patch | Change in this candidate |
+| --- | --- |
+| `buffer-selection.pd` | Extracts the existing selection responsibility: kind + number, metadata request, menu feedback, latest request, stop/fade/restart. |
+| `sample-data.pd` | Reuses soundfiler and stereo arrays; answers selection requests, fixes L/R load order, separates explicit load from passive publication. |
+| `live_buffer.pd` | Reuses live arrays and existing content messages; fixes buffer-1 hardcoding, keeps allocated capacity separate from recorded bounds, clears content safely. |
+| `record-length.pd` | Pure message configuration and preview, owned by each live buffer. Does not write or resize audio. |
+| `buffer-panel.pd` | Selected identity, Empty/Loaded, content seconds, next recording mode/amount/target. Imported controls cannot change a live buffer accidentally. |
+| `sample_player_rebuild.pd` | Uses these controls around existing DSP; gates unready playback and switches table names before new playback starts. |
+
+Ordinary Pd messages (N and TRACK are integers 1–16):
+
+- `TRACK-buffer-select sample N` or `TRACK-buffer-select live N`.
+  Invalid kind, fractional/out-of-range number or nonnumeric ID is ignored.
+- `N-sample-path symbol PATH` uses the same importer as the existing chooser.
+  A successful explicit load selects Sample N in Track N; other tracks keep
+  their own selection. Metadata packets are still the original global buses.
+- `N_l_b_length dynamic`, `seconds VALUE`, `bars VALUE`, or `get`.
+  Seconds must be positive finite; bars positive finite whole numbers. Invalid
+  amounts retain and republish the previous configuration. Unknown commands are
+  ignored. Settings last for the session only.
+- `l_b_length_states` publishes `N mode amount target_seconds ready`.
+  Modes 0/1/2 are growing/seconds/bars. Growing has target 0 and ready 0 (open
+  duration). Nonpositive/unavailable tempo gives a bars target of 0, ready 0.
+  Extremely large or tiny values have not been qualified for a future allocator.
+
+The original `mlr.pd`, mixer, historical player/recording patches, five-speed
+controls, reader DSP, device repositories and installed services are preserved.
+The legacy global names remain: this candidate does not establish isolation
+between multiple copies of `mlr.pd`.
+
+### Native results, 2026-09-10
+
+Actual `/Applications/plugdata.app`: **0.9.4 nightly `98ae0f78b`, Pd 0.56.3**.
+The UI Audio Settings showed CoreAudio, MacBook Pro Speakers/Microphone,
+512 frames, 1x oversampling; both 48000 and 44100 Hz were exercised, then 48000
+restored. Checks ran through the original player loaded by `mlr.pd`; the passive
+capture has no DAC or independent playback engine. The selected-buffer panel
+visibly showed identity, content status and duration. The console was read
+throughout, including the expected missing-file error.
+
+Reproducible quiet stereo sine files distinguish both buffers and channel order.
+Sample A is 48 kHz (L220/R440 Hz); Sample B is 44.1 kHz (L330/R660 Hz).
+Live 1 is seeded with 0.8 seconds of L550/R770 at the current host rate. **Seeding
+is fixture preparation using soundfiler and existing metadata messages, not a
+recording implementation.** Maximum source amplitude is approximately 0.107.
+
+- At each host rate, all 14 stable audio windows and 11 expected selection events
+  passed: kind/number selection, imported/live transitions, reverse preservation,
+  a 2 ms command burst with latest selection winning, empty refusal, Stop during
+  a pending selection, invalid IDs, and ignored updates from an unselected kind.
+- Both channels retain their distinctive frequencies and expected gain. File/host
+  mismatch is covered in both directions. No non-finite samples or stuck playback
+  were found in these windows. Intentional stopped intervals were silent.
+- Selection-only maximum sample steps were below 0.0084 at either host rate.
+  Ordinary changes include about 14 ms of silence after the 6 ms fade; the rapid
+  burst extends it to about 18 ms. These are fade-through-silence transitions.
+- The bars preview changed from 16 to 12 seconds at 120→160 BPM for 8 bars.
+  Fixed seconds stayed fixed; invalid amounts restored the preceding setting;
+  tempo zero made bars unresolved. Stored live duration remained 0.8 seconds.
+- Separate bounded checks cover paused selection, a deliberately missing file,
+  and Play/reselection commands 5–10 ms into load/clear. The latter verifies
+  silence while unavailable and that the intervening normal live start still
+  produces audio. These checks do not qualify simultaneous multi-track writers.
+
+Listening evidence for **this** candidate: none yet. Earlier user reports of clean
+crossover captures remain attached to those earlier captures, not these signals.
+
+Known audio limitations remain visible in the measurements: direct Stop/Clear
+and instant reverse can still make larger steps. The 44.1 kHz take includes about
+0.057 on reverse, 0.099 on Clear, and 0.024 on final Stop. These operations are
+reported separately from the selection checks; the analyzer's `passed` value
+is **not** an all-transitions-clean verdict. No universal click-free claim.
+
+Evidence: [manifest and source hashes](evidence/buffer-selection/manifest.json),
+[48 kHz checks](evidence/buffer-selection/checks-48.json),
+[44.1 kHz checks](evidence/buffer-selection/checks-44.json),
+[48 kHz listening export](evidence/buffer-selection/verified-48.flac), and
+[44.1 kHz listening export](evidence/buffer-selection/verified-44.flac).
+Float NPZ files retain all decoded audio/state channels; FLAC is stereo listening
+material. Native WAV headers decode about 2.6 ms less trailing silence than the
+nominal 10.5 seconds. Analysis uses decoded frames, not the intended duration.
+
+Three failed native controls remain in the same directory, with current checks
+that reject them: `23aa474` blocked the shared shutdown message and leaked gain;
+`39d3461` shut down correctly but cut sharply on selection; `3e4c943` faded the
+actual reader gains but delayed table binding by 2 ms, leaking the old buffer
+into a new start. The final binding change removes that delay on selection only.
+The historical Pause gain route is unwired, so it was not used as a fade.
+
+### Repeat the buffer checks
+
+1. Run `python3 tests/make_buffer_fixtures.py` from the repository. Open this
+   checkout's `mlr.pd` in the native plugdata runtime; show the console and
+   `arrays-samples` → `sample_player_rebuild 1`. Keep playback stopped.
+2. Temporarily add `[tests/buffer-checks $0]` and
+   `[tests/buffer-replacement-check $0]` inside that player. Do not save these
+   attachments into the application. The first patch prints the actual player
+   ID. If created dynamically through the console, select it and send `loadbang`;
+   cycle DSP after adding the capture signal taps.
+3. At 48 kHz send `buffer-test prepare48`. At 44.1 kHz use `prepare44`.
+   Preparation replaces only test Sample 1/2 and Live 1; use a disposable session.
+4. Send `buffer-test config /ABS/config.txt`. Wait at least one second for its
+   automatically written log before the next sequence. Do not overlap config
+   and playback schedules.
+5. Send `buffer-test run /ABS/capture.wav /ABS/events.txt`. The existing capture
+   stops itself after 10.5 seconds, playback after 9.5 seconds, and the log writes
+   at 10.6 seconds. `1-test-capture stop` is also an explicit emergency stop.
+6. Analyze with `python3 tests/analyze_buffer_capture.py /ABS/capture.wav
+   /ABS/events.txt /ABS/config.txt` (NumPy, ffmpeg and ffprobe required).
+   The same command accepts a retained `.npz` instead of WAV. Add
+   `--replacement /ABS/replacement.wav` to check the one-second race capture.
+7. Re-prepare before `buffer-replacement-test symbol /ABS/replacement.wav`.
+   This independent one-second capture tests load/clear/Play races and includes
+   an expected missing-file console error. Do not overlap it with step 4 or 5.
+8. Repeat at the other host rate, then restore audio settings. Close/reopen
+   `mlr.pd` without saving test attachments; load DrumLoop and leave it stopped.
+
+Final session cleanup: all temporary test attachments and agent-created empty
+tabs were removed without saving. DrumLoop is loaded in Sample 1, player 1 is
+visible and stopped, and the host is restored to 48 kHz / 512 frames.
+
+The native console route used here avoids an unattended file chooser. To navigate,
+`pd open mlr.pd /ABS/plugmlr` focuses the main patch; `sel pd_arrays-samples_1`,
+`vis 1`, `deselect`, then `sel sample_player_rebuild_1_1`, `vis 1`, `deselect`
+opens player 1. Object names should be verified with the console `ls` command.
+
+### User follow-up: loading another slot muted track 1
+
+The user exercised the ordinary menus and loaded a second sample. Their report:
+empty selection stopped playback; returning to Sample 1 worked; loading Sample 2
+while Sample 1 played left its playhead moving but silenced its audio. Stop/Play
+restored audio. With both slots loaded, switching restarted the new sample at
+its beginning (end in reverse), retaining player settings. The wording about the
+playhead stopping on each swap was queried separately; a lasting visual freeze
+has not been established. This report is stronger evidence than the earlier
+pre-mixer captures for the lost-output fault.
+
+Source trace at `61ad442d990e9bff83536f09c3e75d68f11841c4`:
+`2-sample-loaded` → player 2 selection → existing internal Stop → hardcoded
+`1-mixer_env_close` → track 1's actual mixer `line~` receives `0 0`.
+Player 1's transport/DSP keeps running. Its next Play reopens that mixer.
+This was the only fixed numeric track send/receive found in the active player.
+The repair changes that send to `$1-mixer_env_close`. No reader DSP, timing,
+selection policy or playbar implementation changes.
+
+A five-second, automatically stopped native comparison captured the original
+player **and the actual mixer output** at 48 kHz / 512 frames / 1x in the same
+plugdata runtime identified above. At the final settings readback, output was
+**8A** and input MacBook Pro Microphone, with 48 kHz / 512 frames / 1x. No device
+selection was changed in this follow-up; the device was not read before the
+baseline capture. The earlier capture session used MacBook Pro Speakers. This
+comparison concerns mixer signals, not equivalence between those physical
+outputs. Quiet A/B fixtures were used, with a Sample 2
+load at 1 second, Stop/Play recovery at 2/2.05 seconds, and buffer switches at
+2.8 and 3.8 seconds (the latter in reverse).
+
+| Observed window | Before repair | After repair |
+| --- | --- | --- |
+| Track 1 player RMS after loading slot 2 | L 0.075527 / R 0.053948 | Same |
+| Actual mixer RMS before loading slot 2 | L 0.031042 / R 0.022173 | Same |
+| Actual mixer RMS after loading slot 2 | Both exactly zero | L 0.031042 / R 0.022173 |
+| Mixer-close event at 1040 ms | Track 1 | Track 2 |
+| Playbar values after loaded-buffer switches | Updated | Updated |
+
+Both captures were finite. The repaired mixer/player gain stays approximately
+0.411 in all five measured active windows. Output gain was matched for the
+comparison (track 1 at 0.548, master at 0.75 after reload). The retained numerical
+check rejects the baseline and passes the repaired capture. The moving playbar
+was also visible in the native UI. This does not establish a separate report
+of a lasting GUI freeze, physical speaker output, or all-transition acceptance.
+No user listening report on the repaired capture has yet been received.
+
+Evidence: [manifest](evidence/buffer-load-isolation/manifest.json),
+[baseline checks](evidence/buffer-load-isolation/baseline-checks.json),
+[repaired checks](evidence/buffer-load-isolation/repaired-checks.json),
+[baseline mixer audio](evidence/buffer-load-isolation/baseline-mixer.flac), and
+[repaired mixer audio](evidence/buffer-load-isolation/repaired-mixer.flac).
+The earlier buffer-selection captures remain tied to their earlier source;
+this paired comparison covers the subsequent one-line mixer repair.
+
+To repeat, use a disposable original-application session with generated Sample A
+loaded in slot 1 and nonzero track/master gain. Temporarily add
+`[tests/load-isolation-check $0]` inside player 1. Its loadbang prints the player
+ID; send loadbang manually when creating it through the console. Add passive
+`[s~ plugmlr-load-check-left]` / `[s~ plugmlr-load-check-right]` taps to the actual
+`pd mixer` master outputs: objects 20/21 outlet 0, the same signals connected to
+`dac~`. On the unmodified mixer, appended tap objects are 47/48; verify those
+indexes before connecting. Cycle DSP after attaching the taps. Send
+`load-isolation-check /ABS/capture.wav /ABS/events.txt`, then allow 5.1 seconds
+for the automatic stop/log. The script `tests/analyze_load_isolation.py` accepts
+those paths (or retained NPZ plus events) and reports the fault and gain checks.
+Close/reopen the application without saving the temporary attachments afterward.
+
+Cleanup restored DrumLoop in slot 1 and the user's
+`SC_ICD_90_synth_chords_sunny_Cmaj.wav` in slot 2 (44100 Hz, 470400 frames,
+10.666667 seconds), both stopped. The console did not accept the escaped space
+in the direct path command; restoration used a temporary filesystem alias to
+the unchanged original file. This was a console-entry workaround, not a loader
+repair. No user audio was copied into retained repository evidence.
+
+### Review and next boundary
+
+The user accepted the current normal switching behavior and authorized the
+checkpoint merge. Remaining work includes broader menu/knob usability and
+listening coverage; direct Stop/Clear/
+reverse transition repairs; multiple simultaneously selected tracks during
+replacement; huge-length limits for an actual allocator. Recording audio,
+allocation/growth/trim, recording pause/resume, quantization, MIDI/host clock,
+project recall, DAW lifecycle, multi-instance isolation and device integration
+are not accepted by this work. The next recording implementation should consume
+the buffer's length configuration and write content bounds only when there is
+actual captured audio. No next implementation slice has begun.
+
 ## Preserved work and source map
 
 The rejected rewrite is preserved on `codex/r1-shared-buffer-playback` at

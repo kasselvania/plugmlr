@@ -1,0 +1,32 @@
+{
+  "baseline_commit": "61ad442d990e9bff83536f09c3e75d68f11841c4",
+  "runtime": "Native /Applications/plugdata.app 0.9.4 nightly 98ae0f78b, Pd 0.56.3, CoreAudio 48000 Hz / 512 frames / 1x",
+  "repair": "sample_player_rebuild.pd: change the Stop send from 1-mixer_env_close to $1-mixer_env_close. No DSP or playbar changes.",
+  "source_sha256": {
+    "sample_player_rebuild.pd": "a3d8d173067e41c0ddfc91b5e279a90353782272bfaa289485af046251ff837a",
+    "tests/load-isolation-check.pd": "edf2b50c77c288aebe07852567f4ffc58ff68d79c345f6dbf910be7167c4e655",
+    "tests/analyze_load_isolation.py": "2105c8a27b94283215f5c65eeac9ddf9ad36ec45f374dc32c3bcd2f8fbb7d8e2"
+  },
+  "captures": {
+    "baseline": {
+      "raw_wav_sha256": "1f93c18b7454e1277447b92381b0b9bb8db27abfc62c08a1d055611117d2193a",
+      "npz_sha256": "363e5136ecea26f9d18f6144616975bba5756d68249f0b47824cdef535ae4bc1",
+      "flac_sha256": "1dd34bef3a93748011b80ab444e3e0783612a68df63f8fda105b36dddc3364eb",
+      "frames": 239942,
+      "player_id": 8891,
+      "post_mixer_gain": 0.411,
+      "passed": false
+    },
+    "repaired": {
+      "raw_wav_sha256": "4595e37f8348eb00bf1c049fd0011f6c8797cf62c0c7dfb79cf17f49acb57704",
+      "npz_sha256": "a438b1bdca76dea2b76d90505ae44de0fd81fcd75efa6a49855a7230ae62d38a",
+      "flac_sha256": "d2f19a403415e7c405f774c8c622afd37a72ea5b77fac9f959ff12c271564ff1",
+      "frames": 239942,
+      "player_id": 9174,
+      "post_mixer_gain": 0.411,
+      "passed": true
+    }
+  },
+  "retention": "NPZ retains all ffmpeg-decoded float channels losslessly; stereo FLAC is the post-mixer 24-bit listening export. Source signal generation is tests/make_buffer_fixtures.py. Only generated tones are retained; the user synth file is not included. Native five-second WAV decoded to 239942 frames (about 1.21 ms less trailing silence). No human listening verdict on the repaired capture.",
+  "device_observation": "Final native settings readback: output 8A, input MacBook Pro Microphone, 48000 Hz / 512 frames / 1x. No device selection was changed during this follow-up. Output device was not read before the baseline capture; earlier buffer-selection evidence used MacBook Pro Speakers."
+}

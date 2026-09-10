@@ -1,0 +1,74 @@
+[
+  {
+    "file": "buffer-selection.pd",
+    "canvases": 1,
+    "objects": 94,
+    "connections": 113,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "buffer-panel.pd",
+    "canvases": 1,
+    "objects": 64,
+    "connections": 62,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "record-length.pd",
+    "canvases": 1,
+    "objects": 43,
+    "connections": 58,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "sample-data.pd",
+    "canvases": 3,
+    "objects": 51,
+    "connections": 53,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "live_buffer.pd",
+    "canvases": 1,
+    "objects": 79,
+    "connections": 81,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "sample_player_rebuild.pd",
+    "canvases": 9,
+    "objects": 969,
+    "connections": 929,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/buffer-checks.pd",
+    "canvases": 1,
+    "objects": 156,
+    "connections": 152,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/bounded-player-capture.pd",
+    "canvases": 1,
+    "objects": 38,
+    "connections": 40,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/buffer-replacement-check.pd",
+    "canvases": 1,
+    "objects": 40,
+    "connections": 38,
+    "errors": [],
+    "native_load_or_audio_test": false
+  }
+]

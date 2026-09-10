@@ -1,0 +1,32 @@
+{
+  "stop-check": {
+    "sample_rate": 48000,
+    "frames": 47988,
+    "nonfinite_samples": 0,
+    "audio_peak": 0.0,
+    "position_minmax": [
+      0.0,
+      0.0
+    ]
+  },
+  "paused-select": {
+    "sample_rate": 48000,
+    "frames": 47988,
+    "nonfinite_samples": 0,
+    "audio_peak": 0.0,
+    "position_minmax": [
+      0.0,
+      0.0
+    ]
+  },
+  "missing-file": {
+    "sample_rate": 48000,
+    "frames": 47988,
+    "nonfinite_samples": 0,
+    "audio_peak": 0.0,
+    "position_minmax": [
+      0.0,
+      0.0
+    ]
+  }
+}

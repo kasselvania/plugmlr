@@ -1,0 +1,117 @@
+{
+  "runtime": {
+    "application": "/Applications/plugdata.app",
+    "version": "0.9.4 nightly",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "backend": "CoreAudio",
+    "device": "MacBook Pro Speakers",
+    "block_frames": 512,
+    "oversampling": 1
+  },
+  "base_commit": "33418a6dc7cafe00399b37f4f6a32ff4155f5d49",
+  "final_source_sha256": {
+    "buffer-selection.pd": "1b93a9b2307db9efb6fd5b714d24d2ddda10d516bd4abaf2ed6ccbc1987944cb",
+    "buffer-panel.pd": "d299f1e38275133a36730faa2b3ae946ebc4dadd60e4a5382900ae50e64221fc",
+    "record-length.pd": "436ae6cee0b90e278317f1aeaee796d469816516d59e44c1bd28ae47368f60fc",
+    "sample-data.pd": "e27a43c0622c1e9f6e5ef2127f31aba331eaae074fc6ae73ef11c91c895af47a",
+    "live_buffer.pd": "7c3dc8190d4e6a8397fb53fdd6282940083dc8538c8020448ccd4aa173dd4053",
+    "sample_player_rebuild.pd": "4f2a64505dc328915e8427cce4810a4015ac8c79469f46731ed547cd33421fdd",
+    "tests/buffer-checks.pd": "24dcf959b68764dc469a273e50769f4b0c09c037b3acc625accffe3d0f9f7c4e",
+    "tests/bounded-player-capture.pd": "77c73f7e816b61a312a417383a896b28eb2a76df1853d842003853de5311ec66",
+    "tests/buffer-replacement-check.pd": "9810aa89447ae9f03420e2cb264b158e585e90a1d0a8b56ff8ae34641e0b9fd6"
+  },
+  "captures": {
+    "verified-48": {
+      "raw_wav_sha256": "930169493384a8e500d2412cc1ad20e6f752540ae6a70a8233fa9688de649040",
+      "retained_npz_sha256": "42903dc8105e0075476b99509e35af1ab53b92789ce544e630b9a5acafa3a154",
+      "sample_rate": 48000,
+      "decoded_frames": 503877,
+      "channels": 10,
+      "player_id": 8606,
+      "stereo_flac_sha256": "559e55ea6507f66afb9b8bdac3fe84587ef749144ea3572d5eb1571cb4862137"
+    },
+    "verified-44": {
+      "raw_wav_sha256": "c3d3c9db49add95c2bee1d2aef3047996d78c3b8b9a0ca3dcd579dd2eeed6ac7",
+      "retained_npz_sha256": "6e830c6a89e2306a2ba2693f52dee9109c2f1e04c20fdb256f84ced374c44d94",
+      "sample_rate": 44100,
+      "decoded_frames": 462927,
+      "channels": 10,
+      "player_id": 8606,
+      "stereo_flac_sha256": "f89d1e8bc068eb181a26cc9c5cf73ab326a3b7a0c6d9bf4e27b85591417a8b60"
+    },
+    "failed-direction-guard-48": {
+      "raw_wav_sha256": "c04decb60822feb822a583b698f265fbc13af3b148a551e4f475fa2c3f6b0625",
+      "retained_npz_sha256": "6abefcba4be9914d88a988736362cbc9ecff210c60b9bafd293e673fb0c3edba",
+      "sample_rate": 48000,
+      "decoded_frames": 503877,
+      "channels": 10,
+      "source_commit": "23aa474bb735ef43280c884662276644a1c41f9f",
+      "accepted": false
+    },
+    "failed-sharp-stop-48": {
+      "raw_wav_sha256": "24519d9c779a8e14c5031277e7c756cdf1da363787aede42e31bff0a06edd96c",
+      "retained_npz_sha256": "afcbf9bbdb18d90fb61b31e08277dfc18d6ac7feb2188832cc82a094471342d6",
+      "sample_rate": 48000,
+      "decoded_frames": 503877,
+      "channels": 10,
+      "source_commit": "39d34611def2aae71a52d28f45c5c1159f07a519",
+      "accepted": false
+    },
+    "failed-delayed-binding-48": {
+      "raw_wav_sha256": "74b2e382edbf7443c507280ea11f11af29f41570769b4f09f13a4a14adb24979",
+      "retained_npz_sha256": "14f6dc569bea89ca93d8b4bb80748310da3425717d73ab18ff4e0cbe834444af",
+      "sample_rate": 48000,
+      "decoded_frames": 503877,
+      "channels": 10,
+      "source_commit": "3e4c9434d8f81fd988c5cd4d969c2035ded150fc",
+      "accepted": false
+    },
+    "stop-check": {
+      "raw_wav_sha256": "812c20fd5424499aa91c66406012f0d349f2b1ef00708da207f8233e377e25d9",
+      "retained_npz_sha256": "448314c7eb7480757e471c970569b7ce3f0477ed12093665545a69815733e0b8",
+      "sample_rate": 48000,
+      "decoded_frames": 47988,
+      "channels": 10
+    },
+    "paused-select": {
+      "raw_wav_sha256": "76c4af4619d686d3da978cbbb0bdacbc9e36de967f699759df6ae0410c8db139",
+      "retained_npz_sha256": "7f384b063d3a6b3f20c5c2db555e641a013fc69246cf04e1f69011c3b39db233",
+      "sample_rate": 48000,
+      "decoded_frames": 47988,
+      "channels": 10
+    },
+    "missing-file": {
+      "raw_wav_sha256": "0f6136b19a4f940473df13f4b026bf72afad19706164eec8be2e40e0d93bba6e",
+      "retained_npz_sha256": "60da321aad2bc011139cd9a9ee16daee92c47a70a755f199b8cd81cc7a5882f2",
+      "sample_rate": 48000,
+      "decoded_frames": 47988,
+      "channels": 10
+    },
+    "replacement-48": {
+      "raw_wav_sha256": "e8cbd242d2f961e37bc6be088f497d472d4e88165337f079525d5e0112fd7073",
+      "retained_npz_sha256": "b46ab7f2a5fb0438f97b35e38e2e9c518418cb9d73abc41620c5d549a47154df",
+      "sample_rate": 48000,
+      "decoded_frames": 47988,
+      "channels": 10,
+      "player_id": 8606
+    },
+    "replacement-44": {
+      "raw_wav_sha256": "e458445a1bfabd0046c0e1fc63db74898e58ffe7f094d4881e85eec3c552e840",
+      "retained_npz_sha256": "f9c47d085587e715aa60141a6c36d82b3b720f91ba7b5524f5847c28c340a867",
+      "sample_rate": 44100,
+      "decoded_frames": 44085,
+      "channels": 10,
+      "player_id": 8606
+    }
+  },
+  "source_note": "Both verified host-rate captures, both configuration logs, and both replacement-race captures were rerun after the final loader/clear content-invalidation change. Hashes identify that final source. Earlier paused-select and missing-file captures precede that final content-invalidation addition; the replacement-race captures cover the final missing-file path.",
+  "retention_note": "NPZ stores every ffmpeg-decoded float channel losslessly. Native WAV headers decode about 2.6 ms less trailing silence than the nominal 10.5 s capture. Original WAV hashes identify pre-conversion takes; raw containers are archived locally outside the PR. Stereo FLAC is a 24-bit listening export; analysis uses the float NPZ.",
+  "fixture_sha256": {
+    "tests/fixtures/buffer-live-48.wav": "e95582709448115382e2f739dd8c967e3ddc94c84dbd289878e3c2561b49804e",
+    "tests/fixtures/buffer-live-44.wav": "f484075877e72b82352dd3d565faeca96fbc7f298edad1614e0286b297c3f8b5",
+    "tests/fixtures/buffer-a.wav": "e109d26b433877da329679952d3a2b3b1784ad6ab14c6278ee16bce434d49ef9",
+    "tests/fixtures/buffer-b.wav": "23d7097e05175700cf194e29dc517ba710ce9c14f84a2cc41afb2bf424ca6a8b"
+  },
+  "analysis_tools": "Python 3 with NumPy 2.3.5, ffmpeg and ffprobe; scripts in tests/. Structural checks are not native object or DSP acceptance."
+}

@@ -4,20 +4,42 @@ An MLR-style musical application for plugdata, with sample and live buffers,
 slice playback, rate controls, and a mixer. Current work is to understand and
 harden the original application, following its existing signal and control paths.
 
+The user accepted the current playback/buffer checkpoint and authorized merging
+PRs #6–#10. STATUS retains each repair's evidence and remaining limits; historical
+draft descriptions refer to its review stage. Recording remains future work.
+
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
 reverse or an audible tape slew, with timing drift allowed. The
 [tape reference catalogue and next work](docs/STATUS.md#free-form-tape-direction)
 separate that decision from functions already tested.
 
-The runnable entry point is **[mlr.pd](mlr.pd)**. Small repairs now restore both
+The runnable entry point is **[mlr.pd](mlr.pd)**. Small repairs restore both
 reader turns and bidirectional looping in the existing player. Direction Change
-reverses playback; reverse wraps return to the region end. The current native
-checks also cover reverse startup and repeated direction commands. See
-[the results and remaining limits](docs/STATUS.md#reverse-playback-and-loop-boundaries):
-reverse loop timing, speed/slew ordering, transition quality, and stereo ordering
-still need work. The earlier “solid playback” listening report applies to the
-reader-handoff repair; listening acceptance for this direction repair is open.
+reverses playback; reverse wraps return to the region end. The
+[recorded repair history](docs/STATUS.md#reverse-playback-and-loop-boundaries)
+keeps each source change, native result, listening report, and remaining limit
+separate. The current buffer and crossover candidates are described below.
+
+The current [buffer candidate](docs/STATUS.md#buffer-selection-and-recording-length-settings)
+repairs selection between the existing imported and live buffers. Open a player
+from `pd arrays-samples` and use its **Buffer Select** menus. The panel below
+shows the selected buffer, whether it contains audio, and its content duration.
+Selecting while playing uses a short fade and starts the new buffer from its
+beginning (end in reverse); selecting an empty buffer leaves playback stopped.
+Stop cancels a pending restart. A subsequent one-line mixer-routing repair fixes
+loading another slot muting track 1 while its playhead continues; the
+[paired mixer-output capture](docs/STATUS.md#user-follow-up-loading-another-slot-muted-track-1)
+records the failure and repair. This is a fade through silence, not a seamless
+crossfade between different buffers.
+
+For a selected live buffer, **grow / sec / bars** sets the next recording's
+length mode; **Amount** sets seconds or whole bars. Bars currently mean 4/4.
+The target duration follows the current project tempo; existing audio does not
+resize or stretch when tempo changes. These are configuration controls only:
+audio recording, growing/trim operations, and recording quantization remain
+unimplemented. **Clear live** erases the selected live buffer after stopping its
+readers. Imported buffers are replaced through their load controls.
 
 The [speed-control candidate](docs/STATUS.md#speed-control-and-crossover-follow-up)
 orders rate-slew updates and prevents a speed change at the loop endpoint from
@@ -35,7 +57,7 @@ Native validation found and repaired a competing speed-boundary jump and a
 brief shutdown-related gain dip. The original two readers and 6/9 ms fades are
 retained. Bounded audio/state captures, failing controls and limitations are
 recorded in STATUS. Rapid reader reuse is still not universally click-free;
-tape-direction slew remains separate work. The PR stays unmerged.
+tape-direction slew remains separate work. The user accepted this work as part of the playback/buffer checkpoint.
 
 The [functionality map](docs/STATUS.md#whole-application-functionality-map)
 traces the existing slice, loop, slew, transport, recording, and feedback paths,
@@ -54,6 +76,13 @@ It is a source review, not a claim that those functions all work in the runtime.
    and **Master Volume** as needed, starting quietly. The playbar should move
    and both reader turns should be audible. The included drum file has about
    half a second of silence at its end; that short pause is in the source.
+
+Load Sample 2 as well, then select `sample_buffer`, `2` in player 1 to audition
+that buffer through track 1. Loading a sample explicitly selects it in its own
+numbered track; passive metadata updates do not redirect other players. Loading
+or clearing stops all players selecting that buffer before changing its arrays.
+Playback remains stopped after a load; press Play when ready. The new ordinary
+message interfaces and native test steps are documented in STATUS.
 
 For direction/loop checks, use the [repeatable procedure](docs/STATUS.md#repeat-the-direction-check)
 and [control-only panel](tests/reverse-controls.pd). For the prior handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)
