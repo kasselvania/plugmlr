@@ -10,6 +10,9 @@ local Pd stereo connection between the companion and application, as chosen by
 the user. Separate plugdata-process transport remains unqualified: both tested
 `pdlink~` arrangements shifted the right channel by one Pd block. See the
 [current contract and evidence](docs/STATUS.md#current-inputrecording-recovery-contract).
+The [48 kHz recording checkpoint](docs/STATUS.md#recording-checkpoint-with-the-new-hardware-source)
+now includes real hardware takes, early Stop, recorded/imported switching, and the
+user's report of useful levels with no audible problems in those captures.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant

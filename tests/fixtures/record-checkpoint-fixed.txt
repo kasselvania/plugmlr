@@ -1,0 +1,9 @@
+record-check-player stop;
+record-check-player speed 2;
+record-check-bus 0;
+2_l_b_length seconds 2;
+1-buffer-select live 2;
+50 record-check-record bang;
+2200 record-check-export write -wave -bytes 4 /tmp/plugmlr-checkpoint-live2.wav 0-live_buffer_2 1-live_buffer_2;
+record-check-player play;
+4000 record-check-player stop;

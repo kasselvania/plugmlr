@@ -235,6 +235,94 @@ monitor0; main input disarmed, playback/recording stopped. The final UI still
 showed both input meters. Takes are volatile until export/recall is implemented.
 The PR is a recording candidate, left unmerged; no next slice starts automatically.
 
+### Recording checkpoint with the new hardware source
+
+Completed on the product source at `c6d13d519ee2f794f1cb0b36b187bd667c17b395`,
+in the same native runtime and 48 kHz / 512-frame 8A configuration above. This
+follow-up changes test fixtures and documentation only. The original application
+and companion were inspected in the actual UI/console. Input channels 3/4 and
+gain 1.10 were retained, along with track 0.548, master 0.75 and global output 0.90.
+Live 1 was preserved; Live 2 and Live 3 were confirmed Empty before recording.
+
+| Operation | Actual result |
+| --- | --- |
+| Fixed two-second take, Live 2 | Recording → Loaded; 96000 frames and 2 seconds displayed |
+| Early Stop, Live 3, four-second target | Stop through the player's existing control path; 60032 usable frames (1.250667 s), capacity 192000, unwritten tail exactly zero |
+| Both recorded arrays versus raw ADC capture | Every usable stereo frame matches raw input × 1.10 exactly, with one common 2368-frame capture offset for both channels |
+| Recorded/imported switching | Live 2 → Sample 1 → Live 3 → Sample 2 → Live 2; stereo audio in all five steady windows, exact configured track × master gain |
+| Bounded shutdown | Each seven-second fixture printed `record-check-stopped`; final player/mixer samples are zero, all captured audio finite |
+| Cleanup and preservation | Reloaded original application without temporary test objects; all three restored live-array exports are byte-identical to their retained originals |
+
+Live 2 recorded peaks are L/R **0.849287 / 0.692288**; Live 3 peaks are
+**0.758298 / 0.766992**. The array comparison tests the real input-gain path and
+channel ordering; channels were not independently realigned. `checkpoint-48.json`
+contains the numerical checks, steady-window levels and file hashes.
+
+**Listening:** the user reported **"Useful level; no audible problems"** for the
+fixed-take, early-stop and switching captures. Listening files extract the original
+post-master channels and apply the actual 0.90 global output gain; they are not
+normalized. The fixed/early listening files omit the recording interval. This
+report applies to these captures, not to all transitions or the open reverse/Stop
+defects described above. All hardware/listening WAVs remain in ignored `local-input/`.
+
+Two additional findings are retained explicitly:
+
+- **Empty-buffer position-report defect:** reset before usable bounds exist can
+  publish `NaN` to `playbar_data_i`. In `sample_player_rebuild.pd` →
+  `pd playhead_logic`, a reset enters `scale` with equal start/end bounds. The
+  retained logs contain three such stopped-state reports in the fixed case and
+  two in the early case; none occurred while playing. This is an existing UI/control
+  normalization defect, separate from audio finiteness, and needs a small bounds
+  guard in the next playback/UI repair. It was traced but not changed in this check.
+- **Source headroom:** raw ADC channel 3 hit -1.0 for six samples at 6.768583 s in
+  the fixed capture, after both the take and its playback had stopped. An initial
+  assertion covering all six capture channels therefore failed. The retained
+  result reports this source event separately; its passing headroom checks cover
+  the recorded arrays and player/mixer output. No claim is made that the ongoing
+  hardware source is always unclipped. A software gain reduction cannot undo an
+  input that already reaches full scale at the ADC tap.
+
+The ordinary/native workflow above is the 48 kHz recording checkpoint. It does
+not qualify 44.1 kHz recording, interface-rate changes or separate-process/Bitwig
+transport. Those remain open, along with the previously listed limits. The PR is
+ready for review, left unmerged. No playback-transition or UI-refactor slice has
+started automatically.
+
+To reproduce this follow-up without clearing existing audio:
+
+1. Use empty Live 2 and Live 3, the same hardware channels/gains, and the bounded
+   `tests/live-record-check $0` fixture in player 1 with the post-master taps
+   described above. Keep its generated source bus at 0. Before recording, modify
+   only that temporary fixture: disconnect `4 0 → 12 0` and `5 0 → 12 1`, add
+   object 64 `[adc~ 3 4]` and connect its outlets to writesf object 12 inlets 0/1.
+   Add object 65 `[r record-check-export]` → 66 `[soundfiler]`, and object 67
+   `[r record-check-record]` → 68 `[s $1-record_button_bang]`. These are ordinary
+   console `cnv obj/connect/disconnect` operations; do not save them into the
+   application or the shared fixture. Activate DSP after completing the taps.
+2. Arm the main input. Send `record-check symbol fixtures/record-checkpoint-fixed.txt`,
+   then the early and switch scores of the same prefix. Each stops capture and
+   playback at seven seconds. The early score stops Live 3 explicitly, and its
+   writer also retains its independent four-second maximum. Observe Recording,
+   Loaded and `record-check-stopped` in the actual UI/console before proceeding.
+3. After each run, preserve `/tmp/plugmlr-record-check.wav` and its `-events.txt`
+   sibling as `checkpoint-CASE-48.wav` and `checkpoint-CASE-48-events.txt`. Preserve
+   `/tmp/plugmlr-checkpoint-live2.wav` and `...-live3.wav` as `checkpoint-live2-48.wav`
+   and `checkpoint-live3-48.wav`. Place hardware WAVs under ignored `local-input/`,
+   with the event logs in the evidence directory. Run
+   `python3 tests/analyze_record_checkpoint.py docs/evidence/fixed-recording`.
+4. Disarm recording, export all populated live arrays before reloading to remove
+   temporary taps, and restore content bounds separately from capacity. Do not
+   treat reloading as product recall. `checkpoint-restoration.json` records the
+   actual preservation check performed here.
+
+Setup console messages are distinguished from product errors: one empty `cnv`
+command printed `canvas: no method for 'float'`, and the temporary capture receiver
+printed missing-send messages until its mixer taps were attached. The completed
+capture runs reported no recording errors. Final state: Live 2 selected and
+Loaded, Live 1 and Live 3 retained, original sample slots restored, input disarmed,
+recording/playback stopped, companion bus 1 still receiving channels 3/4. Diagnostic
+objects/tabs are closed; the two older control-only tabs remain untouched.
+
 ## Accepted checkpoint, 2026-09-10
 
 The user confirmed the current switching behavior after the mixer-isolation

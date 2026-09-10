@@ -1,0 +1,289 @@
+{
+  "host_rate": 48000,
+  "input_gain": 1.1,
+  "track_gain": 0.548,
+  "master_gain": 0.75,
+  "global_output_gain_not_in_capture": 0.9,
+  "cases": {
+    "fixed": {
+      "checks": {
+        "bounded_capture_length": true,
+        "finite_audio": true,
+        "player_and_mixer_below_full_scale": true,
+        "stopped_player_and_mixer": true,
+        "no_recording_errors": true,
+        "stereo_audio_in_each_window": true,
+        "configured_mixer_gain_in_each_window": true,
+        "finite_position_while_playing": true,
+        "content_length": true,
+        "frozen_capacity": true,
+        "finite_recorded_array": true,
+        "unwritten_tail_is_zero": true,
+        "recording_and_loaded_states": true,
+        "stereo_input_preserved_at_requested_gain": true,
+        "recorded_samples_below_full_scale": true
+      },
+      "capture_frames": 335918,
+      "windows": [
+        {
+          "seconds": [
+            2.5,
+            3.5
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.19191698729991913,
+            0.15103571116924286,
+            0.07887818664312363,
+            0.06207561492919922
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            4.5,
+            5.5
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.19200697541236877,
+            0.15103453397750854,
+            0.07891502231359482,
+            0.06207505241036415
+          ],
+          "maximum_mixer_gain_error": 0.0
+        }
+      ],
+      "raw_adc_full_scale_events": [
+        {
+          "channel": 3,
+          "sample_count": 6,
+          "first_seconds": 6.768583333333333
+        }
+      ],
+      "nonfinite_position_reports": [
+        {
+          "milliseconds": 0.0,
+          "playing": false
+        },
+        {
+          "milliseconds": 20.0,
+          "playing": false
+        },
+        {
+          "milliseconds": 50.0,
+          "playing": false
+        }
+      ],
+      "input_to_array": {
+        "shared_offset_frames": 2368,
+        "gain": 1.1,
+        "maximum_error": 0.0
+      },
+      "recorded_peak_LR": [
+        0.849286675453186,
+        0.6922882199287415
+      ],
+      "recorded_rms_LR": [
+        0.16941986978054047,
+        0.13529585301876068
+      ],
+      "content_frames": 96000,
+      "capacity_frames": 96000,
+      "files_sha256": {
+        "checkpoint-fixed-48.wav": "ad2f54921e2d5bae800cf784ac0c084918e002853f3781547d300db99155836d",
+        "checkpoint-fixed-48-events.txt": "7ae9ef8050277b18fe5076250adbb2a83820fe0fbda2e4860a48d9c11dd89c13",
+        "checkpoint-live2-48.wav": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85"
+      },
+      "named_checks_passed": true
+    },
+    "early": {
+      "checks": {
+        "bounded_capture_length": true,
+        "finite_audio": true,
+        "player_and_mixer_below_full_scale": true,
+        "stopped_player_and_mixer": true,
+        "no_recording_errors": true,
+        "stereo_audio_in_each_window": true,
+        "configured_mixer_gain_in_each_window": true,
+        "finite_position_while_playing": true,
+        "content_length": true,
+        "frozen_capacity": true,
+        "finite_recorded_array": true,
+        "unwritten_tail_is_zero": true,
+        "recording_and_loaded_states": true,
+        "stereo_input_preserved_at_requested_gain": true,
+        "recorded_samples_below_full_scale": true
+      },
+      "capture_frames": 335918,
+      "windows": [
+        {
+          "seconds": [
+            1.6,
+            2.4
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.2552174925804138,
+            0.28964778780937195,
+            0.10489430278539658,
+            0.11904504150152206
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            3,
+            4
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.24534057080745697,
+            0.27609536051750183,
+            0.10083494335412979,
+            0.11347491294145584
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            4.5,
+            5.5
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.2539408802986145,
+            0.28124427795410156,
+            0.1043696254491806,
+            0.11559110879898071
+          ],
+          "maximum_mixer_gain_error": 0.0
+        }
+      ],
+      "raw_adc_full_scale_events": [],
+      "nonfinite_position_reports": [
+        {
+          "milliseconds": 50.0,
+          "playing": false
+        },
+        {
+          "milliseconds": 1300.0,
+          "playing": false
+        }
+      ],
+      "input_to_array": {
+        "shared_offset_frames": 2368,
+        "gain": 1.1,
+        "maximum_error": 0.0
+      },
+      "recorded_peak_LR": [
+        0.7582981586456299,
+        0.766991913318634
+      ],
+      "recorded_rms_LR": [
+        0.253040075302124,
+        0.28036779165267944
+      ],
+      "content_frames": 60032,
+      "capacity_frames": 192000,
+      "files_sha256": {
+        "checkpoint-early-48.wav": "d24d724dd911bd4a836eb3569d97762819ed621984986dc9e894642dbf0455a8",
+        "checkpoint-early-48-events.txt": "beeff2f9acce981f2735cf22ab5ac09cf7466c1234c8c62371478bd25f85d11e",
+        "checkpoint-live3-48.wav": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+      },
+      "named_checks_passed": true
+    },
+    "switch": {
+      "checks": {
+        "bounded_capture_length": true,
+        "finite_audio": true,
+        "player_and_mixer_below_full_scale": true,
+        "stopped_player_and_mixer": true,
+        "no_recording_errors": true,
+        "stereo_audio_in_each_window": true,
+        "configured_mixer_gain_in_each_window": true,
+        "finite_position_while_playing": true,
+        "expected_buffer_sequence": true
+      },
+      "capture_frames": 335918,
+      "windows": [
+        {
+          "seconds": [
+            0.3,
+            1.3
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.19440187513828278,
+            0.15311267971992493,
+            0.07989931851625443,
+            0.06292922049760818
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            1.7,
+            2.7
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.19146093726158142,
+            0.1785000115633011,
+            0.07869036495685577,
+            0.07336362451314926
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            3.1,
+            4.1
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.2530997097492218,
+            0.2874327600002289,
+            0.10402366518974304,
+            0.11813464760780334
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            4.5,
+            5.5
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.1742532104253769,
+            0.17427247762680054,
+            0.07161830365657806,
+            0.07162566483020782
+          ],
+          "maximum_mixer_gain_error": 0.0
+        },
+        {
+          "seconds": [
+            5.8,
+            6.2
+          ],
+          "rms_player_LR_mixer_LR": [
+            0.1924496591091156,
+            0.16342951357364655,
+            0.07909660786390305,
+            0.06716939806938171
+          ],
+          "maximum_mixer_gain_error": 0.0
+        }
+      ],
+      "raw_adc_full_scale_events": [],
+      "nonfinite_position_reports": [],
+      "selected_buffers": [
+        "live_buffer_2",
+        "sample_buffer_1",
+        "live_buffer_3",
+        "sample_buffer_2",
+        "live_buffer_2"
+      ],
+      "files_sha256": {
+        "checkpoint-switch-48.wav": "950a88ab42db07ec24ce7d799f64cf24741548963e0b52a077854d0622740903",
+        "checkpoint-switch-48-events.txt": "1b12704357aa844de0837eb42fb19a61a64dc34f1bd5eebc5dfd4dfe5c9a24e9"
+      },
+      "named_checks_passed": true
+    }
+  },
+  "named_checks_passed": true,
+  "scope": "Hardware recording and steady playback checks only. Empty-buffer nonfinite position reports are an open UI defect. Raw ADC full-scale events are reported separately, including outside the take. No general transition, input-headroom, listening, 44.1 kHz or DAW acceptance."
+}

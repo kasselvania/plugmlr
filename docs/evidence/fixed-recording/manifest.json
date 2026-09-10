@@ -34,7 +34,11 @@
     "buffer-panel.pd": "3046f4ceed6eeb8361b29933696ad8fe95dece2974b600fa92660d1247dde612",
     "live_buffer.pd": "84f98b4bfe8a49b0a496e8e482a9fd3367206fea6c57e96f303b3d381085e4ab",
     "mlr.pd": "20349d2e9a8e21c2ad593e8a69d285e087b6300a54013a8b96493b93305e2d55",
-    "sample_player_rebuild.pd": "f3300d0d02a557e03794e935babbd1730974c826443f116bcf8a1f55ff97e591"
+    "sample_player_rebuild.pd": "f3300d0d02a557e03794e935babbd1730974c826443f116bcf8a1f55ff97e591",
+    "tests/analyze_record_checkpoint.py": "3452c388ba88b89bf0f72e84145233e11d6a42c6589344a61ddb26a69e6a122b",
+    "tests/fixtures/record-checkpoint-early.txt": "1f362772faaf7a3d624e6b0b3329a12185e928f65a90ab9ff135e73625832e63",
+    "tests/fixtures/record-checkpoint-fixed.txt": "8ff33d9832635bd1bd9337d8e671e8828593a93066f2786da271fae69782a9b5",
+    "tests/fixtures/record-checkpoint-switch.txt": "739d5a006953aabd44abdd65c4fd54754e3f8f2766696c6360fa113891c73433"
   },
   "evidence_sha256": {
     "writer-repeat-48.wav": "9266909804bf7507a59166bbc9b6738acf68a656f82770275efb7f6877ce314d",
@@ -62,13 +66,43 @@
     "hardware-playback-48.wav": "354beb89ca867ae52bab25e015deb268e22b903a9d72fab7a1541551c5e828c6",
     "multichannel-hardware-48.wav": "261a1d5097c8d6aa5d0ae6837f9b45db23d0a749c354549e7bc1448f88a35f67",
     "two-mono-hardware-48.wav": "10bd42d273036639260658545bac453f22d8e498e3c5a9d6bde3c5d88bee8f7e",
-    "final-hardware-take-playback-48.wav": "40d9392c9bb22d20246eac896e0e187a0ca43f524f93c61921087d67c5e07c24"
+    "final-hardware-take-playback-48.wav": "40d9392c9bb22d20246eac896e0e187a0ca43f524f93c61921087d67c5e07c24",
+    "checkpoint-48.json": "14eb679fde330086280b0dfa8b7ebb4d5c357beeadedb96b297e831ba4736ebd",
+    "checkpoint-restoration.json": "6f05c52ef144ed8d6b423761976565c37c653ba3300e56c5c56fe65918a18ec4",
+    "checkpoint-early-48-events.txt": "beeff2f9acce981f2735cf22ab5ac09cf7466c1234c8c62371478bd25f85d11e",
+    "checkpoint-fixed-48-events.txt": "7ae9ef8050277b18fe5076250adbb2a83820fe0fbda2e4860a48d9c11dd89c13",
+    "checkpoint-switch-48-events.txt": "1b12704357aa844de0837eb42fb19a61a64dc34f1bd5eebc5dfd4dfe5c9a24e9",
+    "checkpoint-early-48.wav": "d24d724dd911bd4a836eb3569d97762819ed621984986dc9e894642dbf0455a8",
+    "checkpoint-early-listen-48.wav": "6ab8866af2cba1787ee97834b0f413af14a007f2710bab8bc2cb04511c545e0a",
+    "checkpoint-fixed-48.wav": "ad2f54921e2d5bae800cf784ac0c084918e002853f3781547d300db99155836d",
+    "checkpoint-fixed-listen-48.wav": "b575233f1d266b8b87c7893a3caf7b1bbb41677564f99daaacaf532b7d97f358",
+    "checkpoint-live2-48.wav": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "checkpoint-live3-48.wav": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+    "checkpoint-switch-48.wav": "950a88ab42db07ec24ce7d799f64cf24741548963e0b52a077854d0622740903",
+    "checkpoint-switch-listen-48.wav": "776d1a95a97e82f8caa4972d6e0d40848dabfd1ee3132617c54efc4e1191afcb"
   },
-  "qualification": "Named checks only. Instant reverse/Stop transition quality and 44.1 kHz recording remain open. Bars/fixed/early/switch and final hardware playback exercise the repaired content bounds. Final capacity-display refresh and input hint are UI follow-ups; the final patch was reloaded without another recording while the user changed source.",
+  "qualification": "Named checks only. Instant reverse/Stop transition quality and 44.1 kHz recording remain open. The initial captures exercise the repaired content bounds; checkpoint-48.json adds full/early hardware takes and recorded/imported switching after the capacity-display and input-gain follow-ups. Empty-buffer NaN position reports and one raw-ADC full-scale event outside the take are retained as separate findings.",
   "input_gain_followup": {
     "audio_capture_source_sha256": "99e92759a981c2aa245112eacb37554cdf5d05c268a2df7280d70dfb63bb5fd0",
     "change": "Input knob range 0..2, numeric value and unity label; initial gain remains 0.",
     "native_readback": "Saved companion reloaded: input gain 1.10, host channels 3/4, local bus 1, monitor 0; plugdata output 0.90.",
-    "qualification": "UI and active stereo meters only. No new audio capture after the source and gain change."
+    "qualification": "The initial gain adjustment was verified by UI only. The subsequent recording checkpoint qualifies actual stereo takes at input gain 1.10 and the configured mixer gains; see checkpoint-48.json."
+  },
+  "recording_checkpoint": {
+    "product_commit": "c6d13d519ee2f794f1cb0b36b187bd667c17b395",
+    "fixture_player_namespace": 11442,
+    "capture_channels": [
+      "raw ADC 3",
+      "raw ADC 4",
+      "original player left",
+      "original player right",
+      "original post-master left",
+      "original post-master right"
+    ],
+    "numerical_results": "checkpoint-48.json",
+    "listening_report": "Useful level; no audible problems",
+    "preservation_results": "checkpoint-restoration.json",
+    "runtime_edits": "Temporary attachment of existing tests/live-record-check $0 and post-master taps, plus raw ADC/export/Record routing inside that fixture, detailed in STATUS. No product source changes.",
+    "hardware_wavs": "Ignored local-input directory; not published."
   }
 }
