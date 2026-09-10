@@ -1,0 +1,2 @@
+# Keep full native exports locally; commit verified lossless excerpts.
+*.wav

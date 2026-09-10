@@ -1,0 +1,396 @@
+{
+  "scope": "Actual mlr.pd native output; reader initialization and shutdown only.",
+  "runtime": {
+    "application": "/Applications/plugdata.app",
+    "version": "0.9.4",
+    "embedded_build": "98ae0f78b",
+    "pd": "0.56.3",
+    "host_rate_hz": 48000,
+    "buffer_frames": 512,
+    "output": "CoreAudio 8A USB 1/2",
+    "input": "Opal C1 Audio Mic",
+    "app_gain": 0.8,
+    "limiter": false,
+    "oversampling": "1x",
+    "matched_track_1_gain": 0.4,
+    "master_gain": 0.75
+  },
+  "method": "tests/analyze_handoff.py: 0.1-second RMS bins below 1e-6; keep quiet runs >=0.4 seconds. Whole-capture metrics include recording lead-ins and source silence.",
+  "captures": [
+    {
+      "file": "DrumLoop.wav",
+      "frames": 631881,
+      "rate_hz": 44100,
+      "channels": 2,
+      "pcm_bits": 24,
+      "duration_s": 14.328367346938775,
+      "peak_by_channel": [
+        0.9697656631469727,
+        0.9697656631469727
+      ],
+      "rms_by_channel": [
+        0.22301343839333213,
+        0.20729471380013728
+      ],
+      "mean_by_channel": [
+        -0.0023478067156622487,
+        0.0020409247053876727
+      ],
+      "full_scale_samples": 0,
+      "largest_adjacent_step_by_channel": [
+        1.011869192123413,
+        1.0113208293914795
+      ],
+      "adjacent_step_p9999_by_channel": [
+        0.44731555129289624,
+        0.43207810069322583
+      ],
+      "quiet_regions_at_least_0_4s": [
+        [
+          13.8,
+          14.3
+        ]
+      ],
+      "sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6"
+    },
+    {
+      "file": "docs/evidence/reader-handoff/before-drumloop-48k.wav",
+      "frames": 3040256,
+      "rate_hz": 48000,
+      "channels": 2,
+      "pcm_bits": 24,
+      "duration_s": 63.33866666666667,
+      "peak_by_channel": [
+        0.21691060066223145,
+        0.2166532278060913
+      ],
+      "rms_by_channel": [
+        0.04373639092179788,
+        0.047056312180976285
+      ],
+      "mean_by_channel": [
+        0.00040995993401444933,
+        -0.00047226310179074153
+      ],
+      "full_scale_samples": 0,
+      "largest_adjacent_step_by_channel": [
+        0.2066274881362915,
+        0.20673465728759766
+      ],
+      "adjacent_step_p9999_by_channel": [
+        0.08460617065429688,
+        0.08471739292144775
+      ],
+      "quiet_regions_at_least_0_4s": [
+        [
+          0.0,
+          7.0
+        ],
+        [
+          20.8,
+          21.3
+        ],
+        [
+          35.2,
+          35.6
+        ],
+        [
+          49.5,
+          50.0
+        ]
+      ],
+      "sha256": "ef497d7b59cd19e9681558815ea466bdc8254fece2fe0e4ed025b62619802e1a"
+    },
+    {
+      "file": "docs/evidence/reader-handoff/fresh-init-and-gate-open-48k.wav",
+      "frames": 9358336,
+      "rate_hz": 48000,
+      "channels": 2,
+      "pcm_bits": 24,
+      "duration_s": 194.96533333333332,
+      "peak_by_channel": [
+        0.2931222915649414,
+        0.29277467727661133
+      ],
+      "rms_by_channel": [
+        0.054910446633653916,
+        0.0590857797965811
+      ],
+      "mean_by_channel": [
+        0.00048083689238098356,
+        -0.0005459604775012338
+      ],
+      "full_scale_samples": 0,
+      "largest_adjacent_step_by_channel": [
+        0.2792264223098755,
+        0.27937114238739014
+      ],
+      "adjacent_step_p9999_by_channel": [
+        0.11038482189178467,
+        0.11181271076202393
+      ],
+      "quiet_regions_at_least_0_4s": [
+        [
+          0.0,
+          1.4
+        ],
+        [
+          15.2,
+          30.0
+        ],
+        [
+          43.9,
+          58.7
+        ],
+        [
+          72.5,
+          86.0
+        ],
+        [
+          86.9,
+          87.3
+        ],
+        [
+          101.2,
+          101.7
+        ],
+        [
+          115.5,
+          116.0
+        ],
+        [
+          129.9,
+          130.3
+        ],
+        [
+          144.2,
+          144.7
+        ],
+        [
+          158.5,
+          159.0
+        ],
+        [
+          172.9,
+          173.3
+        ],
+        [
+          187.2,
+          187.7
+        ]
+      ],
+      "sha256": "72d214341e8be57c8b601bd301b1a1c0fce7a69eb16f90c72637568b843dec59"
+    },
+    {
+      "file": "docs/evidence/reader-handoff/before-burst-48k.wav",
+      "frames": 4743680,
+      "rate_hz": 48000,
+      "channels": 2,
+      "pcm_bits": 24,
+      "duration_s": 98.82666666666667,
+      "peak_by_channel": [
+        0.2931222915649414,
+        0.29277467727661133
+      ],
+      "rms_by_channel": [
+        0.061656327843168726,
+        0.06632766922478421
+      ],
+      "mean_by_channel": [
+        0.000603247379242803,
+        -0.0006959278563201363
+      ],
+      "full_scale_samples": 0,
+      "largest_adjacent_step_by_channel": [
+        0.2792264223098755,
+        0.27937114238739014
+      ],
+      "adjacent_step_p9999_by_channel": [
+        0.11555266380310059,
+        0.1173815612316067
+      ],
+      "quiet_regions_at_least_0_4s": [
+        [
+          0.0,
+          2.3
+        ],
+        [
+          18.4,
+          18.9
+        ],
+        [
+          32.7,
+          33.2
+        ],
+        [
+          47.0,
+          47.5
+        ],
+        [
+          61.4,
+          61.8
+        ],
+        [
+          75.7,
+          76.2
+        ],
+        [
+          90.0,
+          90.5
+        ]
+      ],
+      "sha256": "4850c49a9a8df61c64a393a07d59a311c7de251b6a2550bf10504c12ec205ce5"
+    },
+    {
+      "file": "docs/evidence/reader-handoff/repaired-loops-and-burst-48k.wav",
+      "frames": 12302336,
+      "rate_hz": 48000,
+      "channels": 2,
+      "pcm_bits": 24,
+      "duration_s": 256.2986666666667,
+      "peak_by_channel": [
+        0.2931222915649414,
+        0.29277467727661133
+      ],
+      "rms_by_channel": [
+        0.06210213341539925,
+        0.06680536690993177
+      ],
+      "mean_by_channel": [
+        0.0006091244094549279,
+        -0.0007039419127994411
+      ],
+      "full_scale_samples": 0,
+      "largest_adjacent_step_by_channel": [
+        0.2792264223098755,
+        0.27937114238739014
+      ],
+      "adjacent_step_p9999_by_channel": [
+        0.11574709415435791,
+        0.11740076541900635
+      ],
+      "quiet_regions_at_least_0_4s": [
+        [
+          0.0,
+          1.4
+        ],
+        [
+          15.3,
+          15.7
+        ],
+        [
+          29.6,
+          30.0
+        ],
+        [
+          43.9,
+          44.4
+        ],
+        [
+          69.0,
+          69.5
+        ],
+        [
+          83.3,
+          83.8
+        ],
+        [
+          97.7,
+          98.1
+        ],
+        [
+          112.0,
+          112.5
+        ],
+        [
+          126.3,
+          126.8
+        ],
+        [
+          140.7,
+          141.1
+        ],
+        [
+          155.0,
+          155.5
+        ],
+        [
+          169.3,
+          169.8
+        ],
+        [
+          183.7,
+          184.1
+        ],
+        [
+          198.0,
+          198.4
+        ],
+        [
+          212.3,
+          212.8
+        ],
+        [
+          226.6,
+          227.1
+        ],
+        [
+          241.0,
+          241.4
+        ],
+        [
+          255.3,
+          255.8
+        ]
+      ],
+      "sha256": "03ce38723328d0c62fabcf39401cd69feccd0e618eeda450f5725f48ca23f673"
+    }
+  ],
+  "level_comparison": {
+    "method": "For repaired passes 1-3, match the first 2400 samples starting at frame 69218, searching +/-512 frames around onset+n*(631881/44100*48000), channel 1 cross-correlation. Measure the following 1-to-11-second window. Fourth window overlaps burst and is excluded.",
+    "repaired_passes": [
+      {
+        "pass": 1,
+        "matched_onset_s": 1.4420625,
+        "rms_of_next_1_to_11_s_by_channel": [
+          0.0638919614845559,
+          0.06878518086913492
+        ],
+        "sample_values_equal_first_repaired_pass": true
+      },
+      {
+        "pass": 2,
+        "matched_onset_s": 15.771395833333333,
+        "rms_of_next_1_to_11_s_by_channel": [
+          0.0638919614845559,
+          0.06878518086913492
+        ],
+        "sample_values_equal_first_repaired_pass": true
+      },
+      {
+        "pass": 3,
+        "matched_onset_s": 30.100729166666667,
+        "rms_of_next_1_to_11_s_by_channel": [
+          0.0638919614845559,
+          0.06878518086913492
+        ],
+        "sample_values_equal_first_repaired_pass": true
+      }
+    ],
+    "matched_before_first_pass_onset_frame": 68194,
+    "matched_after_first_pass_onset_frame": 69218,
+    "before_after_1_to_11s_pcm_equal": true
+  },
+  "listening": {
+    "observer": "user",
+    "sequence": "repaired ordinary looping before slice burst",
+    "verbatim": "it is solid playback.",
+    "burst_listening_verdict": null
+  },
+  "limitations": [
+    "PCM export cannot prove absence of internal non-finite DSP.",
+    "Sample-step maxima do not establish click-free playback.",
+    "Channel ordering remains a known gap.",
+    "No 44.1 kHz host, reverse, other-track, multi-instance, recording, or DAW acceptance in this slice."
+  ]
+}
