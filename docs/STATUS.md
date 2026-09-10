@@ -7,6 +7,122 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Slice policy checkpoint
+
+Branch `codex/fix-slice-region-handoff` starts at PR #15 head
+`5227f7e991462eeddfa5fb2b49009875221e45a4`. Remote main was verified as
+`81b4e5c57505bd518d9fb5161689a9199a33bd00`; the preceding PRs remain unmerged.
+
+Contract agreed before implementation: the 16 slice buttons retain fixed positions
+across the selected sample's content. An accepted slice leaves any smaller loop,
+including when its destination was inside that loop, and restores full-content
+loop bounds before its existing crossfade/jump. Forward enters the slice at its
+start; reverse at its end. Playback continues across the content, not just that
+slice. `row_<track>` retains zero-based indexes 0..15. Internal bounds/positions
+are file frames with an exclusive end, converted by the existing file-rate duration
+calculation. Speed, Pause/Resume, Stop, quantizer scheduling and 6/9 ms fades retain
+their existing paths. Stop cancels a pending slice before it can reset the bounds.
+Empty/switching buffers cannot start a trajectory. No new mode switch or engine.
+
+**Policy location:** `pd slice_policy` in `sample_player_rebuild.pd`, called at the
+slice commit trigger. This is a musical mapping choice, separate from loop DSP and
+reader crossfading. A future within-loop slicing mode must change both its position
+mapping and bounds policy explicitly; it must not quietly reinterpret the buttons.
+Reference: [norns MLR event_exec](https://github.com/tehn/mlr/blob/main/mlr.lua)
+and [mlre cut_track / clear_loop](https://github.com/sonocircuit/mlre/blob/main/mlre.lua).
+The user approved this default on 2026-09-10. During the existing 1 ms pending
+slice delay, that slice owns the next jump: loop detection cannot start a competing
+fade. Commit restores bounds, performs the existing reader/trajectory handoff, then
+releases loop detection; Stop cancels the pending slice and releases ownership.
+This ordering addresses the native-reproduced boundary/cut collision.
+
+### Implementation and results
+
+The original slice frame calculation, reverse offset, delayed commit, two readers,
+6/9 ms envelopes and transport paths are reused. `slice_policy` restores the cached
+content endpoints at commit. Its prepare inlet suppresses competing loop events
+during the existing 1 ms pending slice; commit or Stop re-enables loop detection.
+The matching guard is the spigot in `pd loop_logic`. No additional reader or delay.
+Only `sample_player_rebuild.pd` changes in the application: 48 added / 4 removed
+lines. Source inspection and native captures showed the competing wrap happened
+BEFORE the slice commit; a stale-event-after-commit hypothesis was not used as the
+basis for an untested repair. The policy-only failure and source are retained.
+
+**27 numerical checks pass** on retained audio from the actual player, post-master
+mixer and both internal readers. Exact source/runtime hashes are in
+[`manifest.json`](evidence/slice-region/manifest.json). Native Mac plugdata is
+**0.9.4 nightly 98ae0f78b / Pd 0.56.3**, binary SHA256
+`86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e`.
+Audio settings were inspected in its UI: CoreAudio, 8A output, **48000 Hz / 512
+frames / 1x**. Speakers were muted for diagnostics. Each capture self-stops at
+seven seconds; both completion messages were inspected in the native console.
+
+- Six ordinary cuts cover positions inside, before and after the old subloop,
+  forward and reverse. Candidate destinations agree within 0.002 file frames
+  with the first moving sample, and all six subsequently traverse full content.
+- The speed stress includes the formerly excluded simultaneous region/cut windows.
+  Baseline has two oversized audible-reader jumps; the final candidate has none
+  across 251161 checked reader steps. Largest qualifying step is 4.00049 frames
+  at a maximum requested speed of 4x.
+- At the two collision windows, maximum L-channel adjacent steps change from
+  0.105635 / 0.074460 to 0.012146 / 0.012573. These are fixture measurements,
+  not perceptual click thresholds.
+- Constant stereo levels match their expected distinct L/R values within 7.46e-9,
+  including the 2 ms cut burst. Active windows have no full-block dropout or
+  unintended mixer gain change. Intentional Pause/Stop/empty-buffer windows are
+  exactly silent at player and mixer. No non-finite samples or nonzero final tails.
+- The existing Pause/Resume score passes active/silent audio and mixer checks on
+  this source. Stops cancel pending cuts, and playback subsequently wraps again.
+
+**Known state-reporting gap:** at 5319.98 ms, after returning from an empty buffer,
+reader 0 reports gain 1 immediately before its DSP flag turns off. It is identical
+in the baseline and candidate; player and mixer are exactly silent for the checked
+10 ms neighborhood. This is retained as an unchanged gap, not described as a
+successful zero-gain shutdown. Other audible shutdown checks pass.
+
+**Listening:** pending for this source. The retained
+[`candidate-wave-listen-48.wav`](evidence/slice-region/candidate-wave-listen-48.wav)
+contains ONLY actual post-master stereo at output gain 0.90, without normalization.
+The first two channels of the six-channel diagnostic recording are generated
+reference tones and must not be presented as application playback.
+
+### Reproduce and restore
+
+Use the original `mlr.pd`, with the temporary bounded taps described in the preceding
+checkpoints: `tests/instant-reverse-check $0`, `tests/bounded-player-capture 1 $0`
+and `tests/speed-slew-controls $0` inside player 1, plus the two post-master mixer
+taps. Initialize only the helper. Complete the additions, rebuild DSP while muted,
+and verify BOTH recordings contain samples: the initial live-added reader tap
+produced an empty WAV until DSP was rebuilt; those setup runs are excluded.
+
+1. Load `tests/fixtures/stop-wave-48.wav` into sample slots 3 and 4. Run
+   `record-check symbol fixtures/slice-region.txt`, then the existing
+   `fixtures/speed-slew-position.txt`, on the exact baseline and candidate.
+2. On the candidate also run `fixtures/pause-resume.txt`. Load
+   `stop-constant-48.wav` into slot 3 and repeat `fixtures/slice-region.txt` muted.
+3. Wait for `capture-stopped` and `record-check-stopped` after each run. Retain
+   `/tmp/plugmlr-record-check.wav`, its events file and the reader capture named
+   in the score (`region`, `reverse` or `pause`). The committed NPZ files preserve
+   every decoded float sample; native WAV hashes and exact conversion checks are
+   in `capture-compression.json`.
+4. Run `python3 tests/analyze_slice_region.py docs/evidence/slice-region`
+   with NumPy and ffmpeg. The compressed artifacts reproduce the same 27 checks.
+
+All three original live takes were restored/re-exported byte-identically, retaining
+content/capacity 96000/96000, 96000/96000 and 60032/192000 frames. Next recording
+lengths remain 2/2/4 seconds. Original samples 1/2 are restored, Live 2 is selected,
+playback stopped, recording disarmed, output 0.90. Diagnostic taps and the temporary
+preservation helper are removed. Original application/player remains open.
+
+This slice qualifies the matching 48 kHz file/host setup only. Other host rates,
+file/host mismatches, arbitrary burst audibility, exact loop period, quantizer
+behavior, physical controllers and DAW lifecycle remain outside these results.
+The old sample-only frame mapping assumes the current zero-based content origin;
+a future splice/within-loop mode must implement its origin offset explicitly.
+Region-entry UI and a new visual layout are not implemented. Keep that future work
+separate from the named musical policy and this repaired handoff.
+
+
 ## Pause/Resume follow-up
 
 Branch `codex/fix-pause-resume` starts at PR #14 head

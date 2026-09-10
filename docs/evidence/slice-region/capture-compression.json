@@ -1,0 +1,100 @@
+[
+  {
+    "file": "baseline-speed-player-mixer-48.npz",
+    "native_wav_sha256": "05dd414446f28d6907f31dbaef83d41bf5c15306f6f856464b69e86f61f478ca",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "baseline-speed-readers-48.npz",
+    "native_wav_sha256": "b00380823479de82a86e364ae22abe6754108239a3d81096e3dd8268fd466eb2",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "baseline-wave-player-mixer-48.npz",
+    "native_wav_sha256": "179f45075f70c96e8272755dbcc5e8d9df41ae60ee92d6264bdf1e688abe9d2b",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "baseline-wave-readers-48.npz",
+    "native_wav_sha256": "34f840e941b1e25447ff7f21f4029e2ed0819e3e4d7648d23cc9813e6971a11d",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-constant-player-mixer-48.npz",
+    "native_wav_sha256": "8898541afcbde5d08dab067e7192d9218674ae062776b97b6ff99c20bd3f89f2",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-constant-readers-48.npz",
+    "native_wav_sha256": "35c8e866b9b8be2b9f0af85474d96bef023fda802a4beebf7a638c9fa5657f32",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-pause-player-mixer-48.npz",
+    "native_wav_sha256": "45a7a09ebeed4f11904190209d1b9e41388da926a09b8b1c53f34a1b376d1c02",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-pause-readers-48.npz",
+    "native_wav_sha256": "785b26d10510464e4bf7771384ec5e1aa1610059ab5d56e865a0d1c1569d5c78",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-speed-player-mixer-48.npz",
+    "native_wav_sha256": "68adf9dcf945b389a10c11e98adef3c5f61b6208d2733ff7c7cb02d165c082a5",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-speed-readers-48.npz",
+    "native_wav_sha256": "6833d403a691133260c3187ad3c4705846f8df92b958040d7b07d57258bb5b40",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-wave-player-mixer-48.npz",
+    "native_wav_sha256": "810b07bf080e23ec3d624041078063fb2f7f2981e5b32ad1c55797d3a4919f65",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "candidate-wave-readers-48.npz",
+    "native_wav_sha256": "14844bce66ef51e76b4b13be06ed1ce1a973f776b9f345281829ae171fd744d1",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "policy-only-speed-player-mixer-48.npz",
+    "native_wav_sha256": "146cf22e0b80951d77c08b001c440b3bb3fc5a9e0e71778c59e7ef886ccf2f0c",
+    "channels": 6,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  },
+  {
+    "file": "policy-only-speed-readers-48.npz",
+    "native_wav_sha256": "63e48721bcda0c59186cc71387a3a76c1bffc3f7f32bc43a7105ff66e23851d2",
+    "channels": 10,
+    "frames": 335918,
+    "decoded_float32_exact": true
+  }
+]

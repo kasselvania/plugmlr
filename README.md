@@ -30,13 +30,19 @@ Tape-direction slew remains open; speed and Pause follow-ups are below.
 The [speed-slew position repair](docs/STATUS.md#speed-slew-position-follow-up) now
 uses that same current-position calculation for rate reports. Paired native
 captures remove the oversized position jumps during glide; the user heard clean
-musical glides/reversals. Simultaneous region/slice changes remain open.
+musical glides/reversals. The region/slice follow-up is described below.
 
 The [Pause/Resume candidate](docs/STATUS.md#pauseresume-follow-up) fades the existing
 readers before holding the current position, then restarts with their play fade.
 Rapid toggles queue/cancel Resume; Stop, buffer switching and a new slice cancel
 stale pause cleanup. The existing slice gesture resumes a paused track. Actual
 48 kHz player/mixer checks cover these transitions; listening is recorded separately.
+
+The [slice-policy candidate](docs/STATUS.md#slice-policy-checkpoint) keeps 16 fixed
+whole-content slices. Any slice press exits a smaller loop; reverse enters at the
+slice end. The choice is named `pd slice_policy` in `sample_player_rebuild.pd`,
+separate from loop detection and reader fades. Pending slices own the next jump,
+preventing a competing boundary fade. Alternative mappings are not enabled.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
