@@ -7,6 +7,67 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Player usability view (review candidate)
+
+Scope: make one existing player understandable without changing its DSP, clock,
+recording or reset semantics. `player-panel <player-id> <track>` is attached once
+to the original player and opened by `<track>-open-player-view`. Main supplies an
+Open player 1 button. Existing slice/loop and buffer/record panels are relocated,
+not rebuilt; button/send identities remain the same. The original Beat Reset
+engine remains in the player, with a message-based menu adapter in the view.
+The view uses a direct menu adapter rather than embedding the reset engine.
+In the final clean view, mouse-open and keyboard selection of 1 beat displayed
+Waiting for Play while stopped; selecting Off restored Reset Off.
+
+Display contract: transport comes from existing playing/paused/ready/switching
+flags. Direction comes from the existing direction flag. Set speed is the
+selected 0.25/0.5/1/2/4 multiplier, not a claim about instantaneous slew speed.
+Clock source and internal BPM/Run reflect existing feedback; `clock-display-state`
+caches that feedback so a later-opened view can show current settings. Observed
+`ppq` ticks drive 4/4 bar and beat counters and a Ticking indicator, which becomes
+No ticks 500 ms after the last tick. Before any observed tick, count is zero.
+Reset eligibility reads the existing interval and transport flags plus observed
+clock activity. Countdown is whole quarter-note beats to the next shared boundary,
+not time since enabling. It is zero while inactive; the request flash is driven by
+`<track>-reset-fired`, not by a second scheduler. Off does not stop playback.
+Tempo-fit OFF/UNVERIFIED reflects the legacy mode and is explicitly labeled
+unfinished. No new tempo-fit control or DAW qualification is introduced.
+
+**Native observations:** fresh player 1 instance against the existing loaded
+buffers, cached internal/120 BPM display, Play/Pause, moving position marker,
+forward/reverse, half-speed selection, independent clock ticking while paused,
+Waiting for Resume, Waiting for clock, Counting with a four-to-one countdown,
+and Stopped/Off were observed in plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3.
+Hardware/runtime settings remain 48 kHz / 512 / 1x. DSP was rebuilt with physical
+output muted after dynamically replacing the player instance; this is fixture
+setup, not a new audio behavior. No recording was started. All three populated
+live-buffer exports match before/after byte-for-byte; buffer owners remained
+loaded throughout. See [observations](evidence/player-usability/observations.json).
+The initial load exposed an existing unescaped semicolon in a comment, which
+printed `speed: no such object`; that text delimiter is repaired. Temporary
+missing-voice-sender warnings accompanied instance replacement and are not
+presented as a normal startup test.
+
+**Structural check:** `python3 tests/check_player_panel.py` verifies all existing
+connection lines and nested DSP/control objects against merged base
+`3d349dc8527de4598fd11f2c99c3805465528590`, allows only the listed GUI extraction,
+and confirms the display adapter cannot send engine commands. No new rendered
+audio acceptance or recording validation is claimed for this UI slice.
+
+**User feedback (2026-09-11):** “Yup! this looks great” approves the visible
+layout. The user subsequently reported: “I also tested the internal clock and
+the beat repeat. Its great. We're good.” This accepts the internal clock and
+Beat Reset in the player view, separately from the automated observations.
+Broader control coverage, recording and DAW validation remain unchanged.
+Native reset-menu selection and Off were verified in the final
+clean view. Set speed was also verified to update to 0.5 while stopped and back
+to 1 immediately, independently of the previous playback rate. This is
+an unmerged review candidate with user approval of the layout, internal clock
+and Beat Reset. Other player instances were
+not reloaded during this trial. Historical diagnostics remain accessible; do not
+save temporary diagnostic canvas state over repository files. The original
+player now has 553 root objects, so attached test helpers start at index 553.
+
 ## Beat Reset contract (review candidate)
 
 **Current acceptance:** replacement audio passes nine numerical checks and the user accepted its listening result. Native menu selection is verified below. The original rejected musical capture is retained as a known failing demonstration, not the current acceptance report.

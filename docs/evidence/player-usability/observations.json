@@ -1,0 +1,55 @@
+{
+  "base": "3d349dc8527de4598fd11f2c99c3805465528590",
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "host": "existing 48 kHz / 512 / 1x",
+  "kind": "Native UI observations and structural checks; no new audio acceptance capture",
+  "observed": [
+    "Fresh player instance against unchanged existing buffer owners",
+    "Clock source internal and cached 120 BPM appear on opening",
+    "Play and Pause display Playing and Paused",
+    "Running clock continues counting while paused",
+    "Reset shows Waiting for Resume while paused",
+    "Playing with stopped clock shows Waiting for clock",
+    "Running clock shows Counting with 4-to-1 beat countdown for one-bar reset",
+    "Reverse button changes direction label to Reverse",
+    "Half-speed selection changes Speed x to 0.5",
+    "Position marker advances after DSP graph rebuild following instance replacement",
+    "Stop restores Stopped; clock stopped, Reset Off, speed 1x, Forward restored",
+    "Final saved view: stopped preset change immediately displays Set speed x 0.5, then 1",
+    "Clean view with console closed: mouse-open/native-keyboard reset selection to 1 beat displays Waiting for Play; selecting Off displays Reset Off",
+    "Final state: stopped, forward, set speed 1, Reset Off, clock stopped, output .9, console closed; obsolete view tabs and export observer closed"
+  ],
+  "live_array_exports_before_after_identical": {
+    "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+    "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+  },
+  "open": [
+    "Broader control coverage beyond the accepted layout, internal clock and Beat Reset"
+  ],
+  "limits": [
+    "Other player instances were not reloaded during the native trial",
+    "No recording commands exercised; moved controls preserve their existing send symbols",
+    "Transient missing voice sender warnings during instance replacement; no buffers destroyed",
+    "Existing malformed comment semicolon caused speed: no such object on initial load; text delimiter repaired",
+    "Old diagnostic tabs and unsaved session indicator may remain; no diagnostic canvas saved over source"
+  ],
+  "source_sha256": {
+    "mlr.pd": "86bd17ae0dce9efc073f09f33b77bfb05c07e81f54dffe6e4047903c008870bc",
+    "sample_player_rebuild.pd": "ada57f2df941ea5b8e8231f92ccf0288aa16912db3a1b5de0fdf82b788c2dfef",
+    "player-panel.pd": "6f8b3ac11fea37d50214d0833991792a96d6ae3e051bd6df30988943f034d194",
+    "player-panel-state.pd": "efeffb7682a78e29dfc72ba005a88e05560b25e93c39a59bbb936182e07941d7",
+    "clock-display-state.pd": "fc41c9a15f9e1d766cf5c9c546970f71c1c56b9426a77aa0fe870c0792c39549",
+    "tests/check_player_panel.py": "7b45f62011b9664d0e09e04c22222201af5803ecf9398dd5a78cda8c5d197e73"
+  },
+  "user_feedback": {
+    "date": "2026-09-11",
+    "quote": "Yup! this looks great",
+    "scope": "Approval of the visible layout; no additional functional, audio, recording or DAW acceptance inferred"
+  },
+  "user_functional_feedback": {
+    "date": "2026-09-11",
+    "quote": "I also tested the internal clock and the beat repeat. Its great. We're good.",
+    "scope": "User acceptance of internal clock and Beat Reset in the player view, in addition to the prior layout approval; separate from automated observations"
+  }
+}

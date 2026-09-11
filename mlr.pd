@@ -625,6 +625,8 @@
 #X restore 13 458 pd grid-input-output;
 #X obj 650 55 record-input \$0 1;
 #X obj 300 360 standalone-clock-panel;
+#X obj 660 360 bng 30 250 50 0 1-open-player-view empty Open_player_1 36 15 0 14 #e3dfd9 #333333 #333333;
+#X obj 660 410 clock-display-state;
 #X connect 33 0 35 0;
 #X connect 34 0 36 0;
 #X connect 36 0 33 0;

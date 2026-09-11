@@ -12,6 +12,16 @@ See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remainin
 work and links to the retained numerical/listening evidence. Older STATUS sections
 record what was true at that point in the repair history.
 
+**Player view (review candidate):** open `mlr.pd`, then click **Open player 1**.
+The dedicated view keeps the existing player controls together with transport,
+direction, selected speed, clock source/BPM/count, and reset feedback. Run controls
+the shared clock; Play controls the selected player. Reset reports Off, waiting
+for Play/Resume/clock, or Counting. Its flash means a reset request, not a claim of
+sample-exact execution. Tempo fitting remains unfinished. Wiring stays available
+in `sample_player_rebuild.pd`; the new view does not instantiate another player.
+Native reset-menu selection is verified. On 2026-09-11, the user approved the
+layout and successfully tested the internal clock and Beat Reset.
+
 **Slice controls:** each player has a Quantize checkbox and Slice grid menu.
 Checked means queued slices wait for a matching clock tick; unchecked means
 immediate. Default is unchecked with a 1/16-note grid. The main Track 1 checkbox
