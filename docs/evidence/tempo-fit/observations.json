@@ -1,0 +1,72 @@
+{
+  "base": "610098f6f70c598c991d4ee59f351912e8397107",
+  "runtime": "plugdata 0.9.4 / build 98ae0f78b / Pd 0.56.3",
+  "runtime_identity_verification": "Installed plist and binary strings, same native UI session",
+  "host_hz": 48000,
+  "unchanged_session_settings": "512 frames / 1x from prior qualification; no audio settings changed",
+  "native_ui": [
+    "Fit and Sample beats operated by mouse/keyboard",
+    "Two-second Live 1 at eight beats: target 0.5 at 120 BPM and 1 at 240 BPM while stopped",
+    "Exact test abstraction and mixer taps removed after both automatic stops",
+    "Final DSP rebuild with test abstraction gone produced no new missing-sender warnings",
+    "Final view responds to Fit toggle; returned to Free and console closed"
+  ],
+  "user_listening": "Requested; pending",
+  "live_buffer_before_after_sha256": {
+    "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+    "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+  },
+  "restored_state": {
+    "player": 1,
+    "buffer": "Live 1",
+    "transport": "Stopped",
+    "direction": "Forward",
+    "tempo_fit": "Free",
+    "sample_beats": 4,
+    "preset": 1,
+    "target": 1,
+    "clock": "internal / 120 BPM / stopped",
+    "beat_reset": 2,
+    "device_output": 0.9,
+    "recording": "Stopped",
+    "test_slot_16": "Restored empty; track 16 returned to Live 16"
+  },
+  "source_sha256": {
+    "sample_player_rebuild.pd": "325d5613957869881300368138acb88cb27784ce38bbf76b8a2da8991c1c4ffa",
+    "tempo-fit.pd": "be659044d371f6827f4fa24a7794363aef5c4d069bdbee35221350afc9e92543",
+    "player-panel.pd": "87d07d174c88e507bd4bb2035e5c8ee1697ada79fe5bcb61c1540dc772688d96",
+    "player-panel-state.pd": "632ac6a8cd2a623a78886b920a4b3ce35196753c6e5a8c1b319f6eb8b95e2492",
+    "tests/tempo-fit-check.pd": "f7601ce6455eeb68848789e46db9ad6cce8d0c5ebb9a5a0f977867b326d0d8a2",
+    "tests/analyze_tempo_fit.py": "dfed168984d3f8c7ba13b4862941bcfd2238637a12f85fd52965232b4dc676c0",
+    "tests/check_tempo_fit.py": "eae1511e3dac103ff4619d1833d355983051533b7698015689331a7c46b67cf1",
+    "tests/check_player_panel.py": "b6f7f8f8b040db395ceb34ebba0e77e58bdab03497bc26490171a6f47966fc6a",
+    "tests/make_tempo_fixture.py": "60238282c4b824144dee0d1d66ad50444aea6dc89218f29a56cc2a83b60940a7",
+    "tests/fixtures/tempo-stereo-441.wav": "a76b65572228e068f07974b36dc02e15fd96ac2d628b71453f1094ac94c5c486",
+    "tests/fixtures/tempo-fit.txt": "f0ed1f822267da22bf94a2200538296d7cb506dd48a83f8cd341e4486f6095c8",
+    "tests/fixtures/tempo-fit-stress.txt": "bd166d92612d732d6ffc25ce7e05374040af2047fbc96ad6eb472eff62c85f2d",
+    "tests/fixtures/tempo-fit-musical.txt": "9e4129a5b074e99ef432ba19a9ecd1363999a70ddb7dba7772ef16898f63d937"
+  },
+  "evidence_sha256": {
+    "core-events.txt": "cebd016924c895ffa51fb3dc15d6fb7b3c725f590a5cadf7cb13dc006b48aeb8",
+    "core-master.wav": "8c8e60b6ef0e60f89ce2661f0566036ca413fef916cc765037dc2f5f8cee1ef9",
+    "core-readers.npz": "97211d33fb15c7bef2d2c93c1a1b31ddc823a4d16b3814ba7a0ff8f3fc148f1a",
+    "musical-events.txt": "f035f63733aa5bc776deca86a67a0f92cdcd63a7363b08bc9b9d6e4a28ed5ef8",
+    "musical-master.wav": "97f576ca2061c9cbf0e5a8c67a257cee15dfb47185db80501fb60c014b229fcf",
+    "musical-readers.npz": "c268cf7e847ebbe06a0bb72a13fbfbc6b412ea08a804fd50765444f5c1c0c480",
+    "rejected-missing-motion-events.txt": "a07e9b53cf24f2388b6874a46e5e48c405ad0307aa445906ad7b557002498a5b",
+    "rejected-missing-motion-master.wav": "cf51171f91e7bcb76402743b45511289f03d56b66d6e1320e910d89e16c70bfb",
+    "rejected-missing-motion-readers.npz": "2a9a71317190de16a8bb2596a8a48d3c5af6baed56315dc99f82952031ab053e",
+    "results.json": "908210dcf8696fa05105496db184886bcc00d53a52621f7a73461eaee6e37c58",
+    "stress-events.txt": "242d68a7749f19e252256e842abdf1d94bc0390fbc5fa46f2bfa50bc6844e28f",
+    "stress-master.wav": "a6a9cd0d90d0c726aa34806fe2e8c9b541829bc47031a7de55bce877a3492cad",
+    "stress-readers.npz": "6e5b47d383e4c9040191875847e55ab9d120e7060d1d13e22c29a62bc436aa22"
+  },
+  "limits": [
+    "Only Player 1 reloaded with candidate",
+    "48 kHz host only; 44.1 kHz file/host mismatch tested",
+    "No new recording, DAW, recall or namespace-isolation acceptance",
+    "No universal click-free or phase-lock claim",
+    "Rejected missing-motion intermediate retained separately; subsequent qualified captures have moving readers"
+  ]
+}

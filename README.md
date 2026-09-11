@@ -17,10 +17,19 @@ The dedicated view keeps the existing player controls together with transport,
 direction, selected speed, clock source/BPM/count, and reset feedback. Run controls
 the shared clock; Play controls the selected player. Reset reports Off, waiting
 for Play/Resume/clock, or Counting. Its flash means a reset request, not a claim of
-sample-exact execution. Tempo fitting remains unfinished. Wiring stays available
+sample-exact execution. Wiring stays available
 in `sample_player_rebuild.pd`; the new view does not instantiate another player.
 Native reset-menu selection is verified. On 2026-09-11, the user approved the
 layout and successfully tested the internal clock and Beat Reset.
+
+**Tempo fit (review candidate):** enable **Fit** and set **Sample beats** to the
+full sample's quarter-note length (1..64; four beats per 4/4 bar). At preset 1x,
+playback fits that length to the shared BPM. Presets .25/.5/2/4 multiply the fitted
+speed; **Target speed x** shows the resulting tape speed, including its pitch change.
+Smaller loops and slices keep that speed. Tempo changes use Speed glide; glide can
+drift from the clock. Run controls ticks, independently of Fit. Beat Reset still
+repositions playback separately. Free restores the selected preset. Missing content
+or a rate outside 1/64..64 shows **Fit unavailable / Free** and uses the free preset.
 
 **Slice controls:** each player has a Quantize checkbox and Slice grid menu.
 Checked means queued slices wait for a matching clock tick; unchecked means
@@ -39,7 +48,8 @@ end in reverse on the next matching shared-clock boundary. Paused/stopped tracks
 stay silent; speed is unchanged. Public `<track>-reset-beats` accepts
 0/1/2/4/8/16/32. Same-tick reset supersedes a quantized slice through the existing
 crossover. The replacement listening capture is accepted; native dropdown selection and reset timing are verified.
-Tempo-locked audio, DAW/MIDI synchronization and tape-direction slew remain open.
+Tempo fit is a rate adjustment, not phase locking. DAW/MIDI synchronization and
+tape-direction slew remain open.
 
 **Buffers and recording:** selection while playing fades to the new buffer's
 beginning (end in reverse); selecting an empty buffer stops playback. Fixed fresh

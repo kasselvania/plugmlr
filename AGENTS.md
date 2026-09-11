@@ -94,3 +94,10 @@
   from any claim about instantaneous slew. Clock activity and reset request feedback
   must not imply tempo fitting or sample-exact synchronization. Validate the actual
   panel with the user; structural/message checks alone do not accept usability.
+
+- Tempo fit derives the effective target before the original speed glide. Full
+  content frames and file sample rate define its duration; loop bounds and storage
+  capacity do not. Keep preset multiplier, fitted target and current slew distinct.
+  Do not reconnect the obsolete calc_duration tempo branch. Mode/tempo/beat edits
+  must preserve current position and stopped/paused silence. Test the actual reader
+  signals and post-master output, including file/host rate mismatch and cut collisions.

@@ -1,4 +1,4 @@
-"""Structural checks for the view-only extraction, against its merged base.
+"""Historical PR22 extraction check plus current display-only/index checks.
 Run from the repo root: python3 tests/check_player_panel.py
 Native interaction and user usability remain separate from this check.
 """
@@ -23,6 +23,8 @@ def parse(text):
 for name in ['sample_player_rebuild.pd','mlr.pd','player-panel.pd','player-panel-state.pd','clock-display-state.pd']:
  text=Path(name).read_text();parse(text)
  if name in ['sample_player_rebuild.pd','mlr.pd']:
+  text=subprocess.check_output(['git','show','610098f:'+name],text=True)
+ if name in ['sample_player_rebuild.pd','mlr.pd']:
   old=subprocess.check_output(['git','show',BASE+':'+name],text=True)
   assert [l for l in old.splitlines() if l.startswith('#X connect')]==[l for l in text.splitlines() if l.startswith('#X connect')],name
   if name=='sample_player_rebuild.pd':
@@ -42,4 +44,4 @@ for name in ['sample_player_rebuild.pd','mlr.pd','player-panel.pd','player-panel
   if name=='player-panel-state.pd':
    assert not any(('s \\$1-' in l or 's \\$2-' in l) for l in text.splitlines()),'display must not command engine'
 assert 'beat-reset ' not in Path('player-panel.pd').read_text(),'view must not duplicate reset engine'
-print('PASS: valid connections; existing DSP/control wiring preserved; one reset engine; display adapter sends no engine commands')
+print('PASS: historical PR22 extraction preserved DSP/control wiring; current views have valid indexes and no engine sends (current engine: check_tempo_fit.py)')
