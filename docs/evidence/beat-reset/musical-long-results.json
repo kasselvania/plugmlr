@@ -1,0 +1,46 @@
+{
+  "checks": {
+    "finite_bounded_capture": true,
+    "audible_forward_and_both_reverse_passes": true,
+    "clock_reset_at_two_bars": true,
+    "reverse_reset_enters_file_end": true,
+    "reverse_motion_before_and_after_reset": true,
+    "no_nonzero_gain_reader_teleports": true,
+    "active_mixer_gain_preserved": true,
+    "automatic_stop_silence": true,
+    "source_tail_explains_quiet_sections": true
+  },
+  "passed": true,
+  "audible_windows_seconds": [
+    [
+      0.1,
+      1.0
+    ],
+    [
+      2.5,
+      3.95
+    ],
+    [
+      5.5,
+      6.25
+    ]
+  ],
+  "post_master_rms": [
+    0.09289596229791641,
+    0.09387905150651932,
+    0.035661377012729645
+  ],
+  "maximum_adjacent_steps_player_mixer": [
+    0.6918867230415344,
+    0.6909512281417847,
+    0.2843654453754425,
+    0.28398093581199646
+  ],
+  "limits": [
+    "Human listening pending",
+    "Source silent tail remains audible as gaps; no trimming",
+    "48 kHz host only",
+    "No universal click-free claim",
+    "Earlier musical capture remains rejected"
+  ]
+}
