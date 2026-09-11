@@ -31,15 +31,18 @@ The 16-second actual-player/post-master capture exercises original row_1 cuts,
 reverse and Stop. Both output channels are active and finite, without clipping;
 the stopped tail is silent. These measurements do not establish universally
 click-free playback or rule out brief dropouts. The capture uses scheduled row
-messages, not recorded physical gestures. The user confirmed seeing the LED move. Detailed physical transition behavior
-and user listening acceptance for the capture remain open. Prior physical connector/key acceptance is recorded
-below and does not substitute for either gate.
+messages, not recorded physical gestures. In the subsequent hands-on session,
+the user confirmed visible LEDs and playable physical slicing: “it works great!”
+This accepts the live immediate-slicing path. Quantized physical cuts, two-player
+interaction and detailed transition checks remain separate; no explicit listening
+report for the retained capture is claimed.
 
 See [procedure and retained evidence](evidence/grid-feedback/observations.md).
 The failed no-monitor fixture and initial stopped-transport capture are retained
 separately. At cleanup the Grid was released with verified_lease_free, the
 recorder was closed, and saved MLR was reopened with Sample 1 loaded and Stopped.
-No installed package or service changed.
+The later hands-on setup left the Grid connected and Sample 1 playing for the
+user, with no recorder open. No installed package or service changed.
 
 ## Grid adapter review candidate — 2026-09-11
 

@@ -19,7 +19,12 @@ This is not new 44.1 kHz or Bitwig acceptance. Installed SerialOSC unchanged.
 - Maximum master adjacent step is 0.4143/0.4142. Percussive source transients
   make this an unsuitable universal click detector. No claim of click-free
   playback follows from these numbers.
-- Listening: requested, awaiting user report for this capture.
+- Live physical slicing acceptance: user reported, “yup! visible and I was able
+  to play it! it works great!” after the hands-on setup below. This accepts the
+  visible feedback and playable immediate slicing in that session. It does not
+  establish separate quantized, two-player, or exhaustive transition acceptance.
+- Retained capture listening: no explicit report for that file yet; the live
+  playing report above is separate evidence.
 - Physical moving marker: user confirmed, “I saw the LED moving.” This accepts
   observed movement, not every reverse/pause/reconnect behavior. Earlier connector
   acceptance covers corner LEDs and a physical row_1 key event.
