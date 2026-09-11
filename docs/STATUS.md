@@ -7,6 +7,35 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid ALT transport review candidate — 2026-09-11
+
+Scope: retain CUT rows, add top-right ALT (OSC x=15,y=0) and focused-player
+screen selection. Normal presses on physical rows 2–7 focus players 1–6 and
+follow the existing slice path. ALT held before a fresh track-key press sends
+exactly one existing Play/Pause command, immediately, and no slice. Holding a
+track key then pressing ALT does not retroactively toggle it. Key releases do
+not trigger transport or slices; duplicate downs are ignored until release.
+Multiple distinct ALT+keys are distinct toggles. Hard Stop stays on the player
+panel. Existing empty-buffer refusal and queued-cut cancellation remain player
+responsibilities; no new transport latch or DSP state is introduced.
+
+Attachment/disconnection clears held keys and ALT; disconnected keys are ignored.
+The top-right LED is dim when available and bright while held. CUT at column 2
+is lit as the sole current view; other top-row controls remain inactive. Changing
+track focus opens its existing player view (once per focus change), where actual
+Playing/Paused/Stopped state is already shown. Existing two moving row markers
+are unchanged. `grid-cut-control.pd` intercepts the original key list immediately
+before its press-only dispatcher; `grid-cut-keys.pd_lua` owns only held keys,
+ALT and focus. No timers or audio processing run in Lua.
+
+Validation: 35 native message sequences and nine actual-player/mixer audio checks
+pass; exact source guards preserve original DSP, transport, quantization and row
+renderers. Native UI confirmed Playing/Paused and empty-buffer refusal. Temporary
+test connections were discarded. The user confirmed the physical ALT toggles
+and player-view switching: “yes. this works”. Listening to the separate retained
+capture remains unreported. See
+[retained evidence and repeat procedure](evidence/grid-alt/observations.md).
+
 ## mlre control reference and next Grid slice — 2026-09-11
 
 The user requested sonocircuit/mlre as the control/layout reference. This is a

@@ -1,0 +1,58 @@
+{
+  "checks": {
+    "duration_within_one_device_block_of_12s": true,
+    "finite_and_below_full_scale": true,
+    "a_pause_silent": true,
+    "a_queued_cut_cancelled_pause_silent": true,
+    "a_resumes_after_rapid_toggles": true,
+    "a_resumes_saved_position_not_pending_slice": false,
+    "b_continuous_source_progression": false,
+    "master_both_channels_active": true,
+    "final_pause_silent": true
+  },
+  "passed": false,
+  "frames": 575860,
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "peaks": [
+    0.9759158492088318,
+    0.9764569401741028,
+    0.9759158492088318,
+    0.9764569401741028,
+    0.5020921230316162,
+    0.47910869121551514
+  ],
+  "b_source_matches": [
+    {
+      "capture_seconds": 1,
+      "source_seconds": 13.885395833333334,
+      "correlation": 3370488.052212295
+    },
+    {
+      "capture_seconds": 3.2,
+      "source_seconds": 13.928375,
+      "correlation": 12544215.621801414
+    },
+    {
+      "capture_seconds": 6.2,
+      "source_seconds": 13.801770833333334,
+      "correlation": 1740093.535929077
+    },
+    {
+      "capture_seconds": 8.3,
+      "source_seconds": 13.77725,
+      "correlation": 2190538.021413016
+    },
+    {
+      "capture_seconds": 10,
+      "source_seconds": 13.9095,
+      "correlation": 2641601.8092320636
+    }
+  ],
+  "a_after_cancelled_cut": {
+    "capture_seconds": 9.2,
+    "source_seconds": 13.9031875,
+    "correlation": 10135654.87965884
+  },
+  "scope": "Scheduled gestures through actual MLR input. Correlation windows do not exclude all brief artifacts. Physical gestures and listening remain separate."
+}

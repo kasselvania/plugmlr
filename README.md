@@ -89,6 +89,14 @@ Stop, Pause, empty buffers and buffer switching clear the marker; reconnect
 redraws current state. Other rows keep their original controls without new
 playback feedback. Hardware-global intensity below 15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
+**CUT transport:** hold the top-right Grid key (**ALT**), then press a track
+row key to start, pause or resume that player. ALT lights brightly while held.
+Release ALT for ordinary slicing. Transport acts immediately; slices retain their
+per-player quantization. Changing rows opens the corresponding existing player
+view. Hard Stop remains on that panel. The top-row second key marks CUT; other
+pages and two-key looping are not implemented yet. Native checks pass; physical
+ALT toggles and player-view switching are user-accepted in the [checkpoint](docs/STATUS.md#grid-alt-transport-review-candidate--2026-09-11).
+
 ## Run the original application
 
 1. Open this checkout's `mlr.pd` in plugdata. Keep its sibling patches together.

@@ -505,13 +505,15 @@
 #X obj -112 1890 s row_7;
 #X obj -51 1890 s row_8;
 #X obj -119 1728 route 1;
+#X obj -20 1500 grid-cut-control;
 #X connect 0 0 4 0;
 #X connect 1 0 3 0;
 #X connect 2 0 6 0;
 #X connect 6 0 7 0;
 #X connect 6 0 8 0;
 #X connect 7 0 5 0;
-#X connect 7 0 67 0;
+#X connect 7 0 83 0;
+#X connect 83 0 67 0;
 #X connect 8 0 9 0;
 #X connect 9 0 0 0;
 #X connect 9 1 1 0;

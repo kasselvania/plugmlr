@@ -129,3 +129,8 @@
   Preserve stereo and the original player; do not equate tape splices with buffer
   slots or mlre Stop/Start names with our hard Stop. Define gesture/release
   semantics before editing, and keep unsupported page controls inactive.
+
+- CUT ALT routing sits before the old press filter. Release and duplicate-down
+  handling belong there; never emit a slice alongside an ALT transport command.
+  Disconnect clears held input state. Keep transport immediate and slice timing
+  in the existing player. Run check_grid_alt.py for the exact input-only boundary.
