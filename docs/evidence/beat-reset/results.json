@@ -1,0 +1,397 @@
+{
+  "checks": {
+    "wave_exact_reset_requests_and_suppression": true,
+    "wave_invalid_intervals_rejected": true,
+    "wave_other_track_stays_silent": true,
+    "wave_finite_bounded": true,
+    "wave_no_nonzero_gain_reader_teleports": true,
+    "wave_active_audio_and_mixer_gain": true,
+    "wave_stopped_paused_empty_silence": true,
+    "wave_all_transition_steps_bounded": true,
+    "wave_full_start_or_end_entry": true,
+    "wave_signed_speed_preserved": true,
+    "wave_full_bounds_restored": true,
+    "constant_exact_reset_requests_and_suppression": true,
+    "constant_invalid_intervals_rejected": true,
+    "constant_other_track_stays_silent": true,
+    "constant_finite_bounded": true,
+    "constant_no_nonzero_gain_reader_teleports": true,
+    "constant_active_audio_and_mixer_gain": true,
+    "constant_stopped_paused_empty_silence": true,
+    "constant_all_transition_steps_bounded": true,
+    "constant_full_start_or_end_entry": true,
+    "constant_signed_speed_preserved": true,
+    "constant_full_bounds_restored": true,
+    "stereo_order_unity_reader_gain": true,
+    "initial_candidate_failure_retained": true,
+    "musical_autonomous_resets_occur": true,
+    "musical_finite_and_automatically_stopped": true,
+    "musical_no_reader_teleports": true,
+    "musical_audible_through_active_sections": false
+  },
+  "passed": false,
+  "cases": {
+    "wave": {
+      "reset_requests": [
+        [
+          250.0,
+          16
+        ],
+        [
+          450.0,
+          32
+        ],
+        [
+          700.0,
+          48
+        ],
+        [
+          1200.0,
+          96
+        ],
+        [
+          1500.0,
+          128
+        ],
+        [
+          1800.0,
+          192
+        ],
+        [
+          2100.0,
+          256
+        ],
+        [
+          2400.0,
+          512
+        ],
+        [
+          2700.0,
+          1024
+        ],
+        [
+          2900.0,
+          1536
+        ],
+        [
+          3300.0,
+          16
+        ],
+        [
+          3350.0,
+          32
+        ],
+        [
+          3352.0,
+          48
+        ],
+        [
+          3356.0,
+          64
+        ],
+        [
+          3900.0,
+          112
+        ]
+      ],
+      "entries": [
+        {
+          "ms": 250,
+          "entry_error_frames": 0.00015693902969360352,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 450,
+          "entry_error_frames": 0.0002815127372741699,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 700,
+          "entry_error_frames": 0.0,
+          "speed_before": -1.0,
+          "speed_after": -1.0
+        },
+        {
+          "ms": 1200,
+          "entry_error_frames": 0.0007482171058654785,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 1500,
+          "entry_error_frames": 0.0009350776672363281,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 1800,
+          "entry_error_frames": 0.0011218786239624023,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2100,
+          "entry_error_frames": 0.001308739185333252,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2400,
+          "entry_error_frames": 0.0014955997467041016,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2700,
+          "entry_error_frames": 0.0016824007034301758,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2900,
+          "entry_error_frames": 0.0018069744110107422,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 3300,
+          "entry_error_frames": 0.002056121826171875,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 3356,
+          "entry_error_frames": 0.0020951032638549805,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 3900,
+          "entry_error_frames": 0.002429783344268799,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        }
+      ],
+      "maximum_adjacent_steps_player_mixer": [
+        0.0031824633479118347,
+        0.0028511006385087967,
+        0.0013079922646284103,
+        0.0011718024034053087
+      ],
+      "reader_jumps": []
+    },
+    "constant": {
+      "reset_requests": [
+        [
+          250.0,
+          16
+        ],
+        [
+          450.0,
+          32
+        ],
+        [
+          700.0,
+          48
+        ],
+        [
+          1200.0,
+          96
+        ],
+        [
+          1500.0,
+          128
+        ],
+        [
+          1800.0,
+          192
+        ],
+        [
+          2100.0,
+          256
+        ],
+        [
+          2400.0,
+          512
+        ],
+        [
+          2700.0,
+          1024
+        ],
+        [
+          2900.0,
+          1536
+        ],
+        [
+          3300.0,
+          16
+        ],
+        [
+          3350.0,
+          32
+        ],
+        [
+          3352.0,
+          48
+        ],
+        [
+          3356.0,
+          64
+        ],
+        [
+          3900.0,
+          112
+        ]
+      ],
+      "entries": [
+        {
+          "ms": 250,
+          "entry_error_frames": 0.00015693902969360352,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 450,
+          "entry_error_frames": 0.0002815127372741699,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 700,
+          "entry_error_frames": 0.0,
+          "speed_before": -1.0,
+          "speed_after": -1.0
+        },
+        {
+          "ms": 1200,
+          "entry_error_frames": 0.0007481575012207031,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 1500,
+          "entry_error_frames": 0.0009350180625915527,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 1800,
+          "entry_error_frames": 0.0011218786239624023,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2100,
+          "entry_error_frames": 0.0013086795806884766,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2400,
+          "entry_error_frames": 0.0014955401420593262,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2700,
+          "entry_error_frames": 0.0016824007034301758,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 2900,
+          "entry_error_frames": 0.0018069744110107422,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 3300,
+          "entry_error_frames": 0.0020560622215270996,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 3356,
+          "entry_error_frames": 0.0020951032638549805,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        },
+        {
+          "ms": 3900,
+          "entry_error_frames": 0.002429783344268799,
+          "speed_before": 1.0,
+          "speed_after": 1.0
+        }
+      ],
+      "maximum_adjacent_steps_player_mixer": [
+        0.00027773529291152954,
+        0.0001389235258102417,
+        0.00022832117974758148,
+        0.00011420343071222305
+      ],
+      "reader_jumps": []
+    },
+    "musical": {
+      "reset_requests": [
+        [
+          1050.0,
+          [
+            "32"
+          ]
+        ],
+        [
+          2050.0,
+          [
+            "64"
+          ]
+        ],
+        [
+          3050.0,
+          [
+            "96"
+          ]
+        ],
+        [
+          3550.0,
+          [
+            "112"
+          ]
+        ],
+        [
+          4133.33,
+          [
+            "128"
+          ]
+        ],
+        [
+          5466.67,
+          [
+            "160"
+          ]
+        ],
+        [
+          6133.33,
+          [
+            "176"
+          ]
+        ]
+      ],
+      "reader_jumps": [],
+      "maximum_adjacent_steps_player_mixer": [
+        0.3445996940135956,
+        0.3460656404495239,
+        0.14163047075271606,
+        0.1422329694032669
+      ]
+    }
+  },
+  "limits": [
+    "User rejected musical capture: reverse repeatedly resets into the source silent tail",
+    "48 kHz host only",
+    "Shared clock does not provide DAW-sync acceptance",
+    "Fired reports a request; crossover can defer or replace its audio commit",
+    "Malformed text on global ppq still errors in the legacy slice modulo objects"
+  ]
+}

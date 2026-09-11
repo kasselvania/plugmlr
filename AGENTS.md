@@ -71,6 +71,11 @@
   separate from host tempo and retain the tick count on Stop. BPM must store into
   calc_duration without retriggering a stale start position. Validate autonomous
   ticks through the actual player/mixer, not only an isolated clock.
+- Beat Reset uses quarter-note intervals on shared ppq, with 4/4 bar labels.
+  Preserve full-content start-forward/end-reverse entry through loop-region-control.
+  Never wake paused/stopped tracks; read existing transport flags rather than
+  maintaining a second playing latch. Same-tick reset supersedes quantized slice
+  through the shared pending-cut path; test all transition samples.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

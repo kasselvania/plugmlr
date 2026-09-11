@@ -7,6 +7,88 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Beat Reset contract (review candidate)
+
+**Current acceptance:** replacement audio passes nine numerical checks and the user accepted its listening result. Native menu selection is verified below. The original rejected musical capture is retained as a known failing demonstration, not the current acceptance report.
+
+Per-track Reset every: Off, 1 beat, 2 beats, 1 bar, 2 bars, 4 bars, 8 bars.
+A beat is a quarter note; bars mean 4/4. Public `<track>-reset-beats` accepts
+only 0, 1, 2, 4, 8, 16 or 32 (0 disables). Invalid values leave the setting
+unchanged and report `<track>-reset-error Invalid_interval`. Default is Off.
+`<track>-reset-state` reports accepted beat values; `<track>-reset-fired` reports
+the shared tick when a reset request passes the transport/readiness gate.
+
+Use the existing ppq bus (16 ticks/quarter), aligned to its origin. Do not reset
+on tick zero or on enabling/changing the setting; wait for the next positive
+matching tick. Ignore repeated identical ticks and invalid/noninteger/negative
+ticks; clock discontinuities do not replay missed boundaries. A short zero-delay
+message deferral lets Reset supersede a quantized slice on the same tick. Later
+musical requests use the existing last-request-wins pending cut. Pending cuts
+still wait for safe reader reuse, so tick alignment is not sample-exact audio
+onset. Stop/Pause/selection changes cancel pending reset dispatch; Off or interval
+changes cancel it too. No clock tick means no reset.
+
+Only an actively playing, unpaused, ready, non-switching player may reset. Reuse
+`loop-region-control full` to restore full-content bounds and request start in
+forward or exclusive end in reverse, through `slice_policy` and the existing
+crossfade. Keep speed/direction unchanged. Do not move paused positions or start
+stopped/empty players. No writer, host-sync or tape-slew changes belong here.
+
+Implementation is in `beat-reset <player-dollar-zero> <track>`. It replaces the
+unimplemented reset menu, while the old reset sketch's ppq input is disconnected.
+Reset requests use `loop-region-control full`, not a second reader or trajectory
+engine. Eligibility is checked again after zero-delay dispatch. The initial
+candidate incorrectly forced a duplicate playing cache to zero on Pause, so
+Resume did not restore reset eligibility; that extra cache override was removed.
+The initial failing audio/reader capture is retained separately.
+
+**Validation correction (2026-09-11):** The user rejected the musical capture as a brief slice followed by silence. The earlier 27-check pass omitted audible activity in the musical case and did not establish a usable demonstration. The added musical activity check deliberately continues to fail on that rejected capture. [Historical capture results](evidence/beat-reset/results.json). Native original
+player/readers/post-master captures cover every interval, matching/nonmatching and
+duplicate ticks, interval rejection, Off, Stop, Pause/Resume, empty buffers,
+selection, reverse, smaller-loop restoration, same-tick quantized slice/reset,
+and overlapping requests 2 ms apart. The final request uses the existing safe
+handoff; superseded requests are not required to become separate audible jumps.
+No transition windows are removed from audio step or reader-jump measurements.
+Wave steps are below .004; stereo constant steps below .001, with correct channel
+order and unity reader gain. Active windows have no block-length silence or
+unintended mixer gain changes; stopped/paused/empty windows are silent. Stable
+resets enter within .003 frames of the start/end target and preserve signed speed.
+
+The autonomous musical capture has seven reset requests, including slower speed,
+reverse, tempo change and Pause/Resume. [Listen here](evidence/beat-reset/musical-post-master.wav).
+The user reports a brief slice followed by silence. Direct inspection confirms effectively silent player and mixer output after roughly three seconds. DrumLoop has 24,897 trailing frames below 0.0001 amplitude (0.565 seconds at 44.1 kHz). Half-speed reverse requires over 1.129 seconds to traverse that tail, while the score resets every 0.5 seconds, then 0.667 seconds. Captured reverse reader positions remain in that silent tail. This is a failed demonstration, not proof of broken reverse DSP or accepted musical behavior. The replacement below uses a longer reverse interval without trimming the sample or changing reset semantics. Runtime was
+native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3, existing CoreAudio 48 kHz /
+512 frames / 1x. The musical file is 44.1 kHz; synthetic files are 48 kHz. No DAW,
+44.1 kHz host or external clock acceptance is added. Captures stop automatically
+at seven seconds, with both stop markers observed in the actual console.
+
+The first score also sent a symbol to global `ppq`, producing `mod: no method for
+'symbol'` in the legacy slice consumers. Beat Reset rejects it, but the shared
+application bus does not have general malformed-message validation. The final
+score retains negative/fractional tick tests and invalid reset-interval tests;
+the text-on-global-ppq check is recorded as a separate existing limitation.
+
+**Replacement listening capture (2026-09-11):** [Two-bar reset example](evidence/beat-reset/musical-long-post-master.wav) uses the unchanged DrumLoop, half-speed reverse, and an eight-beat/four-second interval. Forward audio is followed by reverse entry at 1.1 seconds and a clock reset at 4.05 seconds. The roughly 1.13-second source-tail gaps remain; drums return around 2.5 and 5.5 seconds instead of being continually reset into silence. Nine [replacement checks](evidence/beat-reset/musical-long-results.json) pass, including audible forward and both reverse passes, reverse motion, end entry, mixer gain, reader continuity and automatic stop. Signed motion uses a window slope because large float frame positions quantize individual differences. Human listening accepted on 2026-09-11: the user reports “okay, seems solid to me.” This applies to the replacement capture only and is separate from the nine numerical checks; it is not a universal click-free claim. Native dropdown selection is verified below. The earlier rejected capture and its failing activity check remain intact. Repeat with `record-check symbol fixtures/beat-reset-musical-long.txt` and the same bounded taps; analyze with `tests/analyze_beat_reset_listening.py`. Native runtime/settings were unchanged. Temporary taps were removed afterward; Live 2, speed 1x, forward, Reset Off, stopped playback/clock and output .9 were restored. No buffer contents were changed. Setup/removal printed missing diagnostic send warnings, and unsuccessful cleanup commands printed no-method errors; these were outside the bounded capture and corrected through native canvas editing. The application has an unsaved-change indicator from adding/removing taps; no production patch file was saved.
+
+**UI verification (2026-09-11):** opened the real Reset menu by mouse and selected entries with native keyboard navigation, rather than sending interval messages. The displayed `1 beat` emitted `reset-ui-state: 1`; the running internal clock produced ticks 480, 496, 512, 528, 544 (16 apart). Selecting `2 beats` emitted state 2 and produced ticks 608, 640, 672, 704, 736, 768 (32 apart). Selecting Off emitted state 0; no later reset events appeared while ordinary playback continued, through the automatic 20-second stop. The popup itself is not visible to screenshot/accessibility capture, but selected labels and console events are directly observed. This closes the native menu-selection gap; pointer selection of an individual popup row was not exercised.
+
+A temporary message-only observer printed state/fired messages and armed Stop before Play. Initial manual console tick commands incorrectly used numeric selectors, producing legacy `mod: no method for '16'/'32'` messages. These were test-input errors; corrected typed commands and then the actual internal clock were used. The successful timing observations above are from the internal clock. No recording or new audio engine was used. Observer removed afterward, Live 1 retained (the user's current selection), Reset Off, clock/playback stopped, output .9 restored. Buffer contents and production patch files were unchanged. The existing unsaved UI indicator from temporary edits remains; do not save diagnostic canvas state over repository files.
+
+**Repeat:** with player 1's bounded taps attached (helper objects start at root
+index 552), use `tests/instant-reverse-check $0` and
+`tests/bounded-player-capture 1 $0`. Load `stop-wave-48.wav` into Sample 3, keep
+Sample 4 empty, and run `record-check symbol fixtures/beat-reset.txt`. Retain
+`/tmp/plugmlr-record-check.wav`, `/tmp/plugmlr-reset-readers.wav` and the event log;
+repeat with `stop-constant-48.wav`, physical output muted. Then run
+`fixtures/beat-reset-musical.txt` with DrumLoop in Sample 1. The musical score uses
+the actual internal clock; the synthetic score injects controlled ticks. The
+six-channel layout is reference L/R, player L/R, mixer L/R; the ten-channel trace
+retains player L/R, master position, rate, reader 0 position/gain, reader 1
+position/gain, and their DSP gates. NPZ samples are lossless decoded float audio.
+Run `python3 tests/analyze_beat_reset_listening.py docs/evidence/beat-reset` with NumPy for the accepted replacement (nine checks). `analyze_beat_reset.py` retains the original capture audit and intentionally exits nonzero because the rejected musical file fails its activity check; its other 27 checks pass.
+The listening WAV uses mixer channels times .9 without normalization.
+
+
 ## Current checkpoint — 2026-09-11
 
 PRs #18 (slice scheduler) and #19 (standalone clock) are merged. Their retained
@@ -18,7 +100,7 @@ record: older “remaining” bugs may be resolved by a later section.
 | Area | Current state | Remaining work |
 | --- | --- | --- |
 | Stereo playback | Imported/live selection, forward/reverse, five speeds, speed glide, Stop/Pause, slices, loop Apply and dual-reader handoffs have retained native evidence. | Direction slew through zero, arbitrary speed, very short loops and broader stress qualification. |
-| Slice timing | Latest pending key dispatches on the matching clock tick; transport/mode/grid changes cancel stale keys. Internal Run/BPM works. | Beat Reset behavior, tempo-locked audio duration, DAW/MIDI clock. |
+| Slice timing | Latest pending key dispatches on the matching clock tick; transport/mode/grid changes cancel stale keys. Internal Run/BPM works. | Beat Reset is the candidate above; tempo-locked audio duration and DAW/MIDI clock remain open. |
 | Recording | Fresh fixed-length stereo takes, seconds/4/4 bars, early Stop and local-bus hardware input work. | Growth/trim, recording pause/resume, quantized recording, overdub, export UI and recall. |
 | Device integration | Suite repositories and lease-aware SerialOSC candidates are mapped. | Replace legacy Grid connection, verify presses/LEDs and reconnect; physical integration is not accepted. |
 | Reuse and hosting | Original application and shared buffers preserved. | Multiple-instance namespace isolation, additional musical heads, DAW lifecycle and cross-process stereo transport. |
