@@ -1,6 +1,6 @@
 #N canvas 100 100 850 650 12;
 #X obj 30 30 netreceive -u 17930;
-#X obj 30 70 route position playing paused ready switching connected position_b playing_b ready_b;
+#X obj 30 70 route position playing paused ready switching connected position_b playing_b ready_b first last loop-start loop-end;
 #X obj 30 120 s 91-grid-position;
 #X obj 210 120 s 91-grid-playing;
 #X obj 390 120 s 91-grid-paused;
@@ -19,6 +19,10 @@
 #X obj 300 370 loadbang;
 #X msg 300 410 connect 127.0.0.1 17931;
 #X text 30 550 Silent test fixture. Close MLR before this isolated message check.;
+#X obj 30 600 s 91-grid-first;
+#X obj 240 600 s 91-grid-last;
+#X obj 450 600 s 91-grid-loop-start;
+#X obj 660 600 s 91-grid-loop-end;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 1 3 0;
@@ -35,3 +39,7 @@
 #X connect 17 0 18 0;
 
 #X connect 18 0 16 0;
+#X connect 1 9 20 0;
+#X connect 1 10 21 0;
+#X connect 1 11 22 0;
+#X connect 1 12 23 0;

@@ -148,3 +148,9 @@
   from that position without a slice; outside, wrap immediately. Keep plain/full
   Apply unchanged. Test long holds in both directions and inspect actual position
   AND audio across release; an emitted loop message alone misses this regression.
+
+- Grid loop feedback is receive-only. Dim level 4 means committed smaller loop;
+  bright 12 means current running column. Pause/Stop retain the dim range;
+  full content has no background. Ready/switching and attachment gate display.
+  Never render held gestures as committed bounds. Keep package LED ownership,
+  and use check_grid_loop_feedback.py to preserve exact player/gesture sources.

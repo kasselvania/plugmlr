@@ -7,6 +7,36 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid loop feedback review candidate — 2026-09-11
+
+Read-only display slice, based on accepted release correction `19245a0`.
+On the two existing playback rows, a smaller committed loop is dim (level 4),
+and the running whole-content position is bright (12). Pause/Stop remove the
+moving marker but retain the smaller loop range. Full-content playback has no
+range background. Empty/switching buffers clear the row. No pending gesture or
+queued slice is drawn as committed playback. Disconnect suppresses output;
+reattach redraws current state. Each cell with more than half a file frame of
+overlap is dimmed, avoiding rounded boundary leakage into a neighboring cell.
+Use existing state messages and position updates; no new timer or audio command.
+No new gestures, extra track rows, playback changes, or session ownership changes.
+
+Implementation: `grid-playback-state` additionally exports content and committed
+loop bounds in file frames. `grid-playback-row` forwards existing state messages
+to the small receive-only `grid-row-leds` renderer, which emits a complete level
+row only when its displayed frame changes. This replaces the old clear-then-set
+marker rendering; session/transport/cache ownership stays in the Monome package.
+
+Validation: 57 actual native Pd message sequences pass, including the prior 29
+marker cases plus loop bounds, Pause/Stop persistence, full-content clearing,
+invalid ranges, rounded cell edges, buffer readiness/switching, separate rows and
+reattachment. Exact source guards preserve the accepted player, loop gesture,
+region and device-boundary code. Native MLR reloaded cleanly and the console
+confirmed verified Grid lease and six LEDs flushed for the restored smaller
+loop. The user confirmed visibility, brighter motion, paused range retention and
+ordinary-slice clearing (“yes”). No audio capture
+was started for this read-only display change. See
+[feedback evidence](evidence/grid-loop-feedback/observations.md).
+
 ## Grid loop release restart correction — 2026-09-11
 
 The user rejected PR #29's initial physical behavior: releasing the second key

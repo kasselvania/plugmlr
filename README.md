@@ -184,5 +184,6 @@ release: running playback inside the range keeps its current position; outside i
 wraps immediately to the directional entry. On-screen Apply still jumps to the
 entry. A later single slice restores the whole sample. ALT, Stop, Pause and
 buffer changes cancel unfinished pairs; a third held key cancels the pair until
-all keys are released. The player panel shows the committed seconds; dim Grid
-range LEDs and MOD one-key loops are deferred. The corrected release behavior is physically user-accepted.
+all keys are released. The player panel shows the committed seconds. On the two playback rows, a smaller
+loop stays dimly lit, with the running position brighter. Pause/Stop keep the dim
+range; full-content playback has no background. MOD one-key loops remain deferred. The corrected release behavior is physically user-accepted.
