@@ -19,7 +19,7 @@
     "tests/fixtures/beat-reset-musical.txt": "fbd75af86b7fa40d5f360f3caea5ff139a83d857357401315fcd334b32389092",
     "tests/analyze_beat_reset.py": "c6886e47d5bf4bb9ce03ef9609cd0f3808bda569f7ae4133fd02a25841cc3e63",
     "tests/fixtures/beat-reset-musical-long.txt": "950581c758c5cb3c402fe7c013aa00dfa498b1f1dd6a9e4198661d512da6557a",
-    "tests/analyze_beat_reset_listening.py": "75aaa82670afa279495aac75a35b630260fcacd8d45ddd9566e5dde7a0901c3f"
+    "tests/analyze_beat_reset_listening.py": "4363e0b9ed1f8f766ce1922324390206ed854d36aa7b7a8d371b0efe1e67e36e"
   },
   "evidence_sha256": {
     "wave-readers-48.npz": "192a348e804f5fda64ab01dd80788d203ce825bf03f0dc6d1f479b279ebac161",
@@ -39,9 +39,14 @@
     "musical-long-events.txt": "4b8c7a3a3586d5c46a22798edbce7e01708c59dfd8a395fee065d5fd6c3e60f5",
     "musical-long-player-mixer-48.npz": "fc50aa98089329df934ca38255841f4ddace9e107b28b52ec4d187fcd0b4b6d8",
     "musical-long-readers-48.npz": "344ff5ec618914c95d988ce3e1f04557d040173351905be734ebb09280a68ffb",
-    "musical-long-results.json": "bb70f2281dd0ab9f1b3d62a4791df3ec23c32732ed5e0197f25a1c16f916a85f",
+    "musical-long-results.json": "bbb76fdc5b9159def6ad75712684c0ba9948d961f70896c0e145ce0820354411",
     "musical-long-post-master.wav": "28895277b6f4f5f793a69a365bcb10ae4e0d56a1be23f2068bcc66a4573ac4b7"
   },
-  "acceptance": "Open: human listening and dropdown selection; rejected initial musical capture retained",
-  "replacement_listening": "Pending: musical-long-post-master.wav; nine native checks pass"
+  "acceptance": "Replacement listening accepted; hands-on dropdown selection remains open; rejected initial musical capture retained",
+  "replacement_listening": {
+    "date": "2026-09-11",
+    "file": "musical-long-post-master.wav",
+    "user_report": "okay, seems solid to me.",
+    "status": "Accepted for this capture; separate from nine native numerical checks"
+  }
 }

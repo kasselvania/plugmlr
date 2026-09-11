@@ -37,7 +37,7 @@
     0.28398093581199646
   ],
   "limits": [
-    "Human listening pending",
+    "Human listening is recorded separately in STATUS and manifest",
     "Source silent tail remains audible as gaps; no trimming",
     "48 kHz host only",
     "No universal click-free claim",

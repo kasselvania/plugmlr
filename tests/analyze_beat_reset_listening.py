@@ -23,5 +23,5 @@ checks = {
  'automatic_stop_silence': bool(np.all(x[-12000:,2:6]==0)),
  'source_tail_explains_quiet_sections': all(bool(np.max(abs(span(x,a,b)[:,2:6]))<1e-6 and np.min(span(r,a,b)[:,2])>606983) for a,b in [(1.2,2.0),(4.2,5.0)]),
 }
-result={'checks':checks,'passed':all(checks.values()),'audible_windows_seconds':windows,'post_master_rms':rms,'maximum_adjacent_steps_player_mixer':abs(np.diff(x[:,2:6],axis=0)).max(0).tolist(),'limits':['Human listening pending','Source silent tail remains audible as gaps; no trimming','48 kHz host only','No universal click-free claim','Earlier musical capture remains rejected']}
+result={'checks':checks,'passed':all(checks.values()),'audible_windows_seconds':windows,'post_master_rms':rms,'maximum_adjacent_steps_player_mixer':abs(np.diff(x[:,2:6],axis=0)).max(0).tolist(),'limits':['Human listening is recorded separately in STATUS and manifest','Source silent tail remains audible as gaps; no trimming','48 kHz host only','No universal click-free claim','Earlier musical capture remains rejected']}
 print(json.dumps(result,indent=2));sys.exit(0 if result['passed'] else 1)
