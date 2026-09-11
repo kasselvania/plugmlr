@@ -1,0 +1,50 @@
+--- a/sample_player_rebuild.pd
++++ b/sample_player_rebuild.pd
+@@ -227,7 +227,7 @@
+ #X obj 2185 165 switch;
+ #X obj 2147 121 + 1;
+ #X obj 2244 113 +;
+-#X text 2147 -116 slice position (and reverse offset);
++#X text 2147 -116 Fixed whole-content slice mapping / reverse offset. Bounds policy: pd slice_policy.;
+ #X obj 1916 392 s \$0-key_press_pos;
+ #X msg 2313 141 0;
+ #X obj 2256 -48 r \$0-slice_size_val;
+@@ -1651,6 +1651,28 @@
+ #X obj 2000 340 f 0;
+ #X obj 2070 305 r \$0-is_playing_flag;
+ #X obj 2000 380 sel 1;
++#N canvas 100 80 880 440 slice_policy 0;
++#X obj 30 100 inlet commit;
++#X obj 30 140 t b b b;
++#X obj 260 100 r \$0-first_index;
++#X obj 470 100 r \$0-last_index;
++#X obj 260 160 f;
++#X obj 470 160 f;
++#X obj 260 210 s \$0-set_active_loop_start;
++#X obj 470 210 s \$0-set_active_loop_end;
++#X obj 30 270 outlet commit;
++#X text 30 20 MLR policy: every committed slice leaves the smaller loop.;
++#X text 30 320 Bounds are full content in file frames with exclusive end. Reset before reader ownership and trajectory.;
++#X text 30 370 Fixed 16-way mapping lives at selected_slice above. A future within-loop mode must change that mapping AND this bounds policy.;
++#X connect 0 0 1 0;
++#X connect 1 2 5 0;
++#X connect 1 1 4 0;
++#X connect 1 0 8 0;
++#X connect 2 0 4 1;
++#X connect 3 0 5 1;
++#X connect 4 0 6 0;
++#X connect 5 0 7 0;
++#X restore 2090 250 pd slice_policy;
+ #X connect 508 2 537 0;
+ #X connect 538 0 537 1;
+ #X connect 537 0 539 0;
+@@ -1673,7 +1695,8 @@
+ #X connect 531 0 466 0;
+ #X connect 531 1 376 0;
+ #X connect 532 0 509 0;
+-#X connect 485 0 508 0;
++#X connect 485 0 540 0;
++#X connect 540 0 508 0;
+ #X connect 508 2 483 0;
+ #X connect 508 1 481 0;
+ #X connect 508 0 129 0;

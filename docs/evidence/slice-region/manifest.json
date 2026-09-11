@@ -1,0 +1,158 @@
+{
+  "recorded_utc": "2026-09-10T23:19:47.053380+00:00",
+  "base_commit": "5227f7e991462eeddfa5fb2b49009875221e45a4",
+  "branch": "codex/fix-slice-region-handoff",
+  "stacked_on_pr": 15,
+  "baseline_player_sha256": "c8c543c9916253e259524d2c8ddfbd2b5a7d2cb95c81de1a7623235262449a8b",
+  "policy_only_failure_source_sha256": "26cfa2a274db7e65d69277b217b6d19634137246c9dfba214ff701bea354c5eb",
+  "source_sha256": {
+    "sample_player_rebuild.pd": "a6dc709b2e59ceec21ab9160532d8de0889e13c769610f42189e52f41409cae8",
+    "mlr.pd": "20349d2e9a8e21c2ad593e8a69d285e087b6300a54013a8b96493b93305e2d55",
+    "mixer.pd": "fda6d15a2a236a142e97d09bf60a167d676ca8c71501bd713024ced6d1c67f95",
+    "buffer-selection.pd": "1b93a9b2307db9efb6fd5b714d24d2ddda10d516bd4abaf2ed6ccbc1987944cb",
+    "tests/analyze_slice_region.py": "8388f73676ad5a3d875c5f340bda91139956cd8261d4741513e25e7e41474eac",
+    "tests/live-record-check.pd": "b25281eec52fca32286f2ebefb044e08d469f28e4e65b73880168f65df659777",
+    "tests/instant-reverse-check.pd": "0f980e980ef4944e7ab2456a1b6f43774e1a9db91f67346037909ac8cefb18dd",
+    "tests/bounded-player-capture.pd": "77c73f7e816b61a312a417383a896b28eb2a76df1853d842003853de5311ec66",
+    "tests/speed-slew-controls.pd": "d229dcd2edf604c09613dd6910522069722211146c98926837d506345f760556",
+    "tests/fixtures/slice-region.txt": "5032704854ec6a7afa4c860fd24f1595e8abe0d602b7da275c2f18d8685f4719",
+    "tests/fixtures/speed-slew-position.txt": "e2bbe377b01374dcef8560ca718d5823d292f3efb06edb4b8da4060ced3cde5b",
+    "tests/fixtures/pause-resume.txt": "9e494eff34c360755b10ef9e7d70aaf79f6c1ecc9ac95e7a7cc33e5af5414112",
+    "tests/fixtures/stop-wave-48.wav": "35aab01dd8331051158fdee27a0409f3d72a58f3297f80a373dae81a083bdddc",
+    "tests/fixtures/stop-constant-48.wav": "7dd25b8680bba53bcbb646e4549670546966fd3357f199086ecccdfee3c9cb61"
+  },
+  "runtime": {
+    "app": "plugdata",
+    "version": "0.9.4 nightly",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "executable_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+    "backend": "CoreAudio",
+    "input_output_device": "8A",
+    "sample_rate": 48000,
+    "hardware_frames": 512,
+    "oversampling": "1x",
+    "native_settings_observed": true
+  },
+  "capture_setup": {
+    "track": 1,
+    "track_gain": 0.548,
+    "master_gain": 0.75,
+    "global_output_during_capture": 0,
+    "automatic_deadline_ms": 7000,
+    "both_stop_messages_observed_each_qualified_capture": true,
+    "player_ids": {
+      "baseline": 16834,
+      "policy-only": 16497,
+      "candidate": 17171
+    },
+    "native_audio_settings_verified": "CoreAudio / 8A output / 48000 Hz / 512 frames; 1x oversampling"
+  },
+  "channel_order_one_based": {
+    "player_mixer": [
+      "generated source L (bus off)",
+      "generated source R (bus off)",
+      "player L",
+      "player R",
+      "post-master L",
+      "post-master R"
+    ],
+    "readers": [
+      "player L",
+      "player R",
+      "master frame",
+      "rate magnitude",
+      "reader 0 frame",
+      "reader 0 gain",
+      "reader 1 frame",
+      "reader 1 gain",
+      "reader 0 DSP flag",
+      "reader 1 DSP flag"
+    ]
+  },
+  "restoration": {
+    "live_buffers": [
+      {
+        "buffer": 1,
+        "content_frames": 96000,
+        "capacity_frames": 96000,
+        "before_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+        "after_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f"
+      },
+      {
+        "buffer": 2,
+        "content_frames": 96000,
+        "capacity_frames": 96000,
+        "before_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+        "after_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85"
+      },
+      {
+        "buffer": 3,
+        "content_frames": 60032,
+        "capacity_frames": 192000,
+        "before_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+        "after_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+      }
+    ],
+    "samples_1_2_restored": true,
+    "next_lengths_seconds": [
+      2,
+      2,
+      4
+    ],
+    "selected_buffer": "live 2",
+    "playback_stopped": true,
+    "recording_disarmed": true,
+    "global_output_restored": 0.9,
+    "test_taps_and_preservation_helper_removed": true
+  },
+  "listening": {
+    "status": "pending",
+    "capture": "candidate-wave-listen-48.wav",
+    "channels": "actual post-master stereo only",
+    "normalization": false,
+    "gain": 0.9
+  },
+  "limits": [
+    "48 kHz matching file/host qualification only in this slice.",
+    "Existing silent selection shutdown reports gain 1 when DSP switches off at 5319.98 ms; unchanged in baseline/candidate.",
+    "Rapid arbitrary-source cuts may reuse a still-audible reader; no universal click-free guarantee.",
+    "No new slice mode, quantizer rewrite, region UI, physical controller, recording or DAW lifecycle acceptance."
+  ],
+  "setup_notes": [
+    "Initial live-added reader recorder wrote only a WAV header. These incomplete runs are excluded. Rebuilding DSP after completing temporary taps yielded the qualified captures; both player/mixer and reader files are validated.",
+    "Initial multi-message console preservation command failed because the semicolon remained part of the table name; individual commands succeeded and all takes were verified byte-identical.",
+    "An unsupported keyboard shortcut for Settings had no effect; settings were inspected using the native DSP menu."
+  ],
+  "evidence_sha256": {
+    "baseline-speed-events.txt": "0369a4ce7a06cbd6bd7de77ef4d845d05133dcd412d8a131e7926d487fa5dff1",
+    "baseline-speed-player-mixer-48.npz": "ed94a198a03e76e6a4d1a86acc6a4b5733eba757c7121984301cc95fd4712238",
+    "baseline-speed-readers-48.npz": "13cbd1f3da902336f375de54d2a2216c14cfca620c26d5f205a12738220bfada",
+    "baseline-wave-events.txt": "243852406ba5bd130217d22a105617fb42eeef2e83901e776d1e3eb6c9ab75de",
+    "baseline-wave-player-mixer-48.npz": "60630190f11ac792dd9bfbb7640aafb8200e6fd00af75f093e6ec2ed497f6f72",
+    "baseline-wave-readers-48.npz": "8d654f92523ee21479d2697c1661bd0d3dae83926e72f283b33d11b236b7a780",
+    "candidate-constant-events.txt": "f0415a70179365a2e3b8c4641c6514b6c243d3a6b3faa71565ec5327f69afae4",
+    "candidate-constant-player-mixer-48.npz": "5e008cfed8cc52e4f9c80ee8726ecabe93f9c56e410f2622a1d6fa7123e5e521",
+    "candidate-constant-readers-48.npz": "ad3a2c2bd50ecdd8fc6457130ce91138a46a6e48b5a67c82ea810f6919499462",
+    "candidate-pause-events.txt": "09324a4c4d2b5c5e55926bf2f32f3e62d43fa85bc285623249c9fa88f3206044",
+    "candidate-pause-player-mixer-48.npz": "ff7653f8126fe1973c48fda419ea6627d0b61c169f64d85680c0c413ac74a39e",
+    "candidate-pause-readers-48.npz": "24fc1ce58a06e2e74266edd520968cdeee05f3eef8fccb355514cd3b3441de21",
+    "candidate-speed-events.txt": "6504f9d3ba2dcbd9f40fc20484f4f1cbd8b7ccf41f90a6f3cef2bb8f229ae2af",
+    "candidate-speed-player-mixer-48.npz": "1e4942b43d30b8f5a79136d7b02f00fb69e4f0c379be5ea5bf07e60e4a367cb8",
+    "candidate-speed-readers-48.npz": "8793368d04ed1b784e408ef6474cec2106660b710403e9e1bc886ca5e77110db",
+    "candidate-wave-events.txt": "f0415a70179365a2e3b8c4641c6514b6c243d3a6b3faa71565ec5327f69afae4",
+    "candidate-wave-listen-48.wav": "d140e1cc466a9af582eee9ab35c325a33899e8808e76bf7667e0591517aa665d",
+    "candidate-wave-player-mixer-48.npz": "de3bd86c5581e47123962040ea153837774f52ab6e11b0805a832ae16d9fa0f1",
+    "candidate-wave-readers-48.npz": "c8f864e0fb5f9a7c501c149e9bdca3cbe0e09851b0b7dbdcbb360c20692a44ea",
+    "capture-compression.json": "12064c62639d5e3d2a17ba8e4a68aff7b326136d1e9ebc267369ed4487e951b8",
+    "checks.json": "da9c64bce332608dfb834668a7e093de7fc342fd2fcc760e3756a0c220f4c547",
+    "policy-only-speed-events.txt": "dc98af9541f58f3273e88084ff3b1a781f2ce9a0cf476ccf94f845f2abcc25a3",
+    "policy-only-speed-player-mixer-48.npz": "f74691e61a0eb9d7bf47669eb3603770d4a765b9dc9802f3773b51484456ee94",
+    "policy-only-speed-readers-48.npz": "f488d5ce3e49919c9dcf1d43b5ac19049b0fd86154f9943824b84452822a3a46",
+    "policy-only.patch": "57bc7a15c984313f737bce969bb0636f82cf1bcf73ed33abfa0d2afb39fe47ba"
+  },
+  "source_reconstruction": {
+    "baseline": "git show 5227f7e991462eeddfa5fb2b49009875221e45a4:sample_player_rebuild.pd",
+    "policy_only": "Apply policy-only.patch to the baseline in a separate temporary directory. Never load it as the final repair."
+  }
+}

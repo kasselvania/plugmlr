@@ -49,6 +49,11 @@
   Resume restores reader gates/gain before motion; Stop, buffer switching and
   leaving paused state cancel pending cleanup. Test slices during and after Pause,
   exact loop-end pauses, rapid toggle parity and pre-mixer silence.
+- Slice mapping is an explicit musical choice: fixed 16-way whole-content cuts,
+  and any committed cut restores full-content bounds. Keep this choice visible in
+  `pd slice_policy` and the linked slice-position calculation; future modes must
+  change both deliberately. A pending slice owns the next jump until commit or
+  Stop cancellation. Test boundary/cut collisions without excluding those windows.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

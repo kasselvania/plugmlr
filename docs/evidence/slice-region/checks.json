@@ -1,0 +1,647 @@
+{
+  "host_sample_rate": 48000,
+  "checks": {
+    "baseline-wave_finite_bounded_stopped": true,
+    "baseline_retains_smaller_loop": true,
+    "baseline-speed_finite_bounded_stopped": true,
+    "baseline-speed_reproduces_two_collisions": true,
+    "policy-only-speed_finite_bounded_stopped": true,
+    "policy-only-speed_reproduces_two_collisions": true,
+    "candidate-wave_finite_bounded_stopped": true,
+    "candidate-wave_six_forward_reverse_cut_entries": true,
+    "candidate-wave_six_cuts_restore_full_content_loop": true,
+    "candidate-wave_no_block_dropout_or_mixer_gain_change": true,
+    "candidate-wave_pause_stop_empty_silent": true,
+    "candidate-wave_no_audible_shutdown_before_fade": true,
+    "candidate-constant_finite_bounded_stopped": true,
+    "candidate-constant_six_forward_reverse_cut_entries": true,
+    "candidate-constant_six_cuts_restore_full_content_loop": true,
+    "candidate-constant_no_block_dropout_or_mixer_gain_change": true,
+    "candidate-constant_pause_stop_empty_silent": true,
+    "candidate-constant_no_audible_shutdown_before_fade": true,
+    "constant_stereo_order_unity_gain_and_fade_steps": true,
+    "candidate-speed_finite_bounded_stopped": true,
+    "speed_includes_collisions_without_reader_jumps": true,
+    "speed_rate_range": true,
+    "candidate-pause_finite_bounded_stopped": true,
+    "candidate-pause_no_block_dropout_or_mixer_gain_change": true,
+    "candidate-pause_pause_stop_empty_silent": true,
+    "candidate-pause_no_audible_shutdown_before_fade": true,
+    "silent_selection_shutdown_state_unchanged": true
+  },
+  "passed": true,
+  "cases": {
+    "baseline-wave": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.08806093037128448,
+        0.05535028129816055,
+        0.03619304299354553,
+        0.02274896577000618
+      ],
+      "cuts": [
+        {
+          "command_ms": 200,
+          "index": 6,
+          "direction": 1,
+          "target_file_frame": 4500,
+          "observed_destinations": [
+            4501.0
+          ],
+          "later_range": [
+            3001.0,
+            9000.0
+          ]
+        },
+        {
+          "command_ms": 700,
+          "index": 1,
+          "direction": 1,
+          "target_file_frame": 750,
+          "observed_destinations": [
+            750.9995727539062
+          ],
+          "later_range": [
+            1118.99951171875,
+            9000.0
+          ]
+        },
+        {
+          "command_ms": 1200,
+          "index": 14,
+          "direction": 1,
+          "target_file_frame": 10500,
+          "observed_destinations": [
+            10499.0009765625,
+            3001.0
+          ],
+          "later_range": [
+            3001.0,
+            9000.0
+          ]
+        },
+        {
+          "command_ms": 2000,
+          "index": 6,
+          "direction": -1,
+          "target_file_frame": 5250,
+          "observed_destinations": [
+            5249.00146484375
+          ],
+          "later_range": [
+            3000.0,
+            8999.0
+          ]
+        },
+        {
+          "command_ms": 2500,
+          "index": 1,
+          "direction": -1,
+          "target_file_frame": 1500,
+          "observed_destinations": [
+            1500.9984130859375,
+            8999.0
+          ],
+          "later_range": [
+            3000.0,
+            8999.0
+          ]
+        },
+        {
+          "command_ms": 3000,
+          "index": 14,
+          "direction": -1,
+          "target_file_frame": 11250,
+          "observed_destinations": [
+            11249.001953125
+          ],
+          "later_range": [
+            3000.0,
+            10881.001953125
+          ]
+        }
+      ]
+    },
+    "baseline-speed": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.10563482344150543,
+        0.013151926919817924,
+        0.04341591149568558,
+        0.0054054418578743935
+      ],
+      "audible_readers": [
+        {
+          "checked_steps": 135001,
+          "max_step": 7556.0029296875,
+          "oversized_step_times_ms": [
+            1252.3125,
+            3003.3125
+          ]
+        },
+        {
+          "checked_steps": 126485,
+          "max_step": 4.000003814697266,
+          "oversized_step_times_ms": []
+        }
+      ],
+      "collision_audio_steps": [
+        {
+          "command_ms": 1250,
+          "max_step_LR": [
+            0.10563482344150543,
+            0.011077880859375
+          ]
+        },
+        {
+          "command_ms": 3001,
+          "max_step_LR": [
+            0.07445954531431198,
+            0.013151926919817924
+          ]
+        }
+      ]
+    },
+    "policy-only-speed": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.10563482344150543,
+        0.01108819805085659,
+        0.04341591149568558,
+        0.0045572491362690926
+      ],
+      "audible_readers": [
+        {
+          "checked_steps": 130540,
+          "max_step": 7556.0029296875,
+          "oversized_step_times_ms": [
+            1252.3125
+          ]
+        },
+        {
+          "checked_steps": 120571,
+          "max_step": 3340.00732421875,
+          "oversized_step_times_ms": [
+            3003.3125
+          ]
+        }
+      ],
+      "collision_audio_steps": [
+        {
+          "command_ms": 1250,
+          "max_step_LR": [
+            0.10563482344150543,
+            0.011077880859375
+          ]
+        },
+        {
+          "command_ms": 3001,
+          "max_step_LR": [
+            0.029461413621902466,
+            0.01104736328125
+          ]
+        }
+      ]
+    },
+    "candidate-wave": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.015442635864019394,
+        0.010350893251597881,
+        0.006346923299133778,
+        0.004254217259585857
+      ],
+      "cuts": [
+        {
+          "command_ms": 200,
+          "index": 6,
+          "direction": 1,
+          "target_file_frame": 4500,
+          "observed_destinations": [
+            4501.0
+          ],
+          "later_range": [
+            0.9999991655349731,
+            12000.0
+          ]
+        },
+        {
+          "command_ms": 700,
+          "index": 1,
+          "direction": 1,
+          "target_file_frame": 750,
+          "observed_destinations": [
+            750.9995727539062
+          ],
+          "later_range": [
+            0.9999991655349731,
+            12000.0
+          ]
+        },
+        {
+          "command_ms": 1200,
+          "index": 14,
+          "direction": 1,
+          "target_file_frame": 10500,
+          "observed_destinations": [
+            10500.9990234375
+          ],
+          "later_range": [
+            0.9999991655349731,
+            12000.0
+          ]
+        },
+        {
+          "command_ms": 2000,
+          "index": 6,
+          "direction": -1,
+          "target_file_frame": 5250,
+          "observed_destinations": [
+            5249.00146484375
+          ],
+          "later_range": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "command_ms": 2500,
+          "index": 1,
+          "direction": -1,
+          "target_file_frame": 1500,
+          "observed_destinations": [
+            1499.0015869140625
+          ],
+          "later_range": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "command_ms": 3000,
+          "index": 14,
+          "direction": -1,
+          "target_file_frame": 11250,
+          "observed_destinations": [
+            11249.001953125
+          ],
+          "later_range": [
+            0.0,
+            11999.0
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            3.75
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.97,
+            4.29
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 7.450580596923828e-09
+        },
+        {
+          "seconds": [
+            4.73,
+            4.98
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 7.450580596923828e-09
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 14,
+          "nonzero_gain_before_off": 1,
+          "nonzero_gain_off_ms": [
+            5319.979166666667
+          ],
+          "audible_nonzero_gain_shutdowns": 0
+        },
+        {
+          "count": 13,
+          "nonzero_gain_before_off": 0,
+          "nonzero_gain_off_ms": [],
+          "audible_nonzero_gain_shutdowns": 0
+        }
+      ]
+    },
+    "candidate-constant": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.000277739018201828,
+        0.0001389235258102417,
+        0.00022831745445728302,
+        0.00011420343071222305
+      ],
+      "cuts": [
+        {
+          "command_ms": 200,
+          "index": 6,
+          "direction": 1,
+          "target_file_frame": 4500,
+          "observed_destinations": [
+            4501.0
+          ],
+          "later_range": [
+            0.9999991655349731,
+            12000.0
+          ]
+        },
+        {
+          "command_ms": 700,
+          "index": 1,
+          "direction": 1,
+          "target_file_frame": 750,
+          "observed_destinations": [
+            750.9995727539062
+          ],
+          "later_range": [
+            0.9999991655349731,
+            12000.0
+          ]
+        },
+        {
+          "command_ms": 1200,
+          "index": 14,
+          "direction": 1,
+          "target_file_frame": 10500,
+          "observed_destinations": [
+            10500.9990234375
+          ],
+          "later_range": [
+            0.9999991655349731,
+            12000.0
+          ]
+        },
+        {
+          "command_ms": 2000,
+          "index": 6,
+          "direction": -1,
+          "target_file_frame": 5250,
+          "observed_destinations": [
+            5249.00146484375
+          ],
+          "later_range": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "command_ms": 2500,
+          "index": 1,
+          "direction": -1,
+          "target_file_frame": 1500,
+          "observed_destinations": [
+            1499.0015869140625
+          ],
+          "later_range": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "command_ms": 3000,
+          "index": 14,
+          "direction": -1,
+          "target_file_frame": 11250,
+          "observed_destinations": [
+            11249.001953125
+          ],
+          "later_range": [
+            0.0,
+            11999.0
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            3.75
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.97,
+            4.29
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.73,
+            4.98
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 14,
+          "nonzero_gain_before_off": 1,
+          "nonzero_gain_off_ms": [
+            5319.979166666667
+          ],
+          "audible_nonzero_gain_shutdowns": 0
+        },
+        {
+          "count": 13,
+          "nonzero_gain_before_off": 0,
+          "nonzero_gain_off_ms": [],
+          "audible_nonzero_gain_shutdowns": 0
+        }
+      ],
+      "stereo_constant_max_error": 7.450580596923828e-09
+    },
+    "candidate-speed": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.012603759765625,
+        0.01108819805085659,
+        0.005180145148187876,
+        0.0045572491362690926
+      ],
+      "audible_readers": [
+        {
+          "checked_steps": 126443,
+          "max_step": 4.00048828125,
+          "oversized_step_times_ms": []
+        },
+        {
+          "checked_steps": 124718,
+          "max_step": 4.000244140625,
+          "oversized_step_times_ms": []
+        }
+      ],
+      "collision_audio_steps": [
+        {
+          "command_ms": 1250,
+          "max_step_LR": [
+            0.01214599609375,
+            0.011077880859375
+          ]
+        },
+        {
+          "command_ms": 3001,
+          "max_step_LR": [
+            0.012573462910950184,
+            0.011077880859375
+          ]
+        }
+      ]
+    },
+    "candidate-pause": {
+      "frames": 335918,
+      "max_audio_steps_player_mixer": [
+        0.006317301653325558,
+        0.005554288160055876,
+        0.0025964106898754835,
+        0.0022828122600913048
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            0.2
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            0.56,
+            0.7
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            1.08,
+            1.2
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            1.29,
+            1.5
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            1.59,
+            1.8
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            1.89,
+            2.1
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            2.38,
+            2.48
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            2.54,
+            2.75
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.14,
+            3.28
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.65,
+            3.85
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.49,
+            4.58
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            5.2,
+            5.45
+          ],
+          "longest_silent_run_frames": 0,
+          "max_mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "reader_shutdowns": [
+        {
+          "count": 16,
+          "nonzero_gain_before_off": 0,
+          "nonzero_gain_off_ms": [],
+          "audible_nonzero_gain_shutdowns": 0
+        },
+        {
+          "count": 12,
+          "nonzero_gain_before_off": 0,
+          "nonzero_gain_off_ms": [],
+          "audible_nonzero_gain_shutdowns": 0
+        }
+      ]
+    }
+  },
+  "speed_transport_exclusions_ms": [
+    [
+      0,
+      80
+    ],
+    [
+      3650,
+      3700
+    ],
+    [
+      4000,
+      4390
+    ],
+    [
+      5500,
+      7000
+    ]
+  ],
+  "limits": "Fixture-specific numerical evidence. Rapid arbitrary-source cuts can reuse an audible reader; no universal click-free claim or human listening acceptance."
+}
