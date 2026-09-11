@@ -25,7 +25,8 @@ The public globals remain the application's existing single-instance clock bus.
 
 The slice listening file and reproduction procedure below are retained unchanged.
 PR #18's slice capture was accepted by the user on 2026-09-10 after listening:
-no audible artifacts. Listening to PR #19's clock capture remains pending.
+no audible artifacts. On 2026-09-11 the user listened to PR #19's clock
+capture and reported that it sounds great; its listening check is accepted.
 
 Implementation: the main patch now has a small Run/BPM panel. The original
 `clock`, counter and source switch remain in `pd clock-system`. Source selection
@@ -66,7 +67,9 @@ the player and .001304/.001157 after the mixer; constant steps remain below .001
 The musical file has much larger source-dependent steps, retained in the results;
 these measurements do not establish universally click-free playback.
 
-**Listening and runtime:** clock-capture listening remains pending. The earlier
+**Listening and runtime:** on 2026-09-11 the user accepted the clock capture
+after listening ("sounds great"). This is separate from the 27 numerical checks
+and does not establish universal artifact-free playback. The earlier
 [slice listening file](evidence/slice-quantizer/musical-post-master.wav) and procedure
 are unchanged; the new [clock musical capture](evidence/standalone-clock/musical-post-master.wav)
 is also retained at post-master gain times .9 without normalization. Runtime was
