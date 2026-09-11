@@ -1,0 +1,7 @@
+1-test-capture start /tmp/plugmlr-visible-readers.wav 7000;
+record-check-player stop;
+record-check-bus 0;
+reverse-check-slew 0;
+record-check-player speed 2;
+1-quantizer 1;
+50 record-check-player play;

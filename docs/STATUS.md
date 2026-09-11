@@ -7,6 +7,199 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Overlapping cut handoffs (repaired candidate)
+
+Repair contract, before implementation: retain the same two readers and existing
+6/9 ms envelopes. A slice/Apply request keeps the current 1 ms minimum latency,
+but waits until 12 ms after the most recent crossover or initial Play before
+reusing a reader. That interval covers the 9 ms cut fade plus two 64-frame Pd
+blocks at 44.1/48 kHz rates (this repair is tested at 48 kHz). The existing pending destination remains
+latest-wins; replacement does not append a queue. Stop/Pause/buffer cancellation
+still discards the pending jump. Bounds commit only with the actual cut. This
+adds bounded command latency near a fade, not catch-up timing or another reader.
+The cut owns loop detection during that wait, as before. Additional source finding: paused Apply called `pause-finish`, which also closes
+the mixer. At 2 ms into Pause this prematurely cuts its 6 ms fade. Route paused
+Apply only to the saved-position hold; leave mixer closure with normal cleanup.
+Natural loops shorter
+than the fade interval and other host/block sizes are not thereby qualified.
+
+Implementation: `pending-cut-delay.pd` replaces exactly one fixed-delay object.
+Its timer measures time since the last `crossfade_playhead` or initial `play`
+message. The existing pending target/bounds storage and cancellation are reused.
+A new private `pause-reposition` receiver updates only the saved-position hold;
+paused Apply no longer sends `pause-finish` and prematurely closes the mixer.
+No reader, envelope, recording, direction, quantizer or buffer-storage rewrite.
+
+Matched native baseline at `c822ef0` reproduced all three nonzero-gain reader jumps
+(1552.3125, 3054.3125, 3056.3125 ms). A guard-only intermediate removed them but
+exposed the pre-existing paused-Apply mixer cut; its exact patch and constant
+capture are retained. Final wave and constant captures remove both failures.
+The rapid burst commits at 3052.3125 and 3064.3125 ms, 12 ms apart, with the last
+requested range winning. Loop ranges, stopped/paused behavior, invalid/empty
+inputs, stereo order and unity reader sum remain correct in the existing score.
+
+All 25 checks in [results](evidence/cut-handoff/results.json) pass. Whole-capture
+maximum adjacent steps (player L/R, mixer L/R) are:
+
+| Capture | Player L | Player R | Mixer L | Mixer R |
+|---|---:|---:|---:|---:|
+| Baseline wave | .022923 | .017340 | .009421 | .007127 |
+| Final wave | .003174 | .002791 | .001304 | .001147 |
+| Guard-only constant | .000278 | .000139 | .021917 | .010962 |
+| Final constant | .000278 | .000139 | .000209 | .000105 |
+
+These maxima include every transition sample; no fade windows are excluded.
+Continuous windows have no block-length dropout or unintended mixer gain change;
+Pause/Stop/empty windows are silent and all recorded samples finite. The previous
+speed and Pause/Resume regression scores pass on the final source too. No remaining
+failure was observed in these scores. This does not qualify natural loops shorter
+than the fade, every command combination, other host rates/block configurations,
+or arbitrary waveform transitions as universally click-free.
+
+Runtime is the same native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3,
+CoreAudio 8A at 48 kHz / 512 / 1x. Installed binary hash rechecked; host settings
+were not changed. Wave/constant files are stereo 48 kHz; the musical stress score
+uses the stereo 44.1 kHz DrumLoop on the 48 kHz host. Listening is separate:
+the user reported “I don't hear any artifacts at this time” for the
+[repaired musical capture](evidence/cut-handoff/musical-post-master.wav).
+This accepts the listening check for this capture, not universal artifact-free playback.
+The rapid bursts, 100 ms loops and brief Pause are intentional.
+
+Reproduction uses the preceding visible-loop tap setup and scores, plus
+`tests/fixtures/handoff-musical.txt`. Temporary helper indexes on final source
+start at 545 (player has 545 objects before taps). Every run was automatically
+bounded to seven seconds; both stop messages were checked in the actual console.
+Run `python3 tests/analyze_cut_handoff.py docs/evidence/cut-handoff` with NumPy and
+ffmpeg. Retained baseline/intermediate/final float arrays, source hashes and the
+intermediate patch are linked by the [manifest](evidence/cut-handoff/manifest.json).
+Musical WAV is actual post-master L/R at output factor .9 without normalization;
+its full arrays and redundant guard-only wave/speed arrays remain ignored locally.
+
+All three live takes were freshly preserved and restored byte-identically.
+Original player is visible on Live 2, stopped, recorders/taps removed. Sample 1
+DrumLoop, user Sample 2 Sunny, next recording lengths 2/2/4 seconds and gains
+.548/.75/.9 are restored. No edits to adjacent repositories, services or failed stash.
+This follow-up updates PR #17 and leaves it unmerged.
+
+## Visible slice and loop controls (review candidate)
+
+Base: PR #16 head `0bf4e53cb2034368d36c699106eec08df68a7e25`.
+Branch: `codex/visible-slice-loop-controls`. The existing PR stack remains unmerged.
+
+Pre-implementation UI contract: add a compact `slice-panel` to the original player.
+Buttons display 1..16 and send existing `row_<track>` indexes 0..15. They retain
+current quantizer scheduling and the named whole-content slice policy. Show actual
+playback position and selected loop on the same whole-content scale, so resizing
+a loop does not reinterpret the display. Position and editable Start/End use
+seconds; internal conversions use file frames and the existing file sample rate.
+Loop edits are staged until Apply, with a separate Full sample action. Invalid or
+empty ranges must leave playback/bounds unchanged and give visible feedback.
+The user approved restarting at the new loop's beginning in forward playback and
+its end in reverse. While paused, Apply sets the saved resume point without
+starting audio; while stopped, it sets the next playback bounds. Full sample uses
+the same action with content bounds. Seconds round to the nearest file frame;
+ranges must contain at least one frame, fit the content and have finite endpoints.
+Apply and slices replace one shared pending jump; Stop cancels it. Buffer selection
+resets bounds, while Play preserves the chosen region. Public adapter:
+`<track>-loop-region START_SECONDS END_SECONDS` or `full`.
+This checkpoint does not add clock/quantizer behavior or replace reader DSP.
+
+Implementation map: `slice-panel.pd` contains only GUI/message conversion;
+`loop-region-control.pd` validates seconds and routes by playing/paused state.
+`pd slice_policy` chooses full bounds for slices or requested bounds for Apply,
+then commits through the original shared 1 ms pending-cut delay and crossover.
+The original 20 ms position snapshot feeds both visualizations; no additional
+position timer or reader DSP was introduced. Initial Play no longer resets bounds;
+buffer selection still does. Existing slew, quantizer, recording and mixer paths
+are otherwise unchanged. The malformed-symbol trial exposed a `trigger` conversion
+error; a `route list` now rejects it before reaching the list trigger.
+
+**Native UI observations:** loaded the original `mlr.pd`, opened the original
+player, edited Start/End to 1/3 seconds directly, and observed that the region
+remained full until Apply. Apply showed the smaller region. A malformed command
+showed `Invalid_range`, preserving 1/3 and the region without another console error.
+During bounded playback, Position read 1.43933 s in the smaller loop; clicking
+slice 9 restored full bounds and moved the marker into the second half (7.62318 s).
+Full sample restarted at the beginning (0.432333 s at the next screenshot).
+The panel and older playbar now use the same whole-content scale.
+
+**Numerical evidence:** [results](evidence/visible-loop/results.json),
+[regressions](evidence/visible-loop/regressions.json), and
+[source/capture manifest](evidence/visible-loop/manifest.json).
+The actual original player, its two readers and post-master mixer were captured,
+not a separate playback model. Six automatically bounded seven-second captures
+retain 335918 decoded frames each in lossless NPZ files. Wave, constant, speed and
+pause arrays are committed; manual-UI/musical arrays remain in ignored local-raw,
+with the musical listening WAV committed. The WAV container's
+slightly short decoded tail follows the earlier native capture convention.
+The wave and distinct-channel constant fixtures pass 12 region-range checks,
+including forward/reverse Apply, Full sample, latest-command slice/region ordering,
+rapid Apply, paused Apply/Resume, stopped Apply/Play, invalid input preservation,
+and empty-buffer silence. Continuous playback has no block-length dropout and
+mixer gain error below 2e-6. The constant confirms stereo order and unity reader sum.
+Pause/Resume and speed regression scores also pass; 251161 eligible speed-reader
+steps include the previous boundary collisions without an oversized step.
+
+**Historical transition failure at c822ef0 (repaired above):** functional passes
+at that revision did not close crossover acceptance.
+The wave capture contains reader teleports at approximately 1552.312, 3054.312 and
+3056.312 ms, while their gains are still nonzero. The first follows Apply near a
+loop wrap; the latter follow 2 ms repeated Apply commands. Maximum adjacent player
+steps are 0.022923 L / 0.017340 R. A shared pending jump prevents simultaneous new
+owners, but does not ensure a reader from an earlier handoff has finished fading.
+The previously documented rapid-reader-reuse limitation is therefore observable
+through this UI too. This candidate leaves that gate explicitly false and must
+not be presented as fully transition-qualified. A focused handoff-ownership repair
+is the next technical job; no such redesign is included here.
+
+**Runtime:** plugdata 0.9.4 nightly `98ae0f78b`, Pd 0.56.3; installed binary hash
+rechecked against the earlier identity. Native settings directly showed CoreAudio,
+8A input/output, 48000 Hz, 512 frames, 1x, limiter Off. Test signals are stereo
+48 kHz. The musical capture uses the repository's stereo 44.1 kHz DrumLoop.wav
+with that 48 kHz host. No new 44.1 kHz host, Bitwig, DAW lifecycle, controller or
+project-recall acceptance is claimed.
+
+**Listening, separate from measurements:** the user reported “Sounds clean” for
+[musical post-master audio](evidence/visible-loop/musical-post-master.wav).
+It contains Apply at 1.35 s, Reverse at 2.35 s, Apply at 3.35 s, slice at 4.35 s,
+and Full sample at 5.35 s. Export uses actual mixer channels 5/6 with the session's
+0.9 output factor, no normalization. This does not override the stress failure.
+The generated-reference channels in the six-channel capture are not listening audio.
+
+**Run it:** open `mlr.pd`, load a stereo file with Sample 1 Load, open
+`pd arrays-samples` then `sample_player_rebuild 1`, and select sample_buffer / 1.
+Set audible track/master levels. Edit Start_s/End_s and press Apply; Play preserves
+those bounds. Direction Change reverses; Apply then enters at the new loop end.
+Use buttons 1–16 to exit the smaller region or Full sample to reset it explicitly.
+Pause/Apply stays silent until Resume. Quantized scheduling remains its existing,
+unqualified behavior; native checks used immediate `1-quantizer 1`.
+
+**Repeat validation:** use the existing temporary tap arrangement from the prior
+slice checkpoint: `tests/instant-reverse-check $0`,
+`tests/bounded-player-capture 1 $0`, and `tests/speed-slew-controls $0` in the
+original player, plus mixer object 20/21 outputs to
+`s~ plugmlr-record-check-left/right`. Initialize only the helper, mute output,
+then rebuild DSP after attaching taps. Load `stop-wave-48.wav` into samples 3/4;
+submit `record-check symbol fixtures/visible-loop.txt` through the native console.
+Wait for both automatic stop messages before retaining `/tmp/plugmlr-record-check.wav`,
+`/tmp/plugmlr-visible-readers.wav` and events. Repeat sample 3 with
+`stop-constant-48.wav` while muted. Run `speed-slew-position.txt` and
+`pause-resume.txt` with wave samples, retaining their respective reverse/pause reader
+files. `visible-loop-musical.txt` uses DrumLoop in Sample 1; `visible-loop-ui.txt`
+provides bounded playback for manual button checks. Reproduce numerical results:
+`python3 tests/analyze_visible_loop.py docs/evidence/visible-loop` and
+`python3 tests/analyze_visible_regressions.py docs/evidence/visible-loop` (NumPy/ffmpeg).
+The first reports functional checks separately from the false transition gate.
+
+**Session restoration:** all three live arrays were freshly copied before reload,
+then restored and re-exported byte-identically. Content/capacity remains
+96000/96000, 96000/96000, 60032/192000 frames; next lengths 2/2/4 seconds.
+Sample 1 DrumLoop and the user's Sample 2 Sunny loop were restored. Original player
+is visible on Live 2, stopped, with no diagnostic taps or capture running; track
+gain .548, master .75 and output .9. Companion input configuration was untouched.
+The failed R1 stash, historical patches, adjacent repositories and services remain
+untouched. This is an unmerged review candidate, not the next engine slice.
+
 ## Slice policy checkpoint
 
 Branch `codex/fix-slice-region-handoff` starts at PR #15 head
@@ -2681,7 +2874,7 @@ lost 1.5004%. This actual-output measurement is much smaller than the raw
 DSP-flag/gain-tap deficit, confirming those probes cannot define output gain.
 Amended shutdown contract: retain the 6/9 ms ramps and cancellation on reader
 reuse; wait 12 ms before disabling the outgoing reader. The extra 3 ms covers
-two default 64-sample Pd blocks at the tested 44.1/48 kHz rates. It delays only
+two default 64-sample Pd blocks at 44.1/48 kHz rates (this repair is tested at 48 kHz). It delays only
 DSP shutdown, not the cut or its fade. No claim for other block sizes/rates.
 
 The first endpoint-suppression candidate passed 44.1 kHz but failed rate

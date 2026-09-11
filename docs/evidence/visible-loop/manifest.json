@@ -1,0 +1,49 @@
+{
+  "base": "0bf4e53cb2034368d36c699106eec08df68a7e25",
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "runtime_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+  "host": "CoreAudio 8A input/output, 48000 Hz, 512 frames, 1x",
+  "source_sha256": {
+    "sample_player_rebuild.pd": "29140f828a861855f841495902ac11648e038c01103983fa10602dba0dbea4da",
+    "slice-panel.pd": "0924e96ed5aa075747bba62daae6e78f7fd197f2b6b1f4cc6254a39092d5d328",
+    "loop-region-control.pd": "9e2a8606af9e3dc1c743c1fdf640b3e7ca8cf079637209caed3cd102392875f9",
+    "tests/fixtures/visible-loop.txt": "144ebf5ed2b707a3e6b2d70031fa959431d8ef3e19e74e6152a9ee32765a3043",
+    "tests/fixtures/visible-loop-musical.txt": "a3644e1be55f0409fae5a918947e702748d6cee950ddbb86a147d83bacd1b39e",
+    "tests/fixtures/visible-loop-ui.txt": "745e233841548a0acb6d8540f2be57f446cf6165907e1ba4367f2fe97dd044ea",
+    "tests/fixtures/speed-slew-position.txt": "e2bbe377b01374dcef8560ca718d5823d292f3efb06edb4b8da4060ced3cde5b",
+    "tests/fixtures/pause-resume.txt": "9e494eff34c360755b10ef9e7d70aaf79f6c1ecc9ac95e7a7cc33e5af5414112",
+    "tests/fixtures/stop-wave-48.wav": "35aab01dd8331051158fdee27a0409f3d72a58f3297f80a373dae81a083bdddc",
+    "tests/fixtures/stop-constant-48.wav": "7dd25b8680bba53bcbb646e4549670546966fd3357f199086ecccdfee3c9cb61",
+    "DrumLoop.wav": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6"
+  },
+  "evidence_sha256": {
+    "candidate-constant-events.txt": "3ccb22f63a7eab64ac336f731c99941d18228a68d7e2456b86f852769d2e09e0",
+    "candidate-constant-player-mixer-48.npz": "9e70461289e3c96065ceba94d2e8d2d6631ee7c0a2b390ce6fdd43a49822cc61",
+    "candidate-constant-readers-48.npz": "3c4489b04188e187d8c3f870efdcf35ffe0c9340cfd872fbde9f1640640be768",
+    "candidate-musical-events.txt": "9a5a80499aa29fd47c55e0b574732c869098564742fc291db5397c2bc439edfd",
+    "candidate-pause-events.txt": "bd7b182a52f835d5b20d904ca84002ca8904f023f40fa6aa92559b0fda9f843c",
+    "candidate-pause-player-mixer-48.npz": "a90ed6418bbad33f942464396a7bb4809374cca3b35df8351bdd0be573707904",
+    "candidate-pause-readers-48.npz": "2ea6d31c2b138a924488fc79fe9fc076f7dedfad55ca8da3f40dcf8f282dcde3",
+    "candidate-speed-events.txt": "5309e7aaa9920d607f113cfbf805c0c98dfcd4eab2829c7874902a50273ebcc2",
+    "candidate-speed-player-mixer-48.npz": "d66f12544587d4b050a98fb89de0f6120b909e5b6137d0ef82d64c10b61f7983",
+    "candidate-speed-readers-48.npz": "9568b3198206bb0b2431819e16aede23ff72d6cd544b21eebfea89860c11e508",
+    "candidate-ui-events.txt": "254df95af72457586ef4cba6483dc85e7be6e5f54bdc725085cc9ac4c370bc0e",
+    "candidate-wave-events.txt": "3ccb22f63a7eab64ac336f731c99941d18228a68d7e2456b86f852769d2e09e0",
+    "candidate-wave-player-mixer-48.npz": "fbc8e4bbd5d9d467af394503ee5535d640c04345bb921f24b9d9fad4f0f9c55a",
+    "candidate-wave-readers-48.npz": "5ac7deb37178ad5467141f4a7b0790cf36f56512fbca4fc6d8ce6d2e7050a982",
+    "musical-post-master.wav": "17d42367a4015ccdef19af6140752ed5758dcfbc7de0b1621d77b227c79f3944",
+    "regressions.json": "dcfeef555145131674a51628a52079d33cae5b6a23ea2539a3b8e531d3ebd60e",
+    "results.json": "5039806486be738532ae542a5f8987599132481cab4d929ffcea77f5cfa17b91",
+    "local-raw/candidate-musical-readers-48.npz": "d175545d2676607d59f6c6d3b87e4daa1e13922aafbb28f0369e1b90532a9e25",
+    "local-raw/candidate-ui-player-mixer-48.npz": "781234dea16a007126431059360720f1d0a67b7a6010d2fd51c51cbe1bfad8a9",
+    "local-raw/candidate-musical-player-mixer-48.npz": "a9d9790fabc1ed5a4e4f687b05392a4805c47ff23e5fcc50c1cbe91e51d42258",
+    "local-raw/candidate-ui-readers-48.npz": "89bf0e479a7bde2dbbc97910748bfaffc9f706df4da2a971337c97e3bc874b18"
+  },
+  "restored_takes_byte_identical": true,
+  "local_only_capture_arrays": [
+    "candidate-musical-readers-48.npz",
+    "candidate-ui-player-mixer-48.npz",
+    "candidate-musical-player-mixer-48.npz",
+    "candidate-ui-readers-48.npz"
+  ]
+}

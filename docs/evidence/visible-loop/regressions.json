@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "speed_reader_continuity_including_boundary_collisions": true,
+    "speed_rate_range": true,
+    "pause_stop_empty_silent": true,
+    "paused_position_held_readers_off": true,
+    "resume_audio_and_gain": true,
+    "resume_saved_position_and_rate": true,
+    "candidate-speed_finite_bounded_stopped": true,
+    "candidate-pause_finite_bounded_stopped": true
+  },
+  "passed": true,
+  "measurements": {
+    "speed_readers": [
+      {
+        "checked_steps": 126443,
+        "max_step": 4.00048828125,
+        "bad_times_ms": []
+      },
+      {
+        "checked_steps": 124718,
+        "max_step": 4.000244140625,
+        "bad_times_ms": []
+      }
+    ],
+    "resumes": [
+      {
+        "ms": 533,
+        "step": 1.0,
+        "slope": 1.0,
+        "expected": 1
+      },
+      {
+        "ms": 1033,
+        "step": -1.9990234375,
+        "slope": -2.0,
+        "expected": -2
+      },
+      {
+        "ms": 2350,
+        "step": -1.9970703125,
+        "slope": -2.0,
+        "expected": -2
+      },
+      {
+        "ms": 5150,
+        "step": -0.2491455078125,
+        "slope": -0.25,
+        "expected": -0.25
+      }
+    ]
+  }
+}
