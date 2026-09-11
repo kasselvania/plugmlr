@@ -2,7 +2,7 @@
 local C = pd.Class:new():register('grid-cut-keys')
 function C:initialize()
     self.inlets, self.outlets = 3, 5
-    self.connected, self.alt, self.focus = false, false, 0
+    self.connected, self.alt, self.mod, self.focus = false, false, false, 0
     self.held, self.pairs = {}, {}
     return true
 end
@@ -12,14 +12,18 @@ end
 function C:alt_led()
     self:outlet(4, '/monome/grid/led/level/set', {15, 0, self.alt and 15 or 4})
 end
+function C:mod_led()
+    self:outlet(4, '/monome/grid/led/level/set', {13, 0, self.mod and 15 or 4})
+end
 function C:in_2_float(v)
     local connected = v == 1
     if connected == self.connected then return end
-    self.connected, self.alt, self.held, self.pairs = connected, false, {}, {}
+    self.connected, self.alt, self.mod, self.held, self.pairs = connected, false, false, {}, {}
     if connected then
         self:outlet(4, '/monome/grid/led/row', {0, 0, 0, 0})
         self:outlet(4, '/monome/grid/led/level/set', {1, 0, 8})
         self:alt_led()
+        self:mod_led()
     end
 end
 function C:row_count(row)
@@ -47,6 +51,9 @@ function C:in_1_list(a)
         if x == 15 and y == 0 and self.alt then
             self.alt = false
             self:alt_led()
+        elseif x == 13 and y == 0 and self.mod then
+            self.mod = false
+            self:mod_led()
         end
         return
     end
@@ -56,6 +63,10 @@ function C:in_1_list(a)
         self.alt = true
         self.pairs = {}
         self:alt_led()
+    elseif x == 13 and y == 0 then
+        self.mod = true
+        self.pairs = {}
+        self:mod_led()
     elseif y >= 1 and y <= 6 then
         if self.focus ~= y then
             self.focus = y
@@ -63,6 +74,9 @@ function C:in_1_list(a)
         end
         if self.alt then
             self:outlet(2, 'float', {y})
+        elseif self.mod then
+            self.pairs[y] = nil
+            self:outlet(5, 'list', {y, x, x+1})
         else
             local count = self:row_count(y)
             if count == 1 then

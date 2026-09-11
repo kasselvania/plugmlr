@@ -12,7 +12,7 @@ def check(command, expected):
         except socket.timeout: break
     results.append(dict(command=command, expected=expected, actual=actual, passed=actual==expected))
 check('key 0 1 1',[])
-check('connected 1',['led /monome/grid/led/row 0 0 0 0','led /monome/grid/led/level/set 1 0 8','led /monome/grid/led/level/set 15 0 4'])
+check('connected 1',['led /monome/grid/led/row 0 0 0 0','led /monome/grid/led/level/set 1 0 8','led /monome/grid/led/level/set 15 0 4','led /monome/grid/led/level/set 13 0 4'])
 check('key 3 1 1',['focus 1','slice 3 1 1'])
 check('key 3 1 1',[])
 check('key 15 0 1',['led /monome/grid/led/level/set 15 0 15'])
@@ -29,7 +29,7 @@ check('key 7 2 0',[])
 check('key 7 2 1',['play 2'])
 check('connected 0',[])
 check('key 8 1 1',[])
-check('connected 1',['led /monome/grid/led/row 0 0 0 0','led /monome/grid/led/level/set 1 0 8','led /monome/grid/led/level/set 15 0 4'])
+check('connected 1',['led /monome/grid/led/row 0 0 0 0','led /monome/grid/led/level/set 1 0 8','led /monome/grid/led/level/set 15 0 4','led /monome/grid/led/level/set 13 0 4'])
 check('key 7 2 1',['slice 7 2 1'])
 check('key 7 2 0',[])
 check('key 1 0 1',[])
@@ -38,7 +38,7 @@ for c in ['key -1 1 1','key 16 1 1','key 0 8 1','key 0 1 2','key 0.5 1 1','key x
     check(c,[])
 for row in range(3,7):
     check(f'key 0 {row} 1',[f'focus {row}',f'slice 0 {row} 1'])
-p=Path('docs/evidence/grid-alt');p.mkdir(parents=True,exist_ok=True)
+p=Path('docs/evidence/grid-mod');p.mkdir(parents=True,exist_ok=True)
 (p/'native-keys.json').write_text(json.dumps(results,indent=2)+'\n')
 assert all(r['passed'] for r in results), [r for r in results if not r['passed']]
 print(f'PASS: {len(results)} native gesture sequences')

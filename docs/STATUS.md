@@ -7,6 +7,31 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## MOD single-cell loop review candidate — 2026-09-11
+
+Accepted PRs #27–#30 merged; main checkpoint is
+`d8f843d78863887bbad2f628bf7bfeafaf7490e9` (same file tree as `e6a1b51`).
+MOD is physical top-row key 14 (OSC x=13,y=0), following the pinned mlre CUT
+handler. Hold MOD before a fresh track-key down to commit exactly that cell
+immediately, without an ordinary slice. Releases do not issue another loop.
+The existing keep-position region path retains an in-range running position,
+otherwise enters by direction; stopped/paused tracks are not started. A later
+ordinary slice restores full content. MOD dims at level 4 and brightens to 15.
+
+ALT takes precedence if both modifiers are held; upstream ALT+MOD chop behavior
+is deliberately not implemented. Pressing MOD cancels unfinished two-key pairs
+but never retroactively loops a held key. Distinct fresh MOD+track presses are
+distinct cell selections. Duplicate downs are ignored. Disconnect clears both
+modifiers and all held/pair state. No player, buffer, clock or DSP changes.
+
+Validation: 104 native gesture sequences pass, including all 78 existing ALT/
+two-key cases and 26 MOD cases (duplicate downs, both release orders, pending
+pair cancellation, endpoints, row focus, ALT precedence and reconnect cleanup).
+Exact source guards preserve the accepted player, loop, display and device code.
+The saved application is reloaded and connected under a verified lease for a
+physical test. No new audio capture was made; combined CUT workflow stress and
+listening remain separate work. See [evidence](evidence/grid-mod/observations.md).
+
 ## Grid loop feedback review candidate — 2026-09-11
 
 Read-only display slice, based on accepted release correction `19245a0`.
