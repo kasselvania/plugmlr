@@ -1,0 +1,147 @@
+[
+  [
+    100,
+    "grid-loop-check-key",
+    "15 0 1"
+  ],
+  [
+    101,
+    "grid-loop-check-key",
+    "0 1 1"
+  ],
+  [
+    102,
+    "grid-loop-check-key",
+    "0 1 0"
+  ],
+  [
+    103,
+    "grid-loop-check-key",
+    "15 0 0"
+  ],
+  [
+    200,
+    "grid-loop-check-key",
+    "15 0 1"
+  ],
+  [
+    201,
+    "grid-loop-check-key",
+    "0 2 1"
+  ],
+  [
+    202,
+    "grid-loop-check-key",
+    "0 2 0"
+  ],
+  [
+    203,
+    "grid-loop-check-key",
+    "15 0 0"
+  ],
+  [
+    1000,
+    "grid-loop-check-key",
+    "2 1 1"
+  ],
+  [
+    1300,
+    "grid-loop-check-key",
+    "5 1 1"
+  ],
+  [
+    1800,
+    "grid-loop-check-key",
+    "5 1 0"
+  ],
+  [
+    2000,
+    "grid-loop-check-key",
+    "2 1 0"
+  ],
+  [
+    3000,
+    "grid-loop-check-key",
+    "0 1 1"
+  ],
+  [
+    3200,
+    "grid-loop-check-key",
+    "1 1 1"
+  ],
+  [
+    5400,
+    "grid-loop-check-key",
+    "1 1 0"
+  ],
+  [
+    5500,
+    "grid-loop-check-key",
+    "0 1 0"
+  ],
+  [
+    5800,
+    "\\$1-dir_change",
+    "bang"
+  ],
+  [
+    6000,
+    "grid-loop-check-key",
+    "5 1 1"
+  ],
+  [
+    6300,
+    "grid-loop-check-key",
+    "2 1 1"
+  ],
+  [
+    6800,
+    "grid-loop-check-key",
+    "2 1 0"
+  ],
+  [
+    7000,
+    "grid-loop-check-key",
+    "5 1 0"
+  ],
+  [
+    10000,
+    "grid-loop-check-key",
+    "15 0 1"
+  ],
+  [
+    10001,
+    "grid-loop-check-key",
+    "0 1 1"
+  ],
+  [
+    10002,
+    "grid-loop-check-key",
+    "0 1 0"
+  ],
+  [
+    10003,
+    "grid-loop-check-key",
+    "15 0 0"
+  ],
+  [
+    10020,
+    "grid-loop-check-key",
+    "15 0 1"
+  ],
+  [
+    10021,
+    "grid-loop-check-key",
+    "0 2 1"
+  ],
+  [
+    10022,
+    "grid-loop-check-key",
+    "0 2 0"
+  ],
+  [
+    10023,
+    "grid-loop-check-key",
+    "15 0 0"
+  ]
+]

@@ -180,7 +180,9 @@ preserved separately and is not the current application; details are in STATUS.
 **CUT loops:** hold one track-row key, press a second key in the same row, then
 release either. The loop includes both selected cells, regardless of press order.
 The first press is an ordinary quantized slice; the loop commits immediately on
-release. A later single slice restores the whole sample. ALT, Stop, Pause and
+release: running playback inside the range keeps its current position; outside it
+wraps immediately to the directional entry. On-screen Apply still jumps to the
+entry. A later single slice restores the whole sample. ALT, Stop, Pause and
 buffer changes cancel unfinished pairs; a third held key cancels the pair until
 all keys are released. The player panel shows the committed seconds; dim Grid
-range LEDs and MOD one-key loops are deferred. Physical acceptance is pending.
+range LEDs and MOD one-key loops are deferred. The corrected release behavior is physically user-accepted.

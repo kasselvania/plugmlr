@@ -1,3 +1,4 @@
+from grid_loop_boundary import without_region_query
 """Exact feedback-only source boundary and Pd graph validation."""
 from pathlib import Path
 import subprocess
@@ -13,7 +14,7 @@ def parse(s):
   elif l.startswith('#X connect'):stack[-1][1].append(tuple(map(int,l.rstrip(';').split()[2:6])))
   elif l.startswith(('#X obj ','#X msg ','#X text ','#X floatatom ','#X symbolatom ')):stack[-1][0].append(l)
  out['root']=stack[0];return out
-player=Path('sample_player_rebuild.pd').read_text().replace('#X obj 1700 4350 grid-loop-region \\$0 \\$1;\n','').replace('\n#X connect 525 0 142 0;\n','')
+player=without_region_query(Path('sample_player_rebuild.pd').read_text()).replace('#X obj 1700 4350 grid-loop-region \\$0 \\$1;\n','').replace('\n#X connect 525 0 142 0;\n','')
 assert player.replace('#X obj 1700 4300 grid-playback-state \\$0 \\$1;\n','')==old('sample_player_rebuild.pd')
 current=Path('mlr.pd').read_text().replace('#X obj -20 1500 grid-cut-control;\n','').replace('#X connect 7 0 83 0;\n#X connect 83 0 67 0;','#X connect 7 0 67 0;')
 a,b=parse(old('mlr.pd')),parse(current);key='#X restore 13 458 pd grid-input-output;'

@@ -1,0 +1,28 @@
+{
+  "passed": false,
+  "checks": {
+    "bounded_12_seconds": true,
+    "finite": true,
+    "audio_below_full_scale": true,
+    "forward_no_position_restart": true,
+    "reverse_no_position_restart": true,
+    "forward_audio_tracks_continuous_position": false,
+    "reverse_audio_tracks_continuous_position": true,
+    "outside_wraps_immediately": true,
+    "new_bounds_forward": true,
+    "new_bounds_reverse": true,
+    "master_active": true,
+    "final_master_silent": true
+  },
+  "frames": 575859,
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "forward_stereo_correlations": [
+    0.9626740099267753,
+    0.9645867515605225
+  ],
+  "reverse_stereo_correlations": [
+    0.9930136988242004,
+    0.9937670065627963
+  ]
+}

@@ -142,3 +142,9 @@
   Pause, buffer changes, ALT and detach cancel unfinished gestures. Validate
   master silence separately from the known stopped-slice pre-mixer activity.
   check_grid_loop.py guards the exact helper and cancellation-wire boundary.
+
+- Grid loop release is a boundary edit, not Apply's entry retrigger. For running
+  playback inside the new range, query the existing logical ramp and recalculate
+  from that position without a slice; outside, wrap immediately. Keep plain/full
+  Apply unchanged. Test long holds in both directions and inspect actual position
+  AND audio across release; an emitted loop message alone misses this regression.
