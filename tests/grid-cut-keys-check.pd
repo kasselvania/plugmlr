@@ -1,6 +1,6 @@
 #N canvas 100 100 800 500 12;
 #X obj 30 30 netreceive -u 17932;
-#X obj 30 70 route connected key;
+#X obj 30 70 route connected key cancel;
 #X obj 30 120 ../grid-cut-keys;
 #X obj 30 180 list prepend slice;
 #X obj 200 180 list prepend play;
@@ -12,6 +12,7 @@
 #X msg 280 300 connect localhost 17933;
 #X text 30 370 Silent fixture. Isolated ports and no global controls. No audio or device claim.;
 #X obj 450 260 list prepend send;
+#X obj 540 220 list prepend loop;
 #X connect 0 0 1 0;
 #X connect 1 0 2 1;
 #X connect 1 1 2 0;
@@ -27,3 +28,7 @@
 #X connect 9 0 10 0;
 #X connect 10 0 8 0;
 #X connect 12 0 7 0;
+
+#X connect 1 2 2 2;
+#X connect 2 4 13 0;
+#X connect 13 0 12 0;

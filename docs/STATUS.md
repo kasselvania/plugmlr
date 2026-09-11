@@ -7,6 +7,35 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid two-key loop review candidate — 2026-09-11
+
+On CUT rows, first unmodified key-down remains a normal slice (including its
+existing quantization). A second distinct key in the same row selects the other
+edge without sending another slice. Releasing either key commits once, immediately
+like Apply, through the original loop-region control. Columns are zero-based:
+start = content_start + min(column)/16 × content_length; exclusive end =
+content_start + (max(column)+1)/16 × content_length. Both selected cells are
+included regardless of press order or playback direction. The existing region
+validator converts seconds to rounded file frames and chooses entry by direction.
+
+Loop commit cancels any queued first slice and pending trajectory before submitting
+the new region. A later ordinary slice still restores full-content bounds.
+Paused/stopped loop edits remain silent at the master. Third-key overlap cancels an unfinished
+pair until all keys in that row are released. ALT press cancels unfinished pairs;
+ALT transport stays unchanged. Stop, Pause, buffer selection/switching and detach
+also cancel unfinished gestures. Releases after cancellation do nothing. Rows
+remain independent. MOD/one-key loops and dim Grid loop-range drawing are deferred;
+the existing focused player panel displays committed loop bounds.
+
+Validation: 78 native gesture sequences, 20 native conversion/cancellation cases
+and 17 actual-player/master checks pass at 48 kHz with a 44.1 kHz source. The
+original DSP and loop-region implementation are unchanged. A small bridge maps
+cells to seconds; one cancellation wire also clears the queued quantized slice.
+Stopped slice edits still produce pre-mixer activity in the original path, while
+the master remains silent; this is a retained limitation, not a silence claim
+for every internal signal. Physical two-key and listening acceptance are pending.
+See [evidence and repeat procedure](evidence/grid-loop/observations.md).
+
 ## Grid ALT transport review candidate — 2026-09-11
 
 Scope: retain CUT rows, add top-right ALT (OSC x=15,y=0) and focused-player

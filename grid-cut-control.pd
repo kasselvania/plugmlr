@@ -12,6 +12,13 @@
 #X obj 700 200 s mlr-grid-focus;
 #X obj 700 300 s monome_in;
 #X text 30 360 ALT changes input routing only. Existing player owns Pause/Resume and cancels pending cuts.;
+#X obj 30 500 r mlr-grid-cancel;
+#X obj 440 310 t l l;
+#X obj 650 350 list split 1;
+#X obj 650 390 unpack f;
+#X obj 650 430 makefilename %d-grid-loop-cells;
+#X obj 440 350 list split 1;
+#X obj 440 430 send;
 #X connect 0 0 2 0;
 #X connect 1 0 2 1;
 #X connect 2 0 3 0;
@@ -25,3 +32,11 @@
 #X connect 8 0 9 1;
 #X connect 7 0 9 0;
 #X connect 2 3 11 0;
+#X connect 13 0 2 2;
+#X connect 2 4 14 0;
+#X connect 14 1 15 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 17 0 19 1;
+#X connect 14 0 18 0;
+#X connect 18 1 19 0;

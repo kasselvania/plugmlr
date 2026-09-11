@@ -1601,6 +1601,7 @@
 
 #X obj -580 900 tempo-fit \$0 \$1;
 #X obj 1700 4300 grid-playback-state \$0 \$1;
+#X obj 1700 4350 grid-loop-region \$0 \$1;
 #X connect 527 0 142 0;
 #X connect 528 0 142 0;
 #X connect 526 0 33 0;
@@ -2086,3 +2087,5 @@
 #X connect 533 0 438 0;
 #X connect 535 0 320 0;
 #X connect 535 0 312 0;
+
+#X connect 525 0 142 0;
