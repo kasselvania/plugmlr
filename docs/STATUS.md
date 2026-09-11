@@ -60,7 +60,9 @@ Runtime is the same native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3,
 CoreAudio 8A at 48 kHz / 512 / 1x. Installed binary hash rechecked; host settings
 were not changed. Wave/constant files are stereo 48 kHz; the musical stress score
 uses the stereo 44.1 kHz DrumLoop on the 48 kHz host. Listening is separate:
-awaiting the user's report for [repaired musical capture](evidence/cut-handoff/musical-post-master.wav).
+the user reported “I don't hear any artifacts at this time” for the
+[repaired musical capture](evidence/cut-handoff/musical-post-master.wav).
+This accepts the listening check for this capture, not universal artifact-free playback.
 The rapid bursts, 100 ms loops and brief Pause are intentional.
 
 Reproduction uses the preceding visible-loop tap setup and scores, plus
