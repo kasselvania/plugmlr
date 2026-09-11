@@ -33,9 +33,10 @@ the stopped tail is silent. These measurements do not establish universally
 click-free playback or rule out brief dropouts. The capture uses scheduled row
 messages, not recorded physical gestures. In the subsequent hands-on session,
 the user confirmed visible LEDs and playable physical slicing: “it works great!”
-This accepts the live immediate-slicing path. Quantized physical cuts, two-player
-interaction and detailed transition checks remain separate; no explicit listening
-report for the retained capture is claimed.
+This accepts the live immediate-slicing path. In the subsequent two-row test,
+the user also accepted quantized cuts on both players and changed the timing
+grid to 1/16 for responsiveness. Detailed transition checks remain separate;
+no explicit listening report for the retained capture is claimed.
 
 See [procedure and retained evidence](evidence/grid-feedback/observations.md).
 The failed no-monitor fixture and initial stopped-transport capture are retained

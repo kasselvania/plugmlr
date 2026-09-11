@@ -97,10 +97,11 @@ presses Play. Master gain was also explicitly sent to 0.75 and the DSP graph
 refreshed while stopped before the successful capture. Those setup changes mean
 this is not evidence attributing the failed capture to a unique mixer fault.
 
-No additional DSP fix was made in this slice. Physical gestures, listening,
-other Grid rows, hotplug, Arc and Bitwig remain separate acceptance work.
+No additional DSP fix was made in this slice. Retained-file listening, other
+Grid rows, hotplug, Arc and Bitwig remain separate acceptance work. Physical
+slicing acceptance is recorded above and below.
 
-## Quantized two-row hands-on setup (acceptance pending)
+## Quantized two-row hands-on acceptance
 
 After immediate physical slicing acceptance, both original players were prepared
 in native plugdata with bundled DrumLoop.wav in separate sample slots 1 and 2.
@@ -116,4 +117,10 @@ should commit on its next quarter-note tick. Its marker should continue showing
 actual playback until that commit, and the other row should remain independent.
 Clock-quantized cuts do not tempo-fit the free-running sample or synchronize its
 drum transients. Both loops are intentionally left playing for the user.
-Physical quantized timing and two-row independence await the user's report.
+The user reported: “the cutting works, the current quantizing works, I changed
+it to 1/16 to feel a bit more responsiveness, and the cuts are working great
+against them both.” This accepts live quantized physical slicing across both
+rows, including the user's change to 1/16. It records a preference for the more
+responsive setting, not a new default implemented in code. No separate claim
+is made about exact timing measurements, exhaustive pending-key arbitration or
+all LED transitions. The user's live settings were left untouched.
