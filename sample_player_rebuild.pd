@@ -18,9 +18,9 @@
 #X obj 188 390 popmenu 128 26 12 #E3DFD9 #5A5A5A \  \$0-boot_buffer_GUI_number \$0-selected_buffer_GUI_number empty empty 1 0 -1 1 0 1 0 0 0 0 0 select 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16;
 #X obj 34 390 popmenu 128 26 12 #E3DFD9 #5A5A5A \  \$0-boot_buffer_GUI_name \$0-selected_buffer_GUI_name empty empty 1 0 -1 1 0 1 0 0 0 0 0 live_buffer sample_buffer;
 #X obj 350 390 popmenu 142 26 12 #E3DFD9 #5A5A5A Slice\ grid \$0-key_quantize_setup \$0-key_quantize_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1/64 1/32 1/16 1/8 1/4 1/2 1;
-#X obj 2318 -865 popmenu 128 26 12 #E3DFD9 #5A5A5A Beat\ Reset \$0-beat_reset_setup \$0-beat_reset_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1 2 3 4 5 6 7 8;
+#X obj 510 450 beat-reset \$0 \$1;
 #X msg -122 -546 clear \, add 1 2 3 4 5 6 7 8;
-#X text 510 428 Beat Reset: unfinished;
+#X text 510 428 Reset every (4/4 bars);
 #X text 350 360 Slice grid;
 #X msg -381 -546 clear \, add 1/64 1/32 1/16 1/8 1/4 1/2 1;
 #X obj 7 -243 buffer-selection \$0 \$1;
@@ -316,7 +316,7 @@
 #X obj 2199 -83 r \$0-selected_slice;
 #X obj 2764 -319 s \$0-selected_slice;
 #X obj 2318 -768 lb;
-#X obj 2264 -655 r ppq;
+#X text 2264 -655 Legacy reset sketch disconnected. See beat-reset abstraction.;
 #X text 2424 -553 enable;
 #X obj 2892 -524 lb;
 #X obj 2644 -417 lb;
@@ -1902,7 +1902,7 @@
 #X connect 169 0 138 0;
 #X connect 170 0 72 0;
 #X connect 172 0 139 0;
-#X connect 173 0 147 0;
+
 #X connect 175 0 153 0;
 #X connect 176 0 158 0;
 #X connect 177 0 226 0;

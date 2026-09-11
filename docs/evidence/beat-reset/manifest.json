@@ -1,0 +1,38 @@
+{
+  "base": "ef2998fd6af5a2295aa4c0dc4944922c418da952",
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "host_rate": 48000,
+  "block_size": 512,
+  "oversampling": "1x",
+  "listening": "Pending",
+  "manual_dropdown_selection": "Pending; automation could verify displayed values but not popup selection",
+  "restored_live_arrays_sha256": {
+    "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+    "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+  },
+  "source_sha256": {
+    "sample_player_rebuild.pd": "db1fc08625b7dbc3ec4ff065c3a8fa7415f90f67a18897a0c8dfc0ae58c01b3c",
+    "beat-reset.pd": "c181f83860a612fd226094fb212553aaee101fa09dcceb2e06cdb1ace47db430",
+    "tests/live-record-check.pd": "d458e463b60d853210c1d4aa75153dd97b4cf81aa4b297d78321924ce5ea72e5",
+    "tests/fixtures/beat-reset.txt": "9510b677d235f1873cddf6cfc2c13e5ee31aceb2dcd71796b55bb5614f786f39",
+    "tests/fixtures/beat-reset-musical.txt": "fbd75af86b7fa40d5f360f3caea5ff139a83d857357401315fcd334b32389092",
+    "tests/analyze_beat_reset.py": "a4af5d67edee6cbab74a866e0af9fb0788317c99df298a7c2b6662bd3be5c160"
+  },
+  "evidence_sha256": {
+    "wave-readers-48.npz": "192a348e804f5fda64ab01dd80788d203ce825bf03f0dc6d1f479b279ebac161",
+    "constant-readers-48.npz": "c3fdf04042b70b060fb6f3fc4d95f9d80de92e94e2623d0ab8523a0899e98b91",
+    "initial-wave-events.txt": "940ad433b56fc88ee385a72cba1ed401fcd8530f370765493199e7a430027fd8",
+    "initial-wave-player-mixer-48.npz": "462f400051fbd77d4a37d8c3ceeceee838c05e2118b6ffc2cb947a6fe750bdf3",
+    "musical-readers-48.npz": "c029c4e6b4f1b8fd9c37901c2147a4ca7261230126b5f7d22361bf0be844fb14",
+    "results.json": "229d9d655d8653cdf8ea556cb409c11ef62972c796884c2bc3aa68a776b48358",
+    "musical-events.txt": "9aef3dd4c651c7de841df999861ed4c92e79ea57625ffb5c44d8a56f501f6c99",
+    "wave-events.txt": "8b38bfb92789f84ce63f411643b9e1b0bbee4980265b5e213523ba8414bc24b4",
+    "constant-player-mixer-48.npz": "e5d72ddef0aec3c59283c559af19d94bf4c67cf38104b356da9a11215d2659b1",
+    "musical-player-mixer-48.npz": "a7dc9e18d57dc96e9d4e85d42ec323f594a360ac3156f59975d4bffccb004a17",
+    "constant-events.txt": "8b38bfb92789f84ce63f411643b9e1b0bbee4980265b5e213523ba8414bc24b4",
+    "wave-player-mixer-48.npz": "515c086e6a38e4c18832492372decc08b7b7f22ad49e1df874ff1ecac01b057c",
+    "musical-post-master.wav": "938f12d502004ccae41d1ffaed5e7464e0aa52070fbd07b86aaca55c38f71897",
+    "initial-wave-readers-48.npz": "ecc955774ba37dc94bb6a610b633485eb831b3fe3f744f547522f6e82339e893"
+  }
+}

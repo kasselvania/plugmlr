@@ -22,9 +22,14 @@ cancel pending keys. Any committed slice restores whole-content loop bounds.
 **Clock:** select internal with the main source button, choose BPM (30–320),
 then enable Run. Clock Run controls ticks, separately from playback. Clock Stop
 holds the count and retains a pending key; player Stop/Pause cancels that key.
-Changing BPM does not restart the current audio ramp. Beat Reset is visibly
-unfinished; tempo-locked audio, DAW/MIDI synchronization and tape-direction slew
-remain separate work.
+Changing BPM does not restart the current audio ramp. The [Beat Reset candidate](docs/STATUS.md#beat-reset-contract-review-candidate)
+adds **Reset every** to each player: Off, 1 beat, 2 beats, 1 bar, 2 bars, 4 bars,
+8 bars (4/4). It restores full-sample bounds and jumps to the start forward or
+end in reverse on the next matching shared-clock boundary. Paused/stopped tracks
+stay silent; speed is unchanged. Public `<track>-reset-beats` accepts
+0/1/2/4/8/16/32. Same-tick reset supersedes a quantized slice through the existing
+crossover. Listening and hands-on dropdown selection remain pending.
+Tempo-locked audio, DAW/MIDI synchronization and tape-direction slew remain open.
 
 **Buffers and recording:** selection while playing fades to the new buffer's
 beginning (end in reverse); selecting an empty buffer stops playback. Fixed fresh
