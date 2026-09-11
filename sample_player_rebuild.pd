@@ -17,11 +17,11 @@
 #X text 448 75 Record live, f 12;
 #X obj 188 390 popmenu 128 26 12 #E3DFD9 #5A5A5A \  \$0-boot_buffer_GUI_number \$0-selected_buffer_GUI_number empty empty 1 0 -1 1 0 1 0 0 0 0 0 select 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16;
 #X obj 34 390 popmenu 128 26 12 #E3DFD9 #5A5A5A \  \$0-boot_buffer_GUI_name \$0-selected_buffer_GUI_name empty empty 1 0 -1 1 0 1 0 0 0 0 0 live_buffer sample_buffer;
-#X obj 350 390 popmenu 142 26 12 #E3DFD9 #5A5A5A Key\ Quantizing \$0-key_quantize_setup \$0-key_quantize_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1/64 1/32 1/16 1/8 1/4 1/2 1;
-#X obj 510 390 popmenu 128 26 12 #E3DFD9 #5A5A5A Beat\ Reset \$0-beat_reset_setup \$0-beat_reset_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1 2 3 4 5 6 7 8;
+#X obj 350 390 popmenu 142 26 12 #E3DFD9 #5A5A5A Slice\ grid \$0-key_quantize_setup \$0-key_quantize_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1/64 1/32 1/16 1/8 1/4 1/2 1;
+#X obj 2318 -865 popmenu 128 26 12 #E3DFD9 #5A5A5A Beat\ Reset \$0-beat_reset_setup \$0-beat_reset_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1 2 3 4 5 6 7 8;
 #X msg -122 -546 clear \, add 1 2 3 4 5 6 7 8;
-#X text 510 360 Beat Reset;
-#X text 350 360 Key/Input Quantizer;
+#X text 510 428 Beat Reset: unfinished;
+#X text 350 360 Slice grid;
 #X msg -381 -546 clear \, add 1/64 1/32 1/16 1/8 1/4 1/2 1;
 #X obj 7 -243 buffer-selection \$0 \$1;
 #X text 126 360 Buffer Select;
@@ -311,7 +311,7 @@
 #X obj 2359 -768 r \$0-beat_reset_selection;
 #X obj 2842 -718 expr pow(2\\\, $f1);
 #X obj 2798 -751 lb;
-#X msg 2798 -718 4;
+#X msg 2798 -718 2;
 #X obj 2359 -737 + 1;
 #X obj 2199 -83 r \$0-selected_slice;
 #X obj 2764 -319 s \$0-selected_slice;
@@ -1730,6 +1730,8 @@
 #X obj 2666 -455 t f b;
 #X obj 3000 -635 t f b;
 #X text 2900 -280 Store new slices cold. Only a matching tick dispatches. Transport or mode/grid edits clear pending.;
+#X obj 510 390 slice-mode-control \$1;
+#X msg 3040 -718 set \$1;
 #X connect 545 0 142 0;
 #X connect 546 0 142 0;
 #X connect 544 0 33 0;
@@ -1896,7 +1898,7 @@
 #X connect 165 0 169 0;
 #X connect 166 0 163 0;
 #X connect 167 0 168 0;
-#X connect 168 0 163 0;
+#X connect 168 0 166 0;
 #X connect 169 0 138 0;
 #X connect 170 0 72 0;
 #X connect 172 0 139 0;
@@ -2231,3 +2233,6 @@
 #X connect 517 0 529 0;
 #X connect 529 0 527 1;
 #X connect 527 0 440 0;
+#X connect 168 0 551 0;
+#X connect 164 0 551 0;
+#X connect 551 0 456 0;

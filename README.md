@@ -1,126 +1,43 @@
 # plugmlr
 
-An MLR-style musical application for plugdata, with sample and live buffers,
-slice playback, rate controls, and a mixer. Current work is to understand and
-harden the original application, following its existing signal and control paths.
+An MLR-style stereo instrument for plugdata, built from the original sample/live
+buffers, playback controls and dual-reader crossfades. The wider direction is a
+reusable musical toolkit; the failed replacement engine is not the active path.
 
-The accepted checkpoint now includes playback/buffer PRs #6–#10, recording PR #11
-and Stop/restart/instant-reverse PRs #12–#13. Fresh, fixed-length stereo takes use the original live buffers and a
-local Pd stereo connection between the companion and application, as chosen by
-the user. Separate plugdata-process transport remains unqualified: both tested
-`pdlink~` arrangements shifted the right channel by one Pd block. See the
-[current contract and evidence](docs/STATUS.md#current-inputrecording-recovery-contract).
-The [48 kHz recording checkpoint](docs/STATUS.md#recording-checkpoint-with-the-new-hardware-source)
-now includes real hardware takes, early Stop, recorded/imported switching, and the
-user's report of useful levels with no audible problems in those captures.
+The current checkpoint includes imported/live buffer selection, forward/reverse
+playback, five speeds and speed glide, Stop/Pause, 16 whole-content slices,
+editable loops, fixed-length stereo recording, and an internal slice clock.
+PRs #18 and #19 are merged; the user accepted both their musical captures.
+See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remaining
+work and links to the retained numerical/listening evidence. Older STATUS sections
+record what was true at that point in the repair history.
 
-The separate [Stop/restart repair](docs/STATUS.md#stoprestart-follow-up) fades the
-existing readers for 6 ms before shutdown. Play during that interval waits for
-cleanup at 9 ms; another Stop cancels it. Recording Stop remains direct, and empty
-buffer playbars report zero. Paired native audio/state checks cover rapid commands
-at 48 kHz; broader transition and host-rate qualification remains separate.
+**Slice controls:** each player has a Quantize checkbox and Slice grid menu.
+Checked means queued slices wait for a matching clock tick; unchecked means
+immediate. Default is unchecked with a 1/16-note grid. The main Track 1 checkbox
+mirrors player 1. Scripted `<track>-quantizer` messages keep the legacy convention:
+1 = immediate, 0 = quantized. Stop/Pause, buffer selection, mode and grid changes
+cancel pending keys. Any committed slice restores whole-content loop bounds.
 
-The merged [instant-reverse repair](docs/STATUS.md#instant-reverse-continuity-follow-up)
-uses the current ramp position when Direction Change is pressed, eliminating the
-old block-snapshot jump. It keeps the existing readers and loop/slice crossovers.
-Native tests cover all five speeds, rapid turns, loop/fade boundaries and a file/host
-sample-rate mismatch; the user heard clean direction changes in the musical capture.
-Tape-direction slew remains open; speed and Pause follow-ups are below.
+**Clock:** select internal with the main source button, choose BPM (30–320),
+then enable Run. Clock Run controls ticks, separately from playback. Clock Stop
+holds the count and retains a pending key; player Stop/Pause cancels that key.
+Changing BPM does not restart the current audio ramp. Beat Reset is visibly
+unfinished; tempo-locked audio, DAW/MIDI synchronization and tape-direction slew
+remain separate work.
 
-The [speed-slew position repair](docs/STATUS.md#speed-slew-position-follow-up) now
-uses that same current-position calculation for rate reports. Paired native
-captures remove the oversized position jumps during glide; the user heard clean
-musical glides/reversals. The region/slice follow-up is described below.
+**Buffers and recording:** selection while playing fades to the new buffer's
+beginning (end in reverse); selecting an empty buffer stops playback. Fixed fresh
+stereo recording accepts seconds or 4/4 bars and freezes its target at Record.
+Early Stop retains only the written content as playable bounds. Grow/trim,
+recording pause/resume, overdub and recording quantization are not implemented.
+Takes remain in memory: there is no product export or project-recall UI yet.
 
-The [Pause/Resume candidate](docs/STATUS.md#pauseresume-follow-up) fades the existing
-readers before holding the current position, then restarts with their play fade.
-Rapid toggles queue/cancel Resume; Stop, buffer switching and a new slice cancel
-stale pause cleanup. The existing slice gesture resumes a paused track. Actual
-48 kHz player/mixer checks cover these transitions; listening is recorded separately.
-
-The [slice-policy candidate](docs/STATUS.md#slice-policy-checkpoint) keeps 16 fixed
-whole-content slices. Any slice press exits a smaller loop; reverse enters at the
-slice end. The choice is named `pd slice_policy` in `sample_player_rebuild.pd`,
-separate from loop detection and reader fades. Pending slices own the next jump,
-preventing a competing boundary fade. Alternative mappings are not enabled.
-
-The [visible slice/loop candidate](docs/STATUS.md#visible-slice-and-loop-controls-review-candidate)
-adds buttons 1–16, a whole-sample position/region display, and Start_s/End_s fields
-with Apply and Full sample. Apply restarts at the region beginning forward or end
-in reverse; paused edits wait for Resume. Edits are staged until Apply. Native UI,
-player/mixer and regression checks are retained, including the [overlapping-handoff repair](docs/STATUS.md#overlapping-cut-handoffs-repaired-candidate).
-Pending cuts wait for the prior fade before reusing a reader; paused Apply preserves
-the mixer fade. Matched 48 kHz stress/regression checks pass. Very short natural
-loops and broader host configurations remain unqualified.
-
-The [slice scheduler candidate](docs/STATUS.md#slice-scheduler-repair-review-candidate)
-keeps only the newest queued slice and dispatches it on the chosen tick. Stop,
-Pause, buffer selection and mode/subdivision changes cancel stale keys. Native
-controlled-tick audio tests cover all seven subdivisions and existing playback
-regressions. The legacy mode still uses 1 for immediate; checkbox/default cleanup,
-Beat Reset remain unfinished. A [standalone clock candidate](docs/STATUS.md#standalone-clock-controls-review-candidate)
-now provides Run and BPM on the main page. Select **internal** with the existing
-source button, set BPM (30–320), then enable Run. This advances quantized slices;
-start sample playback separately. Turning Run off holds clock ticks and retains a
-queued key; playback Stop/Pause cancels that key. Tempo changes no longer restart
-the current audio ramp. Listening files and their procedures remain available for
-later review; DAW synchronization is not accepted by this standalone test.
-
-The musical direction is free-form tape manipulation, growing toward an
-mlre-inspired community instrument. The immediate behavior to finish is instant
-reverse or an audible tape slew, with timing drift allowed. The
-[tape reference catalogue and next work](docs/STATUS.md#free-form-tape-direction)
-separate that decision from functions already tested.
-
-The runnable entry point is **[mlr.pd](mlr.pd)**. Small repairs restore both
-reader turns and bidirectional looping in the existing player. Direction Change
-reverses playback; reverse wraps return to the region end. The
-[recorded repair history](docs/STATUS.md#reverse-playback-and-loop-boundaries)
-keeps each source change, native result, listening report, and remaining limit
-separate. The current buffer and crossover candidates are described below.
-
-The current [buffer candidate](docs/STATUS.md#buffer-selection-and-recording-length-settings)
-repairs selection between the existing imported and live buffers. Open a player
-from `pd arrays-samples` and use its **Buffer Select** menus. The panel below
-shows the selected buffer, whether it contains audio, and its content duration.
-Selecting while playing uses a short fade and starts the new buffer from its
-beginning (end in reverse); selecting an empty buffer leaves playback stopped.
-Stop cancels a pending restart. A subsequent one-line mixer-routing repair fixes
-loading another slot muting track 1 while its playhead continues; the
-[paired mixer-output capture](docs/STATUS.md#user-follow-up-loading-another-slot-muted-track-1)
-records the failure and repair. This is a fade through silence, not a seamless
-crossfade between different buffers.
-
-For a selected live buffer, **grow / sec / bars** sets the next recording's
-length mode; **Amount** sets seconds or whole bars. Bars currently mean 4/4.
-The target duration follows the current project tempo; existing audio does not
-resize or stretch when tempo changes. Fixed recording freezes that target at
-Record; grow/trim, pause/resume, overdub and recording quantization remain
-unimplemented. **Clear live** erases the selected live buffer after stopping its
-readers and refuses while recording. Imported buffers use their load controls.
-
-The [speed-control candidate](docs/STATUS.md#speed-control-and-crossover-follow-up)
-orders rate-slew updates and prevents a speed change at the loop endpoint from
-leaving playback stuck. Bounded native captures now cover all five speeds, an
-interrupted slew, instant reverse, and stop/restart at 44.1 and 48 kHz. The
-[retained results and reproduction steps](docs/STATUS.md#native-follow-up-boundary-collision)
-include the failed candidate. That review found both readers jumping during
-a fade. The user heard clean changes with no clicks in the repaired drum
-capture; crossover repair and tape-direction slew remain open. This is still a
-draft candidate, not a universal click-free playback claim.
-
-The [crossover candidate](docs/STATUS.md#incoming-reader-ownership-candidate)
-keeps the outgoing reader on its old trajectory during a loop or slice fade.
-Native validation found and repaired a competing speed-boundary jump and a
-brief shutdown-related gain dip. The original two readers and 6/9 ms fades are
-retained. Bounded audio/state captures, failing controls and limitations are
-recorded in STATUS. Rapid reader reuse is still not universally click-free;
-tape-direction slew remains separate work. The user accepted this work as part of the playback/buffer checkpoint.
-
-The [functionality map](docs/STATUS.md#whole-application-functionality-map)
-traces the existing slice, loop, slew, transport, recording, and feedback paths,
-identifies incomplete connections, and proposes small refactoring boundaries.
-It is a source review, not a claim that those functions all work in the runtime.
+The runtime used for recent validation is plugdata 0.9.4 nightly `98ae0f78b` /
+Pd 0.56.3, with bundled ELSE/Cyclone objects. This is not a vanilla-Pd claim.
+Keep the sibling patches together and use one application instance: shared global
+names, multi-instance isolation, broader host settings and DAW lifecycle still
+need qualification. Dependencies and the Monome suite connection are below.
 
 ## Run the original application
 
@@ -165,10 +82,10 @@ message interfaces and native test steps are documented in STATUS.
    No automatic playback follows recording. Switching selection does not redirect
    an active writer; reselect that live buffer to Stop it early.
 
-Known playback limits: simultaneous loop-region/slice changes and Pause can
-still produce abrupt steps. The early-take loop gap, hard Stop and instant-reverse
-position jump have localized repairs with retained evidence; this does not
-establish click-free transport for every signal.
+Playback repairs include the earlier loop/selection collisions, Pause, hard Stop
+and instant-reverse position jump. Very short natural loops and broader host
+configurations remain unqualified; retained tests do not establish universally
+click-free playback.
 
 Takes exist in memory; project recall and exporting recordings through a product
 UI are not implemented. See STATUS for bounded test captures and remaining gates.

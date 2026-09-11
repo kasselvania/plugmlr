@@ -1,0 +1,16 @@
+#N canvas 180 180 520 360 12;
+#X obj 10 10 tgl 23 0 \$0-ui empty Quantize 28 11 0 12 #e3dfd9 #5a5a5a #5a5a5a 0 1;
+#X obj 25 80 r \$0-ui;
+#X obj 25 115 == 0;
+#X obj 25 150 s \$1-quantizer;
+#X obj 230 80 r \$1-quantizer;
+#X obj 230 115 != 1;
+#X msg 230 150 set \$1;
+#X text 25 210 UI checked = quantized. Public legacy 1 = immediate.;
+#X text 25 240 No loadbang command: the player owns its initial immediate mode.;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 0;
+#X coords 0 -1 1 1 102 25 2 10 10;
