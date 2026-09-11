@@ -99,3 +99,21 @@ this is not evidence attributing the failed capture to a unique mixer fault.
 
 No additional DSP fix was made in this slice. Physical gestures, listening,
 other Grid rows, hotplug, Arc and Bitwig remain separate acceptance work.
+
+## Quantized two-row hands-on setup (acceptance pending)
+
+After immediate physical slicing acceptance, both original players were prepared
+in native plugdata with bundled DrumLoop.wav in separate sample slots 1 and 2.
+Player 1 runs at 1x, player 2 at 0.5x; track gains are 0.4 and 0.3, master 0.75.
+Both panels visibly show Playing, Forward, Quantize enabled, slice grid 1/4,
+Fit off, Reset Off. The shared internal clock shows Ticking at 110 BPM.
+The output meter is active. No recorder or additional audio-producing fixture
+was opened. No patch implementation was changed for this setup.
+
+Physical second/third rows target players 1/2 respectively. Try alternating
+rows and pressing several keys before a beat: each player's last pending slice
+should commit on its next quarter-note tick. Its marker should continue showing
+actual playback until that commit, and the other row should remain independent.
+Clock-quantized cuts do not tempo-fit the free-running sample or synchronize its
+drum transients. Both loops are intentionally left playing for the user.
+Physical quantized timing and two-row independence await the user's report.
