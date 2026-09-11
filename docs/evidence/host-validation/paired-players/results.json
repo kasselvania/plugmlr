@@ -1,0 +1,166 @@
+{
+  "host_hz": 48000,
+  "file_hz": 48000,
+  "checks": {
+    "baseline_17_bounded_finite": true,
+    "baseline_17_reader_continuity": true,
+    "baseline_17_active_stereo": true,
+    "baseline_17_mixer_gain": true,
+    "baseline_17_stop_silent": true,
+    "baseline_17_transition_audio_steps": true,
+    "baseline_18_bounded_finite": true,
+    "baseline_18_reader_continuity": true,
+    "baseline_18_active_stereo": true,
+    "baseline_18_mixer_gain": true,
+    "baseline_18_stop_silent": true,
+    "baseline_18_transition_audio_steps": true,
+    "changes_17_bounded_finite": true,
+    "changes_17_reader_continuity": true,
+    "changes_17_active_stereo": true,
+    "changes_17_mixer_gain": true,
+    "changes_17_stop_silent": true,
+    "changes_17_transition_audio_steps": true,
+    "changes_18_bounded_finite": true,
+    "changes_18_reader_continuity": true,
+    "changes_18_active_stereo": true,
+    "changes_18_mixer_gain": true,
+    "changes_18_stop_silent": true,
+    "changes_18_transition_audio_steps": true,
+    "player_b_audio_position_rate_unchanged": true,
+    "player_b_fades_unchanged_within_float_precision": true,
+    "player_b_post_mixer_unchanged": true,
+    "17_independent_motion_and_fit": true,
+    "18_independent_motion_and_fit": true,
+    "player_a_partial_loop_bounds": true,
+    "player_a_slice_restores_full_content": true
+  },
+  "passed": true,
+  "results": {
+    "baseline_17": {
+      "frames": [
+        479883,
+        480000
+      ],
+      "finite": true,
+      "mixer_gain": 0.4000000059604645,
+      "mixer_residual_peak": 0.0029573366045951843,
+      "mixer_residual_outside_documented_start_fades": 0.0,
+      "mixer_max_amplification_above_gain": 0.0,
+      "audible_reader_jumps": [],
+      "player_peak_lr": [
+        0.1199951171875,
+        0.05999755859375
+      ],
+      "player_max_adjacent_step_lr": [
+        0.0058906120248138905,
+        0.0046997107565402985
+      ],
+      "active_longest_silence_frames": [
+        1
+      ]
+    },
+    "baseline_18": {
+      "frames": [
+        479883,
+        480000
+      ],
+      "finite": true,
+      "mixer_gain": 0.30000004172325134,
+      "mixer_residual_peak": 0.002218003384768963,
+      "mixer_residual_outside_documented_start_fades": 3.725290298461914e-09,
+      "mixer_max_amplification_above_gain": 0.0,
+      "audible_reader_jumps": [],
+      "player_peak_lr": [
+        0.1199951171875,
+        0.05999755859375
+      ],
+      "player_max_adjacent_step_lr": [
+        0.008839612826704979,
+        0.007055310998111963
+      ],
+      "active_longest_silence_frames": [
+        1
+      ]
+    },
+    "changes_17": {
+      "frames": [
+        479883,
+        480000
+      ],
+      "finite": true,
+      "mixer_gain": 0.4000000059604645,
+      "mixer_residual_peak": 0.0029573366045951843,
+      "mixer_residual_outside_documented_start_fades": 0.0,
+      "mixer_max_amplification_above_gain": 0.0,
+      "audible_reader_jumps": [],
+      "player_peak_lr": [
+        0.1199951171875,
+        0.05999755859375
+      ],
+      "player_max_adjacent_step_lr": [
+        0.01179116778075695,
+        0.009399592876434326
+      ],
+      "active_longest_silence_frames": [
+        1
+      ]
+    },
+    "changes_18": {
+      "frames": [
+        479883,
+        480000
+      ],
+      "finite": true,
+      "mixer_gain": 0.30000004172325134,
+      "mixer_residual_peak": 0.002218003384768963,
+      "mixer_residual_outside_documented_start_fades": 3.725290298461914e-09,
+      "mixer_max_amplification_above_gain": 0.0,
+      "audible_reader_jumps": [],
+      "player_peak_lr": [
+        0.1199951171875,
+        0.05999755859375
+      ],
+      "player_max_adjacent_step_lr": [
+        0.008839612826704979,
+        0.007055310998111963
+      ],
+      "active_longest_silence_frames": [
+        1
+      ]
+    },
+    "player_b_max_sample_difference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      2.3283064365386963e-10,
+      0.0,
+      2.3283064365386963e-10,
+      0.0,
+      0.0
+    ],
+    "17_signed_frame_steps": [
+      1.0,
+      1.0,
+      -1.0,
+      -2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "18_signed_frame_steps": [
+      1.0,
+      1.0,
+      1.0,
+      1.5,
+      0.75
+    ]
+  },
+  "limits": [
+    "Two original player/mixer components sharing Sample16; not two complete instruments",
+    "No human listening acceptance for these generated-signal captures",
+    "No Bitwig acceptance"
+  ]
+}

@@ -7,6 +7,62 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Host and instance validation (review candidate)
+
+Base: accepted tempo-fit PR #23 head `49ad1c2b86f0cc70478610b1866bca792d211a7a`.
+PR #23 remains unmerged; this is a separate validation branch. **No engine or
+musical-control source changed.** The test analyzer now accepts explicit host/file
+rates, and the deterministic stereo source can be generated at 44.1 or 48 kHz.
+
+- **44.1 kHz host:** matching 44.1 kHz and mismatched 48 kHz files each pass
+  20 numerical checks across core and stress captures. These use the original
+  Player 1, both internal readers and actual post-master mixer. Forward/reverse,
+  rates, loops, slices, interrupted glides, overlapping commands, Pause/Stop,
+  empty-buffer recovery and rejected inputs are covered. Native runtime is
+  plugdata 0.9.4 / `98ae0f78b` / Pd 0.56.3, CoreAudio 8A, 512 frames, 1x.
+- **Two player components:** at 48 kHz, two fresh instances of the current
+  original player/mixer abstractions share Sample16, using otherwise unused
+  track IDs 17/18. The wrapper has no DAC. All 31 checks pass. While A changes
+  loop, direction, speed and slice, B's stereo audio, main position and rate are
+  identical to baseline, including B's post-mixer output. B then changes its own
+  Fit beat count and follows shared tempo while A remains Free. Separate mixer
+  gains are .4/.3. This qualifies two components in the same Pd environment;
+  it is not a second complete application or a new multi-head product feature.
+- **Measurement correction:** the first matched-rate result used an overly
+  narrow 64-sample rate/tap alignment assumption. The recorded signals show
+  block-phase-dependent motion extending beyond it. A 128-sample captured-rate
+  envelope now bounds every transition sample; no transition windows are removed.
+  The initial result is retained. The existing 48 kHz PR23 captures still pass
+  all 23 checks with the revised analyzer.
+- **Listening:** no human listening report for these generated-signal captures.
+  The previously accepted PR23 musical report remains separate. Numerical
+  continuity, finite output and silence checks do not promise universal absence
+  of clicks or qualify every host setting.
+- **Preservation:** all three populated live buffers remain byte-identical after
+  both test phases. Originally empty Sample16 is restored empty, track16 is back
+  on Live16, and Player1 is stopped on Live1/Forward/Free/1x at internal 120 BPM.
+  Standalone is restored to 48 kHz / 512 and device output .9. All temporary
+  test patches/taps are removed; no diagnostic canvas edits were saved.
+
+**Open gates:** Bitwig Studio 6.1 loads the installed plugdata instrument and
+reports its editor open; the user confirms it is visible. The UI tool times out
+attaching to the separate ARM plugin host, so its console cannot be inspected.
+No mlr patch, audio, host-clock, plugin isolation or save/reopen acceptance is
+claimed. A separate starter project is retained; it is not a passing fixture.
+Two complete copies of mlr in one Pd environment are **not isolated**: buffer
+arrays, track buses and clock symbols remain global (`0-sample_buffer_1`,
+`1-voice_audio`, `project_bpm`, `ppq`). No duplicate application was opened in the
+user's live session. Recording at 44.1 kHz, DAW recording transport and broader
+lifecycle/recall remain open; playback evidence does not close them.
+
+See [observations and repeat procedure](evidence/host-validation/observations.md),
+[matched-rate results](evidence/host-validation/standalone-441-match/results.json),
+[mismatched-rate results](evidence/host-validation/standalone-441-mismatch/results.json)
+and [paired-player results](evidence/host-validation/paired-players/results.json).
+Next: restore direct UI access to the Bitwig plugin editor, then test the actual
+application and host clock there. Namespace isolation needs a separately scoped
+repair; no broad engine rewrite or new recording feature is part of this slice.
+
 ## Tempo fit (review candidate)
 
 Base: `610098f6f70c598c991d4ee59f351912e8397107` (merged PR #22).

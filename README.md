@@ -61,8 +61,10 @@ Takes remain in memory: there is no product export or project-recall UI yet.
 The runtime used for recent validation is plugdata 0.9.4 nightly `98ae0f78b` /
 Pd 0.56.3, with bundled ELSE/Cyclone objects. This is not a vanilla-Pd claim.
 Keep the sibling patches together and use one application instance: shared global
-names, multi-instance isolation, broader host settings and DAW lifecycle still
-need qualification. Dependencies and the Monome suite connection are below.
+names prevent isolated copies in one Pd environment. Playback now has bounded
+44.1/48 kHz and file/host-mismatch evidence, plus a two-player shared-buffer
+comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
+[host validation](docs/STATUS.md#host-and-instance-validation-review-candidate). Dependencies and the Monome suite connection are below.
 
 ## Run the original application
 

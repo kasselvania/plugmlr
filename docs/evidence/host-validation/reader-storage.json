@@ -1,0 +1,74 @@
+[
+  {
+    "source": "standalone-441-match/core-readers.wav",
+    "wav_sha256": "a52965c64c92baa6d0a255fe37f3d61e8a85cb4fdcb9e1275b6c2834843a68ab",
+    "retained": "standalone-441-match/core-readers.npz",
+    "frames": 529023,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "standalone-441-match/stress-readers.wav",
+    "wav_sha256": "5338166178e9a7fdedbbb661bd05008530487c415f1c1e07966f495ad7bdba97",
+    "retained": "standalone-441-match/stress-readers.npz",
+    "frames": 529023,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "standalone-441-mismatch/core-readers.wav",
+    "wav_sha256": "9cdc1bd7293139fa1b44d69d694c0140936d2eacbe071068f912ec8e63662a26",
+    "retained": "standalone-441-mismatch/core-readers.npz",
+    "frames": 529023,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "standalone-441-mismatch/stress-readers.wav",
+    "wav_sha256": "e57a9202afb7ee6bc8dc4d99d35efd97b9615bfe502b5fcb82dcaa2fafd3f1f5",
+    "retained": "standalone-441-mismatch/stress-readers.npz",
+    "frames": 529023,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "paired-players/baseline-18.wav",
+    "wav_sha256": "fc55652d4da26cde3b8fb22e5fda19fc2b86e212b27d042b7a6beab7a48ebab4",
+    "retained": "paired-players/baseline-18.npz",
+    "frames": 479883,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "paired-players/changes-17.wav",
+    "wav_sha256": "04f0305f5b4618acca64595981918b86915bada8b1918512deced621c2098e40",
+    "retained": "paired-players/changes-17.npz",
+    "frames": 479883,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "paired-players/changes-18.wav",
+    "wav_sha256": "1b0d1a56d447c754bbec1dc6f34a00379a59f3e56282c049e9d3010c9167d7d6",
+    "retained": "paired-players/changes-18.npz",
+    "frames": 479883,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  },
+  {
+    "source": "paired-players/baseline-17.wav",
+    "wav_sha256": "c90691afa17d948e1dd08d828bd013dfaba9f37b21bc547d111e5091e39755a0",
+    "retained": "paired-players/baseline-17.npz",
+    "frames": 479883,
+    "channels": 10,
+    "dtype": "float32",
+    "lossless_decode_verified": true
+  }
+]
