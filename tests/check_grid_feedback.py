@@ -15,7 +15,8 @@ def parse(s):
  out['root']=stack[0];return out
 player=Path('sample_player_rebuild.pd').read_text()
 assert player.replace('#X obj 1700 4300 grid-playback-state \\$0 \\$1;\n','')==old('sample_player_rebuild.pd')
-a,b=parse(old('mlr.pd')),parse(Path('mlr.pd').read_text());key='#X restore 13 458 pd grid-input-output;'
+current=Path('mlr.pd').read_text().replace('#X obj -20 1500 grid-cut-control;\n','').replace('#X connect 7 0 83 0;\n#X connect 83 0 67 0;','#X connect 7 0 67 0;')
+a,b=parse(old('mlr.pd')),parse(current);key='#X restore 13 458 pd grid-input-output;'
 for k in a:
  if k!=key:assert a[k]==b[k],k
 removed=set(range(46,65))-{51,59};mapping=lambda n:n-sum(i<n for i in removed)
