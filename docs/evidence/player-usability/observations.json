@@ -25,7 +25,7 @@
     "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
   },
   "open": [
-    "Broader hands-on usability beyond layout approval"
+    "Broader control coverage beyond the accepted layout, internal clock and Beat Reset"
   ],
   "limits": [
     "Other player instances were not reloaded during the native trial",
@@ -46,5 +46,10 @@
     "date": "2026-09-11",
     "quote": "Yup! this looks great",
     "scope": "Approval of the visible layout; no additional functional, audio, recording or DAW acceptance inferred"
+  },
+  "user_functional_feedback": {
+    "date": "2026-09-11",
+    "quote": "I also tested the internal clock and the beat repeat. Its great. We're good.",
+    "scope": "User acceptance of internal clock and Beat Reset in the player view, in addition to the prior layout approval; separate from automated observations"
   }
 }

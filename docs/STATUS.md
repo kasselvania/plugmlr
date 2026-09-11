@@ -55,11 +55,15 @@ and confirms the display adapter cannot send engine commands. No new rendered
 audio acceptance or recording validation is claimed for this UI slice.
 
 **User feedback (2026-09-11):** “Yup! this looks great” approves the visible
-layout. Broader hands-on usability remains unassessed; this is not additional
-audio, recording or DAW acceptance. Native reset-menu selection and Off were verified in the final
+layout. The user subsequently reported: “I also tested the internal clock and
+the beat repeat. Its great. We're good.” This accepts the internal clock and
+Beat Reset in the player view, separately from the automated observations.
+Broader control coverage, recording and DAW validation remain unchanged.
+Native reset-menu selection and Off were verified in the final
 clean view. Set speed was also verified to update to 0.5 while stopped and back
 to 1 immediately, independently of the previous playback rate. This is
-an unmerged review candidate with layout approval. Other player instances were
+an unmerged review candidate with user approval of the layout, internal clock
+and Beat Reset. Other player instances were
 not reloaded during this trial. Historical diagnostics remain accessible; do not
 save temporary diagnostic canvas state over repository files. The original
 player now has 553 root objects, so attached test helpers start at index 553.
