@@ -29,7 +29,8 @@ two-key cases and 26 MOD cases (duplicate downs, both release orders, pending
 pair cancellation, endpoints, row focus, ALT precedence and reconnect cleanup).
 Exact source guards preserve the accepted player, loop, display and device code.
 The saved application is reloaded and connected under a verified lease for a
-physical test. No new audio capture was made; combined CUT workflow stress and
+physical test. The user confirmed the MOD workflow: “it works.” No new audio
+capture was made; combined CUT workflow stress and
 listening remain separate work. See [evidence](evidence/grid-mod/observations.md).
 
 ## Grid loop feedback review candidate — 2026-09-11

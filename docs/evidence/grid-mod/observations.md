@@ -29,8 +29,8 @@ change and defers its preservation check to the MOD guard.
 The fixture was closed. Saved MLR reopened with DrumLoop in both slots, gains
 .4/.3, 1/16 quantization, internal clock at 110 BPM and Player 2 half speed.
 Both players initially stopped. Native console confirms connected verified_lease;
-no new load error observed. Physical single-cell behavior/listening report is
-pending. No recording was started for this input-only slice. Earlier audio
+no new load error observed. The user confirmed the physical single-cell workflow: “it works.” This records
+functional acceptance, not a separate detailed artifact-free listening report. No recording was started for this input-only slice. Earlier audio
 captures remain bound to their earlier tests; no new numerical audio result is
 claimed. Combined CUT workflow stress remains the next separate checkpoint.
 
