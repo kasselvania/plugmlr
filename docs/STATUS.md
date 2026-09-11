@@ -31,8 +31,8 @@ The 16-second actual-player/post-master capture exercises original row_1 cuts,
 reverse and Stop. Both output channels are active and finite, without clipping;
 the stopped tail is silent. These measurements do not establish universally
 click-free playback or rule out brief dropouts. The capture uses scheduled row
-messages, not recorded physical gestures. User listening and physical moving-LED
-confirmation remain open. Prior physical connector/key acceptance is recorded
+messages, not recorded physical gestures. The user confirmed seeing the LED move. Detailed physical transition behavior
+and user listening acceptance for the capture remain open. Prior physical connector/key acceptance is recorded
 below and does not substitute for either gate.
 
 See [procedure and retained evidence](evidence/grid-feedback/observations.md).

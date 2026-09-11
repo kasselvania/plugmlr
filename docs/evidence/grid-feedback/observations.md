@@ -20,8 +20,14 @@ This is not new 44.1 kHz or Bitwig acceptance. Installed SerialOSC unchanged.
   make this an unsuitable universal click detector. No claim of click-free
   playback follows from these numbers.
 - Listening: requested, awaiting user report for this capture.
-- Physical moving marker: requested, awaiting user report. Earlier connector
-  acceptance covers corner LEDs and a physical row_1 key event only.
+- Physical moving marker: user confirmed, “I saw the LED moving.” This accepts
+  observed movement, not every reverse/pause/reconnect behavior. Earlier connector
+  acceptance covers corner LEDs and a physical row_1 key event.
+- Hands-on follow-up: reselected m1000853, probed free and claimed; native panel
+  showed connected. Sample 1 DrumLoop was left Playing, Forward, 1x, immediate
+  slicing, Beat Reset Off, internal clock stopped; track gain 0.6, master 0.75.
+  Native output meters were active. No recorder is open. This supersedes the
+  earlier stopped/released cleanup state for the user’s personal slicing trial.
 - Native completion printed `grid-musical-stopped: bang`; player showed Stopped.
   Release reported `verified_lease_free`. The recording wrapper and temporary
   mixer taps were discarded, then saved MLR was reopened. Native UI shows

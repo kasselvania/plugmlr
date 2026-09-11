@@ -149,7 +149,8 @@ objects such as `popmenu`, `curve~`, `meter2~`, and `cyclone/snapshot~` from its
 bundled ELSE/Cyclone environment. This is not a verified vanilla-Pd setup guide.
 The current Grid path uses `mlr-grid.pd` and the pinned Monome package. Physical
 connection, corner LEDs and one original musical row route were verified; the
-new moving-marker behavior still awaits physical confirmation. No dependency
+moving marker has also been observed by the user; detailed hardware transition
+checks remain open. No dependency
 installation was needed for the observed Sample 1 playback path.
 
 The intended community suite pairs plugmlr with
