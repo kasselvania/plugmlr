@@ -63,7 +63,9 @@
   `analyze_cut_handoff.py` rather than excluding these failure windows.
 - Quantized slice input writes the stored index without output; only matching
   ppq ticks dispatch it. Stop/Pause, selection and mode/grid messages clear pending.
-  Preserve legacy mode 1=immediate until a deliberate UI/public-interface change.
+  Public mode remains 1=immediate. slice-mode-control inverts the visible
+  Quantize checkbox and mirrors public messages with set (no feedback command).
+  Default mode is immediate; the visible grid and scheduler both initialize to 1/16.
   Controlled tick tests are not autonomous-clock or DAW-sync acceptance.
 - Internal clock Run controls ticks independently of playback. Keep its tempo
   separate from host tempo and retain the tick count on Stop. BPM must store into

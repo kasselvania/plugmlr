@@ -7,6 +7,68 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Current checkpoint — 2026-09-11
+
+PRs #18 (slice scheduler) and #19 (standalone clock) are merged. Their retained
+34 and 27 numerical checks pass; the user accepted both musical captures after
+listening. These are bounded native results, not universal click-free or DAW
+acceptance. The work below this current section is a chronological evidence
+record: older “remaining” bugs may be resolved by a later section.
+
+| Area | Current state | Remaining work |
+| --- | --- | --- |
+| Stereo playback | Imported/live selection, forward/reverse, five speeds, speed glide, Stop/Pause, slices, loop Apply and dual-reader handoffs have retained native evidence. | Direction slew through zero, arbitrary speed, very short loops and broader stress qualification. |
+| Slice timing | Latest pending key dispatches on the matching clock tick; transport/mode/grid changes cancel stale keys. Internal Run/BPM works. | Beat Reset behavior, tempo-locked audio duration, DAW/MIDI clock. |
+| Recording | Fresh fixed-length stereo takes, seconds/4/4 bars, early Stop and local-bus hardware input work. | Growth/trim, recording pause/resume, quantized recording, overdub, export UI and recall. |
+| Device integration | Suite repositories and lease-aware SerialOSC candidates are mapped. | Replace legacy Grid connection, verify presses/LEDs and reconnect; physical integration is not accepted. |
+| Reuse and hosting | Original application and shared buffers preserved. | Multiple-instance namespace isolation, additional musical heads, DAW lifecycle and cross-process stereo transport. |
+
+### Control clarity follow-up contract
+
+Keep `<track>-quantizer` compatible: 1 means immediate and 0 means quantized.
+The new visible Quantize checkbox uses the ordinary UI meaning: checked enables
+quantization. A tiny adapter inverts the UI value and mirrors public messages
+back to all views with `set`, without emitting a second command. Defaults remain
+immediate, with a 1/16-note grid. Show the actual selected subdivision at startup
+and after scripted changes. Label the unfinished Beat Reset/clock-rate controls
+and replace the dead main Stop All and unwired track checkboxes with guidance.
+Do not add reset behavior, change audio processing, or rebuild the application UI.
+
+**Implemented and observed:** `slice-mode-control <track>` is shared by the main
+Track 1 checkbox and each player's checkbox. Its GUI adapter changes neither the
+legacy public mode values nor the original slice dispatcher. The subdivision
+startup now sends index 2 through the existing power-of-two calculation (4 ticks)
+and sends `set 2` to the menu; scripted grid changes update that display too.
+Beat Reset's experimental menu remains beside its source logic, outside the
+musical control area, with a visible unfinished label. The dead global Stop and
+unwired track checkboxes became guidance; the unused Audio 1 input knob now points
+to the real input panel. Other legacy input knobs remain identified as legacy.
+
+Native UI/console validation used the original application in the existing
+plugdata 0.9.4 / Pd 0.56.3 session. On fresh load, Quantize is off and Slice grid
+shows 1/16; a key immediately emits slice 2. Clicking the player checkbox emits
+exactly one legacy mode 0 message and checks the main view. Keys 3 then 6 emit
+only slice 6 at tick 4, not tick 1. Changing grid to index 1 cancels pending key 9
+and visibly shows 1/32. Unchecking the main checkbox emits exactly one mode 1;
+key 10 then emits immediately. Track 2's mode message does not produce a track 1
+mode event. Scripted track 1 mode updates mirror without feedback emissions.
+No new Pd error was observed. This was a control-only check with empty Sample 4
+selected: no recording was started and no new audio/listening acceptance is
+claimed. The retained slice/clock analyzers were rerun before their merges (34/27
+passing checks); those captures remain tied to their original source revisions.
+
+[Native event log](evidence/control-clarity/native-control-events.txt) and
+[validation record](evidence/control-clarity/results.json) retain this check.
+To repeat, attach `tests/control-clarity-check $0` temporarily to player 1
+(current root has 552 objects), select empty Sample 4 with clock stopped, and
+follow the event/UI sequence above. Use `row_1`, `ppq`, and the helper's
+`clarity-grid` input for the described messages; `clarity-write bang` writes the
+log to `/tmp/plugmlr-control-clarity.txt`. Remove the observer afterward without
+saving temporary patch edits. The session was restored to Live 2, stopped,
+with both imported samples, original gains, and all three live arrays verified
+byte-identical to fresh pre-test exports. Beat Reset semantics remain undecided.
+
+
 ## Standalone clock controls (review candidate)
 
 Contract before implementation: retain the existing ELSE `clock` and `count`

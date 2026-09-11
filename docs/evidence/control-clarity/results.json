@@ -1,0 +1,47 @@
+{
+  "base": "0ebc378c5c1c33440db4957e084d7450574adbfa",
+  "kind": "Native UI and control-message observation; no new audio capture",
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "checks": {
+    "fresh_default_immediate": true,
+    "fresh_grid_displays_1_16": true,
+    "player_checkbox_emits_mode_zero_once": true,
+    "main_view_mirrors_player": true,
+    "only_latest_key_on_matching_tick": true,
+    "grid_display_updates_to_1_32": true,
+    "grid_change_cancels_pending_key": true,
+    "main_checkbox_emits_mode_one_once": true,
+    "unchecked_mode_dispatches_immediately": true,
+    "track2_does_not_emit_track1_mode": true,
+    "scripted_mode_mirrors_without_feedback": true,
+    "restored_arrays_byte_identical": true
+  },
+  "native_events": [
+    "slice 2",
+    "track1-mode 0",
+    "slice 6",
+    "grid 1",
+    "track1-mode 1",
+    "slice 10",
+    "track2-mode 0",
+    "track1-mode 0",
+    "track1-mode 1"
+  ],
+  "live_array_sha256": {
+    "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+    "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+  },
+  "source_sha256": {
+    "mlr.pd": "a7a17dc4938ce72995601e4f0b8eccc5339c2f96f785660bec2fc8d74919ef7c",
+    "sample_player_rebuild.pd": "b9d93535dee9bea6ec0f234587f12044dd74c0d50896dd540e091ff3230d9402",
+    "slice-mode-control.pd": "0e48dabe5ad9cadd16cc5aeeeaf42c1328e4b2e6df69cffb915cccfe915ad0b7",
+    "tests/control-clarity-check.pd": "8ba8e0db1e9ebc9145e22090a38292a3d67727f0638a20e4de29877be3a10877"
+  },
+  "limits": [
+    "No new audio test for UI-only changes",
+    "Legacy public mode remains 1=immediate",
+    "Beat Reset remains unimplemented",
+    "Multi-instance isolation and DAW synchronization remain unqualified"
+  ]
+}

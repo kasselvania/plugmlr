@@ -1,0 +1,9 @@
+slice 2;
+track1-mode 0;
+slice 6;
+grid 1;
+track1-mode 1;
+slice 10;
+track2-mode 0;
+track1-mode 0;
+track1-mode 1;
