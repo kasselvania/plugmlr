@@ -7,6 +7,93 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Slice scheduler repair (review candidate)
+
+Contract before implementation: retain the existing public `row_<track>` integer
+slice indexes and legacy `<track>-quantizer` mode (1 immediate, 0 quantized) in
+this bounded repair. Quantized presses replace one pending index without output;
+only a matching `ppq` tick dispatches it. Tick units remain 16 per quarter note;
+menu indexes 0..6 select 1..64 ticks. Clear pending input on Stop/Pause, buffer
+selection, mode changes and subdivision changes. A press made after a Stop/Pause
+is a new intentional command; in quantized mode it waits for the tick, as before.
+With no clock tick, retain the latest request and keep existing playback running.
+Dispatch still passes through the current slice policy and safe handoff delay;
+quantization is not a promise to bypass fades or make a sample-exact jump at the
+tick. Mode/clock UI redesign and Beat Reset destination remain separate choices.
+Test actual selected-slice messages and player/readers/mixer, including nonmatching
+ticks, multiple pending keys, cancellations and loop-boundary collisions.
+
+Implementation is localized in the original quantizer: connection 155→151 now
+uses the stored slice's cold inlet. Two `t f b` triggers clear pending before
+mode/subdivision updates, and receivers for `stop-fade` and `selection-stop`
+clear it on transport changes. Four control objects and one explanatory comment
+are added; no alternative scheduler, reader, clock or audio envelope is introduced.
+The test helper now logs `selected_slice` and `ppq` and exposes a test-only menu
+adapter. These are observations of the original patch, not simulated playback.
+
+
+**Native results:** [34 checks pass](evidence/slice-quantizer/results.json).
+At the unchanged production baseline, the second key (slice 6) emitted at 150 ms
+before the intended 250 ms tick and emitted again at 250 ms. Stale cuts also
+emitted at 600/950/1250/1550/1850 ms after Stop, Pause, buffer change, mode change
+and subdivision change. The candidate has none of those extra emissions. Its
+nine selected-slice emissions match the score exactly, including immediate mode,
+a 500 ms wait without ticks and reverse cuts. All seven subdivision indexes emit
+once at their matching tick; nonmatching and duplicate ticks produce no extra cut.
+Recorded master trajectories enter the requested slices within the existing
+handoff window. These are measured native outputs, not just storage-state checks.
+
+Stereo constant and wave captures are finite and stop at the seven-second deadline.
+The wave's largest adjacent steps (player L/R, post-master L/R) are
+.003174/.002802/.001304/.001152; constant steps are
+.000278/.000139/.000228/.000114. These maxima include every transition sample.
+No nonzero-gain reader teleports, block-length dropout in continuous windows or
+unintended steady mixer gain changes occur. Intentional stopped/paused windows
+are silent. Speed/Pause and wave/constant loop-Apply regression captures pass too.
+
+**UI/console:** inspected the actual original player and its console before and
+after testing. The existing quantizer menu/Beat Reset controls remain visible;
+this repair does not yet reconcile their labels/defaults. No new Pd error was
+observed during the completed scores. A transient native UI-tool pipe interruption
+occurred after starting the musical score; reconnecting showed both automatic stop
+messages, and the retained capture has the full expected decoded length. It did
+not require manual recorder shutdown and is not treated as a Pd engine failure.
+
+**Runtime and limits:** same native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3;
+installed binary hash verified. Existing CoreAudio 8A session at 48 kHz / 512 / 1x
+was used without host-configuration changes. Tests use controlled `ppq` messages,
+not an autonomous clock: no standalone clock UI, host sync, tempo/source changes,
+DAW lifecycle, 44.1 kHz host or physical controller acceptance is claimed. Mode
+1 still means immediate. Beat Reset remains unimplemented pending its destination
+choice. Apply remains immediate and independent of the quantized key queue; this
+slice does not silently invent clock-locking for Apply or other controls.
+
+**Listening:** [musical capture](evidence/slice-quantizer/musical-post-master.wav)
+uses 44.1 kHz stereo DrumLoop on the 48 kHz host, with queued cuts at .5/1.5/2.5/4.5 s
+and an intentional Pause. The user's listening report is pending. Actual mixer
+channels are exported with output factor .9, no normalization; generated reference
+channels are not used as the listening copy.
+
+**Reproduce:** use the preceding bounded original-player tap procedure. Final
+player has 550 root objects, so temporary helpers begin at index 550. The updated
+`tests/live-record-check.pd` logs selected slices and received ticks; use
+`record-check symbol fixtures/slice-quantizer.txt` with wave in sample slots 3/4,
+then repeat with the stereo constant (output muted). Use `slice-quantizer-grids.txt`
+for all subdivisions, followed by the existing speed, Pause and visible-loop scores.
+Use `slice-quantizer-musical.txt` with DrumLoop in Sample 1 for listening. Automatic
+stops are armed before every capture. Preserve/reload the original user arrays
+before attaching/removing temporary taps. Retain original six-channel WAV,
+ten-channel reader WAV and event log, or lossless decoded float NPZ as here.
+Run `python3 tests/analyze_slice_quantizer.py docs/evidence/slice-quantizer`
+with NumPy/ffmpeg. The [manifest](evidence/slice-quantizer/manifest.json) records
+source hashes and capture identities; musical full arrays stay ignored locally.
+
+All three user live arrays were restored and re-exported byte-identically.
+Content/capacity stays 96000/96000, 96000/96000 and 60032/192000 frames; next lengths
+2/2/4 seconds. Sample 1 DrumLoop and user Sample 2 Sunny are restored. Original
+player is stopped on Live 2, gains .548/.75/.9, without diagnostic taps/recorders.
+Adjacent repositories, installed services and failed R1 stash are untouched.
+
 ## Merged playback checkpoint and timing review
 
 PRs #14, #15, #16 and #17 were merged in order with merge commits, retaining

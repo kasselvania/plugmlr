@@ -1,0 +1,893 @@
+{
+  "checks": {
+    "baseline-wave_finite_bounded_stopped": true,
+    "baseline_reproduces_early_duplicate_and_stale_cuts": true,
+    "candidate-wave_finite_bounded_stopped": true,
+    "candidate-wave_exact_dispatch_times_and_no_extra_cuts": true,
+    "candidate-wave_no_audible_reader_teleports": true,
+    "candidate-wave_continuous_audio_and_gain": true,
+    "candidate-wave_transport_silence": true,
+    "candidate-wave_all_transition_steps_bounded": true,
+    "candidate-wave_actual_master_enters_requested_slices": true,
+    "candidate-constant_finite_bounded_stopped": true,
+    "candidate-constant_exact_dispatch_times_and_no_extra_cuts": true,
+    "candidate-constant_no_audible_reader_teleports": true,
+    "candidate-constant_continuous_audio_and_gain": true,
+    "candidate-constant_transport_silence": true,
+    "candidate-constant_all_transition_steps_bounded": true,
+    "candidate-constant_actual_master_enters_requested_slices": true,
+    "constant_stereo_order_and_unity_reader_sum": true,
+    "candidate-grids_finite_bounded_stopped": true,
+    "candidate-grids_exact_dispatch_times_and_no_extra_cuts": true,
+    "candidate-grids_no_audible_reader_teleports": true,
+    "candidate-grids_continuous_audio_and_gain": true,
+    "candidate-grids_transport_silence": true,
+    "candidate-grids_all_transition_steps_bounded": true,
+    "candidate-grids_actual_master_enters_requested_slices": true,
+    "speed_reader_continuity_including_boundary_collisions": true,
+    "speed_rate_range": true,
+    "pause_stop_empty_silent": true,
+    "paused_position_held_readers_off": true,
+    "resume_audio_and_gain": true,
+    "resume_saved_position_and_rate": true,
+    "candidate-speed_finite_bounded_stopped": true,
+    "candidate-pause_finite_bounded_stopped": true,
+    "loop_apply_functional_regression": true,
+    "loop_apply_reader_handoff_regression": true
+  },
+  "passed": true,
+  "cases": {
+    "baseline-wave": {
+      "selected_slice_events": [
+        [
+          150.0,
+          6
+        ],
+        [
+          250.0,
+          6
+        ],
+        [
+          520.0,
+          8
+        ],
+        [
+          600.0,
+          8
+        ],
+        [
+          950.0,
+          3
+        ],
+        [
+          1250.0,
+          4
+        ],
+        [
+          1550.0,
+          5
+        ],
+        [
+          1850.0,
+          7
+        ],
+        [
+          2100.0,
+          9
+        ],
+        [
+          2300.0,
+          10
+        ],
+        [
+          2350.0,
+          11
+        ],
+        [
+          2550.0,
+          12
+        ],
+        [
+          2570.0,
+          12
+        ],
+        [
+          2800.0,
+          13
+        ],
+        [
+          3500.0,
+          14
+        ],
+        [
+          3850.0,
+          3
+        ],
+        [
+          4100.0,
+          4
+        ]
+      ],
+      "max_steps_player_mixer": [
+        0.03695514053106308,
+        0.03713911399245262,
+        0.0026088827289640903,
+        0.002282783854752779
+      ],
+      "audible_reader_jump_ms": [
+        801.3125,
+        1552.3125
+      ]
+    },
+    "candidate-wave": {
+      "selected_slice_events": [
+        [
+          250.0,
+          6
+        ],
+        [
+          2100.0,
+          9
+        ],
+        [
+          2300.0,
+          10
+        ],
+        [
+          2350.0,
+          11
+        ],
+        [
+          2570.0,
+          12
+        ],
+        [
+          2800.0,
+          13
+        ],
+        [
+          3500.0,
+          14
+        ],
+        [
+          3850.0,
+          3
+        ],
+        [
+          4100.0,
+          4
+        ]
+      ],
+      "max_steps_player_mixer": [
+        0.003173828125,
+        0.002802465343847871,
+        0.0013044433435425162,
+        0.0011518133105710149
+      ],
+      "audible_reader_jump_ms": [],
+      "actual_master_entries": [
+        {
+          "tick_or_press_ms": 250,
+          "target_frames": 4500,
+          "nearest_entry_error_frames": 0.0
+        },
+        {
+          "tick_or_press_ms": 2100,
+          "target_frames": 6750,
+          "nearest_entry_error_frames": 0.00146484375
+        },
+        {
+          "tick_or_press_ms": 2300,
+          "target_frames": 7500,
+          "nearest_entry_error_frames": 0.00146484375
+        },
+        {
+          "tick_or_press_ms": 2350,
+          "target_frames": 8250,
+          "nearest_entry_error_frames": 0.0009765625
+        },
+        {
+          "tick_or_press_ms": 2570,
+          "target_frames": 9000,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 2800,
+          "target_frames": 9750,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 3500,
+          "target_frames": 10500,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 3850,
+          "target_frames": 3000,
+          "nearest_entry_error_frames": 0.00244140625
+        },
+        {
+          "tick_or_press_ms": 4100,
+          "target_frames": 3750,
+          "nearest_entry_error_frames": 0.00244140625
+        }
+      ]
+    },
+    "candidate-constant": {
+      "selected_slice_events": [
+        [
+          250.0,
+          6
+        ],
+        [
+          2100.0,
+          9
+        ],
+        [
+          2300.0,
+          10
+        ],
+        [
+          2350.0,
+          11
+        ],
+        [
+          2570.0,
+          12
+        ],
+        [
+          2800.0,
+          13
+        ],
+        [
+          3500.0,
+          14
+        ],
+        [
+          3850.0,
+          3
+        ],
+        [
+          4100.0,
+          4
+        ]
+      ],
+      "max_steps_player_mixer": [
+        0.00027773529291152954,
+        0.0001389235258102417,
+        0.00022832117974758148,
+        0.00011420436203479767
+      ],
+      "audible_reader_jump_ms": [],
+      "actual_master_entries": [
+        {
+          "tick_or_press_ms": 250,
+          "target_frames": 4500,
+          "nearest_entry_error_frames": 0.0
+        },
+        {
+          "tick_or_press_ms": 2100,
+          "target_frames": 6750,
+          "nearest_entry_error_frames": 0.00146484375
+        },
+        {
+          "tick_or_press_ms": 2300,
+          "target_frames": 7500,
+          "nearest_entry_error_frames": 0.00146484375
+        },
+        {
+          "tick_or_press_ms": 2350,
+          "target_frames": 8250,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 2570,
+          "target_frames": 9000,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 2800,
+          "target_frames": 9750,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 3500,
+          "target_frames": 10500,
+          "nearest_entry_error_frames": 0.001953125
+        },
+        {
+          "tick_or_press_ms": 3850,
+          "target_frames": 3000,
+          "nearest_entry_error_frames": 0.00244140625
+        },
+        {
+          "tick_or_press_ms": 4100,
+          "target_frames": 3750,
+          "nearest_entry_error_frames": 0.00244140625
+        }
+      ],
+      "stereo_constant_error": 7.450580596923828e-09
+    },
+    "candidate-grids": {
+      "selected_slice_events": [
+        [
+          350.0,
+          0
+        ],
+        [
+          850.0,
+          1
+        ],
+        [
+          1350.0,
+          2
+        ],
+        [
+          1850.0,
+          3
+        ],
+        [
+          2350.0,
+          4
+        ],
+        [
+          2850.0,
+          5
+        ],
+        [
+          3350.0,
+          6
+        ]
+      ],
+      "max_steps_player_mixer": [
+        0.0033436694648116827,
+        0.0028511323034763336,
+        0.001374248182401061,
+        0.0011718152090907097
+      ],
+      "audible_reader_jump_ms": [],
+      "actual_master_entries": [
+        {
+          "tick_or_press_ms": 350,
+          "target_frames": 0,
+          "nearest_entry_error_frames": 0.00021922588348388672
+        },
+        {
+          "tick_or_press_ms": 850,
+          "target_frames": 750,
+          "nearest_entry_error_frames": 0.00054931640625
+        },
+        {
+          "tick_or_press_ms": 1350,
+          "target_frames": 1500,
+          "nearest_entry_error_frames": 0.0008544921875
+        },
+        {
+          "tick_or_press_ms": 1850,
+          "target_frames": 2250,
+          "nearest_entry_error_frames": 0.001220703125
+        },
+        {
+          "tick_or_press_ms": 2350,
+          "target_frames": 3000,
+          "nearest_entry_error_frames": 0.00146484375
+        },
+        {
+          "tick_or_press_ms": 2850,
+          "target_frames": 3750,
+          "nearest_entry_error_frames": 0.001708984375
+        },
+        {
+          "tick_or_press_ms": 3350,
+          "target_frames": 4500,
+          "nearest_entry_error_frames": 0.001953125
+        }
+      ]
+    }
+  },
+  "regressions": {
+    "checks": {
+      "speed_reader_continuity_including_boundary_collisions": true,
+      "speed_rate_range": true,
+      "pause_stop_empty_silent": true,
+      "paused_position_held_readers_off": true,
+      "resume_audio_and_gain": true,
+      "resume_saved_position_and_rate": true,
+      "candidate-speed_finite_bounded_stopped": true,
+      "candidate-pause_finite_bounded_stopped": true
+    },
+    "passed": true,
+    "measurements": {
+      "speed_readers": [
+        {
+          "checked_steps": 126443,
+          "max_step": 4.00048828125,
+          "bad_times_ms": []
+        },
+        {
+          "checked_steps": 124718,
+          "max_step": 4.000244140625,
+          "bad_times_ms": []
+        }
+      ],
+      "resumes": [
+        {
+          "ms": 533,
+          "step": 1.0,
+          "slope": 1.0,
+          "expected": 1
+        },
+        {
+          "ms": 1033,
+          "step": -1.9990234375,
+          "slope": -2.0,
+          "expected": -2
+        },
+        {
+          "ms": 2350,
+          "step": -1.9970703125,
+          "slope": -2.0,
+          "expected": -2
+        },
+        {
+          "ms": 5150,
+          "step": -0.2491455078125,
+          "slope": -0.25,
+          "expected": -0.25
+        }
+      ]
+    }
+  },
+  "loop_regression": {
+    "checks": {
+      "candidate-wave_finite_bounded_stop": true,
+      "candidate-wave_region_bounds_and_full_sample": true,
+      "candidate-wave_pause_holds_new_reverse_entry": true,
+      "candidate-wave_transport_and_empty_silent": true,
+      "candidate-wave_no_block_dropout_or_mixer_gain_change": true,
+      "candidate-constant_finite_bounded_stop": true,
+      "candidate-constant_region_bounds_and_full_sample": true,
+      "candidate-constant_pause_holds_new_reverse_entry": true,
+      "candidate-constant_transport_and_empty_silent": true,
+      "candidate-constant_no_block_dropout_or_mixer_gain_change": true,
+      "stereo_order_and_unity_reader_sum": true
+    },
+    "functional_checks_pass": true,
+    "transition_acceptance_gates": {
+      "overlapping_handoffs_have_no_audible_reader_teleports": true
+    },
+    "transition_acceptance_complete": true,
+    "cases": {
+      "candidate-wave": {
+        "frames": 335918,
+        "regions": [
+          {
+            "seconds": [
+              0.08,
+              0.54
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2401.0,
+              7200.0
+            ]
+          },
+          {
+            "seconds": [
+              0.58,
+              1.04
+            ],
+            "expected": [
+              4800,
+              9600
+            ],
+            "observed": [
+              4801.0,
+              9600.0
+            ]
+          },
+          {
+            "seconds": [
+              1.08,
+              1.54
+            ],
+            "expected": [
+              4800,
+              9600
+            ],
+            "observed": [
+              4800.0,
+              9599.0
+            ]
+          },
+          {
+            "seconds": [
+              1.58,
+              2.04
+            ],
+            "expected": [
+              1200,
+              6000
+            ],
+            "observed": [
+              1200.0,
+              5999.0
+            ]
+          },
+          {
+            "seconds": [
+              2.08,
+              2.44
+            ],
+            "expected": [
+              0,
+              12000
+            ],
+            "observed": [
+              0.0,
+              11999.0
+            ]
+          },
+          {
+            "seconds": [
+              2.48,
+              2.74
+            ],
+            "expected": [
+              0,
+              12000
+            ],
+            "observed": [
+              0.0,
+              11999.0
+            ]
+          },
+          {
+            "seconds": [
+              2.78,
+              3.04
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2400.0,
+              7199.0
+            ]
+          },
+          {
+            "seconds": [
+              3.08,
+              3.34
+            ],
+            "expected": [
+              2880,
+              7680
+            ],
+            "observed": [
+              2880.0,
+              7679.0
+            ]
+          },
+          {
+            "seconds": [
+              3.68,
+              4.04
+            ],
+            "expected": [
+              1200,
+              6000
+            ],
+            "observed": [
+              1200.0,
+              5999.0
+            ]
+          },
+          {
+            "seconds": [
+              4.38,
+              4.64
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2401.0,
+              7200.0
+            ]
+          },
+          {
+            "seconds": [
+              4.68,
+              4.94
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2401.0,
+              7200.0
+            ]
+          },
+          {
+            "seconds": [
+              5.6,
+              6.04
+            ],
+            "expected": [
+              0,
+              12000
+            ],
+            "observed": [
+              0.9999991655349731,
+              12000.0
+            ]
+          }
+        ],
+        "active_windows": [
+          {
+            "seconds": [
+              0.08,
+              3.34
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          },
+          {
+            "seconds": [
+              3.68,
+              4.04
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          },
+          {
+            "seconds": [
+              4.38,
+              4.94
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          },
+          {
+            "seconds": [
+              5.6,
+              6.04
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          }
+        ],
+        "max_audio_steps_player_mixer": [
+          0.003173828125,
+          0.002790451981127262,
+          0.0013044433435425162,
+          0.001146875787526369
+        ],
+        "audible_reader_reuse": []
+      },
+      "candidate-constant": {
+        "frames": 335918,
+        "regions": [
+          {
+            "seconds": [
+              0.08,
+              0.54
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2401.0,
+              7200.0
+            ]
+          },
+          {
+            "seconds": [
+              0.58,
+              1.04
+            ],
+            "expected": [
+              4800,
+              9600
+            ],
+            "observed": [
+              4801.0,
+              9600.0
+            ]
+          },
+          {
+            "seconds": [
+              1.08,
+              1.54
+            ],
+            "expected": [
+              4800,
+              9600
+            ],
+            "observed": [
+              4800.0,
+              9599.0
+            ]
+          },
+          {
+            "seconds": [
+              1.58,
+              2.04
+            ],
+            "expected": [
+              1200,
+              6000
+            ],
+            "observed": [
+              1200.0,
+              5999.0
+            ]
+          },
+          {
+            "seconds": [
+              2.08,
+              2.44
+            ],
+            "expected": [
+              0,
+              12000
+            ],
+            "observed": [
+              0.0,
+              11999.0
+            ]
+          },
+          {
+            "seconds": [
+              2.48,
+              2.74
+            ],
+            "expected": [
+              0,
+              12000
+            ],
+            "observed": [
+              0.0,
+              11999.0
+            ]
+          },
+          {
+            "seconds": [
+              2.78,
+              3.04
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2400.0,
+              7199.0
+            ]
+          },
+          {
+            "seconds": [
+              3.08,
+              3.34
+            ],
+            "expected": [
+              2880,
+              7680
+            ],
+            "observed": [
+              2880.0,
+              7679.0
+            ]
+          },
+          {
+            "seconds": [
+              3.68,
+              4.04
+            ],
+            "expected": [
+              1200,
+              6000
+            ],
+            "observed": [
+              1200.0,
+              5999.0
+            ]
+          },
+          {
+            "seconds": [
+              4.38,
+              4.64
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2401.0,
+              7200.0
+            ]
+          },
+          {
+            "seconds": [
+              4.68,
+              4.94
+            ],
+            "expected": [
+              2400,
+              7200
+            ],
+            "observed": [
+              2401.0,
+              7200.0
+            ]
+          },
+          {
+            "seconds": [
+              5.6,
+              6.04
+            ],
+            "expected": [
+              0,
+              12000
+            ],
+            "observed": [
+              0.9999991655349731,
+              12000.0
+            ]
+          }
+        ],
+        "active_windows": [
+          {
+            "seconds": [
+              0.08,
+              3.34
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          },
+          {
+            "seconds": [
+              3.68,
+              4.04
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          },
+          {
+            "seconds": [
+              4.38,
+              4.94
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          },
+          {
+            "seconds": [
+              5.6,
+              6.04
+            ],
+            "longest_silence_frames": 0,
+            "mixer_gain_error": 3.725290298461914e-09
+          }
+        ],
+        "max_audio_steps_player_mixer": [
+          0.00027773529291152954,
+          0.0001389235258102417,
+          0.00020929425954818726,
+          0.00010468624532222748
+        ],
+        "audible_reader_reuse": [],
+        "constant_stereo_error": 7.450580596923828e-09
+      }
+    }
+  },
+  "scope": "Controlled ppq messages into original native player; not autonomous clock or DAW transport acceptance."
+}

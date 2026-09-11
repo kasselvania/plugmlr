@@ -53,6 +53,13 @@ Pending cuts wait for the prior fade before reusing a reader; paused Apply prese
 the mixer fade. Matched 48 kHz stress/regression checks pass. Very short natural
 loops and broader host configurations remain unqualified.
 
+The [slice scheduler candidate](docs/STATUS.md#slice-scheduler-repair-review-candidate)
+keeps only the newest queued slice and dispatches it on the chosen tick. Stop,
+Pause, buffer selection and mode/subdivision changes cancel stale keys. Native
+controlled-tick audio tests cover all seven subdivisions and existing playback
+regressions. The legacy mode still uses 1 for immediate; checkbox/default cleanup,
+a usable standalone clock and Beat Reset remain unfinished.
+
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
 reverse or an audible tape slew, with timing drift allowed. The
