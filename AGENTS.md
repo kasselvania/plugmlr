@@ -88,3 +88,9 @@
   their default branches do not identify the lease candidates. Musical mapping
   belongs here; session ownership, renewal, release and platform installation
   stay with those projects. Do not claim integration from a documentation link.
+
+- Player-panel is a view onto the original player, not another engine. Keep status
+  receive-only, preserve public control symbols, and show selected speed separately
+  from any claim about instantaneous slew. Clock activity and reset request feedback
+  must not imply tempo fitting or sample-exact synchronization. Validate the actual
+  panel with the user; structural/message checks alone do not accept usability.
