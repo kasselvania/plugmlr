@@ -7,6 +7,86 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## mlre control reference and next Grid slice — 2026-09-11
+
+The user requested sonocircuit/mlre as the control/layout reference. This is a
+reference for incremental adaptation of the original plugmlr player, not an
+instruction to replace its DSP or implement every mlre feature at once.
+
+**Pinned upstream:** `sonocircuit/mlre` main at
+`ba88531bd31656ec33b54beee4f67c5438ae7d35`.
+[Manual v2.2 (34 pages)](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/doc/mlre%20v2.2%20-%20user%20manual.pdf),
+[Grid handlers](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/lib/grid_mlre.lua),
+[player/event logic](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/mlre.lua).
+Manual SHA-256: `4af2998472e67fd24323a906671263cb6f2221e97627379f350f88b1ace683b4`.
+Retrieved into a temporary reference checkout; PDF text extracted and navigation
+and Cut-page diagrams visually inspected. The manual remains upstream, not a
+vendored dependency. Credit sonocircuit and mlr's Brian Crabtree; softcut is by
+Ezra Buchla. No upstream implementation code was copied.
+
+### Layout to preserve space for
+
+Manual pages 2 and 7 describe a 128 layout with permanent navigation on the top
+row, six track rows, and a bottom row for the focused track's secondary controls.
+Coordinates below are physical, one-based; Pd OSC coordinates are zero-based.
+
+| Top-row columns | mlre role | plugmlr proposal |
+| --- | --- | --- |
+| 1 / 2 / 3 / 4 | REC / CUT / transpose / LFO-envelope views | Start with CUT only; reserve other positions, leave unsupported views unlit. |
+| 5–12 | Eight configurable macro slots | Reserve; no pretend pattern recorder. |
+| 13 / 14 / 15 / 16 | SEC / MOD / Q / ALT | Start with ALT at 16; later add deliberate modifier/quantization behavior. |
+| Rows 2–7 | Tracks 1–6 | Retain existing row numbering; only tracks 1/2 have current physical musical acceptance and repaired feedback. |
+| Row 8 on CUT | Focused-track transpose | Reserve until pitched-speed behavior exists. |
+
+This supersedes the earlier suggestion to fill the top row with separate
+per-track transport buttons. Proposed controls are not implemented yet.
+
+### Gesture and capability comparison
+
+| Reference (manual pages) | Existing plugmlr reality | Adaptation / gap |
+| --- | --- | --- |
+| Cut, focus and ALT+track playback (7) | Six press-only row routes; two physically accepted rows. Separate visible Play/Pause and Stop. | Add ALT handling before press filtering and track focus; reuse original transport. |
+| Hold two keys to loop; MOD+key one-cell loop (7) | Loop-region control and transition repairs exist; Grid releases are discarded. | Track held keys outside DSP; translate cell edges to existing seconds-based region requests. |
+| Playback position plus dim loop-range LEDs (7) | Receive-only whole-content marker on two rows. | Extend renderer only when loop gestures work; keep actual position distinct from queued cuts. |
+| Key quantization and separate launch policies (25,30) | Immediate/quantized slices and internal clock accepted, including 1/16 on both rows. | Preserve scheduler; beat/bar transport launch is separate work. |
+| Reverse, speed, slew; transpose scales (4,6,8) | Reverse, five speeds, speed glide and tempo fit exist. | Reuse those controls; scale-based pitched speed is later. |
+| Recording and tape management (5–6,19–24) | Imported/live stereo buffers, safe selection and fixed fresh recording exist. | Splices, tape sides, overdub/undo, threshold and auto-length are not equivalent to our buffer slots. |
+| Macros, modulation, Arc (9–18,32–34) | No accepted equivalent implied by current Grid work. | Later slices after usable CUT/transport/loop controls. |
+
+Important behavior distinctions, checked against `track_cut`, `toggle_playback`,
+`cut_track`, `stop_track`, `get_pos`, and `start_track` in the pinned source:
+
+- mlre cuts can start a stopped track; current plugmlr slices require Play first.
+  Keep current behavior until a deliberate cut-to-start change is accepted.
+- mlre's playback toggle uses Stop/Start events, but Stop queries position and
+  manual Start can resume that saved position. Do not map names blindly to our
+  hard Stop. Recommended ALT gesture uses our existing Play/Pause; hard Stop
+  remains distinct. Beat/bar launches have different entry-position rules.
+- Manual says two-key loops begin on release; source commits when one of two
+  held keys is released. Specify that edge and modifier precedence before coding.
+- mlre uses six tapes, eight splices each, and main/temporary sides. The manual
+  expects mono 48 kHz imports; plugmlr keeps stereo and its existing file-rate
+  handling. Buffer, track, splice and internal crossover reader are distinct.
+- mlre's key quantization is global; ours is per-player. Preserve the accepted
+  per-player behavior rather than silently forcing a global setting.
+
+### Recommended next implementation, bounded
+
+1. Keep current CUT rows and establish a focused track. Add ALT at top-right;
+   ALT+track press performs the original Play/Pause once, without also cutting.
+   Show focus/transport through receive-only state. Retain visible hard Stop.
+2. Test normal press/release, modifier-first and reverse release order, rapid
+   toggles, empty/paused/stopped tracks, and pending quantized cuts. Disconnect
+   must clear modifier/held-key state. Verify actual UI/console, Grid and audio.
+3. Only after that acceptance, add two-key loop and one-cell hold using the
+   existing loop-region path. Define inclusive slice-cell edges, reverse order,
+   quantized commit and slice-to-full-content behavior explicitly.
+4. Add a focused-track screen view and selected controls page as needed; do not
+   advertise REC, macros or transpose pages until their controls really work.
+
+This update is documentation only, against plugmlr `c96db3b`; it changes neither
+live session nor patch behavior. No mlre runtime acceptance is claimed.
+
 ## Grid playback feedback review candidate — 2026-09-11
 
 Stacked on connector PR #25 (`fa6812cc02e829153c65a20bf036c83172d218da`).
