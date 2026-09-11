@@ -7,6 +7,128 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Pause/Resume follow-up
+
+Branch `codex/fix-pause-resume` starts at PR #14 head
+`268fad47e75ea07b159ebbdb22589499dc467df2`; remote main remains
+`81b4e5c57505bd518d9fb5161689a9199a33bd00`. PR #14 is still unmerged.
+
+Contract before implementation: Play/Pause remains the existing toggle. Pause
+remembers the current logical ramp position in file frames, marks playback paused
+immediately, cancels pending reader handoffs, and fades both readers over 6 ms.
+At 9 ms it freezes the master at the remembered frame and disables silent readers.
+Resume restarts from that frame with the existing play fade and current direction,
+rate and bounds. A Resume during the pause fade waits for cleanup; further toggle
+presses change that queued intent. Stop or buffer selection cancels pending Resume.
+The fade can briefly continue the old trajectory; it does not advance the saved
+resume point. Speed/direction edits while paused must stay silent. Empty buffers
+must not start. Stereo, original controls, 48 kHz host and file-rate conversion
+remain unchanged. Recording Pause/Resume and region/slice handoff repair are outside
+this checkpoint. Verify actual player, mixer, reader gains and position, including
+short pauses, interrupted fades and Stop cancellation; preserve takes before reload
+and arm automatic capture stops before starting.
+
+### Repair and native results
+
+Only `sample_player_rebuild.pd` changes in the application (116 lines added,
+17 removed). Its existing Pause trigger becomes a local `pause_transition`:
+save position, mark paused, cancel handoffs, fade both readers, then hold/disable
+at 9 ms. Resume uses the existing crossfade reset, play message and reader switch
+before publishing the saved-position trajectory. The shared `current_position`
+calculation now also answers Pause; the old block snapshot is disconnected.
+No mixer DSP, buffer storage, recorder, external or replacement player is added.
+
+Two races were found in actual candidate audio and repaired before qualification:
+a buffer switch must cancel queued Resume immediately when switching begins;
+a slice that leaves paused state must cancel old pause cleanup. Accepted slices
+also reopen the mixer while transport is running, so a slice can resume an already
+settled Pause. These retain the existing slice gesture's intent. The failed
+selection/slice captures and their exact source text are retained alongside the
+passing candidate; they are not counted as acceptance.
+
+Runtime: **plugdata 0.9.4 nightly `98ae0f78b`, Pd 0.56.3**, installed binary SHA256
+`86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e`.
+Native settings verified: CoreAudio 8A input/output, **48000 Hz, 512 frames, 1x**.
+Track gain 0.548, master 0.75. Global output muted for all diagnostics; the constant
+fixture was never sent to speakers. Each retained run is seven seconds with both
+capture stops armed before start and both stopped messages inspected in the UI.
+
+| Actual stereo capture | PR #14 baseline | Candidate |
+| --- | ---: | ---: |
+| Constant fixture, largest player L/R adjacent step | 0.079987 / 0.040009 | 0.0004154 / 0.0002078 |
+| Same, post-master L/R | 0.032874 / 0.016444 | 0.0002596 / 0.0001299 |
+| Wave fixture, largest player L/R adjacent step | 0.137878 / 0.076111 | 0.0063173 / 0.0055543 |
+| Settled Pause | Reader output held nonzero behind muted mixer | Player and mixer exactly zero; both readers off |
+| Resume from saved position | Not accepted in this checkpoint | First moving sample within one rate step; current signed rate retained |
+
+**27 checks pass: 25 public and two optional local musical checks.** Paired scores
+cover normal Pause/Resume, paused speed/reverse edits, 1/4/8 ms interrupted pauses,
+repeated-toggle parity, pause during a slice fade, Stop cancellation, loaded/empty
+buffer selection and interrupted speed slew. The additional score covers pauses at
+loop boundaries at 1x/4x, 0.25x/0.5x playback and slices during and after Pause.
+The three measured boundary holds are approximately 0, 12000 and 12000 file frames;
+subsequent playback is live in every checked window. This is not acceptance of
+sample-exact loop period or tempo synchronization.
+
+All active analysis windows have no full-block silent gap and unchanged mixer gain.
+Constant-signal stereo output differs from the expected L/R levels by at most
+7.46e-9. In each paired candidate score, all 28 observed reader shutdowns follow
+zero gain. Paused master positions hold exactly, and Stop/selection cancellation
+windows stay silent. The existing Stop/restart score retains its expected start
+times and fades (run with the preceding 400 ms slew setting); the existing
+instant-reverse score passes reader continuity and all 17 turn checks on this exact
+candidate. No non-finite samples or nonzero stopped tails in the qualified captures.
+
+The separate musical capture uses preserved Live 2 audio and the bundled 44.1 kHz
+drum file at the 48 kHz host. Its post-Resume +2x slope is 1.83749974 file frames per
+host sample, versus 1.8375 expected. Listening WAV contains post-master stereo at
+output gain 0.90, with no normalization. **User listening report: pending.**
+
+### Reproduction, restoration and limits
+
+Use the existing bounded fixture procedure below with `tests/instant-reverse-check
+$0` and `tests/bounded-player-capture 1 $0` temporarily attached to the original
+player, plus the existing two post-master mixer taps. Initialize only the new test
+helper, not the whole player's loadbang. Select/verify the main tab after startup
+opens saved subpatch windows; deselect objects before console receiver commands.
+Console numeric receiver messages require `float`, e.g. `audio-1-out float 0.548`.
+
+1. Load `tests/fixtures/stop-constant-48.wav` into sample 3 and 4. Keep output muted.
+   Run `record-check symbol fixtures/pause-resume.txt` on PR #14 and the candidate.
+2. Repeat with `stop-wave-48.wav` in both slots. On the candidate also run
+   `fixtures/pause-boundaries.txt` with the constant fixture,
+   `fixtures/stop-restart.txt` with the constant fixture and
+   `fixtures/instant-reverse.txt` with the wave fixture.
+3. After every run, verify `capture-stopped` and `record-check-stopped`. Retain
+   `/tmp/plugmlr-record-check.wav`, its events file, and the reader WAV:
+   `plugmlr-pause-readers.wav`, `plugmlr-stop-readers.wav` or
+   `plugmlr-reverse-readers.wav`, respectively.
+4. Run `python3 tests/analyze_pause_resume.py docs/evidence/pause-resume` with NumPy
+   and ffmpeg. NPZ is lossless decoded native float audio; original WAV hashes and
+   exact conversion checks are retained. Paired wave WAVs remain directly playable.
+   Private takes and the musical listening WAV remain local/ignored.
+
+All three original live takes were restored and re-exported byte-identically.
+Their content/capacity frames remain 96000/96000, 96000/96000, 60032/192000;
+next-recording lengths remain 2/2/4 seconds. Samples 1/2 are restored. Final original
+application has no test taps, Live 2 loaded/selected, playback stopped, recording
+disarmed and output 0.90. The companion, historical patches, failed R1 stash,
+adjacent repositories and installed services are untouched.
+
+Setup issues remain separate from DSP results: initial candidate navigation targeted
+a saved-open canvas and produced `vis`/`pd` errors on a selected Lua object. That
+setup was discarded before candidate captures. Restoration initially omitted
+`float` in numeric console messages; its actual console errors were inspected,
+metadata corrected and all three usable content states verified before handoff.
+No new object/connection errors were observed during qualified runs. Source indexing
+passes for 12 canvases / 1084 objects / 1048 connections.
+
+Open: listening acceptance, the previously demonstrated simultaneous region-bound
+edit/slice handoff fault, tape-direction slew, recording Pause/Resume, 44.1 kHz host
+operation, multi-track/instance isolation, DAW lifecycle and recall. The next
+separate checkpoint is slices/regions and their visible feedback. No universal
+click-free claim; numerical amplitude limits apply only to these retained fixtures.
+
 ## Speed-slew position follow-up
 
 Branch `codex/fix-speed-slew-position`, based on merged PR #13 at

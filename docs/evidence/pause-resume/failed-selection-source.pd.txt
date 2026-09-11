@@ -1226,14 +1226,6 @@
 #X msg 650 610 0;
 #X text 25 15 Pause fades readers 6 ms then freezes at the saved frame after 9 ms.;
 #X text 450 700 Rapid toggles flip queued Resume. Stop / selection cancel it.;
-#X obj 845 490 r \$0-buffer-switching;
-#X obj 845 530 sel 1;
-#X obj 845 565 r \$0-is_paused_flag;
-#X obj 845 600 sel 0;
-#X connect 36 0 37 0;
-#X connect 37 0 29 0;
-#X connect 34 0 35 0;
-#X connect 35 0 29 0;
 #X connect 0 0 3 0;
 #X connect 3 4 4 0;
 #X connect 3 3 5 0;
@@ -1648,13 +1640,6 @@
 #X obj 1400 360 r \$0-pause-finish;
 #X obj 1400 400 t b b;
 #X obj 1840 185 t b b;
-#X obj 2000 340 f 0;
-#X obj 2070 305 r \$0-is_playing_flag;
-#X obj 2000 380 sel 1;
-#X connect 508 2 537 0;
-#X connect 538 0 537 1;
-#X connect 537 0 539 0;
-#X connect 539 0 265 0;
 #X connect 36 0 268 0;
 #X connect 36 1 268 1;
 #X connect 268 0 266 0;

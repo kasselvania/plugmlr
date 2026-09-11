@@ -45,6 +45,10 @@
   Instant Reverse and speed updates query the existing ramp's logical-time position; do not
   replace it with a stale block snapshot. Check actual reader continuity and
   signed speed during rapid turns and loop/slice fades, separately from tape slew.
+  Pause saves the logical position before its 6 ms reader fade and 9 ms cleanup.
+  Resume restores reader gates/gain before motion; Stop, buffer switching and
+  leaving paused state cancel pending cleanup. Test slices during and after Pause,
+  exact loop-end pauses, rapid toggle parity and pre-mixer silence.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

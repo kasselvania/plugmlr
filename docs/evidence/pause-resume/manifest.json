@@ -1,0 +1,175 @@
+{
+  "recorded_utc": "2026-09-10T22:40:55.310045+00:00",
+  "base_commit": "268fad47e75ea07b159ebbdb22589499dc467df2",
+  "branch": "codex/fix-pause-resume",
+  "stacked_on_pr": 14,
+  "baseline_player_sha256": "e100672ed66acfbe6d99b0e306d149c12cb0324cfc0da0b54d6c1b6d10a1bdf1",
+  "source_sha256": {
+    "sample_player_rebuild.pd": "c8c543c9916253e259524d2c8ddfbd2b5a7d2cb95c81de1a7623235262449a8b",
+    "mlr.pd": "20349d2e9a8e21c2ad593e8a69d285e087b6300a54013a8b96493b93305e2d55",
+    "mixer.pd": "fda6d15a2a236a142e97d09bf60a167d676ca8c71501bd713024ced6d1c67f95",
+    "buffer-selection.pd": "1b93a9b2307db9efb6fd5b714d24d2ddda10d516bd4abaf2ed6ccbc1987944cb",
+    "live_buffer.pd": "84f98b4bfe8a49b0a496e8e482a9fd3367206fea6c57e96f303b3d381085e4ab",
+    "tests/analyze_pause_resume.py": "d388ab6f9f6860470d55d57fffc78d001abdbf3c79797bd163791d469a049d33",
+    "tests/live-record-check.pd": "b25281eec52fca32286f2ebefb044e08d469f28e4e65b73880168f65df659777",
+    "tests/instant-reverse-check.pd": "0f980e980ef4944e7ab2456a1b6f43774e1a9db91f67346037909ac8cefb18dd",
+    "tests/bounded-player-capture.pd": "77c73f7e816b61a312a417383a896b28eb2a76df1853d842003853de5311ec66",
+    "tests/fixtures/pause-resume.txt": "9e494eff34c360755b10ef9e7d70aaf79f6c1ecc9ac95e7a7cc33e5af5414112",
+    "tests/fixtures/pause-boundaries.txt": "629b7f6533ae78ab7b88cbaa781cb6df69b3f57448c4d54b795bd6d27219bf1c",
+    "tests/fixtures/instant-reverse.txt": "95bb99b37b085e0da641288bc4dd3d8f57b38122911cc59ff9b686229f77b330",
+    "tests/fixtures/stop-restart.txt": "b63071a93d486ba7c0fa5238a2ae1703b3b939f1273a466a8f8c9760ff370951",
+    "tests/fixtures/stop-constant-48.wav": "7dd25b8680bba53bcbb646e4549670546966fd3357f199086ecccdfee3c9cb61",
+    "tests/fixtures/stop-wave-48.wav": "35aab01dd8331051158fdee27a0409f3d72a58f3297f80a373dae81a083bdddc"
+  },
+  "runtime": {
+    "app": "plugdata",
+    "version": "0.9.4 nightly",
+    "build": "98ae0f78b",
+    "pd": "0.56.3",
+    "executable_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+    "backend": "CoreAudio",
+    "input_output_device": "8A",
+    "sample_rate": 48000,
+    "hardware_frames": 512,
+    "oversampling": "1x",
+    "native_settings_observed": true
+  },
+  "capture_setup": {
+    "track": 1,
+    "track_gain": 0.548,
+    "master_gain": 0.75,
+    "global_output_diagnostics": 0,
+    "global_output_restored": 0.9,
+    "deadline_ms": 7000,
+    "stopped_messages_observed_each_retained_run": true,
+    "player_ids": {
+      "baseline": 14479,
+      "failed-selection": 15152,
+      "failed-slice": 15488,
+      "candidate": 15824
+    },
+    "stop_regression_initial_slew_ms": 400
+  },
+  "channel_order_one_based": {
+    "player_mixer": [
+      "generated source L (bus off)",
+      "generated source R (bus off)",
+      "player L",
+      "player R",
+      "post-master L",
+      "post-master R"
+    ],
+    "readers": [
+      "player L",
+      "player R",
+      "master frame",
+      "rate magnitude",
+      "reader 0 frame",
+      "reader 0 gain",
+      "reader 1 frame",
+      "reader 1 gain",
+      "reader 0 DSP flag",
+      "reader 1 DSP flag"
+    ]
+  },
+  "listening": {
+    "status": "pending",
+    "capture": "local-input/candidate-music-listen-48.wav",
+    "gain": 0.9,
+    "normalization": false
+  },
+  "restoration": {
+    "live_buffers": [
+      {
+        "id": 1,
+        "content_frames": 96000,
+        "capacity_frames": 96000,
+        "before_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+        "after_sha256": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f"
+      },
+      {
+        "id": 2,
+        "content_frames": 96000,
+        "capacity_frames": 96000,
+        "before_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+        "after_sha256": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85"
+      },
+      {
+        "id": 3,
+        "content_frames": 60032,
+        "capacity_frames": 192000,
+        "before_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96",
+        "after_sha256": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+      }
+    ],
+    "selected": "live 2",
+    "next_lengths_seconds": [
+      2,
+      2,
+      4
+    ],
+    "original_samples_1_2_restored": true,
+    "temporary_capture_taps_removed": true,
+    "recording_disarmed": true,
+    "playback_stopped": true
+  },
+  "limits": [
+    "48 kHz host only; 44.1 kHz imported drum file tested at this host rate.",
+    "No recording Pause/Resume, tape-direction slew, DAW lifecycle, multitrack isolation or exact full-loop timing acceptance.",
+    "Previously demonstrated region-bound edit/slice collision remains outside this repair.",
+    "No universal click-free claim."
+  ],
+  "setup_notes": [
+    "First candidate setup addressed a saved-open canvas instead of main; selected Lua objects received vis/pd messages. Discarded and reloaded before candidate audio captures.",
+    "Fresh take metadata restoration initially omitted the console float selector; actual console errors were inspected and all content metadata corrected and verified before handoff."
+  ],
+  "evidence_sha256": {
+    ".gitignore": "b84f3971fe53f2d7dfbf8edb4f48c78b7d3eb846c549d8ea63b17878572458d0",
+    "baseline-constant-events.txt": "79a36fe04fad8dc83b7b4b54845ad05ee46f3ba0ceba74c1eccabf16dadf908a",
+    "baseline-constant-player-mixer-48.npz": "5001815e809da7188cdb988fe9eab3b454f5a95f8c31cfcdeb709fe9a04df9e9",
+    "baseline-constant-readers-48.npz": "6b791558364b0d56873f3473bbb653faabdeb15b1edbf12bd900f31502b2b4e4",
+    "baseline-wave-events.txt": "79a36fe04fad8dc83b7b4b54845ad05ee46f3ba0ceba74c1eccabf16dadf908a",
+    "baseline-wave-player-mixer-48.wav": "1c9dee44fb504da1098c9f8af344b2a970880a7fc6281518e245c4089f2cad67",
+    "baseline-wave-readers-48.npz": "3966b010efa198ddb45ad64f9889decef98e6ffd65e4dd07f9a9e48788bce2f5",
+    "candidate-boundaries-events.txt": "c7dc6bbdd269f64621535d6a17c2578aa793fb27913ac6bb950785b902249f4d",
+    "candidate-boundaries-player-mixer-48.npz": "33e201be681e656d44f01011422bf9e63ef9eebac468ad11e542e17bad89223d",
+    "candidate-boundaries-readers-48.npz": "04a11819c44011950917c3223bbcde88dd4f5081c0f846de73207f521faa942b",
+    "candidate-constant-events.txt": "7c8856681debe657bb11f7eeb524b572ea8fb38e91fd4f5a71b145b477fd8854",
+    "candidate-constant-player-mixer-48.npz": "10cd28547fbc5385ee668279fa07aba6ca425da8f2ec02a0cfd764dce26315b7",
+    "candidate-constant-readers-48.npz": "b1e758a94bcb55d30512567d62b9e8ab0e9b75149b302441a3ce476b02956b71",
+    "candidate-music-events.txt": "6af049296a716d8e2c647bd7d5adaece3cd6e35cb8145f3065891fbcd63b1f74",
+    "candidate-reverse-events.txt": "444b1627c5b7f35ece671aa63c57c274fd3f8a841fade7e57c6c1547f1f723ee",
+    "candidate-reverse-player-mixer-48.npz": "adc9982f0d81e10f9feda9035cfc6a2af5a135dc0ad23f76a43db989ec393009",
+    "candidate-reverse-readers-48.npz": "fff06ab4167d9f451c7c810a2ca73256e9a797e5d6eca02d097d941255dd7c20",
+    "candidate-stop-events.txt": "5c262ad168402664b3b4831f3bdb489a5b7acecb41d5ca32d12784efc9aa72b3",
+    "candidate-stop-player-mixer-48.npz": "99515c0c96bd7bee3da0306e92263a51d51a113e93c4bc869b487d88464359c3",
+    "candidate-stop-readers-48.npz": "b4eda5949fa45a11f77beef253fba16c4e5a0cef5dc391341641fb7a4bf86153",
+    "candidate-wave-events.txt": "7c8856681debe657bb11f7eeb524b572ea8fb38e91fd4f5a71b145b477fd8854",
+    "candidate-wave-player-mixer-48.wav": "483634ca4c5fe2e57da02c476d1225eac56b4fa5fbe858694096995b81266ffe",
+    "candidate-wave-readers-48.npz": "c6e5c712f8569953b6d646e9bc73056cfcb8478aa03cde97a6bfc1be996c350c",
+    "capture-compression.json": "f8c76c3d03fa5c08a7e4bf042a29f3eb093be74f38e0c3e0c2cdf8762a3e3a3e",
+    "checks-48.json": "3b6ff8522a539684eb7c2badd37f1065444328131d2d5cf4741ca9a26355a66f",
+    "failed-selection-events.txt": "bad9a6ba4b24ef36d9430f5c30104208d3ec30efbc567e2f7fd540cb3026aaf6",
+    "failed-selection-player-mixer-48.npz": "4e5722692c8b620d546632b14f57a5c813b32c054abf22f7c95b9f648071abec",
+    "failed-selection-readers-48.npz": "120d895f5aa005b084b97192b62f10722044bcd7594b990be6b8641177d66cd1",
+    "failed-selection-source.pd.txt": "89ee0f41e69e35ebcf6c402f363201e4d10083505c05516fb723b35d976f131f",
+    "failed-slice-events.txt": "3ffe312dd9fc9f8ee942798638d0c0e7ad3ac4ad1aac7efe15782bf04fa4215e",
+    "failed-slice-player-mixer-48.npz": "023628942e9004cbac4d4a64276ed4e8feb4d25506434fa608cb5e1670f484ed",
+    "failed-slice-readers-48.npz": "3f74213f8b11f10135a1cb4f2319a4c8b83d4c5fc71c634eb96e399633480bce",
+    "failed-slice-source.pd.txt": "36d0c4d4b8f1b54051f4ca2f04c8fe2f518768eb8f2a80927aa6947979a7d47c",
+    "local-input/candidate-music-listen-48.wav": "d344eeb732b80c9f096033443c79f9b3df364d8c304cfde0b9778bdb3b1ac2c7",
+    "local-input/candidate-music-player-mixer-48.wav": "626f8dddf07dc1d18372ee0e722e32f0d740aac4bf42f347e6d7a03611c06672",
+    "local-input/candidate-music-readers-48.wav": "11c2325fd4eb67574d7fa3b06ce554300ee40e503af8072f864dbcc1246cc435",
+    "failed-slice-score.txt": "55028639451139955ec578148ebf8e11a34f7230e3677043fb8bbdde76ce9599"
+  },
+  "checks": {
+    "passed": true,
+    "total_with_local_music": 27,
+    "public": 25,
+    "listening": "pending"
+  },
+  "failed_candidate_scores": {
+    "failed-selection": "tests/fixtures/pause-resume.txt",
+    "failed-slice": "docs/evidence/pause-resume/failed-slice-score.txt"
+  }
+}

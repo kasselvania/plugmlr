@@ -25,12 +25,18 @@ uses the current ramp position when Direction Change is pressed, eliminating the
 old block-snapshot jump. It keeps the existing readers and loop/slice crossovers.
 Native tests cover all five speeds, rapid turns, loop/fade boundaries and a file/host
 sample-rate mismatch; the user heard clean direction changes in the musical capture.
-Tape-direction slew and Pause transitions remain open; the speed follow-up is below.
+Tape-direction slew remains open; speed and Pause follow-ups are below.
 
 The [speed-slew position repair](docs/STATUS.md#speed-slew-position-follow-up) now
 uses that same current-position calculation for rate reports. Paired native
 captures remove the oversized position jumps during glide; the user heard clean
-musical glides/reversals. Pause and simultaneous region/slice changes remain open.
+musical glides/reversals. Simultaneous region/slice changes remain open.
+
+The [Pause/Resume candidate](docs/STATUS.md#pauseresume-follow-up) fades the existing
+readers before holding the current position, then restarts with their play fade.
+Rapid toggles queue/cancel Resume; Stop, buffer switching and a new slice cancel
+stale pause cleanup. The existing slice gesture resumes a paused track. Actual
+48 kHz player/mixer checks cover these transitions; listening is recorded separately.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
