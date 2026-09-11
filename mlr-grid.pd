@@ -34,6 +34,10 @@
 #X obj 800 65 r mlr-grid-open;
 #X msg 800 100 vis 1;
 #X obj 800 135 s \$0-grid-window;
+#X obj 800 200 route attached detached;
+#X msg 800 240 1;
+#X msg 890 240 0;
+#X obj 800 280 s mlr-grid-connected;
 #X connect 1 0 6 0;
 #X connect 6 0 4 3;
 #X connect 6 1 3 0;
@@ -67,3 +71,8 @@
 #X connect 4 2 27 0;
 #X connect 32 0 33 0;
 #X connect 33 0 34 0;
+#X connect 4 2 35 0;
+#X connect 35 0 36 0;
+#X connect 35 1 37 0;
+#X connect 36 0 38 0;
+#X connect 37 0 38 0;

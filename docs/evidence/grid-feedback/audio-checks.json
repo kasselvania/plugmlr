@@ -1,0 +1,42 @@
+{
+  "checks": {
+    "exact_16_seconds_at_48k": true,
+    "finite": true,
+    "master_stereo_active": true,
+    "no_clipping": true,
+    "all_playing_seconds_active": true,
+    "stopped_tail_silent": true
+  },
+  "passed": true,
+  "master_rms_by_second": [
+    0.11562109738588333,
+    0.08555838465690613,
+    0.08790619671344757,
+    0.11774250864982605,
+    0.11732186377048492,
+    0.08263255655765533,
+    0.08893068879842758,
+    0.1169738695025444,
+    0.11889194697141647,
+    0.08252646028995514,
+    0.08249508589506149,
+    0.11953980475664139,
+    0.11579816788434982,
+    0.08530636876821518,
+    0.1169801875948906,
+    2.1298614228726365e-05
+  ],
+  "channel_peaks": [
+    0.9759472608566284,
+    0.9804133176803589,
+    0.4391762614250183,
+    0.44118601083755493
+  ],
+  "maximum_adjacent_steps": [
+    0.9207057952880859,
+    0.9203681349754333,
+    0.41431763768196106,
+    0.4141656756401062
+  ],
+  "scope": "Actual original player and post-master taps. Scheduled original row_1 cuts at 4/8/12 seconds; reverse at 10; Stop at 15. Not a claim of universally click-free playback or a recording of physical key gestures."
+}

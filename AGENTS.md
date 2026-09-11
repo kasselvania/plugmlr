@@ -116,3 +116,10 @@
   Preserve original row mapping; a connector test does not accept playback LEDs
   or audible Grid slicing. Run tests/check_grid_adapter.py and the Lua boundary
   checks, then inspect actual native session and physical input/output separately.
+
+- Playback Grid feedback is receive-only: export existing player state, render
+  whole-content columns on the two existing display rows, and gate output on
+  attachment. Keep tests/check_grid_feedback.py as the current source boundary;
+  check_grid_adapter.py retains the earlier connector-only checkpoint comparison.
+  Scheduled row commands and numerical audio checks do not prove physical key
+  gestures or physical moving LEDs.
