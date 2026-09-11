@@ -25,7 +25,7 @@
     "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
   },
   "open": [
-    "Human assessment of usability"
+    "Broader hands-on usability beyond layout approval"
   ],
   "limits": [
     "Other player instances were not reloaded during the native trial",
@@ -41,5 +41,10 @@
     "player-panel-state.pd": "efeffb7682a78e29dfc72ba005a88e05560b25e93c39a59bbb936182e07941d7",
     "clock-display-state.pd": "fc41c9a15f9e1d766cf5c9c546970f71c1c56b9426a77aa0fe870c0792c39549",
     "tests/check_player_panel.py": "7b45f62011b9664d0e09e04c22222201af5803ecf9398dd5a78cda8c5d197e73"
+  },
+  "user_feedback": {
+    "date": "2026-09-11",
+    "quote": "Yup! this looks great",
+    "scope": "Approval of the visible layout; no additional functional, audio, recording or DAW acceptance inferred"
   }
 }

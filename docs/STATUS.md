@@ -54,11 +54,12 @@ connection lines and nested DSP/control objects against merged base
 and confirms the display adapter cannot send engine commands. No new rendered
 audio acceptance or recording validation is claimed for this UI slice.
 
-**Open:** the user's assessment of whether this layout makes the instrument
-understandable. Native reset-menu selection and Off were verified in the final
+**User feedback (2026-09-11):** “Yup! this looks great” approves the visible
+layout. Broader hands-on usability remains unassessed; this is not additional
+audio, recording or DAW acceptance. Native reset-menu selection and Off were verified in the final
 clean view. Set speed was also verified to update to 0.5 while stopped and back
 to 1 immediately, independently of the previous playback rate. This is
-an unmerged review candidate, not accepted usability. Other player instances were
+an unmerged review candidate with layout approval. Other player instances were
 not reloaded during this trial. Historical diagnostics remain accessible; do not
 save temporary diagnostic canvas state over repository files. The original
 player now has 553 root objects, so attached test helpers start at index 553.

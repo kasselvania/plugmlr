@@ -19,7 +19,8 @@ the shared clock; Play controls the selected player. Reset reports Off, waiting
 for Play/Resume/clock, or Counting. Its flash means a reset request, not a claim of
 sample-exact execution. Tempo fitting remains unfinished. Wiring stays available
 in `sample_player_rebuild.pd`; the new view does not instantiate another player.
-Native reset-menu selection is verified. Human usability assessment remains open.
+Native reset-menu selection is verified. The user approved the layout on
+2026-09-11; broader hands-on usability remains unassessed.
 
 **Slice controls:** each player has a Quantize checkbox and Slice grid menu.
 Checked means queued slices wait for a matching clock tick; unchecked means
