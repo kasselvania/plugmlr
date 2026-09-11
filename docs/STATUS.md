@@ -7,6 +7,48 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Merged playback checkpoint and timing review
+
+PRs #14, #15, #16 and #17 were merged in order with merge commits, retaining
+all branches and the failed R1 stash. Main is
+`eccf293ad495bde92b990ac269bfd978ce26a884`. Its file tree is identical to tested
+head `443f7a4e7685dff248297a44f814e92bf7974f28`; no merge resolution changed code.
+GitHub reported no configured CI checks. Acceptance is the retained native
+capture/numerical evidence and user listening, not a hosted CI claim.
+
+Next review branch: `codex/slice-timing-review`, from that main. No playback code
+has changed in this review. Native original player remains visible, stopped on
+Live 2, with the user's takes intact and no recording started. The UI shows the
+Key/Input Quantizer and Beat Reset menus; presence is not implementation evidence.
+
+Actual source trace at this base (root object indexes in `sample_player_rebuild`):
+
+| Path | Connected logic | Gap / next repair |
+|---|---|---|
+| Immediate slice | `row_$1` (148) → `switch` inlet 1 (156) → `selected_slice` (171) | Keep the existing musical slice policy and pending-cut fade protection. |
+| Quantized slice | row → `t b f` (155) → stored slice (151), then pending flag (143). `ppq` → modulo (149) → zero → trigger (146), output stored slice then clear pending. | The new slice enters storage's **hot inlet**. A second row event can pass its value through the already-open pending gate before a tick. Store without output; dispatch only from the tick. |
+| Pending lifecycle | Pending flag reset at load and after a matching tick. | No explicit Stop, buffer-switch or quantizer-mode cancellation reaches this storage. A stale key can survive transport changes. Add cancellation deliberately and test it. |
+| Mode | `$1-quantizer` → `sel 1` → switch 1 immediate / 2 quantized. A separate loadbang chooses immediate. | Value 1 means bypass although the main label says Quantize. Main toggle starts at 0 while player defaults to immediate. Resolve displayed state and public compatibility together; existing test scores use 1 for immediate. |
+| Subdivision | Key menu index → `2^index` → modulo divisor. Loadbang writes raw 4 ticks. | At 16 ticks/quarter the menu maps 1/64..1 note to 1..64 ticks; default raw 4 means 1/16 note. Visible menu initially shows its placeholder, not the effective subdivision. |
+| Reset interval | Reset menu index + 1 → integer × 64 → `ppq` modulo → zero → hidden enable toggle → `$0-reset-sync`. | No receiver for this symbol exists in the active player. Enable toggle defaults off and is buried outside the musical panel. At 16 ticks/quarter, 64 ticks is one 4/4 bar; the label does not state bars. User choice of reset destination is pending. |
+| Internal clock | `mlr.pd` → `pd clock-system`: tempo → ×16 → `clock` → counter → source switch → `ppq`. `global-transport` feeds the clock's run toggle. | No sender for `global-transport` appears in the current application. A standalone UI start/stop/reset path needs a separate explicit contract. Do not mistake the internal label for a running clock. |
+| DAW clock | `playhead` outlet 8 → change → unpack → floor(PPQ×16) → source switch. | Wired, not newly tested. Clock source switching, seeks, loops and transport lifecycle remain open; do not claim host sync. |
+
+The alternative `sample-playback.pd` has a local `reset-sync` receiver alongside
+its loop trigger. It shows prior reset intent, but does not supply the missing
+receiver to `sample_player_rebuild` because their dollar-zero namespaces differ.
+No alternative player was imported and no new clock engine is proposed.
+
+Recommended next bounded implementation: isolate the existing slice scheduler,
+fix latest-key storage and cancellation, reconcile the checkbox/default display,
+and test two keys before a tick, multiple tick subdivisions, missing clock,
+Stop/Pause/buffer changes and commands coincident with loop fades. Capture actual
+player/readers/post-master output with automatic deadlines as before. Beat Reset
+should then reuse that same cut interface, once its musical destination is agreed.
+Question sent to the user: restart the selected loop every N bars only while
+playing, entering its start forward/end reverse, or use full-sample boundaries?
+No reset behavior has been invented or implemented while that choice is pending.
+
 ## Overlapping cut handoffs (repaired candidate)
 
 Repair contract, before implementation: retain the same two readers and existing
