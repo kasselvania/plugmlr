@@ -1,0 +1,102 @@
+[
+  {
+    "wav": "baseline-stress-player-mixer-48.wav",
+    "wav_sha256": "b35a5b2b1de9368f20502e2b5fa5b3bf5d28af291e68ca21d9d2736e61d69921",
+    "npz": "baseline-stress-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "baseline-stress-readers-48.wav",
+    "wav_sha256": "cfcf49456f15770a927c71c744ad90c7db97a4ab5572c47685b827bcbe41fbd3",
+    "npz": "baseline-stress-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "baseline-wave-readers-48.wav",
+    "wav_sha256": "5e37f0bba2b095db829fc23368ca6a2b7ea3f00d77675a5c809b425582abc389",
+    "npz": "baseline-wave-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-constant-player-mixer-48.wav",
+    "wav_sha256": "67600d92cdaea015bca2f3679b309ceaefa97e2c1d3965ea520336a5d8e5c485",
+    "npz": "candidate-constant-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-constant-readers-48.wav",
+    "wav_sha256": "acefd3007fff0eaba3381794870e8f4df74d62598bfd04e6d7858aa522159972",
+    "npz": "candidate-constant-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-stop-player-mixer-48.wav",
+    "wav_sha256": "4280d32806bc1827cfdf511a45befc3448585e54a59d0f0c1e69556db839476b",
+    "npz": "candidate-stop-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-stop-readers-48.wav",
+    "wav_sha256": "794dd2b96cb290819ca3fa61a189524d7a24eebef7c9cef68f51df9247fb4f74",
+    "npz": "candidate-stop-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-stress-player-mixer-48.wav",
+    "wav_sha256": "9797e6a011e6f887a7492fe7a39a91992d48db4b4d9ac6a677df432e543cabe0",
+    "npz": "candidate-stress-player-mixer-48.npz",
+    "shape": [
+      335918,
+      6
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-stress-readers-48.wav",
+    "wav_sha256": "a05f526a92c6ccd3097ef7c36906b69cfa005ee96b0499ecff57dd6a5f5d8ebb",
+    "npz": "candidate-stress-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  },
+  {
+    "wav": "candidate-wave-readers-48.wav",
+    "wav_sha256": "f3c11539e8cb99cd5a904603e0690978ae37e4c4cf0fa002bf1d876377669269",
+    "npz": "candidate-wave-readers-48.npz",
+    "shape": [
+      335918,
+      10
+    ],
+    "exact_decoded_samples": true
+  }
+]
