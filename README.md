@@ -12,7 +12,7 @@ See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remainin
 work and links to the retained numerical/listening evidence. Older STATUS sections
 record what was true at that point in the repair history.
 
-**Player view (review candidate):** open `mlr.pd`, then click **Open player 1**.
+**Player view:** open `mlr.pd`, then click **Open player 1**.
 The dedicated view keeps the existing player controls together with transport,
 direction, selected speed, clock source/BPM/count, and reset feedback. Run controls
 the shared clock; Play controls the selected player. Reset reports Off, waiting
@@ -22,7 +22,7 @@ in `sample_player_rebuild.pd`; the new view does not instantiate another player.
 Native reset-menu selection is verified. On 2026-09-11, the user approved the
 layout and successfully tested the internal clock and Beat Reset.
 
-**Tempo fit (review candidate):** enable **Fit** and set **Sample beats** to the
+**Tempo fit:** enable **Fit** and set **Sample beats** to the
 full sample's quarter-note length (1..64; four beats per 4/4 bar). At preset 1x,
 playback fits that length to the shared BPM. Presets .25/.5/2/4 multiply the fitted
 speed; **Target speed x** shows the resulting tape speed, including its pitch change.
@@ -65,6 +65,23 @@ names prevent isolated copies in one Pd environment. Playback now has bounded
 44.1/48 kHz and file/host-mismatch evidence, plus a two-player shared-buffer
 comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
 [host validation](docs/STATUS.md#host-and-instance-validation-review-candidate). Dependencies and the Monome suite connection are below.
+
+## Connect a Grid
+
+Initialize the pinned connection package after cloning or updating:
+`git submodule update --init --recursive`.
+
+Open `mlr.pd` and click **Grid_connection**. Choose the device, click **probe**,
+then **claim** when the console reports it free. Session shows `connected` only
+following the package's verified lease. Click **release** before closing or
+moving the Grid to another application. Discovery does not auto-claim; an existing
+owner is not automatically displaced. Details and failures appear in the console.
+
+The adapter retains the original musical mapping: physical rows 1–6 (zero-based)
+feed the original numbered row controls. It does not introduce a new Grid layout.
+Legacy LED messages are translated into the package's cached LED controls.
+Playback-position feedback still needs repair; hardware-global intensity below
+15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
 ## Run the original application
 

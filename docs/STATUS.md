@@ -7,6 +7,124 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid adapter review candidate — 2026-09-11
+
+`mlr.pd` now instantiates `mlr-grid 17879 17880 12002` in the original
+connector slot. Its original three wires are restored. The only other main-patch
+addition is the Grid_connection button. Exact comparison against merged audio
+checkpoint `ac8956e` verifies every original musical and DSP object/wire unchanged.
+The prior removal checkpoint below remains historical.
+
+The new package is a Git submodule at `dependencies/monome`, pinned to
+`18b489399d01a9178e4667b849ec4368d72533db`. This is the tested workbench
+recovery branch, not the package's older default branch. Use
+`git submodule update --init --recursive`; no installed service changes are needed.
+Qualified component paths keep this adapter on the pinned dependency. Discovery,
+identity registry, leases, renewal, release and LED caching stay in that package.
+
+The adapter has two ordinary-message inlets: legacy MLR LED messages; and session
+commands (including `select_index N`, zero-based). Its outlet preserves
+`/monome/grid/key x y state` and `/sys/size width height` for existing routes.
+`mlr-grid-compat.pd_lua` only converts messages: no DSP, sockets, timer or duplicate
+LED cache. It supports binary and level set/all/row/col/map messages, validates a
+whole command before emitting updates, and refuses non-LED messages including
+raw ownership changes. The historical binary set value 15 remains on/full.
+The old default intensity 15 is a no-op; other global intensity values report
+unsupported and must be replaced with per-LED levels. One historical Clear
+message without its leading slash is accepted. Detached LED requests are refused;
+MLR's initial clear therefore produces a visible grid_not_attached diagnostic.
+
+The visible panel exposes selection, Probe, Claim, Check, Release and Rescan,
+plus session state. It never auto-selects, claims or takes over. The session's
+second inlet supports the package's explicit commands for future adapters.
+Discovery/callback ports are explicit arguments; this main application uses
+17879/17880. Existing MLR global symbols still prevent multiple full applications
+in one Pd environment. Release before closing; abnormal closure relies on the
+package/daemon lease expiry, not a promised synchronous close handshake.
+
+Validation completed in native plugdata 0.9.4 executable SHA-256
+`86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e`:
+
+- Actual adapter in a silent simulator fixture: selection, probe, claim, size/key
+  translation, two opposite LED outputs and all-dark release to port zero.
+  Native output messages are retained in `evidence/grid-adapter/native-events.json`.
+- Physical MLR integration: selected m1000853 via native menu, probed free,
+  claimed verified_lease, and sent LEDs through the old `monome_in` input.
+  User confirmed both corner LEDs. Native observer saw keys (0,0) press/release,
+  then (2,1) press/release and exactly `row_1: 2`. Row zero did not dispatch a
+  musical row. No physical row_2 observation was obtained in this run.
+- Native Release produced darkened, detached and verified_lease_free. Main
+  Grid_connection button opens the panel. Temporary observer closed; simulator
+  stopped. MLR is left open with the Grid released.
+- Lua translation/rejection checks, four patch-index checks and exact unchanged
+  musical/DSP wiring check pass. These are separate from hardware observations.
+
+Remaining: playback-position LED publishers are still mismatched; no new audio
+capture, Grid-driven audible slicing acceptance, exhaustive manual LED panel,
+Arc, hotplug, Bitwig or full-application isolation result is claimed. Do not
+conflate the working connector with completed Grid musical UI.
+See `evidence/grid-adapter/observations.md` for repeat instructions.
+
+## Grid connector migration checkpoint — 2026-09-11
+
+PRs #23 and #24 are merged into main at
+`ac8956e291ab6aa1c8d7f5ab4c84334d4eec3c4a`. Their documented Bitwig and
+full-application isolation limits remain open. Older review-candidate language
+below records the pre-merge state.
+
+At the user's request, the open MLR patch was saved and closed. The native save
+contains UI serialization and reordered player objects; it is preserved in a
+separate stash named `Preserve native MLR save before connector migration
+2026-09-11`, rather than mixed into the reviewed audio changes. The rejected R1
+stash is still preserved separately.
+
+The old `monome-object` instance and its three incident wires are removed from
+`pd grid-input-output`; a text marker occupies its index so all other wires stay
+unchanged. Its source file had no other Pd/Lua references and is removed from
+the working tree (recoverable in Git). **MLR Grid input/output is temporarily
+disconnected.** Loading MLR no longer instantiates its old auto-claiming transport.
+This is connector removal, not completed new-package integration.
+
+Validation: an exact comparison against the merged base confirms that only
+the connector object and its three wires changed in mlr.pd. A fresh native
+load with an emptied console and errors visible produced no error entries;
+normal messages were restored afterward. Port 12289 had no listener with
+the edited MLR open. MLR was then closed. No playback/recording test was
+started for this transport removal.
+
+Physical workbench check: native plugdata 0.9.4 executable SHA-256
+`86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e`,
+installed lease candidate SerialOSC `7187832`, Grid `m1000853`, size 16×8.
+Initially the old MLR destination (12289) prevented a normal claim; the user's
+first no-lights report corresponds to takeover_required/grid_not_attached.
+After explicit authorization, closing MLR and takeover/release produced
+verified_lease_free. A fresh workbench selected, probed and claimed the Grid.
+The user confirmed both corner LEDs; the native console showed press/release
+pairs at (11,6), (7,3), (5,4), (15,7). Final release reported darkened,
+detached and verified_lease_free. The workbench was closed before this edit.
+No services were restarted or installed. This does not accept DAW/hotplug behavior.
+
+Connection package fixes and evidence are on
+`kasselvania/PlugData-Monome-Devices`, branch
+`codex/workbench-selection-recovery`, commit `18b4893`.
+
+Next adapter boundary, traced from actual source:
+
+- Preserve the existing `/monome/grid/key x y state` and `/sys/size cols rows`
+  input contracts while consuming the new package's normalized events.
+- The musical path filters presses and routes physical rows 1–6 to `row_1`
+  through `row_6`; rows 0 and 7 have no active musical route here. Do not
+  silently remap tracks while replacing the connection.
+- Legacy LED setters, whole-grid, row/column bitmap, level map and intensity
+  controls are still in the subpatch. Translate or explicitly retire them at
+  the adapter boundary; never send their raw commands around lease ownership.
+- Playback feedback includes `1-playbar_data_i` and `2-playhead`, which must
+  be reconciled with the original player's scoped publisher before claiming
+  a working play-position display. Existing controls are not validation.
+- Device selection, probe, claim and release must remain explicit in a visible
+  connection panel. Registry/session/renewal/cache logic stays in the package;
+  MLR keeps musical mapping. No replacement engine or new Grid layout is needed.
+
 ## Host and instance validation (review candidate)
 
 Base: accepted tempo-fit PR #23 head `49ad1c2b86f0cc70478610b1866bca792d211a7a`.
