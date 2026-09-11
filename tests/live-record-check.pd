@@ -63,6 +63,18 @@
 #X obj 25 1220 list prepend \$1-playbar_data_i;
 #X obj 25 1260 s \$0-log;
 #X msg 1080 475 rewind;
+#X obj 415 1300 r \$1-selected_slice;
+#X obj 415 1340 list prepend selected_slice;
+#X obj 415 1380 s \$0-log;
+#X obj 805 1300 r ppq;
+#X obj 805 1340 list prepend ppq;
+#X obj 25 1300 r quantizer-check-grid;
+#X obj 25 1340 s \$1-key_quantize_selection;
+#X connect 64 0 65 0;
+#X connect 65 0 66 0;
+#X connect 67 0 68 0;
+#X connect 68 0 66 0;
+#X connect 69 0 70 0;
 #X connect 2 0 4 0;
 #X connect 3 0 5 0;
 #X connect 4 0 6 0;

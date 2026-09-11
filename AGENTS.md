@@ -61,6 +61,10 @@
   premature mixer closure on paused Apply. Preserve the pending-cut handoff wait
   and separate pause reposition from cleanup; retain whole-transition checks in
   `analyze_cut_handoff.py` rather than excluding these failure windows.
+- Quantized slice input writes the stored index without output; only matching
+  ppq ticks dispatch it. Stop/Pause, selection and mode/grid messages clear pending.
+  Preserve legacy mode 1=immediate until a deliberate UI/public-interface change.
+  Controlled tick tests are not autonomous-clock or DAW-sync acceptance.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP
