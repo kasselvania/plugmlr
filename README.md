@@ -66,10 +66,22 @@ names prevent isolated copies in one Pd environment. Playback now has bounded
 comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
 [host validation](docs/STATUS.md#host-and-instance-validation-review-candidate). Dependencies and the Monome suite connection are below.
 
-**Grid migration:** the old auto-connecting Monome object has been removed.
-Grid control in `mlr.pd` is temporarily disconnected while its existing musical
-wiring is adapted to the lease-aware connection package. Audio controls remain
-available. See the [migration checkpoint](docs/STATUS.md#grid-connector-migration-checkpoint--2026-09-11).
+## Connect a Grid
+
+Initialize the pinned connection package after cloning or updating:
+`git submodule update --init --recursive`.
+
+Open `mlr.pd` and click **Grid_connection**. Choose the device, click **probe**,
+then **claim** when the console reports it free. Session shows `connected` only
+following the package's verified lease. Click **release** before closing or
+moving the Grid to another application. Discovery does not auto-claim; an existing
+owner is not automatically displaced. Details and failures appear in the console.
+
+The adapter retains the original musical mapping: physical rows 1–6 (zero-based)
+feed the original numbered row controls. It does not introduce a new Grid layout.
+Legacy LED messages are translated into the package's cached LED controls.
+Playback-position feedback still needs repair; hardware-global intensity below
+15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
 ## Run the original application
 

@@ -417,7 +417,7 @@
 #X obj -203 1487 s rows;
 #X obj -260 1487 s cols;
 #X obj -237 1306 s keys;
-#X text -131 1347 Grid connector removed - adapter pending;
+#X obj -131 1347 mlr-grid 17879 17880 12002;
 #X obj -131 1383 osc.route /monome/grid/key;
 #X obj -260 1383 osc.route /sys/size;
 #X obj -260 1417 unpack f f;
@@ -524,6 +524,9 @@
 #X obj -119 1728 route 1;
 #X connect 0 0 4 0;
 #X connect 1 0 3 0;
+#X connect 2 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 0 8 0;
 #X connect 7 0 5 0;
 #X connect 7 0 84 0;
 #X connect 8 0 9 0;
@@ -624,6 +627,7 @@
 #X obj 300 360 standalone-clock-panel;
 #X obj 660 360 bng 30 250 50 0 1-open-player-view empty Open_player_1 36 15 0 14 #e3dfd9 #333333 #333333;
 #X obj 660 410 clock-display-state;
+#X obj 660 460 bng 30 250 50 0 mlr-grid-open empty Grid_connection 36 15 0 14 #e3dfd9 #333333 #333333;
 #X connect 33 0 35 0;
 #X connect 34 0 36 0;
 #X connect 36 0 33 0;

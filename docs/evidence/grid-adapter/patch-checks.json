@@ -1,0 +1,34 @@
+[
+  {
+    "file": "mlr.pd",
+    "canvases": 6,
+    "objects": 382,
+    "connections": 243,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "mlr-grid.pd",
+    "canvases": 1,
+    "objects": 35,
+    "connections": 33,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/grid-adapter-check.pd",
+    "canvases": 1,
+    "objects": 11,
+    "connections": 10,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/grid-routing-observer.pd",
+    "canvases": 1,
+    "objects": 14,
+    "connections": 7,
+    "errors": [],
+    "native_load_or_audio_test": false
+  }
+]

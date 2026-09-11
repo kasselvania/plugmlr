@@ -7,6 +7,64 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid adapter review candidate — 2026-09-11
+
+`mlr.pd` now instantiates `mlr-grid 17879 17880 12002` in the original
+connector slot. Its original three wires are restored. The only other main-patch
+addition is the Grid_connection button. Exact comparison against merged audio
+checkpoint `ac8956e` verifies every original musical and DSP object/wire unchanged.
+The prior removal checkpoint below remains historical.
+
+The new package is a Git submodule at `dependencies/monome`, pinned to
+`18b489399d01a9178e4667b849ec4368d72533db`. This is the tested workbench
+recovery branch, not the package's older default branch. Use
+`git submodule update --init --recursive`; no installed service changes are needed.
+Qualified component paths keep this adapter on the pinned dependency. Discovery,
+identity registry, leases, renewal, release and LED caching stay in that package.
+
+The adapter has two ordinary-message inlets: legacy MLR LED messages; and session
+commands (including `select_index N`, zero-based). Its outlet preserves
+`/monome/grid/key x y state` and `/sys/size width height` for existing routes.
+`mlr-grid-compat.pd_lua` only converts messages: no DSP, sockets, timer or duplicate
+LED cache. It supports binary and level set/all/row/col/map messages, validates a
+whole command before emitting updates, and refuses non-LED messages including
+raw ownership changes. The historical binary set value 15 remains on/full.
+The old default intensity 15 is a no-op; other global intensity values report
+unsupported and must be replaced with per-LED levels. One historical Clear
+message without its leading slash is accepted. Detached LED requests are refused;
+MLR's initial clear therefore produces a visible grid_not_attached diagnostic.
+
+The visible panel exposes selection, Probe, Claim, Check, Release and Rescan,
+plus session state. It never auto-selects, claims or takes over. The session's
+second inlet supports the package's explicit commands for future adapters.
+Discovery/callback ports are explicit arguments; this main application uses
+17879/17880. Existing MLR global symbols still prevent multiple full applications
+in one Pd environment. Release before closing; abnormal closure relies on the
+package/daemon lease expiry, not a promised synchronous close handshake.
+
+Validation completed in native plugdata 0.9.4 executable SHA-256
+`86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e`:
+
+- Actual adapter in a silent simulator fixture: selection, probe, claim, size/key
+  translation, two opposite LED outputs and all-dark release to port zero.
+  Native output messages are retained in `evidence/grid-adapter/native-events.json`.
+- Physical MLR integration: selected m1000853 via native menu, probed free,
+  claimed verified_lease, and sent LEDs through the old `monome_in` input.
+  User confirmed both corner LEDs. Native observer saw keys (0,0) press/release,
+  then (2,1) press/release and exactly `row_1: 2`. Row zero did not dispatch a
+  musical row. No physical row_2 observation was obtained in this run.
+- Native Release produced darkened, detached and verified_lease_free. Main
+  Grid_connection button opens the panel. Temporary observer closed; simulator
+  stopped. MLR is left open with the Grid released.
+- Lua translation/rejection checks, four patch-index checks and exact unchanged
+  musical/DSP wiring check pass. These are separate from hardware observations.
+
+Remaining: playback-position LED publishers are still mismatched; no new audio
+capture, Grid-driven audible slicing acceptance, exhaustive manual LED panel,
+Arc, hotplug, Bitwig or full-application isolation result is claimed. Do not
+conflate the working connector with completed Grid musical UI.
+See `evidence/grid-adapter/observations.md` for repeat instructions.
+
 ## Grid connector migration checkpoint — 2026-09-11
 
 PRs #23 and #24 are merged into main at

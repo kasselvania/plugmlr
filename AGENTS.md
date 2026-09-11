@@ -109,3 +109,10 @@
   shadow unqualified names. Two original player components sharing a buffer are not
   two isolated full applications. Bitwig's visible editor currently cannot be read
   by the UI tool; do not turn that access gap into an audio failure or acceptance claim.
+
+- Grid migration uses the pinned dependencies/monome submodule. Keep leases,
+  discovery and LED cache in that package; mlr-grid-compat only translates the
+  original message boundary. Do not bypass session ownership with raw OSC.
+  Preserve original row mapping; a connector test does not accept playback LEDs
+  or audible Grid slicing. Run tests/check_grid_adapter.py and the Lua boundary
+  checks, then inspect actual native session and physical input/output separately.
