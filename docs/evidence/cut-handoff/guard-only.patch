@@ -1,0 +1,52 @@
+--- a/sample_player_rebuild.pd
++++ b/sample_player_rebuild.pd
+@@ -1500,7 +1500,7 @@
+ #X obj 2214 337 s \$0-crossfade_control_messages;
+ #X msg 2214 307 slice 1;
+ #X obj 2185 209 t b f;
+-#X obj 2107 238 delay 1;
++#X obj 2107 238 pending-cut-delay \$0;
+ #X msg 1223 1470 \$1 \, \$2 \$3;
+ #X floatatom 1188 1323 5 0 0 0 - - - 12;
+ #X obj -1192 -144 r \$0-dir_change;
+@@ -1679,7 +1679,7 @@
+ #X msg 30 305 1;
+ #X obj 690 230 s \$0-slice-loop-allowed;
+ #X obj 480 270 r \$0-stop-fade;
+-#X text 30 410 While the existing 1 ms slice is pending it owns the next jump. Stop releases that ownership.;
++#X text 30 410 While a slice is pending it owns the next jump. Stop releases that ownership.;
+ #X obj 260 245 f;
+ #X obj 470 245 f;
+ #X obj 690 65 t b b b;
+--- /dev/null
++++ b/pending-cut-delay.pd
+@@ -0,0 +1,29 @@
++#N canvas 100 80 800 570 12;
++#X obj 30 60 inlet;
++#X obj 30 100 route stop;
++#X msg 30 145 stop;
++#X obj 190 145 bang;
++#X obj 190 220 timer;
++#X obj 190 260 expr max(1 \, 12-$f1);
++#X obj 190 310 delay;
++#X obj 190 355 outlet;
++#X obj 400 60 r \$1-crossfade_playhead;
++#X obj 400 100 r \$1-crossfade_control_messages;
++#X obj 400 145 route play;
++#X obj 400 185 bang;
++#X text 30 15 One pending cut. Argument: original player dollar-zero.;
++#X text 30 415 Wait out the prior 9 ms fade plus two 64-frame blocks at 44.1/48 kHz.;
++#X text 30 455 Keep 1 ms latency when idle. New requests replace the same delay and destination.;
++#X text 30 495 Stop cancels without resetting the preceding handoff timestamp.;
++#X connect 0 0 1 0;
++#X connect 1 0 2 0;
++#X connect 2 0 6 0;
++#X connect 1 1 3 0;
++#X connect 3 0 4 1;
++#X connect 4 0 5 0;
++#X connect 5 0 6 0;
++#X connect 6 0 7 0;
++#X connect 8 0 4 0;
++#X connect 9 0 10 0;
++#X connect 10 0 11 0;
++#X connect 11 0 4 0;

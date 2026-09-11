@@ -48,9 +48,10 @@ The [visible slice/loop candidate](docs/STATUS.md#visible-slice-and-loop-control
 adds buttons 1–16, a whole-sample position/region display, and Start_s/End_s fields
 with Apply and Full sample. Apply restarts at the region beginning forward or end
 in reverse; paused edits wait for Resume. Edits are staged until Apply. Native UI,
-player/mixer and regression checks are retained, including an **open crossover
-collision failure** under short-loop/rapid Apply stress; this is not fully
-transition-qualified.
+player/mixer and regression checks are retained, including the [overlapping-handoff repair](docs/STATUS.md#overlapping-cut-handoffs-repaired-candidate).
+Pending cuts wait for the prior fade before reusing a reader; paused Apply preserves
+the mixer fade. Matched 48 kHz stress/regression checks pass. Very short natural
+loops and broader host configurations remain unqualified.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant

@@ -60,8 +60,8 @@
 #X obj 20 1280 t b f;
 #X obj 20 1400 f;
 #X obj 20 1440 sel 1;
-#X obj 20 1480 s \$1-pause-finish;
-#X text 20 1540 Stopped edits stay silent. Paused edits move the saved resume point and hold the master through the existing pause path.;
+#X obj 20 1480 s \$1-pause-reposition;
+#X text 20 1540 Stopped edits stay silent. Paused edits move the saved resume point and hold the master without completing the ongoing pause fade.;
 #X text 720 1200 Playing requests share the existing 1 ms pending slice scheduler and Stop cancellation.;
 #X obj 420 140 route list;
 #X connect 1 0 3 0;

@@ -7,6 +7,78 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Overlapping cut handoffs (repaired candidate)
+
+Repair contract, before implementation: retain the same two readers and existing
+6/9 ms envelopes. A slice/Apply request keeps the current 1 ms minimum latency,
+but waits until 12 ms after the most recent crossover or initial Play before
+reusing a reader. That interval covers the 9 ms cut fade plus two 64-frame Pd
+blocks at 44.1/48 kHz rates (this repair is tested at 48 kHz). The existing pending destination remains
+latest-wins; replacement does not append a queue. Stop/Pause/buffer cancellation
+still discards the pending jump. Bounds commit only with the actual cut. This
+adds bounded command latency near a fade, not catch-up timing or another reader.
+The cut owns loop detection during that wait, as before. Additional source finding: paused Apply called `pause-finish`, which also closes
+the mixer. At 2 ms into Pause this prematurely cuts its 6 ms fade. Route paused
+Apply only to the saved-position hold; leave mixer closure with normal cleanup.
+Natural loops shorter
+than the fade interval and other host/block sizes are not thereby qualified.
+
+Implementation: `pending-cut-delay.pd` replaces exactly one fixed-delay object.
+Its timer measures time since the last `crossfade_playhead` or initial `play`
+message. The existing pending target/bounds storage and cancellation are reused.
+A new private `pause-reposition` receiver updates only the saved-position hold;
+paused Apply no longer sends `pause-finish` and prematurely closes the mixer.
+No reader, envelope, recording, direction, quantizer or buffer-storage rewrite.
+
+Matched native baseline at `c822ef0` reproduced all three nonzero-gain reader jumps
+(1552.3125, 3054.3125, 3056.3125 ms). A guard-only intermediate removed them but
+exposed the pre-existing paused-Apply mixer cut; its exact patch and constant
+capture are retained. Final wave and constant captures remove both failures.
+The rapid burst commits at 3052.3125 and 3064.3125 ms, 12 ms apart, with the last
+requested range winning. Loop ranges, stopped/paused behavior, invalid/empty
+inputs, stereo order and unity reader sum remain correct in the existing score.
+
+All 25 checks in [results](evidence/cut-handoff/results.json) pass. Whole-capture
+maximum adjacent steps (player L/R, mixer L/R) are:
+
+| Capture | Player L | Player R | Mixer L | Mixer R |
+|---|---:|---:|---:|---:|
+| Baseline wave | .022923 | .017340 | .009421 | .007127 |
+| Final wave | .003174 | .002791 | .001304 | .001147 |
+| Guard-only constant | .000278 | .000139 | .021917 | .010962 |
+| Final constant | .000278 | .000139 | .000209 | .000105 |
+
+These maxima include every transition sample; no fade windows are excluded.
+Continuous windows have no block-length dropout or unintended mixer gain change;
+Pause/Stop/empty windows are silent and all recorded samples finite. The previous
+speed and Pause/Resume regression scores pass on the final source too. No remaining
+failure was observed in these scores. This does not qualify natural loops shorter
+than the fade, every command combination, other host rates/block configurations,
+or arbitrary waveform transitions as universally click-free.
+
+Runtime is the same native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3,
+CoreAudio 8A at 48 kHz / 512 / 1x. Installed binary hash rechecked; host settings
+were not changed. Wave/constant files are stereo 48 kHz; the musical stress score
+uses the stereo 44.1 kHz DrumLoop on the 48 kHz host. Listening is separate:
+awaiting the user's report for [repaired musical capture](evidence/cut-handoff/musical-post-master.wav).
+The rapid bursts, 100 ms loops and brief Pause are intentional.
+
+Reproduction uses the preceding visible-loop tap setup and scores, plus
+`tests/fixtures/handoff-musical.txt`. Temporary helper indexes on final source
+start at 545 (player has 545 objects before taps). Every run was automatically
+bounded to seven seconds; both stop messages were checked in the actual console.
+Run `python3 tests/analyze_cut_handoff.py docs/evidence/cut-handoff` with NumPy and
+ffmpeg. Retained baseline/intermediate/final float arrays, source hashes and the
+intermediate patch are linked by the [manifest](evidence/cut-handoff/manifest.json).
+Musical WAV is actual post-master L/R at output factor .9 without normalization;
+its full arrays and redundant guard-only wave/speed arrays remain ignored locally.
+
+All three live takes were freshly preserved and restored byte-identically.
+Original player is visible on Live 2, stopped, recorders/taps removed. Sample 1
+DrumLoop, user Sample 2 Sunny, next recording lengths 2/2/4 seconds and gains
+.548/.75/.9 are restored. No edits to adjacent repositories, services or failed stash.
+This follow-up updates PR #17 and leaves it unmerged.
+
 ## Visible slice and loop controls (review candidate)
 
 Base: PR #16 head `0bf4e53cb2034368d36c699106eec08df68a7e25`.
@@ -66,7 +138,8 @@ mixer gain error below 2e-6. The constant confirms stereo order and unity reader
 Pause/Resume and speed regression scores also pass; 251161 eligible speed-reader
 steps include the previous boundary collisions without an oversized step.
 
-**Open transition failure:** functional passes do not close crossover acceptance.
+**Historical transition failure at c822ef0 (repaired above):** functional passes
+at that revision did not close crossover acceptance.
 The wave capture contains reader teleports at approximately 1552.312, 3054.312 and
 3056.312 ms, while their gains are still nonzero. The first follows Apply near a
 loop wrap; the latter follow 2 ms repeated Apply commands. Maximum adjacent player
@@ -2799,7 +2872,7 @@ lost 1.5004%. This actual-output measurement is much smaller than the raw
 DSP-flag/gain-tap deficit, confirming those probes cannot define output gain.
 Amended shutdown contract: retain the 6/9 ms ramps and cancellation on reader
 reuse; wait 12 ms before disabling the outgoing reader. The extra 3 ms covers
-two default 64-sample Pd blocks at the tested 44.1/48 kHz rates. It delays only
+two default 64-sample Pd blocks at 44.1/48 kHz rates (this repair is tested at 48 kHz). It delays only
 DSP shutdown, not the cut or its fade. No claim for other block sizes/rates.
 
 The first endpoint-suppression candidate passed 44.1 kHz but failed rate

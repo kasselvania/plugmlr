@@ -1500,7 +1500,7 @@
 #X obj 2214 337 s \$0-crossfade_control_messages;
 #X msg 2214 307 slice 1;
 #X obj 2185 209 t b f;
-#X obj 2107 238 delay 1;
+#X obj 2107 238 pending-cut-delay \$0;
 #X msg 1223 1470 \$1 \, \$2 \$3;
 #X floatatom 1188 1323 5 0 0 0 - - - 12;
 #X obj -1192 -144 r \$0-dir_change;
@@ -1679,7 +1679,7 @@
 #X msg 30 305 1;
 #X obj 690 230 s \$0-slice-loop-allowed;
 #X obj 480 270 r \$0-stop-fade;
-#X text 30 410 While the existing 1 ms slice is pending it owns the next jump. Stop releases that ownership.;
+#X text 30 410 While a slice is pending it owns the next jump. Stop releases that ownership.;
 #X obj 260 245 f;
 #X obj 470 245 f;
 #X obj 690 65 t b b b;
@@ -1726,6 +1726,8 @@
 #X obj 30 185 slice-panel \$0 \$1;
 #X obj 1050 1850 loop-region-control \$0 \$1;
 #X obj 1050 1900 r \$0-cancel-pending-slice;
+#X obj 1400 440 r \$0-pause-reposition;
+#X connect 544 0 33 0;
 #X connect 543 0 509 0;
 #X connect 540 2 129 1;
 #X connect 508 2 537 0;
