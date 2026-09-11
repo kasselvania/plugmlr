@@ -80,8 +80,11 @@ owner is not automatically displaced. Details and failures appear in the console
 The adapter retains the original musical mapping: physical rows 1–6 (zero-based)
 feed the original numbered row controls. It does not introduce a new Grid layout.
 Legacy LED messages are translated into the package's cached LED controls.
-Playback-position feedback still needs repair; hardware-global intensity below
-15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
+The second and third physical rows show a moving whole-sample position marker
+for players 1 and 2. Press Play first: slice keys do not start a stopped player.
+Stop, Pause, empty buffers and buffer switching clear the marker; reconnect
+redraws current state. Other rows keep their original controls without new
+playback feedback. Hardware-global intensity below 15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
 ## Run the original application
 
@@ -144,9 +147,11 @@ The recorded session used plugdata **0.9.4 nightly, build `98ae0f78b`**, with
 Pd **0.56.3**. The patches use plugdata's multichannel Pd support and library
 objects such as `popmenu`, `curve~`, `meter2~`, and `cyclone/snapshot~` from its
 bundled ELSE/Cyclone environment. This is not a verified vanilla-Pd setup guide.
-The existing Grid path uses `monome-object.pd` and SerialOSC; physical Grid
-operation was not validated in this session. No dependency installation was
-needed for the observed Sample 1 playback path.
+The current Grid path uses `mlr-grid.pd` and the pinned Monome package. Physical
+connection, corner LEDs and one original musical row route were verified; the
+moving marker has also been observed by the user; detailed hardware transition
+checks remain open. No dependency
+installation was needed for the observed Sample 1 playback path.
 
 The intended community suite pairs plugmlr with
 [PlugData-Monome-Devices](https://github.com/kasselvania/PlugData-Monome-Devices/tree/feature/serialosc-leases)
@@ -154,9 +159,8 @@ and the [lease-aware SerialOSC fork](https://github.com/kasselvania/serialosc/tr
 The device package handles selection, claim, renewal and release; SerialOSC can
 expire abandoned leases and darken the hardware after a client dies. The
 [suite map](docs/STATUS.md#monome-suite-and-leased-serialosc) records exact source
-pins, platform packaging and reported acceptance. This application still uses
-its legacy connection patch: integration with the new device package remains
-work to do, and installing a lease daemon alone does not migrate that path.
+pins, platform packaging and reported acceptance. The application now routes its original Grid messages through that package.
+Installing a lease daemon alone does not migrate other legacy patches.
 
 Alternative and historical patches remain alongside the entry point. Their names
 do not establish which behavior works. The rejected shared-playback rewrite is

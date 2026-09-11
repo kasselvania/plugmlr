@@ -1,8 +1,8 @@
-"""Guard the connector-only boundary against the accepted audio checkpoint."""
+"""Historical connector-only boundary. Current feedback: check_grid_feedback.py."""
 from pathlib import Path
 import subprocess
 base = subprocess.check_output(['git', 'show', 'ac8956e291ab6aa1c8d7f5ab4c84334d4eec3c4a:mlr.pd'], text=True)
-current = Path('mlr.pd').read_text()
+current = subprocess.check_output(['git', 'show', 'fa6812cc02e829153c65a20bf036c83172d218da:mlr.pd'], text=True)
 current = current.replace('mlr-grid 17879 17880 12002;', 'monome-object;')
 current = '\n'.join(l for l in current.splitlines() if 'bng 30 250 50 0 mlr-grid-open ' not in l) + '\n'
 assert current == base, 'Unrelated MLR objects or wires changed'

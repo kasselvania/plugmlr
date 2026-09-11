@@ -1,0 +1,228 @@
+[
+  {
+    "command": "position 0",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "ready 1",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "playing 1",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 0 1 12",
+      "/monome/grid/led/row 0 2 0 0"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 0.5",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 8 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 15 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 0.9999",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "position 0.25",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 4 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "paused 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 0.75",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "paused 0",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 12 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "playing 0",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "playing 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 12 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "switching 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 0.5",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "switching 0",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 8 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "ready 0",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "ready 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 8 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "ready_b 1",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "playing_b 1",
+    "expected": [
+      "/monome/grid/led/row 0 2 0 0",
+      "/monome/grid/led/level/set 0 2 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position_b 0.5",
+    "expected": [
+      "/monome/grid/led/row 0 2 0 0",
+      "/monome/grid/led/level/set 8 2 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 0.1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 1 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "connected 0",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "position 0.5",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 8 1 12",
+      "/monome/grid/led/row 0 2 0 0",
+      "/monome/grid/led/level/set 8 2 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position -0.1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "position 1.1",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  },
+  {
+    "command": "position 1",
+    "expected": [
+      "/monome/grid/led/row 0 1 0 0",
+      "/monome/grid/led/level/set 15 1 12"
+    ],
+    "observed": [],
+    "passed": false
+  },
+  {
+    "command": "connected 0",
+    "expected": [],
+    "observed": [],
+    "passed": true
+  }
+]

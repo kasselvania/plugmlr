@@ -14,7 +14,7 @@ def parse(s):
   elif l.startswith('#X connect'):stack[-1][2].append(tuple(map(int,l.rstrip(';').split()[2:6])))
   elif l.startswith(('#X obj','#X msg','#X text','#X floatatom','#X symbolatom')):stack[-1][1].append(l)
  result['root']=stack[0];return result
-old=parse(subprocess.check_output(['git','show',BASE+':sample_player_rebuild.pd'],text=True));new=parse(Path('sample_player_rebuild.pd').read_text())
+old=parse(subprocess.check_output(['git','show',BASE+':sample_player_rebuild.pd'],text=True));new=parse(Path('sample_player_rebuild.pd').read_text().replace('#X obj 1700 4300 grid-playback-state \\$0 \\$1;\n', ''))
 for key in old:
  if key!='root' and 'pd calc_duration' not in key:assert old[key]==new[key],key
 removed={208,209,210,212,213,214}|set(range(353,365))

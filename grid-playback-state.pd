@@ -1,0 +1,17 @@
+#N canvas 100 100 1000 700 12;
+#X text 20 15 Receive-only view export. Args player ID / track. No timer or audio commands.;
+#X obj 30 60 r \$1-playbar_data_i;
+#X obj 30 95 s \$2-grid-position;
+#X obj 30 160 r \$1-is_playing_flag;
+#X obj 30 195 s \$2-grid-playing;
+#X obj 30 260 r \$1-is_paused_flag;
+#X obj 30 295 s \$2-grid-paused;
+#X obj 30 360 r \$1-buffer-ready;
+#X obj 30 395 s \$2-grid-ready;
+#X obj 30 460 r \$1-buffer-switching;
+#X obj 30 495 s \$2-grid-switching;
+#X connect 1 0 2 0;
+#X connect 3 0 4 0;
+#X connect 5 0 6 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;

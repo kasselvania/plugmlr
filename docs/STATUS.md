@@ -7,6 +7,44 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid playback feedback review candidate — 2026-09-11
+
+Stacked on connector PR #25 (`fa6812cc02e829153c65a20bf036c83172d218da`).
+The two existing automatic LED chains listened to mismatched player symbols.
+They are replaced by `grid-playback-row 1 1` and `grid-playback-row 2 2`;
+17 obsolete nodes are removed with the remaining connections remapped exactly.
+All other original Grid routes and all original player DSP remain unchanged.
+
+`grid-playback-state` exports the original player's position, playing, paused,
+ready and switching state to track-scoped messages. It never controls playback.
+`grid-playback-row` renders these messages through the existing `monome_in`
+adapter. Position is normalized across full content, not the current loop:
+column = min(15, floor(position × 16)), for positions 0–1 inclusive. Each
+changed column clears its row then lights one LED at level 12. Stop, Pause,
+not-ready, switching and out-of-range positions clear that row. Repeated
+columns are suppressed. Attachment enables output and redraws current state;
+detachment suppresses requests. This uses the existing 20 ms position publisher,
+not another timer. The second/third physical rows are the only repaired displays.
+
+Native plugdata tests passed 29 message sequences and six bounded audio checks.
+The 16-second actual-player/post-master capture exercises original row_1 cuts,
+reverse and Stop. Both output channels are active and finite, without clipping;
+the stopped tail is silent. These measurements do not establish universally
+click-free playback or rule out brief dropouts. The capture uses scheduled row
+messages, not recorded physical gestures. In the subsequent hands-on session,
+the user confirmed visible LEDs and playable physical slicing: “it works great!”
+This accepts the live immediate-slicing path. In the subsequent two-row test,
+the user also accepted quantized cuts on both players and changed the timing
+grid to 1/16 for responsiveness. Detailed transition checks remain separate;
+no explicit listening report for the retained capture is claimed.
+
+See [procedure and retained evidence](evidence/grid-feedback/observations.md).
+The failed no-monitor fixture and initial stopped-transport capture are retained
+separately. At cleanup the Grid was released with verified_lease_free, the
+recorder was closed, and saved MLR was reopened with Sample 1 loaded and Stopped.
+The later hands-on setup left the Grid connected and Sample 1 playing for the
+user, with no recorder open. No installed package or service changed.
+
 ## Grid adapter review candidate — 2026-09-11
 
 `mlr.pd` now instantiates `mlr-grid 17879 17880 12002` in the original
