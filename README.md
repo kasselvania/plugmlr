@@ -12,7 +12,7 @@ See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remainin
 work and links to the retained numerical/listening evidence. Older STATUS sections
 record what was true at that point in the repair history.
 
-**Player view (review candidate):** open `mlr.pd`, then click **Open player 1**.
+**Player view:** open `mlr.pd`, then click **Open player 1**.
 The dedicated view keeps the existing player controls together with transport,
 direction, selected speed, clock source/BPM/count, and reset feedback. Run controls
 the shared clock; Play controls the selected player. Reset reports Off, waiting
@@ -22,7 +22,7 @@ in `sample_player_rebuild.pd`; the new view does not instantiate another player.
 Native reset-menu selection is verified. On 2026-09-11, the user approved the
 layout and successfully tested the internal clock and Beat Reset.
 
-**Tempo fit (review candidate):** enable **Fit** and set **Sample beats** to the
+**Tempo fit:** enable **Fit** and set **Sample beats** to the
 full sample's quarter-note length (1..64; four beats per 4/4 bar). At preset 1x,
 playback fits that length to the shared BPM. Presets .25/.5/2/4 multiply the fitted
 speed; **Target speed x** shows the resulting tape speed, including its pitch change.
@@ -65,6 +65,11 @@ names prevent isolated copies in one Pd environment. Playback now has bounded
 44.1/48 kHz and file/host-mismatch evidence, plus a two-player shared-buffer
 comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
 [host validation](docs/STATUS.md#host-and-instance-validation-review-candidate). Dependencies and the Monome suite connection are below.
+
+**Grid migration:** the old auto-connecting Monome object has been removed.
+Grid control in `mlr.pd` is temporarily disconnected while its existing musical
+wiring is adapted to the lease-aware connection package. Audio controls remain
+available. See the [migration checkpoint](docs/STATUS.md#grid-connector-migration-checkpoint--2026-09-11).
 
 ## Run the original application
 
