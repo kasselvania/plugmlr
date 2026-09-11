@@ -40,7 +40,7 @@ candidate incorrectly forced a duplicate playing cache to zero on Pause, so
 Resume did not restore reset eligibility; that extra cache override was removed.
 The initial failing audio/reader capture is retained separately.
 
-**Validation:** [27 checks pass](evidence/beat-reset/results.json). Native original
+**Validation correction (2026-09-11):** The user rejected the musical capture as a brief slice followed by silence. The earlier 27-check pass omitted audible activity in the musical case and did not establish a usable demonstration. The added musical activity check fails on the retained capture; acceptance is open. [Current results](evidence/beat-reset/results.json). Native original
 player/readers/post-master captures cover every interval, matching/nonmatching and
 duplicate ticks, interval rejection, Off, Stop, Pause/Resume, empty buffers,
 selection, reverse, smaller-loop restoration, same-tick quantized slice/reset,
@@ -54,7 +54,7 @@ resets enter within .003 frames of the start/end target and preserve signed spee
 
 The autonomous musical capture has seven reset requests, including slower speed,
 reverse, tempo change and Pause/Resume. [Listen here](evidence/beat-reset/musical-post-master.wav).
-Listening is pending; no universally click-free result is claimed. Runtime was
+The user reports a brief slice followed by silence. Direct inspection confirms effectively silent player and mixer output after roughly three seconds. DrumLoop has 24,897 trailing frames below 0.0001 amplitude (0.565 seconds at 44.1 kHz). Half-speed reverse requires over 1.129 seconds to traverse that tail, while the score resets every 0.5 seconds, then 0.667 seconds. Captured reverse reader positions remain in that silent tail. This is a failed demonstration, not proof of broken reverse DSP or accepted musical behavior. A replacement native capture with a longer reverse interval is still required; do not trim the user sample or change reset semantics to conceal the fixture problem. Runtime was
 native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3, existing CoreAudio 48 kHz /
 512 frames / 1x. The musical file is 44.1 kHz; synthetic files are 48 kHz. No DAW,
 44.1 kHz host or external clock acceptance is added. Captures stop automatically

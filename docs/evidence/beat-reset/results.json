@@ -26,9 +26,10 @@
     "initial_candidate_failure_retained": true,
     "musical_autonomous_resets_occur": true,
     "musical_finite_and_automatically_stopped": true,
-    "musical_no_reader_teleports": true
+    "musical_no_reader_teleports": true,
+    "musical_audible_through_active_sections": false
   },
-  "passed": true,
+  "passed": false,
   "cases": {
     "wave": {
       "reset_requests": [
@@ -387,7 +388,7 @@
     }
   },
   "limits": [
-    "Listening pending",
+    "User rejected musical capture: reverse repeatedly resets into the source silent tail",
     "48 kHz host only",
     "Shared clock does not provide DAW-sync acceptance",
     "Fired reports a request; crossover can defer or replace its audio commit",

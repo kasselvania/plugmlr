@@ -4,7 +4,7 @@
   "host_rate": 48000,
   "block_size": 512,
   "oversampling": "1x",
-  "listening": "Pending",
+  "listening": "Rejected by user: brief slice followed by silence",
   "manual_dropdown_selection": "Pending; automation could verify displayed values but not popup selection",
   "restored_live_arrays_sha256": {
     "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
@@ -17,7 +17,7 @@
     "tests/live-record-check.pd": "d458e463b60d853210c1d4aa75153dd97b4cf81aa4b297d78321924ce5ea72e5",
     "tests/fixtures/beat-reset.txt": "9510b677d235f1873cddf6cfc2c13e5ee31aceb2dcd71796b55bb5614f786f39",
     "tests/fixtures/beat-reset-musical.txt": "fbd75af86b7fa40d5f360f3caea5ff139a83d857357401315fcd334b32389092",
-    "tests/analyze_beat_reset.py": "a4af5d67edee6cbab74a866e0af9fb0788317c99df298a7c2b6662bd3be5c160"
+    "tests/analyze_beat_reset.py": "c6886e47d5bf4bb9ce03ef9609cd0f3808bda569f7ae4133fd02a25841cc3e63"
   },
   "evidence_sha256": {
     "wave-readers-48.npz": "192a348e804f5fda64ab01dd80788d203ce825bf03f0dc6d1f479b279ebac161",
@@ -25,7 +25,7 @@
     "initial-wave-events.txt": "940ad433b56fc88ee385a72cba1ed401fcd8530f370765493199e7a430027fd8",
     "initial-wave-player-mixer-48.npz": "462f400051fbd77d4a37d8c3ceeceee838c05e2118b6ffc2cb947a6fe750bdf3",
     "musical-readers-48.npz": "c029c4e6b4f1b8fd9c37901c2147a4ca7261230126b5f7d22361bf0be844fb14",
-    "results.json": "229d9d655d8653cdf8ea556cb409c11ef62972c796884c2bc3aa68a776b48358",
+    "results.json": "884770d6531e106215e089c867845f2710e794d8841915c9c4461be965d619dd",
     "musical-events.txt": "9aef3dd4c651c7de841df999861ed4c92e79ea57625ffb5c44d8a56f501f6c99",
     "wave-events.txt": "8b38bfb92789f84ce63f411643b9e1b0bbee4980265b5e213523ba8414bc24b4",
     "constant-player-mixer-48.npz": "e5d72ddef0aec3c59283c559af19d94bf4c67cf38104b356da9a11215d2659b1",
@@ -34,5 +34,6 @@
     "wave-player-mixer-48.npz": "515c086e6a38e4c18832492372decc08b7b7f22ad49e1df874ff1ecac01b057c",
     "musical-post-master.wav": "938f12d502004ccae41d1ffaed5e7464e0aa52070fbd07b86aaca55c38f71897",
     "initial-wave-readers-48.npz": "ecc955774ba37dc94bb6a610b633485eb831b3fe3f744f547522f6e82339e893"
-  }
+  },
+  "acceptance": "Open: musical activity check fails; replacement native capture required"
 }

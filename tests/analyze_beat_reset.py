@@ -43,7 +43,10 @@ def analyze(folder):
   checks['musical_autonomous_resets_occur']=len(fired)>=4
   checks['musical_finite_and_automatically_stopped']=bool(np.isfinite(x).all() and np.isfinite(r).all() and np.all(x[-12000:,2:6]==0))
   checks['musical_no_reader_teleports']=not jumps(r)
+  # The score is playing in these windows. Events and finite silence are not audio acceptance.
+  musical_active=[(.1,4.25),(4.85,6.25)]
+  checks['musical_audible_through_active_sections']=all(float(np.sqrt(np.mean(span(x,a,a+.2)[:,4:6]**2)))>1e-4 for lo,hi in musical_active for a in np.arange(lo,hi-.2,.2))
   cases['musical']={'reset_requests':fired,'reader_jumps':jumps(r),'maximum_adjacent_steps_player_mixer':abs(np.diff(x[:,2:6],axis=0)).max(0).tolist()}
- return {'checks':checks,'passed':all(checks.values()),'cases':cases,'limits':['Listening pending','48 kHz host only','Shared clock does not provide DAW-sync acceptance','Fired reports a request; crossover can defer or replace its audio commit','Malformed text on global ppq still errors in the legacy slice modulo objects']}
+ return {'checks':checks,'passed':all(checks.values()),'cases':cases,'limits':['User rejected musical capture: reverse repeatedly resets into the source silent tail','48 kHz host only','Shared clock does not provide DAW-sync acceptance','Fired reports a request; crossover can defer or replace its audio commit','Malformed text on global ppq still errors in the legacy slice modulo objects']}
 if __name__=='__main__':
  result=analyze(Path(sys.argv[1]));print(json.dumps(result,indent=2));sys.exit(0 if result['passed'] else 1)
