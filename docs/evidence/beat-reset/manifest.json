@@ -5,7 +5,7 @@
   "block_size": 512,
   "oversampling": "1x",
   "listening": "Rejected by user: brief slice followed by silence",
-  "manual_dropdown_selection": "Pending; automation could verify displayed values but not popup selection",
+  "manual_dropdown_selection": "Verified 2026-09-11: mouse-open/native-keyboard selection; 1 beat fires every 16 ticks, 2 beats every 32, Off suppresses resets while playback continues",
   "restored_live_arrays_sha256": {
     "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
     "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
@@ -42,7 +42,7 @@
     "musical-long-results.json": "bbb76fdc5b9159def6ad75712684c0ba9948d961f70896c0e145ce0820354411",
     "musical-long-post-master.wav": "28895277b6f4f5f793a69a365bcb10ae4e0d56a1be23f2068bcc66a4573ac4b7"
   },
-  "acceptance": "Replacement listening accepted; hands-on dropdown selection remains open; rejected initial musical capture retained",
+  "acceptance": "Replacement numerical and listening acceptance complete; native menu selection verified. Original rejected musical capture remains historical failure evidence.",
   "replacement_listening": {
     "date": "2026-09-11",
     "file": "musical-long-post-master.wav",

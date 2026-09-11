@@ -9,6 +9,8 @@ small steps; the broad R1 implementation plan has been set aside.
 
 ## Beat Reset contract (review candidate)
 
+**Current acceptance:** replacement audio passes nine numerical checks and the user accepted its listening result. Native menu selection is verified below. The original rejected musical capture is retained as a known failing demonstration, not the current acceptance report.
+
 Per-track Reset every: Off, 1 beat, 2 beats, 1 bar, 2 bars, 4 bars, 8 bars.
 A beat is a quarter note; bars mean 4/4. Public `<track>-reset-beats` accepts
 only 0, 1, 2, 4, 8, 16 or 32 (0 disables). Invalid values leave the setting
@@ -40,7 +42,7 @@ candidate incorrectly forced a duplicate playing cache to zero on Pause, so
 Resume did not restore reset eligibility; that extra cache override was removed.
 The initial failing audio/reader capture is retained separately.
 
-**Validation correction (2026-09-11):** The user rejected the musical capture as a brief slice followed by silence. The earlier 27-check pass omitted audible activity in the musical case and did not establish a usable demonstration. The added musical activity check fails on the retained capture; acceptance is open. [Current results](evidence/beat-reset/results.json). Native original
+**Validation correction (2026-09-11):** The user rejected the musical capture as a brief slice followed by silence. The earlier 27-check pass omitted audible activity in the musical case and did not establish a usable demonstration. The added musical activity check deliberately continues to fail on that rejected capture. [Historical capture results](evidence/beat-reset/results.json). Native original
 player/readers/post-master captures cover every interval, matching/nonmatching and
 duplicate ticks, interval rejection, Off, Stop, Pause/Resume, empty buffers,
 selection, reverse, smaller-loop restoration, same-tick quantized slice/reset,
@@ -66,16 +68,11 @@ application bus does not have general malformed-message validation. The final
 score retains negative/fractional tick tests and invalid reset-interval tests;
 the text-on-global-ppq check is recorded as a separate existing limitation.
 
-**Replacement listening capture (2026-09-11):** [Two-bar reset example](evidence/beat-reset/musical-long-post-master.wav) uses the unchanged DrumLoop, half-speed reverse, and an eight-beat/four-second interval. Forward audio is followed by reverse entry at 1.1 seconds and a clock reset at 4.05 seconds. The roughly 1.13-second source-tail gaps remain; drums return around 2.5 and 5.5 seconds instead of being continually reset into silence. Nine [replacement checks](evidence/beat-reset/musical-long-results.json) pass, including audible forward and both reverse passes, reverse motion, end entry, mixer gain, reader continuity and automatic stop. Signed motion uses a window slope because large float frame positions quantize individual differences. Human listening accepted on 2026-09-11: the user reports “okay, seems solid to me.” This applies to the replacement capture only and is separate from the nine numerical checks; it is not a universal click-free claim. Hands-on dropdown selection remains open. The earlier rejected capture and its failing activity check remain intact. Repeat with `record-check symbol fixtures/beat-reset-musical-long.txt` and the same bounded taps; analyze with `tests/analyze_beat_reset_listening.py`. Native runtime/settings were unchanged. Temporary taps were removed afterward; Live 2, speed 1x, forward, Reset Off, stopped playback/clock and output .9 were restored. No buffer contents were changed. Setup/removal printed missing diagnostic send warnings, and unsuccessful cleanup commands printed no-method errors; these were outside the bounded capture and corrected through native canvas editing. The application has an unsaved-change indicator from adding/removing taps; no production patch file was saved.
+**Replacement listening capture (2026-09-11):** [Two-bar reset example](evidence/beat-reset/musical-long-post-master.wav) uses the unchanged DrumLoop, half-speed reverse, and an eight-beat/four-second interval. Forward audio is followed by reverse entry at 1.1 seconds and a clock reset at 4.05 seconds. The roughly 1.13-second source-tail gaps remain; drums return around 2.5 and 5.5 seconds instead of being continually reset into silence. Nine [replacement checks](evidence/beat-reset/musical-long-results.json) pass, including audible forward and both reverse passes, reverse motion, end entry, mixer gain, reader continuity and automatic stop. Signed motion uses a window slope because large float frame positions quantize individual differences. Human listening accepted on 2026-09-11: the user reports “okay, seems solid to me.” This applies to the replacement capture only and is separate from the nine numerical checks; it is not a universal click-free claim. Native dropdown selection is verified below. The earlier rejected capture and its failing activity check remain intact. Repeat with `record-check symbol fixtures/beat-reset-musical-long.txt` and the same bounded taps; analyze with `tests/analyze_beat_reset_listening.py`. Native runtime/settings were unchanged. Temporary taps were removed afterward; Live 2, speed 1x, forward, Reset Off, stopped playback/clock and output .9 were restored. No buffer contents were changed. Setup/removal printed missing diagnostic send warnings, and unsuccessful cleanup commands printed no-method errors; these were outside the bounded capture and corrected through native canvas editing. The application has an unsaved-change indicator from adding/removing taps; no production patch file was saved.
 
-**UI:** fresh load shows Off; public value 8 displays 2 bars and 0 restores Off.
-The final saved patch was reloaded after the tested connection correction.
-Automation did not expose the dropdown popup or confirm a mouse selection, and
-the existing Slice grid popup behaved similarly. Display/message behavior is
-verified; hands-on dropdown selection remains an open UI check. The session is
-back to Live 2, original sample slots/levels and stopped playback/clock, Reset Off.
-All three live arrays match fresh pre-test exports byte-for-byte; temporary taps
-and observer patches are removed.
+**UI verification (2026-09-11):** opened the real Reset menu by mouse and selected entries with native keyboard navigation, rather than sending interval messages. The displayed `1 beat` emitted `reset-ui-state: 1`; the running internal clock produced ticks 480, 496, 512, 528, 544 (16 apart). Selecting `2 beats` emitted state 2 and produced ticks 608, 640, 672, 704, 736, 768 (32 apart). Selecting Off emitted state 0; no later reset events appeared while ordinary playback continued, through the automatic 20-second stop. The popup itself is not visible to screenshot/accessibility capture, but selected labels and console events are directly observed. This closes the native menu-selection gap; pointer selection of an individual popup row was not exercised.
+
+A temporary message-only observer printed state/fired messages and armed Stop before Play. Initial manual console tick commands incorrectly used numeric selectors, producing legacy `mod: no method for '16'/'32'` messages. These were test-input errors; corrected typed commands and then the actual internal clock were used. The successful timing observations above are from the internal clock. No recording or new audio engine was used. Observer removed afterward, Live 1 retained (the user's current selection), Reset Off, clock/playback stopped, output .9 restored. Buffer contents and production patch files were unchanged. The existing unsaved UI indicator from temporary edits remains; do not save diagnostic canvas state over repository files.
 
 **Repeat:** with player 1's bounded taps attached (helper objects start at root
 index 552), use `tests/instant-reverse-check $0` and
@@ -88,7 +85,7 @@ the actual internal clock; the synthetic score injects controlled ticks. The
 six-channel layout is reference L/R, player L/R, mixer L/R; the ten-channel trace
 retains player L/R, master position, rate, reader 0 position/gain, reader 1
 position/gain, and their DSP gates. NPZ samples are lossless decoded float audio.
-Run `python3 tests/analyze_beat_reset.py docs/evidence/beat-reset` with NumPy.
+Run `python3 tests/analyze_beat_reset_listening.py docs/evidence/beat-reset` with NumPy for the accepted replacement (nine checks). `analyze_beat_reset.py` retains the original capture audit and intentionally exits nonzero because the rejected musical file fails its activity check; its other 27 checks pass.
 The listening WAV uses mixer channels times .9 without normalization.
 
 

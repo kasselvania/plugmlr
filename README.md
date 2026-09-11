@@ -28,7 +28,7 @@ adds **Reset every** to each player: Off, 1 beat, 2 beats, 1 bar, 2 bars, 4 bars
 end in reverse on the next matching shared-clock boundary. Paused/stopped tracks
 stay silent; speed is unchanged. Public `<track>-reset-beats` accepts
 0/1/2/4/8/16/32. Same-tick reset supersedes a quantized slice through the existing
-crossover. Listening and hands-on dropdown selection remain pending.
+crossover. The replacement listening capture is accepted; native dropdown selection and reset timing are verified.
 Tempo-locked audio, DAW/MIDI synchronization and tape-direction slew remain open.
 
 **Buffers and recording:** selection while playing fades to the new buffer's
