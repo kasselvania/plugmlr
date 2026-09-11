@@ -1,0 +1,185 @@
+{
+  "host_hz": 48000,
+  "file_hz": 44100,
+  "checks": {
+    "core_bounded_finite": true,
+    "core_no_audible_reader_teleports": true,
+    "core_no_dropouts": true,
+    "core_stereo_peak_preserved": true,
+    "core_mixer_preserves_audio": true,
+    "core_pause_and_final_stop_silent": true,
+    "core_fit_free_reverse_and_presets": true,
+    "partial_loop_uses_same_rate_and_requested_bounds": true,
+    "file_host_mismatch_and_channel_order": true,
+    "stress_bounded_finite": true,
+    "stress_no_audible_reader_teleports": true,
+    "stress_no_dropouts": true,
+    "stress_peak_and_mixer_preserved": true,
+    "stress_stopped_empty_and_final_silence": true,
+    "stress_all_transition_steps_bounded": true,
+    "tempo_changes_interrupt_existing_glide": true,
+    "invalid_mode_and_beats_rejected": true,
+    "fit_unavailable_reported": true,
+    "beat_reset_runs_independently": true,
+    "four_times_preset_after_empty_recovery": true,
+    "musical_finite_bounded_stopped": true,
+    "musical_fit_rates_and_reverse": true,
+    "musical_audible_in_each_section": true
+  },
+  "passed": true,
+  "results": {
+    "core": {
+      "frames": [
+        575859,
+        576000
+      ],
+      "finite": true,
+      "mixer_gain": 0.41099998354911804,
+      "mixer_residual_peak": 0.008303496055305004,
+      "mixer_residual_outside_documented_start_fades": 3.725290298461914e-09,
+      "mixer_max_amplification_above_gain": 3.725290298461914e-09,
+      "audible_reader_jumps": [],
+      "player_peak_lr": [
+        0.11999863386154175,
+        0.06000213325023651
+      ],
+      "player_max_adjacent_step_lr": [
+        0.01182124949991703,
+        0.009455357678234577
+      ],
+      "active_longest_silence_frames": [
+        0,
+        0
+      ]
+    },
+    "rates": [
+      {
+        "at_seconds": 0.2,
+        "rate": 1.0,
+        "frame_step": 0.9189453125,
+        "expected_step": 0.91875
+      },
+      {
+        "at_seconds": 1.2,
+        "rate": 1.0,
+        "frame_step": 0.91796875,
+        "expected_step": 0.91875
+      },
+      {
+        "at_seconds": 2.2,
+        "rate": 2.0,
+        "frame_step": 1.837890625,
+        "expected_step": 1.8375
+      },
+      {
+        "at_seconds": 3.2,
+        "rate": 2.0,
+        "frame_step": -1.8359375,
+        "expected_step": -1.8375
+      },
+      {
+        "at_seconds": 4.2,
+        "rate": 1.0,
+        "frame_step": -0.91796875,
+        "expected_step": -0.91875
+      },
+      {
+        "at_seconds": 5.2,
+        "rate": 1.0,
+        "frame_step": -0.91796875,
+        "expected_step": -0.91875
+      },
+      {
+        "at_seconds": 6.2,
+        "rate": 1.0,
+        "frame_step": -0.91796875,
+        "expected_step": -0.91875
+      },
+      {
+        "at_seconds": 7.2,
+        "rate": 0.5,
+        "frame_step": -0.4609375,
+        "expected_step": -0.459375
+      },
+      {
+        "at_seconds": 8.2,
+        "rate": 0.5,
+        "frame_step": -0.4609375,
+        "expected_step": -0.459375
+      },
+      {
+        "at_seconds": 10.2,
+        "rate": 0.5,
+        "frame_step": -0.4609375,
+        "expected_step": -0.459375
+      }
+    ],
+    "fitted_stereo_frequencies": [
+      750.0,
+      1200.0
+    ],
+    "stress": {
+      "frames": [
+        575859,
+        576000
+      ],
+      "finite": true,
+      "mixer_gain": 0.41099998354911804,
+      "mixer_residual_peak": 0.008303496055305004,
+      "mixer_residual_outside_documented_start_fades": 3.725290298461914e-09,
+      "mixer_max_amplification_above_gain": 3.725290298461914e-09,
+      "audible_reader_jumps": [],
+      "player_peak_lr": [
+        0.11999867856502533,
+        0.060002654790878296
+      ],
+      "player_max_adjacent_step_lr": [
+        0.02353566139936447,
+        0.01875310391187668
+      ],
+      "active_longest_silence_frames": [
+        1,
+        0,
+        0
+      ]
+    },
+    "interrupted_glide_rates": [
+      1.0,
+      1.1919903755187988,
+      1.375981092453003,
+      1.227158784866333,
+      1.1371079683303833,
+      1.5
+    ],
+    "rejected_inputs": [
+      "5500 1-tempo-fit-error invalid_clock_mode_enabled;",
+      "5500 1-tempo-fit-error invalid_clock_mode_enabled;",
+      "5500 1-tempo-fit-error invalid_num_beats_for_segment;",
+      "5500 1-tempo-fit-error invalid_num_beats_for_segment;",
+      "5500 1-tempo-fit-error invalid_num_beats_for_segment;"
+    ],
+    "reset_request_ms": [
+      3796.88,
+      4296.88,
+      4796.88,
+      5296.88
+    ],
+    "musical": {
+      "frames": [
+        575859,
+        576000
+      ],
+      "rms_by_section": [
+        0.03571363538503647,
+        0.010701215825974941,
+        0.07389926165342331,
+        0.07677122205495834
+      ]
+    }
+  },
+  "limits": [
+    "Numerical checks are not listening acceptance",
+    "Only 48 kHz host tested",
+    "No universal click-free or phase-lock claim"
+  ]
+}

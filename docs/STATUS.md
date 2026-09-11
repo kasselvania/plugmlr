@@ -7,6 +7,141 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Tempo fit (review candidate)
+
+Base: `610098f6f70c598c991d4ee59f351912e8397107` (merged PR #22).
+This slice repairs the original BPM/beat-duration intention by deriving a rate
+before the existing speed glide. The original dual readers, cut arbitration,
+transport, buffer ownership and Beat Reset stay in place.
+
+- Public `TRACK-clock_mode_enabled 0|1` selects Free/Fit; default Free.
+  `TRACK-num_beats_for_segment N` defines the full content in quarter-note beats,
+  integer 1..64, default 4. These are player settings retained across buffer
+  selection, not inferred sample metadata. Invalid types/values are rejected.
+- At preset 1, fitted magnitude is content_seconds * BPM / (60 * beats).
+  The existing .25/.5/1/2/4 presets multiply this base rate. Pitch follows speed.
+  Fit follows the selected shared clock's BPM, independently of clock Run.
+- Whole content uses first/exclusive-end file-frame metadata, not allocated
+  capacity or current loop bounds. Frames / (file frames per ms * 1000) gives
+  seconds. Reverse retains the magnitude. Smaller loops take proportionally
+  fewer beats; a slice keeps the rate and the existing whole-content cut policy.
+- Mode, beat count, tempo and preset changes feed the existing glide and current
+  ramp-position request. They do not jump to a sample edge or start stopped/paused
+  playback. Glide allows temporary drift; no phase-lock/catch-up claim. Beat Reset
+  remains an independent scheduled reposition. Returning to Free restores the
+  selected preset. Buffer changes recalculate against completed metadata.
+- Fit supports resulting magnitudes 1/64..64. Missing content/sample rate or an
+  out-of-range result reports Fit unavailable and uses the free preset, never a
+  false fitted-rate claim. The requested Fit setting remains visible. The normal
+  empty-buffer transport guard still prevents playback. Invalid BPM updates are
+  ignored (shared clock range 30..320). Denominators are guarded.
+- Public positions/loop controls remain seconds; internal motion remains file
+  frames and milliseconds. This slice does not change file/host conversion.
+  Native qualification will name its actual host rate and tested cases.
+
+Source finding: the old `calc_duration` fit branch receives obsolete
+`TRACK_file_abs_start/end` messages and duplicates the normal duration logic.
+Replace that branch with one frame-distance/rate calculation; derive Fit upstream
+so its changes share the already repaired glide and crossover path. Recording
+quantization is the next proposed slice, not included here.
+
+### Tempo-fit results and repeat procedure
+
+Native runtime: `/Applications/plugdata.app/Contents/MacOS/plugdata`, version
+0.9.4, build `98ae0f78b`, Pd 0.56.3 (version/build strings rechecked in the installed
+binary). Same standalone session at 48 kHz; existing 512-frame / 1x settings were
+not changed. No recording into user buffers was started. Physical output was
+muted during the generated-signal checks, while the actual post-master mixer was
+captured before that device-output control.
+
+**Source and implementation:** `tempo-fit.pd <player-id> <track>` validates the
+existing public mode/beat messages, uses committed full-content metadata and
+feeds the existing preset target store. That target still drives the original
+curve, rate-then-position update, direction logic and dual readers. The old
+72-object `calc_duration` canvas is now a 14-object guarded distance/rate
+calculation. Eighteen obsolete root objects were removed; root connections were
+renumbered. `check_tempo_fit.py` verifies every unaffected nested canvas and the
+exact root-wire mapping against the merged base, including the motion send.
+`check_player_panel.py` retains its historical PR22 extraction check and checks
+current view invariants; it does not claim the new DSP is identical to PR22.
+The player has 536 root objects; temporary helpers append at index 536.
+
+**Native controls:** the new Fit checkbox and Sample beats number box were
+operated directly in the actual view. A two-second Live 1 set to eight beats
+showed Target speed 0.5 at 120 BPM, then 1 after typing 240 BPM in the actual
+clock control, without starting playback. The distinct Free/Fit status and preset
+versus target displays were observed. Tests used the current original player,
+its actual two reader signals, and its actual post-master mixer output.
+
+**Numerical results:** all 23 checks in
+[results.json](evidence/tempo-fit/results.json) pass. The core and stress scores
+cover Free/Fit, positive and reverse motion, file/host-rate conversion, partial
+loops, whole-content slices, interrupted 500 ms glides, rapid overlapping
+mode/beat/loop/slice/direction changes, Beat Reset, Pause/Resume, Stop, an empty
+buffer, return to loaded content, invalid mode/beat inputs and an out-of-range
+Fit target falling back to Free. The deterministic 44.1 kHz stereo fixture has
+375 Hz left / 600 Hz right at amplitudes .12/.06. At fitted 2x, the actual 48 kHz
+output has 750/1200 Hz in that order. Reader step checks cover transitions and
+account for the known 64-frame passive signal-tap latency. The whole stress
+capture's largest adjacent steps are .02354 left / .01876 right; there are no
+qualified audible-reader teleports or active silent runs longer than two frames.
+
+Post-master gain is .411. The original 5 ms mixer opening fades explain the
+small player/master differences at each Play/Resume; they are reported explicitly.
+Outside those opening fades, the mixer matches the player at that gain. All
+transition samples remain in the step, finite-output and reader-continuity checks.
+These bounded results do not claim universally click-free playback.
+
+**Rejected intermediate capture:** `rejected-missing-motion-*` retains an editing
+failure before the candidate: the obsolete-control deletion accidentally included
+root object 211 (`s $0-vline_message`). Rate controls changed but frame positions
+stayed zero, producing DC from one sample. That essential send was restored;
+all later captures have moving readers. The structural check explicitly retains
+it. This rejected capture is evidence of the mistake, not listening material.
+
+**Listening:** [musical-master.wav](evidence/tempo-fit/musical-master.wav) is a
+12-second capture using the existing repository DrumLoop in Sample 1. Sample
+beats is 32 at 120 BPM, tempo changes to 150 at 3 seconds, beats changes to 16 at
+6 seconds, and reverse occurs at 9 seconds. The 250 ms glide applies to the
+rate changes. Stop is at 11 seconds; both writers stop automatically at 12.
+The musical rate, signed-motion, activity and finite-output checks pass. On
+2026-09-11 the user accepted this capture: “sounds good! no errors or issues”.
+This listening report is separate from numerical checks and native UI observations.
+
+**Reproduce:** generate `tests/fixtures/tempo-stereo-441.wav` with
+`python3 tests/make_tempo_fixture.py`. In a disposable native session, open
+`mlr.pd`, load the fixture into Sample 16 using `16-sample-path PATH` and DrumLoop
+into Sample 1. Keep Sample 15 empty. Start Player 1 in Forward. Temporarily add
+`tests/tempo-fit-check $0` to its canvas. In the main mixer, attach
+`s~ plugmlr-record-check-left/right` to post-master objects 20/21. Set the mixer
+levels and keep the physical output quiet. Rebuild DSP after attaching taps.
+Run `tempo-check symbol fixtures/tempo-fit.txt`, then `tempo-fit-stress.txt`,
+and `tempo-fit-musical.txt` (same fixtures prefix). Each arms both recording
+stops before writing. Wait for `capture-stopped` and `tempo-check-stopped` in the
+actual console, then copy `/tmp/tempo-readers.wav`, `/tmp/tempo-master.wav` and
+`/tmp/tempo-events.txt` before the next run. Retained reader NPZ files contain the
+exact decoded float samples, checked equal before removing the larger WAVs.
+Run `python3 tests/analyze_tempo_fit.py docs/evidence/tempo-fit` with NumPy and
+ffmpeg, plus `python3 tests/check_tempo_fit.py` and `git diff --check`.
+
+**Restoration and limits:** all three populated live-buffer exports are byte
+identical before/after; hashes and source hashes are in the observations file.
+Sample 16 was confirmed empty before testing and restored with its empty buffer
+owner afterward; track 16 returned to Live 16. Samples 1/2 were not replaced.
+The capture helper and post-master taps were removed. Temporary missing-sender
+warnings occurred during player replacement and tap cleanup; the final DSP
+rebuild after removing the helper produced no new such warning. No diagnostic
+canvas was saved over a production file. The session still has its prior unsaved
+indicator. Only Player 1 was reloaded with this candidate. Final view: Live 1,
+stopped, Forward, Free, four sample beats, preset/target 1x, internal 120 BPM,
+clock stopped, Reset two beats, output .9, console closed.
+
+Open: 44.1 kHz host operation, exhaustive rate/beat extremes,
+other player instances, DAW/host-source behavior and recall. The existing shared
+clock source is consumed but DAW synchronization is not newly qualified. Beat
+length is a player setting; per-buffer beat metadata and tempo detection are not
+implemented. Recording quantization has not begun. Leave this PR unmerged.
+
 ## Player usability view (review candidate)
 
 Scope: make one existing player understandable without changing its DSP, clock,

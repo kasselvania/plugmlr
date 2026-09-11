@@ -21,7 +21,7 @@
 #X text 175 112 Stop;
 #X text 270 112 Reverse;
 #X text 395 112 Speed: 0.25 / 0.5 / 1 / 2 / 4x;
-#X text 30 190 Position and loop / seconds;
+#X text 300 190 Position and loop / seconds;
 #X text 30 390 Slice timing grid;
 #X text 385 390 Reset every / 4/4 bars;
 #X text 700 438 Speed glide / ms;
@@ -36,13 +36,13 @@
 #X text 690 96 Internal Run is separate from Play.;
 #X obj 160 17 cnv 15 225 24 empty \$0-transport Waiting_for_state 8 13 0 13 #e3dfd9 #333333 0;
 #X obj 400 17 cnv 15 240 24 empty \$0-direction Direction_unknown 8 13 0 13 #e3dfd9 #333333 0;
-#X obj 350 65 cnv 15 295 24 empty \$0-mode Tempo_fit_OFF 8 13 0 13 #e3dfd9 #333333 0;
+#X obj 350 90 cnv 15 295 18 empty \$0-mode Free 8 13 0 13 #e3dfd9 #333333 0;
 #X obj 690 122 cnv 15 280 24 empty \$0-source Source_unknown 8 13 0 13 #e3dfd9 #333333 0;
 #X obj 690 151 cnv 15 280 24 empty \$0-clock No\ ticks 8 13 0 13 #e3dfd9 #333333 0;
 #X obj 690 256 cnv 15 295 24 empty \$0-reset Reset_Off 8 13 0 13 #e3dfd9 #333333 0;
 #X obj 825 195 nbx 6 22 0 1e+20 0 0 empty \$0-bar Bar -40 11 0 12 #e3dfd9 #333333 #333333 0 256;
 #X obj 960 195 nbx 2 22 0 1e+20 0 0 empty \$0-beat Beat -40 11 0 12 #e3dfd9 #333333 #333333 0 256;
-#X obj 525 178 nbx 6 22 0 1e+20 0 0 empty \$0-rate Set\ speed\ x -110 11 0 12 #e3dfd9 #333333 #333333 1 256;
+#X obj 525 178 nbx 6 22 0 1e+20 0 0 empty \$0-rate Preset\ x -110 11 0 12 #e3dfd9 #333333 #333333 1 256;
 #X obj 855 298 nbx 5 22 0 1e+20 0 0 empty \$0-remaining Beats\ to\ reset -110 11 0 12 #e3dfd9 #333333 #333333 0 256;
 #X obj 700 340 bng 20 180 50 0 empty \$2-reset-fired Reset\ request 28 10 0 12 #e3dfd9 #333333 #333333;
 #X text 690 370 Reset jumps to the full-sample edge.;
@@ -59,7 +59,9 @@
 #X obj 420 1050 expr if($f1==0 \, 0 \, log(max(1 \, $f1))/log(2)+1);
 #X msg 420 1090 set \$1;
 #X obj 420 1130 s \$0-reset-show;
-#X text 350 90 Tempo fitting is unfinished.;
+#X obj 350 65 tgl 22 0 \$2-clock_mode_enabled \$0-fit-choice Fit 26 11 0 12 #e3dfd9 #333333 #333333 0 1;
+#X obj 520 65 nbx 3 22 1 64 0 0 \$2-num_beats_for_segment \$0-fit-beats Sample\ beats -115 11 0 12 #e3dfd9 #333333 #333333 4 256;
+#X obj 190 178 nbx 7 22 0 64 0 0 empty \$0-target-rate Target\ speed\ x -155 11 0 12 #e3dfd9 #333333 #333333 1 256;
 #X connect 49 0 50 0;
 #X connect 50 0 51 0;
 #X connect 53 0 54 0;

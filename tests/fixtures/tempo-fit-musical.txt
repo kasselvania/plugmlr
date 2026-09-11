@@ -1,0 +1,18 @@
+tempo-player stop;
+global-transport 0;
+1-reset-beats 0;
+1-quantizer 1;
+tempo-player slew 0;
+tempo-player speed 2;
+internal-bpm 120;
+1-num_beats_for_segment 32;
+1-clock_mode_enabled 1;
+1-buffer-select sample 1;
+100 tempo-player play;
+global-transport 1;
+2500 tempo-player slew 250;
+400 internal-bpm 150;
+3000 1-num_beats_for_segment 16;
+3000 tempo-player reverse;
+2000 tempo-player stop;
+global-transport 0;
