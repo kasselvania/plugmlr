@@ -65,6 +65,10 @@
   ppq ticks dispatch it. Stop/Pause, selection and mode/grid messages clear pending.
   Preserve legacy mode 1=immediate until a deliberate UI/public-interface change.
   Controlled tick tests are not autonomous-clock or DAW-sync acceptance.
+- Internal clock Run controls ticks independently of playback. Keep its tempo
+  separate from host tempo and retain the tick count on Stop. BPM must store into
+  calc_duration without retriggering a stale start position. Validate autonomous
+  ticks through the actual player/mixer, not only an isolated clock.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

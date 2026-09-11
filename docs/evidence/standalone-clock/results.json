@@ -1,0 +1,92 @@
+{
+  "checks": {
+    "default_110_then_requested_120": true,
+    "host_tempo_isolated_and_internal_tempo_restored": true,
+    "monotonic_ticks_across_stop_and_source_switch": true,
+    "no_ticks_when_stopped_or_DAW_selected": true,
+    "run_resume_immediate": true,
+    "tick_spacing_100_600_ms": true,
+    "tick_spacing_600_900_ms": true,
+    "tick_spacing_1100_1300_ms": true,
+    "tick_spacing_1700_2100_ms": true,
+    "autonomous_cuts_only_on_matching_ticks": true,
+    "latest_keys_and_held_pending_keys_dispatched": true,
+    "application_clock_stops_and_source_gates": true,
+    "bounded_finite_capture": true,
+    "final_stop_is_silent": true,
+    "no_nonzero_gain_reader_teleports": true,
+    "clock_stop_leaves_audio_running": true,
+    "continuous_player_and_expected_mixer_gain": true,
+    "wave_finite_bounded_silent_after_stop": true,
+    "wave_no_audible_reader_teleports": true,
+    "wave_all_transition_steps_bounded": true,
+    "wave_continuous_with_expected_mixer_gain": true,
+    "constant_finite_bounded_silent_after_stop": true,
+    "constant_no_audible_reader_teleports": true,
+    "constant_all_transition_steps_bounded": true,
+    "constant_continuous_with_expected_mixer_gain": true,
+    "constant_stereo_order_and_unity_reader_sum": true,
+    "retained_before_capture_reproduces_tempo_teleport": true
+  },
+  "passed": true,
+  "selected_slices": [
+    [
+      300.0,
+      6
+    ],
+    [
+      1087.5,
+      9
+    ],
+    [
+      2515.62,
+      11
+    ],
+    [
+      4015.62,
+      13
+    ],
+    [
+      4140.62,
+      4
+    ],
+    [
+      5140.62,
+      7
+    ]
+  ],
+  "synthetic": {
+    "wave": {
+      "maximum_adjacent_steps_player_mixer": [
+        0.003173828125,
+        0.0028161657974123955,
+        0.0013044433435425162,
+        0.0011574439704418182
+      ],
+      "reader_jumps": []
+    },
+    "constant": {
+      "maximum_adjacent_steps_player_mixer": [
+        0.00027773529291152954,
+        0.00013892166316509247,
+        0.00020929239690303802,
+        0.00010468624532222748
+      ],
+      "reader_jumps": []
+    }
+  },
+  "maximum_adjacent_steps_player_mixer": [
+    0.9616402387619019,
+    0.9611667990684509,
+    0.3952341079711914,
+    0.39503952860832214
+  ],
+  "audible_reader_jumps": [],
+  "limitations": [
+    "Musical maximum steps are measurements, not a universal click criterion",
+    "Listening deferred by user",
+    "Synthetic host tempo injection is not DAW transport acceptance",
+    "48 kHz host only; DrumLoop is 44.1 kHz",
+    "Clock Stop retains a queued key; playback Stop/Pause cancels it"
+  ]
+}

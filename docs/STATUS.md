@@ -7,6 +7,92 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Standalone clock controls (review candidate)
+
+Contract before implementation: retain the existing ELSE `clock` and `count`
+path, with 16 ticks per quarter note and `ppq` integer tick positions. Internal
+BPM accepts numbers from 30 through 320, truncated to integer as before; default
+110. `global-transport` accepts 0 (stop ticks) or 1 (run ticks); repeated values
+must not restart the clock. Stop holds the tick count; Run resumes with the next
+tick immediately, not a restart of the sample or bar. Clock transport does not
+start/stop audio. Pending quantized keys still wait for a matching tick, including
+across clock Stop; playback Stop/Pause cancels them under the existing contract.
+Switching to DAW stops the internal tick generator; switching back resumes it if
+Run is still enabled. Internal tempo is retained independently of host tempo.
+Host transport must not operate the internal generator. No clock Reset button,
+Beat Reset destination, MIDI clock, catch-up, or DAW qualification is added here.
+The public globals remain the application's existing single-instance clock bus.
+
+The slice listening file and reproduction procedure below are retained unchanged.
+Listening is deferred at the user's request while away from the computer.
+
+Implementation: the main patch now has a small Run/BPM panel. The original
+`clock`, counter and source switch remain in `pd clock-system`. Source selection
+gates internal transport and selects the appropriate cached tempo; the host's
+transport outlet no longer drives the internal clock. The old hidden tempo knob
+is replaced by a stored value because its saved initialization conflicted with
+110 BPM. Public `internal-bpm` and `global-transport` messages drive the same UI
+path. Invalid run values and nonnumeric/out-of-range internal tempos are ignored.
+
+The first integrated capture exposed an additional source-level defect:
+`calc_duration`'s BPM inlet triggered `t b f`, which retriggered its old start
+position. At 1001.3125 ms reader 1 jumped 30825.328125 frames while audible.
+The localized repair routes BPM into the existing tempo store's cold inlet.
+Only the normal position request recalculates duration. Free playback is therefore
+unaffected by changing clock tempo; the unfinished clock-rate mode now picks up
+stored tempo at its next position request, not by an unsafe immediate restart.
+This does not qualify that legacy clock-rate mode or repair its obsolete metadata.
+
+**Native results:** [27 checks pass](evidence/standalone-clock/results.json).
+The actual extracted clock (renamed test buses, no audio objects) emits 16 ticks
+per quarter at 60/120/240 BPM, resumes its count without duplicate Run events,
+ignores invalid inputs, and retains internal tempo through source changes.
+Synthetic host-tempo injection exercises the production host input destination;
+it is explicitly not a Bitwig or DAW transport test. The first harness lacked a
+receiver for its renamed source-label message and printed `no such object` three
+times; that harness receiver was added and the completed repeat printed its stop
+marker without a new error. The production source label was present throughout.
+
+The original application then rendered matching seven-second musical scores
+before/after the tempo repair, plus stereo wave and constant fixtures. Six queued
+cuts dispatch on autonomous matching ticks, including a key held across clock
+Stop and a key held while DAW source is selected. No audible-reader teleport
+remains in the repaired captures. Clock Stop leaves audio running; final playback
+Stop is silent. Stereo constant ordering, unity reader sum, expected mixer gain,
+finite output and absence of block-length silence in active windows pass. All
+transition samples are included: synthetic wave maxima are .003174/.002816 at
+the player and .001304/.001157 after the mixer; constant steps remain below .001.
+The musical file has much larger source-dependent steps, retained in the results;
+these measurements do not establish universally click-free playback.
+
+**Listening and runtime:** listening remains deferred. The earlier
+[slice listening file](evidence/slice-quantizer/musical-post-master.wav) and procedure
+are unchanged; the new [clock musical capture](evidence/standalone-clock/musical-post-master.wav)
+is also retained at post-master gain times .9 without normalization. Runtime was
+native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3, the unchanged 48 kHz / 512 /
+1x CoreAudio session. The binary hash was reverified. Musical source is 44.1 kHz;
+synthetic sources are 48 kHz. No 44.1 kHz host, DAW, MIDI clock or physical controller
+acceptance is claimed. All captures armed their seven-second stop before starting.
+Temporary taps/helpers were removed, all three restored live arrays were verified
+byte-identical to fresh pre-test exports, both imported samples were restored,
+Live 2 selected, and clock/playback left stopped at output .9.
+
+**Reproduce:** `python3 tests/build_standalone_clock_check.py`, then open the
+printed `/tmp/plugmlr-clock-check.pd` in plugdata; it stops automatically at 2300 ms
+and writes `/tmp/plugmlr-clock-events.txt`. Close it after completion. For audio,
+use the existing bounded original-player/mixer tap procedure below, from a fresh
+application load (clock count starts at zero). Load DrumLoop into Sample 1 and run
+`record-check symbol fixtures/standalone-clock.txt`. Retain the six-channel output,
+`/tmp/plugmlr-clock-readers.wav` ten-channel trace and events before repeating.
+For synthetic checks, copy that score to `/tmp/plugmlr-clock-wave.txt`, replacing
+`1-buffer-select sample 1` with `1-buffer-select sample 3`; load `stop-wave-48.wav`
+and then `stop-constant-48.wav` into Sample 3 and run the temporary score each time.
+Keep physical output muted for the constant. NPZ files retain decoded float samples
+losslessly; their columns are the existing player/mixer and reader trace layouts.
+Run `python3 tests/analyze_standalone_clock.py docs/evidence/standalone-clock`
+with NumPy available. Source and capture hashes are in the evidence manifest.
+
+
 ## Slice scheduler repair (review candidate)
 
 Contract before implementation: retain the existing public `row_<track>` integer

@@ -1,0 +1,40 @@
+{
+  "base": "463c228b97ed427d378cdf70fd3eca0572dd16d0",
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "runtime_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+  "host_sample_rate": 48000,
+  "buffer_frames": 512,
+  "oversampling": "1x",
+  "listening": "Deferred by user; no new listening claim",
+  "restored_live_arrays_sha256": {
+    "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
+    "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",
+    "3": "2331f5cda13910a702f171a4c576c5c432a91b8521e6519c1ebef3d90b20ed96"
+  },
+  "source_sha256": {
+    "mlr.pd": "c0c07f693d9c130332ac8b6387cd11194a5ea187f15fd4473b4478538a3d9a8d",
+    "sample_player_rebuild.pd": "b6109350a9400858f81df26f7ba477a6449139a8b184896729212ac0276b0fe4",
+    "standalone-clock-panel.pd": "1e90ac0aaea0c53c91737f790f28d2ee5855993ef8752f82ef806a4451667767",
+    "tests/build_standalone_clock_check.py": "611c943a3b83f675cc91c5b21a1cadc896bc4b4b103dd81db850ea8441f0cd40",
+    "tests/analyze_standalone_clock.py": "00de3c67ce7730600f1afb1588138328520286d2b64acfc1e93e66e337296a24",
+    "tests/fixtures/standalone-clock.txt": "2aafa20973417970a95bb21ad1876e5b947ea372f56ee7d678fb0584121ac50c"
+  },
+  "evidence_sha256": {
+    "wave-readers-48.npz": "cec6e8227e3fd22d46e5d6b5d6508d9546c608710b2b114377999dc393d410ff",
+    "constant-readers-48.npz": "b5443d8cef94d31eb9eed3f00608491fda62503138287eb7734012f794697148",
+    "musical-readers-48.npz": "fb20e39abb3816303d3db8ab0af0b36640ccc318eafe18cab40c804d18855730",
+    "before-tempo-repair-musical-readers-48.npz": "9b8383cc80c347ed53dcb86b9446ba3a6bb67cf7abc966ab6fc28b15d7626dfc",
+    "results.json": "13ebde548a58cfbe487fd865fc2ffd2700e48b7b33c6f24e296ced12cd8e48e8",
+    "musical-events.txt": "1f1a342e41654f61517b04b275e55a56ae2e33a20743852bc7fe449b11b41b2a",
+    "before-tempo-repair-musical-events.txt": "24e00a7ebaa51b16fa1bcecf3e7152f40607fcb9c70094de95d8ed9d8d2c9467",
+    "wave-events.txt": "bf996bfcb504f4a4b61192980fec666a90d2ae6f1339fbf3b431533cf71c2b2a",
+    "constant-player-mixer-48.npz": "4d2ea2c3f17e42d244e5b4b43d3bb1e8d4fcf463bf5b6c67d9455ce528dc80e0",
+    "before-tempo-repair-musical-post-master.wav": "d056f76afedfc3f03c2dc6d081d5814c6ced271b92d4e952299bf4b004aa555c",
+    "musical-player-mixer-48.npz": "4e9553ccd72eb687cbc1d5319fe371818d759d9b7fdfd4bc946938ef70005ff9",
+    "clock-events.txt": "d6932ba7cc8aa244c3e8860357caafaf0c075aa0f8416378136a606c780b454f",
+    "constant-events.txt": "941112e1d2dbf8834ee91b32aeda39e7ec96d3259cea28b09d2e066f3de410eb",
+    "wave-player-mixer-48.npz": "8a8924a262ea21deb7d74c5ba456b73d037e0454fca0b68bc78d28b4c56a719a",
+    "musical-post-master.wav": "b247d24dca64b54bf4bb532b18e072cf4d1faef40209307127377bc13faebf99",
+    "before-tempo-repair-musical-player-mixer-48.npz": "39df513149b041e76808b26e0adeffccfce2ca2bfc49904df090dfcd0188f066"
+  }
+}

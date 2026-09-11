@@ -58,7 +58,13 @@ keeps only the newest queued slice and dispatches it on the chosen tick. Stop,
 Pause, buffer selection and mode/subdivision changes cancel stale keys. Native
 controlled-tick audio tests cover all seven subdivisions and existing playback
 regressions. The legacy mode still uses 1 for immediate; checkbox/default cleanup,
-a usable standalone clock and Beat Reset remain unfinished.
+Beat Reset remain unfinished. A [standalone clock candidate](docs/STATUS.md#standalone-clock-controls-review-candidate)
+now provides Run and BPM on the main page. Select **internal** with the existing
+source button, set BPM (30–320), then enable Run. This advances quantized slices;
+start sample playback separately. Turning Run off holds clock ticks and retains a
+queued key; playback Stop/Pause cancels that key. Tempo changes no longer restart
+the current audio ramp. Listening files and their procedures remain available for
+later review; DAW synchronization is not accepted by this standalone test.
 
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
