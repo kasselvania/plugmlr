@@ -123,3 +123,9 @@
   check_grid_adapter.py retains the earlier connector-only checkpoint comparison.
   Scheduled row commands and numerical audio checks do not prove physical key
   gestures or physical moving LEDs.
+
+- For new Grid gestures, consult the pinned mlre manual/source map in STATUS.
+  Distinguish upstream behavior, current plugmlr behavior and proposed changes.
+  Preserve stereo and the original player; do not equate tape splices with buffer
+  slots or mlre Stop/Start names with our hard Stop. Define gesture/release
+  semantics before editing, and keep unsupported page controls inactive.

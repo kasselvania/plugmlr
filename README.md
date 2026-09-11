@@ -68,6 +68,9 @@ comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
 
 ## Connect a Grid
 
+The next layout work follows the [pinned mlre manual and adaptation map](docs/STATUS.md#mlre-control-reference-and-next-grid-slice--2026-09-11).
+This is a design reference; the current patch implements the controls below.
+
 Initialize the pinned connection package after cloning or updating:
 `git submodule update --init --recursive`.
 
