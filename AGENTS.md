@@ -101,3 +101,11 @@
   Do not reconnect the obsolete calc_duration tempo branch. Mode/tempo/beat edits
   must preserve current position and stopped/paused silence. Test the actual reader
   signals and post-master output, including file/host rate mismatch and cut collisions.
+
+- Host validation must name host and file rates separately. Passive message-to-signal
+  rate reporting and reader taps can span two 64-frame blocks at command boundaries;
+  retain all transition samples and the rejected narrower-analysis evidence.
+  Qualify test component paths relative to this checkout; installed abstractions may
+  shadow unqualified names. Two original player components sharing a buffer are not
+  two isolated full applications. Bitwig's visible editor currently cannot be read
+  by the UI tool; do not turn that access gap into an audio failure or acceptance claim.

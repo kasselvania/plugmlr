@@ -1,0 +1,324 @@
+{
+  "host_hz": 44100,
+  "file_hz": 44100,
+  "checks": {
+    "core_bounded_finite": true,
+    "core_no_audible_reader_teleports": false,
+    "core_no_dropouts": true,
+    "core_stereo_peak_preserved": true,
+    "core_mixer_preserves_audio": true,
+    "core_pause_and_final_stop_silent": true,
+    "core_fit_free_reverse_and_presets": true,
+    "partial_loop_uses_same_rate_and_requested_bounds": true,
+    "file_host_mismatch_and_channel_order": true
+  },
+  "passed": false,
+  "results": {
+    "core": {
+      "frames": [
+        529023,
+        529152
+      ],
+      "finite": true,
+      "mixer_gain": 0.41099998354911804,
+      "mixer_residual_peak": 0.005519384518265724,
+      "mixer_residual_outside_documented_start_fades": 3.725290298461914e-09,
+      "mixer_max_amplification_above_gain": 3.725290298461914e-09,
+      "audible_reader_jumps": [
+        {
+          "reader": 4,
+          "ms": 4001.0884353741494,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.1111111111113,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.1337868480723,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.156462585034,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.179138321995,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.201814058957,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.224489795918,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.24716553288,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.269841269841,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.292517006803,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.315192743764,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.337868480726,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.3605442176868,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.3832199546487,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 4001.4058956916097,
+          "frames": 2.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.816326530612,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.839002267574,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.861678004535,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.884353741497,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.907029478458,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.92970521542,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.952380952381,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.975056689343,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7000.997732426304,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.0204081632655,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.0430839002265,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.065759637188,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.088435374149,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.111111111111,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.133786848072,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.156462585034,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.179138321995,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.201814058957,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.224489795918,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.24716553288,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.269841269841,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.292517006803,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.315192743764,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.337868480726,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.360544217687,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.383219954649,
+          "frames": 1.0
+        },
+        {
+          "reader": 4,
+          "ms": 7001.40589569161,
+          "frames": 1.0
+        }
+      ],
+      "player_peak_lr": [
+        0.11999847739934921,
+        0.06000218912959099
+      ],
+      "player_max_adjacent_step_lr": [
+        0.01281777210533619,
+        0.01025405339896679
+      ],
+      "active_longest_silence_frames": [
+        1,
+        1
+      ]
+    },
+    "rates": [
+      {
+        "at_seconds": 0.2,
+        "rate": 1.0,
+        "frame_step": 1.0,
+        "expected_step": 1.0
+      },
+      {
+        "at_seconds": 1.2,
+        "rate": 1.0,
+        "frame_step": 1.0,
+        "expected_step": 1.0
+      },
+      {
+        "at_seconds": 2.2,
+        "rate": 2.0,
+        "frame_step": 2.0,
+        "expected_step": 2.0
+      },
+      {
+        "at_seconds": 3.2,
+        "rate": 2.0,
+        "frame_step": -2.0,
+        "expected_step": -2.0
+      },
+      {
+        "at_seconds": 4.2,
+        "rate": 1.0,
+        "frame_step": -1.0,
+        "expected_step": -1.0
+      },
+      {
+        "at_seconds": 5.2,
+        "rate": 1.0,
+        "frame_step": -1.0,
+        "expected_step": -1.0
+      },
+      {
+        "at_seconds": 6.2,
+        "rate": 1.0,
+        "frame_step": -1.0,
+        "expected_step": -1.0
+      },
+      {
+        "at_seconds": 7.2,
+        "rate": 0.5,
+        "frame_step": -0.5,
+        "expected_step": -0.5
+      },
+      {
+        "at_seconds": 8.2,
+        "rate": 0.5,
+        "frame_step": -0.5,
+        "expected_step": -0.5
+      },
+      {
+        "at_seconds": 10.2,
+        "rate": 0.5,
+        "frame_step": -0.5,
+        "expected_step": -0.5
+      }
+    ],
+    "fitted_stereo_frequencies": [
+      750.0,
+      1200.0
+    ]
+  },
+  "limits": [
+    "Numerical checks are not listening acceptance",
+    "Applies only to the named host/file rates and captures",
+    "No universal click-free or phase-lock claim"
+  ]
+}
