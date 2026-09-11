@@ -7,6 +7,124 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Visible slice and loop controls (review candidate)
+
+Base: PR #16 head `0bf4e53cb2034368d36c699106eec08df68a7e25`.
+Branch: `codex/visible-slice-loop-controls`. The existing PR stack remains unmerged.
+
+Pre-implementation UI contract: add a compact `slice-panel` to the original player.
+Buttons display 1..16 and send existing `row_<track>` indexes 0..15. They retain
+current quantizer scheduling and the named whole-content slice policy. Show actual
+playback position and selected loop on the same whole-content scale, so resizing
+a loop does not reinterpret the display. Position and editable Start/End use
+seconds; internal conversions use file frames and the existing file sample rate.
+Loop edits are staged until Apply, with a separate Full sample action. Invalid or
+empty ranges must leave playback/bounds unchanged and give visible feedback.
+The user approved restarting at the new loop's beginning in forward playback and
+its end in reverse. While paused, Apply sets the saved resume point without
+starting audio; while stopped, it sets the next playback bounds. Full sample uses
+the same action with content bounds. Seconds round to the nearest file frame;
+ranges must contain at least one frame, fit the content and have finite endpoints.
+Apply and slices replace one shared pending jump; Stop cancels it. Buffer selection
+resets bounds, while Play preserves the chosen region. Public adapter:
+`<track>-loop-region START_SECONDS END_SECONDS` or `full`.
+This checkpoint does not add clock/quantizer behavior or replace reader DSP.
+
+Implementation map: `slice-panel.pd` contains only GUI/message conversion;
+`loop-region-control.pd` validates seconds and routes by playing/paused state.
+`pd slice_policy` chooses full bounds for slices or requested bounds for Apply,
+then commits through the original shared 1 ms pending-cut delay and crossover.
+The original 20 ms position snapshot feeds both visualizations; no additional
+position timer or reader DSP was introduced. Initial Play no longer resets bounds;
+buffer selection still does. Existing slew, quantizer, recording and mixer paths
+are otherwise unchanged. The malformed-symbol trial exposed a `trigger` conversion
+error; a `route list` now rejects it before reaching the list trigger.
+
+**Native UI observations:** loaded the original `mlr.pd`, opened the original
+player, edited Start/End to 1/3 seconds directly, and observed that the region
+remained full until Apply. Apply showed the smaller region. A malformed command
+showed `Invalid_range`, preserving 1/3 and the region without another console error.
+During bounded playback, Position read 1.43933 s in the smaller loop; clicking
+slice 9 restored full bounds and moved the marker into the second half (7.62318 s).
+Full sample restarted at the beginning (0.432333 s at the next screenshot).
+The panel and older playbar now use the same whole-content scale.
+
+**Numerical evidence:** [results](evidence/visible-loop/results.json),
+[regressions](evidence/visible-loop/regressions.json), and
+[source/capture manifest](evidence/visible-loop/manifest.json).
+The actual original player, its two readers and post-master mixer were captured,
+not a separate playback model. Six automatically bounded seven-second captures
+retain 335918 decoded frames each in lossless NPZ files. Wave, constant, speed and
+pause arrays are committed; manual-UI/musical arrays remain in ignored local-raw,
+with the musical listening WAV committed. The WAV container's
+slightly short decoded tail follows the earlier native capture convention.
+The wave and distinct-channel constant fixtures pass 12 region-range checks,
+including forward/reverse Apply, Full sample, latest-command slice/region ordering,
+rapid Apply, paused Apply/Resume, stopped Apply/Play, invalid input preservation,
+and empty-buffer silence. Continuous playback has no block-length dropout and
+mixer gain error below 2e-6. The constant confirms stereo order and unity reader sum.
+Pause/Resume and speed regression scores also pass; 251161 eligible speed-reader
+steps include the previous boundary collisions without an oversized step.
+
+**Open transition failure:** functional passes do not close crossover acceptance.
+The wave capture contains reader teleports at approximately 1552.312, 3054.312 and
+3056.312 ms, while their gains are still nonzero. The first follows Apply near a
+loop wrap; the latter follow 2 ms repeated Apply commands. Maximum adjacent player
+steps are 0.022923 L / 0.017340 R. A shared pending jump prevents simultaneous new
+owners, but does not ensure a reader from an earlier handoff has finished fading.
+The previously documented rapid-reader-reuse limitation is therefore observable
+through this UI too. This candidate leaves that gate explicitly false and must
+not be presented as fully transition-qualified. A focused handoff-ownership repair
+is the next technical job; no such redesign is included here.
+
+**Runtime:** plugdata 0.9.4 nightly `98ae0f78b`, Pd 0.56.3; installed binary hash
+rechecked against the earlier identity. Native settings directly showed CoreAudio,
+8A input/output, 48000 Hz, 512 frames, 1x, limiter Off. Test signals are stereo
+48 kHz. The musical capture uses the repository's stereo 44.1 kHz DrumLoop.wav
+with that 48 kHz host. No new 44.1 kHz host, Bitwig, DAW lifecycle, controller or
+project-recall acceptance is claimed.
+
+**Listening, separate from measurements:** the user reported “Sounds clean” for
+[musical post-master audio](evidence/visible-loop/musical-post-master.wav).
+It contains Apply at 1.35 s, Reverse at 2.35 s, Apply at 3.35 s, slice at 4.35 s,
+and Full sample at 5.35 s. Export uses actual mixer channels 5/6 with the session's
+0.9 output factor, no normalization. This does not override the stress failure.
+The generated-reference channels in the six-channel capture are not listening audio.
+
+**Run it:** open `mlr.pd`, load a stereo file with Sample 1 Load, open
+`pd arrays-samples` then `sample_player_rebuild 1`, and select sample_buffer / 1.
+Set audible track/master levels. Edit Start_s/End_s and press Apply; Play preserves
+those bounds. Direction Change reverses; Apply then enters at the new loop end.
+Use buttons 1–16 to exit the smaller region or Full sample to reset it explicitly.
+Pause/Apply stays silent until Resume. Quantized scheduling remains its existing,
+unqualified behavior; native checks used immediate `1-quantizer 1`.
+
+**Repeat validation:** use the existing temporary tap arrangement from the prior
+slice checkpoint: `tests/instant-reverse-check $0`,
+`tests/bounded-player-capture 1 $0`, and `tests/speed-slew-controls $0` in the
+original player, plus mixer object 20/21 outputs to
+`s~ plugmlr-record-check-left/right`. Initialize only the helper, mute output,
+then rebuild DSP after attaching taps. Load `stop-wave-48.wav` into samples 3/4;
+submit `record-check symbol fixtures/visible-loop.txt` through the native console.
+Wait for both automatic stop messages before retaining `/tmp/plugmlr-record-check.wav`,
+`/tmp/plugmlr-visible-readers.wav` and events. Repeat sample 3 with
+`stop-constant-48.wav` while muted. Run `speed-slew-position.txt` and
+`pause-resume.txt` with wave samples, retaining their respective reverse/pause reader
+files. `visible-loop-musical.txt` uses DrumLoop in Sample 1; `visible-loop-ui.txt`
+provides bounded playback for manual button checks. Reproduce numerical results:
+`python3 tests/analyze_visible_loop.py docs/evidence/visible-loop` and
+`python3 tests/analyze_visible_regressions.py docs/evidence/visible-loop` (NumPy/ffmpeg).
+The first reports functional checks separately from the false transition gate.
+
+**Session restoration:** all three live arrays were freshly copied before reload,
+then restored and re-exported byte-identically. Content/capacity remains
+96000/96000, 96000/96000, 60032/192000 frames; next lengths 2/2/4 seconds.
+Sample 1 DrumLoop and the user's Sample 2 Sunny loop were restored. Original player
+is visible on Live 2, stopped, with no diagnostic taps or capture running; track
+gain .548, master .75 and output .9. Companion input configuration was untouched.
+The failed R1 stash, historical patches, adjacent repositories and services remain
+untouched. This is an unmerged review candidate, not the next engine slice.
+
 ## Slice policy checkpoint
 
 Branch `codex/fix-slice-region-handoff` starts at PR #15 head

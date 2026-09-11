@@ -54,6 +54,11 @@
   `pd slice_policy` and the linked slice-position calculation; future modes must
   change both deliberately. A pending slice owns the next jump until commit or
   Stop cancellation. Test boundary/cut collisions without excluding those windows.
+- The visible loop panel stages seconds until Apply. Validation belongs in
+  `loop-region-control`; region and slice requests share `pd slice_policy` and
+  its pending jump. Preserve paused/stopped silence and whole-content feedback.
+  The visible-loop stress capture has nonzero-gain reader reuse: keep that
+  transition gate open even when functional checks and musical listening pass.
 - Establish an automatic capture stop before starting any diagnostic recording.
   Do not leave recording dependent on another agent turn, context compression,
   UI automation, or the user noticing it. Keep capture setup separate from DSP

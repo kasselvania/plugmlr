@@ -44,6 +44,14 @@ slice end. The choice is named `pd slice_policy` in `sample_player_rebuild.pd`,
 separate from loop detection and reader fades. Pending slices own the next jump,
 preventing a competing boundary fade. Alternative mappings are not enabled.
 
+The [visible slice/loop candidate](docs/STATUS.md#visible-slice-and-loop-controls-review-candidate)
+adds buttons 1–16, a whole-sample position/region display, and Start_s/End_s fields
+with Apply and Full sample. Apply restarts at the region beginning forward or end
+in reverse; paused edits wait for Resume. Edits are staged until Apply. Native UI,
+player/mixer and regression checks are retained, including an **open crossover
+collision failure** under short-loop/rapid Apply stress; this is not fully
+transition-qualified.
+
 The musical direction is free-form tape manipulation, growing toward an
 mlre-inspired community instrument. The immediate behavior to finish is instant
 reverse or an audible tape slew, with timing drift allowed. The

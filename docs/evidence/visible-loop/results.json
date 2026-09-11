@@ -1,0 +1,489 @@
+{
+  "checks": {
+    "candidate-wave_finite_bounded_stop": true,
+    "candidate-wave_region_bounds_and_full_sample": true,
+    "candidate-wave_pause_holds_new_reverse_entry": true,
+    "candidate-wave_transport_and_empty_silent": true,
+    "candidate-wave_no_block_dropout_or_mixer_gain_change": true,
+    "candidate-constant_finite_bounded_stop": true,
+    "candidate-constant_region_bounds_and_full_sample": true,
+    "candidate-constant_pause_holds_new_reverse_entry": true,
+    "candidate-constant_transport_and_empty_silent": true,
+    "candidate-constant_no_block_dropout_or_mixer_gain_change": true,
+    "stereo_order_and_unity_reader_sum": true
+  },
+  "functional_checks_pass": true,
+  "transition_acceptance_gates": {
+    "overlapping_handoffs_have_no_audible_reader_teleports": false
+  },
+  "transition_acceptance_complete": false,
+  "cases": {
+    "candidate-wave": {
+      "frames": 335918,
+      "regions": [
+        {
+          "seconds": [
+            0.08,
+            0.54
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2401.0,
+            7200.0
+          ]
+        },
+        {
+          "seconds": [
+            0.58,
+            1.04
+          ],
+          "expected": [
+            4800,
+            9600
+          ],
+          "observed": [
+            4801.0,
+            9600.0
+          ]
+        },
+        {
+          "seconds": [
+            1.08,
+            1.54
+          ],
+          "expected": [
+            4800,
+            9600
+          ],
+          "observed": [
+            4800.0,
+            9599.0
+          ]
+        },
+        {
+          "seconds": [
+            1.58,
+            2.04
+          ],
+          "expected": [
+            1200,
+            6000
+          ],
+          "observed": [
+            1200.0,
+            5999.0
+          ]
+        },
+        {
+          "seconds": [
+            2.08,
+            2.44
+          ],
+          "expected": [
+            0,
+            12000
+          ],
+          "observed": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "seconds": [
+            2.48,
+            2.74
+          ],
+          "expected": [
+            0,
+            12000
+          ],
+          "observed": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "seconds": [
+            2.78,
+            3.04
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2400.0,
+            7199.0
+          ]
+        },
+        {
+          "seconds": [
+            3.08,
+            3.34
+          ],
+          "expected": [
+            2880,
+            7680
+          ],
+          "observed": [
+            2880.0,
+            7679.0
+          ]
+        },
+        {
+          "seconds": [
+            3.68,
+            4.04
+          ],
+          "expected": [
+            1200,
+            6000
+          ],
+          "observed": [
+            1200.0,
+            5999.0
+          ]
+        },
+        {
+          "seconds": [
+            4.38,
+            4.64
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2401.0,
+            7200.0
+          ]
+        },
+        {
+          "seconds": [
+            4.68,
+            4.94
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2401.0,
+            7200.0
+          ]
+        },
+        {
+          "seconds": [
+            5.6,
+            6.04
+          ],
+          "expected": [
+            0,
+            12000
+          ],
+          "observed": [
+            0.9999991655349731,
+            12000.0
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            3.34
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.68,
+            4.04
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.38,
+            4.94
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            5.6,
+            6.04
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "max_audio_steps_player_mixer": [
+        0.02292286977171898,
+        0.017339620739221573,
+        0.009421299211680889,
+        0.007126583252102137
+      ],
+      "audible_reader_reuse": [
+        {
+          "reader": 0,
+          "time_ms": 3054.3125,
+          "step_frames": 4319.001953125,
+          "gain": 0.7777822017669678
+        },
+        {
+          "reader": 1,
+          "time_ms": 1552.3125,
+          "step_frames": 1199.0009765625,
+          "gain": 0.7222222089767456
+        },
+        {
+          "reader": 1,
+          "time_ms": 3056.3125,
+          "step_frames": 2111.0,
+          "gain": 0.17463748157024384
+        }
+      ]
+    },
+    "candidate-constant": {
+      "frames": 335918,
+      "regions": [
+        {
+          "seconds": [
+            0.08,
+            0.54
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2401.0,
+            7200.0
+          ]
+        },
+        {
+          "seconds": [
+            0.58,
+            1.04
+          ],
+          "expected": [
+            4800,
+            9600
+          ],
+          "observed": [
+            4801.0,
+            9600.0
+          ]
+        },
+        {
+          "seconds": [
+            1.08,
+            1.54
+          ],
+          "expected": [
+            4800,
+            9600
+          ],
+          "observed": [
+            4800.0,
+            9599.0
+          ]
+        },
+        {
+          "seconds": [
+            1.58,
+            2.04
+          ],
+          "expected": [
+            1200,
+            6000
+          ],
+          "observed": [
+            1200.0,
+            5999.0
+          ]
+        },
+        {
+          "seconds": [
+            2.08,
+            2.44
+          ],
+          "expected": [
+            0,
+            12000
+          ],
+          "observed": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "seconds": [
+            2.48,
+            2.74
+          ],
+          "expected": [
+            0,
+            12000
+          ],
+          "observed": [
+            0.0,
+            11999.0
+          ]
+        },
+        {
+          "seconds": [
+            2.78,
+            3.04
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2400.0,
+            7199.0
+          ]
+        },
+        {
+          "seconds": [
+            3.08,
+            3.34
+          ],
+          "expected": [
+            2880,
+            7680
+          ],
+          "observed": [
+            2880.0,
+            7679.0
+          ]
+        },
+        {
+          "seconds": [
+            3.68,
+            4.04
+          ],
+          "expected": [
+            1200,
+            6000
+          ],
+          "observed": [
+            1200.0,
+            5999.0
+          ]
+        },
+        {
+          "seconds": [
+            4.38,
+            4.64
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2401.0,
+            7200.0
+          ]
+        },
+        {
+          "seconds": [
+            4.68,
+            4.94
+          ],
+          "expected": [
+            2400,
+            7200
+          ],
+          "observed": [
+            2401.0,
+            7200.0
+          ]
+        },
+        {
+          "seconds": [
+            5.6,
+            6.04
+          ],
+          "expected": [
+            0,
+            12000
+          ],
+          "observed": [
+            0.9999991655349731,
+            12000.0
+          ]
+        }
+      ],
+      "active_windows": [
+        {
+          "seconds": [
+            0.08,
+            3.34
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            3.68,
+            4.04
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            4.38,
+            4.94
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        },
+        {
+          "seconds": [
+            5.6,
+            6.04
+          ],
+          "longest_silence_frames": 0,
+          "mixer_gain_error": 3.725290298461914e-09
+        }
+      ],
+      "max_audio_steps_player_mixer": [
+        0.00027773529291152954,
+        0.0001389235258102417,
+        0.021916557103395462,
+        0.01096245925873518
+      ],
+      "audible_reader_reuse": [
+        {
+          "reader": 0,
+          "time_ms": 3054.3125,
+          "step_frames": 4319.001953125,
+          "gain": 0.7777822017669678
+        },
+        {
+          "reader": 1,
+          "time_ms": 1552.3125,
+          "step_frames": 1199.0009765625,
+          "gain": 0.7222222089767456
+        },
+        {
+          "reader": 1,
+          "time_ms": 3056.3125,
+          "step_frames": 2111.0,
+          "gain": 0.17463748157024384
+        }
+      ],
+      "constant_stereo_error": 7.450580596923828e-09
+    }
+  }
+}
