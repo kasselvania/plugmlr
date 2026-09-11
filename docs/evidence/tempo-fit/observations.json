@@ -11,7 +11,11 @@
     "Final DSP rebuild with test abstraction gone produced no new missing-sender warnings",
     "Final view responds to Fit toggle; returned to Free and console closed"
   ],
-  "user_listening": "Requested; pending",
+  "user_listening": {
+    "date": "2026-09-11",
+    "quote": "sounds good! no errors or issues",
+    "scope": "Human listening acceptance of musical-master.wav; separate from numerical and native UI observations"
+  },
   "live_buffer_before_after_sha256": {
     "1": "319d9addd1c385dd263f7888c987c846c85a94de8d0cb552079f2e39e5aa847f",
     "2": "00bcf381ab060375ae8f99aad37fd5cc2cd1b4fe13a48319141ed016426ecf85",

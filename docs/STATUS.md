@@ -104,8 +104,9 @@ it. This rejected capture is evidence of the mistake, not listening material.
 beats is 32 at 120 BPM, tempo changes to 150 at 3 seconds, beats changes to 16 at
 6 seconds, and reverse occurs at 9 seconds. The 250 ms glide applies to the
 rate changes. Stop is at 11 seconds; both writers stop automatically at 12.
-The musical rate, signed-motion, activity and finite-output checks pass. Human
-listening feedback has been requested and remains open.
+The musical rate, signed-motion, activity and finite-output checks pass. On
+2026-09-11 the user accepted this capture: “sounds good! no errors or issues”.
+This listening report is separate from numerical checks and native UI observations.
 
 **Reproduce:** generate `tests/fixtures/tempo-stereo-441.wav` with
 `python3 tests/make_tempo_fixture.py`. In a disposable native session, open
@@ -135,7 +136,7 @@ indicator. Only Player 1 was reloaded with this candidate. Final view: Live 1,
 stopped, Forward, Free, four sample beats, preset/target 1x, internal 120 BPM,
 clock stopped, Reset two beats, output .9, console closed.
 
-Open: human listening, 44.1 kHz host operation, exhaustive rate/beat extremes,
+Open: 44.1 kHz host operation, exhaustive rate/beat extremes,
 other player instances, DAW/host-source behavior and recall. The existing shared
 clock source is consumed but DAW synchronization is not newly qualified. Beat
 length is a player setting; per-buffer beat metadata and tempo detection are not
