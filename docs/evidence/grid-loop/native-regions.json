@@ -1,0 +1,152 @@
+[
+  {
+    "command": "first 44100",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "last 485100",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "rate 44.1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 0 16",
+    "expected": [
+      "cancel",
+      "region 1 11"
+    ],
+    "actual": [
+      "cancel",
+      "region 1 11"
+    ],
+    "passed": true
+  },
+  {
+    "command": "cells 2 6",
+    "expected": [
+      "cancel",
+      "region 2.25 4.75"
+    ],
+    "actual": [
+      "cancel",
+      "region 2.25 4.75"
+    ],
+    "passed": true
+  },
+  {
+    "command": "cells 15 16",
+    "expected": [
+      "cancel",
+      "region 10.375 11"
+    ],
+    "actual": [
+      "cancel",
+      "region 10.375 11"
+    ],
+    "passed": true
+  },
+  {
+    "command": "cells -1 3",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 4 4",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 6 2",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 0 17",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 1.5 4",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 2 x",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells x 4",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 2",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cells 2 4 6",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "stop bang",
+    "expected": [
+      "gesture_cancel 91"
+    ],
+    "actual": [
+      "gesture_cancel 91"
+    ],
+    "passed": true
+  },
+  {
+    "command": "paused 1",
+    "expected": [
+      "gesture_cancel 91"
+    ],
+    "actual": [
+      "gesture_cancel 91"
+    ],
+    "passed": true
+  },
+  {
+    "command": "paused 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "paused 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "switching 1",
+    "expected": [
+      "gesture_cancel 91"
+    ],
+    "actual": [
+      "gesture_cancel 91"
+    ],
+    "passed": true
+  }
+]

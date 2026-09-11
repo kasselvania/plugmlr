@@ -1,0 +1,73 @@
+{
+  "checks": {
+    "16_seconds": true,
+    "finite": true,
+    "audio_below_full_scale": true,
+    "inclusive_forward_pair": true,
+    "reverse_order_pair": true,
+    "queued_first_slice_does_not_erase_loop": true,
+    "new_loop_in_reverse": true,
+    "paused_loop_edit": true,
+    "paused_master_silent_for_a": true,
+    "ordinary_slice_restores_full_content": true,
+    "stop_cancels_held_pair": true,
+    "stopped_loop_edit": true,
+    "stopped_master_silent_for_a": true,
+    "reverse_audio_matches_reversed_source": true,
+    "b_expected_continuous_audio": true,
+    "stereo_master_active": true,
+    "final_master_silent": true
+  },
+  "passed": true,
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "frames": 768000,
+  "audio_peaks": [
+    0.9760041236877441,
+    0.9825377464294434,
+    0.9759158492088318,
+    0.9770742654800415,
+    0.5011365413665771,
+    0.5070070624351501
+  ],
+  "b_matches": [
+    {
+      "capture_seconds": 1,
+      "source_seconds": 0.7977083333333334,
+      "correlation": 0.9990160150415961
+    },
+    {
+      "capture_seconds": 3.2,
+      "source_seconds": 2.997708333333333,
+      "correlation": 0.999953456886653
+    },
+    {
+      "capture_seconds": 5.6,
+      "source_seconds": 5.397708333333333,
+      "correlation": 0.9966007969246758
+    },
+    {
+      "capture_seconds": 8.4,
+      "source_seconds": 8.197708333333333,
+      "correlation": 0.9992407882545716
+    },
+    {
+      "capture_seconds": 10.5,
+      "source_seconds": 10.297708333333333,
+      "correlation": 0.9999673648932961
+    },
+    {
+      "capture_seconds": 12.4,
+      "source_seconds": 12.197708333333333,
+      "correlation": 0.9999923859457176
+    }
+  ],
+  "reverse_match": {
+    "capture_seconds": 4.2,
+    "source_seconds": 13.568020833333334,
+    "correlation": 0.9999747086209915
+  },
+  "stopped_a_pre_mixer_rms": 0.21080724895000458,
+  "stopped_a_master_residual": 2.9802322387695312e-08,
+  "scope": "Scheduled actual Grid input; actual committed bounds and mixer output. B reference comparison is windowed; no universal click-free claim."
+}

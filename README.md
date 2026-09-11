@@ -94,7 +94,7 @@ row key to start, pause or resume that player. ALT lights brightly while held.
 Release ALT for ordinary slicing. Transport acts immediately; slices retain their
 per-player quantization. Changing rows opens the corresponding existing player
 view. Hard Stop remains on that panel. The top-row second key marks CUT; other
-pages and two-key looping are not implemented yet. Native checks pass; physical
+pages are not implemented yet. Native checks pass; physical
 ALT toggles and player-view switching are user-accepted in the [checkpoint](docs/STATUS.md#grid-alt-transport-review-candidate--2026-09-11).
 
 ## Run the original application
@@ -176,3 +176,13 @@ Installing a lease daemon alone does not migrate other legacy patches.
 Alternative and historical patches remain alongside the entry point. Their names
 do not establish which behavior works. The rejected shared-playback rewrite is
 preserved separately and is not the current application; details are in STATUS.
+
+**CUT loops:** hold one track-row key, press a second key in the same row, then
+release either. The loop includes both selected cells, regardless of press order.
+The first press is an ordinary quantized slice; the loop commits immediately on
+release: running playback inside the range keeps its current position; outside it
+wraps immediately to the directional entry. On-screen Apply still jumps to the
+entry. A later single slice restores the whole sample. ALT, Stop, Pause and
+buffer changes cancel unfinished pairs; a third held key cancels the pair until
+all keys are released. The player panel shows the committed seconds; dim Grid
+range LEDs and MOD one-key loops are deferred. The corrected release behavior is physically user-accepted.

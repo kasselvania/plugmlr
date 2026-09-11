@@ -134,3 +134,17 @@
   handling belong there; never emit a slice alongside an ALT transport command.
   Disconnect clears held input state. Keep transport immediate and slice timing
   in the existing player. Run check_grid_alt.py for the exact input-only boundary.
+
+- Two-key CUT loops include both cells and commit once on first release. Keep
+  gesture state in grid-cut-keys and seconds conversion in grid-loop-region;
+  original loop-region-control owns validation and transitions. Loop commit must
+  cancel the queued quantized slice as well as the pending trajectory. Stop,
+  Pause, buffer changes, ALT and detach cancel unfinished gestures. Validate
+  master silence separately from the known stopped-slice pre-mixer activity.
+  check_grid_loop.py guards the exact helper and cancellation-wire boundary.
+
+- Grid loop release is a boundary edit, not Apply's entry retrigger. For running
+  playback inside the new range, query the existing logical ramp and recalculate
+  from that position without a slice; outside, wrap immediately. Keep plain/full
+  Apply unchanged. Test long holds in both directions and inspect actual position
+  AND audio across release; an emitted loop message alone misses this regression.

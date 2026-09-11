@@ -1490,11 +1490,14 @@
 #X msg 540 105 1;
 #X obj 540 155 t b f;
 #X obj 25 345 list prepend;
-#X obj 25 390 route 0 1 2;
+#X obj 25 390 route 0 1 2 3;
 #X obj 440 450 outlet speed_position;
 #X obj 710 65 inlet pause_query;
 #X msg 710 105 2;
 #X obj 710 450 outlet pause_position;
+#X obj 900 65 r \$0-region-position-query;
+#X msg 900 105 3;
+#X obj 900 450 s \$0-region-current-position;
 #X connect 0 0 1 0;
 #X connect 1 1 2 0;
 #X connect 1 0 3 0;
@@ -1515,6 +1518,9 @@
 #X connect 16 0 17 0;
 #X connect 17 0 12 0;
 #X connect 14 2 18 0;
+#X connect 19 0 20 0;
+#X connect 20 0 12 0;
+#X connect 14 3 21 0;
 #X restore 1040 1600 pd current_position;
 #X obj 1400 360 r \$0-pause-finish;
 #X obj 1400 400 t b b;
@@ -1601,6 +1607,7 @@
 
 #X obj -580 900 tempo-fit \$0 \$1;
 #X obj 1700 4300 grid-playback-state \$0 \$1;
+#X obj 1700 4350 grid-loop-region \$0 \$1;
 #X connect 527 0 142 0;
 #X connect 528 0 142 0;
 #X connect 526 0 33 0;
@@ -2086,3 +2093,5 @@
 #X connect 533 0 438 0;
 #X connect 535 0 320 0;
 #X connect 535 0 312 0;
+
+#X connect 525 0 142 0;

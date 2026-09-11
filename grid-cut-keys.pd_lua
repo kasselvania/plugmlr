@@ -1,9 +1,9 @@
 -- CUT-page gestures only. Player transport and quantization remain in Pd.
 local C = pd.Class:new():register('grid-cut-keys')
 function C:initialize()
-    self.inlets, self.outlets = 2, 4
+    self.inlets, self.outlets = 3, 5
     self.connected, self.alt, self.focus = false, false, 0
-    self.held = {}
+    self.held, self.pairs = {}, {}
     return true
 end
 local function integer(v, lo, hi)
@@ -15,12 +15,20 @@ end
 function C:in_2_float(v)
     local connected = v == 1
     if connected == self.connected then return end
-    self.connected, self.alt, self.held = connected, false, {}
+    self.connected, self.alt, self.held, self.pairs = connected, false, {}, {}
     if connected then
         self:outlet(4, '/monome/grid/led/row', {0, 0, 0, 0})
         self:outlet(4, '/monome/grid/led/level/set', {1, 0, 8})
         self:alt_led()
     end
+end
+function C:row_count(row)
+    local n = 0
+    for x = 0, 15 do if self.held[row*16+x] then n=n+1 end end
+    return n
+end
+function C:in_3_float(row)
+    if integer(row,1,6) then self.pairs[row]=nil end
 end
 function C:in_1_list(a)
     if not self.connected or #a ~= 3 then return end
@@ -28,7 +36,14 @@ function C:in_1_list(a)
     if not integer(x,0,15) or not integer(y,0,7) or not integer(z,0,1) then return end
     local key = y * 16 + x
     if z == 0 then
+        local was_held = self.held[key]
         self.held[key] = nil
+        local pair = self.pairs[y]
+        if was_held and pair and pair.second and not pair.done then
+            pair.done = true
+            self:outlet(5, 'list', {y, math.min(pair.first,pair.second), math.max(pair.first,pair.second)+1})
+        end
+        if y >= 1 and y <= 6 and self:row_count(y) == 0 then self.pairs[y]=nil end
         if x == 15 and y == 0 and self.alt then
             self.alt = false
             self:alt_led()
@@ -39,6 +54,7 @@ function C:in_1_list(a)
     self.held[key] = true
     if x == 15 and y == 0 then
         self.alt = true
+        self.pairs = {}
         self:alt_led()
     elseif y >= 1 and y <= 6 then
         if self.focus ~= y then
@@ -48,7 +64,15 @@ function C:in_1_list(a)
         if self.alt then
             self:outlet(2, 'float', {y})
         else
-            self:outlet(1, 'list', {x,y,z})
+            local count = self:row_count(y)
+            if count == 1 then
+                self.pairs[y] = {first=x}
+                self:outlet(1, 'list', {x,y,z})
+            elseif count == 2 and self.pairs[y] and not self.pairs[y].done then
+                self.pairs[y].second = x
+            elseif count > 2 then
+                self.pairs[y] = nil
+            end
         end
     end
 end
@@ -60,4 +84,8 @@ function C:in_2(sel, a)
 end
 function C:in_1(sel, a)
     if sel == 'list' then self:in_1_list(a) end
+end
+
+function C:in_3(sel,a)
+    if (sel == 'float' or sel == 'list') and #a == 1 then self:in_3_float(a[1]) end
 end

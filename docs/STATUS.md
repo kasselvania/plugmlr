@@ -7,6 +7,62 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid loop release restart correction — 2026-09-11
+
+The user rejected PR #29's initial physical behavior: releasing the second key
+restarted playback at the first key. Source trace confirmed one loop request,
+not a duplicate key press: the original Apply path deliberately chose the
+region entry. The initial short-hold tests missed this musical requirement.
+The user chose immediate wrapping when already outside the new range.
+
+Grid requests now use `keep start_seconds end_seconds`. Existing validation runs
+first. `loop-region-live.pd` queries the original logical ramp; while running and
+inside the new range it sets bounds and recalculates the existing trajectory at
+that same position, without a slice or new crossfade. Outside the range, or when
+inactive, the original directional-entry path remains. No per-sample Lua or new
+transport latch. Plain/full on-screen Apply remains unchanged.
+
+A new bounded 12-second native capture tests 800 ms holds, forward and reverse
+release continuity, and release after passing the selected end. Twelve numerical
+checks pass, including stereo source continuity across release and immediate
+outside wrapping; 20 updated native conversion checks pass. Earlier passing
+checks do not override the user's rejected initial behavior. The user confirmed the corrected physical release behavior (“yes”). Listening
+acceptance of the separate retained capture remains unreported. See
+[correction evidence](evidence/grid-loop/continuity/observations.md).
+
+## Grid two-key loop review candidate — 2026-09-11
+
+On CUT rows, first unmodified key-down remains a normal slice (including its
+existing quantization). A second distinct key in the same row selects the other
+edge without sending another slice. Releasing either key commits once, immediately
+through the original loop-region validator. Running playback inside the range
+continues from its current logical position without a cut; outside it wraps
+immediately to the directional entry. On-screen Apply retains its entry jump. Columns are zero-based:
+start = content_start + min(column)/16 × content_length; exclusive end =
+content_start + (max(column)+1)/16 × content_length. Both selected cells are
+included regardless of press order or playback direction. The existing region
+validator converts seconds to rounded file frames and chooses entry by direction.
+
+Loop commit cancels any queued first slice and pending trajectory before submitting
+the new region. A later ordinary slice still restores full-content bounds.
+Paused/stopped loop edits remain silent at the master. Third-key overlap cancels an unfinished
+pair until all keys in that row are released. ALT press cancels unfinished pairs;
+ALT transport stays unchanged. Stop, Pause, buffer selection/switching and detach
+also cancel unfinished gestures. Releases after cancellation do nothing. Rows
+remain independent. MOD/one-key loops and dim Grid loop-range drawing are deferred;
+the existing focused player panel displays committed loop bounds.
+
+Validation: 78 native gesture sequences, 20 native conversion/cancellation cases
+and 17 actual-player/master checks pass at 48 kHz with a 44.1 kHz source. The
+original reader DSP is unchanged. Region validation has an explicit keep-position
+dispatch, and the existing logical ramp query has a separate reply for that path. A small bridge maps
+cells to seconds; one cancellation wire also clears the queued quantized slice.
+Stopped slice edits still produce pre-mixer activity in the original path, while
+the master remains silent; this is a retained limitation, not a silence claim
+for every internal signal. The initial physical behavior was rejected; the correction above is physically
+accepted. Separate capture listening acceptance remains unreported.
+See [evidence and repeat procedure](evidence/grid-loop/observations.md).
+
 ## Grid ALT transport review candidate — 2026-09-11
 
 Scope: retain CUT rows, add top-right ALT (OSC x=15,y=0) and focused-player
