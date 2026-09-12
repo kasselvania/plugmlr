@@ -7,6 +7,177 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Recording UI proposal — 2026-09-11
+
+**Design review only.** The user is away from the computer and asked for a
+recording behavior/layout recommendation grounded in mlre. Base and remote main
+were verified at `29ab51e653eded9db9c5aa09850ec4a1352d97e9`. No patch, runtime,
+input, recording, Grid session or installed dependency was changed for this review.
+
+### Reference and actual code
+
+The [pinned mlre v2.2 manual](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/doc/mlre%20v2.2%20-%20user%20manual.pdf)
+pages 5–6 were read and their REC diagrams rendered and visually inspected;
+pages 19–20 explain tape/splice ownership. The matching
+[REC handlers](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/lib/grid_mlre.lua#L368)
+and `mlre.lua` recording functions were also inspected. Upstream REC toggles tape
+recording; ARM waits for an input threshold; ALT adds one-shot/auto-length modes;
+MOD+REC recalls a backup. Its eight splices are overlapping windows into a tape,
+not eight separate files or our live-buffer slots. Its main/temporary tape sides
+are not our imported/live buffer types. Preserve the spatial language without
+claiming those recording capabilities here.
+
+| Current source | What is actually wired / design consequence |
+| --- | --- |
+| `audio-in-subpatch.pd`, `input-send~`, `input-receive~` | Host L/R → input gain → local stereo bus. Monitor gain is separate and defaults muted. Saved host-channel defaults are 1/2; the accepted hardware session used 3/4. Show the actual source configuration, never hardcode the last session. |
+| `mlr.pd`, `record-input.pd` | One bus-1 receiver feeds the instrument's stereo recording input. Input arm plus running DSP permits Start. Meters are `env~` level measurements, not peak/clip or sender-presence detection. Disarming does not stop an active take. |
+| `record-controls.pd` | Player Record sends **start**, not a toggle; player Stop sends **stop**, both to the selected live buffer. Imported-buffer Record is gated out. A Grid toggle therefore needs to consult actual buffer recording state. |
+| `record-length.pd` | Seconds or whole 4/4 bars resolve to seconds using project BPM. The displayed grow mode has settings only; the writer rejects its zero target. |
+| `live_buffer.pd`, `live-record.pd` | The live buffer owns both arrays and its writer. Start requires empty, non-busy storage, enabled input, a valid fixed target and supported host rate. Clear/Record protect the same storage. Status is `Empty`, `Recording` or `Loaded`, plus buffer-addressed errors. |
+| `fixed-record~.pd` | Original stereo `poke~` pattern driven by an audio-rate counter. Target is frozen at Start; Stop reports completed frames after settling. Written-frame progress exists privately; it has no public UI progress outlet yet. |
+| `buffer-selection.pd`, `buffer-panel.pd` | Selecting another buffer does not move a running writer. The existing panel follows selection, so the previous take and its early-stop action can disappear from view. Completion exposes only written content; there is no automatic playback. |
+
+**Correction after the user's reminder:** the earlier draft traced the active
+fixed recorder but did not carry forward the existing dynamic-recording recovery
+path. `sampler_playback.pd` already contains substantive endless recording code:
+
+- `pd poke_write_processing` compares the recording position with 90% of capacity;
+  `edge~` triggers doubling of both stereo arrays and a size/metadata refresh
+  (lines 830–857, 903–930). This is real growth logic, not merely a mode label.
+- `$0-endless_buffer_record_logic` enables writing, disables reading, sets the
+  endless flag and snapshots the starting position (lines 1257, 1324–1328).
+- `$0-stop_endless_buffer_recording` enters a right-to-left trigger sequence that
+  disarms, clears the endless flag, stops writing, snapshots the endpoint, publishes
+  first/last indices and marks the first recording complete (lines 1296, 1207,
+  649–654, 789–799). This establishes the recorded playback window. I did not find
+  an endpoint-sized physical array shrink in that Stop chain; usable-content trim
+  and storage shrink must be distinguished.
+
+The original source map below already identified this file's growable recording
+behavior. It remains in place, but `mlr.pd` instantiates `sample_player_rebuild`,
+not `sampler_playback`. Thus **existing implementation to recover, absent from the
+currently accepted path** is the correct classification. Growth uses names based
+on the abstraction's `$1`, while writer selection is retargetable; selected-buffer
+ownership and Stop/snapshot order need tracing before reuse. No reliability claim
+for long growth, resize continuity or trim follows from this source inspection.
+The UI should make room for **Fixed / Free** now; recovery must precede any claim
+that Free is operational, and should precede new recording launch features.
+
+The accepted fixed/early-stop/hardware evidence remains in
+[the recording checkpoint below](#recording-checkpoint-with-the-new-hardware-source).
+This review adds source findings, not new runtime or listening acceptance.
+
+### Recommended first REC layout
+
+Physical coordinates are one-based. Keep the permanent top navigation, six-row
+shape and focused-track strip from mlre. Initially enable only Players 1/2;
+rows for Players 3–6 remain dark until individually brought into scope.
+
+| Position | Proposed first behavior |
+| --- | --- |
+| Top row 1 / 2 | REC / CUT page selection. Page changes do not start, stop or erase audio. |
+| Track column 1 | **REC / Finish take** for that row's selected live buffer. Fresh key-down acts once; release and duplicate-down do nothing. |
+| Track column 2 | Reserve mlre's threshold ARM position; leave inactive. Do not repurpose it as the global input-enable switch. |
+| Track columns 3–6 | Focus that player without recording or changing its buffer. Screen names the selected buffer. No fake main/temporary-side indicators. |
+| Track column 7 | Reserve warble, inactive. |
+| Track column 8 | Reverse through the existing direction control. It changes playback, never the forward input writer. |
+| Track columns 10–14 | Existing five presets: 0.25, 0.5, 1, 2, 4x. Keep 1x at mlre's column 12; leave 9/15 inactive rather than add its unqualified 0.125/8x presets. Existing speed glide and Fit rules still apply. |
+| Track column 16 | Existing Play/Pause/Resume. Immediate, distinct from Finish take and hard Stop. |
+| Bottom row | Focused player's existing 16-way whole-content cuts, loops and actual playback marker. Empty/recording buffers have no playable strip. Preserve current CUT gesture/release policy. |
+
+Keep top MOD/ALT positions and existing CUT behavior. On REC, bottom-row gestures
+retain those modifiers; unsupported modified record/focus/speed/transport chords
+do nothing. In particular, do not inherit upstream destructive ALT+page shortcuts,
+undo, threshold, overdub or fade-out behavior. Changing page/focus clears pending
+held-key gestures and requires fresh downs; it never replays a held key as REC.
+LED rendering must have one active page owner inside the existing adapter, using
+the pinned Monome package's session/cache boundary.
+
+### Screen and recording behavior
+
+Keep one focused recording section in the existing player view, with this order:
+
+1. **Player 1 · Live 2 · Empty / Recording / Take ready.** Player, buffer and input
+   bus remain separate identities. Buffer chooser distinguishes Live from Sample,
+   and shows occupied/empty/recording slots. An imported sample offers selection
+   of an empty Live buffer; Record never silently switches or clears it.
+2. **Input enabled**, stereo L/R levels and actual source/bus. Rename the visible
+   input-arm label for clarity while preserving its current meaning. Input enable
+   permits new takes; it is not recording, threshold waiting or monitoring. Keep
+   input gain and Monitor controls in the companion, with a direct way to open it.
+   Until the companion publishes its channel assignment, show that assignment as
+   unknown here rather than infer it from bus 1 or last session's channels 3/4.
+3. **Next take: 2 bars · 4/4 · 110 BPM · 4.364 s**, or a seconds value. Reuse
+   fixed-length settings. Display the actual clock source and **Start: immediate**
+   separately: a bar-sized take is not a quantized launch or phase lock. Provide
+   space for **Fixed / Free**; Free is the original grow-to-fit behavior to recover,
+   not a new feature to invent. In the first operational UI it remains clearly
+   unavailable until recovered and tested. Changing tempo affects the next take.
+4. **Record / Finish take**, then **Play/Pause** and separate hard **Stop**. Start
+   requires empty storage; existing content offers “Choose another Live buffer”
+   or explicit named Clear in the screen. No erase-and-record chord in this slice.
+   Starting/stopping uses the buffer's writer status, not a UI toggle latch.
+5. **Recording 2.1 / 4.364 s → Live 2**, with a progress strip and **Finish Live 2**.
+   Keep a compact active-take strip visible across focus, buffer and page changes;
+   Finish addresses the displayed buffer ID directly. Shared selections show the
+   same buffer recording state, not independent recordings. A rejected command
+   names its buffer and reason without replacing another active take's status.
+
+Start freezes the actual frame limit and host rate. At the limit, or on Finish,
+wait for writer completion before showing Take ready and enabling playback. Early
+Finish exposes only the written duration; a zero-frame result is Empty. No automatic
+playback initially: press PLY to audition, then cut normally. Existing Loop, Fit,
+Reverse and speed affect playback only, not take length or captured input pitch.
+Target changes during a take are labelled **Next take**, while its frozen target
+stays visible. Global clock Stop and input disarm do not masquerade as Finish.
+
+Record light: **off = unavailable**, **dim 4 = can start**, **solid 15 = writing**.
+The screen explains unavailable states (input disabled, existing content, busy,
+bad length/rate). Use short acknowledgement/error feedback without latching a
+false recording state. Reserve pulsing REC for future genuine launch-waiting;
+input enabled alone never pulses. PLY shows actual stopped/paused/running state;
+the bottom strip keeps accepted loop level 4 / running marker 12. On disconnect,
+clear held keys only: the bounded writer continues, with on-screen Finish available.
+Reconnect redraws actual buffer state and never restarts recording.
+
+The progress display needs a small **read-only written-frame export** from the
+existing writer, rate-limited for UI. Do not animate elapsed wall time and call it
+recorded audio. Likewise, source presence and peak/clip detection need actual new
+signals before such indicators can be shown. There is no need for another writer,
+playback engine or per-sample Lua work.
+
+For the recovered **Free** mode, the intended interaction is Record → count up in
+seconds → Finish → playable content ending at the captured endpoint. There is no
+target-length progress fraction and no required bar amount. Record remains manual
+initially. Backing-array capacity is not displayed as take length. A practical
+resource ceiling and behavior when extension cannot continue belong in the recovery
+contract; “Free” must not promise unlimited memory. Reuse and harden the original
+growth/endpoint path rather than implement an unrelated recorder.
+
+### Small implementation sequence after design review
+
+First finish tracing the preserved grow/endpoint path against its original writer,
+including allocation, selected-buffer names, extension, Stop order and usable versus
+physical trim. This corrects the earlier fixed-only framing; do not finalize the
+recording UI's scope before that recovery review. Expose trustworthy status/progress
+and named Finish in the current screen. Then add REC page routing and two-row controls, reusing the existing writer and
+player commands. Keep buffer management on screen initially. Validate a take on
+one lane while the other keeps playing, then reverse the roles; concurrent takes
+and shared-buffer controls need their own explicit checks before acceptance.
+Exercise both completion paths, unavailable input/target/storage, rapid repeated
+keys, focus/buffer/page changes, detach/reconnect and actual writer/mixer audio.
+Physical LEDs, human usability/listening and 44.1 kHz recording remain separate
+acceptance work; the existing native hardware recording evidence is at 48 kHz.
+
+Prioritize recovery of existing Free recording alongside the fixed-recording UI
+work. After that: explicit immediate/beat/bar recording launch with real waiting
+and cancel feedback, then overdub with input/retained-audio levels and a recoverable previous take.
+Threshold launch can then occupy ARM; auto-length can follow mlre's ALT+ARM.
+Saving a useful take should be a small subsequent job, before calling this a
+dependable recording instrument: existing takes still have no product export or
+recall UI. Tape sides/splices, resampling routes, and separate-process/Bitwig
+transport are distinct later capabilities. None are implemented by this proposal.
+
 ## End-of-day playable CUT checkpoint — 2026-09-11
 
 Accepted PRs #27–#32 are merged. Runtime/evidence checkpoint on main is
