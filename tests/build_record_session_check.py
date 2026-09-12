@@ -6,12 +6,18 @@ audio logic is unchanged. Actual production sample/live buffers and mixers load
 from this checkout. No DAC, Grid, hardware input, installed files, or services.
 """
 from pathlib import Path
+import argparse
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--player-source',type=Path,default=ROOT/'sample_player_rebuild.pd',
+                    help='Optional saved production revision for matched failure reproduction.')
+args=parser.parse_args()
 OUT=Path('/tmp/plugmlr-record-session')
 OUT.mkdir(exist_ok=True)
 # Pd resolves abstractions as it creates them. A late declare in the copied
@@ -31,7 +37,7 @@ class Pd:
     def text(self):return '\n'.join(self.o+self.c)+'\n'
 
 # Append test controls/taps without changing any production object or connection.
-source=(ROOT/'sample_player_rebuild.pd').read_text()
+source=args.player_source.read_text()
 depth=0;count=0
 for line in source.splitlines():
     if line.startswith('#N canvas'): depth+=1
@@ -47,12 +53,19 @@ for j,name in enumerate(['play_button','stop_button','dir_change','playback_spee
     dest=o(f'obj {2100+j*180} 4640 s \\$0-{name}');p.link(route,dest,j)
 rp=o('obj 2100 4700 r~ \\$0-vline_output_sig');sp=o('obj 2100 4740 s~ record-session-position-\\$1');p.link(rp,sp)
 lb=o('obj 2100 4800 loadbang');f=o('obj 2100 4840 f \\$0');pr=o('obj 2100 4880 print record-session-player-id-\\$1');p.link(lb,f);p.link(f,pr)
+tap_path=str(ROOT/'tests'/'bounded-player-capture').replace(' ','\\ ')
+o(f'obj 2100 5100 {tap_path} \\$1 \\$0')
 # Message taps expose the original boundary/direction handoff; they drive nothing.
-for j,(tag,suffix) in enumerate([('target','-loop_target_index'),('direction','-playback_direction'),('detector-direction','_direction_for_expr_sig'),('entry','-loop_entry'),('rate','-samples_per_ms'),('boundary-entry','-buffer_and_playhead_update_and_exe')]):
+for j,(tag,suffix) in enumerate([('target','-loop_target_index'),('direction','-playback_direction'),('detector-direction','_direction_for_expr_sig'),('entry','-loop_entry'),('rate','-samples_per_ms'),('boundary-entry','-buffer_and_playhead_update_and_exe'),('boundary-position','-boundary-current-position')]):
     r=o(f'obj {2100+j*220} 4950 r \\$0{suffix}')
     lp=o(f'obj {2100+j*220} 4990 list prepend {tag}')
     send=o(f'obj {2100+j*220} 5030 s record-session-trace-\\$1')
-    p.link(r,lp);p.link(lp,send)
+    if tag == 'boundary-position':
+        precision=o(f'obj {2100+j*220} 4970 makefilename %.9f')
+        p.link(r,precision);p.link(precision,lp)
+    else:
+        p.link(r,lp)
+    p.link(lp,send)
 
 extra='\n'.join(p.o)+'\n'
 for line in p.c:
@@ -64,12 +77,15 @@ assert (OUT/'observed-player.pd').read_text().startswith(source+'\n')
 for name,seconds in [('input',14.5),('lane',1)]:
     subprocess.run(['ffmpeg','-v','error','-y','-i',str(ROOT/'DrumLoop.wav'),
                     '-t',str(seconds),'-ar','48000','-c:a','pcm_f32le',str(OUT/f'{name}.wav')],check=True)
+for name in ('wave', 'constant'):
+    shutil.copy2(ROOT/'tests'/'fixtures'/f'stop-{name}-48.wav', OUT/f'{name}.wav')
 
 p=Pd();o=p.add;c=p.link
 root= str(ROOT).replace(' ','\\ ')
 o(f'obj 25 45 declare -path {root}')
 o('text 25 15 Recording/session check. No DAC or Grid. Only run with other MLR/test patches closed.')
 o(f'obj 25 85 {root}/sample-data 1');o(f'obj 25 125 {root}/sample-data 2')
+o(f'obj 300 325 {root}/sample-data 3') # Present but empty, like the original app.
 o(f'obj 25 165 {root}/live_buffer 1 \\$0');o(f'obj 25 205 {root}/live_buffer 2 \\$0')
 o('obj 25 245 observed-player 1');o('obj 25 285 observed-player 2')
 o(f'obj 25 325 {root}/record-takes-panel \\$0')
@@ -92,18 +108,19 @@ c(left,cap,0,6);c(right,cap,0,7)
 for i in (1,2):
  r=o(f'obj {650+i*180} 500 r~ record-session-position-{i}');c(r,cap,0,7+i)
 # Capture start always arms its independent watchdog before opening any file.
-r=o('obj 510 275 r record-session-check');route=o('obj 510 315 route run dsp zero boundary stop');c(r,route)
+r=o('obj 510 275 r record-session-check');route=o('obj 510 315 route run dsp zero boundary turns constant stop');c(r,route)
 start=o('obj 510 610 t s b b b b');timer=o('obj 1050 840 timer');clear=o('msg 920 650 clear');events=o('obj 1050 1080 text define \\$0-events');watch=o('obj 820 700 delay 16000')
 c(start,clear,4);c(clear,events);c(start,timer,3);c(start,watch,2)
 sourceplay=o(f'msg 650 740 open {OUT}/input.wav \\, 1');c(start,sourceplay,1);c(sourceplay,input_reader)
 openwrite=o(f'msg 650 780 open -bytes 4 {OUT}/capture.wav \\, start');c(start,openwrite,1);c(openwrite,cap)
+readertaps=o(f'msg 1050 610 \\; 1-test-capture start {OUT}/readers1.wav 14000 \\; 2-test-capture start {OUT}/readers2.wav 14000');c(start,readertaps,1)
 read=o('msg 510 830 read \\$1 \\, bang');ql=o('obj 510 870 qlist');c(start,read);c(read,ql)
-for j,name in enumerate(['run','dsp','zero','boundary']):
+for j,name in enumerate(['run','dsp','zero','boundary','turns','constant']):
  msg=o(f'msg {510+j*175} 550 symbol {OUT}/{name}.txt');c(route,msg,j);c(msg,start)
-finishr=o('obj 25 820 r record-session-done');fin=o('obj 25 860 t b b b b');c(finishr,fin);c(watch,fin);c(route,fin,4)
+finishr=o('obj 25 820 r record-session-done');fin=o('obj 25 860 t b b b b');c(finishr,fin);c(watch,fin);c(route,fin,6)
 stop=o('msg 360 900 stop');c(fin,stop,3);c(stop,cap);c(stop,input_reader);c(stop,watch)
 rewind=o('msg 250 900 rewind');c(fin,rewind,2);c(rewind,ql)
-allstop=o('msg 150 940 \\; 1_l_b_record stop \\; 2_l_b_record stop \\; record-session-player-1 stop \\; record-session-player-2 stop');c(fin,allstop,1)
+allstop=o('msg 150 940 \\; 1_l_b_record stop \\; 2_l_b_record stop \\; record-session-player-1 stop \\; record-session-player-2 stop \\; 1-test-capture stop \\; 2-test-capture stop');c(fin,allstop,1)
 d=o('obj 25 900 delay 20');c(fin,d)
 for i in (1,2):
  msg=o(f'msg {25+(i-1)*450} 990 write -wave -bytes 4 {OUT}/live{i}.wav 0-live_buffer_{i} 1-live_buffer_{i}');sf=o(f'obj {25+(i-1)*450} 1030 soundfiler');pr=o(f'obj {25+(i-1)*450} 1070 print record-session-export-{i}');c(d,msg);c(msg,sf);c(sf,pr)
@@ -119,7 +136,7 @@ for j,(receiver,tag) in enumerate([('l_b_record_states','record'),('l_b_record_e
 def score(events,path):
     last=0;lines=[]
     for ms,recv,msg in sorted(events,key=lambda e:e[0]):
-        lines.append(f'{ms-last} {recv} {msg};');last=ms
+        lines.append(f'{ms-last:.6f} {recv} {msg};');last=ms
     path.write_text('\n'.join(lines)+'\n')
 setup=[(0,'record-session-player-1','stop'),(0,'record-session-player-2','stop'),(0,'1_l_b_delete_buffer','bang'),(0,'2_l_b_delete_buffer','bang'),(0,'record-session-player-1','speed 2'),(0,'record-session-player-2','speed 2'),(0,'1-buffer-select','live 1'),(0,'2-buffer-select','sample 2'),(30,'1_l_b_length','dynamic'),(30,'2_l_b_length','seconds 4'),(100,'record-session-player-2','play'),(14000,'record-session-done','bang')]
 run=setup+[(1300,'record-session-player-1','record'),(1500,'1-buffer-select','sample 1'),(1600,'record-session-player-1','reverse'),(1700,'record-session-player-1','speed 1'),(1800,'2_l_b_record','start'),(2200,'1_l_b_length','seconds 0.4'),(4400,'record-session-finish','1'),(4600,'record-session-finish','2'),(4700,'record-session-player-1','reverse'),(4700,'record-session-player-1','speed 2'),(4800,'1-buffer-select','live 1'),(4900,'record-session-player-1','play'),(8000,'record-session-player-1','reverse'),(9000,'record-session-player-1','speed 1'),(10000,'record-session-player-1','speed 3'),(12500,'record-session-player-1','stop'),(12500,'record-session-player-2','stop')]
@@ -127,9 +144,50 @@ boundary=run
 run=[(8300 if ms==8000 else ms,recv,msg) for ms,recv,msg in run]
 dsp=setup+[(1300,'1_l_b_record','start'),(2500,'pd','dsp 0'),(3000,'pd','dsp 1'),(3200,'1_l_b_record','get'),(12500,'record-session-player-2','stop')]
 zero=setup+[(1300,'1_l_b_record','start'),(1300,'1_l_b_record','stop'),(1301,'1_l_b_record','start'),(1320,'1_l_b_record','start'),(2420,'record-session-finish','1'),(12500,'record-session-player-2','stop')]
-for name,data in [('run',run),('dsp',dsp),('zero',zero),('boundary',boundary)]:score(data,OUT/f'{name}.txt')
+# Boundary regression score. The existing quarter-second stereo fixtures let
+# commanded turns coincide with both ends, including rapid turns within a block.
+# Every chapter starts from a completed Stop; lane B stays a steady reference.
+def turn_score(signal):
+    events=[(0,'record-session-player-1','stop'),(0,'record-session-player-2','stop'),
+            (20,'1-sample-path',f'symbol {OUT}/{signal}.wav'),
+            (20,'2-sample-path',f'symbol {OUT}/lane.wav'),
+            (30,'1-buffer-select','sample 1'),(30,'2-buffer-select','sample 2'),
+            (30,'1-quantizer','1'),(30,'record-session-player-2','speed 2'),
+            (100,'record-session-player-2','play'),
+            (12500,'record-session-player-1','stop'),
+            (12500,'record-session-player-2','stop'),(14000,'record-session-done','bang')]
+    def send(t,msg):events.append((t,'record-session-player-1',msg))
+    def begin(t,rate=2,reverse=False):
+        send(t,'stop');send(t+20,'slew 0');send(t+20,f'speed {rate}')
+        events.append((t+30,'1-loop-region','full'))
+        if reverse:send(t+40,'reverse')
+        send(t+100,'play')
+    begin(0);send(350,'reverse')                       # end -> reverse
+    begin(1000,reverse=True);send(1350,'reverse')      # start -> forward
+    begin(2000)
+    for offset in (0,.2,.4,.6,.8):send(2350+offset,'reverse')
+    begin(3000,3);send(3225,'reverse')                 # 2x endpoint
+    begin(4000,4);send(4162.5,'reverse')               # 4x endpoint
+    begin(5000)
+    events.append((5350,'row_1','9'));send(5350,'reverse') # pending cut owns jump
+    begin(6000);send(6350,'play');send(6600,'play')     # endpoint Pause / Resume
+    send(6800,'reverse')
+    begin(7000);send(7200,'slew 400');send(7200,'speed 4')
+    send(7350,'reverse');send(7450,'speed 0')           # interrupt speed glide
+    begin(8000);send(8350,'reverse');send(8350.2,'stop');send(8351,'play')
+    begin(9000)
+    events.append((9300,'1-loop-region','0.05 0.175'))
+    send(9426,'reverse');send(9426.2,'reverse');send(9426.4,'reverse')
+    send(10000,'stop');events.append((10020,'1-buffer-select','sample 3'))
+    send(10100,'play');send(10200,'reverse')           # empty stays silent
+    events.append((10500,'1-buffer-select','sample 1'))
+    send(10600,'play')
+    return events
+turns=turn_score('wave');constant=turn_score('constant')
+scores={'run':run,'dsp':dsp,'zero':zero,'boundary':boundary,'turns':turns,'constant':constant}
+for name,data in scores.items():score(data,OUT/f'{name}.txt')
 checks=[check(OUT/f) for f in ('observed-player.pd','check.pd')]
 assert not any(c['errors'] for c in checks),checks
-manifest={'production_player_sha256':hashlib.sha256(source.encode()).hexdigest(),'production_root_objects':count,'instrumentation_added_only':True,'files':checks,'scores':{'run':run,'dsp':dsp,'zero':zero,'boundary':boundary},'fixture':'check.pd','scope':'Actual two player/mixer components with common .75 master multiplier. No DAC, full application, Grid or device-loopback acceptance.'}
+manifest={'production_player_sha256':hashlib.sha256(source.encode()).hexdigest(),'production_root_objects':count,'instrumentation_added_only':True,'files':checks,'scores':scores,'fixture':'check.pd','scope':'Actual two player/mixer components with common .75 master multiplier. No DAC, full application, Grid or device-loopback acceptance.'}
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(OUT/'check.pd')

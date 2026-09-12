@@ -2,7 +2,8 @@
 
 python3 tests/analyze_record_session.py docs/evidence/recording-continuity/run
 Requires numpy. Reads raw WAV or its lossless .gz archive. No DSP simulation.
-The boundary scenario must fail until the separately recorded playback defect is fixed.
+The retained recording-continuity boundary capture demonstrates the old failure;
+the loop-boundary-handoff capture checks that same score against the repair.
 """
 import argparse
 import gzip

@@ -9,8 +9,10 @@ playback, five speeds and speed glide, Stop/Pause, 16 whole-content slices,
 editable loops, fixed-length stereo recording, and an internal slice clock.
 The current recording recovery adds bounded Free recording and a take view with
 buffer-specific Finish controls. Native 48 kHz checks cover simultaneous takes,
-growth alongside playback and DSP interruption. Listening acceptance remains open;
-an exact-loop-end Reverse collision is retained as a separate playback failure.
+growth alongside playback and DSP interruption. The exact-loop-end Reverse and
+stale-boundary handoffs are now repaired in the original player, with native
+44.1/48 kHz evidence and [a stereo listening capture](docs/evidence/loop-boundary-handoff/listening.wav).
+Listening acceptance for this checkpoint remains open.
 PRs #18 and #19 are merged; the user accepted both their musical captures.
 See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remaining
 work and links to the retained numerical/listening evidence. Older STATUS sections

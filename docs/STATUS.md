@@ -7,6 +7,81 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Loop-boundary handoff repair — 2026-09-11
+
+Authorized follow-up to PR #34 at `1e708b7316810afc233daeeaa20829a3ee7cdcb6`.
+Remote main remains `29ab51e653eded9db9c5aa09850ec4a1352d97e9` and the
+worktree is clean before this repair. Native plugdata is at Home, DSP On.
+
+Before implementation: keep the existing logical ramp, loop entry, transport
+guards, pending-cut ownership and dual-reader crossover. Give forward and
+reverse endpoint conditions independent rising-edge detection, so a direction
+change cannot inherit an already-high detector from the opposite direction.
+Both detectors call the same existing handoff. No new musical head, transport
+state or message-rate audio timer. Validate the retained exact-end failure,
+the opposite-direction boundary, nearby/rapid turns, and actual reader gain and
+audio through those transitions. A moving position alone is insufficient.
+
+The user's longer-term order is: deepen playback/slew validation, then organize
+the actual patch/front end for readable controls, navigation and layout; later
+address saving, modulation and additional heads per buffer, followed by expanded
+Grid and optional Arc functionality. Reusable transport, buffer, recording,
+playback and buffer-manipulation utilities are the architectural destination,
+including use outside MLR and by the norns community. Extract understood,
+validated behavior behind clear interfaces and ownership, rather than starting
+another replacement engine. This handoff repair does not begin that broader UI
+or modularization work.
+
+### Implemented and validated
+
+Only `pd loop_logic` and `pd current_position` inside the original
+`sample_player_rebuild.pd` change. Everything outside those two subpatches is
+byte-identical to the starting player. The unused early-boundary diagnostic
+branch is removed; the existing readers, 6/9 ms fades, shutdown cancellation,
+slice ownership, buffer selection and mixer are retained.
+
+Two faults are addressed. A shared rising edge could stay high across an exact
+forward-wrap/Reverse collision and lose the reverse wrap. Independent directional
+edges fix that. Separately, an edge describing the preceding audio block could
+arrive after a loop-range cut committed, causing another handoff and a reader
+reset at nonzero gain. Each signal notification now queries the existing logical
+ramp and checks the current bounds, transport, rate and direction before wrapping.
+This reuses the same calculation as Reverse, Speed, Pause and live loop edits.
+No new position tracker, fade policy, public interface or timing delay is added.
+Public loop positions remain seconds; this internal check uses file frames and
+the existing exclusive end. The control check reads 0=forward / 1=reverse;
+the signal detector retains its existing 1/2 selector convention.
+
+Native **plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3**, CoreAudio **8A**,
+**512 device frames**, **1×**: five final captures pass. The original recorded
+3.1-second-buffer collision passes **21 recorder + 14 playback/reader checks**.
+The broader waveform/constant scores pass **37/38 checks at 48 kHz**, and
+**36/37 at 44.1 kHz using 48 kHz files**. Tests cover both boundary directions,
+0.2 ms repeated turns, .25/1/2/4x motion, interrupted speed glides, pending cuts,
+loop edits, endpoint Pause/Resume, Stop/queued Play and empty-buffer recovery.
+No audible-gain reader resets, non-finite output or exact-zero running dropouts
+occur in the final captures. Reader gains sum to one through running transitions.
+Constant stereo error is at most `7.45e-9`; all transition samples are retained.
+The steady second lane repeats exactly at 48 kHz; paired 44.1 kHz captures differ
+by at most `3.73e-8` in its actual stereo audio. Production mixer gain is preserved.
+
+The unchanged prior player reproduces the loop-range reader reset. Intermediate
+failures are retained too: the first edge-only fix did not solve stale range
+events; my first logical check incorrectly relied on an uninitialized 1/2 message
+selector and stalled the untouched lane. The final check uses existing 0/1 player
+state. A proposed rounding tolerance did not fix that error and is absent from
+the final code. The original stuck-Reverse evidence remains unchanged in
+`recording-continuity`; it is now a regression control, not a current failure.
+
+[Procedure, audio, reports and console/settings views](evidence/loop-boundary-handoff/observations.md).
+The captures contain actual player/reader and mixer signals, with automatic
+14-second Stop and an independent 16-second watchdog. No DAC or Grid is connected
+in the fixture. plugdata is left at Home, all captures closed, with **48 kHz restored**.
+**Listening acceptance remains open**; [stereo listening file](evidence/loop-boundary-handoff/listening.wav)
+is retained for later. Very short natural loops below the crossover duration,
+full-app/device delivery, Bitwig and active-recording sample-rate changes are not
+qualified by this repair. The recording checkpoint's other open gates remain.
+
 ## Recording continuity and artistic follow-up — 2026-09-11
 
 Continue PR #34 from `f3c22f403d9c5a9aa751f78901350331b8ce9daa`;

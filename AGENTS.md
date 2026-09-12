@@ -3,6 +3,9 @@
 - Follow the user's current scope. The present task is to understand the original
   `mlr.pd` application and identify small repairs. Additional heads and the rejected
   R1 rewrite are not current implementation goals.
+- Reusable transport, buffers, recording, playback and manipulation utilities are
+  the community-facing destination. Extract traced and validated behavior with
+  explicit ownership, identities and units; do not begin another engine rewrite.
 - Start with the actual plugdata UI and console. Trace the corresponding `.pd`
   objects, connections, trigger order, and send/receive symbols. Existing code
   establishes what is wired, not that it is correct.
@@ -41,6 +44,10 @@
   Recording direction/speed/slew are authorized artistic follow-up, not implemented
   by the playback controls. Retain the recording-continuity exact-boundary Reverse
   failure until its player handoff is repaired and checked in actual audio.
+  Loop endpoints now use separate directional edges and validate against the
+  existing logical ramp before handing off. The control check reads the original
+  0=forward / 1=reverse state, not the signal selector's 1/2 convention. Preserve
+  the recorded-boundary and stale-edge failure controls in loop-boundary-handoff.
   The user chose a local Pd stereo bus between standalone patches for this slice;
   cross-instance pdlink transport fails stereo timing and remains separate.
   Validate type AND number selection, reselection, empty buffers, interrupted
