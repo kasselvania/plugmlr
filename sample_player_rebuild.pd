@@ -1627,6 +1627,9 @@
 #X connect 20 0 6 0;
 #X connect 5 0 21 1;
 #X connect 21 0 7 0;
+#X obj 900 390 loadbang;
+#X text 900 430 No slice is pending at load. Allow the first natural wrap.;
+#X connect 31 0 16 0;
 #X restore 2090 250 pd slice_policy;
 #X text 1280 4180 UI 541 moved to player-panel;
 #X obj 1050 1850 loop-region-control \$0 \$1;

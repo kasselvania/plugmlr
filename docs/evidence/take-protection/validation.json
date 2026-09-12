@@ -1,0 +1,61 @@
+{
+  "native_runs": [
+    {
+      "run": "repaired-record48",
+      "checks": 16,
+      "all_pass": true,
+      "production_matches_current": true,
+      "max_steps": [
+        0.1489468812942505,
+        0.006366582587361336
+      ]
+    },
+    {
+      "run": "repaired-reopen48",
+      "checks": 13,
+      "all_pass": true,
+      "production_matches_current": true,
+      "max_steps": [
+        0.1489468812942505,
+        0.00636658351868391
+      ]
+    },
+    {
+      "run": "repaired-reopen441",
+      "checks": 13,
+      "all_pass": true,
+      "production_matches_current": true,
+      "max_steps": [
+        0.15304574370384216,
+        0.006937965750694275
+      ]
+    },
+    {
+      "run": "repaired-guards48",
+      "checks": 23,
+      "all_pass": true,
+      "production_matches_current": true,
+      "max_steps": [
+        0.1489468812942505,
+        0.00636658351868391
+      ]
+    },
+    {
+      "run": "long48",
+      "checks": 20,
+      "all_pass": true,
+      "production_matches_current": true,
+      "max_steps": [
+        0.21192438900470734,
+        0.21159134805202484
+      ]
+    }
+  ],
+  "native_numerical_checks": 85,
+  "root_patch_count": 55,
+  "connection_errors": 0,
+  "lua_behavior_checks": 18,
+  "listening_acceptance": false,
+  "direct_clear_discard_mouse_acceptance": false,
+  "verified_full_background_occlusion": false
+}

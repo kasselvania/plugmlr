@@ -4787,3 +4787,94 @@ not accepted by this slice. Full-session save is not implied by a Saved take lab
 See [waveform/take evidence and repeat procedure](evidence/waveform-take-tools/observations.md).
 The next decision is to review this focused UI/export candidate, not expand the
 engine or automatically start another slice.
+
+## Take protection and longer UI/audio validation — contract, 2026-09-12
+
+Base PR #38: `566c8608e4d3244471db81118ed1939b471c3eca`.
+Branch `codex/take-protection-validation`; remote main verified unchanged at
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`. Existing worktree was clean; both
+stashes and the pinned Monome dependency remain untouched.
+
+- Protect the existing live-buffer Clear entry before any content invalidation,
+  player stop or storage resize. Empty/saved content retains one-step Clear.
+  Unsaved content requires Clear followed by a separate Discard action for that
+  same buffer within five seconds. Repeated Clear only renews the request; it
+  never confirms it. Recording/storage-busy content refuses both actions.
+- Cancel an armed discard on buffer content/save/recording/storage changes,
+  player buffer selection, view navigation, explicit cancel or timeout. Recheck
+  current buffer state on Discard; an old request cannot clear a new take.
+  Guard decisions consume the buffer-owned metadata/status, not a UI checkbox.
+  The existing 20 ms Clear fade/storage-ownership path remains unchanged after
+  approval. Ordinary per-buffer messages and patch buttons use the same guard.
+- Make the current persistence boundary visible: Save WAV retains audio; saving
+  the Pd patch does not retain live takes. Do not claim a reliable close/quit
+  veto, crash recovery or project recall. No automatic disk writer in this slice.
+- Prove record -> Save WAV -> close/reopen -> import -> original player/mixer.
+  Preserve stored frame bounds, L/R, recorded rate and float samples, including
+  a file/host mismatch. No correction of the separately noted reader-reference
+  offset without its own source audit. Stop semantics remain unchanged.
+- Follow with a bounded longer native run: long stereo import, waveform cache
+  work, two playing lanes, Free recording/growth, view changes and a verified
+  background interval. Capture actual output/input with an independent watchdog;
+  record native UI/console separately from numerical checks. Background testing
+  must identify what was actually hidden/foreground, not infer it from Cmd-H.
+  No full DAW lifecycle or unlimited-duration performance claim.
+
+### Fresh-launch failure found by the round trip
+
+The first native 48 kHz record/reopen captures pass nonzero-output checks but
+fail the added pitch check: the first pass advances, then the reader holds the
+end value. Passive reader audio/frame taps reproduce it. Repeating the exact
+score without changing source, DSP or sample rate passes after the first Stop.
+The first 44.1 kHz result followed a Stop too; it did not prove a rate cause.
+
+Source trace: `pd loop_logic` gates natural wraps on `$0-slice-loop-allowed`.
+`pd slice_policy` writes 0 while preparing a slice and 1 on commit or Stop,
+but never initializes it. The loop expression therefore starts with 0, even
+though no slice is pending. Contract amendment: initialize this existing gate
+to 1 on load, through the existing message/send. Pending-slice ownership,
+Stop, loop timing, crossover and reader indexing remain unchanged. Retain the
+failed and same-session repeat captures and retest fresh native launch.
+
+### Final results and limits
+
+Added `take-clear-control` before the original live-buffer Clear path, a separate
+Discard button/status, selection/navigation cancellation, and visible Save WAV
+persistence reminders. The fresh-launch wrap repair is a single loadbang wire
+into the existing slice-policy message 1. The original record writer, buffer
+ownership, reader audio, crossover envelopes, mixer and indexing remain intact.
+
+Native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3 completed five final cases:
+record/export 48 kHz (16 checks), fresh reimport/play 48 kHz (13), fresh reimport
+of the 48 kHz file at a 44.1 kHz host (13), protection regression (23), and a
+70-second two-lane/Free-recording run (20): **85 numerical checks pass**.
+Final production hashes match all five retained manifests. Eighteen Lua behavior
+checks, 55 root Pd connection checks, source-preservation checks and diff checks
+also pass. These are separate forms of evidence, not 103 audio tests.
+
+Short exports preserve a nonzero content start and exact stereo samples. The
+long take retains 2,880,000 stereo frames exactly equal to captured input across
+six growth steps, then stops and saves at 60 seconds. No 64-frame zero dropout,
+non-finite output or incorrect master gain was found in the complete active
+interval, including view changes. The failed initial captures now fail stronger
+held-sample/pitch checks and remain alongside the repair; nonzero/DC is not
+accepted playback. No new listening report has been received.
+
+Open gates: the UI tool's direct Clear/Discard mouse presses produced no observed
+feedback, while the same command route and visible states work; direct button
+usability needs manual verification. Finder interaction was observed during the
+long run, but the tool does not expose continuous plugdata visibility/occlusion,
+so strict background-window acceptance remains open. No new hardware, Bitwig,
+Grid, project-save or quit-veto acceptance is claimed. The one-frame reader
+reference audit remains separate. No next slice was begun.
+
+Normal `mlr.pd` is restored alone, 48 kHz/512, Sample 1 = DrumLoop.wav, track 1
+Level 0.4, Master 0.75, Debug off, playback/recorders stopped. A restoration
+console typing error was corrected with explicit `float` messages; no fresh
+errors appeared after clearing its retained history with errors still enabled.
+The prior stashes and Monome pin remain unchanged.
+
+[Full source trace, failures, numerical results and repeat procedure](evidence/take-protection/observations.md).
+[New 24-second listening excerpt](evidence/take-protection/long-run-listening.wav)
+keeps the original master level: loop Apply at 4 s, Reverse at 10 s, forward at
+18 s. Human listening and direct-button acceptance can be completed later.

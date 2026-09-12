@@ -1,0 +1,54 @@
+{
+  "case": "record",
+  "audio": {
+    "rate": 48000,
+    "channels": 8,
+    "declared_frames": 384000,
+    "trailing_bytes": 0,
+    "sha256": "70d7200cca9429d73cff839d3f52ac2d395d282dabcdad0eb90d02fa211f0c91"
+  },
+  "checks": {
+    "bounded_capture": true,
+    "eight_native_channels": true,
+    "finite_all_samples": true,
+    "whole_capture_master_gain_bound": true,
+    "exact_recorded_stereo_export": true,
+    "export_uses_written_bounds": true,
+    "export_rate_matches_recording": true,
+    "saved_take_clears": true,
+    "nonzero_first_index_preserved": true,
+    "recovered_audio_reaches_actual_master": true,
+    "no_held_sample_during_play": false,
+    "actual_stereo_master_matches_player": true,
+    "no_block_zero_dropout_during_play": true,
+    "playback_pitch_preserves_file_rate": false,
+    "stereo_channels_remain_distinct": true,
+    "stopped_output_zero": true
+  },
+  "metrics": {
+    "export": {
+      "rate": 48000,
+      "channels": 2,
+      "declared_frames": 62336,
+      "trailing_bytes": 0,
+      "sha256": "f58dbb2ae7ea752c1a36ef37f1092729a373a5e506842121658774d26edab8b6"
+    },
+    "export_input_frame_offset": 19264,
+    "export_error": 0.0,
+    "playback_peak_hz": [
+      0.0,
+      0.0
+    ]
+  },
+  "clear_messages": [
+    [
+      6200.0,
+      "Live 3: clearing audio"
+    ]
+  ],
+  "max_adjacent_steps": [
+    0.1489468812942505,
+    0.00636658351868391
+  ],
+  "listening": "Pending; numerical results do not establish audibility or general background reliability."
+}
