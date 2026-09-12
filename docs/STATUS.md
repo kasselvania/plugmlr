@@ -4688,3 +4688,102 @@ stopped, the original main is visible, and no diagnostic recorder is attached**
 track 1 and Master Volume for speaker playback. The failed-experiment stash is
 unchanged. PR #9 remains draft and unmerged above the separate PR #8 branch.
 Do not start direction slew or another slice automatically.
+
+
+## Waveform, identity, diagnostics and take saving — implementation contract
+
+Base: `ba52e29507aae512f1c429aba87c9d21e3550ac3` (open PR #37).
+Branch: `codex/waveform-take-tools`. Remote main resolved before editing:
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`. Existing stashes remain intact.
+
+- Keep the original audio/transport/recording algorithms. Buffer-owned preview
+  data and identity feed a receive-only focused-player waveform: stereo L/R,
+  fixed whole-content 16-way divisions, current loop and existing play position.
+  A waveform is content/location feedback, not proof of audible mixer output.
+- Cache 400 min/max columns per channel, covering every written frame. Build on
+  demand in bounded message-clock chunks, never inside paint or the audio path.
+  Cursor paint coalesces every other existing 20 ms position report while the
+  player view is open (normally 25 Hz); stopped/paused position reports repaint
+  immediately so a final one-shot update is not skipped. There is no independent
+  GUI clock.
+  Recording displays state; its waveform becomes
+  available after Finish. No full-capacity scans or live waveform during growth.
+- Public identities remain Live/Sample + slot 1..16, separate from player IDs.
+  New preview messages name the existing buffer explicitly. Existing application
+  globals are still shared; this UI slice does not claim two full-app isolation.
+  File names describe the last successful import. Failed/replaced content must
+  not retain a misleading waveform. Previous/next selects loaded slots in the
+  current bank through the existing buffer-selection control.
+- Debug defaults off and gates routine patch prints only. Actionable record,
+  load and unsupported-operation errors stay visible. No installed dependency
+  or connector source changes.
+- Save take writes the actual stored stereo frames, at the recorded sample rate,
+  as 32-bit float WAV using Pd soundfiler's explicit skip/nframes/rate options.
+  This first exact-buffer export is synchronous: refuse while any instrument
+  player is playing or any live buffer is recording/changing, including a check
+  after the chooser. Do not stop playback automatically. Saving keeps RAM audio
+  and playback selection unchanged. It is not a performance render, autosave,
+  background writer, disk-backed playback or full session recall.
+- Native acceptance must inspect UI/console, actual post-master audio while the
+  waveform is building/moving and during view changes, exact export frame/stereo
+  identity and rate, rejected save attempts, invalid/empty/replaced previews,
+  and Debug on/off. Retain bounded captures; listening remains a separate gate.
+
+### Waveform/take tools — implemented and native-checked, 2026-09-12
+
+The original audio path is retained. `buffer-view-data` is an appended observer
+in `sample-data` and `live_buffer`; it owns import identity and stereo min/max
+preview data. `player-waveform` reads the existing position/loop/switching buses;
+`ui-open-view` supplies navigation visibility. `buffer-browse` sends the existing
+buffer-selection message. `buffer-name` labels bank/take rows. `debug-print`
+gates routine diagnostics; the Grid compatibility and load/record errors remain
+visible. `take-save` connects `take-save-control` to native savepanel/soundfiler.
+No reader, fade, tempo, record-writing, mixer, Grid gesture or device implementation
+was replaced. The source preservation check permits only diagnostic substitutions
+and the exact appended preview observers in protected engine files.
+
+Preview internals: 400 columns × stereo min/max; 1,024 stereo frames per callback,
+2 ms between chunks; pointers reacquired each callback. This runs on Pd's message
+scheduler, not a background thread. Full-content indices are zero-based frames
+with exclusive end; existing metadata rates in kHz convert to Hz. Graphics show
+seconds, whole-content 1..16 slice numbers and a normalized position. New view
+messages explicitly name `sample_buffer_N` or `live_buffer_N`; public identities
+remain bank + slot, separate from private player ID and track. No new isolation
+claim for the application's existing global buses.
+
+Final production sources passed **21 numerical checks at each of 44.1 and 48 kHz**
+in Mac plugdata **0.9.4 nightly 98ae0f78b / Pd 0.56.3**, CoreAudio, 8A input/output,
+512-frame host buffer, 1x, limiter Off. Tests use the original complete application
+with copied DAC disconnected and a generated stereo recording input. Actual
+post-master/player/input audio was captured for 14 seconds, with an independent
+15-second stop. Both 44.1 kHz drum and 48 kHz short stereo files were loaded,
+covering file/host mismatch in both directions. Export matches actual recorded
+input exactly in both channels. All three buffer peak caches match independent
+min/max scans; all captured samples are finite, measured mixer equations hold,
+and there are no full-block zero dropouts in the measured running interval.
+This establishes these checks, not universal click-free playback or a CPU budget.
+
+The 48 kHz take contains 62,400 frames; 44.1 kHz contains 57,280 frames. The latter
+is 50 frames shorter than ideal 1.3 seconds, within one 64-frame Pd block of the
+existing recorder's Stop timing. Export matches the written bounds exactly. A
+rejected exact-duration test assumption is retained separately. Earlier checks
+of the unchanged save implementation cover nonzero first index, the native
+chooser with a space-containing filename, float values outside ±1 without
+normalization, refusal during recording, and a Play arriving after Save was
+queued. A 48 kHz take saved after changing the host to 44.1 kHz was byte-identical.
+Those earlier checks are identified separately from the final display revision.
+
+Native UI/console inspection confirms waveform, loop shading and cursor movement,
+filename/slot labels, sixteen Save rows, Debug-gated diagnostics, expected missing
+file errors and automatic capture completion. Initial development-only Lua integer
+identity/unbound-send errors were repaired before accepted runs. The new musical
+listening file is retained; **user listening and usability acceptance remain open**.
+No listening observation is inferred from numerical checks. Further limits:
+waveforms are available after Finish rather than during growing recordings;
+long-duration/many-visible-view CPU behavior, background/occlusion reliability,
+Bitwig, autosave, background writing, disk-backed playback and project recall are
+not accepted by this slice. Full-session save is not implied by a Saved take label.
+
+See [waveform/take evidence and repeat procedure](evidence/waveform-take-tools/observations.md).
+The next decision is to review this focused UI/export candidate, not expand the
+engine or automatically start another slice.

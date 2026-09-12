@@ -38,4 +38,18 @@
 #X connect 21 0 17 0;
 #X connect 17 0 18 0;
 #X connect 18 0 19 0;
-#X coords 0 -1 1 1 545 28 2 0 0;
+#X coords 0 -1 1 1 850 28 2 0 0;
+
+#X obj 560 3 bng 22 180 50 0 empty empty Save_WAV 28 11 0 12 #faf8f2 #283d3a #283d3a;
+#X obj 600 355 f \$2;
+#X obj 600 395 list prepend choose;
+#X obj 600 435 list trim;
+#X obj 600 475 s mlr-save-take;
+#X obj 685 3 cnv 15 150 22 empty \$0-save-state Empty 4 11 0 11 #faf8f2 #283d3a 0;
+#X obj 700 540 buffer-name live \$2 status;
+#X obj 700 580 s \$0-save-state;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 28 0 29 0;

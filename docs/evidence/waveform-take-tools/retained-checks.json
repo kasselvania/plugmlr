@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "44k_production_sources_match": true,
+    "44k_compressed_capture_identity": true,
+    "44k_native_checks": true,
+    "48k_production_sources_match": true,
+    "48k_compressed_capture_identity": true,
+    "48k_native_checks": true,
+    "rate_mismatch_export_identical": true,
+    "chooser_export_identical": true,
+    "float_headroom_preserved": true,
+    "listening_no_normalization_24bit_error": true
+  },
+  "listening_max_conversion_error": 1.189760041597765e-07
+}

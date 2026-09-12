@@ -98,7 +98,7 @@
 #X obj 1042 331 t b b;
 #X obj 1146 73 r row_\$1;
 #X obj 304 429 r transport;
-#X obj 672 385 print reset;
+#X obj 672 385 debug-print reset;
 #X obj 686 217 mod;
 #X obj 1131 322 r row_\$1;
 #X obj 1042 260 mod, f 5;
@@ -133,7 +133,7 @@
 #X obj 51 314 s \$1-length;
 #X obj 424 669 r \$1-length;
 #X obj 504 669 r \$1-rate;
-#X obj 283 970 print loadbang;
+#X obj 283 970 debug-print loadbang;
 #X obj 848 65 r clock-pulse;
 #X connect 1 0 4 0;
 #X connect 1 1 6 0;

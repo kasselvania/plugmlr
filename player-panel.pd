@@ -1,5 +1,5 @@
-#N canvas 100 80 1040 790 12;
-#X obj 10 10 cnv 15 1010 770 empty empty PLAYER\ \$2 16 20 0 20 #eeece5 #283d3a 0;
+#N canvas 100 80 1040 800 12;
+#X obj 10 10 cnv 15 1010 780 empty empty PLAYER\ \$2 16 20 0 20 #eeece5 #283d3a 0;
 #X obj 30 135 bng 25 250 50 0 \$1-play_button \$2-press_play empty 17 7 0 10 #faf8f2 #347c72 #347c72;
 #X obj 175 135 bng 25 250 50 0 \$1-stop_button empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
 #X obj 270 135 bng 25 250 50 0 \$1-dir_change empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
@@ -8,21 +8,21 @@
 #X obj 865 680 bng 25 250 50 0 \$1-delete_buffer empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
 #X obj 190 85 popmenu 128 26 12 #faf8f2 #347c72 \  \$1-boot_buffer_GUI_number \$1-selected_buffer_GUI_number empty empty 1 0 -1 1 0 1 0 0 0 0 0 select 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16;
 #X obj 30 85 popmenu 128 26 12 #faf8f2 #347c72 \  \$1-boot_buffer_GUI_name \$1-selected_buffer_GUI_name empty empty 1 0 -1 1 0 1 0 0 0 0 0 Live Sample;
-#X obj 30 415 popmenu 142 26 12 #faf8f2 #347c72 Slice\ grid \$1-key_quantize_setup \$1-key_quantize_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1/64 1/32 1/16 1/8 1/4 1/2 1;
-#X obj 385 415 popmenu 168 26 12 #faf8f2 #347c72 Reset\ every \$0-reset-show \$0-reset-choice empty empty 1 0 0 1 0 1 0 0 0 0 0 Off 1\ beat 2\ beats 1\ bar 2\ bars 4\ bars 8\ bars;
+#X obj 30 525 popmenu 142 26 12 #faf8f2 #347c72 Slice\ grid \$1-key_quantize_setup \$1-key_quantize_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1/64 1/32 1/16 1/8 1/4 1/2 1;
+#X obj 385 525 popmenu 168 26 12 #faf8f2 #347c72 Reset\ every \$0-reset-show \$0-reset-choice empty empty 1 0 0 1 0 1 0 0 0 0 0 Off 1\ beat 2\ beats 1\ bar 2\ bars 4\ bars 8\ bars;
 #X obj 708 575 knob 50 0 2000 0 0 \$1-rate_slew-duration-i empty #faf8f2 #d7dcd3 #347c72 1 0 0 0 1 270 0 0 51 empty empty 0 12 6 -15 0 1 0 0;
 #X obj 830 575 knob 50 -1 0 0 0 \$1-rate_slew_curve_i empty #faf8f2 #d7dcd3 #347c72 1 0 0 0 1 270 0 0 0 empty empty 0 12 6 -15 0 1 0 0;
-#X obj 15 484 buffer-panel \$1;
-#X obj 15 220 slice-panel \$1 \$2;
-#X obj 220 415 slice-mode-control \$2;
+#X obj 15 588 buffer-panel \$1;
+#X obj 15 330 slice-panel \$1 \$2;
+#X obj 220 525 slice-mode-control \$2;
 #X text 30 63 Buffer type;
 #X text 190 63 Slot;
 #X text 30 112 Play / Pause;
 #X text 175 112 Stop;
 #X text 270 112 Reverse;
-#X text 30 198 CUT / LOOP;
-#X text 30 390 Quantized cut timing;
-#X text 385 390 Beat Reset / 4-4 bars;
+#X text 30 310 CUT / LOOP;
+#X text 30 500 Quantized cut timing;
+#X text 385 500 Beat Reset / 4-4 bars;
 #X text 700 550 Glide time / ms;
 #X text 825 550 Glide curve;
 #X text 700 658 Record live;
@@ -34,13 +34,13 @@
 #X text 690 96 Run controls shared ticks.;
 #X obj 160 17 cnv 15 225 24 empty \$0-transport Waiting_for_state 8 13 0 13 #faf8f2 #283d3a 0;
 #X obj 400 17 cnv 15 240 24 empty \$0-direction Direction_unknown 8 13 0 13 #faf8f2 #283d3a 0;
-#X obj 350 85 cnv 15 160 18 empty \$0-mode Free 8 13 0 13 #faf8f2 #283d3a 0;
+#X obj 350 48 cnv 15 160 18 empty \$0-mode Free 8 13 0 13 #faf8f2 #283d3a 0;
 #X obj 690 122 cnv 15 280 24 empty \$0-source Source_unknown 8 13 0 13 #faf8f2 #283d3a 0;
 #X obj 690 151 cnv 15 280 24 empty \$0-clock No\ ticks 8 13 0 13 #faf8f2 #283d3a 0;
 #X obj 690 256 cnv 15 295 24 empty \$0-reset Reset_Off 8 13 0 13 #faf8f2 #283d3a 0;
 #X obj 825 195 nbx 6 22 0 1e+20 0 0 empty \$0-bar Bar -40 11 0 12 #faf8f2 #283d3a #283d3a 0 256;
 #X obj 960 195 nbx 2 22 0 1e+20 0 0 empty \$0-beat Beat -40 11 0 12 #faf8f2 #283d3a #283d3a 0 256;
-#X obj 535 188 nbx 6 22 0 1e+20 0 0 empty \$0-rate Preset\ x -110 11 0 12 #faf8f2 #283d3a #283d3a 1 256;
+#X obj 902 590 nbx 6 22 0 1e+20 0 0 empty \$0-rate Preset\ x 0 -10 0 12 #faf8f2 #283d3a #283d3a 1 256;
 #X obj 855 298 nbx 5 22 0 1e+20 0 0 empty \$0-remaining Beats\ to\ reset -110 11 0 12 #faf8f2 #283d3a #283d3a 0 256;
 #X obj 700 340 bng 20 180 50 0 empty \$2-reset-fired Reset\ request 28 10 0 12 #faf8f2 #283d3a #283d3a;
 #X text 690 370 Reset jumps to the full-sample edge.;
@@ -60,7 +60,7 @@
 #X obj 940 495 nbx 3 22 1 64 0 0 \$2-num_beats_for_segment \$0-fit-beats Sample\ beats -125 11 0 12 #faf8f2 #283d3a #283d3a 4 256;
 #X obj 830 530 nbx 7 22 0 64 0 0 empty \$0-target-rate Target\ speed\ x -155 11 0 12 #faf8f2 #283d3a #283d3a 1 256;
 #X obj 690 452 cnv 15 305 26 empty empty SPEED 8 13 0 13 #347c72 #faf8f2 0;
-#X obj 15 452 cnv 15 645 26 empty empty BUFFER\ /\ RECORD 8 13 0 13 #b75e49 #faf8f2 0;
+#X obj 15 560 cnv 15 645 26 empty empty BUFFER\ /\ RECORD 8 13 0 13 #b75e49 #faf8f2 0;
 #X obj 690 228 cnv 15 305 22 empty empty BEAT\ RESET 8 11 0 13 #347c72 #faf8f2 0;
 #X obj 30 1190 player-overview-bridge \$1 \$2 \$0;
 #X obj 555 85 bng 22 180 50 0 mlr-close-views empty Overview 28 11 0 12 #faf8f2 #347c72 #283d3a;
@@ -76,3 +76,24 @@
 #X obj 515 112 cnv 15 36 18 empty empty 2 8 9 0 12 #eeece5 #283d3a 0;
 #X obj 555 112 cnv 15 36 18 empty empty 4 8 9 0 12 #eeece5 #283d3a 0;
 #X obj 690 630 cnv 15 305 22 empty empty RECORD\ ACTIONS 8 11 0 13 #b75e49 #faf8f2 0;
+
+#X obj 20 176 player-waveform \$1 \$2;
+
+
+#X obj 350 85 bng 20 180 50 0 \$0-browse-prev empty Prev 25 10 0 11 #faf8f2 #347c72 #283d3a;
+#X obj 445 85 bng 20 180 50 0 \$0-browse-next empty Next 25 10 0 11 #faf8f2 #347c72 #283d3a;
+#X msg 30 1260 -1;
+#X msg 180 1260 1;
+#X obj 30 1300 buffer-browse \$1 \$2;
+#X text 345 63 Loaded slots;
+
+
+#X connect 74 0 76 0;
+#X connect 75 0 76 0;
+
+#X obj 600 1000 s \$1-wave-visible;
+#X obj 30 1220 r \$0-browse-prev;
+#X obj 180 1220 r \$0-browse-next;
+#X connect 48 0 78 0;
+#X connect 79 0 74 0;
+#X connect 80 0 75 0;

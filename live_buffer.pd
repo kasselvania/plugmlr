@@ -16,7 +16,7 @@
 #X obj 478 173 f;
 #X obj 505 379 s l_b_buffer_states;
 #X obj 635 -399 r \$1_l_b_first_record_bang;
-#X obj 673 350 print record_bang_processed_numbers;
+#X obj 673 350 debug-print record_bang_processed_numbers;
 #X obj 467 -91 f \$1;
 #X obj 660 -258 / 1000;
 #X obj 769 52 t b f;
@@ -59,9 +59,9 @@
 #X obj 1806 56 t b b b b b;
 #X msg 1653 53 0;
 #X msg 726 -258 resize \$1;
-#X obj 492 -27 print data_update;
-#X obj 865 80 print dynamic_buffer;
-#X obj 1281 118 print first record;
+#X obj 492 -27 debug-print data_update;
+#X obj 865 80 debug-print dynamic_buffer;
+#X obj 1281 118 debug-print first record;
 #X obj 1421 -127 r \$1_l_b_load_up;
 #X obj 1354 -94 t b b;
 #X obj 1142 133 t b b;
@@ -192,3 +192,5 @@
 #X connect 88 0 89 0;
 #X connect 89 0 90 0;
 #X connect 90 0 80 1;
+
+#X obj 35 630 buffer-view-data live \$1;
