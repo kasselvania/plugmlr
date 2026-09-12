@@ -7,6 +7,87 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Natural-loop timing and short-reader reuse — 2026-09-12
+
+Continue from PR #35 at `b7e64009cf2cf53740bea851ff7da4f6a81169c9`
+on `codex/natural-loop-timing`. Remote main remains
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; the worktree was clean.
+Native plugdata starts at Home, DSP On, with no patch open.
+
+Before implementation: public loop positions remain seconds, internally rounded
+to file frames with an exclusive end. The existing start/end/duration tuple uses
+file frames and milliseconds, including file/host sample-rate conversion. Schedule
+one natural handoff from that tuple's duration using Pd logical time. Every new
+trajectory replaces the prior deadline; Stop, Pause, selection and pending cuts
+cancel it. Playback state and pending-cut ownership still gate the handoff.
+Retain the direction-appropriate entry and existing stereo readers. Do not add
+another transport or audio-rate Lua process. Invalid/non-finite durations cannot
+schedule; a zero remaining duration may wrap once into the positive-length loop.
+
+Validate exact periods to host-sample resolution at 44.1 and 48 kHz, including
+file/host mismatch and commands at deadlines. Then address reader reuse without
+changing requested loop length. Keep ordinary 6 ms loop / 9 ms cut fades until
+actual audio demonstrates the short-loop repair. Any adaptive fade must preserve
+complementary gain and complete before an audible reader is repositioned. Do not
+claim arbitrary sub-sample loops, universal click-free playback or listening
+acceptance from these numerical checks. Native captures must auto-stop; the
+frontend and direction-slew work remain subsequent slices.
+
+Implemented in the original `pd loop_logic`, with `reader-fade-limit` inserted
+before each existing reader's gain `vline~`. All player source outside those
+three canvases is byte-identical to the base. Within the voices, only that
+envelope insertion changes. Original stereo readers, crossover ownership,
+transport, speed glide, buffer/recording paths, mixer and `mlr.pd` remain intact.
+The new helper has two message inlets (target/duration and remaining deadline,
+both in milliseconds) and one envelope outlet; it performs no audio processing.
+Initialize its deadline explicitly; a negative value disables limiting.
+
+The fade deadline is the remaining trajectory time minus one host sample.
+Shorten an ongoing fade if necessary; never extend it. Two failed candidates
+showed why blindly compressing a fade during a very fast Reverse is wrong.
+Preserve the current fade only when the preceding handoff was a natural wrap
+and the outgoing endpoint equals the new entry. Cuts and changed endpoints
+retain protection. A full loop shorter than one host sample is refused with
+`Loop_shorter_than_host_sample` and the existing Stop path, without changing
+requested bounds. This guard is not a performance claim for one-sample loops.
+
+Ten final native captures pass their numerical checks in plugdata **0.9.4
+nightly 98ae0f78b / Pd 0.56.3**, CoreAudio **8A / 512 frames / 1×**, Pd blocks
+of 64. File rate is 48 kHz; host rates are 48 and 44.1 kHz. Natural 25/5/3/2 ms
+cycles now stay within one host sample. An 8.8-second 2 ms run has no cumulative
+error beyond one sample. Both readers preserve gain through rapid turns,
+glides, loop edits, cuts, Pause/Resume and Stop, with no reader reposition
+above gain 1e-6, non-finite output or unexpected running zero dropout in the
+synthetic cases. Constant stereo differs by at most 7.45e-9. Fit's 1/64x and
+16/3x targets also pass. Four invalid loop inputs and a sub-sample cycle are
+refused; subsequent playback recovers.
+
+The untouched lane's matched recordings are identical at 48 kHz. At 44.1 kHz,
+their maximum difference is one float32 position ULP (0.001953125 file frames)
+and 0.000023641 in sample amplitude. Measured reader positions/gains explain
+that audio difference within 5.48e-8. The original stricter failed comparison,
+its replacement rationale, exact audio, source hashes, native console/settings
+images and intermediate failures are retained in the
+[evidence and procedure](evidence/natural-loop-timing/observations.md).
+Thirty bounded native runs were executed during development; fifteen are kept
+as lossless archives (ten final, five representative controls). Other intermediate
+explorations were moved locally with an inventory; they are not acceptance evidence.
+
+**Listening remains open.** The new 14-second musical capture has useful audio
+throughout its running sections (post-master peak 0.509, RMS 0.100), with
+intentional Pause/Stop gaps. No new user listening observation is inferred.
+Numerical bounds do not accept arbitrary-source clicks, all sub-2 ms loops,
+other block sizes, long-session precision, hardware/Bitwig lifecycle or isolated
+full applications. Direction slew, recorder tape motion and the frontend
+redesign remain later work. The source-to-reader tap's existing one-frame
+reference offset is recorded for a later indexing review, not changed here.
+
+All captures stopped themselves and all diagnostic patches are closed. The
+native UI confirms Home, DSP On, **48 kHz restored**, output 0.8 and limiter Off.
+This branch is a focused successor stacked on PR #35; PRs #34/#35 remain draft
+and unmerged. Next: review the musical capture and this repair before choosing
+another playback/slew or frontend slice.
+
 ## Playback and slew review — 2026-09-11
 
 Continue from `b85982ab8845ac54e9380b6212314e6f573d3d75` on the separate

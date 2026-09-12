@@ -56,7 +56,7 @@ lb=o('obj 2100 4800 loadbang');f=o('obj 2100 4840 f \\$0');pr=o('obj 2100 4880 p
 tap_path=str(ROOT/'tests'/'bounded-player-capture').replace(' ','\\ ')
 o(f'obj 2100 5100 {tap_path} \\$1 \\$0')
 # Message taps expose the original boundary/direction handoff; they drive nothing.
-for j,(tag,suffix) in enumerate([('target','-loop_target_index'),('direction','-playback_direction'),('detector-direction','_direction_for_expr_sig'),('entry','-loop_entry'),('rate','-samples_per_ms'),('boundary-entry','-buffer_and_playhead_update_and_exe'),('boundary-position','-boundary-current-position')]):
+for j,(tag,suffix) in enumerate([('target','-loop_target_index'),('direction','-playback_direction'),('detector-direction','_direction_for_expr_sig'),('entry','-loop_entry'),('rate','-samples_per_ms'),('boundary-entry','-buffer_and_playhead_update_and_exe'),('boundary-position','-boundary-current-position'),('loop-feedback','-loop-region-feedback')]):
     r=o(f'obj {2100+j*220} 4950 r \\$0{suffix}')
     lp=o(f'obj {2100+j*220} 4990 list prepend {tag}')
     send=o(f'obj {2100+j*220} 5030 s record-session-trace-\\$1')
@@ -108,7 +108,7 @@ c(left,cap,0,6);c(right,cap,0,7)
 for i in (1,2):
  r=o(f'obj {650+i*180} 500 r~ record-session-position-{i}');c(r,cap,0,7+i)
 # Capture start always arms its independent watchdog before opening any file.
-r=o('obj 510 275 r record-session-check');route=o('obj 510 315 route run dsp zero boundary turns constant stop slew slew-constant short short-constant fit');c(r,route)
+r=o('obj 510 275 r record-session-check');route=o('obj 510 315 route run dsp zero boundary turns constant stop slew slew-constant short short-constant fit deadline musical');c(r,route)
 start=o('obj 510 610 t s b b b b');timer=o('obj 1050 840 timer');clear=o('msg 920 650 clear');events=o('obj 1050 1080 text define \\$0-events');watch=o('obj 820 700 delay 16000')
 c(start,clear,4);c(clear,events);c(start,timer,3);c(start,watch,2)
 sourceplay=o(f'msg 650 740 open {OUT}/input.wav \\, 1');c(start,sourceplay,1);c(sourceplay,input_reader)
@@ -117,7 +117,7 @@ readertaps=o(f'msg 1050 610 \\; 1-test-capture start {OUT}/readers1.wav 14000 \\
 read=o('msg 510 830 read \\$1 \\, bang');ql=o('obj 510 870 qlist');c(start,read);c(read,ql)
 for j,name in enumerate(['run','dsp','zero','boundary','turns','constant']):
  msg=o(f'msg {510+j*175} 550 symbol {OUT}/{name}.txt');c(route,msg,j);c(msg,start)
-for j,name in enumerate(['slew','slew-constant','short','short-constant','fit'],7):
+for j,name in enumerate(['slew','slew-constant','short','short-constant','fit','deadline','musical'],7):
  msg=o(f'msg {510+(j-7)*175} 580 symbol {OUT}/{name}.txt');c(route,msg,j);c(msg,start)
 finishr=o('obj 25 820 r record-session-done');fin=o('obj 25 860 t b b b b');c(finishr,fin);c(watch,fin);c(route,fin,6)
 stop=o('msg 360 900 stop');c(fin,stop,3);c(stop,cap);c(stop,input_reader);c(stop,watch)
@@ -233,9 +233,29 @@ fit += [(300,'record-session-player-1','slew 500'),(300,'record-session-player-1
         (8000,'record-session-player-1','speed 2'),(9000,'record-session-player-1','stop'),
         (9200,'record-session-player-1','play')]
 scores['fit']=fit
+deadline=[e for e in slew_score('wave') if e[0]<=100 or e[0]>=12500]
+deadline += [(60,'1-loop-region','0.05 0.07')]
+for t,msg in [(121,'speed 4'),(122,'reverse'),(122.3,'reverse'),
+              (123,'speed 0'),(127,'speed 4'),(140,'reverse'),
+              (140.2,'reverse'),(140.4,'reverse'),(140.6,'reverse'),
+              (900,'speed 4'),(1100,'play'),(1200,'speed 2'),
+              (2200,'play'),(2201,'speed 4'),(2202,'reverse'),
+              (2400,'play'),(3000,'stop'),(3001,'play')]:
+    deadline.append((t,'record-session-player-1',msg))
+deadline += [(500,'row_1','9'),(700,'1-loop-region','0.05 0.07'),
+             (1000,'1-loop-region','0.05 0.050021'), # one frame at 4x: explicit refusal
+             (1080,'1-loop-region','full'),
+             (1600,'1-loop-region','0.15 0.1'),(1700,'1-loop-region','-1 0.1'),
+             (1800,'1-loop-region','0.1 bad'),(1900,'1-loop-region','0.1 99'),
+             (3500,'1-loop-region','0.05 0.058')]
+scores['deadline']=deadline
+scores['musical']=[(t,r,f'symbol {OUT}/input.wav' if r=='1-sample-path' else m)
+                   for t,r,m in slew_score('wave')]
 for name,data in scores.items():score(data,OUT/f'{name}.txt')
 checks=[check(OUT/f) for f in ('observed-player.pd','check.pd')]
 assert not any(c['errors'] for c in checks),checks
 manifest={'production_player_sha256':hashlib.sha256(source.encode()).hexdigest(),'production_root_objects':count,'instrumentation_added_only':True,'files':checks,'scores':scores,'fixture':'check.pd','scope':'Actual two player/mixer components with common .75 master multiplier. No DAC, full application, Grid or device-loopback acceptance.'}
+if 'reader-fade-limit' in source:
+    manifest['reader_fade_limit_sha256']=hashlib.sha256((ROOT/'reader-fade-limit.pd').read_bytes()).hexdigest()
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print(OUT/'check.pd')
