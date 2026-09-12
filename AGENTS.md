@@ -154,3 +154,9 @@
   full content has no background. Ready/switching and attachment gate display.
   Never render held gestures as committed bounds. Keep package LED ownership,
   and use check_grid_loop_feedback.py to preserve exact player/gesture sources.
+
+- MOD is top-row column 14, committing one cell on fresh key-down through the
+  existing loop path. Releases never retrigger. ALT wins if both are held; no
+  upstream ALT+MOD chop behavior is implied. Modifier presses cancel pending
+  two-key gestures, not already committed loops. Keep check_grid_mod.py and the
+  native gesture suite as this input-only slice's preservation boundary.

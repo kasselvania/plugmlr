@@ -186,4 +186,6 @@ entry. A later single slice restores the whole sample. ALT, Stop, Pause and
 buffer changes cancel unfinished pairs; a third held key cancels the pair until
 all keys are released. The player panel shows the committed seconds. On the two playback rows, a smaller
 loop stays dimly lit, with the running position brighter. Pause/Stop keep the dim
-range; full-content playback has no background. MOD one-key loops remain deferred. The corrected release behavior is physically user-accepted.
+range; full-content playback has no background. **MOD** (top-row key 14, third from the right) + a fresh track-key press sets
+a single-cell loop immediately. Release does not retrigger it. ALT takes priority
+if both modifiers are held. The corrected release behavior is physically user-accepted.

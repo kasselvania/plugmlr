@@ -1,0 +1,872 @@
+[
+  {
+    "command": "key 0 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 1",
+    "expected": [
+      "focus 1",
+      "slice 3 1 1"
+    ],
+    "actual": [
+      "focus 1",
+      "slice 3 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 1",
+    "expected": [
+      "play 1"
+    ],
+    "actual": [
+      "play 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 0",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 1",
+    "expected": [
+      "slice 3 1 1"
+    ],
+    "actual": [
+      "slice 3 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 1",
+    "expected": [
+      "focus 2",
+      "play 2"
+    ],
+    "actual": [
+      "focus 2",
+      "play 2"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 1",
+    "expected": [
+      "play 2"
+    ],
+    "actual": [
+      "play 2"
+    ],
+    "passed": true
+  },
+  {
+    "command": "connected 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 8 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 1",
+    "expected": [
+      "slice 7 2 1"
+    ],
+    "actual": [
+      "slice 7 2 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 1 0 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 7 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key -1 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 16 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 8 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 1 2",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0.5 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key x 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 1 1 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 3 1",
+    "expected": [
+      "focus 3",
+      "slice 0 3 1"
+    ],
+    "actual": [
+      "focus 3",
+      "slice 0 3 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 0 4 1",
+    "expected": [
+      "focus 4",
+      "slice 0 4 1"
+    ],
+    "actual": [
+      "focus 4",
+      "slice 0 4 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 0 5 1",
+    "expected": [
+      "focus 5",
+      "slice 0 5 1"
+    ],
+    "actual": [
+      "focus 5",
+      "slice 0 5 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 0 6 1",
+    "expected": [
+      "focus 6",
+      "slice 0 6 1"
+    ],
+    "actual": [
+      "focus 6",
+      "slice 0 6 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "connected 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 1",
+    "expected": [
+      "focus 1",
+      "slice 2 1 1"
+    ],
+    "actual": [
+      "focus 1",
+      "slice 2 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 5 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 0",
+    "expected": [
+      "loop 1 2 6"
+    ],
+    "actual": [
+      "loop 1 2 6"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 5 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 1 1",
+    "expected": [
+      "slice 15 1 1"
+    ],
+    "actual": [
+      "slice 15 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 0 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 1 0",
+    "expected": [
+      "loop 1 0 16"
+    ],
+    "actual": [
+      "loop 1 0 16"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 15 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 1 1 1",
+    "expected": [
+      "slice 1 1 1"
+    ],
+    "actual": [
+      "slice 1 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 8 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 1 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 8 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 1",
+    "expected": [
+      "slice 2 1 1"
+    ],
+    "actual": [
+      "slice 2 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "cancel 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 7 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 1",
+    "expected": [
+      "slice 2 1 1"
+    ],
+    "actual": [
+      "slice 2 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 7 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 1",
+    "expected": [
+      "play 1"
+    ],
+    "actual": [
+      "play 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 0",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 1 1 1",
+    "expected": [
+      "slice 1 1 1"
+    ],
+    "actual": [
+      "slice 1 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 2 1",
+    "expected": [
+      "focus 2",
+      "slice 3 2 1"
+    ],
+    "actual": [
+      "focus 2",
+      "slice 3 2 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 6 1 1",
+    "expected": [
+      "focus 1"
+    ],
+    "actual": [
+      "focus 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 9 2 1",
+    "expected": [
+      "focus 2"
+    ],
+    "actual": [
+      "focus 2"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 6 1 0",
+    "expected": [
+      "loop 1 1 7"
+    ],
+    "actual": [
+      "loop 1 1 7"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 2 0",
+    "expected": [
+      "loop 2 3 10"
+    ],
+    "actual": [
+      "loop 2 3 10"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 1 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 9 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 2 1",
+    "expected": [
+      "slice 0 2 1"
+    ],
+    "actual": [
+      "slice 0 2 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 1 2 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "connected 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 1 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 13 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 13 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 13 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 1",
+    "expected": [
+      "focus 1",
+      "loop 1 4 5"
+    ],
+    "actual": [
+      "focus 1",
+      "loop 1 4 5"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 4 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 13 0 0",
+    "expected": [
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 13 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 13 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 13 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 15 1 1",
+    "expected": [
+      "loop 1 15 16"
+    ],
+    "actual": [
+      "loop 1 15 16"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 13 0 0",
+    "expected": [
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 15 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 1",
+    "expected": [
+      "slice 2 1 1"
+    ],
+    "actual": [
+      "slice 2 1 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 6 1 1",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 13 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 13 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 13 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 6 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 2 1 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 0 2 1",
+    "expected": [
+      "focus 2",
+      "loop 2 0 1"
+    ],
+    "actual": [
+      "focus 2",
+      "loop 2 0 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 0 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 1",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 15"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 2 1",
+    "expected": [
+      "play 2"
+    ],
+    "actual": [
+      "play 2"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 3 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 15 0 0",
+    "expected": [
+      "led /monome/grid/led/level/set 15 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/level/set 15 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 1",
+    "expected": [
+      "loop 2 7 8"
+    ],
+    "actual": [
+      "loop 2 7 8"
+    ],
+    "passed": true
+  },
+  {
+    "command": "connected 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "connected 1",
+    "expected": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "actual": [
+      "led /monome/grid/led/row 0 0 0 0",
+      "led /monome/grid/led/level/set 1 0 8",
+      "led /monome/grid/led/level/set 15 0 4",
+      "led /monome/grid/led/level/set 13 0 4"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 1",
+    "expected": [
+      "slice 7 2 1"
+    ],
+    "actual": [
+      "slice 7 2 1"
+    ],
+    "passed": true
+  },
+  {
+    "command": "key 7 2 0",
+    "expected": [],
+    "actual": [],
+    "passed": true
+  }
+]
