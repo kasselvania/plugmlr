@@ -1,0 +1,6 @@
+0 1-buffer-select sample 1;
+50 1-loop-region 2 5;
+50 1-open-player-view bang;
+100 1-press_play bang;
+3800 1-ui-stop bang;
+0 ui-check-stop bang;

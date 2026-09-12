@@ -1,0 +1,15 @@
+#N canvas 100 80 760 480 12;
+#X obj 30 60 take-save-control;
+#X obj 30 130 soundfiler;
+#X obj 270 130 savepanel;
+#X obj 270 170 list prepend path;
+#X obj 270 210 list trim;
+#X obj 490 130 s mlr-save-status;
+#X text 30 280 Save exact written stereo frames. Synchronous - requires all instrument playback/recording stopped.;
+#X connect 0 0 1 0;
+#X connect 1 0 0 1;
+#X connect 0 1 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 0 2 5 0;

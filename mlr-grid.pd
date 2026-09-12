@@ -20,13 +20,13 @@
 #X obj 500 25 loadbang;
 #X obj 500 55 delay 0;
 #X msg 500 85 start;
-#X obj 620 470 print mlr-grid-session;
+#X obj 620 470 debug-print mlr-grid-session;
 #X obj 620 500 route state;
 #X obj 620 530 list split 1;
 #X obj 620 560 symbol;
 #X symbolatom 30 205 30 0 0 0 Session - - 0;
 #X obj 30 600 print mlr-grid-compat;
-#X obj 340 600 print mlr-grid-status;
+#X obj 340 600 debug-print mlr-grid-status;
 #X text 30 60 Select a Grid then Probe and Claim. Release before closing.;
 #X text 30 250 Keys and LEDs use the existing MLR musical wiring.;
 #X text 30 280 No automatic claim or takeover. Details are in the console.;

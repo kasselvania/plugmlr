@@ -26,6 +26,21 @@ for imported files, or **Live takes / Finish** for recording destinations.
 the overview are readouts; choose the buffer type and slot inside the player.
 This UI is a review candidate: [screenshots, checks and procedure](docs/evidence/ui-overview/observations.md).
 
+**Waveform and sample identity:** the focused player shows separate L/R waveforms,
+16 whole-content slice divisions, the committed loop range and a moving cursor.
+The preview is built once per buffer when requested; recording gets a waveform
+when finished. **Prev/Next** skips empty slots within the selected bank. The
+Sample bank shows the last successfully loaded filename. **Debug** on the main
+screen enables routine console prints; load/record errors remain visible.
+
+**Save a take:** Finish recording, stop all players, open **Live takes / Finish**,
+and click **Save WAV** on the desired buffer row. Choose a destination. Feedback
+reports success or refusal; the row changes to Saved. Export includes only written
+stereo frames as 32-bit float WAV at the take's recorded rate, without normalizing.
+Playback stays in RAM. This synchronous export requires a stopped instrument;
+background saving, disk playback and project recall remain future work.
+[Native checks, screenshots and listening file](docs/evidence/waveform-take-tools/observations.md).
+
 **Player view:** click **Open** on track 1.
 The dedicated view keeps the existing player controls together with transport,
 direction, selected speed, clock source/BPM/count, and reset feedback. Run controls
@@ -84,7 +99,8 @@ allocated. This recovers the original growth policy through the buffer-owned wri
 Recording pause/resume, overdub, physical shrink and recording quantization remain open.
 Recording direction/speed and their slew are planned artistic tape controls;
 the current input writer stays forward at 1x independently of playback controls.
-Takes remain in memory: there is no product export or project-recall UI yet.
+Takes remain in memory until closing; use Save WAV to retain finished audio.
+There is no full project-recall UI yet.
 
 The runtime used for recent validation is plugdata 0.9.4 nightly `98ae0f78b` /
 Pd 0.56.3, with bundled ELSE/Cyclone objects. This is not a vanilla-Pd claim.

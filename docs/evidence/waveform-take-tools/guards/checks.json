@@ -1,0 +1,18 @@
+{
+  "trimmed_frames": 57216,
+  "reference_frames": 57280,
+  "trimmed_exact_from_frame64": true,
+  "recording_refused": true,
+  "recheck_refuses_play_after_save_queued": true,
+  "messages": [
+    "Saving live 3...",
+    "Saved Live 3: trimmed.wav",
+    "Finish recording or buffer changes before saving",
+    "Saving live 3...",
+    "Stop all players before saving",
+    "Saving live 3...",
+    "Saved Live 3: short-take.wav"
+  ],
+  "float_headroom_preserved": true,
+  "native_chooser_byte_identical": true
+}

@@ -1,0 +1,14 @@
+0 3_l_b_first_index 64;
+0 3_l_b_select_bang bang;
+20 mlr-save-take save 3 /tmp/plugmlr-waveform-check/trimmed.wav;
+100 3_l_b_first_index 0;
+0 3_l_b_select_bang bang;
+80 3_l_b_delete_buffer bang;
+40 3_l_b_length seconds 0.5;
+60 3_l_b_record start;
+50 mlr-save-take save 3 /tmp/plugmlr-waveform-check/recording-refused.wav;
+500 mlr-save-take save 3 /tmp/plugmlr-waveform-check/interrupted-save.wav;
+10 2-press_play bang;
+140 2-ui-stop bang;
+100 mlr-save-take save 3 /tmp/plugmlr-waveform-check/short-take.wav;
+500 ui-check-stop bang;
