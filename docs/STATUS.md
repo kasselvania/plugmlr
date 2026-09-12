@@ -7,6 +7,107 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Recording continuity and artistic follow-up — 2026-09-11
+
+Continue PR #34 from `f3c22f403d9c5a9aa751f78901350331b8ce9daa`;
+remote main is still `29ab51e653eded9db9c5aa09850ec4a1352d97e9`.
+At the start of this follow-up, native plugdata was read at Home, DSP On,
+with no patch open.
+
+Before implementation: keep current input capture at normal host rate. Playback
+speed/direction must not change that capture. Add an instrument-scoped take view
+onto the existing buffer-owned writers: buffer number, active indication, elapsed
+seconds, frozen limit seconds and Finish for that exact buffer. Multiple live
+buffers can remain active; browsing does not move a writer or its Finish control.
+Publish display progress at 20 Hz while active, with final/initial state updates;
+no display timer drives sample writing. Inactive rows show zero elapsed/limit.
+
+DSP Off finishes the completed written portion through the normal Stop path;
+DSP On must not restart that take. This explicitly defines a user-visible
+interruption. Host sample-rate changes that do not deliver a Pd DSP-off message
+remain unqualified until exercised. Validate growth with the original playback
+and mixer components, then audition the early-stop content bounds. Keep all
+captures independently bounded and retain listening material for the user's return.
+
+The user has explicitly added **recording direction and speed changes** to the
+artistic work, with implementation choices delegated here. Preserve that as an
+intentional tape mode to develop after this reliability pass: independent signed
+write motion, optional relationship to playback motion, abrupt versus slewed
+turns, punch transitions, zero speed, and correct stereo writes across fractional
+or greater-than-one rates. The historical playback-address-driven writer is a
+reference for the musical idea; its address fade and unwired overdub control
+are not a working variable-rate recorder. Do not silently repurpose the existing
+playback Reverse/Speed controls or claim this mode is implemented yet.
+
+Artistic defaults to carry into that later slice: keep ordinary capture as the
+simple default; make tape writing an explicit mode with independent signed speed
+and an optional link to playback. Offer instant changes and a tape slew. At zero
+speed, fade writing out instead of repeatedly overwriting one frame. Retained
+audio/input gain, fractional-rate resampling and boundaries must be established
+in the audio path before dubbing is advertised. Quantized Start/Finish is a
+separate choice from this free motion, not automatic synchronization.
+
+### Implemented and observed
+
+- `record-progress.pd` reads completed frames from the existing audio-rate writer
+  and the frozen frame-limit/host-rate tuple. It publishes
+  `BUFFER ELAPSED_SECONDS LIMIT_SECONDS ACTIVE` on `<instrument>-record-progress`
+  at 20 Hz while active. `<instrument>-record-progress-get` requests current state.
+- `record-takes-panel.pd` / `record-take-row.pd` show the existing 16 live buffers.
+  `<instrument>-record-takes-open` opens the view; `<instrument>-record-finish N`
+  and that row's Finish button share an active-gated Stop to `N_l_b_record`.
+  `mlr.pd` adds only the panel instance and its open button. These scoped display
+  messages do not remove the application's existing global buffer names.
+- `live-record.pd` listens for Pd `dsp 0` while recording and uses its existing
+  Stop/completed-frame path. A Start during Stop cleanup is still refused, not queued.
+  DSP On is not connected to recording Start.
+- The actual native take view showed Live 1 and 2 recording together, with
+  separate elapsed values and frozen 60/4-second limits. It returned to idle after
+  completion. The original MLR button opens that instrument's panel; an idle
+  Finish does nothing. This is agent UI readback, not user usability acceptance.
+
+Native runtime: **plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3**, CoreAudio
+**8A**, **48 kHz**, **512-frame device buffer**, 1× oversampling. The silent
+fixture loads the current sample/live buffers and original player/mixer components.
+Its player copy is the production file verbatim with appended control and passive
+trace taps. A common 0.75 multiplier follows the two actual mixer outputs; this
+does not stand in for full-application or device-output acceptance.
+
+| Actual native case | Result |
+| --- | --- |
+| Free Live 1 and fixed Live 2 while another lane plays | 148,800 / 134,400 recorded frames, each in 192,000-frame stereo storage. Every written sample equals captured input with one shared L/R offset per take; unused tails are zero. |
+| Browse and change playback Reverse/Speed while recording | Writer destination and forward 1x input capture stay unchanged. Changing the next Free limit to 0.4 s leaves the active limit at 60 s. |
+| Finish Live 1 after browsing; then Finish Live 2 | Separate written bounds, separate completion, Live 2 still active after Live 1 finishes. |
+| Other lane during growth, then playback of the recorded take | Other lane's repeated audio is sample-identical before/during/after growth. Normal forward/reverse/.5x/2x playback stays within written content and stops silently. Mixer gain is unchanged outside its intentional 5 ms opening envelope; all transition samples are retained. |
+| DSP Off at 2.5 s, On at 3 s | 57,600 written frames (1.2 s); Loaded at 2.503 s and still Loaded after DSP returns. No recording restart. |
+| Same-tick Start/Stop; retry during cleanup; later Start | First take stays Empty. Retry at +1 ms reports Buffer_busy. Start at +20 ms succeeds and Finish retains 52,800 frames (1.1 s). |
+
+All recorder checks pass in these captures. **A separate exact-boundary Reverse
+case fails playback**, and remains a failing test rather than an accepted exception:
+at 8 s, the natural forward wrap installs `0 148800 3100`; the direction command
+then sees position `0.00404825` and installs a near-zero-duration reverse ramp to
+zero. Subsequent audio/position remains stuck there even through speed changes.
+The source's `pd loop_logic` uses a single `edge~` across both directional endpoint
+conditions; this trace is consistent with the condition staying asserted across
+the turn, so no fresh boundary edge arrives. The existing endpoint retry then
+waits for that missing handoff. This identifies the repair site; it is not yet a
+validated repair. No playback source was changed in this recording follow-up.
+
+With the turn moved to 8.3 s, the natural wrap and later reverse/.5x/2x motion all
+pass. Both the original failure and its traced reproduction are retained.
+The first fixture load also exposed missing sibling paths in the native console;
+it was closed before recording, and the fixture now links the actual source
+siblings into its temporary directory. No failed-load audio is used as evidence.
+
+Procedure, hashes, numerical reports, native screenshots and listening WAV:
+[recording continuity evidence](evidence/recording-continuity/observations.md).
+The user is away; **no new listening report**. All captures stopped automatically.
+Remaining gates: exact-boundary Reverse repair, user listening/UI acceptance,
+real device delivery during growth, native 44.1 kHz Free growth, forced allocation
+failure, and sample-rate changes without Pd DSP Off. Timed recording launch,
+pause/append, overdub, tape write motion, physical shrink and project recall remain
+separate future work. Grid recording is still on hold.
+
 ## Recording source recovery — 2026-09-11
 
 The user set the Grid/UI proposal below aside: finish the recording/dubbing
@@ -108,12 +209,12 @@ with the original 48 kHz settings unchanged.
 
 ### Next work before Grid recording
 
-1. Validate Free with the actual player/mixer and another lane playing through
-   growth, including playback of an early-stop take. Add native 44.1 kHz, zero-frame
-   Stop/rapid restart and allocation-failure checks. Sample equality in an isolated
-   writer does not prove real-time device delivery during memory allocation.
-2. Keep the recording buffer and its Finish action visible across selection.
-   Add actual elapsed/frozen-target feedback; next-take previews are not progress.
+1. The continuity follow-up above now covers actual player/mixer concurrency,
+   early-stop playback and zero-frame Stop/restart. Repair its newly exposed
+   exact-boundary Reverse failure. Add native 44.1 kHz Free growth and allocation-
+   failure checks; signal captures do not prove device delivery during allocation.
+2. The new take view keeps Finish and actual elapsed/frozen-limit feedback visible
+   across selection. User usability/listening acceptance remains open.
 3. Recover timed launch and cancellation through one recording command path.
    Specify immediate versus clock-quantized Start/Finish separately from fixed
    length and existing slice-key quantization. No clock-lock claim yet.

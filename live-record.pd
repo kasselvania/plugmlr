@@ -188,9 +188,30 @@
 #X connect 78 0 79 0;
 #X connect 78 0 81 0;
 #X connect 81 0 82 0;
-#X connect 79 0 38 0;
+
 #X connect 79 1 77 0;
 #X connect 79 2 80 0;
 #X connect 80 2 43 0;
 #X connect 80 1 51 0;
 #X connect 80 0 69 0;
+
+#X obj 1030 1180 record-progress \$1 \$2;
+#X obj 930 810 t f f;
+#X obj 1030 1090 pack f f;
+#X obj 1060 65 r pd;
+#X obj 1060 105 route dsp;
+#X obj 1060 145 sel 0;
+#X obj 1060 185 spigot;
+#X text 1030 1260 DSP Off finalizes this take. DSP On never starts recording.;
+#X connect 3 1 83 0;
+#X connect 20 0 83 2;
+#X connect 79 0 84 0;
+#X connect 84 1 85 0;
+#X connect 84 0 38 0;
+#X connect 11 0 85 1;
+#X connect 85 0 83 1;
+#X connect 86 0 87 0;
+#X connect 87 0 88 0;
+#X connect 88 0 89 0;
+#X connect 20 0 89 1;
+#X connect 89 0 43 0;

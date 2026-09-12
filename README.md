@@ -7,8 +7,10 @@ reusable musical toolkit; the failed replacement engine is not the active path.
 The current checkpoint includes imported/live buffer selection, forward/reverse
 playback, five speeds and speed glide, Stop/Pause, 16 whole-content slices,
 editable loops, fixed-length stereo recording, and an internal slice clock.
-The current recording recovery adds bounded Free recording; its native component
-checks are complete at 48 kHz, while musical and concurrent-playback acceptance remain open.
+The current recording recovery adds bounded Free recording and a take view with
+buffer-specific Finish controls. Native 48 kHz checks cover simultaneous takes,
+growth alongside playback and DSP interruption. Listening acceptance remains open;
+an exact-loop-end Reverse collision is retained as a separate playback failure.
 PRs #18 and #19 are merged; the user accepted both their musical captures.
 See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remaining
 work and links to the retained numerical/listening evidence. Older STATUS sections
@@ -60,6 +62,8 @@ Free starts with one second of capacity, doubles near 90% occupancy and stops at
 Stop or 60 seconds. Only written content becomes playable; unused capacity stays
 allocated. This recovers the original growth policy through the buffer-owned writer.
 Recording pause/resume, overdub, physical shrink and recording quantization remain open.
+Recording direction/speed and their slew are planned artistic tape controls;
+the current input writer stays forward at 1x independently of playback controls.
 Takes remain in memory: there is no product export or project-recall UI yet.
 
 The runtime used for recent validation is plugdata 0.9.4 nightly `98ae0f78b` /
@@ -165,7 +169,14 @@ message interfaces and native test steps are documented in STATUS.
 6. Press **Play/Pause**, with track and master gain raised quietly. The existing
    direction, speed, loop and sample/live-buffer selection operate on the take.
    No automatic playback follows recording. Switching selection does not redirect
-   an active writer; reselect that live buffer to Stop it early.
+   an active writer. Open **Recording takes / Finish** on the main window to see
+   each live buffer's activity, elapsed seconds and frozen limit. Its **Finish**
+   always addresses that row's buffer, even after browsing elsewhere. Idle rows
+   show zero progress; content duration remains in the buffer/player view.
+
+Turning DSP off finishes the written portion and leaves recording stopped when
+DSP returns. A zero-frame take stays Empty. Hardware/host reconfiguration without
+a Pd DSP-off message is not yet qualified as a safe interruption.
 
 Playback repairs include the earlier loop/selection collisions, Pause, hard Stop
 and instant-reverse position jump. Very short natural loops and broader host
@@ -174,9 +185,11 @@ click-free playback.
 
 Takes exist in memory; project recall and exporting recordings through a product
 UI are not implemented. See STATUS for bounded test captures and remaining gates.
-The Free recovery's [native test procedure and retained input comparisons](docs/evidence/free-recording/observations.md)
-run silently in a dedicated fixture; hardware listening and growth alongside
-other playing lanes are still required before accepting this recovery musically.
+The [Free recording tests](docs/evidence/free-recording/observations.md) and
+[recording continuity tests](docs/evidence/recording-continuity/observations.md)
+run silently in dedicated fixtures. The latter retains a musical listening file
+and the failing exact-boundary reversal. Device delivery during allocation,
+44.1 kHz Free growth and user listening remain open.
 
 For direction/loop checks, use the [repeatable procedure](docs/STATUS.md#repeat-the-direction-check)
 and [control-only panel](tests/reverse-controls.pd). For the prior handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)

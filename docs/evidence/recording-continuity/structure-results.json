@@ -1,0 +1,85 @@
+{
+  "patches": [
+    {
+      "file": "mlr.pd",
+      "canvases": 6,
+      "objects": 368,
+      "connections": 221,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "live-record.pd",
+      "canvases": 1,
+      "objects": 91,
+      "connections": 123,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "record-progress.pd",
+      "canvases": 1,
+      "objects": 25,
+      "connections": 33,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "record-take-row.pd",
+      "canvases": 1,
+      "objects": 22,
+      "connections": 17,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "record-takes-panel.pd",
+      "canvases": 1,
+      "objects": 31,
+      "connections": 6,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "record-storage.pd",
+      "canvases": 1,
+      "objects": 39,
+      "connections": 49,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "fixed-record~.pd",
+      "canvases": 1,
+      "objects": 64,
+      "connections": 70,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "live_buffer.pd",
+      "canvases": 1,
+      "objects": 94,
+      "connections": 97,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/tmp/plugmlr-record-session/check.pd",
+      "canvases": 1,
+      "objects": 104,
+      "connections": 95,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/tmp/plugmlr-record-session/observed-player.pd",
+      "canvases": 13,
+      "objects": 1093,
+      "connections": 1041,
+      "errors": [],
+      "native_load_or_audio_test": false
+    }
+  ],
+  "existing_player_mixer_storage_sources_unchanged_from": "f3c22f403d9c5a9aa751f78901350331b8ce9daa"
+}

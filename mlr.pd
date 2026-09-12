@@ -212,6 +212,7 @@
 #X connect 10 1 9 0;
 #X connect 11 0 8 1;
 #X connect 13 0 10 0;
+#X obj 600 740 record-takes-panel \$0;
 #X restore 13 429 pd arrays-samples;
 #X obj 450 67 bng 25 250 50 0 clock-switch empty empty 17 7 0 10 #333333 #e5e5e5 #111111;
 #X text 422 7 clock source;
@@ -590,6 +591,7 @@
 #X obj 660 360 bng 30 250 50 0 1-open-player-view empty Open_player_1 36 15 0 14 #e3dfd9 #333333 #333333;
 #X obj 660 410 clock-display-state;
 #X obj 660 460 bng 30 250 50 0 mlr-grid-open empty Grid_connection 36 15 0 14 #e3dfd9 #333333 #333333;
+#X obj 960 510 bng 30 250 50 0 \$0-record-takes-open empty Recording_takes_/_Finish 36 15 0 14 #e3dfd9 #333333 #333333;
 #X connect 33 0 35 0;
 #X connect 34 0 36 0;
 #X connect 36 0 33 0;

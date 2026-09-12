@@ -35,6 +35,12 @@
   validate resize continuity in actual audio and other playing lanes separately.
   Physical shrink, recording pause/resume, overdub and record quantization remain open.
   Finish the recording source recovery and native UI before Grid recording design.
+  Recording progress is display-only and instrument-scoped. Finish addresses the
+  live buffer, not current player selection. DSP Off finishes written content;
+  DSP On never resumes a take. Input capture currently stays forward at 1x.
+  Recording direction/speed/slew are authorized artistic follow-up, not implemented
+  by the playback controls. Retain the recording-continuity exact-boundary Reverse
+  failure until its player handoff is repaired and checked in actual audio.
   The user chose a local Pd stereo bus between standalone patches for this slice;
   cross-instance pdlink transport fails stereo timing and remains separate.
   Validate type AND number selection, reselection, empty buffers, interrupted
