@@ -1,0 +1,50 @@
+[
+  {
+    "file": "record-storage.pd",
+    "canvases": 1,
+    "objects": 39,
+    "connections": 49,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "live-record.pd",
+    "canvases": 1,
+    "objects": 83,
+    "connections": 112,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "fixed-record~.pd",
+    "canvases": 1,
+    "objects": 64,
+    "connections": 70,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "buffer-panel.pd",
+    "canvases": 1,
+    "objects": 90,
+    "connections": 92,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "record-input.pd",
+    "canvases": 1,
+    "objects": 30,
+    "connections": 26,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "tests/free-record-check.pd",
+    "canvases": 2,
+    "objects": 82,
+    "connections": 77,
+    "errors": [],
+    "native_load_or_audio_test": false
+  }
+]

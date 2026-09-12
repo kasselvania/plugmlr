@@ -1,0 +1,500 @@
+{
+  "production_player_sha256": "39a9e6cb69dd14ad03265b1708b013f46714b7e19344ec918103499ce333de80",
+  "production_root_objects": 538,
+  "instrumentation_added_only": true,
+  "files": [
+    {
+      "file": "/tmp/plugmlr-record-session/observed-player.pd",
+      "canvases": 13,
+      "objects": 1078,
+      "connections": 1027,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/tmp/plugmlr-record-session/check.pd",
+      "canvases": 1,
+      "objects": 105,
+      "connections": 96,
+      "errors": [],
+      "native_load_or_audio_test": false
+    }
+  ],
+  "scores": {
+    "run": [
+      [
+        0,
+        "record-session-player-1",
+        "stop"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "stop"
+      ],
+      [
+        0,
+        "1_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "2_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "record-session-player-1",
+        "speed 2"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "speed 2"
+      ],
+      [
+        0,
+        "1-buffer-select",
+        "live 1"
+      ],
+      [
+        0,
+        "2-buffer-select",
+        "sample 2"
+      ],
+      [
+        30,
+        "1_l_b_length",
+        "dynamic"
+      ],
+      [
+        30,
+        "2_l_b_length",
+        "seconds 4"
+      ],
+      [
+        100,
+        "record-session-player-2",
+        "play"
+      ],
+      [
+        14000,
+        "record-session-done",
+        "bang"
+      ],
+      [
+        1300,
+        "record-session-player-1",
+        "record"
+      ],
+      [
+        1500,
+        "1-buffer-select",
+        "sample 1"
+      ],
+      [
+        1600,
+        "record-session-player-1",
+        "reverse"
+      ],
+      [
+        1700,
+        "record-session-player-1",
+        "speed 1"
+      ],
+      [
+        1800,
+        "2_l_b_record",
+        "start"
+      ],
+      [
+        2200,
+        "1_l_b_length",
+        "seconds 0.4"
+      ],
+      [
+        4400,
+        "record-session-finish",
+        "1"
+      ],
+      [
+        4600,
+        "record-session-finish",
+        "2"
+      ],
+      [
+        4700,
+        "record-session-player-1",
+        "reverse"
+      ],
+      [
+        4700,
+        "record-session-player-1",
+        "speed 2"
+      ],
+      [
+        4800,
+        "1-buffer-select",
+        "live 1"
+      ],
+      [
+        4900,
+        "record-session-player-1",
+        "play"
+      ],
+      [
+        8300,
+        "record-session-player-1",
+        "reverse"
+      ],
+      [
+        9000,
+        "record-session-player-1",
+        "speed 1"
+      ],
+      [
+        10000,
+        "record-session-player-1",
+        "speed 3"
+      ],
+      [
+        12500,
+        "record-session-player-1",
+        "stop"
+      ],
+      [
+        12500,
+        "record-session-player-2",
+        "stop"
+      ]
+    ],
+    "dsp": [
+      [
+        0,
+        "record-session-player-1",
+        "stop"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "stop"
+      ],
+      [
+        0,
+        "1_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "2_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "record-session-player-1",
+        "speed 2"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "speed 2"
+      ],
+      [
+        0,
+        "1-buffer-select",
+        "live 1"
+      ],
+      [
+        0,
+        "2-buffer-select",
+        "sample 2"
+      ],
+      [
+        30,
+        "1_l_b_length",
+        "dynamic"
+      ],
+      [
+        30,
+        "2_l_b_length",
+        "seconds 4"
+      ],
+      [
+        100,
+        "record-session-player-2",
+        "play"
+      ],
+      [
+        14000,
+        "record-session-done",
+        "bang"
+      ],
+      [
+        1300,
+        "1_l_b_record",
+        "start"
+      ],
+      [
+        2500,
+        "pd",
+        "dsp 0"
+      ],
+      [
+        3000,
+        "pd",
+        "dsp 1"
+      ],
+      [
+        3200,
+        "1_l_b_record",
+        "get"
+      ],
+      [
+        12500,
+        "record-session-player-2",
+        "stop"
+      ]
+    ],
+    "zero": [
+      [
+        0,
+        "record-session-player-1",
+        "stop"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "stop"
+      ],
+      [
+        0,
+        "1_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "2_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "record-session-player-1",
+        "speed 2"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "speed 2"
+      ],
+      [
+        0,
+        "1-buffer-select",
+        "live 1"
+      ],
+      [
+        0,
+        "2-buffer-select",
+        "sample 2"
+      ],
+      [
+        30,
+        "1_l_b_length",
+        "dynamic"
+      ],
+      [
+        30,
+        "2_l_b_length",
+        "seconds 4"
+      ],
+      [
+        100,
+        "record-session-player-2",
+        "play"
+      ],
+      [
+        14000,
+        "record-session-done",
+        "bang"
+      ],
+      [
+        1300,
+        "1_l_b_record",
+        "start"
+      ],
+      [
+        1300,
+        "1_l_b_record",
+        "stop"
+      ],
+      [
+        1301,
+        "1_l_b_record",
+        "start"
+      ],
+      [
+        1320,
+        "1_l_b_record",
+        "start"
+      ],
+      [
+        2420,
+        "record-session-finish",
+        "1"
+      ],
+      [
+        12500,
+        "record-session-player-2",
+        "stop"
+      ]
+    ],
+    "boundary": [
+      [
+        0,
+        "record-session-player-1",
+        "stop"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "stop"
+      ],
+      [
+        0,
+        "1_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "2_l_b_delete_buffer",
+        "bang"
+      ],
+      [
+        0,
+        "record-session-player-1",
+        "speed 2"
+      ],
+      [
+        0,
+        "record-session-player-2",
+        "speed 2"
+      ],
+      [
+        0,
+        "1-buffer-select",
+        "live 1"
+      ],
+      [
+        0,
+        "2-buffer-select",
+        "sample 2"
+      ],
+      [
+        30,
+        "1_l_b_length",
+        "dynamic"
+      ],
+      [
+        30,
+        "2_l_b_length",
+        "seconds 4"
+      ],
+      [
+        100,
+        "record-session-player-2",
+        "play"
+      ],
+      [
+        14000,
+        "record-session-done",
+        "bang"
+      ],
+      [
+        1300,
+        "record-session-player-1",
+        "record"
+      ],
+      [
+        1500,
+        "1-buffer-select",
+        "sample 1"
+      ],
+      [
+        1600,
+        "record-session-player-1",
+        "reverse"
+      ],
+      [
+        1700,
+        "record-session-player-1",
+        "speed 1"
+      ],
+      [
+        1800,
+        "2_l_b_record",
+        "start"
+      ],
+      [
+        2200,
+        "1_l_b_length",
+        "seconds 0.4"
+      ],
+      [
+        4400,
+        "record-session-finish",
+        "1"
+      ],
+      [
+        4600,
+        "record-session-finish",
+        "2"
+      ],
+      [
+        4700,
+        "record-session-player-1",
+        "reverse"
+      ],
+      [
+        4700,
+        "record-session-player-1",
+        "speed 2"
+      ],
+      [
+        4800,
+        "1-buffer-select",
+        "live 1"
+      ],
+      [
+        4900,
+        "record-session-player-1",
+        "play"
+      ],
+      [
+        8000,
+        "record-session-player-1",
+        "reverse"
+      ],
+      [
+        9000,
+        "record-session-player-1",
+        "speed 1"
+      ],
+      [
+        10000,
+        "record-session-player-1",
+        "speed 3"
+      ],
+      [
+        12500,
+        "record-session-player-1",
+        "stop"
+      ],
+      [
+        12500,
+        "record-session-player-2",
+        "stop"
+      ]
+    ]
+  },
+  "fixture": "check.pd",
+  "scope": "Actual two player/mixer components with common .75 master multiplier. No DAC, full application, Grid or device-loopback acceptance."
+}

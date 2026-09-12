@@ -1,0 +1,15 @@
+0 buffer 48 0 0 0 0;
+20 buffer 48 0 0 0 0;
+100 buffer 48 0 0 0 0;
+100 buffer 48 0 0 0 0;
+100 state Recording;
+100 storage ready 2.88e+06;
+200 buffer 48 0 0 0 0;
+200 error Buffer_busy;
+250 error Buffer_busy;
+1000 storage grew 96000;
+1900 storage grew 192000;
+3203 buffer 48 0 148800 9300 1;
+3203 buffer 48 0 148800 9300 1;
+3203 state Loaded;
+3300 state Loaded;

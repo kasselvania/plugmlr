@@ -1,0 +1,31 @@
+{
+  "version": {
+    "CFBundleShortVersionString": "0.9.4",
+    "CFBundleVersion": "0.9.4",
+    "CFBundleIdentifier": "com.plugdata.plugdata"
+  },
+  "native_console_build": "0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "binary_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e",
+  "settings": {
+    "device": "CoreAudio 8A",
+    "host_rate": 48000,
+    "device_frames": 512,
+    "oversampling": 1,
+    "output_gain": 0.8,
+    "limiter": "Off"
+  },
+  "production_sha256": {
+    "sample_player_rebuild.pd": "8e999d078e1b37061ead981456d6718b2d701f74a749965778816eef5cd5b550",
+    "live_buffer.pd": "84f98b4bfe8a49b0a496e8e482a9fd3367206fea6c57e96f303b3d381085e4ab",
+    "live-record.pd": "2e2472dc4ea46625782036d96b1d3cf37b0947a33ab95822b737e197a0417ff8",
+    "fixed-record~.pd": "8c880db614f8d1d94a8a40a8a1ef8d169cfc72ff9e807e918cec779e0e08a6cd",
+    "record-storage.pd": "4ff2658baea4f7eba87eb27618312febdeb19280d3fcc3cb6e244f8e965b5deb",
+    "record-progress.pd": "acf55d0449446116ae7de08ef408d3c06fd0bec0a90caf838bd5e103ff3b2a15",
+    "record-take-row.pd": "ef7bf7adc086b616da2d15a47eafbccfa107deecfba9464377d0e8bc9aaedbe9",
+    "record-takes-panel.pd": "02cbd2a832ef6a4025edb0997922bea7c8c0f8b004936572f7549c013823b52e",
+    "mixer.pd": "fda6d15a2a236a142e97d09bf60a167d676ca8c71501bd713024ced6d1c67f95",
+    "mlr.pd": "f49354c18bfcc0679e0392704f5372de963bc2dfc1ad9c88b12fce63270de8f0",
+    "DrumLoop.wav": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6"
+  },
+  "listening_sha256": "c0b54e46156114f872bf0a087b7f7f117b3ecd670cb67c616789bd45e04cfd09"
+}

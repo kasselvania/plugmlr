@@ -1,0 +1,88 @@
+{
+  "scenario": "run",
+  "capture": {
+    "rate": 48000,
+    "channels": 10,
+    "declared_frames": 671836,
+    "trailing_bytes": 6560,
+    "sha256": "63f8078fd513e92fe493d98a65761cc216bd35f1ffa4755655820ac455e31e82"
+  },
+  "buffers": {
+    "1": {
+      "written_frames": 148800,
+      "capacity_frames": 192000,
+      "common_stereo_offsets": [
+        62464
+      ],
+      "maximum_sample_residual": 0.0,
+      "rate": 48000,
+      "channels": 2,
+      "declared_frames": 192000,
+      "trailing_bytes": 0,
+      "sha256": "4c689514ad79c561a4f8926eb6f59ece1ae61e90f7fcd70d955a3aded14e30e8"
+    },
+    "2": {
+      "written_frames": 134400,
+      "capacity_frames": 192000,
+      "common_stereo_offsets": [
+        86464
+      ],
+      "maximum_sample_residual": 0.0,
+      "rate": 48000,
+      "channels": 2,
+      "declared_frames": 192000,
+      "trailing_bytes": 0,
+      "sha256": "21dc44c9ce2e05b4de4bfe073d74b13edbab96cbc7b09388f67bfbfb006d0210"
+    }
+  },
+  "recorder_checks": {
+    "finite_capture": true,
+    "capture_bounded": true,
+    "buffer1_finite": true,
+    "buffer1_written_bounds": true,
+    "buffer1_capacity": true,
+    "buffer1_one_stereo_alignment": true,
+    "buffer1_all_recorded_samples_exact": true,
+    "buffer1_unused_tail_zero": true,
+    "buffer1_frozen_limit_visible": true,
+    "buffer1_finish_visible": true,
+    "buffer2_finite": true,
+    "buffer2_written_bounds": true,
+    "buffer2_capacity": true,
+    "buffer2_one_stereo_alignment": true,
+    "buffer2_all_recorded_samples_exact": true,
+    "buffer2_unused_tail_zero": true,
+    "buffer2_frozen_limit_visible": true,
+    "buffer2_finish_visible": true,
+    "expected_errors_only": true,
+    "free_growth_2_then_4_seconds": true,
+    "other_take_still_active_after_finish1": true
+  },
+  "playback_checks": {
+    "other_lane_exact_repeats_during_and_after_growth": true,
+    "mixer_gain_outside_intentional_open": true,
+    "mixer_open_bounded_difference": true,
+    "players_and_mix_silent_after_stop": true,
+    "reader_stays_inside_written_content": true,
+    "no_long_exact_silent_dropout": true,
+    "actual_motion_5s": true,
+    "actual_motion_8.34s": true,
+    "actual_motion_9.04s": true,
+    "actual_motion_10.04s": true
+  },
+  "metrics": {
+    "median_frame_step_5s": 1.0,
+    "median_frame_step_8.34s": -1.0,
+    "median_frame_step_9.04s": -0.5,
+    "median_frame_step_10.04s": -2.0,
+    "other_lane_max_repeat_residual": 0.0,
+    "mixer_max_residual_all_samples": 0.000542068388313055,
+    "mixer_max_residual_outside_open": 0.0,
+    "longest_exact_zero_run_playing_frames": 0,
+    "post_mixer_peak": 0.5073148012161255,
+    "post_mixer_max_adjacent_step": 0.31755322217941284
+  },
+  "recorder_passed": true,
+  "passed": true,
+  "listening": "Not collected. Adjacent-step metrics are not a click-free claim."
+}

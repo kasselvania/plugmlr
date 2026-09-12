@@ -1,0 +1,35 @@
+{
+  "prefix": "limit-48",
+  "host_rate": 48000.0,
+  "written_frames": 2880000,
+  "content_seconds": 60.0,
+  "capacity_frames": 2880000,
+  "growth_capacities": [
+    96000,
+    192000,
+    384000,
+    768000,
+    1536000,
+    2880000
+  ],
+  "stereo_offset_frames": [
+    4864
+  ],
+  "maximum_sample_residual": 0.0,
+  "checks": {
+    "one_stereo_alignment": true,
+    "finite": true,
+    "content_inside_capacity": true,
+    "unwritten_tail_zero": true,
+    "writer_reports_loaded": true,
+    "all_recorded_frames_exact": true,
+    "expected_frozen_duration": true,
+    "expected_growth": true,
+    "expected_errors_only": true
+  },
+  "sha256": {
+    "limit-48-array.wav": "9d5ef52a28b5d5b0fea016879b89df660c3dc7266d1537706a031fa4f96f9f72",
+    "limit-48-source.wav": "802b4a4f7cbcc9a61c2bbce1a450fc3ea75f097bcde1f3e7b3b3a99f2fb5a1b1"
+  },
+  "passed": true
+}
