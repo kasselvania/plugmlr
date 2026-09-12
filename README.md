@@ -89,13 +89,32 @@ Stop, Pause, empty buffers and buffer switching clear the marker; reconnect
 redraws current state. Other rows keep their original controls without new
 playback feedback. Hardware-global intensity below 15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
-**CUT transport:** hold the top-right Grid key (**ALT**), then press a track
-row key to start, pause or resume that player. ALT lights brightly while held.
-Release ALT for ordinary slicing. Transport acts immediately; slices retain their
-per-player quantization. Changing rows opens the corresponding existing player
-view. Hard Stop remains on that panel. The top-row second key marks CUT; other
-pages are not implemented yet. Native checks pass; physical
-ALT toggles and player-view switching are user-accepted in the [checkpoint](docs/STATUS.md#grid-alt-transport-review-candidate--2026-09-11).
+### Grid quick reference
+
+Physical key numbers count from 1. Track rows 2/3 control players 1/2; these are
+also the two rows with tested playback feedback. Top-row key 2 marks CUT.
+
+| Action | Gesture / meaning |
+| --- | --- |
+| Start, pause, resume | Hold **ALT**, top-right key 16, then press a track-row key. |
+| Cut | Press a track-row key without modifiers. Start the player first. Cuts follow that player's Quantize setting. |
+| Loop a range | Hold one track key, press another on the same row, release either. Both cells are included. |
+| Loop one cell | Hold **MOD**, top-row key 14 (third from right), then press a track key. Commits on press; release does not retrigger. |
+| Leave a smaller loop | Make an ordinary cut; it restores full-content bounds. |
+| Read the LEDs | Dim cells show the committed smaller loop; the brighter moving cell is playback. Pause/Stop retain the dim range. |
+| Change the visible player | Press a key on its track row; its existing player panel opens. |
+| Hard Stop | Use Stop on the player panel. ALT uses Pause/Resume. |
+
+ALT transport and loop commits act immediately; ordinary cuts retain per-player
+quantization. Grid loop commits preserve a running position inside the new range
+and wrap immediately if outside it. On-screen Apply still jumps to the loop entry.
+ALT wins when both modifiers are held. ALT/MOD presses, Stop/Pause, buffer changes
+and disconnect cancel unfinished two-key gestures; a third held track key cancels
+the pair until all row keys are released. Full content has no dim background.
+
+These controls have physical acceptance; the combined two-lane capture also has
+numerical and listening acceptance. See the [current checkpoint](docs/STATUS.md).
+Other views and bottom-row controls remain reserved, not implemented.
 
 ## Run the original application
 
@@ -176,16 +195,3 @@ Installing a lease daemon alone does not migrate other legacy patches.
 Alternative and historical patches remain alongside the entry point. Their names
 do not establish which behavior works. The rejected shared-playback rewrite is
 preserved separately and is not the current application; details are in STATUS.
-
-**CUT loops:** hold one track-row key, press a second key in the same row, then
-release either. The loop includes both selected cells, regardless of press order.
-The first press is an ordinary quantized slice; the loop commits immediately on
-release: running playback inside the range keeps its current position; outside it
-wraps immediately to the directional entry. On-screen Apply still jumps to the
-entry. A later single slice restores the whole sample. ALT, Stop, Pause and
-buffer changes cancel unfinished pairs; a third held key cancels the pair until
-all keys are released. The player panel shows the committed seconds. On the two playback rows, a smaller
-loop stays dimly lit, with the running position brighter. Pause/Stop keep the dim
-range; full-content playback has no background. **MOD** (top-row key 14, third from the right) + a fresh track-key press sets
-a single-cell loop immediately. Release does not retrigger it. ALT takes priority
-if both modifiers are held. The corrected release behavior is physically user-accepted.
