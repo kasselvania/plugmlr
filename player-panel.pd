@@ -5,7 +5,7 @@
 #X obj 270 135 bng 25 250 50 0 \$1-dir_change empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
 #X obj 395 135 hradio 40 1 0 5 \$1-playback_speed_dial \$0-speed-choice empty 0 -8 0 10 #faf8f2 #347c72 #347c72 2;
 #X obj 715 680 bng 25 250 50 0 \$1-record_button_bang empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
-#X obj 865 680 bng 25 250 50 0 \$1-delete_buffer empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
+#X obj 820 680 bng 25 250 50 0 \$1-delete_buffer empty empty 17 7 0 10 #faf8f2 #347c72 #347c72;
 #X obj 190 85 popmenu 128 26 12 #faf8f2 #347c72 \  \$1-boot_buffer_GUI_number \$1-selected_buffer_GUI_number empty empty 1 0 -1 1 0 1 0 0 0 0 0 select 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16;
 #X obj 30 85 popmenu 128 26 12 #faf8f2 #347c72 \  \$1-boot_buffer_GUI_name \$1-selected_buffer_GUI_name empty empty 1 0 -1 1 0 1 0 0 0 0 0 Live Sample;
 #X obj 30 525 popmenu 142 26 12 #faf8f2 #347c72 Slice\ grid \$1-key_quantize_setup \$1-key_quantize_selection empty empty 1 0 -1 1 0 1 0 0 0 0 0 1/64 1/32 1/16 1/8 1/4 1/2 1;
@@ -26,8 +26,8 @@
 #X text 700 550 Glide time / ms;
 #X text 825 550 Glide curve;
 #X text 700 658 Record live;
-#X text 850 658 Clear live audio;
-#X text 700 716 Record affects the selected live buffer.;
+#X text 815 658 Clear;
+#X text 30 766 Save WAV before closing. Pd patch saves do not retain live audio.;
 #X text 690 24 SHARED CLOCK;
 #X obj 690 60 tgl 25 0 global-transport \$0-clock-run Run 30 12 0 12 #faf8f2 #283d3a #283d3a 0 1;
 #X obj 820 60 nbx 5 25 30 320 0 0 internal-bpm \$0-clock-bpm BPM 0 -10 0 12 #faf8f2 #283d3a #283d3a 110 256;
@@ -97,3 +97,12 @@
 #X connect 48 0 78 0;
 #X connect 79 0 74 0;
 #X connect 80 0 75 0;
+
+#X obj 920 680 bng 25 180 50 0 \$0-discard empty empty 17 7 0 10 #faf8f2 #b75e49 #b75e49;
+#X text 910 658 Discard;
+#X obj 30 1390 r \$0-discard;
+#X msg 30 1430 discard;
+#X obj 30 1470 s \$1-delete_buffer;
+#X obj 690 718 cnv 15 305 22 empty mlr-clear-status Clear\ then\ Discard\ unsaved\ audio 5 11 0 10 #faf8f2 #283d3a 0;
+#X connect 83 0 84 0;
+#X connect 84 0 85 0;

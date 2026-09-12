@@ -1,0 +1,52 @@
+{
+  "case": "reopen",
+  "audio": {
+    "rate": 48000,
+    "channels": 8,
+    "declared_frames": 384000,
+    "trailing_bytes": 0,
+    "sha256": "30c4407031b29ac175b5989d9c76711038943b8aa79b1e176a6df13b60ee5ac9"
+  },
+  "checks": {
+    "bounded_capture": true,
+    "eight_native_channels": true,
+    "finite_all_samples": true,
+    "whole_capture_master_gain_bound": true,
+    "reimported_arrays_exact": true,
+    "imported_rate_and_duration_correct": true,
+    "recovered_audio_reaches_actual_master": true,
+    "no_held_sample_during_play": false,
+    "actual_stereo_master_matches_player": true,
+    "no_block_zero_dropout_during_play": true,
+    "playback_pitch_preserves_file_rate": false,
+    "stereo_channels_remain_distinct": true,
+    "stopped_output_zero": true
+  },
+  "metrics": {
+    "saved": {
+      "rate": 48000,
+      "channels": 2,
+      "declared_frames": 62336,
+      "trailing_bytes": 0,
+      "sha256": "f58dbb2ae7ea752c1a36ef37f1092729a373a5e506842121658774d26edab8b6"
+    },
+    "array_readback": {
+      "rate": 48000,
+      "channels": 2,
+      "declared_frames": 62336,
+      "trailing_bytes": 0,
+      "sha256": "f58dbb2ae7ea752c1a36ef37f1092729a373a5e506842121658774d26edab8b6"
+    },
+    "file_host_mismatch": false,
+    "playback_peak_hz": [
+      0.0,
+      0.0
+    ]
+  },
+  "clear_messages": [],
+  "max_adjacent_steps": [
+    0.1489468812942505,
+    0.00636658351868391
+  ],
+  "listening": "Pending; numerical results do not establish audibility or general background reliability."
+}

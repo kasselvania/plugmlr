@@ -1,0 +1,16 @@
+0 audio-1-out 0.4;
+0 audio-2-out 0.3;
+0 global-transport 0;
+0 3_l_b_length seconds 3;
+400 3_l_b_record start;
+1300 3_l_b_record stop;
+100 3_l_b_first_index 64;
+0 3_l_b_select_bang bang;
+200 mlr-save-take save 3 /tmp/plugmlr-take-check/roundtrip.wav;
+200 1-buffer-select live 3;
+200 1-open-player-view bang;
+600 1-press_play bang;
+3000 1-ui-stop bang;
+200 3_l_b_delete_buffer bang;
+100 3_l_b_select_bang bang;
+1700 ui-check-stop bang;

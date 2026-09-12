@@ -1,0 +1,57 @@
+{
+  "case": "long",
+  "audio": {
+    "rate": 48000,
+    "channels": 8,
+    "declared_frames": 3360000,
+    "trailing_bytes": 0,
+    "sha256": "3aa89d3c0f6db071d972ea7476d17505e306291fcd3d25d48395bd619ae5375a"
+  },
+  "checks": {
+    "bounded_capture": true,
+    "eight_native_channels": true,
+    "finite_all_samples": true,
+    "whole_capture_master_gain_bound": true,
+    "exact_recorded_stereo_export": true,
+    "export_uses_written_bounds": true,
+    "export_rate_matches_recording": true,
+    "sixty_second_written_take": true,
+    "growth_to_sixty_seconds": true,
+    "continuous_actual_mix_1_7.9": true,
+    "continuous_actual_mix_8.1_15.9": true,
+    "continuous_actual_mix_16.1_23.9": true,
+    "continuous_actual_mix_24.1_31.9": true,
+    "continuous_actual_mix_32.1_39.9": true,
+    "continuous_actual_mix_40.1_47.9": true,
+    "continuous_actual_mix_48.1_55.9": true,
+    "continuous_actual_mix_56.1_62.4": true,
+    "both_lanes_keep_changing_in_every_two_second_window": true,
+    "continuous_mix_including_every_view_and_audio_transition": true,
+    "final_silence": true
+  },
+  "metrics": {
+    "export": {
+      "rate": 48000,
+      "channels": 2,
+      "declared_frames": 2880000,
+      "trailing_bytes": 0,
+      "sha256": "e3cba8fd32eb05b98b4a329dda3539ccb441a8c9cdbd6406ef063e3f913905ba"
+    },
+    "export_input_frame_offset": 96000,
+    "export_error": 0.0,
+    "growth_frames": [
+      96000,
+      192000,
+      384000,
+      768000,
+      1536000,
+      2880000
+    ]
+  },
+  "clear_messages": [],
+  "max_adjacent_steps": [
+    0.21192438900470734,
+    0.21159134805202484
+  ],
+  "listening": "Pending; numerical results do not establish audibility or general background reliability."
+}

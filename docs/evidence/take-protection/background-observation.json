@@ -1,0 +1,9 @@
+{
+  "run": "long48",
+  "started_utc": "2026-09-12T17:44:34.986Z",
+  "hide_requested_seconds": 9.106,
+  "finder_window_open_and_focus_observed_seconds": 27.662,
+  "finder_window_closed_seconds": 61.623,
+  "observed": "Native Finder opened a Recents window; AX reported focused list. It was closed after the interval. plugdata readback at 61.6 seconds showed Playing with a populated 60-second waveform and advancing position.",
+  "limit": "CUA app-specific snapshots do not expose verified window occlusion; Cmd-H alone is not treated as proof that plugdata remained hidden throughout. Full background acceptance remains open."
+}

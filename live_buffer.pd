@@ -51,7 +51,7 @@
 #X obj 422 -189 bng 25 250 50 0 empty empty empty 17 7 0 10 #e3dfd9 #5a5a5a #5a5a5a;
 #X obj 1509 63 / 16;
 #X obj 1516 109 s \$0-slice_size_val;
-#X obj 1806 18 r \$1_l_b_delete_buffer, f 21;
+#X obj 1806 18 take-clear-control \$1;
 #X msg 1916 83 resize 48000;
 #X msg 1837 98 const 0;
 #X msg 1905 131 resize \$1;

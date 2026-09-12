@@ -188,7 +188,6 @@
 #X connect 74 0 76 0;
 #X connect 39 2 77 0;
 #X connect 78 0 79 0;
-#X connect 79 0 80 0;
 #X connect 75 0 81 0;
 #X connect 81 0 80 1;
 #X connect 41 1 82 0;
@@ -206,3 +205,15 @@
 #X connect 91 1 33 1;
 #X connect 91 0 92 0;
 #X connect 92 0 33 0;
+
+#X obj 25 1100 s mlr-cancel-clear;
+#X connect 24 0 94 0;
+
+#X obj 1140 940 spigot 1;
+#X obj 1370 865 r \$1-buffer-switching;
+#X obj 1370 900 == 0;
+#X text 1080 1040 Ignore Clear/Discard until selection has installed the new target.;
+#X connect 95 0 80 0;
+#X connect 96 0 97 0;
+#X connect 97 0 95 1;
+#X connect 79 0 95 0;

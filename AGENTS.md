@@ -204,3 +204,16 @@
   not claim background I/O or switch playback to disk. Routine Debug gates must
   leave actionable errors visible. Repeat tests/build_waveform_check.py in the
   native runtime and analyze the actual mixer/export before audio claims.
+
+- Clear protection belongs to the live buffer, before the existing fade/resize.
+  Unsaved Clear arms a five-second request; only separate Discard confirms.
+  Content/save/storage changes, selection and view navigation cancel it. Never
+  describe this as a close/quit guard or patch-based audio persistence.
+- Validate first Play from a fresh native launch before any Stop or slice.
+  slice_policy must initialize no-pending-slice state explicitly. A nonzero
+  capture can be a held endpoint/DC: check advancing audio and expected pitch,
+  not only silence/RMS, and retain failures with their exact source manifests.
+
+- Clear/Discard must stay blocked throughout buffer selection, until its new live
+  target is installed. Drop transient requests; never replay them against another slot.
+  Pd connections must follow both object declarations; inspect native console too.

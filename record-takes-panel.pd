@@ -21,7 +21,7 @@
 #X obj 20 528 record-take-row \$1 14;
 #X obj 20 559 record-take-row \$1 15;
 #X obj 20 590 record-take-row \$1 16;
-#X text 20 640 Input records forward at 1x. DSP Off finishes active takes.;
+#X text 20 640 Save WAV before closing. Saving the Pd patch does not save live audio.;
 #X obj 25 1130 namecanvas \$0-takes-view;
 #X obj 25 1170 r \$1-record-takes-open;
 #X obj 25 1210 t b b;
