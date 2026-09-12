@@ -29,8 +29,13 @@
   Keep recording-length settings separate from content bounds and capacity:
   tempo changes affect the next recording, never existing audio. Test early Stop
   with retained capacity: reader lookups must not enter the unwritten tail. Fixed-length
-  fresh stereo recording is now authorized; growth/trim, pause/resume recording
-  and recording quantization remain deferred. The user chose a local Pd stereo bus between standalone patches for this slice;
+  fresh stereo recording is authorized. Free recording now recovers the original
+  90%-capacity/doubling policy through record-storage and the existing stereo writer,
+  with a provisional 60-second ceiling. Keep written bounds separate from capacity;
+  validate resize continuity in actual audio and other playing lanes separately.
+  Physical shrink, recording pause/resume, overdub and record quantization remain open.
+  Finish the recording source recovery and native UI before Grid recording design.
+  The user chose a local Pd stereo bus between standalone patches for this slice;
   cross-instance pdlink transport fails stereo timing and remains separate.
   Validate type AND number selection, reselection, empty buffers, interrupted
   switches, stereo ordering and safe load/clear in the native original player.

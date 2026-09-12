@@ -1,0 +1,31 @@
+{
+  "prefix": "short-48",
+  "host_rate": 48000.0,
+  "written_frames": 148800,
+  "content_seconds": 3.1,
+  "capacity_frames": 192000,
+  "growth_capacities": [
+    96000,
+    192000
+  ],
+  "stereo_offset_frames": [
+    4864
+  ],
+  "maximum_sample_residual": 0.0,
+  "checks": {
+    "one_stereo_alignment": true,
+    "finite": true,
+    "content_inside_capacity": true,
+    "unwritten_tail_zero": true,
+    "writer_reports_loaded": true,
+    "all_recorded_frames_exact": true,
+    "expected_frozen_duration": true,
+    "expected_growth": true,
+    "expected_errors_only": true
+  },
+  "sha256": {
+    "short-48-array.wav": "35c0d756d84f30bb4da385017a3099b0302502f6367244d5dc2f53e8092018f2",
+    "short-48-source.wav": "0e52c7f9eba37b1dcf666d9806a9f1b0ec4c2bcfe9f0e740092e6050c1d5bca3"
+  },
+  "passed": true
+}

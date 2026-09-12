@@ -7,6 +7,8 @@ reusable musical toolkit; the failed replacement engine is not the active path.
 The current checkpoint includes imported/live buffer selection, forward/reverse
 playback, five speeds and speed glide, Stop/Pause, 16 whole-content slices,
 editable loops, fixed-length stereo recording, and an internal slice clock.
+The current recording recovery adds bounded Free recording; its native component
+checks are complete at 48 kHz, while musical and concurrent-playback acceptance remain open.
 PRs #18 and #19 are merged; the user accepted both their musical captures.
 See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remaining
 work and links to the retained numerical/listening evidence. Older STATUS sections
@@ -54,8 +56,10 @@ tape-direction slew remain open.
 **Buffers and recording:** selection while playing fades to the new buffer's
 beginning (end in reverse); selecting an empty buffer stops playback. Fixed fresh
 stereo recording accepts seconds or 4/4 bars and freezes its target at Record.
-Early Stop retains only the written content as playable bounds. Grow/trim,
-recording pause/resume, overdub and recording quantization are not implemented.
+Free starts with one second of capacity, doubles near 90% occupancy and stops at
+Stop or 60 seconds. Only written content becomes playable; unused capacity stays
+allocated. This recovers the original growth policy through the buffer-owned writer.
+Recording pause/resume, overdub, physical shrink and recording quantization remain open.
 Takes remain in memory: there is no product export or project-recall UI yet.
 
 The runtime used for recent validation is plugdata 0.9.4 nightly `98ae0f78b` /
@@ -145,15 +149,19 @@ message interfaces and native test steps are documented in STATUS.
    raise **Volume In** (0–2×; 1 is unity), and choose **Local input bus 1**. Leave Monitor Mix at 0
    unless deliberate direct monitoring is wanted.
 3. On `mlr.pd`, verify both **Recording input** meters, then enable
-   **Arm_recording_input**. Arming does not detect a connected source: silence
+   **Enable_recording_input**. Enabling does not detect a connected source: silence
    will record silence. Keep the companion and DSP running.
 4. Open `pd arrays-samples` → `sample_player_rebuild 1`. Choose an empty
-   `live_buffer` slot, select **sec** or **bars**, and set Amount. This slice
-   accepts 64 host frames through 60 seconds at 44.1/48 kHz; runtime recording
-   evidence currently covers 48 kHz only. Bars use the current 4/4 project tempo.
+   `live_buffer` slot. Select **sec** or **bars** and set **Amount (fixed)**,
+   or choose **Free** to finish manually within its displayed **60-second cap**.
+   Fixed takes accept 64 host frames through 60 seconds at 44.1/48 kHz; this
+   recovery's native evidence covers 48 kHz. Bars use the current 4/4 project tempo.
+   Start/Stop are immediate; a bar-sized take is not a quantized launch.
 5. Press **Record live**. The panel reports Recording, then Loaded and the actual
-   content duration. It stops at the frozen target; **Stop** ends early. A second
-   Record refuses to overwrite existing content; use Clear live deliberately.
+   content duration. **Stop** finishes a Free take or ends a fixed take early;
+   either mode stops at its frozen limit. A second Record refuses to overwrite
+   existing content; use Clear live deliberately. Recording state and Last error
+   are separate; a refused command does not mean the running take stopped.
 6. Press **Play/Pause**, with track and master gain raised quietly. The existing
    direction, speed, loop and sample/live-buffer selection operate on the take.
    No automatic playback follows recording. Switching selection does not redirect
@@ -166,6 +174,9 @@ click-free playback.
 
 Takes exist in memory; project recall and exporting recordings through a product
 UI are not implemented. See STATUS for bounded test captures and remaining gates.
+The Free recovery's [native test procedure and retained input comparisons](docs/evidence/free-recording/observations.md)
+run silently in a dedicated fixture; hardware listening and growth alongside
+other playing lanes are still required before accepting this recovery musically.
 
 For direction/loop checks, use the [repeatable procedure](docs/STATUS.md#repeat-the-direction-check)
 and [control-only panel](tests/reverse-controls.pd). For the prior handoff check, use the [repeatable procedure](docs/STATUS.md#repeat-the-handoff-check)

@@ -1,0 +1,6 @@
+0 901_l_b_delete_buffer bang;
+30 901_l_b_length seconds 2;
+70 901_l_b_record start;
+100 901_l_b_length dynamic;
+2200 901_l_b_record get;
+600 free-check-finish bang;
