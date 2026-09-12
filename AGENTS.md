@@ -111,6 +111,14 @@
   belongs here; session ownership, renewal, release and platform installation
   stay with those projects. Do not claim integration from a documentation link.
 
+- The main UI is a 16-track overview, with focused player, imported-bank and
+  live-take views. Keep buffer slots distinct from tracks and status receive-only.
+  ui-open-view changes canvas visibility only; it must not stop audio or finish a
+  take. Preserve the original nested clock/Grid/array wiring when editing the
+  root layout. Run tests/check_ui_overview.py and inspect native rendering; Pd
+  index validation alone misses valid-but-wrong wires and overlapping widgets.
+  Any change to relocated gain controls needs an actual post-master check.
+
 - Player-panel is a view onto the original player, not another engine. Keep status
   receive-only, preserve public control symbols, and show selected speed separately
   from any claim about instantaneous slew. Clock activity and reset request feedback

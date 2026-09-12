@@ -18,7 +18,15 @@ See [current status](docs/STATUS.md#current-checkpoint--2026-09-11) for remainin
 work and links to the retained numerical/listening evidence. Older STATUS sections
 record what was true at that point in the repair history.
 
-**Player view:** open `mlr.pd`, then click **Open player 1**.
+**Frontend:** `mlr.pd` opens a stacked 16-track overview with Play/Pause, Stop,
+selected buffer/slot, transport state, position and Level. Master is on the main
+screen. Click a track's **Open** button for its focused player, **Sample bank**
+for imported files, or **Live takes / Finish** for recording destinations.
+**Overview** returns from a focused view without stopping playback. Slots on
+the overview are readouts; choose the buffer type and slot inside the player.
+This UI is a review candidate: [screenshots, checks and procedure](docs/evidence/ui-overview/observations.md).
+
+**Player view:** click **Open** on track 1.
 The dedicated view keeps the existing player controls together with transport,
 direction, selected speed, clock source/BPM/count, and reset feedback. Run controls
 the shared clock; Play controls the selected player. Reset reports Off, waiting
@@ -50,8 +58,7 @@ is ready for review.
 
 **Slice controls:** each player has a Quantize checkbox and Slice grid menu.
 Checked means queued slices wait for a matching clock tick; unchecked means
-immediate. Default is unchecked with a 1/16-note grid. The main Track 1 checkbox
-mirrors player 1. Scripted `<track>-quantizer` messages keep the legacy convention:
+immediate. Default is unchecked with a 1/16-note grid. Scripted `<track>-quantizer` messages keep the legacy convention:
 1 = immediate, 0 = quantized. Stop/Pause, buffer selection, mode and grid changes
 cancel pending keys. Any committed slice restores whole-content loop bounds.
 
@@ -95,7 +102,7 @@ This is a design reference; the current patch implements the controls below.
 Initialize the pinned connection package after cloning or updating:
 `git submodule update --init --recursive`.
 
-Open `mlr.pd` and click **Grid_connection**. Choose the device, click **probe**,
+Open `mlr.pd` and click **Grid**. Choose the device, click **probe**,
 then **claim** when the console reports it free. Session shows `connected` only
 following the package's verified lease. Click **release** before closing or
 moving the Grid to another application. Discovery does not auto-claim; an existing
@@ -140,22 +147,28 @@ Other views and bottom-row controls remain reserved, not implemented.
 ## Run the original application
 
 1. Open this checkout's `mlr.pd` in plugdata. Keep its sibling patches together.
-2. Enable DSP and open plugdata's console, with both messages and errors visible.
-3. Use **Sample 1 Load** to choose the included `DrumLoop.wav` or a stereo file.
-4. Open `pd arrays-samples`, then `sample-data 1`, to inspect the loaded arrays.
-   Open `sample_player_rebuild 1`; its buffer selection should show
-   `sample_buffer`, `1` after loading.
-5. Press **Play/Pause** in that player. Open `pd mixer` and raise **track 1 volume**
-   and **Master Volume** as needed, starting quietly. The playbar should move
-   and both reader turns should be audible. The included drum file has about
-   half a second of silence at its end; that short pause is in the source.
+2. Enable DSP and open plugdata's console, with messages and errors visible.
+3. Click **Sample bank**, then **Load** beside Sample 1. Choose the included
+   `DrumLoop.wav` or a stereo file. Check **Loaded** and its duration in seconds.
+4. Click **Overview**, then **Open** on track 1. Its source should show
+   **Sample**, slot **1**. Cuts/loops, timing, speed and recording are grouped here.
+5. Return to **Overview**. Raise track 1's **Level** cautiously and check
+   **Master** (default 0.75). Press **Play / pause**. The state and position marker
+   follow the original player. Press again to Pause; **Stop** resets its position.
+   The included drum file has about half a second of silence at its end.
 
-Load Sample 2 as well, then select `sample_buffer`, `2` in player 1 to audition
-that buffer through track 1. Loading a sample explicitly selects it in its own
-numbered track; passive metadata updates do not redirect other players. Loading
-or clearing stops all players selecting that buffer before changing its arrays.
-Playback remains stopped after a load; press Play when ready. The new ordinary
-message interfaces and native test steps are documented in STATUS.
+To share a buffer, open another track and choose the same **Sample** slot.
+To audition a different buffer through track 1, load Sample 2 in the bank and
+choose **Sample**, **2** in player 1. Loading still explicitly selects a sample
+in its same-numbered track; passive metadata updates do not redirect other
+players. Loading/clearing stops readers of that buffer before changing arrays.
+Press Play after a load. Bank slots, live buffers and playback tracks are
+separate identities, even where the old default routing uses matching numbers.
+
+Original wiring remains below the overview at **ORIGINAL ENGINE WIRING**.
+Open `pd arrays-samples` and `sample-data 1` there to inspect the arrays; playback
+logic remains in `sample_player_rebuild.pd`. Views send existing commands and
+show existing state; they do not instantiate additional players.
 
 ## Record from standalone hardware input
 
@@ -168,8 +181,8 @@ message interfaces and native test steps are documented in STATUS.
 3. On `mlr.pd`, verify both **Recording input** meters, then enable
    **Enable_recording_input**. Enabling does not detect a connected source: silence
    will record silence. Keep the companion and DSP running.
-4. Open `pd arrays-samples` → `sample_player_rebuild 1`. Choose an empty
-   `live_buffer` slot. Select **sec** or **bars** and set **Amount (fixed)**,
+4. Click track 1’s **Open**. Choose **Live** and an empty slot. Under
+   **NEXT TAKE**, select **sec** or **bars** and set **Fixed amount**,
    or choose **Free** to finish manually within its displayed **60-second cap**.
    Fixed takes accept 64 host frames through 60 seconds at 44.1/48 kHz; this
    recovery's native evidence covers 48 kHz. Bars use the current 4/4 project tempo.
@@ -182,7 +195,7 @@ message interfaces and native test steps are documented in STATUS.
 6. Press **Play/Pause**, with track and master gain raised quietly. The existing
    direction, speed, loop and sample/live-buffer selection operate on the take.
    No automatic playback follows recording. Switching selection does not redirect
-   an active writer. Open **Recording takes / Finish** on the main window to see
+   an active writer. Open **Live takes / Finish** on the main window to see
    each live buffer's activity, elapsed seconds and frozen limit. Its **Finish**
    always addresses that row's buffer, even after browsing elsewhere. Idle rows
    show zero progress; content duration remains in the buffer/player view.

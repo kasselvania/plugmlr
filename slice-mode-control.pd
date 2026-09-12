@@ -1,5 +1,5 @@
 #N canvas 180 180 520 360 12;
-#X obj 10 10 tgl 23 0 \$0-ui empty Quantize 28 11 0 12 #e3dfd9 #5a5a5a #5a5a5a 0 1;
+#X obj 10 10 tgl 23 0 \$0-ui empty Quantize 28 11 0 12 #faf8f2 #347c72 #347c72 0 1;
 #X obj 25 80 r \$0-ui;
 #X obj 25 115 == 0;
 #X obj 25 150 s \$1-quantizer;

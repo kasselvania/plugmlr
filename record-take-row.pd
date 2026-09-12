@@ -1,9 +1,9 @@
 #N canvas 100 80 1100 900 12;
-#X obj 3 3 cnv 15 85 22 empty empty Live_\$2 5 11 0 12 #e3dfd9 #333333 0;
-#X obj 120 4 nbx 7 20 0 1e+37 0 0 empty \$0-elapsed empty 0 -10 0 11 #e3dfd9 #333333 #333333 0 256;
-#X obj 235 4 nbx 7 20 0 1e+37 0 0 empty \$0-limit empty 0 -10 0 11 #e3dfd9 #333333 #333333 0 256;
-#X obj 345 3 cnv 15 60 22 empty \$0-status idle 6 11 0 12 #e3dfd9 #333333 0;
-#X obj 440 3 bng 22 250 50 0 \$0-finish empty Finish 28 11 0 12 #e3dfd9 #333333 #333333;
+#X obj 3 3 cnv 15 85 22 empty empty Live_\$2 5 11 0 12 #faf8f2 #283d3a 0;
+#X obj 120 4 nbx 7 20 0 1e+37 0 0 empty \$0-elapsed empty 0 -10 0 11 #faf8f2 #283d3a #283d3a 0 256;
+#X obj 235 4 nbx 7 20 0 1e+37 0 0 empty \$0-limit empty 0 -10 0 11 #faf8f2 #283d3a #283d3a 0 256;
+#X obj 345 3 cnv 15 60 22 empty \$0-status idle 6 11 0 12 #faf8f2 #283d3a 0;
+#X obj 440 3 bng 22 250 50 0 \$0-finish empty Finish 28 11 0 12 #faf8f2 #283d3a #283d3a;
 #X obj 25 100 r \$1-record-progress;
 #X obj 25 140 route \$2;
 #X obj 25 180 unpack f f f;
@@ -12,8 +12,8 @@
 #X msg 205 230 set \$1;
 #X obj 205 270 s \$0-limit;
 #X obj 430 230 sel 0 1;
-#X msg 430 275 label idle;
-#X msg 590 275 label REC;
+#X msg 430 275 label idle \, color #faf8f2 #737d76;
+#X msg 590 275 label REC \, color #b75e49 #faf8f2;
 #X obj 430 315 s \$0-status;
 #X obj 25 355 r \$0-finish;
 #X obj 25 440 spigot;
