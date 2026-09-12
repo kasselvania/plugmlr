@@ -1,0 +1,221 @@
+{
+  "passed": false,
+  "checks": {
+    "30_seconds": true,
+    "all_channels_finite": true,
+    "audio_below_full_scale": true,
+    "solo_b_silent": true,
+    "shared_buffer_initially": true,
+    "steady_b_position_preserved": true,
+    "steady_a_position_preserved": true,
+    "steady_b_stereo_matches": true,
+    "steady_a_stereo_matches": true,
+    "steady_lanes_gain_preserved": false,
+    "different_buffer_stereo_matches": true,
+    "a_two_key_loop": true,
+    "a_mod_on_buffer2": true,
+    "b_mod_loop": true,
+    "overlapping_rows_keep_independent_bounds": true,
+    "rapid_mod_cells": true,
+    "alt_cancels_unfinished_pair": true,
+    "empty_b_refused": true,
+    "stop_cancels_unfinished_pair": true,
+    "final_full_content_cuts": true,
+    "no_detected_unexpected_silent_blocks": true,
+    "final_master_silent": true
+  },
+  "frames": 1440000,
+  "host_rate": 48000,
+  "file_rates": [
+    44100,
+    48000
+  ],
+  "audio_peaks": [
+    0.9759158492088318,
+    0.9835072755813599,
+    0.9759158492088318,
+    0.982750415802002,
+    0.5039007067680359,
+    0.49666133522987366
+  ],
+  "steady_b_frame_error": 0.03749999999126885,
+  "steady_a_frame_error": 0.03749999999126885,
+  "steady_b": [
+    {
+      "lane": 2,
+      "time": 2.3,
+      "buffer": 1,
+      "correlation": [
+        0.9999992012530613,
+        0.9999957916741744
+      ],
+      "gain": [
+        1.000367959620088,
+        1.0006457006937144
+      ]
+    },
+    {
+      "lane": 2,
+      "time": 3.5,
+      "buffer": 1,
+      "correlation": [
+        0.9993354194449078,
+        0.9993740518384177
+      ],
+      "gain": [
+        1.0186665268228714,
+        1.0181159541825395
+      ]
+    },
+    {
+      "lane": 2,
+      "time": 6.8,
+      "buffer": 1,
+      "correlation": [
+        0.9999999984469136,
+        0.9999999984136833
+      ],
+      "gain": [
+        1.0000187730858336,
+        1.0000219106742976
+      ]
+    },
+    {
+      "lane": 2,
+      "time": 8.7,
+      "buffer": 1,
+      "correlation": [
+        0.9999856219012564,
+        0.9999864391955294
+      ],
+      "gain": [
+        1.0002465405276184,
+        1.0002711506837296
+      ]
+    },
+    {
+      "lane": 2,
+      "time": 10.5,
+      "buffer": 1,
+      "correlation": [
+        0.9988653671707796,
+        0.999013322589296
+      ],
+      "gain": [
+        1.0288047468935626,
+        1.0268229451350608
+      ]
+    }
+  ],
+  "steady_a": [
+    {
+      "lane": 1,
+      "time": 12.3,
+      "buffer": 1,
+      "correlation": [
+        0.9999894698917655,
+        0.9999899870543327
+      ],
+      "gain": [
+        1.000171073212335,
+        1.0001704556749968
+      ]
+    },
+    {
+      "lane": 1,
+      "time": 14.3,
+      "buffer": 1,
+      "correlation": [
+        0.99999999848115,
+        0.9999999984985709
+      ],
+      "gain": [
+        1.0000192403062629,
+        1.0000219745691135
+      ]
+    },
+    {
+      "lane": 1,
+      "time": 16.8,
+      "buffer": 1,
+      "correlation": [
+        0.9986819482629924,
+        0.9988058183515574
+      ],
+      "gain": [
+        1.0634896793823643,
+        1.0585196665676673
+      ]
+    },
+    {
+      "lane": 1,
+      "time": 18.4,
+      "buffer": 1,
+      "correlation": [
+        0.9999999707994692,
+        0.999999970259198
+      ],
+      "gain": [
+        0.9999999618135269,
+        0.9999999859488775
+      ]
+    }
+  ],
+  "different_buffer": [
+    {
+      "lane": 1,
+      "time": 6.75,
+      "buffer": 2,
+      "correlation": [
+        0.9940272337140499,
+        0.993982744406077
+      ],
+      "gain": [
+        1.0162461141609895,
+        1.0160338382844776
+      ]
+    },
+    {
+      "lane": 1,
+      "time": 7.65,
+      "buffer": 2,
+      "correlation": [
+        0.9994395077210505,
+        0.9998165404820767
+      ],
+      "gain": [
+        1.0088253177129878,
+        1.0027201296619446
+      ]
+    },
+    {
+      "lane": 2,
+      "time": 16.8,
+      "buffer": 2,
+      "correlation": [
+        0.9999999999999999,
+        1.0
+      ],
+      "gain": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "lane": 2,
+      "time": 25.1,
+      "buffer": 2,
+      "correlation": [
+        0.9941757314694747,
+        0.9941220551208092
+      ],
+      "gain": [
+        1.0160552815454171,
+        1.0162915290787788
+      ]
+    }
+  ],
+  "suspicious_silent_blocks": [],
+  "max_master_sample_step": 0.3031737804412842,
+  "limits": "Correlation/reference uses linear interpolation approximating native table playback. Silence check excludes 50ms after state/buffer changes, not cut/fade events. No universal click-free or physical gesture acceptance."
+}

@@ -1,0 +1,677 @@
+[
+  [
+    100,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    101,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    102,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    103,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    1000,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    1001,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    1002,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    1003,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    2000,
+    "two-lane-check-key",
+    "2 1 1"
+  ],
+  [
+    2020,
+    "two-lane-check-key",
+    "2 1 0"
+  ],
+  [
+    3000,
+    "two-lane-check-key",
+    "3 1 1"
+  ],
+  [
+    3100,
+    "two-lane-check-key",
+    "6 1 1"
+  ],
+  [
+    3350,
+    "two-lane-check-key",
+    "6 1 0"
+  ],
+  [
+    3400,
+    "two-lane-check-key",
+    "3 1 0"
+  ],
+  [
+    4000,
+    "\\$1-dir_change",
+    "bang"
+  ],
+  [
+    4500,
+    "\\$1-playback_speed_dial",
+    "1"
+  ],
+  [
+    5500,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    5501,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    5502,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    5503,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    6000,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    6001,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    6002,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    6003,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    6500,
+    "1-buffer-select",
+    "sample 2"
+  ],
+  [
+    7300,
+    "two-lane-check-key",
+    "13 0 1"
+  ],
+  [
+    7301,
+    "two-lane-check-key",
+    "4 1 1"
+  ],
+  [
+    7380,
+    "two-lane-check-key",
+    "4 1 0"
+  ],
+  [
+    7400,
+    "two-lane-check-key",
+    "13 0 0"
+  ],
+  [
+    8200,
+    "1-buffer-select",
+    "sample 1"
+  ],
+  [
+    9000,
+    "\\$1-dir_change",
+    "bang"
+  ],
+  [
+    9200,
+    "\\$1-playback_speed_dial",
+    "2"
+  ],
+  [
+    10500,
+    "\\$1-stop_button",
+    "bang"
+  ],
+  [
+    10600,
+    "1-loop-region",
+    "full"
+  ],
+  [
+    10800,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    10801,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    10802,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    10803,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    12000,
+    "two-lane-check-key",
+    "5 2 1"
+  ],
+  [
+    12020,
+    "two-lane-check-key",
+    "5 2 0"
+  ],
+  [
+    13000,
+    "two-lane-check-key",
+    "13 0 1"
+  ],
+  [
+    13001,
+    "two-lane-check-key",
+    "6 2 1"
+  ],
+  [
+    13080,
+    "two-lane-check-key",
+    "6 2 0"
+  ],
+  [
+    13100,
+    "two-lane-check-key",
+    "13 0 0"
+  ],
+  [
+    14000,
+    "\\$2-dir_change",
+    "bang"
+  ],
+  [
+    14500,
+    "\\$2-playback_speed_dial",
+    "3"
+  ],
+  [
+    15500,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    15501,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    15502,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    15503,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    16000,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    16001,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    16002,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    16003,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    16500,
+    "2-buffer-select",
+    "sample 2"
+  ],
+  [
+    17800,
+    "2-buffer-select",
+    "sample 1"
+  ],
+  [
+    18500,
+    "\\$2-dir_change",
+    "bang"
+  ],
+  [
+    18700,
+    "\\$2-playback_speed_dial",
+    "2"
+  ],
+  [
+    20000,
+    "two-lane-check-key",
+    "2 1 1"
+  ],
+  [
+    20050,
+    "two-lane-check-key",
+    "4 2 1"
+  ],
+  [
+    20100,
+    "two-lane-check-key",
+    "6 1 1"
+  ],
+  [
+    20150,
+    "two-lane-check-key",
+    "8 2 1"
+  ],
+  [
+    20400,
+    "two-lane-check-key",
+    "6 1 0"
+  ],
+  [
+    20450,
+    "two-lane-check-key",
+    "4 2 0"
+  ],
+  [
+    20500,
+    "two-lane-check-key",
+    "2 1 0"
+  ],
+  [
+    20550,
+    "two-lane-check-key",
+    "8 2 0"
+  ],
+  [
+    21000,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    21020,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    21040,
+    "two-lane-check-key",
+    "1 2 1"
+  ],
+  [
+    21060,
+    "two-lane-check-key",
+    "1 2 0"
+  ],
+  [
+    21080,
+    "two-lane-check-key",
+    "2 1 1"
+  ],
+  [
+    21100,
+    "two-lane-check-key",
+    "2 1 0"
+  ],
+  [
+    21120,
+    "two-lane-check-key",
+    "3 2 1"
+  ],
+  [
+    21140,
+    "two-lane-check-key",
+    "3 2 0"
+  ],
+  [
+    21160,
+    "two-lane-check-key",
+    "4 1 1"
+  ],
+  [
+    21180,
+    "two-lane-check-key",
+    "4 1 0"
+  ],
+  [
+    21200,
+    "two-lane-check-key",
+    "5 2 1"
+  ],
+  [
+    21220,
+    "two-lane-check-key",
+    "5 2 0"
+  ],
+  [
+    21240,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    21260,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    21280,
+    "two-lane-check-key",
+    "1 2 1"
+  ],
+  [
+    21300,
+    "two-lane-check-key",
+    "1 2 0"
+  ],
+  [
+    21500,
+    "two-lane-check-key",
+    "13 0 1"
+  ],
+  [
+    21501,
+    "two-lane-check-key",
+    "2 1 1"
+  ],
+  [
+    21580,
+    "two-lane-check-key",
+    "2 1 0"
+  ],
+  [
+    21600,
+    "two-lane-check-key",
+    "13 0 0"
+  ],
+  [
+    21700,
+    "two-lane-check-key",
+    "13 0 1"
+  ],
+  [
+    21701,
+    "two-lane-check-key",
+    "5 2 1"
+  ],
+  [
+    21780,
+    "two-lane-check-key",
+    "5 2 0"
+  ],
+  [
+    21800,
+    "two-lane-check-key",
+    "13 0 0"
+  ],
+  [
+    22300,
+    "\\$1-dir_change",
+    "bang"
+  ],
+  [
+    22400,
+    "\\$2-playback_speed_dial",
+    "1"
+  ],
+  [
+    23000,
+    "two-lane-check-key",
+    "1 1 1"
+  ],
+  [
+    23100,
+    "two-lane-check-key",
+    "3 1 1"
+  ],
+  [
+    23200,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    23201,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    23202,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    23203,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    23300,
+    "two-lane-check-key",
+    "3 1 0"
+  ],
+  [
+    23400,
+    "two-lane-check-key",
+    "1 1 0"
+  ],
+  [
+    23800,
+    "2-buffer-select",
+    "sample 3"
+  ],
+  [
+    24000,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    24001,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    24002,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    24003,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    24500,
+    "2-buffer-select",
+    "sample 2"
+  ],
+  [
+    24700,
+    "\\$2-stop_button",
+    "bang"
+  ],
+  [
+    24900,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    24901,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    24902,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    24903,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    25500,
+    "two-lane-check-key",
+    "1 1 1"
+  ],
+  [
+    25600,
+    "two-lane-check-key",
+    "3 1 1"
+  ],
+  [
+    25700,
+    "\\$1-stop_button",
+    "bang"
+  ],
+  [
+    25800,
+    "two-lane-check-key",
+    "3 1 0"
+  ],
+  [
+    25900,
+    "two-lane-check-key",
+    "1 1 0"
+  ],
+  [
+    26100,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    26101,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    26102,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    26103,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    26800,
+    "1-quantizer",
+    "0"
+  ],
+  [
+    26800,
+    "2-quantizer",
+    "0"
+  ],
+  [
+    26800,
+    "global-transport",
+    "1"
+  ],
+  [
+    27000,
+    "two-lane-check-key",
+    "4 1 1"
+  ],
+  [
+    27020,
+    "two-lane-check-key",
+    "4 1 0"
+  ],
+  [
+    27020,
+    "two-lane-check-key",
+    "2 2 1"
+  ],
+  [
+    27040,
+    "two-lane-check-key",
+    "2 2 0"
+  ],
+  [
+    28000,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    28001,
+    "two-lane-check-key",
+    "0 1 1"
+  ],
+  [
+    28002,
+    "two-lane-check-key",
+    "0 1 0"
+  ],
+  [
+    28003,
+    "two-lane-check-key",
+    "15 0 0"
+  ],
+  [
+    28100,
+    "two-lane-check-key",
+    "15 0 1"
+  ],
+  [
+    28101,
+    "two-lane-check-key",
+    "0 2 1"
+  ],
+  [
+    28102,
+    "two-lane-check-key",
+    "0 2 0"
+  ],
+  [
+    28103,
+    "two-lane-check-key",
+    "15 0 0"
+  ]
+]

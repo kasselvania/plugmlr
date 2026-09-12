@@ -7,6 +7,32 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Combined two-lane CUT review candidate — 2026-09-11
+
+Base is accepted MOD branch `ac40fc85d3f4d02ffeb3087d7c0904bcad94e379`.
+No production changes planned. One bounded 30-second native capture starts with
+A alone, then B stays steady while A changes, A stays steady while B changes,
+and finally both receive overlapping gestures, modifiers, rapid cuts, empty
+buffer selection, Stop cancellation and quantized cuts. Both start on sample 1;
+independent selections also exercise distinct buffers. Capture separate stereo
+lanes and master plus actual positions, committed bounds, state and buffer IDs.
+File 1 is DrumLoop at 44.1 kHz; file 2 is a reproducible reversed, stereo-swapped
+version at 48 kHz and gain 0.65. Host remains 48 kHz. An automatic 30-second
+writer stop is armed before recording; numerical and listening evidence remain
+separate. No maximum-lane, DAW or isolated-application acceptance is implied.
+
+Results: one actual native 30-second capture, 27 checks pass. Corresponding
+steady-lane passages are bit-identical in stereo for 8.8 seconds while the other
+lane undergoes different changes. Master mix residual is below 5.97e-8; selected
+ranges, independent buffer swaps, overlapping gestures, empty refusal and final
+silence match the schedule. All output finite, master peak below 0.504. No
+production repair was required. Retained initial gain-analysis failure is an
+interpolation-reference mismatch, resolved by comparing actual captures directly.
+Recorder stopped automatically and was closed; clean MLR restored. The user listened and reported “nope. it sounds great.” Physical
+combined-gesture acceptance remains separate from this scheduled run. This run is 48 kHz native
+standalone with zero speed slew, not DAW or exhaustive transition acceptance.
+See [evidence and exact repeat procedure](evidence/two-lane-cut/observations.md).
+
 ## MOD single-cell loop review candidate — 2026-09-11
 
 Accepted PRs #27–#30 merged; main checkpoint is
