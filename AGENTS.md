@@ -213,3 +213,7 @@
   slice_policy must initialize no-pending-slice state explicitly. A nonzero
   capture can be a held endpoint/DC: check advancing audio and expected pitch,
   not only silence/RMS, and retain failures with their exact source manifests.
+
+- Clear/Discard must stay blocked throughout buffer selection, until its new live
+  target is installed. Drop transient requests; never replay them against another slot.
+  Pd connections must follow both object declarations; inspect native console too.

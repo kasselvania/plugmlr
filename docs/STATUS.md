@@ -4878,3 +4878,48 @@ The prior stashes and Monome pin remain unchanged.
 [New 24-second listening excerpt](evidence/take-protection/long-run-listening.wav)
 keeps the original master level: loop Apply at 4 s, Reverse at 10 s, forward at
 18 s. Human listening and direct-button acceptance can be completed later.
+
+## Clear / Discard connection trace — 2026-09-12
+
+This is the last bounded repair before the requested pause for basic usage and
+later Grid UI work. The production change is three ordinary Pd objects in
+`buffer-selection.pd`; the player panel, guard helper, recorder, arrays, fades,
+readers and musical controls retain their prior implementation.
+
+Clear is a bang and Discard is a distinct selector on the player's private
+`$0-delete_buffer` bus. `buffer-selection` admits live selections, resolves the
+selected `N_l_b_delete_buffer` destination, and now **drops both commands during
+its existing 20 ms selection handoff**. No delayed command is queued. Once the
+new target is installed, the existing per-buffer `take-clear-control` owns the
+five-second unsaved confirmation. An accepted action enters the original storage
+lock, reader shutdown, 20 ms wait, stereo resize/zero and content invalidation.
+See [the complete trace and native evidence](evidence/clear-discard/observations.md).
+
+The native pre-fix test proved that Clear/Discard 1–2 ms after requesting a new
+slot could erase the previous live slot, including when switching to Sample.
+The repaired identical two-second score passes **12/12 routing/content checks**
+in plugdata **0.9.4 nightly 98ae0f78b / Pd 0.56.3, 48 kHz**. Recordings stop at
+2 seconds with an independent 4-second fallback; the copied DAC is disconnected.
+An initial repair used a forward connection reference that Pd rejected; its
+console/error source and failed run are retained. The structural checker now
+rejects connections before object declarations. Existing Clear guard behavior
+checks pass 18/18; this is not new listening or Bitwig acceptance.
+
+Native mouse investigation: no message left the original lower-right buttons
+through the UI tool. Moving Clear to the known-working Play position made it
+emit and clear an empty buffer; moving Play to Clear's location made Play
+unresponsive. Removing the buffer subpanel's graph display did not help. These
+are positional observations, **not a proven application or automation cause**.
+The production layout is unchanged; ordinary command success does not close this
+button-interaction gate. The status line is instrument-wide last-action feedback,
+not a new selected-slot state display.
+
+Separate follow-up identified by source tracing: `record-controls.pd` still
+routes through the old live target during the same selection delay. Record/Stop
+semantics need a dedicated check before changing that route; no such repair or
+recording-speed/direction work is included here. Grid development has not begun.
+
+Normal `mlr.pd` was restored alone and stopped, DrumLoop.wav in Sample 1, track
+1 Level 0.4, Master 0.75, Debug Off. Native settings confirmed CoreAudio 8A
+input/output, 48 kHz / 512, 1x, limiter Off. No physical button result arrived;
+the diagnostic fixture is closed and its manual procedure is retained.

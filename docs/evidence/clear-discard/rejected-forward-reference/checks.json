@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "live_3_preserved_at_400ms": true,
+    "live_4_preserved_at_400ms": true,
+    "live_3_preserved_at_550ms": true,
+    "live_4_preserved_at_550ms": true,
+    "live_3_preserved_at_650ms": true,
+    "live_4_preserved_at_650ms": true,
+    "armed_clear_keeps_live_3": true,
+    "deliberate_discard_clears_live_3": false,
+    "live_4_unaffected_by_deliberate_discard": true,
+    "repeat_discard_stays_empty": false,
+    "no_actions_forwarded_during_switch": true,
+    "settled_actions_forwarded": false
+  },
+  "passed": 9,
+  "total": 12,
+  "pass": false,
+  "evidence": "Native Pd timestamped control and content metadata. Not a listening or button-hit test."
+}

@@ -50,6 +50,11 @@ def run():
                 current = current.replace('#X obj 1806 18 take-clear-control \\$1;',
                                           '#X obj 1806 18 r \\$1_l_b_delete_buffer, f 21;')
             if name == 'buffer-selection.pd':
+                switch_guard = '\n#X obj 1140 940 spigot 1;\n#X obj 1370 865 r \\$1-buffer-switching;\n#X obj 1370 900 == 0;\n#X text 1080 1040 Ignore Clear/Discard until selection has installed the new target.;\n#X connect 95 0 80 0;\n#X connect 96 0 97 0;\n#X connect 97 0 95 1;\n#X connect 79 0 95 0;\n'
+                assert current.endswith(switch_guard), 'Missing Clear switch guard'
+                current = current[:-len(switch_guard)]
+                # Restore the removed old edge at any point after its objects.
+                current = current.replace('#X connect 78 0 79 0;', '#X connect 78 0 79 0;\n#X connect 79 0 80 0;')
                 suffix = '\n#X obj 25 1100 s mlr-cancel-clear;\n#X connect 24 0 94 0;\n'
                 assert current.endswith(suffix), 'Unexpected discard-cancellation wiring'
                 current = current[:-len(suffix)]

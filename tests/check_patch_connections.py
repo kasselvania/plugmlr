@@ -27,7 +27,10 @@ def check(path):
             if not match or not stack:
                 errors.append(f'{line}: invalid connection')
                 continue
-            stack[-1]['connections'].append((line, *map(int, match.groups())))
+            edge = tuple(map(int, match.groups()))
+            if max(edge[0], edge[2]) >= len(stack[-1]['objects']):
+                errors.append(f'{line}: connection precedes object declaration')
+            stack[-1]['connections'].append((line, *edge))
         elif stack and text.startswith('#X ') and not text.startswith(
                 ('#X coords', '#X array', '#X f ')):
             stack[-1]['objects'].append(text)
