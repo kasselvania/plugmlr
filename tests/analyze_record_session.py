@@ -1,7 +1,7 @@
 """Check retained audio from build_record_session_check.py in native plugdata.
 
 python3 tests/analyze_record_session.py docs/evidence/recording-continuity/run
-Requires numpy. Reads raw WAV or its lossless .gz archive. No DSP simulation.
+Requires numpy. Reads raw WAV or its lossless .gz/.xz archive. No DSP simulation.
 The retained recording-continuity boundary capture demonstrates the old failure;
 the loop-boundary-handoff capture checks that same score against the repair.
 """
@@ -9,6 +9,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import lzma
 from pathlib import Path
 import struct
 
@@ -16,8 +17,12 @@ import numpy as np
 
 
 def audio(path):
-    raw = path.read_bytes() if path.exists() else gzip.decompress(
-        Path(str(path) + '.gz').read_bytes())
+    if path.exists():
+        raw = path.read_bytes()
+    elif Path(str(path)+'.gz').exists():
+        raw = gzip.decompress(Path(str(path)+'.gz').read_bytes())
+    else:
+        raw = lzma.decompress(Path(str(path)+'.xz').read_bytes())
     assert raw[:4] == b'RIFF' and raw[8:12] == b'WAVE'
     offset = 12
     while offset + 8 <= len(raw):

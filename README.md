@@ -37,6 +37,12 @@ drift from the clock. Run controls ticks, independently of Fit. Beat Reset still
 repositions playback separately. Free restores the selected preset. Missing content
 or a rate outside 1/64..64 shows **Fit unavailable / Free** and uses the free preset.
 
+Speed-glide reports are bounded between the last applied speed and the new target.
+The [playback/slew review](docs/evidence/playback-slew-review/observations.md)
+retains 44.1/48 kHz captures and two open faults: natural loops can run late at
+audio-block boundaries, and very short loops can reuse a reader before its fade
+finishes. Clean listening reports do not establish exact loop timing.
+
 **Slice controls:** each player has a Quantize checkbox and Slice grid menu.
 Checked means queued slices wait for a matching clock tick; unchecked means
 immediate. Default is unchecked with a 1/16-note grid. The main Track 1 checkbox

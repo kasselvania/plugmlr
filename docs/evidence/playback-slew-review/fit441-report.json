@@ -1,0 +1,310 @@
+{
+  "passed": true,
+  "checks": {
+    "bounded": true,
+    "finite": true,
+    "player_taps_match": true,
+    "supported_rate_range": true,
+    "no_audible_reader_resets": true,
+    "all_transition_steps_bounded": true,
+    "unity_running_reader_gain": true,
+    "no_running_dropouts": true,
+    "pause_stop_silence": true,
+    "both_players_and_mixer_stop": true,
+    "mixer_preserves_gain": true,
+    "lane_b_no_reader_resets": true,
+    "glides_reach_final_targets": true,
+    "signed_reader_motion_and_file_host_conversion": true,
+    "no_running_hold_beyond_cut_wait_budget": true
+  },
+  "capture": {
+    "rate": 44100,
+    "channels": 10,
+    "declared_frames": 617193,
+    "trailing_bytes": 6040,
+    "sha256": "834165a910014af23716da8945ff11f05b531b1c1755598cac224cf4226e9daa"
+  },
+  "file_rate": 48000,
+  "reader_captures": [
+    {
+      "rate": 44100,
+      "channels": 10,
+      "declared_frames": 617193,
+      "trailing_bytes": 6040,
+      "sha256": "1966f2308e9c3c8197ecf0c0935cf50fb632ccc32d495601f940f029593b778a"
+    },
+    {
+      "rate": 44100,
+      "channels": 10,
+      "declared_frames": 617193,
+      "trailing_bytes": 6040,
+      "sha256": "104c40ed42e90a3ce5e690ca53bb749a1d3d643514450fdf75cae0b606cbd2b1"
+    }
+  ],
+  "metrics": {
+    "max_step_LR": [
+      0.01824488490819931,
+      0.016061225906014442
+    ],
+    "fixture_step_limits": [
+      0.018904385753213536,
+      0.016519594064942637
+    ],
+    "audible_reader_resets": [],
+    "constant_stereo_error": null,
+    "running_gain_min_max": [
+      1.0,
+      1.0
+    ],
+    "longest_running_zero_frames": 0,
+    "lane_b_repeat_residual": null,
+    "mixer_residual_all": 0.0010142028331756592,
+    "mixer_residual_outside_open": 0.0,
+    "rate_min_max": [
+      0.015625,
+      5.333333492279053
+    ],
+    "rates": [
+      {
+        "seconds": [
+          0.85,
+          1.1
+        ],
+        "expected": 5.333333333333333,
+        "error": 0.0
+      },
+      {
+        "seconds": [
+          3.55,
+          3.9
+        ],
+        "expected": 0.015625,
+        "error": 0.0
+      },
+      {
+        "seconds": [
+          6.3,
+          6.4
+        ],
+        "expected": 4,
+        "error": 0.0
+      },
+      {
+        "seconds": [
+          6.6,
+          7.4
+        ],
+        "expected": 5.333333333333333,
+        "error": 0.0
+      },
+      {
+        "seconds": [
+          7.6,
+          7.9
+        ],
+        "expected": 4,
+        "error": 0.0
+      },
+      {
+        "seconds": [
+          8.1,
+          8.9
+        ],
+        "expected": 1,
+        "error": 0.0
+      },
+      {
+        "seconds": [
+          9.3,
+          12.4
+        ],
+        "expected": 1,
+        "error": 0.0
+      }
+    ],
+    "motion": [
+      {
+        "seconds": [
+          0.85,
+          1.1
+        ],
+        "expected": 5.333333333333333,
+        "measured": 5.331327044963837
+      },
+      {
+        "seconds": [
+          3.55,
+          3.9
+        ],
+        "expected": -0.015625,
+        "measured": -0.015625024493783713
+      },
+      {
+        "seconds": [
+          6.3,
+          6.4
+        ],
+        "expected": -4,
+        "measured": -3.999300938844681
+      },
+      {
+        "seconds": [
+          6.6,
+          7.4
+        ],
+        "expected": -5.333333333333333,
+        "measured": -5.331326606869697
+      },
+      {
+        "seconds": [
+          7.6,
+          7.9
+        ],
+        "expected": -4,
+        "measured": -3.9988396257162093
+      },
+      {
+        "seconds": [
+          8.1,
+          8.9
+        ],
+        "expected": -1,
+        "measured": -0.9999146059155464
+      },
+      {
+        "seconds": [
+          9.3,
+          12.4
+        ],
+        "expected": 1,
+        "measured": 0.9999926961958409
+      }
+    ],
+    "longest_position_hold_frames": 61,
+    "position_hold_limit_frames": 658,
+    "loop_periods": [],
+    "chapters": [
+      {
+        "seconds": [
+          0,
+          3.2
+        ],
+        "max_step_LR": [
+          0.01824488490819931,
+          0.016061225906014442
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          3.2,
+          3.5
+        ],
+        "max_step_LR": [
+          0.0028180587105453014,
+          0.00247214175760746
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          3.5,
+          4.3
+        ],
+        "max_step_LR": [
+          0.00010149180889129639,
+          0.00010009109973907471
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          4.3,
+          7.6
+        ],
+        "max_step_LR": [
+          0.018224211409687996,
+          0.016030680388212204
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          7.6,
+          8.6
+        ],
+        "max_step_LR": [
+          0.013706710189580917,
+          0.012084562331438065
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          8.6,
+          9.6
+        ],
+        "max_step_LR": [
+          0.0034525447990745306,
+          0.0030294228345155716
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          9.6,
+          10.6
+        ],
+        "max_step_LR": [
+          0.0034525447990745306,
+          0.0030294228345155716
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "seconds": [
+          10.6,
+          12.5
+        ],
+        "max_step_LR": [
+          0.0034525447990745306,
+          0.0030294228345155716
+        ],
+        "audible_reader_reset_count": 0,
+        "reader_gain_min_max": [
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  "listening": "Not collected. These numerical bounds do not establish universal click-free playback."
+}

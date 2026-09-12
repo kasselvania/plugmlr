@@ -47,9 +47,9 @@ for line in source.splitlines():
     elif depth==1 and line.startswith(('#X obj ','#X msg ','#X text ','#X floatatom ','#X symbolatom ','#X listbox ')):count+=1
 p=Pd();o=p.add
 r=o('obj 2100 4550 r record-session-player-\\$1')
-route=o('obj 2100 4590 route play stop reverse speed slew record')
+route=o('obj 2100 4590 route play stop reverse speed slew record curve')
 p.link(r,route)
-for j,name in enumerate(['play_button','stop_button','dir_change','playback_speed_dial','rate_slew-duration-i','record_button_bang']):
+for j,name in enumerate(['play_button','stop_button','dir_change','playback_speed_dial','rate_slew-duration-i','record_button_bang','rate_slew_curve_i']):
     dest=o(f'obj {2100+j*180} 4640 s \\$0-{name}');p.link(route,dest,j)
 rp=o('obj 2100 4700 r~ \\$0-vline_output_sig');sp=o('obj 2100 4740 s~ record-session-position-\\$1');p.link(rp,sp)
 lb=o('obj 2100 4800 loadbang');f=o('obj 2100 4840 f \\$0');pr=o('obj 2100 4880 print record-session-player-id-\\$1');p.link(lb,f);p.link(f,pr)
@@ -108,7 +108,7 @@ c(left,cap,0,6);c(right,cap,0,7)
 for i in (1,2):
  r=o(f'obj {650+i*180} 500 r~ record-session-position-{i}');c(r,cap,0,7+i)
 # Capture start always arms its independent watchdog before opening any file.
-r=o('obj 510 275 r record-session-check');route=o('obj 510 315 route run dsp zero boundary turns constant stop');c(r,route)
+r=o('obj 510 275 r record-session-check');route=o('obj 510 315 route run dsp zero boundary turns constant stop slew slew-constant short short-constant fit');c(r,route)
 start=o('obj 510 610 t s b b b b');timer=o('obj 1050 840 timer');clear=o('msg 920 650 clear');events=o('obj 1050 1080 text define \\$0-events');watch=o('obj 820 700 delay 16000')
 c(start,clear,4);c(clear,events);c(start,timer,3);c(start,watch,2)
 sourceplay=o(f'msg 650 740 open {OUT}/input.wav \\, 1');c(start,sourceplay,1);c(sourceplay,input_reader)
@@ -117,6 +117,8 @@ readertaps=o(f'msg 1050 610 \\; 1-test-capture start {OUT}/readers1.wav 14000 \\
 read=o('msg 510 830 read \\$1 \\, bang');ql=o('obj 510 870 qlist');c(start,read);c(read,ql)
 for j,name in enumerate(['run','dsp','zero','boundary','turns','constant']):
  msg=o(f'msg {510+j*175} 550 symbol {OUT}/{name}.txt');c(route,msg,j);c(msg,start)
+for j,name in enumerate(['slew','slew-constant','short','short-constant','fit'],7):
+ msg=o(f'msg {510+(j-7)*175} 580 symbol {OUT}/{name}.txt');c(route,msg,j);c(msg,start)
 finishr=o('obj 25 820 r record-session-done');fin=o('obj 25 860 t b b b b');c(finishr,fin);c(watch,fin);c(route,fin,6)
 stop=o('msg 360 900 stop');c(fin,stop,3);c(stop,cap);c(stop,input_reader);c(stop,watch)
 rewind=o('msg 250 900 rewind');c(fin,rewind,2);c(rewind,ql)
@@ -185,6 +187,52 @@ def turn_score(signal):
     return events
 turns=turn_score('wave');constant=turn_score('constant')
 scores={'run':run,'dsp':dsp,'zero':zero,'boundary':boundary,'turns':turns,'constant':constant}
+def slew_score(signal, short=False):
+    events=[(0,'record-session-player-1','stop'),(0,'record-session-player-2','stop'),
+            (20,'1-sample-path',f'symbol {OUT}/{signal}.wav'),
+            (20,'2-sample-path',f'symbol {OUT}/lane.wav'),
+            (30,'1-buffer-select','sample 1'),(30,'2-buffer-select','sample 2'),
+            (30,'1-quantizer','1'),(30,'record-session-player-2','speed 2'),
+            (100,'record-session-player-2','play'),
+            (12500,'record-session-player-1','stop'),
+            (12500,'record-session-player-2','stop'),(14000,'record-session-done','bang')]
+    def send(t,msg):events.append((t,'record-session-player-1',msg))
+    send(40,'slew 0');send(40,'speed 2');send(50,'curve 0');send(100,'play')
+    # First glide, interrupted before completion, then sub-report-interval glides.
+    for t,msg in [(300,'slew 2000'),(300,'speed 4'),(800,'speed 0'),
+                  (1100,'curve -1'),(1100,'speed 3'),(3200,'slew 1'),
+                  (3200,'speed 0'),(3210,'speed 4'),(3220,'slew 0.1'),
+                  (3220,'speed 1'),(3220.2,'speed 3'),(3230,'slew 5'),
+                  (3230,'speed 2'),(3250,'reverse'),(3500,'curve -0.5'),
+                  (3500,'slew 400'),(3500,'speed 0'),(3600,'play'),
+                  (3650,'speed 4'),(3750,'reverse'),(3900,'play'),
+                  (4200,'stop'),(4250,'speed 1'),(4300,'play'),
+                  (4600,'slew 2000'),(4600,'curve 0'),(4600,'speed 4'),
+                  (6600,'speed 0'),(6800,'reverse'),(7000,'speed 3'),
+                  (7200,'slew 0'),(7200,'speed 2')]:send(t,msg)
+    # Boundary edits during a glide; loop duration falls below the fixed fade
+    # only in the explicitly separate short-loop score.
+    for t,length in [(7600,.1),(8600,.02),(9600,.012),(10600,.008)]:
+        events.append((t,'1-loop-region',f'0.05 {0.05+(length if short else .1):.6f}'))
+        send(t+100,'slew 400');send(t+100,'speed 4');send(t+550,'reverse')
+        send(t+700,'speed 2')
+    return events
+scores.update({'slew':slew_score('wave'),'slew-constant':slew_score('constant'),
+               'short':slew_score('wave',True),'short-constant':slew_score('constant',True)})
+fit=[e for e in slew_score('wave') if e[0]<=100 or e[0]>=12500]
+fit += [(300,'record-session-player-1','slew 500'),(300,'record-session-player-1','curve -1'),
+        (300,'1-num_beats_for_segment','1'),(300,'project_bpm','320'),
+        (300,'record-session-player-1','speed 4'),(300,'1-clock_mode_enabled','1'),
+        (1200,'record-session-player-1','reverse'),
+        (1500,'record-session-player-1','slew 2000'),(1500,'record-session-player-1','curve 0'),
+        (1500,'project_bpm','60'),(1500,'1-num_beats_for_segment','64'),
+        (4000,'record-session-player-1','play'),(4200,'1-clock_mode_enabled','0'),
+        (4600,'record-session-player-1','play'),(6500,'record-session-player-1','slew 0'),
+        (6500,'1-num_beats_for_segment','1'),(6500,'project_bpm','320'),
+        (6500,'1-clock_mode_enabled','1'),(7500,'1-clock_mode_enabled','0'),
+        (8000,'record-session-player-1','speed 2'),(9000,'record-session-player-1','stop'),
+        (9200,'record-session-player-1','play')]
+scores['fit']=fit
 for name,data in scores.items():score(data,OUT/f'{name}.txt')
 checks=[check(OUT/f) for f in ('observed-player.pd','check.pd')]
 assert not any(c['errors'] for c in checks),checks

@@ -1,0 +1,7 @@
+{
+  "base_commit": "b85982ab8845ac54e9380b6212314e6f573d3d75",
+  "before_sha256": "8232e2067115c7b4e41791c6c98688ff08e2e68a52a55316caffeade00b53f46",
+  "after_sha256": "cb93cfb828b08aa3ec4292609c30295af2520c19cb791a92bafdfef65a14e719",
+  "outside_three_objects_one_comment_and_eight_wires_byte_identical": true,
+  "runtime_sha256": "86179a37e58e7a0f0436fc555f56ce41892e3f32ed19b4a3ba8f1cfe3c17476e"
+}
