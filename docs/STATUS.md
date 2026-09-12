@@ -7,6 +7,27 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## End-of-day playable CUT checkpoint — 2026-09-11
+
+Accepted PRs #27–#32 are merged. Runtime/evidence checkpoint on main is
+`f560243` (the file tree matches tested `853c6f5`). The README now contains one
+compact Grid quick reference covering ALT, cuts, two-key loops, MOD, LEDs and
+cancellation behavior. This wrap-up changes documentation only.
+
+Native UI checked at handoff: both players Stopped, DSP enabled, internal clock
+running at 110 BPM, 1/16 quantization, Player 1 at 1x and Player 2 at 0.5x. Grid
+connected with verified lease. Player 1 view left visible. Sample 1 is DrumLoop;
+sample 2 is the retained reversed/stereo-swapped test buffer. The recorder and
+diagnostic taps were removed during the prior clean reload. This describes the
+current session, not saved-project recall; files/settings may need reloading.
+
+Next bounded work: trace the existing recording path and expose its controls and
+actual recording state on the Grid. Reuse the accepted fixed-length recording
+and local stereo input route. First establish which controls and feedback already
+exist before choosing the mapping. Dynamic growth, overdub, cross-instance
+transport repair and new pages beyond that slice remain separate. No recording
+implementation or additional feature work was started in this wrap-up.
+
 ## Combined two-lane CUT review candidate — 2026-09-11
 
 Base is accepted MOD branch `ac40fc85d3f4d02ffeb3087d7c0904bcad94e379`.
