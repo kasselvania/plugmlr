@@ -119,6 +119,10 @@
   Do not reconnect the obsolete calc_duration tempo branch. Mode/tempo/beat edits
   must preserve current position and stopped/paused silence. Test the actual reader
   signals and post-master output, including file/host rate mismatch and cut collisions.
+  Bound sampled glide reports to the last applied rate/new-target interval;
+  preserve fitted rates outside the five free presets. The playback-slew-review
+  evidence retains unresolved natural-loop timing and short-loop reader reuse.
+  Do not describe the bounded rate repair as full playback acceptance.
 
 - Host validation must name host and file rates separately. Passive message-to-signal
   rate reporting and reader taps can span two 64-frame blocks at command boundaries;

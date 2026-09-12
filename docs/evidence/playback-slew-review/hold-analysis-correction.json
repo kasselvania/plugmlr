@@ -1,0 +1,21 @@
+{
+  "rejected_analysis": "A 128-frame whole-score hold limit ignored the existing pending-cut wait of up to 12 ms.",
+  "correction": "Keep all samples and require no hold beyond the existing 12 ms wait plus two 64-frame blocks. This does not accept short-loop reader reuse or late loop periods.",
+  "observations": {
+    "short48": {
+      "maximum_hold_frames": 250,
+      "host_rate": 48000,
+      "old_check_passed": false
+    },
+    "short441": {
+      "maximum_hold_frames": 229,
+      "host_rate": 44100,
+      "old_check_passed": false
+    },
+    "repaired-short441": {
+      "maximum_hold_frames": 229,
+      "host_rate": 44100,
+      "old_check_passed": false
+    }
+  }
+}
