@@ -1,0 +1,33 @@
+{
+  "base_commit": "b7e64009cf2cf53740bea851ff7da4f6a81169c9",
+  "checks": {
+    "voice_0_only_envelope_insertion": true,
+    "voice_1_only_envelope_insertion": true,
+    "all_source_outside_three_canvases_byte_identical": true,
+    "mlr_entry_unchanged": true
+  },
+  "patch_structure": [
+    {
+      "file": "sample_player_rebuild.pd",
+      "canvases": 13,
+      "objects": 1079,
+      "connections": 1048,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "reader-fade-limit.pd",
+      "canvases": 1,
+      "objects": 20,
+      "connections": 24,
+      "errors": [],
+      "native_load_or_audio_test": false
+    }
+  ],
+  "source_sha256": {
+    "sample_player_rebuild.pd": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+    "reader-fade-limit.pd": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+    "tests/build_record_session_check.py": "311d1f50ee320e83c08fd1a9c1e92c937b63315ff2634821f2bf59e17963f627",
+    "tests/analyze_natural_loop.py": "bcfb6a95c3667ab5184ec5ba244b1a9422e5e5c4c37fd920b7119da4cf7dcdc3"
+  }
+}

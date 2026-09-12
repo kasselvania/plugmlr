@@ -39,9 +39,14 @@ or a rate outside 1/64..64 shows **Fit unavailable / Free** and uses the free pr
 
 Speed-glide reports are bounded between the last applied speed and the new target.
 The [playback/slew review](docs/evidence/playback-slew-review/observations.md)
-retains 44.1/48 kHz captures and two open faults: natural loops can run late at
-audio-block boundaries, and very short loops can reuse a reader before its fade
-finishes. Clean listening reports do not establish exact loop timing.
+retains the earlier loop-timing and reader-reuse failures. The
+[natural-loop repair](docs/evidence/natural-loop-timing/observations.md) schedules
+wraps from the existing ramp duration and shortens fades when a reader needs to
+be reused. Native 44.1/48 kHz tests cover cycles down to 2 ms and interrupted
+turns/glides. A full cycle shorter than one host sample stops with feedback.
+Shorter fades can change the sound; numerical checks are not universal click-free
+acceptance. [New musical listening material](docs/evidence/natural-loop-timing/listening.wav)
+is ready for review.
 
 **Slice controls:** each player has a Quantize checkbox and Slice grid menu.
 Checked means queued slices wait for a matching clock tick; unchecked means
