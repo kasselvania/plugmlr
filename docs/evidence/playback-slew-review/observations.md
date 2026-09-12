@@ -130,6 +130,11 @@ No Bitwig, acoustic/device-output or full-application acceptance is claimed.
    Each `.wav.xz` restores the exact native WAV bytes; hashes are in
    `audio-archives.json`.
 
+Per-case event logs and manifests are also stored as `.xz` files, with original
+hashes in `metadata-archives.json`. This keeps repetitive trace output out of the
+code-review diff. Decompress with Python's standard-library `lzma` or `xz -dk`;
+the numerical reports and this source map remain directly readable.
+
 The next focused job is **natural-loop scheduling**, preserving current logical
 position, direction, cuts and cancellation. Establish exact periods at both host
 rates before revising short-loop fades. Then address reader reuse without silently
