@@ -33,6 +33,12 @@ when finished. **Prev/Next** skips empty slots within the selected bank. The
 Sample bank shows the last successfully loaded filename. **Debug** on the main
 screen enables routine console prints; load/record errors remain visible.
 
+**Load from a player:** select **Sample** and a **Slot**, then click **Load sample**
+next to Slot. The file replaces that shared slot and restores the full-sample loop
+and start position; speed, reverse, glide, quantization, Fit and Beat Reset stay as
+set. Cancel leaves the buffer alone. Players using the replaced slot stop before
+loading; press Play when ready. The button is hidden for Live buffers.
+
 **Save a take:** Finish recording, stop all players, open **Live takes / Finish**,
 and click **Save WAV** on the desired buffer row. Choose a destination. Feedback
 reports success or refusal; the row changes to Saved. Export includes only written
