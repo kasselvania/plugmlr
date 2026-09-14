@@ -75,7 +75,7 @@
 #X obj 900 955 r buffer-will-change;
 #X obj 900 990 select _;
 #X obj 1100 955 r \$1-send_target;
-#X obj 900 1030 s \$1-stop_button;
+#X msg 900 1030 preserve;
 #X obj 700 580 s \$1-buffer-clear;
 #X obj 1140 790 r \$1-delete_buffer;
 #X obj 1140 825 spigot;
@@ -217,3 +217,6 @@
 #X connect 96 0 97 0;
 #X connect 97 0 95 1;
 #X connect 79 0 95 0;
+
+#X obj 900 1080 s \$1-stop_button;
+#X connect 76 0 99 0;

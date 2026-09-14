@@ -41,6 +41,32 @@ def run():
             # buffer views append receive-only metadata observers. Original
             # objects/connections still match this checkpoint exactly.
             current = current.replace('debug-print ', 'print ')
+            if name == 'sample_player_rebuild.pd':
+                gate = '\n#X obj 2700 125 r \\$0-stop-direction-reset;\n#X connect 545 0 509 1;\n'
+                assert current.endswith(gate), 'Unexpected direction preservation gate'
+                current = current[:-len(gate)]
+                stop_extension = '#X obj 900 60 route preserve;\n#X obj 900 100 t b b;\n#X obj 1020 100 t b b;\n#X msg 950 145 0;\n#X msg 1070 145 1;\n#X obj 900 580 f 1;\n#X obj 25 620 t b b b;\n#X obj 900 660 s \\$0-stop-direction-reset;\n#X msg 900 700 1;\n#X text 600 430 Buffer changes stop through the same fade but retain direction.;\n#X connect 0 0 31 0;\n#X connect 31 0 32 0;\n#X connect 31 1 33 0;\n#X connect 32 1 34 0;\n#X connect 33 1 35 0;\n#X connect 34 0 36 1;\n#X connect 35 0 36 1;\n#X connect 32 0 4 0;\n#X connect 33 0 4 0;\n#X connect 18 2 37 0;\n#X connect 37 2 36 0;\n#X connect 36 0 38 0;\n#X connect 37 1 2 0;\n#X connect 37 0 39 0;\n#X connect 39 0 38 0;\n'
+                assert current.count(stop_extension) == 1
+                current = current.replace(stop_extension, '')
+                # Restore only the two replaced edges in pd stop_transition.
+                begin = current.index('#N canvas 100 80 1100 900 stop_transition')
+                end = current.index('#X restore', begin)
+                stop = current[begin:end]
+                stop = stop.replace('rechecking the buffer and starting again.;\n\n', 'rechecking the buffer and starting again.;\n#X connect 0 0 4 0;\n')
+                stop = stop.replace('#X connect 17 0 18 0;\n\n', '#X connect 17 0 18 0;\n#X connect 18 2 2 0;\n')
+                current = current[:begin]+stop+current[end:]
+            if name == 'buffer-selection.pd':
+                preserve = '\n#X obj 900 1080 s \\$1-stop_button;\n#X connect 76 0 99 0;\n'
+                assert current.endswith(preserve)
+                current = current[:-len(preserve)].replace('#X msg 900 1030 preserve;', '#X obj 900 1030 s \\$1-stop_button;')
+            if name == 'sample-data.pd':
+                trim = '\n#X obj 600 400 sample-trim \\$1;\n#X connect 29 0 52 0;\n#X connect 52 0 18 0;\n'
+                assert current.endswith(trim), 'Unexpected trim-owner wiring'
+                current = current[:-len(trim)].replace('#X connect 28 3 30 0;\n\n', '#X connect 28 3 30 0;\n#X connect 29 0 18 0;\n')
+            if name == 'sample_player_rebuild.pd':
+                offset = '\n#X obj 2400 165 +;\n#X obj 2500 125 r \\$0-first_index;\n#X text 2400 205 Slice coordinates include the usable sample start.;\n#X connect 84 0 542 0;\n#X connect 543 0 542 1;\n#X connect 542 0 466 0;\n'
+                assert current.endswith(offset), 'Unexpected slice offset wiring'
+                current = current[:-len(offset)].replace('#X connect 83 0 81 0;\n\n', '#X connect 83 0 81 0;\n#X connect 84 0 466 0;\n')
             # Take protection inserts a gate before the unchanged Clear path.
             if name == 'sample_player_rebuild.pd':
                 initialization = '#X obj 900 390 loadbang;\n#X text 900 430 No slice is pending at load. Allow the first natural wrap.;\n#X connect 31 0 16 0;\n'

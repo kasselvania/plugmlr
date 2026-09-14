@@ -7,6 +7,66 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Sample selection and reversible trim — 2026-09-14
+
+Implementation contract (before edits), base PR #40
+`544f8b4d8373cdc305ce4310856e8f00cea25cd0`, branch `codex/sample-editor`.
+The original user session remains open; tests must not replace its samples.
+
+The player waveform gets separate seconds and slice rulers. Edit sample opens a
+focused view for the selected imported buffer. Selection is staged, with numeric
+seconds, draggable edges, zoom and horizontal navigation. Set player loop uses
+existing loop-region-control; Audition selection applies that loop and starts
+this player, with an explicit Stop. Closing the view does not stop playback.
+
+Trim is non-destructive: retain original stereo arrays and change the buffer's
+usable first/exclusive-end metadata. Restore original returns full loaded bounds.
+All seconds remain coordinates in the original file, including a nonzero trim
+start; length is end minus start. Round requests to the nearest source frame,
+require at least four frames, reject non-finite/out-of-bounds/reversed ranges.
+Stop matching readers, invalidate readiness, then commit after the existing
+20 ms safety interval. A new load cancels a pending trim and resets trim history.
+Selection/reselection retains the committed trim; player controls are retained.
+All 16 slices divide the usable range and add its first-frame offset. No DSP
+redesign, physical array shrink, automatic silence removal or stretch processor.
+
+Editing controls address the selected shared buffer explicitly. Loop/audition
+address only the initiating player. Source arrays remain available for Restore
+until replacement or closing the patch; saving the Pd patch is not audio/session
+persistence. Native audio, UI and numerical evidence will be recorded separately.
+
+Source follow-through: `sample-trim` sits between the original sample-data packet
+and `s_b_buffer_states`. Original array loading and stereo readers stay in place.
+The original zero-based slice arithmetic now adds first_index once. The editor
+uses buffer-owned cancellable range peak jobs and the existing loop request.
+
+The native trace also exposed that hard Stop reset Reverse during a content
+change. `buffer-selection` now sends `preserve` on the same stop_button bus for
+buffer-will-change. `pd stop_transition` retains its 6/9 ms fade/cleanup and all
+Stop listeners; only its legacy direction reset is gated for that request.
+Ordinary Stop remains unchanged. This also repairs the source-traced-only
+control-retention gap left open in PR #40.
+
+Native UI exposed filename loss during trim invalidation, visible editor patch
+cords, and a shutdown message sent after receiver teardown. These were repaired.
+Pd-Lua removes receivers before finalize; views cancel and owners notify in
+`destruct` before delegating to Pd-Lua's normal teardown. The final load, run and
+close are checked in the actual console. Test copies use unique Lua class names
+because a live user session can retain previously loaded definitions.
+
+Final native 48 kHz capture with a 44.1 kHz file passed the numerical suite,
+including shared-buffer stops, independent-buffer continuity, stereo content,
+nonzero trim starts, forward/reverse cuts, Restore, reload races and reselection.
+Native handle dragging, Trim/Restore, zoom/pan and clean closure were observed.
+User listening and ordinary-application usability acceptance remain open.
+
+Validation and remaining gates are in
+[the editor evidence note](evidence/sample-editor/observations.md). No new source
+file export, trim persistence, offline stretching, Grid changes or dependency
+installation belongs to this slice. Restart plugdata after updating Lua files
+before using the new editor in the ordinary application; this turn preserves the
+currently open user session and its loaded samples.
+
 ## Load sample from the focused player — 2026-09-14
 
 Branch `codex/player-load-sample`, based on the clean PR #39 head
