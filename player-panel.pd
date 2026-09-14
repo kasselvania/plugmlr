@@ -108,3 +108,5 @@
 #X connect 84 0 85 0;
 
 #X obj 350 85 player-sample-load \$1;
+
+#X obj 530 182 player-sample-edit \$1 \$2;

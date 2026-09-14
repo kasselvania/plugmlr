@@ -1,0 +1,5 @@
+{
+  "failure": "Player 902 silent at 4.95 seconds",
+  "cause": "Fixture pressed Play after buffer switching had automatically resumed player 902; this toggled Pause. Remove the duplicate Play, not the silence assertion.",
+  "capture_sha256": "15ac3d117b14fb81dcec3a92e64778525e5c7adfc52bcce7a307bcb54f07be9a"
+}

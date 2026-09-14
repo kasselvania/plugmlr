@@ -20,12 +20,18 @@ function C:postinitialize()
     -- Pd-Lua reports unbound sends as errors. These buses always have an owner.
     bind(self.key..'-view-info','ignore')
     bind(self.key..'-view-changed','ignore')
+    bind(self.key..'-view-closing','ignore')
     if self.kind=='live' then
         bind(self.slot..'_l_b_recording','recording')
         bind(self.key..'-view-saved','saved')
     end
 end
 function C:ignore() end
+function C:destruct()
+    -- Pd-Lua destroys receivers BEFORE finalize. Notify while they still exist.
+    pd.send(self.key..'-view-closing','bang',{})
+    pd.Class.destruct(self)
+end
 function C:finalize()
     self.clock:destruct()
     for _,r in ipairs(self.receivers) do r:destruct() end
@@ -51,7 +57,9 @@ function C:metadata(_,a)
     self.ready,self.rate,self.first,self.last=ready,rate,first,last
     if self.kind=='sample' and ready==1 and self.pending then
         self.name=self.pending:match('([^/]+)$') or self.pending
+        self.loaded_name=self.name
         self.pending=nil; changed=true
+    elseif self.kind=='sample' and ready==1 then self.name=self.loaded_name or self.name
     elseif self.kind=='live' then self.name='Live '..self.slot end
     if ready==0 then self.name=self.kind=='sample' and 'Empty' or self.name end
     if changed then self:invalidate() end
@@ -76,11 +84,24 @@ function C:request(sel,a)
         return
     end
     self:info(a[1])
-    if sel~='peaks' or self.ready~=1 or self.busy then return end
-    if self.peaks then pd.send(a[1],'peaks',self.peaks); return end
-    self.waiters[a[1]]=true
+    if (sel~='peaks' and sel~='range') or self.ready~=1 or self.busy then return end
+    local first,last=self.first,self.last
+    if sel=='range' then
+        if not finite(a[2]) or not finite(a[3]) then return end
+        first,last=math.floor(a[2]),math.ceil(a[3])
+        if first<self.first or last>self.last or last<=first then return end
+    end
+    if self.peaks and first==self.first and last==self.last then
+        pd.send(a[1],'peaks',self.peaks);return
+    end
+    self.waiters[a[1]]={first,last}
+    self:start_job()
+end
+function C:start_job()
     if self.job then return end
-    self.job={at=math.floor(self.first), first=math.floor(self.first), last=math.floor(self.last), values={}}
+    local _,range=next(self.waiters)
+    if not range then return end
+    self.job={at=range[1],first=range[1],last=range[2],values={}}
     for i=1,N do self.job.values[i]={math.huge,-math.huge,math.huge,-math.huge} end
     self.clock:delay(2)
 end
@@ -104,7 +125,15 @@ function C:step()
     if stop<j.last then self.clock:delay(2); return end
     local result={self.key,j.first,j.last}
     for _,v in ipairs(j.values) do for k=1,4 do result[#result+1]=finite(v[k]) and v[k] or 0 end end
-    self.peaks,self.job=result,nil
-    local waiters=self.waiters;self.waiters={}
-    for reply in pairs(waiters) do pd.send(reply,'peaks',result) end
+    self.job=nil
+    if j.first==self.first and j.last==self.last then self.peaks=result end
+    -- Remove matching waiters before synchronous replies can request another view.
+    local replies={}
+    for reply,range in pairs(self.waiters) do
+        if range[1]==j.first and range[2]==j.last then
+            replies[#replies+1]=reply;self.waiters[reply]=nil
+        end
+    end
+    for _,reply in ipairs(replies) do pd.send(reply,'peaks',result) end
+    self:start_job()
 end

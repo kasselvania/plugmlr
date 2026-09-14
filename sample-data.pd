@@ -85,7 +85,7 @@
 #X connect 28 2 23 0;
 #X connect 28 2 7 0;
 #X connect 28 3 30 0;
-#X connect 29 0 18 0;
+
 #X connect 30 0 29 1;
 #X connect 31 0 29 5;
 #X connect 32 0 27 0;
@@ -112,3 +112,7 @@
 
 #X obj 355 355 buffer-view-data sample \$1;
 #X connect 40 1 51 0;
+
+#X obj 600 400 sample-trim \$1;
+#X connect 29 0 52 0;
+#X connect 52 0 18 0;
