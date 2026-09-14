@@ -63,7 +63,7 @@
 #X obj 15 560 cnv 15 645 26 empty empty BUFFER\ /\ RECORD 8 13 0 13 #b75e49 #faf8f2 0;
 #X obj 690 228 cnv 15 305 22 empty empty BEAT\ RESET 8 11 0 13 #347c72 #faf8f2 0;
 #X obj 30 1190 player-overview-bridge \$1 \$2 \$0;
-#X obj 555 85 bng 22 180 50 0 mlr-close-views empty Overview 28 11 0 12 #faf8f2 #347c72 #283d3a;
+#X obj 555 48 bng 22 180 50 0 mlr-close-views empty Overview 28 11 0 12 #faf8f2 #347c72 #283d3a;
 #X connect 47 0 48 0;
 #X connect 50 0 51 0;
 #X connect 51 0 52 0;
@@ -80,12 +80,12 @@
 #X obj 20 176 player-waveform \$1 \$2;
 
 
-#X obj 350 85 bng 20 180 50 0 \$0-browse-prev empty Prev 25 10 0 11 #faf8f2 #347c72 #283d3a;
-#X obj 445 85 bng 20 180 50 0 \$0-browse-next empty Next 25 10 0 11 #faf8f2 #347c72 #283d3a;
+#X obj 475 85 bng 20 180 50 0 \$0-browse-prev empty Prev 25 10 0 11 #faf8f2 #347c72 #283d3a;
+#X obj 565 85 bng 20 180 50 0 \$0-browse-next empty Next 25 10 0 11 #faf8f2 #347c72 #283d3a;
 #X msg 30 1260 -1;
 #X msg 180 1260 1;
 #X obj 30 1300 buffer-browse \$1 \$2;
-#X text 345 63 Loaded slots;
+#X text 475 63 Loaded slots;
 
 
 #X connect 74 0 76 0;
@@ -106,3 +106,5 @@
 #X obj 690 718 cnv 15 305 22 empty mlr-clear-status Clear\ then\ Discard\ unsaved\ audio 5 11 0 10 #faf8f2 #283d3a 0;
 #X connect 83 0 84 0;
 #X connect 84 0 85 0;
+
+#X obj 350 85 player-sample-load \$1;

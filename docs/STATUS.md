@@ -7,6 +7,36 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Load sample from the focused player — 2026-09-14
+
+Branch `codex/player-load-sample`, based on the clean PR #39 head
+`a66b9c08f7f95e7319f6cadd6b21ac41833b738f`. Remote main was verified at
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; this remains stacked work.
+
+Agreed behavior: add **Load sample** beside Slot, only for imported Sample
+buffers. Replace the selected shared slot; reset position and full-content loop,
+retain speed/direction/glide/quantization/Fit/Beat Reset. No bank navigation,
+automatic slot assignment or extra replacement confirmation. Cancelling the
+chooser does nothing. Existing safe loading stops readers of that slot first.
+
+`player-sample-load.pd` is a view adapter with the owning player's private ID.
+It reads `buffer-kind`, `incoming_global_buffer_route` and `buffer-switching`,
+gates its `load-sample` bang, and sends to the existing `N-sample-load` receiver.
+That slot's `sample-data` owns the chooser, so later selection cannot redirect
+its result. `buffer-will-change` stops matching readers before delayed resize;
+the ready metadata restores full-content bounds in the original player. No
+loader, selector, playback, recording, mixer or Grid source was edited.
+
+Native plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3: actual player-panel
+button opened a chooser by mouse; Sample/Live visibility passed. Isolated slots
+901/902 loaded through the new message route, reporting 631881 stereo frames
+at 44.1 kHz. Exported arrays exactly match the source; cancelling preserved
+byte-identical exports. Live and switching gates ignored load requests. The
+original MLR session stayed open, with its existing in-memory panel and samples.
+No new playback/listening acceptance is claimed; reset/control retention is
+traced through the unchanged engine and still needs an ordinary user run after
+reopening MLR. [Evidence and procedure](evidence/player-load-sample/observations.md).
+
 ## Frontend organization — 2026-09-12
 
 Authorized UI pass on `codex/ui-overview`, from PR #36 at
