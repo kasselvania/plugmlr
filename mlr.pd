@@ -1,7 +1,7 @@
 #N struct 2052-cell float x float y float cellsize float color;
 #N struct 2054-cell float x float y float cellsize float color;
 #N canvas 80 60 1120 850 12;
-#X obj 10 10 cnv 15 1070 790 empty empty empty 8 395 0 12 #eeece5 #283d3a 0;
+#X obj 10 10 cnv 15 1070 890 empty empty empty 8 395 0 12 #eeece5 #283d3a 0;
 #X obj 20 20 cnv 15 290 42 empty empty PLUGMLR 8 21 0 24 #347c72 #faf8f2 0;
 #X text 30 68 Stereo tape / shared buffers / live takes;
 #X obj 392 28 bng 26 180 50 0 \$0-sample-bank-open empty Sample\ bank 33 13 0 12 #faf8f2 #347c72 #283d3a;
@@ -43,9 +43,9 @@
 #X obj 20 672 track-overview-row 15;
 #X obj 20 701 track-overview-row 16;
 #X text 26 740 Load in Sample bank. Choose the source in a player. Raise its Level and Master to hear it.;
-#X obj 20 850 sample-bank-panel \$0;
-#X obj 20 890 clock-display-state;
-#X text 20 1040 ORIGINAL ENGINE WIRING / views above only send commands and display existing state.;
+#X obj 20 950 sample-bank-panel \$0;
+#X obj 20 990 clock-display-state;
+#X text 20 1140 ORIGINAL ENGINE WIRING / views above only send commands and display existing state.;
 #N canvas 733 172 450 300 mixer 0;
 #X obj -77 630 *~;
 #X obj -12 630 *~;
@@ -156,7 +156,7 @@
 #X connect 45 1 21 0;
 #X connect 46 0 20 0;
 #X connect 46 1 21 0;
-#X restore 20 1080 pd mixer;
+#X restore 20 1180 pd mixer;
 #N canvas 0 22 450 300 arrays-samples 0;
 #X obj 37 107 sample-data 1;
 #X obj 774 154 until 16;
@@ -234,7 +234,7 @@
 #X connect 11 0 8 1;
 #X connect 13 0 10 0;
 #X obj 600 740 record-takes-panel \$0;
-#X restore 270 1080 pd arrays-samples;
+#X restore 270 1180 pd arrays-samples;
 #N canvas 180 120 1000 700 clock-system 0;
 #X obj 43 27 playhead;
 #X text 382 204 Timing Calculator;
@@ -350,7 +350,7 @@
 #X connect 33 0 51 0;
 #X connect 51 0 52 0;
 #X connect 25 0 29 0;
-#X restore 520 1080 pd clock-system;
+#X restore 520 1180 pd clock-system;
 #N canvas 733 172 450 300 grid-input-output 0;
 #X floatatom -260 1452 5 0 0 0 - - - 12;
 #X floatatom -214 1452 5 0 0 0 - - - 12;
@@ -525,20 +525,22 @@
 #X connect 73 4 78 0;
 #X connect 73 5 79 0;
 #X connect 82 0 73 0;
-#X restore 770 1080 pd grid-input-output;
-#X obj 20 1150 lb;
-#X msg 20 1190 8;
-#X floatatom 20 1230 5 0 0 0 - - - 12;
-#X obj 20 1270 s 1-num_beats_for_segment;
+#X restore 770 1180 pd grid-input-output;
+#X obj 20 1250 lb;
+#X msg 20 1290 8;
+#X floatatom 20 1330 5 0 0 0 - - - 12;
+#X obj 20 1370 s 1-num_beats_for_segment;
 #X connect 49 0 50 0;
 #X connect 50 0 51 0;
 #X connect 51 0 52 0;
-#X obj 700 850 r \$0-master-level;
-#X msg 700 890 set \$1;
-#X obj 700 930 s \$0-master-show;
+#X obj 700 950 r \$0-master-level;
+#X msg 700 990 set \$1;
+#X obj 700 1030 s \$0-master-show;
 #X connect 53 0 54 0;
 #X connect 54 0 55 0;
 
 #X obj 800 74 tgl 20 0 mlr-debug empty Debug 25 10 0 12 #faf8f2 #347c72 #283d3a 0 1;
 
-#X obj 300 890 take-save;
+#X obj 300 990 take-save;
+
+#X obj 20 770 pattern-bank-panel mlr-pattern-file;
