@@ -71,6 +71,12 @@
   Resume restores reader gates/gain before motion; Stop, buffer switching and
   leaving paused state cancel pending cleanup. Test slices during and after Pause,
   exact loop-end pauses, rapid toggle parity and pre-mixer silence.
+- Committed slices now start/resume at their direction-aware cell edge. Quantization
+  schedules the launch; regions/Beat Reset retain their existing transport behavior.
+  Reuse the Stop transition's single pending entry for Play or slice, recheck buffer
+  readiness after cleanup, and let another Stop cancel it. Launch from silence uses
+  the original Play fade; running cuts use Slice. Test actual mixer audio at first
+  launch, after Pause, during Stop cleanup, and at the following natural wrap.
 - Slice mapping is an explicit musical choice: fixed 16-way whole-content cuts,
   and any committed cut restores full-content bounds. Keep this choice visible in
   `pd slice_policy` and the linked slice-position calculation; future modes must
@@ -176,8 +182,17 @@
   Disconnect clears held input state. Keep transport immediate and slice timing
   in the existing player. Run check_grid_alt.py for the exact input-only boundary.
 
-- Two-key CUT loops include both cells and commit once on first release. Keep
-  gesture state in grid-cut-keys and seconds conversion in grid-loop-region;
+- Two-key CUT loops include both cells and commit once on first release after
+  at least 80 ms continuous overlap. Every fresh ordinary key-down still sends
+  its slice through the existing quantizer, including overlapping keys. Keep
+  LOOP_HOLD_MS in grid-cut-keys as the single feel setting. Per-row clocks only
+  arm gestures; release owns commit. Short releases, cancellation, modifiers,
+  third keys and detach unset the clocks. Preserve immediate MOD single-cell loops.
+  The user accepted immediate cuts, then requested 80 ms after trying 160 ms;
+  do not claim physical acceptance of a changed threshold from timed tests alone.
+  Run build_grid_hold_check.py / check_grid_hold.py in native plugdata; old
+  checkpoint gesture fixtures predate the new overlapping-key slice behavior.
+  Keep gesture state in grid-cut-keys and seconds conversion in grid-loop-region;
   original loop-region-control owns validation and transitions. Loop commit must
   cancel the queued quantized slice as well as the pending trajectory. Stop,
   Pause, buffer changes, ALT and detach cancel unfinished gestures. Validate

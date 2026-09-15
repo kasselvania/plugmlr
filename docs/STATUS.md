@@ -7,6 +7,135 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Grid two-key loop hold — 2026-09-15
+
+### Grid interaction review / 80 ms and slice launch contract
+
+User feedback: 160 ms is too long; use 80 ms. The second-key jump is the
+immediate ordinary slice command, not a delayed loop commit. A hold threshold
+cannot prevent that jump while every fresh press remains immediate. Keep this
+tradeoff explicit; do not silently restore suppression or delay to ordinary cuts.
+
+The user now requests slice-to-start, including from Pause. A valid committed
+slice starts a ready player at that slice's direction-aware whole-content edge.
+Forward uses the cell's first frame; reverse uses its exclusive end. Grid and
+on-screen slice buttons share this policy. Quantize remains the existing player
+setting: a pending cut waits for a matching clock tick. Stop/Pause, buffer/mode
+changes and a loop commit clear pending requests as before. A slice during Stop
+cleanup replaces the queued start destination, waits for cleanup, and rechecks
+readiness. Another Stop cancels it. Invalid indices and empty/switching buffers
+do not start playback. Regions and Beat Reset do not acquire slice-to-start.
+
+Source trace before changes:
+- mlr-grid -> root OSC route -> grid-cut-control/grid-cut-keys -> original row
+  dispatcher -> row_N -> player quantizer -> selected_slice -> direction/frame
+  mapping -> slice_policy/pending-cut-delay -> readers and mixer.
+- ALT is an exclusive Play/Pause command. It deliberately does not choose the
+  accompanying cell, which explains why ALT starts at the existing loop edge.
+- Selected slices calculate trajectories but do not set the stopped player's
+  playing flag. The mixer only opens when that flag is already true: this is
+  the source of the Play-first requirement, not missing Grid input.
+- The Stop transition currently queues only a boolean Play; generalize its
+  existing single pending entry to retain the selected slice, not a second queue.
+- Two-key loops are release-committed after continuous overlap; third keys,
+  modifiers and cancellation discard the pending gesture. MOD is an immediate
+  one-cell loop, not a sample launch command. Duplicate downs are ignored.
+- Receive-only LED rows exist for lanes 1/2 although input routes lanes 1–6.
+  Queued quantized cuts have no dedicated LED indication; a stopped clock can
+  leave a cut pending. Focus is cached by lane, not synchronized with manual
+  navigation. These UI gaps are recorded, not silently expanded in this repair.
+
+Implementation: `pd slice_input` validates dispatched cells; `pd stop_transition`
+retains one pending bang (Play) or float (slice) and rechecks readiness afterward.
+`pd slice_policy` records whether the pending jump is a slice or region. Only
+ordinary slice commit changes transport. Starts from silence reset the existing
+crossover and use its Play fade; running cuts and region edits use Slice.
+`pending-cut-delay` also observes Stop/Pause fade timing before reusing a reader.
+The Lua change is only the hold constant, now 80 ms.
+
+Native result: plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23,
+48 kHz host with a 44.1 kHz stereo test file. The original capture reproduces
+silent first/stopped slice launches. Final capture passes 16 numerical checks,
+including 41 requested trajectory entries, all 16 cells in each direction,
+Pause/Stop cleanup, quantized launch/cancellation, malformed/empty/switching
+requests, a shared-buffer second lane, and loop release without retrigger.
+Largest final post-mixer sample step is 0.007307 (fixture-specific). All output
+is finite, intentional stopped spans are silent, and tested active spans retain
+their mixer gain. The separate 80 ms native gesture suite passes all 53 cases.
+69 other Pd/Lua components and 10 player subpatches remain byte-identical to
+62b7b4a, including readers, crossover DSP, Pause and natural-loop logic.
+
+The first launch candidate exposed a 0.026558 step at its next natural wrap;
+using the existing Play fade for launch repairs it. Two comment syntax mistakes
+and an invalid list-constructor attempt were caught in the actual console and
+corrected. A subsequent untrimmed command-list candidate failed audio checks;
+explicit `list trim` restores the existing selector interface. Failed captures,
+source manifests and console observations are retained, not counted as passes.
+
+[Evidence, control map and repeat steps](evidence/grid-slice-launch/observations.md).
+New physical feel/listening acceptance and 44.1 kHz host operation remain open.
+All diagnostic recording stopped automatically (15 s capture / 16 s watchdog);
+test patches are closed. The user's paused Player 1 / Strategy_107_G.wav session
+was left open. Fully quit and reopen plugdata, then mlr.pd, to use this revision.
+
+### 160 ms follow-up
+
+After restarting plugdata, the user reported the immediate-cut/40 ms interaction
+was working very well and requested a 160 ms hold. The only production edit from
+`8b772662fb96f8f4ba9c5e9cbbc722aeb0abd8d4` is `LOOP_HOLD_MS = 160`.
+Timing still begins on the second key-down, both keys must remain held, and the
+first release after qualification commits the loop. Ordinary slice presses do
+not wait. This supersedes the earlier unresolved feel report below for 40 ms;
+physical feel at 160 ms remains to be checked after another full app restart.
+
+The native timing fixture now checks 0/5/159/160/161/200 ms overlap, both release
+orders and three rows. The earlier cancellation/modifier scenarios run at four
+times their original timing so they still straddle the new threshold.
+All 53 cases passed in plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3;
+the native console showed completion without new errors. The silent fixture
+was closed and MLR remained playing. All 71 other root Pd/Lua components
+still match the PR #42 base; no audio or device code was changed.
+See [160 ms evidence](evidence/grid-loop-hold/160ms/observations.md).
+
+### Original 40 ms candidate and observations
+
+Contract before edits, based on PR #42 at
+`a09c10b5a2a653862d648564f93a9ac3586656d3`.
+Try a 40 ms minimum continuous overlap, starting at the second key-down.
+Every fresh ordinary key-down sends its slice immediately to the existing quantizer, including a
+second or third overlapping key. Releasing either key before 40 ms creates no
+loop or delayed slice. The second key is no longer suppressed.
+After 40 ms, the first release commits the existing inclusive-cell loop once.
+The timer only arms the gesture; it never sends a loop by itself. Duplicate
+downs do not restart it. Cancellation, a third key, ALT/MOD, disconnect and
+object closure must not leave an armed gesture behind. Rows remain independent.
+MOD single-cell loops, transport, quantization and playback DSP are unchanged.
+The user selected this as a candidate to try, not as final feel acceptance.
+
+Implementation is confined to grid-cut-keys.pd_lua: one named 40 ms threshold,
+six one-shot Pd clocks (one per row), cancellation on the existing gesture-clear
+paths, and ordinary slice dispatch on all fresh unmodified key-downs. Pd-Lua
+owns clock cleanup on object destruction. No polling, new DSP or device commands.
+
+Native plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3 passed 53 timed cases:
+0/5/39/40/41/100 ms overlaps, both release orders, multiple independent rows,
+duplicates, rapid rolls, stale-deadline cancellation, ALT/MOD priority, third keys,
+player cancellation and detach before/after arming. Exact event timestamps verify
+slice delivery at key-down and loop delivery only on a qualified release.
+All 71 other root Pd/Lua components match base #42 byte-for-byte. The native
+console reports completion without new errors; the existing Grid warning was
+already present before testing. No audio capture or physical Grid claim occurred.
+The diagnostic is closed and the user's paused Player 1 session is preserved.
+
+[Native event evidence and repeat procedure](evidence/grid-loop-hold/observations.md).
+Human feel acceptance remains open. Restart plugdata and reopen mlr.pd when ready
+to try the updated Lua; simply opening a second patch may retain the old class.
+The user subsequently rejected perceived delay/suppressed presses as a standard
+interaction. This remains an unmerged experiment: the candidate sends all cuts
+on key-down and delays only loop eligibility. The agent has not reloaded the
+candidate into the live MLR session. Neither 40 ms nor overlap-based looping is
+accepted as the final default; an explicit loop modifier is a possible alternative.
+
 ## Live loop window — 2026-09-14
 
 Contract before implementation, branch `codex/live-loop-window`, based on
