@@ -12,13 +12,14 @@ def key(t,x,y,z):return [t,'key',f'{x} {y} {z}']
 def event(t,kind,*a):return [t,kind,*a]
 # A slice on each fresh down; no event at all on an unqualified release.
 for row in (1,2,6):
- for overlap in (0,5,39,40,41,100):
+ for overlap in (0,5,159,160,161,200):
   for first_up in (2,7):
    second_up=7 if first_up==2 else 2
-   cmd=[key(10,2,row,1),key(20,7,row,1),key(20+overlap,first_up,row,0),key(150,second_up,row,0)]
+   cmd=[key(10,2,row,1),key(20,7,row,1),key(20+overlap,first_up,row,0),key(250,second_up,row,0)]
    want=[event(10,'slice',2,row,1),event(20,'slice',7,row,1)]
-   if overlap>=40:want+=[event(20+overlap,'loop',row,2,8)]
+   if overlap>=160:want+=[event(20+overlap,'loop',row,2,8)]
    add(f'row{row}-overlap{overlap}-release{first_up}',cmd,want)
+boundary_cases=len(cases)
 add('long-first-short-overlap',[key(10,1,1,1),key(160,8,1,1),key(165,8,1,0),key(200,1,1,0)],
     [event(10,'slice',1,1,1),event(160,'slice',8,1,1)])
 add('duplicate-does-not-restart',[key(10,1,1,1),key(20,8,1,1),key(50,8,1,1),key(61,8,1,0),key(100,1,1,0)],
@@ -50,6 +51,10 @@ add('repeat-taps-with-first-held',[key(10,1,1,1),key(20,5,1,1),key(25,5,1,0),key
 add('malformed-duplicate-release',[[10,'key','-1 1 1'],[15,'key','0 9 1'],[20,'key','x 1 1'],[25,'key','1 1'],key(30,0,7,1),key(40,1,1,0)],[])
 add('both-rows-qualified',[key(10,15,1,1),key(20,0,1,1),key(30,3,2,1),key(40,9,2,1),key(90,15,1,0),key(100,9,2,0),key(110,0,1,0),key(120,3,2,0)],
     [event(10,'slice',15,1,1),event(20,'slice',0,1,1),event(30,'slice',3,2,1),event(40,'slice',9,2,1),event(90,'loop',1,0,16),event(100,'loop',2,3,10)])
+# Preserve the cancellation scenarios' relative ordering around the longer hold.
+for case in cases[boundary_cases:]:
+ for command in case['commands']:command[0]*=4
+ for expected in case['expected']:expected[0]*=4
 class Patch:
  def __init__(s):s.objects=[];s.edges=[]
  def add(s,l):s.objects.append('#X '+l+';');return len(s.objects)-1
@@ -71,14 +76,14 @@ pr=o('obj 20 580 print grid-hold-check-done');c(tr,pr)
 (OUT/'check.pd').write_text('#N canvas 100 80 1000 650 12;\n'+'\n'.join(p.objects+p.edges)+'\n')
 score=[]
 for index,case in enumerate(cases):
- base=250*index;case['base_ms']=base
+ base=1000*index;case['base_ms']=base
  score += [(base,'grid-hold-input','connected 0'),(base,'grid-hold-input','connected 1'),(base,'grid-hold-log','list case '+str(index))]
  score += [(base+t,'grid-hold-input',typ+' '+value) for t,typ,value in case['commands']]
-score += [(250*len(cases),'grid-hold-input','connected 0'),(250*len(cases)+5,'grid-hold-finish','bang')]
+score += [(1000*len(cases),'grid-hold-input','connected 0'),(1000*len(cases)+5,'grid-hold-finish','bang')]
 last=0;lines=[]
 for t,dst,msg in sorted(score,key=lambda v:v[0]):lines.append(f'{t-last} {dst} {msg};');last=t
 (OUT/'score.txt').write_text('\n'.join(lines)+'\n')
-manifest=dict(base='a09c10b5a2a653862d648564f93a9ac3586656d3',production_sha256=digest,test_class=name,cases=cases,duration_ms=last)
+manifest=dict(base='a09c10b5a2a653862d648564f93a9ac3586656d3',production_sha256=digest,test_class=name,cases=cases,duration_ms=last,hold_ms=160,cancellation_timing_scale=4)
 manifest['fixture_sha256']={n:hashlib.sha256((OUT/n).read_bytes()).hexdigest() for n in ['check.pd','score.txt',name+'.pd_lua']}
 (OUT/'source.json').write_text(json.dumps(manifest,indent=2)+'\n')
 sys.path.insert(0,str(ROOT/'tests'));from check_patch_connections import check

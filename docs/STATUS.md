@@ -9,6 +9,27 @@ small steps; the broad R1 implementation plan has been set aside.
 
 ## Grid two-key loop hold — 2026-09-15
 
+### 160 ms follow-up
+
+After restarting plugdata, the user reported the immediate-cut/40 ms interaction
+was working very well and requested a 160 ms hold. The only production edit from
+`8b772662fb96f8f4ba9c5e9cbbc722aeb0abd8d4` is `LOOP_HOLD_MS = 160`.
+Timing still begins on the second key-down, both keys must remain held, and the
+first release after qualification commits the loop. Ordinary slice presses do
+not wait. This supersedes the earlier unresolved feel report below for 40 ms;
+physical feel at 160 ms remains to be checked after another full app restart.
+
+The native timing fixture now checks 0/5/159/160/161/200 ms overlap, both release
+orders and three rows. The earlier cancellation/modifier scenarios run at four
+times their original timing so they still straddle the new threshold.
+All 53 cases passed in plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3;
+the native console showed completion without new errors. The silent fixture
+was closed and MLR remained playing. All 71 other root Pd/Lua components
+still match the PR #42 base; no audio or device code was changed.
+See [160 ms evidence](evidence/grid-loop-hold/160ms/observations.md).
+
+### Original 40 ms candidate and observations
+
 Contract before edits, based on PR #42 at
 `a09c10b5a2a653862d648564f93a9ac3586656d3`.
 Try a 40 ms minimum continuous overlap, starting at the second key-down.
