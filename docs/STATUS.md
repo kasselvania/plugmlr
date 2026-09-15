@@ -7,6 +7,53 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Live loop window — 2026-09-14
+
+Contract before implementation, branch `codex/live-loop-window`, based on
+`9aa7b74ab9b43b1c07d34903c05651e28b826590` (PR #41).
+Start and End edit this player's loop immediately in source-file seconds.
+Move sets the window's start in seconds while retaining its length; it clamps
+at the usable content edges. Start/End clamp at each other rather than cross.
+The minimum is source-frame precision, enlarged only enough for one host sample
+at the currently applied playback speed. There is no 1/16 musical minimum.
+Frame conversion rounds to nearest source frame; end remains exclusive.
+
+Use the existing `keep` region path: preserve running position inside the new
+window, otherwise take its direction-dependent entry. Stopped/paused edits stay
+silent. Edits cancel an older pending cut; the next committed ordinary slice
+restores the existing 16-way whole-content policy and retains its quantization.
+Move is not sample trim and cannot alter shared buffer storage or other players.
+Non-finite/malformed requests and requests during empty/switching state do nothing.
+Public interface: `<track>-loop-window start|end|move <seconds>`; the player view
+uses the same helper through its private player ID. Existing loop-region list,
+`keep`, and `full` messages retain their meanings. No new audio engine or timer.
+Implementation is a 46-object ordinary Pd helper, attached to the existing
+loop-region-control. slice-panel replaces staged Apply with live messages and
+adds Move_s. The original player, reader/crossover code, buffer ownership,
+sample editor, clock and Grid mapping are unchanged. The helper remembers accepted
+endpoints immediately so multiple edits compose before a pending handoff commits;
+committed slice/buffer/region updates refresh those same endpoints.
+
+Native plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3, host 48 kHz and stereo file
+44.1 kHz: 28 boundary checks pass, including same-time edits, both crossing clamps,
+both content edges, nonzero trim origin, and minimum size at 4x while stopped.
+The actual original-player/mixer recording checks forward/reverse, 0.5x/2x,
+200 requests/second with a colliding cut, Pause/Stop/resume, empty/switching
+buffers, and quantized slice return. The other shared-buffer player's state,
+pitch and mixer level remain unchanged; no non-finite samples or 50 ms silent
+holes were found in the tested active intervals. All transition samples remain
+in the global checks. The final console shows the automatic Stop without errors.
+Native End entry and Move dragging were observed; the latter moved 2.5–3.0 s to
+1.1–1.6 s and retained the half-second window.
+
+Open: one-frame loops produce two sharp transitions (largest post-mixer step
+0.06144). Very short loops can also alter timbre/RMS through crossover overlap.
+This slice exposes that limit rather than imposing a musical minimum or claiming
+universal click-free behavior. No new 44.1 kHz host, Bitwig, Arc/MIDI hardware,
+or user listening acceptance. The original loaded MLR session is preserved;
+reopen mlr.pd to load the updated abstractions. No diagnostic recording remains
+active. [Retained captures, failures and repeat procedure](evidence/live-loop-window/observations.md).
+
 ## Sample selection and reversible trim — 2026-09-14
 
 Implementation contract (before edits), base PR #40

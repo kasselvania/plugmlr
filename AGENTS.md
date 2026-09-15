@@ -76,7 +76,13 @@
   `pd slice_policy` and the linked slice-position calculation; future modes must
   change both deliberately. A pending slice owns the next jump until commit or
   Stop cancellation. Test boundary/cut collisions without excluding those windows.
-- The visible loop panel stages seconds until Apply. Validation belongs in
+- The visible loop panel edits Start/End live; Move preserves window length.
+  loop-window-control clamps crossing edges at the current one-host-sample limit,
+  keeps seconds/file frames explicit, and routes through the existing keep path.
+  Same-timestamp edits must compose before a deferred handoff. A new committed
+  slice refreshes the window and restores the whole-content policy.
+  Sample-editor selection remains staged; it is separate from live loop controls.
+  Validation belongs in
   `loop-region-control`; region and slice requests share `pd slice_policy` and
   its pending jump. Preserve paused/stopped silence and whole-content feedback.
   The original visible-loop capture exposed nonzero-gain reader reuse and

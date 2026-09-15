@@ -107,6 +107,17 @@ immediate. Default is unchecked with a 1/16-note grid. Scripted `<track>-quantiz
 1 = immediate, 0 = quantized. Stop/Pause, buffer selection, mode and grid changes
 cancel pending keys. Any committed slice restores whole-content loop bounds.
 
+**Live loops:** Start_s and End_s now take effect as you edit them; there is no
+Apply button. **Move_s** sets the window's start while moving both edges together,
+preserving length. Edges clamp at each other and at the usable sample boundaries.
+The player keeps its running position inside the window, or wraps into it when
+outside. Paused/stopped edits stay silent. A slice key returns to the usual
+whole-content cuts, with the selected quantization. Controller messages use
+`<track>-loop-window start|end|move <seconds>` (absolute source-file seconds).
+This is separate from the sample editor's staged selection and shared trim.
+There is no one-slice minimum, but one-frame loops expose sharp transitions in
+the current crossover engine. See the [native tests and limits](docs/evidence/live-loop-window/observations.md).
+
 **Clock:** select internal with the main source button, choose BPM (30–320),
 then enable Run. Clock Run controls ticks, separately from playback. Clock Stop
 holds the count and retains a pending key; player Stop/Pause cancels that key.
@@ -181,7 +192,8 @@ also the two rows with tested playback feedback. Top-row key 2 marks CUT.
 
 ALT transport and loop commits act immediately; ordinary cuts retain per-player
 quantization. Grid loop commits preserve a running position inside the new range
-and wrap immediately if outside it. On-screen Apply still jumps to the loop entry.
+and wrap immediately if outside it. On-screen Start/End/Move use that same live
+behavior; Full sample and explicit loop-region lists retain their entry jump.
 ALT wins when both modifiers are held. ALT/MOD presses, Stop/Pause, buffer changes
 and disconnect cancel unfinished two-key gestures; a third held track key cancels
 the pair until all row keys are released. Full content has no dim background.

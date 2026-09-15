@@ -168,3 +168,5 @@
 #X connect 71 0 39 0;
 #X connect 71 1 72 0;
 #X connect 72 0 39 0;
+
+#X obj 1500 1050 loop-window-control \$1 \$2;
