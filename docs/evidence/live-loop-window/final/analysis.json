@@ -1,0 +1,139 @@
+{
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "duration_s": 12,
+  "all_finite": true,
+  "bounds_checks": 28,
+  "same_timestamp_edits_compose": true,
+  "slice_restores_whole_content": true,
+  "quantized_slice_waits_for_tick": true,
+  "move_preserves_length_and_clamps": true,
+  "other_shared_buffer_player_unaffected_in_state_and_level": true,
+  "original_mixer_gains_preserved": true,
+  "paused_stopped_empty_silence": true,
+  "expected_pitch_and_stereo": [
+    {
+      "start": 0.3,
+      "end": 0.9,
+      "dominant_hz": [
+        220.0,
+        330.0
+      ],
+      "rms": [
+        0.051784536892632536,
+        0.025889495076172
+      ]
+    },
+    {
+      "start": 1.15,
+      "end": 1.28,
+      "dominant_hz": [
+        438.46153846153845,
+        661.5384615384615
+      ],
+      "rms": [
+        0.0517537010602428,
+        0.025891424104482145
+      ]
+    },
+    {
+      "start": 1.6,
+      "end": 1.75,
+      "dominant_hz": [
+        880.0,
+        1320.0
+      ],
+      "rms": [
+        0.05178434308912804,
+        0.025889003315470845
+      ]
+    },
+    {
+      "start": 5.12,
+      "end": 5.28,
+      "dominant_hz": [
+        1762.5,
+        2637.5
+      ],
+      "rms": [
+        0.05114706471202626,
+        0.02557322280882238
+      ]
+    },
+    {
+      "start": 5.52,
+      "end": 5.68,
+      "dominant_hz": [
+        218.75,
+        331.25
+      ],
+      "rms": [
+        0.05167306151993354,
+        0.025852329462321518
+      ]
+    },
+    {
+      "start": 6.55,
+      "end": 6.69,
+      "dominant_hz": [
+        442.85714285714283,
+        657.1428571428571
+      ],
+      "rms": [
+        0.05174544909858812,
+        0.025891986576225958
+      ]
+    },
+    {
+      "start": 8.05,
+      "end": 8.25,
+      "dominant_hz": [
+        220.0,
+        330.0
+      ],
+      "rms": [
+        0.05178452698630349,
+        0.025889465744434986
+      ]
+    },
+    {
+      "start": 8.4,
+      "end": 8.6,
+      "dominant_hz": [
+        440.0,
+        660.0
+      ],
+      "rms": [
+        0.05178434372289376,
+        0.02588900250874084
+      ]
+    }
+  ],
+  "global_peaks": [
+    0.07324140518903732,
+    0.036621373146772385,
+    0.05493104085326195,
+    0.02746453694999218,
+    0.1831035166978836,
+    0.09155343472957611,
+    0.18310345709323883,
+    0.09154845029115677
+  ],
+  "global_adjacent_steps": [
+    0.061440154910087585,
+    0.015101538971066475,
+    0.006385453511029482,
+    0.004767170175909996,
+    0.15360038354992867,
+    0.03775385022163391,
+    0.02128484472632408,
+    0.015890566632151604
+  ],
+  "sharp_step_times_s": [
+    3.0023125,
+    3.2033541666666667
+  ],
+  "extreme_loop_click_gate": "OPEN: one-source-frame clamp produces sharp transitions; retained, not excluded. Short loops can change timbre and RMS through crossover interference.",
+  "listening": "Not yet user reviewed.",
+  "capture_sha256": "545b3b593b07a962ad4e1e3e3af23b7c9942ede5492d0e3ad5072b271076b86d"
+}
