@@ -1,5 +1,5 @@
 -- Grid input only. Existing Pd players own transport, quantization and audio.
-local C = pd.Class:new():register('grid-cut-keys')
+local C = pd.Class:new():register('pce41a9dc9-grid-cut-keys')
 local LOOP_HOLD_MS = 80 -- Continuous overlap; first release commits a qualified loop.
 local function integer(v, lo, hi)
     return type(v)=='number' and v==v and v%1==0 and v>=lo and v<=hi

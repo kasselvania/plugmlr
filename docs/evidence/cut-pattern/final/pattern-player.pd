@@ -1,0 +1,33 @@
+#N canvas 100 100 880 480 12;
+#X text 20 15 Observe accepted cuts / replay after quantization. Args internal player / track.;
+#X obj 20 65 inlet;
+#X obj 20 105 list prepend;
+#X obj 20 145 s pcheck-cut;
+#X obj 350 65 r \$2-pattern-slice;
+#X obj 350 105 route float;
+#X obj 350 145 t f b;
+#X obj 520 190 outlet cancel-quantized;
+#X obj 350 230 s \$1-selected_slice;
+#X text 20 285 Replay keeps readiness / Stop queue / slice policy / launch fades.;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 5 0;
+
+#X connect 6 1 7 0;
+#X connect 6 0 8 0;
+
+#X obj 600 65 t f f;
+#X obj 600 105 expr $f1 >= 0 && $f1 < 16 && $f1 == int($f1);
+#X obj 350 125 spigot;
+#X connect 5 0 10 0;
+#X connect 10 1 11 0;
+#X connect 11 0 12 1;
+#X connect 10 0 12 0;
+#X connect 12 0 6 0;
+
+#X obj 20 350 loadbang;
+#X obj 20 390 f \$2;
+#X obj 20 430 - 900;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 2 1;

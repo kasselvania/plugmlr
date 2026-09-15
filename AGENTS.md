@@ -265,3 +265,12 @@
   Native 0.9.4 build 98ae0f78b ignores root-canvas visibility requests: do not
   claim that pd-mlr.pd vis messages focus home. Keep actual screen checks separate
   from successful routing logs. A reliably selectable home view remains pending.
+
+- Pattern 1 captures accepted post-quantizer cuts via pattern-player, after readiness
+  and the Stop queue. Replay clears stale quantized input and reuses selected_slice;
+  never route replay through row_N or capture raw held keys. Track IDs persist across
+  focus changes. Pattern Stop/Clear only cancel pattern scheduling, not playing audio.
+  Keep core cut-pattern message-only and LED blinking in the existing sole renderer.
+  First slot is free elapsed-time, volatile cuts only. Run cut_pattern_spec.lua and
+  build_cut_pattern_check.py/check_cut_pattern.py in native plugdata; distinguish
+  exact event timing from audible or physical Grid acceptance.
