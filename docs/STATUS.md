@@ -1,3 +1,51 @@
+## Free-time performance timeline — contract before implementation, 2026-09-15
+
+Base `fe0a5d49027a0eb0cb75f20d87063e34ca0f9810`; branch
+`codex/grid-performance-timeline`. Current remote main resolved as
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; checkout was clean.
+
+User approved changing Pattern 1 from first-cut arming to immediate recording:
+Record press starts Pd logical elapsed time; Finish defines the entire duration,
+including leading/intermediate/trailing spaces. Record typed actions with track
+identity: accepted post-quantizer cuts, speed preset, absolute direction and
+resolved play/pause/stop. Replay does not quantize these events a second time.
+Use the original player controls and fades; no per-sample Lua/audio replacement.
+Live actions remain available while a pattern plays. Pattern Stop/Clear cancel
+future pattern actions without implicitly stopping the tracks.
+
+At Record, capture initial control states; only participating tracks restore
+those states at each cycle boundary. Empty recording returns empty without
+starting audio. Minimum duration remains 10 ms, bounds 4096 events / 300 seconds.
+No pattern persistence, overdub, beat-time mode, quantized launch, loop-gesture
+capture or buffer snapshot in this slice. Shared quantization across interfaces
+is an agreed later direction, not an implementation here.
+
+Open design question asked before dependent work: whether each cycle also
+restores an already-running track's starting playhead position, or lets tape
+position continue while restoring controls. Do not infer that choice.
+
+Current foundation: `performance-pattern.pd_lua` is uninstantiated. The existing
+cut-pattern and running application remain unchanged while the playhead-position
+question is pending. Its typed event interface and immediate/free-time timeline
+pass `lua tests/performance_pattern_spec.lua` with a simulated Pd logical clock:
+leading/trailing gaps, initial controls for participating tracks only, typed events,
+Stop/restart/Clear, reentrant Clear, and existing event/duration limits. These are
+control-state tests, not native integration or audio acceptance. No feature-ready
+claim or user-app reload has been made.
+
+Integration trace for continuation: original `pattern-player` observes cuts after
+readiness and Stop queuing. `playback_speed_dial` carries preset index 0..4;
+`playback_direction` reports 0=forward/1=reverse. Record resolved absolute states,
+not reverse or play toggles. Playing/paused flags can settle in one logical tick;
+coalesce their reports before recording a transport state. Replay should call the
+original controls only when needed. The existing Stop transition accepts `preserve`
+for direction-preserving cleanup and queues a subsequent Play/cut through 9 ms
+cleanup. Baseline restoration must respect that pending cleanup, especially for
+paused/playing snapshots; never let delayed cleanup overwrite newly restored state.
+`pd current_position` already has synchronous region-position query/reply, and
+`pause_position` is the existing resume location if position restoration is chosen.
+That choice remains unanswered; do not infer a seek/reset policy from this note.
+
 ## One Grid cut-pattern slot — contract before implementation, 2026-09-15
 
 Base `06e8bc64787fcbb4df46837eed37677edddad1c7`; branch `codex/grid-cut-pattern`.
