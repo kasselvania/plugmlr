@@ -1,5 +1,5 @@
 -- One receive-only renderer for the active Grid page. No musical commands.
-local C=pd.Class:new():register('grid-page-leds')
+local C=pd.Class:new():register('pce41a9dc9-grid-page-leds')
 local fields={'position','playing','paused','ready','switching','first','last','loop-start','loop-end','direction','speed'}
 local function finite(v) return type(v)=='number' and v==v and math.abs(v)<math.huge end
 function C:initialize(_,args)

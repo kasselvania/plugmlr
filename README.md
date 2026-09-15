@@ -169,7 +169,7 @@ Count columns from the left, starting at 1:
 | 16 | Play/Pause/Resume. Bright = playing, medium = paused, dim = stopped/ready, dark = empty or switching. |
 | Bottom row | The focused player's 16 cuts, loop range and moving playhead, with the same ALT/MOD/80 ms hold gestures as CUT. |
 
-Other PLAY-row keys and the reserved top-row pattern slots are inactive. ALT/MOD
+Other PLAY-row keys and top-row slots 6–12 are inactive. Pattern 1 uses top-row key 5. ALT/MOD
 plus PLAY-row controls do nothing; those modifiers still work on the bottom cut
 strip. Changing page or explicitly selecting PLAY focus cancels unfinished held
 loop gestures. Release old held keys before using them in the new context.
@@ -205,6 +205,30 @@ into the package's cached controls. CUT now shows playback/loop feedback on all
 six track rows. Ordinary slices start or resume the selected cell; quantized slices
 wait for a matching clock tick. Hardware-global intensity below 15 remains
 unsupported. Connection details: [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
+
+### Pattern 1: record your cuts
+
+After fully quitting/reopening plugdata and reopening `mlr.pd`, **top-row key 5**
+is Pattern 1 on both PLAY and CUT:
+
+1. Press the dim key to arm it (bright).
+2. Play cuts on any of Players 1–6. The first accepted cut starts recording;
+   the pattern key flashes. With Quantize on, this waits for the matching clock tick.
+3. Press key 5 again at the end of your phrase. It loops immediately (lit).
+4. Press again to stop the pattern (medium); press again to restart it.
+5. Hold **ALT + key 5** to clear the pattern. This does not erase audio.
+
+Pattern Stop stops future cuts; the tracks keep playing. Use their transport
+controls to stop audio. Disconnecting Grid or switching DSP off stops the pattern;
+reconnecting does not launch it. You can play live cuts over a running pattern.
+
+This first slot records accepted slice positions and their timing across tracks,
+including on-screen cuts. It follows the tracks' current buffers and playback
+settings. It does not record loop gestures, speed/reverse or audio, and does not
+follow later tempo changes. Finish the phrase by hand; no bar-length rounding yet.
+Patterns are held in memory and lost on closing. Limits: 4096 cuts / five minutes;
+reaching a limit stops recording and retains the events. Minimum loop is 10 ms.
+[Validation and known limits](docs/evidence/cut-pattern/observations.md).
 
 ### Grid quick reference
 

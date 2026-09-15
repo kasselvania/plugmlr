@@ -1,3 +1,77 @@
+## One Grid cut-pattern slot — contract before implementation, 2026-09-15
+
+Base `06e8bc64787fcbb4df46837eed37677edddad1c7`; branch `codex/grid-cut-pattern`.
+The user reports the navigation checkpoint works great; its root-tab limitation
+remains documented rather than inferred fixed by that report.
+
+Top-row physical key 5 is Pattern 1 on both PLAY and CUT. Empty press arms;
+first accepted cut starts elapsed-time recording; press again ends the phrase
+and begins looping. A playing press stops pattern events, a stopped press
+restarts from the first event. ALT+5 clears only pattern data; MOD+5 is reserved.
+Pressing an armed slot before any cut cancels. Releases/duplicate downs do nothing.
+LED states: dim empty, bright armed, flashing recording, lit playing, medium stopped.
+
+Capture musical track (1..6), whole-content slice (0..15), and elapsed milliseconds
+at the existing validated post-quantizer/Stop-queue dispatch. This includes screen
+cuts as well as Grid cuts, not raw held-key gestures. Replay enters the same
+validated slice path after the quantizer and clears that track's stale quantized
+request. It does not alter quantizer settings or capture its own replay. Slice
+policy, current buffer/speed/reverse, launch fades and readiness remain player-owned.
+Track focus/page changes never retarget stored events. Pattern Stop/Clear cancels
+future pattern events, not the track audio already playing. Detach and DSP Off
+stop pattern scheduling; reconnect never restarts it. Manual cuts remain playable.
+
+First version is free elapsed-time looping, first event at zero, explicit finish
+sets length (minimum 10 ms). No tempo-follow, bar rounding, persistence, overdub,
+speed/reverse/loop capture, audio recording or sample snapshots. Up to 4096 cuts /
+300 seconds; reaching a limit finishes stopped and reports the limit. Timing uses
+Pd logical clocks, not wall time or per-sample Lua. Absolute cycle deadlines avoid
+adding callback delays each lap. Capture never stores audio.
+
+Trace: no active pattern sequencer found in existing patches. mlre manual v2.2
+page 16 supplies arm/first-event/manual-finish/toggle/ALT-clear interaction; its
+full macro engine is not imported. `row_N` enters the original quantizer;
+`$0-selected_slice` then passes readiness and `pd stop_transition`; its final
+float dispatch is the observation point. Existing loop and quantizer cancellation
+stay in the original player. Tests will inspect native console and event timing,
+plus a bounded two-player integration check; no broad audio campaign is required.
+
+Implemented: `cut-pattern.pd_lua` owns one event list and one Pd logical clock;
+`pattern-player.pd` observes the original player's accepted dispatch and bridges
+validated replay into it. The original player adds only that bridge and two wires.
+The Grid classifier adds key 5 / ALT-clear on a ninth outlet; existing page and
+cut gestures remain. The existing sole LED renderer adds the pattern status and
+recording blink. No audio DSP or buffer implementation changed.
+
+Actual validation: Mac plugdata **0.9.4 nightly 98ae0f78b**, Pd **0.56.3**, pdlua
+**0.12.23**. Native console inspected before/after. Finite silent fixture passed
+**55 timed replay events**, **19 accepted cuts through two original players**,
+latest-wins quantization before capture, replay with no new ppq, stale-request
+cancellation, invalid replay preserving pending input, empty-buffer rejection,
+page/focus independence, Stop/restart/Clear, detach/reconnect, DSP stop and short
+loop/event bursts. Pattern LED output covers all five states and recording blink.
+**70 other Pd/Lua components are byte-identical to the base.** Production Lua with
+an explicitly simulated logical clock separately checked 4096-event/300-second
+limits, invalid events and downstream Clear during replay. Syntax, Pd connections
+and whitespace checks passed. No new native console errors; the pre-existing
+Grid-not-attached warning remained. Tests used private musical tracks 901/902,
+no DAC and no recording. An isolated Player 902 panel was opened by test CUT
+navigation and closed along with the completed fixture; the user's main patch
+was left open, with its loaded/paused Track 1 intact.
+
+First fixture's initial phrase passed, but later empty/detach scenarios were
+misconfigured (PLAY row instead of CUT, and a missing quantizer tick). Those were
+corrected and rerun, not counted as acceptance. LED assertions were corrected to
+respect cached unchanged frames and attachment gating. Retained evidence:
+[cut-pattern observations](evidence/cut-pattern/observations.md).
+
+Open: physical Grid feel/LED acceptance and listening have not been performed for
+this new feature. No broad audio rerun, Bitwig test or saved-pattern acceptance is
+claimed. Current user application is not restarted: the changed Lua requires a
+full quit/reopen before playtesting. Free pattern length may drift against the
+shared clock; synchronized recording/launch and richer event types are next
+separate choices, not implied here. The prior home-tab limitation remains parked.
+
 ## Grid page buttons select the screen — 2026-09-15
 
 Base `4da7e6d364fa0c70e3bfd447de37cde89a5c1a76`, branch
