@@ -78,6 +78,7 @@ for t,level in [(100,2),(200,15),(400,2),(600,15),(1400,10),(3850,5),(5500,2)]:
 for name,h in m['production_sha256'].items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==h,name
 allowed={'grid-cut-control.pd','pattern-player.pd','sample_player_rebuild.pd'}
 if m.get('bank') or m.get('pattern_slots')==8:allowed.update({'grid-cut-keys.pd_lua','grid-page-leds.pd_lua'})
+if m.get('files'):allowed.add('mlr.pd')
 protected=[]
 for name in subprocess.check_output(['git','ls-tree','--name-only',m['base']],cwd=ROOT,text=True).splitlines():
  if name.endswith(('.pd','.pd_lua')) and name not in allowed:

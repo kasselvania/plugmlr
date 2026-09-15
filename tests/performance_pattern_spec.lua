@@ -1,7 +1,7 @@
 -- Control-state/limits test against production Lua; native timing is checked separately.
 local now, clocks, classes=0,{},{}
 pd={Class={},Clock={}}
-function pd.Class:new() local c={};function c:register(n) classes[n]=self;return self end;return c end
+function pd.Class:new() local c={dofile=function(_,path)return dofile(path)end};function c:register(n) classes[n]=self;return self end;return c end
 function pd.Clock:new()
  local c={};function c:register(o,m)self.o=o;self.m=m;clocks[#clocks+1]=self;return self end
  function c:delay(t)self.due=now+t end
@@ -111,3 +111,19 @@ assert(slot(6).length==300000 and slot(6).state=='stopped' and #slot(7).events==
 bank.callback=function(self,n)if n==3 then cmd('clear') end end
 cmd('clear',5);cmd('toggle',5);assert(slot(5).state=='empty' and not bank.clock.due)
 print('PASS eight independent slots, finish/switch, inactive Clear, exclusive replay, snapshots, bounds and reentrant cancellation')
+
+-- Persistence commands use literal paths (including extension) and never alter
+-- the running scheduler on failed validation or Save.
+local files=instance();control(files,'toggle');advance(now+20)
+files:in_2('cut',{1,3});advance(now+40);control(files,'toggle')
+local path='/tmp/plugmlr core ü bank.plugmlr-patterns'
+files:in_1('save',{path});assert(files.filename==path and not files.dirty)
+local f=assert(io.open(path,'rb'));f:close()
+local original=files.slots;local due=files.clock.due
+files:in_1('load',{'/tmp/nonexistent-pattern-bank-input'});assert(files.slots==original and files.clock.due==due)
+control(files,'stop');files:in_1('clear',{1});files:in_1('load',{path});assert(files.pending and files.slots[1].state=='empty')
+control(files,'cancel-load');control(files,'replace');assert(not files.pending and files.slots[1].state=='empty')
+files:in_1('load',{path});control(files,'replace');assert(not files.dirty and files.slots[1].state=='stopped' and not files.clock.due)
+files:in_1('save',{path..' no extension'});assert(files.filename==path..' no extension.plugmlr-patterns')
+os.remove(path);os.remove(files.filename)
+print('PASS literal extension, spaced Unicode paths, failed-load playback preservation, pending/cancel/replace and stopped restore')

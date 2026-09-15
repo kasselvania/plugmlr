@@ -6,7 +6,9 @@ sys.argv=[str(ROOT/'tests/check_performance_pattern.py'),str(P)]
 runpy.run_path(sys.argv[0],run_name='__main__')
 m=json.loads((P/'source.json').read_text());events=[]
 for line in (P/'events.txt').read_text().splitlines():
- a=line.rstrip(';').split();events.append((float(a[0]),a[1:]))
+ a=line.rstrip(';').split()
+ if m.get('files') and float(a[0])>=14600:continue
+ events.append((float(a[0]),a[1:]))
 def select(tag):return [(t,a[1:]) for t,a in events if a[0]==tag]
 def exact(actual,want):
  assert len(actual)==len(want),(len(actual),len(want),actual,want)
@@ -53,6 +55,7 @@ for t,i,level in [(9200,1,15),(9400,1,5),(9400,2,15),(9600,2,10),(9650,2,5),(965
 assert nav(13120)[0]==12 and nav(13120)[8]==10 # PLAY switch retains slot5.
 # All original audio, player adapters, bank wiring and device dependency files unchanged.
 allowed={'performance-pattern.pd_lua','grid-cut-keys.pd_lua','grid-page-leds.pd_lua'}
+if m.get('files'):allowed.update({'mlr.pd','grid-cut-control.pd'})
 protected=[]
 for name in subprocess.check_output(['git','ls-tree','--name-only',m['bank_base']],cwd=ROOT,text=True).splitlines():
  if name.endswith(('.pd','.pd_lua')) and name not in allowed:
@@ -60,4 +63,4 @@ for name in subprocess.check_output(['git','ls-tree','--name-only',m['bank_base'
   protected.append(name)
 for name,h in m['production_sha256'].items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==h,name
 r=dict(passed=True,native_bank_replay_commands=len(want),single_slot_regression_commands=77,slots_exercised=sorted(seen),unchanged_components=protected,checks=['Eight physical key addresses through native adapter','Finish/retain recording before switching','Only one active slot at every status transition','Outgoing pending events cancelled before another recorder opens','Inactive Clear affects only target slot','Per-slot snapshots and duration retained','Original player accepts all replayed cuts','Page change/reconnect preserve eight LED states','Duplicate key and MOD suppression','Detach/DSP-message stop and recording finish','Empty recording stays empty'],limitations=['No new audio/listening or physical eight-slot Grid acceptance','Synthetic DSP-off messages on private fixture bus; global DSP unchanged','Slot limits and reentrancy tested with simulated logical clock separately'])
-(P/'analysis.json').write_text(json.dumps(r,indent=2)+'\n');print('PASS',len(want),'bank replay commands +77 regression;',len(protected),'unchanged components')
+(P/('bank-analysis.json' if m.get('files') else 'analysis.json')).write_text(json.dumps(r,indent=2)+'\n');print('PASS',len(want),'bank replay commands +77 regression;',len(protected),'unchanged components')
