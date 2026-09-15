@@ -109,9 +109,9 @@ function C:in_1_list(a)
     if y==0 then
         if x==15 then self.alt=true;self:clear_pairs();self:display('alt',1)
         elseif x==13 then self.mod=true;self:clear_pairs();self:display('mod',1)
-        elseif x==4 then
-            if self.alt then self:outlet(9,'clear',{})
-            elseif not self.mod then self:outlet(9,'toggle',{}) end
+        elseif x>=4 and x<=11 then
+            if self.alt then self:outlet(9,'clear',{x-3})
+            elseif not self.mod then self:outlet(9,'toggle',{x-3}) end
         elseif (x==0 or x==1) and not self.alt and not self.mod then
             local page=x==0 and 'play' or 'cut'
             if page~=self.page then

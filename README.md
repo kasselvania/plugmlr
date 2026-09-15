@@ -169,7 +169,7 @@ Count columns from the left, starting at 1:
 | 16 | Play/Pause/Resume. Bright = playing, medium = paused, dim = stopped/ready, dark = empty or switching. |
 | Bottom row | The focused player's 16 cuts, loop range and moving playhead, with the same ALT/MOD/80 ms hold gestures as CUT. |
 
-Other PLAY-row keys and top-row slots 6–12 are inactive. Pattern 1 uses top-row key 5. ALT/MOD
+Other PLAY-row keys are inactive. Top-row keys 5–12 are the eight pattern slots. ALT/MOD
 plus PLAY-row controls do nothing; those modifiers still work on the bottom cut
 strip. Changing page or explicitly selecting PLAY focus cancels unfinished held
 loop gestures. Release old held keys before using them in the new context.
@@ -206,18 +206,24 @@ six track rows. Ordinary slices start or resume the selected cell; quantized sli
 wait for a matching clock tick. Hardware-global intensity below 15 remains
 unsupported. Connection details: [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
-### Pattern 1: record a performance
+### Eight pattern slots: record and switch performances
 
-After fully quitting/reopening plugdata and reopening `mlr.pd`, **top-row key 5**
-is Pattern 1 on both PLAY and CUT. Save any live audio before quitting.
+After fully quitting/reopening plugdata and reopening `mlr.pd`, **top-row keys 5–12**
+are Patterns 1–8 on both PLAY and CUT. Save any live audio before quitting.
 
-1. Press the dim key to **start recording now** (flashing). Any wait before your
+1. Press a dim pattern key to **start recording now** (flashing). Any wait before your
    first action is part of the phrase.
 2. Play cuts, change speed/direction, or Play/Pause/Stop Players 1–6.
-3. Press key 5 again to finish and loop (lit). The wait after your last action is
+3. Press that same key again to finish and loop (lit). The wait after your last action is
    also retained. With no actions, the slot returns empty.
 4. Press again to stop the pattern (medium); press again to restart it.
-5. Hold **ALT + key 5** to clear the pattern. This does not erase audio.
+5. Hold **ALT + a pattern key** to clear only that slot. This does not erase audio.
+
+Only one pattern records or plays at a time. Press another slot to switch
+immediately: an unfinished recording is finished and kept, a populated destination
+starts from its timeline beginning, and an empty destination starts recording.
+Each slot retains its own duration, actions and initial controls. Clearing another
+slot does not interrupt the active one. Switching does not implicitly stop the tape.
 
 Pattern Stop cancels future pattern actions; the tracks keep their current
 transport state. Use their transport controls to stop audio. Disconnecting Grid
@@ -238,9 +244,9 @@ changes the material it plays.
 
 This is a free-time performance timeline: no later tempo-follow or bar rounding.
 It does not record loop gestures, buffer selection, Fit/glide changes, gain or audio.
-Patterns are volatile and lost on closing. Limits: 4096 actions / five minutes;
+Patterns are volatile and lost on closing. Per-slot limits: 4096 actions / five minutes;
 reaching either limit stops recording and retains the events. Minimum loop is 10 ms.
-[Native checks and remaining limits](docs/evidence/performance-pattern/observations.md).
+[Native checks and remaining limits](docs/evidence/pattern-bank/observations.md).
 
 ### Grid quick reference
 
@@ -276,7 +282,7 @@ the pair until all row keys are released. Full content has no dim background.
 
 The preceding CUT gestures have physical acceptance; the combined two-lane capture
 also has numerical and listening acceptance. The new page layout is not yet physically accepted. See the [current checkpoint](docs/STATUS.md).
-Additional pattern slots and audio-recording controls remain reserved. PLAY and its focused bottom
+Grid audio-recording controls remain reserved. PLAY and its focused bottom
 cut strip are described above.
 
 ## Run the original application

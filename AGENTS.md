@@ -266,7 +266,7 @@
   claim that pd-mlr.pd vis messages focus home. Keep actual screen checks separate
   from successful routing logs. A reliably selectable home view remains pending.
 
-- Pattern 1 captures accepted post-quantizer cuts via pattern-player, after readiness
+- Performance patterns capture accepted post-quantizer cuts via pattern-player, after readiness
   and the Stop queue. Replay clears stale quantized input and reuses selected_slice;
   never route replay through row_N or capture raw held keys. Track IDs persist across
   focus changes. Pattern Stop/Clear only cancel pattern scheduling, not playing audio.
@@ -279,3 +279,13 @@
   Run performance_pattern_spec.lua and build_performance_pattern_check.py /
   check_performance_pattern.py in native plugdata; distinguish exact event timing
   from audible or physical Grid acceptance. Patterns remain volatile and free-time.
+
+- Pattern slots 1–8 use top-row keys 5–12. One slot records/plays at a time through
+  one logical scheduler. Switching finishes and retains an outgoing recording;
+  inactive Clear must not alter the active slot or its clock. Keep slot ID separate
+  from track/buffer IDs; label all status messages with slot ID. Every slot retains
+  its own events, duration and starting controls. No automatic audio Stop on switch.
+  Detach/DSP Off stops the active timeline but retains all slots. Preserve the
+  single-slot regression within build_pattern_bank_check.py/check_pattern_bank.py.
+  Test native LEDs/routing separately from physical eight-slot acceptance. Patterns
+  remain volatile; do not restart the user's application without preserving work.

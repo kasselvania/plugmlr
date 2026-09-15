@@ -1,3 +1,50 @@
+## Eight performance-pattern slots — contract before implementation, 2026-09-15
+
+Base `d25b266364fc2b52821cf5c6751614b49d90ae85` (PR #47); branch
+`codex/grid-pattern-bank`. Remote main remains
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; starting checkout clean.
+The user reports excellent results from the single-slot performance timeline.
+This is user playtest feedback, separate from its retained native control checks.
+
+Top-row physical keys 5–12 address slots 1–8 on PLAY and CUT. Empty press starts
+Record immediately; recording press finishes and plays; playing press stops;
+stopped populated press restarts. ALT + a slot clears only that slot. MOD + a slot
+remains inactive. Releases and duplicate downs do nothing.
+
+One slot can record or play at a time. Switching first stops the old scheduler;
+if recording, finish and retain its full elapsed duration (explicitly approved by
+the user). Then start recording an empty destination or restart a populated one.
+Switches are immediate, not quantized. Clearing an inactive slot must not
+interrupt the active slot. No switch or clear implicitly stops the audio tracks.
+
+Reuse the existing free-time timeline with eight independent event/control-state
+stores and one Pd logical clock. Each slot keeps the 4096-event / 300-second bounds
+and 10 ms minimum. Restore starting speed/direction of participating tracks on
+play/lap, leaving position/transport alone. Preserve all accepted-event adapters,
+quantization, fades, buffers and audio DSP. Slot identity is separate from track
+identity. Controls accept `toggle N` / `clear N` (1–8); bare commands address the
+selected slot; bare `stop` stops the sole active timeline. Status includes slot ID.
+
+LEDs: empty dim 2, recording flashing 15/2, playing 10, stopped populated 5.
+All eight statuses survive page changes and reconnect. Detach/DSP Off finishes
+recording or stops playback, retaining every slot; reconnect never resumes.
+No overdub, saving, beat/bar launch, additional event types or simultaneous patterns.
+Native tests will exercise the actual Grid adapter, timeline, LEDs and original
+players without DAC or audio recording; physical eight-slot playtest remains separate.
+
+Implemented: the existing timeline now keeps eight independent stores with one
+active Pd clock. Three production Lua files changed; no `.pd`, original player,
+buffer, audio DSP, clock, mixer or device-package change. The current native suite
+passed **38 bank replay commands plus the prior 77-command regression**, including
+all eight key addresses, finish/switch, pending-event cancellation, inactive/active
+Clear, MOD/duplicate suppression, per-slot states and reconnect feedback. 75 existing
+components are byte-identical to the base. Lua slot/state/limit checks passed.
+[Native logs, console screenshot and repeatable procedure](evidence/pattern-bank/observations.md).
+Native runtime: plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23.
+No new console errors. Test closed; user's original patch preserved. No audio
+recording, DAC output, Grid lease or global DSP changes. Physical eight-slot feel
+remains for user playtest after fully restarting plugdata; patterns are volatile.
+
 ## Free-time performance timeline — contract before implementation, 2026-09-15
 
 Base `fe0a5d49027a0eb0cb75f20d87063e34ca0f9810`; branch

@@ -6,7 +6,11 @@ ROOT=Path(__file__).resolve().parents[1];P=Path(sys.argv[1] if len(sys.argv)>1 e
 m=json.loads((P/'source.json').read_text())
 events=[]
 for line in (P/'events.txt').read_text().splitlines():
- a=line.rstrip(';').split();events.append((float(a[0]),a[1:]))
+ a=line.rstrip(';').split()
+ if m.get('bank') and float(a[0])>=8900:continue
+ if a[1]=='status' and a[2] in ('pattern','count','length') and len(a)==5:
+  assert a[3]=='1';a.pop(3) # Slot-labelled status in the eight-slot version.
+ events.append((float(a[0]),a[1:]))
 def select(tag):return [(t,a[1:]) for t,a in events if a[0]==tag]
 def exact(actual,want):
  assert len(actual)==len(want),(len(actual),len(want))
@@ -73,6 +77,7 @@ for t,level in [(100,2),(200,15),(400,2),(600,15),(1400,10),(3850,5),(5500,2)]:
  assert [row for lt,row in leds if lt<=t+.05][-1][4]==level,(t,level)
 for name,h in m['production_sha256'].items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==h,name
 allowed={'grid-cut-control.pd','pattern-player.pd','sample_player_rebuild.pd'}
+if m.get('bank') or m.get('pattern_slots')==8:allowed.update({'grid-cut-keys.pd_lua','grid-page-leds.pd_lua'})
 protected=[]
 for name in subprocess.check_output(['git','ls-tree','--name-only',m['base']],cwd=ROOT,text=True).splitlines():
  if name.endswith(('.pd','.pd_lua')) and name not in allowed:
@@ -98,4 +103,4 @@ tail='''
 assert now==old.replace('#X restore 1415 78 pd pause_transition;',pause+'#X restore 1415 78 pd pause_transition;')+tail
 for name in ['sample_player_rebuild.pd','grid-cut-control.pd','pattern-player.pd']:assert not check(ROOT/name)['errors'],check(ROOT/name)
 r=dict(passed=True,native_replay_commands=len(want),recorded_phrase_actions=len(phrase),rapid_transport_actions=len(rapid),led_frames=len(leds),unchanged_components=protected,checks=['Immediate Record and 1200ms phrase with 200ms lead and 100ms tail','Native original-player cuts, speed, direction, Play/Pause/Resume/Stop','Post-quantizer latest-wins capture and replay bypass; stale input cancellation','Rapid toggles resolved before capture; Stop cancels queued Play','Controls-only lap restoration retains position and transport','Untouched track controls stay unchanged','Live speed change during replay','Disconnect and simulated DSP-off stop scheduling without reconnect restart','Empty / malformed input; native LED status'],limitations=['No new audio capture or listening claim','No physical Grid acceptance yet','DSP-off message simulated on private test bus; global audio DSP left on','4096-event and 300-second limits checked separately with simulated clock'])
-(P/'analysis.json').write_text(json.dumps(r,indent=2)+'\n');print('PASS',len(want),'native replay commands;',len(protected),'unchanged components')
+(P/('regression-analysis.json' if m.get('bank') else 'analysis.json')).write_text(json.dumps(r,indent=2)+'\n');print('PASS',len(want),'native replay commands;',len(protected),'unchanged components')
