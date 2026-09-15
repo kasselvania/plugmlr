@@ -174,13 +174,18 @@ plus PLAY-row controls do nothing; those modifiers still work on the bottom cut
 strip. Changing page or explicitly selecting PLAY focus cancels unfinished held
 loop gestures. Release old held keys before using them in the new context.
 Page changes preserve playback, buffer selection and already queued musical cuts.
-Grid focus no longer opens patch windows. Use the existing on-screen Open buttons
-when you want to inspect a player. Players 7–16 remain accessible on screen.
+Grid focus alone stays screen-silent. Press **CUT** (top-row key 2) to open the
+focused player panel, including when CUT is already selected. **PLAY** closes
+player panels using the existing Overview action. In this plugdata build it
+cannot force the root home tab forward when another tab is selected; select
+`mlr.pd` on screen in that case. A dedicated home view is under discussion.
+Players 7–16 remain accessible on screen.
 
 **Update:** fully quit and reopen plugdata, then reopen `mlr.pd`, to load changed
 Lua controls. Save any live takes first. The existing device select/Probe/Claim
 workflow is unchanged. This checkpoint has native gesture, six-player command
-readback and LED-message checks; physical PLAY-page usability remains to be tested.
+readback and LED-message checks; the user has accepted physical PLAY/CUT operation. The new screen-following
+behavior still needs a physical playtest.
 [Controls, results and repeat procedure](docs/evidence/grid-pages/observations.md).
 
 The CUT gesture reference follows the [pinned mlre manual and adaptation map](docs/STATUS.md#mlre-control-reference-and-next-grid-slice--2026-09-11).
@@ -204,8 +209,8 @@ unsupported. Connection details: [adapter checkpoint](docs/STATUS.md#grid-adapte
 ### Grid quick reference
 
 Physical key numbers count from 1. CUT rows 2–7 control Players 1–6.
-The preceding physical musical acceptance covers Players 1/2; the new six-row
-PLAY/CUT layout still needs physical acceptance. Top-row key 2 selects CUT.
+The preceding physical musical acceptance covers Players 1/2; the user has also accepted the six-row PLAY/CUT layout. Top-row key 2 selects
+CUT and opens the focused player panel.
 
 | Action | Gesture / meaning |
 | --- | --- |
