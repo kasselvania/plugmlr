@@ -270,7 +270,12 @@
   and the Stop queue. Replay clears stale quantized input and reuses selected_slice;
   never route replay through row_N or capture raw held keys. Track IDs persist across
   focus changes. Pattern Stop/Clear only cancel pattern scheduling, not playing audio.
-  Keep core cut-pattern message-only and LED blinking in the existing sole renderer.
-  First slot is free elapsed-time, volatile cuts only. Run cut_pattern_spec.lua and
-  build_cut_pattern_check.py/check_cut_pattern.py in native plugdata; distinguish
-  exact event timing from audible or physical Grid acceptance.
+  Keep performance-pattern message-only and LED blinking in the existing sole renderer.
+  Record begins immediately; Finish includes both leading and trailing space. Capture
+  resolved transport, absolute direction and speed preset alongside accepted cuts.
+  At each lap restore only starting speed/direction for participating tracks, never
+  position or transport. A gap means no actions, not forced audio silence. Live input
+  remains available. Keep cut-pattern and its evidence as the previous checkpoint.
+  Run performance_pattern_spec.lua and build_performance_pattern_check.py /
+  check_performance_pattern.py in native plugdata; distinguish exact event timing
+  from audible or physical Grid acceptance. Patterns remain volatile and free-time.

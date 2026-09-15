@@ -1187,6 +1187,10 @@
 #X connect 31 0 7 1;
 #X connect 31 0 9 1;
 #X connect 31 0 21 1;
+#X msg 25 835 2;
+#X obj 180 835 s \$0-pattern-transport;
+#X connect 0 0 38 0;
+#X connect 38 0 39 0;
 #X restore 1415 78 pd pause_transition;
 #X obj 1511 -629 t b b f f f f f f b;
 #X msg 1343 -666 0 0;
@@ -2271,3 +2275,12 @@
 #X obj 3450 50 pattern-player \$0 \$1;
 #X connect 548 0 553 0;
 #X connect 553 0 142 0;
+
+#X msg 3450 130 0;
+#X msg 3570 130 1;
+#X obj 3450 175 s \$0-pattern-transport;
+#X connect 44 0 554 0;
+#X connect 554 0 556 0;
+#X connect 262 0 555 0;
+#X connect 548 1 555 0;
+#X connect 555 0 556 0;

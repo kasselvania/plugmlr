@@ -25,7 +25,7 @@ local function instance()
  local c=setmetatable({out={}}, {__index=classes['performance-pattern']})
  function c:outlet(n,s,a)
  self.out[#self.out+1]={now,n,s,a}
- if n==3 then for t=1,6 do self:in_2('state',{t,0,2,0}) end end
+ if n==3 then for t=1,6 do self:in_2('state',{t,0,2}) end end
  if self.callback then self:callback(n,s,a) end
  end
  c:initialize();c:postinitialize();return c

@@ -20,31 +20,33 @@ No pattern persistence, overdub, beat-time mode, quantized launch, loop-gesture
 capture or buffer snapshot in this slice. Shared quantization across interfaces
 is an agreed later direction, not an implementation here.
 
-Open design question asked before dependent work: whether each cycle also
-restores an already-running track's starting playhead position, or lets tape
-position continue while restoring controls. Do not infer that choice.
+Resolved musical choice: restore only each participating track's starting speed
+preset and absolute direction through the existing glide paths. Leave tape position
+and transport alone at cycle boundaries. Recorded cuts / Play / Pause / Stop act
+only at their recorded timestamps. Untouched tracks receive no restoration.
+No snapshot of playback position, buffer identity, Fit settings or glide settings.
 
-Current foundation: `performance-pattern.pd_lua` is uninstantiated. The existing
-cut-pattern and running application remain unchanged while the playhead-position
-question is pending. Its typed event interface and immediate/free-time timeline
-pass `lua tests/performance_pattern_spec.lua` with a simulated Pd logical clock:
-leading/trailing gaps, initial controls for participating tracks only, typed events,
-Stop/restart/Clear, reentrant Clear, and existing event/duration limits. These are
-control-state tests, not native integration or audio acceptance. No feature-ready
-claim or user-app reload has been made.
+Implementation checkpoint continues from foundation commit `1efd530`. Observe
+resolved transport at the original accepted Play/Resume/Pause/Stop paths rather
+than infer transport commands from incidental flag changes. The original post-
+quantizer cut observation remains. The adapters publish typed control events;
+replay uses the same original controls with explicit states, not blind toggles.
+The old cut-only component remains a historical reference and is no longer the
+active Pattern 1 engine after integration. Current native runtime is plugdata
+0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23. The user's open application
+and loaded/paused Track 1 are preserved during isolated checks.
 
-Integration trace for continuation: original `pattern-player` observes cuts after
-readiness and Stop queuing. `playback_speed_dial` carries preset index 0..4;
-`playback_direction` reports 0=forward/1=reverse. Record resolved absolute states,
-not reverse or play toggles. Playing/paused flags can settle in one logical tick;
-coalesce their reports before recording a transport state. Replay should call the
-original controls only when needed. The existing Stop transition accepts `preserve`
-for direction-preserving cleanup and queues a subsequent Play/cut through 9 ms
-cleanup. Baseline restoration must respect that pending cleanup, especially for
-paused/playing snapshots; never let delayed cleanup overwrite newly restored state.
-`pd current_position` already has synchronous region-position query/reply, and
-`pause_position` is the existing resume location if position restoration is chosen.
-That choice remains unanswered; do not infer a seek/reset policy from this note.
+Implemented and checked: active Pattern 1 now uses `performance-pattern` and the
+original-player `performance-player` adapter. Native check passed 77 typed replay
+commands, both phrase gaps, original transport/readback, rapid queued/cancelled
+transport, quantizer bypass, continuous position at parameter-only boundaries,
+stopped-tape preservation, and detach/DSP-message cancellation. 73 prior components
+are unchanged; original-player additions are passive transport taps only.
+Lua limits/state checks and Pd structure checks passed. No new console errors.
+[Retained native evidence and repeatable procedure](evidence/performance-pattern/observations.md).
+Physical Grid/listening acceptance remains open; no audio capture was made.
+The user's live patch was preserved, not restarted: fully reopen plugdata and
+`mlr.pd` to use the new Lua implementation after saving any live audio.
 
 ## One Grid cut-pattern slot — contract before implementation, 2026-09-15
 

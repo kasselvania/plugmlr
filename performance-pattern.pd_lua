@@ -1,6 +1,6 @@
 -- Free-time performance timeline. Pd logical clocks schedule messages, never audio.
 -- Controls: toggle/stop/clear. Event inlet: cut/direction/speed/transport track value,
--- or state track direction speed transport (snapshot response, not an action).
+-- or state track direction speed (snapshot response, not an action).
 -- Outputs: list track command values; status; snapshot request.
 local C=pd.Class:new():register('performance-pattern')
 local MAX_EVENTS,MAX_MS,MIN_MS=4096,300000,10
@@ -21,6 +21,9 @@ function C:initialize()
 end
 function C:postinitialize()
     self.clock=pd.Clock:new():register(self,'tick');self:report()
+end
+function C:finalize()
+    if self.clock then self.clock:destruct() end
 end
 function C:report()
     self:outlet(2,'pattern',{self.state})
@@ -65,9 +68,9 @@ function C:in_1(sel,a)
 end
 function C:in_2(sel,a)
     if sel=='state' then
-        if self.state=='snapshot' and #a==4 and integer(a[1],1,6) and
-            valid('direction',a[2]) and valid('speed',a[3]) and valid('transport',a[4]) then
-            self.initial[a[1]]={a[2],a[3],a[4]}
+        if self.state=='snapshot' and #a==3 and integer(a[1],1,6) and
+            valid('direction',a[2]) and valid('speed',a[3]) then
+            self.initial[a[1]]={a[2],a[3]}
         end
         return
     end
