@@ -206,29 +206,41 @@ six track rows. Ordinary slices start or resume the selected cell; quantized sli
 wait for a matching clock tick. Hardware-global intensity below 15 remains
 unsupported. Connection details: [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
-### Pattern 1: record your cuts
+### Pattern 1: record a performance
 
 After fully quitting/reopening plugdata and reopening `mlr.pd`, **top-row key 5**
-is Pattern 1 on both PLAY and CUT:
+is Pattern 1 on both PLAY and CUT. Save any live audio before quitting.
 
-1. Press the dim key to arm it (bright).
-2. Play cuts on any of Players 1–6. The first accepted cut starts recording;
-   the pattern key flashes. With Quantize on, this waits for the matching clock tick.
-3. Press key 5 again at the end of your phrase. It loops immediately (lit).
+1. Press the dim key to **start recording now** (flashing). Any wait before your
+   first action is part of the phrase.
+2. Play cuts, change speed/direction, or Play/Pause/Stop Players 1–6.
+3. Press key 5 again to finish and loop (lit). The wait after your last action is
+   also retained. With no actions, the slot returns empty.
 4. Press again to stop the pattern (medium); press again to restart it.
 5. Hold **ALT + key 5** to clear the pattern. This does not erase audio.
 
-Pattern Stop stops future cuts; the tracks keep playing. Use their transport
-controls to stop audio. Disconnecting Grid or switching DSP off stops the pattern;
-reconnecting does not launch it. You can play live cuts over a running pattern.
+Pattern Stop cancels future pattern actions; the tracks keep their current
+transport state. Use their transport controls to stop audio. Disconnecting Grid
+or switching DSP off stops the pattern; reconnecting does not launch it.
+You can continue playing live over a running pattern.
 
-This first slot records accepted slice positions and their timing across tracks,
-including on-screen cuts. It follows the tracks' current buffers and playback
-settings. It does not record loop gestures, speed/reverse or audio, and does not
-follow later tempo changes. Finish the phrase by hand; no bar-length rounding yet.
-Patterns are held in memory and lost on closing. Limits: 4096 cuts / five minutes;
-reaching a limit stops recording and retains the events. Minimum loop is 10 ms.
-[Validation and known limits](docs/evidence/cut-pattern/observations.md).
+At each lap, participating tracks restore their speed preset and direction from
+when you pressed Record. The tape keeps its position and transport state until
+an actual recorded cut or transport action changes it. Speed changes use the
+current glide settings. A leading gap means **no pattern actions**, not forced silence.
+If you want a retrigger at the beginning, record a cut there.
+
+Cuts are captured when accepted by the player, including any quantization wait,
+and replay without a second quantization. Transport records resolved actions,
+so a cancelled queued Play is not stored. On-screen actions on these same controls
+are included. The pattern follows each track's current buffer; changing buffers
+changes the material it plays.
+
+This is a free-time performance timeline: no later tempo-follow or bar rounding.
+It does not record loop gestures, buffer selection, Fit/glide changes, gain or audio.
+Patterns are volatile and lost on closing. Limits: 4096 actions / five minutes;
+reaching either limit stops recording and retains the events. Minimum loop is 10 ms.
+[Native checks and remaining limits](docs/evidence/performance-pattern/observations.md).
 
 ### Grid quick reference
 
@@ -264,7 +276,7 @@ the pair until all row keys are released. Full content has no dim background.
 
 The preceding CUT gestures have physical acceptance; the combined two-lane capture
 also has numerical and listening acceptance. The new page layout is not yet physically accepted. See the [current checkpoint](docs/STATUS.md).
-Pattern slots and recording controls remain reserved. PLAY and its focused bottom
+Additional pattern slots and audio-recording controls remain reserved. PLAY and its focused bottom
 cut strip are described above.
 
 ## Run the original application
