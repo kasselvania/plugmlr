@@ -1,3 +1,38 @@
+## PLAY/CUT Grid navigation contract — 2026-09-15
+
+Base `ca75d98b77ead7382bc5e330a62249a2f0c8f221`, dedicated branch
+`codex/grid-play-page`. User accepted the preceding 80 ms/slice-launch checkpoint:
+"okay, this is running great now. Good job."
+
+Before implementation: physical coordinates are one-based. Top row 1 selects PLAY,
+2 selects CUT (startup page). Keep MOD at 14 and ALT at 16; other navigation/macro
+positions remain inactive. Six track rows represent Players 1–6, not buffer slots.
+PLAY columns 3–6 focus only, 8 reverses, 10–14 select the existing five rate presets
+(0.25/0.5/1/2/4), and 16 uses existing Play/Pause/Resume. The bottom row cuts/loops
+the focused track through the existing CUT classifier and quantizer. Start focus
+is Player 1. Unsupported modified PLAY-row commands do nothing. ALT/MOD still
+operate the bottom cutting strip. CUT retains immediate fresh cuts, 80 ms held-loop
+qualification on release, ALT transport and MOD one-cell loops.
+
+Page changes and explicit PLAY focus changes cancel unfinished loop gestures and consume old held keys until
+release. CUT row touches still allow independent concurrent gestures on different rows.
+They never start/stop playback, change buffer, cancel already queued musical
+cuts, or open a patch window. Focus changes no longer open player views automatically;
+the existing screen Open controls remain available. Page/focus persist across a
+Grid detach, while held/modifier state clears. Reconnect redraws actual cached state.
+One page renderer owns performance LEDs through the existing Monome adapter; it
+uses actual player reports, not predicted responses. Reverse LED shows direction;
+speed LEDs show selected preset, not instantaneous glide or tempo-fitted rate.
+CUT and PLAY-bottom keep original dim loop span / bright running marker semantics.
+No audio-engine, recorder, clock, lease, pattern or sample-browser changes in this
+checkpoint. Pattern recording is the next separately bounded implementation.
+
+Validation: native console first; deterministic press/release, held page/focus
+changes, independent lanes, repeated controls, malformed input, detach/reconnect,
+and LED page ownership. Verify unchanged DSP sources and a focused original-player
+command/readback smoke check. No broad repeated audio campaign. Physical feel and
+LED acceptance remain separate from fixture checks.
+
 # Original application: observations and functionality map
 
 Recorded 2026-09-09. The baseline is repository main at
@@ -6,6 +41,30 @@ creating `codex/original-playback-observations`. That initial update changed
 documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
+
+### Implemented and checked
+
+The new native suite passes 68 key/release cases (including all 53 preceding CUT
+hold cases), command/readback on six original players, and PLAY LED row checks.
+Physical PLAY/CUT usability remains open. No new audio capture/listening acceptance
+is claimed. The original player changes only by adding grid-play-controls; 67 other
+existing Pd/Lua components, all existing player DSP and mixer wiring stay unchanged.
+The two former active Grid row renderers are replaced by grid-page-leds, which caches
+all six players and redraws only changed rows on the active page. Historical row
+components remain in place but are no longer instantiated by mlr.pd.
+
+Native plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23 was inspected.
+The first candidate had a command/report speed feedback loop; the actual console
+reported stack overflow and the test was closed immediately. The corrected command
+is grid-set-speed, distinct from grid-speed readback. The first fixture also omitted
+live-buffer view metadata, used untyped case markers, and formatted its numeric
+receiver prefix incorrectly. Those failures and corrections are retained. Final
+native completion adds no new error messages; earlier console history remains.
+
+Evidence and exact reproduction: [Grid pages](evidence/grid-pages/observations.md).
+Next: physical PLAY/CUT navigation and feel, then bounded pattern capture/replay
+of musical actions. Audio recording/resampling, browser redesign, further pages
+and pattern features were not implemented in this checkpoint.
 
 ## Grid two-key loop hold — 2026-09-15
 
