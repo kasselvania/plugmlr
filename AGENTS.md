@@ -176,8 +176,17 @@
   Disconnect clears held input state. Keep transport immediate and slice timing
   in the existing player. Run check_grid_alt.py for the exact input-only boundary.
 
-- Two-key CUT loops include both cells and commit once on first release. Keep
-  gesture state in grid-cut-keys and seconds conversion in grid-loop-region;
+- This branch's unaccepted two-key CUT experiment includes both cells and commits once on first release after
+  at least 40 ms continuous overlap. Every fresh ordinary key-down still sends
+  its slice through the existing quantizer, including overlapping keys. Keep
+  LOOP_HOLD_MS in grid-cut-keys as the single feel setting. Per-row clocks only
+  arm gestures; release owns commit. Short releases, cancellation, modifiers,
+  third keys and detach unset the clocks. Preserve immediate MOD single-cell loops.
+  The user rejects delayed or suppressed cuts. Do not promote the overlap rule
+  to an accepted default from timed event tests alone.
+  Run build_grid_hold_check.py / check_grid_hold.py in native plugdata; old
+  checkpoint gesture fixtures predate the new overlapping-key slice behavior.
+  Keep gesture state in grid-cut-keys and seconds conversion in grid-loop-region;
   original loop-region-control owns validation and transitions. Loop commit must
   cancel the queued quantized slice as well as the pending trajectory. Stop,
   Pause, buffer changes, ALT and detach cancel unfinished gestures. Validate

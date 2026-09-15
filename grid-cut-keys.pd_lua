@@ -1,10 +1,30 @@
 -- CUT-page gestures only. Player transport and quantization remain in Pd.
 local C = pd.Class:new():register('grid-cut-keys')
+local LOOP_HOLD_MS = 40 -- Continuous two-key overlap before release may commit.
 function C:initialize()
     self.inlets, self.outlets = 3, 5
     self.connected, self.alt, self.mod, self.focus = false, false, false, 0
     self.held, self.pairs = {}, {}
     return true
+end
+function C:postinitialize()
+    self.hold_clocks = {}
+    for row = 1, 6 do
+        local method = 'arm_loop_' .. row
+        self[method] = function(s)
+            local pair = s.pairs[row]
+            if pair and pair.second and not pair.done then pair.armed = true end
+        end
+        -- Pd-Lua owns these clocks and destroys them with this object.
+        self.hold_clocks[row] = pd.Clock:new():register(self, method)
+    end
+end
+function C:clear_pair(row)
+    self.hold_clocks[row]:unset()
+    self.pairs[row] = nil
+end
+function C:clear_pairs()
+    for row = 1, 6 do self:clear_pair(row) end
 end
 local function integer(v, lo, hi)
     return type(v) == 'number' and v == v and v % 1 == 0 and v >= lo and v <= hi
@@ -18,7 +38,8 @@ end
 function C:in_2_float(v)
     local connected = v == 1
     if connected == self.connected then return end
-    self.connected, self.alt, self.mod, self.held, self.pairs = connected, false, false, {}, {}
+    self:clear_pairs()
+    self.connected, self.alt, self.mod, self.held = connected, false, false, {}
     if connected then
         self:outlet(4, '/monome/grid/led/row', {0, 0, 0, 0})
         self:outlet(4, '/monome/grid/led/level/set', {1, 0, 8})
@@ -32,7 +53,7 @@ function C:row_count(row)
     return n
 end
 function C:in_3_float(row)
-    if integer(row,1,6) then self.pairs[row]=nil end
+    if integer(row,1,6) then self:clear_pair(row) end
 end
 function C:in_1_list(a)
     if not self.connected or #a ~= 3 then return end
@@ -45,9 +66,12 @@ function C:in_1_list(a)
         local pair = self.pairs[y]
         if was_held and pair and pair.second and not pair.done then
             pair.done = true
-            self:outlet(5, 'list', {y, math.min(pair.first,pair.second), math.max(pair.first,pair.second)+1})
+            self.hold_clocks[y]:unset()
+            if pair.armed then
+                self:outlet(5, 'list', {y, math.min(pair.first,pair.second), math.max(pair.first,pair.second)+1})
+            end
         end
-        if y >= 1 and y <= 6 and self:row_count(y) == 0 then self.pairs[y]=nil end
+        if y >= 1 and y <= 6 and self:row_count(y) == 0 then self:clear_pair(y) end
         if x == 15 and y == 0 and self.alt then
             self.alt = false
             self:alt_led()
@@ -61,11 +85,11 @@ function C:in_1_list(a)
     self.held[key] = true
     if x == 15 and y == 0 then
         self.alt = true
-        self.pairs = {}
+        self:clear_pairs()
         self:alt_led()
     elseif x == 13 and y == 0 then
         self.mod = true
-        self.pairs = {}
+        self:clear_pairs()
         self:mod_led()
     elseif y >= 1 and y <= 6 then
         if self.focus ~= y then
@@ -75,18 +99,22 @@ function C:in_1_list(a)
         if self.alt then
             self:outlet(2, 'float', {y})
         elseif self.mod then
-            self.pairs[y] = nil
+            self:clear_pair(y)
             self:outlet(5, 'list', {y, x, x+1})
         else
             local count = self:row_count(y)
             if count == 1 then
+                self:clear_pair(y)
                 self.pairs[y] = {first=x}
-                self:outlet(1, 'list', {x,y,z})
             elseif count == 2 and self.pairs[y] and not self.pairs[y].done then
                 self.pairs[y].second = x
+                self.hold_clocks[y]:delay(LOOP_HOLD_MS)
             elseif count > 2 then
-                self.pairs[y] = nil
+                self:clear_pair(y)
             end
+            -- Overlapping finger patterns still cut on every fresh key-down.
+            -- Pd owns cut quantization; release only adds an intentionally held loop.
+            self:outlet(1, 'list', {x,y,z})
         end
     end
 end

@@ -183,7 +183,7 @@ also the two rows with tested playback feedback. Top-row key 2 marks CUT.
 | --- | --- |
 | Start, pause, resume | Hold **ALT**, top-right key 16, then press a track-row key. |
 | Cut | Press a track-row key without modifiers. Start the player first. Cuts follow that player's Quantize setting. |
-| Loop a range | Hold one track key, press another on the same row, release either. Both cells are included. |
+| Loop a range (experimental) | Hold two track keys on the same row together for at least **40 ms**, then release either. Both cells are included. Each key-down still makes an ordinary cut. |
 | Loop one cell | Hold **MOD**, top-row key 14 (third from right), then press a track key. Commits on press; release does not retrigger. |
 | Leave a smaller loop | Make an ordinary cut; it restores full-content bounds. |
 | Read the LEDs | Dim cells show the committed smaller loop; the brighter moving cell is playback. Pause/Stop retain the dim range. |
@@ -191,7 +191,12 @@ also the two rows with tested playback feedback. Top-row key 2 marks CUT.
 | Hard Stop | Use Stop on the player panel. ALT uses Pause/Resume. |
 
 ALT transport and loop commits act immediately; ordinary cuts retain per-player
-quantization. Grid loop commits preserve a running position inside the new range
+quantization. Shorter two-key overlaps never commit a loop; they do not delay
+or suppress the slice presses. The threshold is `LOOP_HOLD_MS` in
+`grid-cut-keys.pd_lua`, kept in one place for feel adjustments.
+This branch's overlap rule is an unaccepted experiment. The user rejected
+delayed or suppressed cuts; physical playing feel remains to be checked.
+Grid loop commits preserve a running position inside the new range
 and wrap immediately if outside it. On-screen Start/End/Move use that same live
 behavior; Full sample and explicit loop-region lists retain their entry jump.
 ALT wins when both modifiers are held. ALT/MOD presses, Stop/Pause, buffer changes
