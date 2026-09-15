@@ -5,7 +5,7 @@ local function integer(v, lo, hi)
     return type(v)=='number' and v==v and v%1==0 and v>=lo and v<=hi
 end
 function C:initialize()
-    self.inlets, self.outlets = 3, 7
+    self.inlets, self.outlets = 3, 8
     self.connected, self.alt, self.mod = false, false, false
     self.page, self.focus = 'cut', 1
     self.down, self.routes, self.held, self.pairs = {}, {}, {}, {}
@@ -114,6 +114,7 @@ function C:in_1_list(a)
             if page~=self.page then
                 self:cancel_gestures();self.page=page;self:display('page',page)
             end
+            self:outlet(8,page,{self.focus}) -- Explicit page press also selects the screen.
         end
     elseif self.page=='cut' and y<=6 then
         -- Simultaneous CUT gestures on different rows remain independent.

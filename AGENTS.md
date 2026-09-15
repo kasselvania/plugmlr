@@ -259,3 +259,9 @@
   The native pages suite reuses the 53 CUT cases and checks all six player reports
   and LEDs. This control-only slice does not require a broad audio rerun. Physical
   acceptance, pattern recording and audio recording remain separate checkpoints.
+
+- Explicit CUT page presses open the focused player panel, including reselection;
+  track focus alone stays screen-silent. PLAY currently closes player views.
+  Native 0.9.4 build 98ae0f78b ignores root-canvas visibility requests: do not
+  claim that pd-mlr.pd vis messages focus home. Keep actual screen checks separate
+  from successful routing logs. A reliably selectable home view remains pending.

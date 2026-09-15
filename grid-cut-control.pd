@@ -54,3 +54,16 @@
 #X connect 23 0 24 0;
 #X connect 24 0 25 0;
 #X connect 2 2 7 0;
+#X obj 20 560 route play cut;
+#X obj 20 600 t b;
+#X obj 20 640 s mlr-close-views;
+#X obj 260 600 t b f;
+#X obj 350 640 makefilename %d-open-player-view;
+#X obj 260 680 send;
+#X connect 2 7 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 28 0;
+#X connect 26 1 29 0;
+#X connect 29 1 30 0;
+#X connect 30 0 31 1;
+#X connect 29 0 31 0;
