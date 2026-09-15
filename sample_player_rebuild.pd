@@ -2265,3 +2265,5 @@
 #X obj 3450 -80 list trim;
 #X connect 465 0 551 0;
 #X connect 551 0 464 0;
+
+#X obj 2200 4450 grid-play-controls \$0 \$1;
