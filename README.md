@@ -182,8 +182,8 @@ also the two rows with tested playback feedback. Top-row key 2 marks CUT.
 | Action | Gesture / meaning |
 | --- | --- |
 | Start, pause, resume | Hold **ALT**, top-right key 16, then press a track-row key. |
-| Cut | Press a track-row key without modifiers. Start the player first. Cuts follow that player's Quantize setting. |
-| Loop a range | Hold two track keys on the same row together for at least **160 ms**, then release either. Both cells are included. Each key-down still makes an ordinary cut. |
+| Cut | Press a track-row key without modifiers. Starts or resumes at that slice. Cuts follow that player's Quantize setting. |
+| Loop a range | Hold two track keys on the same row together for at least **80 ms**, then release either. Both cells are included. Each key-down still makes an ordinary cut. |
 | Loop one cell | Hold **MOD**, top-row key 14 (third from right), then press a track key. Commits on press; release does not retrigger. |
 | Leave a smaller loop | Make an ordinary cut; it restores full-content bounds. |
 | Read the LEDs | Dim cells show the committed smaller loop; the brighter moving cell is playback. Pause/Stop retain the dim range. |
@@ -194,8 +194,10 @@ ALT transport and loop commits act immediately; ordinary cuts retain per-player
 quantization. Shorter two-key overlaps never commit a loop; they do not delay
 or suppress the slice presses. The threshold is `LOOP_HOLD_MS` in
 `grid-cut-keys.pd_lua`, kept in one place for feel adjustments.
-The user confirmed the immediate-cut interaction at 40 ms and requested the
-longer 160 ms hold. Its revised feel remains to be checked after restarting plugdata.
+The 80 ms hold begins when the second key goes down. That second press also
+cuts immediately; the hold threshold only qualifies loop selection. A stopped
+clock leaves quantized cuts waiting for a matching tick. Fully restart plugdata
+after updating Lua controls.
 Grid loop commits preserve a running position inside the new range
 and wrap immediately if outside it. On-screen Start/End/Move use that same live
 behavior; Full sample and explicit loop-region lists retain their entry jump.

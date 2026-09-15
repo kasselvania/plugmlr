@@ -1,6 +1,6 @@
 -- CUT-page gestures only. Player transport and quantization remain in Pd.
 local C = pd.Class:new():register('grid-cut-keys')
-local LOOP_HOLD_MS = 160 -- Continuous two-key overlap before release may commit.
+local LOOP_HOLD_MS = 80 -- Continuous two-key overlap before release may commit.
 function C:initialize()
     self.inlets, self.outlets = 3, 5
     self.connected, self.alt, self.mod, self.focus = false, false, false, 0

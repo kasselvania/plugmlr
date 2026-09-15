@@ -3,10 +3,11 @@ from pathlib import Path
 import json,sys,subprocess,hashlib
 ROOT=Path(__file__).resolve().parents[1];P=Path(sys.argv[1] if len(sys.argv)>1 else '/tmp/plugmlr-grid-hold-check')
 m=json.loads((P/'source.json').read_text());assert hashlib.sha256((ROOT/'grid-cut-keys.pd_lua').read_bytes()).hexdigest()==m['production_sha256']
-# Existing .pd and other Lua files must be byte-for-byte the recorded base.
+# The three current production changes are separately exercised by the launch audio suite.
+# All other .pd and Lua files must be byte-for-byte the recorded base.
 protected=[]
 for name in subprocess.check_output(['git','ls-tree','--name-only',m['base']],cwd=ROOT,text=True).splitlines():
- if name.endswith(('.pd','.pd_lua')) and name!='grid-cut-keys.pd_lua':
+ if name.endswith(('.pd','.pd_lua')) and name not in ('grid-cut-keys.pd_lua','sample_player_rebuild.pd','pending-cut-delay.pd'):
   assert (ROOT/name).read_bytes()==subprocess.check_output(['git','show',m['base']+':'+name],cwd=ROOT),name
   protected.append(name)
 actual=[[] for _ in m['cases']];case=None
