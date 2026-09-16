@@ -1,0 +1,9 @@
+#N canvas 80 60 480 300 12;
+#X obj 25 35 inlet;
+#X obj 25 115 spigot 0;
+#X obj 165 35 r mlr-debug;
+#X obj 25 165 print \$1 \$2;
+#X text 25 225 Routine diagnostics only. Errors keep their original path.;
+#X connect 0 0 1 0;
+#X connect 2 0 1 1;
+#X connect 1 0 3 0;

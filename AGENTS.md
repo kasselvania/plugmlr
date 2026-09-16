@@ -195,3 +195,12 @@
   upstream ALT+MOD chop behavior is implied. Modifier presses cancel pending
   two-key gestures, not already committed loops. Keep check_grid_mod.py and the
   native gesture suite as this input-only slice's preservation boundary.
+
+- Waveforms are receive-only views. Keep stereo min/max caches buffer-owned, scan
+  written content in bounded chunks, and drive cursor paint from the existing
+  playbar feed. Never scan arrays in paint or use a GUI timer to advance audio.
+  Save WAV uses soundfiler synchronously after rechecking all instrument players,
+  recorders and storage activity. Preserve written bounds and recorded rate; do
+  not claim background I/O or switch playback to disk. Routine Debug gates must
+  leave actionable errors visible. Repeat tests/build_waveform_check.py in the
+  native runtime and analyze the actual mixer/export before audio claims.

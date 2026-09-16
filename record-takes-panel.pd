@@ -1,5 +1,5 @@
-#N canvas 100 80 730 720 12;
-#X obj 10 10 cnv 15 700 42 empty empty LIVE\ TAKES 12 21 0 20 #b75e49 #faf8f2 0;
+#N canvas 100 80 930 790 12;
+#X obj 10 10 cnv 15 890 42 empty empty LIVE\ TAKES 12 21 0 20 #b75e49 #faf8f2 0;
 #X text 20 62 Finish keeps written audio. Browsing does not change these destinations.;
 #X text 20 98 Destination;
 #X text 140 98 Elapsed s;
@@ -35,3 +35,6 @@
 #X connect 28 0 29 0;
 #X connect 29 0 26 0;
 #X obj 20 685 bng 24 180 50 0 mlr-close-views empty Overview 31 12 0 12 #faf8f2 #347c72 #283d3a;
+
+#X text 580 98 Save stored audio;
+#X obj 20 725 cnv 15 880 22 empty mlr-save-status Save_WAV_requires_all_players_and_recording_stopped 6 11 0 12 #faf8f2 #283d3a 0;

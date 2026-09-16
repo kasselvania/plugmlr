@@ -1,6 +1,6 @@
-#N canvas 80 60 760 780 12;
-#X obj 10 10 cnv 15 725 710 empty empty empty 8 355 0 12 #eeece5 #283d3a 0;
-#X obj 20 20 cnv 15 700 38 empty empty SAMPLE\ BANK 8 19 0 20 #347c72 #faf8f2 0;
+#N canvas 80 60 1090 780 12;
+#X obj 10 10 cnv 15 1055 710 empty empty empty 8 355 0 12 #eeece5 #283d3a 0;
+#X obj 20 20 cnv 15 1030 38 empty empty SAMPLE\ BANK 8 19 0 20 #347c72 #faf8f2 0;
 #X text 30 75 Load a file into a shared slot. Choose that slot from any player.;
 #X text 30 115 Imported stereo;
 #X text 288 115 Content;
@@ -26,3 +26,5 @@
 #X obj 30 890 r \$1-sample-bank-open;
 #X obj 30 930 ui-open-view \$0-bank-view;
 #X connect 24 0 25 0;
+
+#X text 640 115 File;

@@ -109,3 +109,6 @@
 #X connect 41 0 42 0;
 #X connect 42 0 43 0;
 #X connect 38 0 47 0;
+
+#X obj 355 355 buffer-view-data sample \$1;
+#X connect 40 1 51 0;

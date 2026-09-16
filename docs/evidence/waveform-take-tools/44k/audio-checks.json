@@ -1,0 +1,102 @@
+{
+  "audio": {
+    "rate": 44100,
+    "channels": 8,
+    "declared_frames": 617344,
+    "trailing_bytes": 0,
+    "sha256": "052bf2f2e57bfe81ab31c21ecd5875768e65371fbb429599225dbce128c1a7c1"
+  },
+  "export": {
+    "rate": 44100,
+    "channels": 2,
+    "declared_frames": 57280,
+    "trailing_bytes": 0,
+    "sha256": "b3a655fd0d8e473ea2b9adc36467b10b76bc9ad82b7a8d2d24938c2bceec5b29"
+  },
+  "checks": {
+    "bounded_capture": true,
+    "eight_channels": true,
+    "finite_all_audio": true,
+    "export_written_length": true,
+    "record_stop_within_one_pd_block": true,
+    "export_stereo_rate": true,
+    "refused_playing_no_file": true,
+    "refused_empty_no_file": true,
+    "save_feedback": true,
+    "export_matches_actual_stereo_input": true,
+    "retained_capacity_larger_than_export": true,
+    "silence_after_final_stop": true,
+    "whole_capture_gain_bound": true,
+    "expected_mix_during_display_and_recording": true,
+    "lane2_continues_through_browsing_recording_and_display": true,
+    "browse_next_and_previous": true,
+    "empty_replacement_clears_identity": true,
+    "replacement_name_and_rate_updated": true,
+    "all_three_stereo_peak_caches_match_source": true,
+    "useful_output": true,
+    "no_full_block_exact_zero_dropout_while_lane2_runs": true
+  },
+  "save_messages": [
+    "Stop all players before saving",
+    "Saving live 3...",
+    "Saved Live 3: saved take.wav",
+    "That live buffer is empty",
+    "Saving live 3...",
+    "Save incomplete - see console"
+  ],
+  "export_input_frame_offset": 88192,
+  "export_max_error_to_actual_input": 0.0,
+  "mix_windows": [
+    {
+      "start": 0.4,
+      "end": 1.7,
+      "max_error": 0.0
+    },
+    {
+      "start": 2.05,
+      "end": 3.29,
+      "max_error": 0.0
+    },
+    {
+      "start": 3.56,
+      "end": 3.98,
+      "max_error": 0.0
+    },
+    {
+      "start": 4.25,
+      "end": 4.65,
+      "max_error": 0.0
+    },
+    {
+      "start": 5.2,
+      "end": 6.9,
+      "max_error": 0.0
+    },
+    {
+      "start": 11.1,
+      "end": 12.4,
+      "max_error": 0.0
+    }
+  ],
+  "peak_cache_checks": [
+    {
+      "buffer": "sample_buffer_1",
+      "max_error": 4.995727538870121e-07
+    },
+    {
+      "buffer": "sample_buffer_2",
+      "max_error": 4.960937499964846e-07
+    },
+    {
+      "buffer": "live_buffer_3",
+      "max_error": 4.99790191649252e-07
+    }
+  ],
+  "longest_running_zero_frames": 14,
+  "max_adjacent_steps": [
+    0.531038224697113,
+    0.5307538509368896
+  ],
+  "listening": "Not performed; user listening remains open.",
+  "limits": "A short native fixture; no universal click-free or arbitrary-duration performance claim. Soundfiler save is synchronous and deliberately refused during active instrument playback/recording."
+}

@@ -1,5 +1,5 @@
 #N canvas 80 60 880 700 12;
-#X obj 0 0 cnv 15 680 32 empty empty empty 8 16 0 12 #faf8f2 #283d3a 0;
+#X obj 0 0 cnv 15 1010 32 empty empty empty 8 16 0 12 #faf8f2 #283d3a 0;
 #X obj 10 4 cnv 15 110 24 empty empty Sample\ \$1 8 12 0 13 #faf8f2 #283d3a 0;
 #X obj 145 4 bng 24 180 50 0 \$1-sample-load empty Load 31 12 0 12 #faf8f2 #347c72 #283d3a;
 #X obj 263 4 cnv 15 155 24 empty \$0-status Empty 8 12 0 12 #faf8f2 #283d3a 0;
@@ -27,4 +27,9 @@
 #X connect 11 1 13 0;
 #X connect 12 0 14 0;
 #X connect 13 0 14 0;
-#X coords 0 -1 1 1 680 32 2 0 0;
+#X coords 0 -1 1 1 1010 32 2 0 0;
+
+#X obj 605 5 cnv 15 395 22 empty \$0-name Empty 6 11 0 11 #faf8f2 #283d3a 0;
+#X obj 25 360 buffer-name sample \$1;
+#X obj 25 400 s \$0-name;
+#X connect 16 0 17 0;

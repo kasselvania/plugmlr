@@ -2141,3 +2141,16 @@
 #X connect 180 0 539 1;
 #X connect 538 0 299 0;
 #X connect 540 0 318 0;
+
+#X obj 2400 4800 r waveform-player-\$1;
+#X obj 2400 4840 route reverse next previous;
+#X obj 2400 4880 s \$0-dir_change;
+#X obj 2650 4880 buffer-browse \$0 \$1;
+#X msg 2750 4840 1;
+#X msg 2850 4840 -1;
+#X connect 542 0 543 0;
+#X connect 543 0 544 0;
+#X connect 543 1 546 0;
+#X connect 546 0 545 0;
+#X connect 543 2 547 0;
+#X connect 547 0 545 0;
