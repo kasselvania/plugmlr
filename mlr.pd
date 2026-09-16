@@ -409,8 +409,8 @@
 #X msg 964 1702 /monome/grid/led/level/all 0;
 #X msg 947 1459 /monome/grid/led/level/all \$1;
 #X msg 947 1399 /monome/grid/led/level/set 0 0 \$1;
-#X obj 326 1487 grid-playback-row 1 1;
-#X obj 704 1471 grid-playback-row 2 2;
+#X text 326 1487 Page LEDs now belong to grid-cut-control;
+#X text 704 1471 Historical row renderer retained as a reference;
 #X obj 1125 1786 r transport;
 #X obj 218 1755 f;
 #X obj 173 1755 f;

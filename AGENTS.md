@@ -247,3 +247,15 @@
   Zoom uses cancellable buffer-owned peak jobs, never audio work inside paint.
   Test nonzero starts, both directions, shared readers, reload races and native
   UI separately. Isolate native test Lua class names from already loaded user code.
+
+- PLAY/CUT navigation now lives in grid-cut-keys. The first two top keys select
+  PLAY/CUT; six track rows use the original player controls, and PLAY bottom cuts
+  the focused track. grid-page-leds is the sole active page renderer. Do not add
+  competing row writers or let Grid focus open windows implicitly. Explicit PLAY
+  focus/page changes consume held keys until release; CUT gestures remain independent
+  across rows. Commands use <track>-grid-set-speed; <track>-grid-speed is readback
+  only. Never join those buses (the first candidate caused a native stack overflow).
+  grid-play-controls bridges public musical tracks into the existing internal controls.
+  The native pages suite reuses the 53 CUT cases and checks all six player reports
+  and LEDs. This control-only slice does not require a broad audio rerun. Physical
+  acceptance, pattern recording and audio recording remain separate checkpoints.

@@ -153,7 +153,37 @@ comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
 
 ## Connect a Grid
 
-The next layout work follows the [pinned mlre manual and adaptation map](docs/STATUS.md#mlre-control-reference-and-next-grid-slice--2026-09-11).
+**PLAY and CUT:** the first two top-row keys now select PLAY and CUT. CUT is
+selected on startup. Both pages cover Players 1–6; the current page is brighter.
+The layout follows the [pinned mlre reference](docs/STATUS.md#mlre-control-reference-and-next-grid-slice--2026-09-11),
+with a PLAY name because recording controls are not active on this page yet.
+
+On **PLAY**, each of the six rows below navigation controls its corresponding player.
+Count columns from the left, starting at 1:
+
+| Columns | Action / feedback |
+| --- | --- |
+| 3–6 | Select the focused track without playing or opening a window. The selected block is brighter. |
+| 8 | Reverse. Bright = reverse; dim = forward. |
+| 10–14 | ¼, ½, 1, 2, 4× presets. The chosen preset is brighter; existing glide and tempo Fit still apply. |
+| 16 | Play/Pause/Resume. Bright = playing, medium = paused, dim = stopped/ready, dark = empty or switching. |
+| Bottom row | The focused player's 16 cuts, loop range and moving playhead, with the same ALT/MOD/80 ms hold gestures as CUT. |
+
+Other PLAY-row keys and the reserved top-row pattern slots are inactive. ALT/MOD
+plus PLAY-row controls do nothing; those modifiers still work on the bottom cut
+strip. Changing page or explicitly selecting PLAY focus cancels unfinished held
+loop gestures. Release old held keys before using them in the new context.
+Page changes preserve playback, buffer selection and already queued musical cuts.
+Grid focus no longer opens patch windows. Use the existing on-screen Open buttons
+when you want to inspect a player. Players 7–16 remain accessible on screen.
+
+**Update:** fully quit and reopen plugdata, then reopen `mlr.pd`, to load changed
+Lua controls. Save any live takes first. The existing device select/Probe/Claim
+workflow is unchanged. This checkpoint has native gesture, six-player command
+readback and LED-message checks; physical PLAY-page usability remains to be tested.
+[Controls, results and repeat procedure](docs/evidence/grid-pages/observations.md).
+
+The CUT gesture reference follows the [pinned mlre manual and adaptation map](docs/STATUS.md#mlre-control-reference-and-next-grid-slice--2026-09-11).
 This is a design reference; the current patch implements the controls below.
 
 Initialize the pinned connection package after cloning or updating:
@@ -165,19 +195,17 @@ following the package's verified lease. Click **release** before closing or
 moving the Grid to another application. Discovery does not auto-claim; an existing
 owner is not automatically displaced. Details and failures appear in the console.
 
-The adapter retains the original musical mapping: physical rows 1–6 (zero-based)
-feed the original numbered row controls. It does not introduce a new Grid layout.
-Legacy LED messages are translated into the package's cached LED controls.
-The second and third physical rows show a moving whole-sample position marker
-for players 1 and 2. Press Play first: slice keys do not start a stopped player.
-Stop, Pause, empty buffers and buffer switching clear the marker; reconnect
-redraws current state. Other rows keep their original controls without new
-playback feedback. Hardware-global intensity below 15 is explicitly unsupported. See the [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
+The adapter retains the original musical track routes and translates LED messages
+into the package's cached controls. CUT now shows playback/loop feedback on all
+six track rows. Ordinary slices start or resume the selected cell; quantized slices
+wait for a matching clock tick. Hardware-global intensity below 15 remains
+unsupported. Connection details: [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
 ### Grid quick reference
 
-Physical key numbers count from 1. Track rows 2/3 control players 1/2; these are
-also the two rows with tested playback feedback. Top-row key 2 marks CUT.
+Physical key numbers count from 1. CUT rows 2–7 control Players 1–6.
+The preceding physical musical acceptance covers Players 1/2; the new six-row
+PLAY/CUT layout still needs physical acceptance. Top-row key 2 selects CUT.
 
 | Action | Gesture / meaning |
 | --- | --- |
@@ -187,7 +215,7 @@ also the two rows with tested playback feedback. Top-row key 2 marks CUT.
 | Loop one cell | Hold **MOD**, top-row key 14 (third from right), then press a track key. Commits on press; release does not retrigger. |
 | Leave a smaller loop | Make an ordinary cut; it restores full-content bounds. |
 | Read the LEDs | Dim cells show the committed smaller loop; the brighter moving cell is playback. Pause/Stop retain the dim range. |
-| Change the visible player | Press a key on its track row; its existing player panel opens. |
+| Select Grid focus | CUT follows the last touched track. PLAY columns 3–6 select without playing. Neither opens a window. |
 | Hard Stop | Use Stop on the player panel. ALT uses Pause/Resume. |
 
 ALT transport and loop commits act immediately; ordinary cuts retain per-player
@@ -205,9 +233,10 @@ ALT wins when both modifiers are held. ALT/MOD presses, Stop/Pause, buffer chang
 and disconnect cancel unfinished two-key gestures; a third held track key cancels
 the pair until all row keys are released. Full content has no dim background.
 
-These controls have physical acceptance; the combined two-lane capture also has
-numerical and listening acceptance. See the [current checkpoint](docs/STATUS.md).
-Other views and bottom-row controls remain reserved, not implemented.
+The preceding CUT gestures have physical acceptance; the combined two-lane capture
+also has numerical and listening acceptance. The new page layout is not yet physically accepted. See the [current checkpoint](docs/STATUS.md).
+Pattern slots and recording controls remain reserved. PLAY and its focused bottom
+cut strip are described above.
 
 ## Run the original application
 
