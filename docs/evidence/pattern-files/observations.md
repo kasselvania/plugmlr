@@ -67,8 +67,10 @@ The retained `source.json` identifies the exact production/fixture hashes and sc
 
 ## Limits and user acceptance
 
-The user accepted the preceding eight performance slots. This slice adds native
-UI/control persistence evidence only; no new listening or physical Grid report.
+The user accepted the preceding eight performance slots. The initial implementation added native UI/control persistence evidence. On
+2026-09-16 the user also reported testing Save/Load: sequencing was “a little odd”
+but accepted for now, and the instructional readout was praised. No new audio
+quality or specific hardware coverage is inferred from that report.
 No audio was recorded. No DAW/save-reopen lifecycle claim. Files exclude audio,
 assignments and project state. I/O is synchronous; disk latency and performance
 under I/O are not qualified. There is no autosave, undo of replacement or quit guard.

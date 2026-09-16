@@ -1,3 +1,25 @@
+## Accepted application checkpoint / merge authorization — 2026-09-16
+
+The user tested pattern-bank Save/Load and accepted it for now: “The sequencing
+is a little odd, but that's perfectly fine. I am okay with that for now. I think
+the instructional read out is awesome.” This is hands-on save/load feedback;
+the unspecified sequencing quirk remains follow-up, not a diagnosed or fixed bug.
+Preserve the instructional feedback. The user authorized merging PR #49 and its
+prerequisites. The exact dependency chain is PRs #34–#49, from main
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9` to the tested application
+`c6818bec42a5625d569362c8f7d45b5359600baa`, plus this documentation-only receipt.
+PR #1 (the rejected R1 experiment) is excluded. Merge in dependency order using
+merge commits; retain original source commits and their evidence.
+
+Pre-merge refresh: clean checkout; remote heads and ancestry verified. Both Lua
+pattern suites passed. The retained native persistence evidence re-analysis
+passed 125 expected replay commands and the 75-component source guard. These are
+re-analysis and unit tests, not a new native runtime/audio session. No PR in the
+chain has hosted check runs. Existing historical UI-check failure, one-frame loop
+transition limit, home-tab focus limitation, synchronous I/O and untested DAW/
+recording cases remain documented; merging does not turn them into acceptance.
+No engine/gesture changes or next feature are part of this checkpoint.
+
 ## Pattern-bank files — implemented checkpoint, 2026-09-15
 
 The main overview now has Save bank, Load bank, Replace bank and Cancel load with
