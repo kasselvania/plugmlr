@@ -1,0 +1,1288 @@
+{
+  "native_runs_executed": 30,
+  "native_runs_retained_in_git": 15,
+  "note": "All ten final cases and five representative timing/fade controls are retained. Other intermediate captures were moved locally, not deleted. They are not required by the final suite; retained reports include the probe candidate failing the superseded bit-identical-repeat assertion.",
+  "runs": [
+    {
+      "name": "deadline441",
+      "retained_in_git": false,
+      "player_sha256": "e0952c20a1b36497f450875423332bd5a742cc2a775f65bd1b77dcbbbf8622df",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "deadline441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "5da0a5568762540450d99900e923f0f775e3ba43d3573851e3e1841ab1c5d79a"
+        },
+        {
+          "file": "deadline441-console.jpg",
+          "bytes": 225378,
+          "sha256": "fd4bec0ae0de0b201f3f6077095b8cfdd4d0ad6e003d58f15b2427637719444e"
+        },
+        {
+          "file": "deadline441-events.txt",
+          "bytes": 558232,
+          "sha256": "02f3556b41049aedbfd653b797a16c3be6a57ae137e0d4ca3fbcf98a4cd6cb28"
+        },
+        {
+          "file": "deadline441-manifest.json",
+          "bytes": 58564,
+          "sha256": "b1dbb79f5ae438da0c41692b735412727653384593d5177c3f12253a92f760e5"
+        },
+        {
+          "file": "deadline441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "ecb9cb8153ab38d3958cd69f000556fbb913141abcd74bccbac52724da5f51eb"
+        },
+        {
+          "file": "deadline441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "129216965a9cb005142d0ed9d4e52c19f0d7d9270a589b19f047d73702ce677c"
+        }
+      ]
+    },
+    {
+      "name": "final-constant441",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-constant441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "4727b24c484131ab1f75be212da6b8c8537c1f18154302598bd3ccfeac91348f"
+        },
+        {
+          "file": "final-constant441-console.jpg",
+          "bytes": 225319,
+          "sha256": "c8d915278741bc90e9c6ab52f775861bc8932010173925609b70ee94029e5785"
+        },
+        {
+          "file": "final-constant441-events.txt",
+          "bytes": 394634,
+          "sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba"
+        },
+        {
+          "file": "final-constant441-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-constant441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "52cfa5480dbda3b92588f28f681b7629c27114709711ad6f27e455414a5dcb0e"
+        },
+        {
+          "file": "final-constant441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "d657c8226401f1b75cb89f8d9f6cb0d4aa3606cadb3af0fb677c8b1f698b3e17"
+        },
+        {
+          "file": "final-constant441-report.json",
+          "bytes": 9628,
+          "sha256": "d299f82f804ca2080e7c020002f1c371f207a7625eed10a4b9aae91ede185bd5"
+        }
+      ]
+    },
+    {
+      "name": "final-constant48",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-constant48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "4d013b46739b36fa0e7b007a064cf91664022cb4f7e82ae4809eadaebce5a305"
+        },
+        {
+          "file": "final-constant48-console.jpg",
+          "bytes": 224683,
+          "sha256": "eea27cfe9637f586c0e1a236b2bb4ee2baa8546201e6a882117724d5b371e550"
+        },
+        {
+          "file": "final-constant48-events.txt",
+          "bytes": 413828,
+          "sha256": "106be7de234171c5e81f4b84427d1f979d00f770498ad1f02d6b0e7440823f86"
+        },
+        {
+          "file": "final-constant48-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-constant48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "ddada29fcb1328ed00ff6ce7ed35abe27956653864526c91f3cd1fe70396d0e5"
+        },
+        {
+          "file": "final-constant48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "ee08a0be2555fc23620c5a075c6ae8c1db677d5fd9208054128c69c95c181028"
+        },
+        {
+          "file": "final-constant48-report.json",
+          "bytes": 8277,
+          "sha256": "ee645a70232907dde015c51a230f03135474e5ecf86424160e731cb103508e00"
+        }
+      ]
+    },
+    {
+      "name": "final-deadline441",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-deadline441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "d453c9eb9e497639d6a44f0cf75a6a75d979da5eec321f49878053800613d42f"
+        },
+        {
+          "file": "final-deadline441-console.jpg",
+          "bytes": 225381,
+          "sha256": "c8538c5954a206bccbbf563aa9085b3c1e8510476a2fadf7f89bc866660271ff"
+        },
+        {
+          "file": "final-deadline441-events.txt",
+          "bytes": 558265,
+          "sha256": "4a7c8f2487437ad95eba557978fd0b48e790a4ec9d6adc1a0f17de40664e4050"
+        },
+        {
+          "file": "final-deadline441-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-deadline441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "38a72a2f90973b2927a6b9a7b9e9ed341b2569aa43a1edb8f272859d79028720"
+        },
+        {
+          "file": "final-deadline441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "b3846c7d292cc76f6594a5f176eb8ef6de86a8b0e5711bfdf5dc20ae305a520e"
+        },
+        {
+          "file": "final-deadline441-report.json",
+          "bytes": 1213,
+          "sha256": "6c09e0411bb3f9a27bd854231418ae69a1ef6d539a77abb3ffa56dda1cf79e96"
+        }
+      ]
+    },
+    {
+      "name": "final-deadline48",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-deadline48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "a4157b41a7fbc8a7233d90dfe1a7ddac40cd645ba31ae5b02963cf9248a6f154"
+        },
+        {
+          "file": "final-deadline48-console.jpg",
+          "bytes": 225291,
+          "sha256": "34904ef8a42c7c18067ab3abe876a672cd88c6e86ce829d4c8378ea888fcf2a2"
+        },
+        {
+          "file": "final-deadline48-events.txt",
+          "bytes": 555504,
+          "sha256": "3e0ecf43e5beda3f810b7c9d5e409f69e7c9f7748520be673e8b9714f71ea61d"
+        },
+        {
+          "file": "final-deadline48-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-deadline48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "48caa6b31a39187a769bb7ca640141cedbdc4be278130bab9d59c2f715ed07ef"
+        },
+        {
+          "file": "final-deadline48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "49edad7d1a21be5782425ff183a8642d46f58252ea3302cb33f49c6a7e418c8e"
+        },
+        {
+          "file": "final-deadline48-report.json",
+          "bytes": 1189,
+          "sha256": "9153fd1e8c7183869300f18b930bdf5c33353240d2ad7a6d857ce178672d6e28"
+        }
+      ]
+    },
+    {
+      "name": "final-fit441",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-fit441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "3fa9df93e03be2c85f1d1098aef6fd2dfc0c85f7b654ff16010948e58bcd42ac"
+        },
+        {
+          "file": "final-fit441-console.jpg",
+          "bytes": 224994,
+          "sha256": "61063ef13ffa00713dba83fc80a48873d81f23ef640120139877828e52a19717"
+        },
+        {
+          "file": "final-fit441-events.txt",
+          "bytes": 166070,
+          "sha256": "02da0d0002992e475f60f7841a3bfb2f8a664af21f201a06d8e97ab72d6b29bf"
+        },
+        {
+          "file": "final-fit441-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-fit441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "95918a1b59d62da5701666e67a323d3f3cc964d6e44ccce13aa20d9cc3eebaec"
+        },
+        {
+          "file": "final-fit441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "40c030aefbd93f32feee513a2becd395412a7af9c0a845304b5f1da7c2da0ee7"
+        },
+        {
+          "file": "final-fit441-report.json",
+          "bytes": 6472,
+          "sha256": "2cead6cf754b648a24181588e455ef5a68989a58297a3c1fb431375a1e189356"
+        }
+      ]
+    },
+    {
+      "name": "final-musical48",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-musical48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "2b3f1b57eea5e918dd55355b1cceaacf432162f8b0fab6eaacfa5c46d102d1c8"
+        },
+        {
+          "file": "final-musical48-console.jpg",
+          "bytes": 224823,
+          "sha256": "c82efa278f758a544bb441847c3358f2192031e0d97cc07844d3305857f224ec"
+        },
+        {
+          "file": "final-musical48-events.txt",
+          "bytes": 313236,
+          "sha256": "f36e4e75ecad9bbc4add0f59dc942c6d4f9ce21ae1e045b0ab72223eb7e8fc85"
+        },
+        {
+          "file": "final-musical48-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-musical48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "505ec357d92c37dd962d2ff3b63916adccfb5fd95d6fb87f09c7ba3b440e7d9f"
+        },
+        {
+          "file": "final-musical48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "db3d74811c2f8911866e7eeab914a4fa9c996d3b141c7d5de49ba14664f04152"
+        },
+        {
+          "file": "final-musical48-report.json",
+          "bytes": 805,
+          "sha256": "e943399309b8b6adc96cd5b7a34894254f18d44e304687094c04ce7321c5e535"
+        }
+      ]
+    },
+    {
+      "name": "final-short441",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-short441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "6afb64b74123a9111c21c9b09f5c77198912502eef081341eaf5dc0d2f8bd465"
+        },
+        {
+          "file": "final-short441-console.jpg",
+          "bytes": 225297,
+          "sha256": "c2d19bea48d8f40a399575759e7be3ab7b81f11bfb9cde9660f564de5c78ef60"
+        },
+        {
+          "file": "final-short441-events.txt",
+          "bytes": 394634,
+          "sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba"
+        },
+        {
+          "file": "final-short441-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-short441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "9badea642b9f1f285ff55645241c4354d550b13ded6dd9f4c9f2498e3fa3940b"
+        },
+        {
+          "file": "final-short441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "6082c3d784c67351c3c916cd091182f701aadc058c1343d7e2c244034cf5cf40"
+        },
+        {
+          "file": "final-short441-report.json",
+          "bytes": 9535,
+          "sha256": "934fb9315594a1087c6ee8506be62bee1f1e6f37c60f6cf7f8d8e23ef73b80b8"
+        }
+      ]
+    },
+    {
+      "name": "final-short48",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-short48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "a8570daa6d5b297fe9fe45a5be28c47e56692a938846f40e946d35c35f07ca95"
+        },
+        {
+          "file": "final-short48-console.jpg",
+          "bytes": 224670,
+          "sha256": "76488f674b9d8307e92e45766bc782cd17db2c49429deea787de671bb36af5ec"
+        },
+        {
+          "file": "final-short48-events.txt",
+          "bytes": 413795,
+          "sha256": "aa58b9591056f1b100616639e18602d14c81d7e580ed73570a16d3be14741e89"
+        },
+        {
+          "file": "final-short48-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-short48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "8d242c196227ee79f932eb10cbfb914515e29d1c81375b6322887670e3a2a82f"
+        },
+        {
+          "file": "final-short48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "88c7d9cedc2739df5ae82719bc357d304777c4224f83843e167b446b84413990"
+        },
+        {
+          "file": "final-short48-report.json",
+          "bytes": 8179,
+          "sha256": "04f68c8a8f8ae6a13f21630057d582500467d2a829c445116196675f073766fd"
+        }
+      ]
+    },
+    {
+      "name": "final-turns441",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-turns441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "f599634a1b3cb89bbcff752670cc3fd29ab0008cd87f3df8b7172b385730cbda"
+        },
+        {
+          "file": "final-turns441-console.jpg",
+          "bytes": 224512,
+          "sha256": "73d57df54a10b158d95092de177de346566db149fd59b00fe26bbbd73689abcb"
+        },
+        {
+          "file": "final-turns441-events.txt",
+          "bytes": 65740,
+          "sha256": "db473195148f1272b38220548c21b3d24238d0d3c585f67175a9313d910a6049"
+        },
+        {
+          "file": "final-turns441-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-turns441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "23a4f79991070b6cba0dcfc175bcd9e83d48a41ec198b7964f0e9a1e7b9e7ac7"
+        },
+        {
+          "file": "final-turns441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "59b32f0e37f1a6ea79daf4e49dc91d96724229492396d123d33aaf8e4ce20b51"
+        },
+        {
+          "file": "final-turns441-report.json",
+          "bytes": 4736,
+          "sha256": "2997720285d976c56d040813aea85944602c9acd6d4bd5dfd1d9ebffbfb77a14"
+        }
+      ]
+    },
+    {
+      "name": "final-turns48",
+      "retained_in_git": true,
+      "player_sha256": "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "final-turns48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "6712121ee5f357086c22ee75f5e9043945d1ff13c4b0200584af60df741f2a0d"
+        },
+        {
+          "file": "final-turns48-console.jpg",
+          "bytes": 224694,
+          "sha256": "5e3de19a14be1f31c945ffa9cf34fb9ea537946be36ae4c95087abda45618fa5"
+        },
+        {
+          "file": "final-turns48-events.txt",
+          "bytes": 64088,
+          "sha256": "0faa3d0e01163b27d6a96e1c83e41443afbfc22b49cd906a455a36ce4a6e0e85"
+        },
+        {
+          "file": "final-turns48-manifest.json",
+          "bytes": 58564,
+          "sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515"
+        },
+        {
+          "file": "final-turns48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "bce9eab8528ffa7973ba5b38eb2948e6f28b7c8d5031bfcfac7ba851f95cbf61"
+        },
+        {
+          "file": "final-turns48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "37baf18d70bc39d0d5c89196f1eab2440a40a8b4081dccfe4c087874b8a8dc13"
+        },
+        {
+          "file": "final-turns48-report.json",
+          "bytes": 4790,
+          "sha256": "540f5b42e8c30d30705b06856197c4912d11224fd230606f408d56735c60792d"
+        }
+      ]
+    },
+    {
+      "name": "limited-short441",
+      "retained_in_git": false,
+      "player_sha256": "faa4eefe46a87311f10c0dbe2aa4fa296b254dd8e76ac55ec105f253271de975",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "limited-short441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "ed92abe34ca951d4173b5b73b710d285ed926c59bc78fb5b8761881ea3c1477d"
+        },
+        {
+          "file": "limited-short441-console.jpg",
+          "bytes": 222749,
+          "sha256": "32c225b388dcee30a50eefc1db43ac81e505f12a8f18e20cc0f36224a4b845f7"
+        },
+        {
+          "file": "limited-short441-events.txt",
+          "bytes": 394601,
+          "sha256": "c76f984da5c303e4499e81e0e0278bb2ee06164db1e8a9390d71cf42a5326c7e"
+        },
+        {
+          "file": "limited-short441-manifest.json",
+          "bytes": 49303,
+          "sha256": "b82eb51b48e78a8de5c3b85d6014f0af0f1257c7d3e8d79874be953bde0a5062"
+        },
+        {
+          "file": "limited-short441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "befee07e90a44eed44b479f0eb08e5d2bde8386fa6f12c13c659c9abc476d2ab"
+        },
+        {
+          "file": "limited-short441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "7c7f5ed81d8f1ebb9717973fb65644d3384b30bfa227313f47a20a6c071af1df"
+        },
+        {
+          "file": "limited-short441-report.json",
+          "bytes": 9377,
+          "sha256": "031e11d4b287401a9142756736194adff0707f43d73ceaf89b03a068becefbaa"
+        }
+      ]
+    },
+    {
+      "name": "musical48",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "musical48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "567e292b3cbc032333eedf9f26f7a481314c797d23b0ca5f727d3bac07ff1544"
+        },
+        {
+          "file": "musical48-console.jpg",
+          "bytes": 224825,
+          "sha256": "4804939ec772d14aa8bfaf8fa79f21f3699e1f8960e40da4ba323f6e8804828d"
+        },
+        {
+          "file": "musical48-events.txt",
+          "bytes": 313236,
+          "sha256": "f36e4e75ecad9bbc4add0f59dc942c6d4f9ce21ae1e045b0ab72223eb7e8fc85"
+        },
+        {
+          "file": "musical48-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "musical48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "5b4d08a7e67afc837c2fa7eb475c6cacca95bc2a80d704475cc0452a91a7e019"
+        },
+        {
+          "file": "musical48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "85be4412acfe948082d577f78a3586e0e4fbc710cfc5a638874dda1555f96a48"
+        }
+      ]
+    },
+    {
+      "name": "pre-subframe-constant441",
+      "retained_in_git": false,
+      "player_sha256": "e0952c20a1b36497f450875423332bd5a742cc2a775f65bd1b77dcbbbf8622df",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-subframe-constant441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "516f8b812ac25e7ca331f72acfa9f2a16458c7d24a73f5b70e304aa90b071517"
+        },
+        {
+          "file": "pre-subframe-constant441-console.jpg",
+          "bytes": 225315,
+          "sha256": "487456aa0407d080625743f98cf618424fcfb6dee028cd92b227a45b11cc89f4"
+        },
+        {
+          "file": "pre-subframe-constant441-events.txt",
+          "bytes": 394634,
+          "sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba"
+        },
+        {
+          "file": "pre-subframe-constant441-manifest.json",
+          "bytes": 58564,
+          "sha256": "b1dbb79f5ae438da0c41692b735412727653384593d5177c3f12253a92f760e5"
+        },
+        {
+          "file": "pre-subframe-constant441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "62c1c3380d4dd92914d27589f2c5881c042113d1f7563a655f3b45b2c02f70da"
+        },
+        {
+          "file": "pre-subframe-constant441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "cf0e62a09429501f3e1e3068fc742a77efd0b0919242d829cd05622246247ff2"
+        },
+        {
+          "file": "pre-subframe-constant441-report.json",
+          "bytes": 9452,
+          "sha256": "da8ac47172c17d8719c4ed932fac2699452bb131dafd43e031f22fa90ab9084f"
+        }
+      ]
+    },
+    {
+      "name": "pre-subframe-fit441",
+      "retained_in_git": false,
+      "player_sha256": "e0952c20a1b36497f450875423332bd5a742cc2a775f65bd1b77dcbbbf8622df",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-subframe-fit441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "81992199b72bf6c6e158611ebfddb880e884c79c3354cf18d5684610421d9861"
+        },
+        {
+          "file": "pre-subframe-fit441-console.jpg",
+          "bytes": 225005,
+          "sha256": "5cc5b73b237237c7e8a9174d3385ebca33cf8394e903bb1428717c7225604052"
+        },
+        {
+          "file": "pre-subframe-fit441-events.txt",
+          "bytes": 166103,
+          "sha256": "7c2503c23f201287126d29291b5bf7f0792d2b0d8200122786f87a86f7f01c34"
+        },
+        {
+          "file": "pre-subframe-fit441-manifest.json",
+          "bytes": 58564,
+          "sha256": "b1dbb79f5ae438da0c41692b735412727653384593d5177c3f12253a92f760e5"
+        },
+        {
+          "file": "pre-subframe-fit441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "7cb4911df017982058adecac21baf124d9ea8fd3c2710514b8bc30127a70329f"
+        },
+        {
+          "file": "pre-subframe-fit441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "64732f08edc0a5a31a6930787a77232bff932b6ab4b424b37c0003c6cdd91c6d"
+        },
+        {
+          "file": "pre-subframe-fit441-report.json",
+          "bytes": 6314,
+          "sha256": "98aabf12e6a8f0b021226b1db7d2df3b9e7b38606b3c53c4e4904c5175d5c7c3"
+        }
+      ]
+    },
+    {
+      "name": "pre-subframe-short441",
+      "retained_in_git": false,
+      "player_sha256": "e0952c20a1b36497f450875423332bd5a742cc2a775f65bd1b77dcbbbf8622df",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-subframe-short441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "4544b736a5b47161b64ae49ad978a21e94367d1713011913af44b7e2e21911c9"
+        },
+        {
+          "file": "pre-subframe-short441-console.jpg",
+          "bytes": 225310,
+          "sha256": "1ac33556dc20f30793654d8c217c1f0d74af09f013a3f4c33627f67123f0d245"
+        },
+        {
+          "file": "pre-subframe-short441-events.txt",
+          "bytes": 394601,
+          "sha256": "895d8611b476115c0704023656eb83e679a0914e4beab9371aa128ef29b8976f"
+        },
+        {
+          "file": "pre-subframe-short441-manifest.json",
+          "bytes": 58564,
+          "sha256": "b1dbb79f5ae438da0c41692b735412727653384593d5177c3f12253a92f760e5"
+        },
+        {
+          "file": "pre-subframe-short441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "3d3f1ced09f77398adcf6314402922c9d1d1e51609398bfd760d63f9aaa5f445"
+        },
+        {
+          "file": "pre-subframe-short441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "ca49f8b78a37844749452b6824ef50b8b24b805c57f10a1c0dc5df01ab48f44a"
+        },
+        {
+          "file": "pre-subframe-short441-report.json",
+          "bytes": 9377,
+          "sha256": "b19cf14cc82b1b64c9426d15084735e67efdbe82efbe65169e2ab9235d6b8a16"
+        }
+      ]
+    },
+    {
+      "name": "pre-subframe-turns441",
+      "retained_in_git": true,
+      "player_sha256": "e0952c20a1b36497f450875423332bd5a742cc2a775f65bd1b77dcbbbf8622df",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-subframe-turns441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "47a9c7f27aec0005062bdad61f867a28ccdc4195ee5633f4ec5fc18634331470"
+        },
+        {
+          "file": "pre-subframe-turns441-console.jpg",
+          "bytes": 224508,
+          "sha256": "28f2a8f2f545f780c4b14f92276aa4a50105b2346f096c8c13cac272c19ad553"
+        },
+        {
+          "file": "pre-subframe-turns441-events.txt",
+          "bytes": 65773,
+          "sha256": "0242e0beaf53b3479eda9a2da899102cc3adec20e3dfa7ae9bd3a7475995aed7"
+        },
+        {
+          "file": "pre-subframe-turns441-manifest.json",
+          "bytes": 58564,
+          "sha256": "b1dbb79f5ae438da0c41692b735412727653384593d5177c3f12253a92f760e5"
+        },
+        {
+          "file": "pre-subframe-turns441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "2b03d4f424f6f10eb23023f279354fc8d2ddefecbe141a27a839875bd6fa4abe"
+        },
+        {
+          "file": "pre-subframe-turns441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "0008ac9dad7f17d7b1680abb19b2dda1fb657491d9277bf59ce3f2ee125d997f"
+        },
+        {
+          "file": "pre-subframe-turns441-report.json",
+          "bytes": 4578,
+          "sha256": "a16f84c3fb8a343b2b90fe97a7aa38e27b6fc2dbeff718c0af90bddf58e9b340"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-constant441",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-constant441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "5e40816ff93235ec64e22b84491b66600bffb523ea18d629bf507be37826839d"
+        },
+        {
+          "file": "pre-turn-return-constant441-console.jpg",
+          "bytes": 225309,
+          "sha256": "a4ab1bd8f0505ed05c8743a13a17cc246f899ba7fad01967374286d2db959c5f"
+        },
+        {
+          "file": "pre-turn-return-constant441-events.txt",
+          "bytes": 394634,
+          "sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba"
+        },
+        {
+          "file": "pre-turn-return-constant441-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-constant441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "a9fe557f7ff866c43b0bcec69d8bb097d7a7f95b566a2b9ef4f7c579f35a4127"
+        },
+        {
+          "file": "pre-turn-return-constant441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "de5c66b37aa6113080b215179ee9c4f5b874f334bf22fc1a65474fe77f419598"
+        },
+        {
+          "file": "pre-turn-return-constant441-report.json",
+          "bytes": 9628,
+          "sha256": "31a72d68b757720a6d4e3403fd34402737ac2760fcbc84db4fc45d54fbfcf78f"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-constant48",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-constant48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "b996e92911235a175197d1b219b467bdd0bd8abc1fa5fd1ff95e5dca2d3b4fcd"
+        },
+        {
+          "file": "pre-turn-return-constant48-console.jpg",
+          "bytes": 224681,
+          "sha256": "b0b813d7b797f6dad9860c13faf4c3ec7df8edea3166186469efe67c9361d7ef"
+        },
+        {
+          "file": "pre-turn-return-constant48-events.txt",
+          "bytes": 413828,
+          "sha256": "106be7de234171c5e81f4b84427d1f979d00f770498ad1f02d6b0e7440823f86"
+        },
+        {
+          "file": "pre-turn-return-constant48-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-constant48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "d94b3d9efb5280cda7ccbde1a9ae13c815192ecaed88200fbc944bdfa7012ab5"
+        },
+        {
+          "file": "pre-turn-return-constant48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "0e87af6397d392035a78ef86d488f5432835ce2d1ad5b787cde8ccafadbf4b91"
+        },
+        {
+          "file": "pre-turn-return-constant48-report.json",
+          "bytes": 8277,
+          "sha256": "66b09a36a30e4a323058616bea30e02c1320df208b3427b1f9ba9e7d67ab70db"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-deadline441",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-deadline441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "b867134ca4a537f87593541dc3e7d3b495fb33ab5358a15744b444493d6879fc"
+        },
+        {
+          "file": "pre-turn-return-deadline441-console.jpg",
+          "bytes": 225381,
+          "sha256": "f0d24bdcc418a69fa77f71cec26d24837517362a52bb5582349e021dfc60ed5e"
+        },
+        {
+          "file": "pre-turn-return-deadline441-events.txt",
+          "bytes": 558232,
+          "sha256": "0f40a42d9f0789fd899606d85c15e90934ceb90fe84ca8acb6876662365af2ae"
+        },
+        {
+          "file": "pre-turn-return-deadline441-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-deadline441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "792a59915fefb628c08febba4ee849317634305ec5a7c250d56bbef0f0e0d11a"
+        },
+        {
+          "file": "pre-turn-return-deadline441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "9e226921b22b144e222503ad17957ecc51aec9e5a6c3cdf992b9fb302b23d80b"
+        },
+        {
+          "file": "pre-turn-return-deadline441-report.json",
+          "bytes": 1213,
+          "sha256": "6c09e0411bb3f9a27bd854231418ae69a1ef6d539a77abb3ffa56dda1cf79e96"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-deadline48",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-deadline48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "099b2d988f186f88c7f38aa71bafab16d507e577a4b98fc708fdd008bc5a52d4"
+        },
+        {
+          "file": "pre-turn-return-deadline48-console.jpg",
+          "bytes": 225306,
+          "sha256": "5c900eb5365d01230afa8b3b384fe9c4b2f346bce222b5b91ef16089a8ba3a4e"
+        },
+        {
+          "file": "pre-turn-return-deadline48-events.txt",
+          "bytes": 555504,
+          "sha256": "3e0ecf43e5beda3f810b7c9d5e409f69e7c9f7748520be673e8b9714f71ea61d"
+        },
+        {
+          "file": "pre-turn-return-deadline48-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-deadline48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "d544e3451e9e30fdc89f4ebaab39f5967aa4ee891720a0c3ea928c2339bcd923"
+        },
+        {
+          "file": "pre-turn-return-deadline48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "69e3efde417d619a59e046770416a7ad983e2648468e2e10bc6449024a8bde24"
+        },
+        {
+          "file": "pre-turn-return-deadline48-report.json",
+          "bytes": 1189,
+          "sha256": "9153fd1e8c7183869300f18b930bdf5c33353240d2ad7a6d857ce178672d6e28"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-fit441",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-fit441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "dc812ace6e4421cea7219dfd16683883b07fb9599cab6c38a50fdebcd27d8ff0"
+        },
+        {
+          "file": "pre-turn-return-fit441-console.jpg",
+          "bytes": 224941,
+          "sha256": "5f51797fd6b74f510a2ce070a4368fa15de45821944c59e4519e04bb7ea4d917"
+        },
+        {
+          "file": "pre-turn-return-fit441-events.txt",
+          "bytes": 166103,
+          "sha256": "7c2503c23f201287126d29291b5bf7f0792d2b0d8200122786f87a86f7f01c34"
+        },
+        {
+          "file": "pre-turn-return-fit441-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-fit441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "449f972caf0eef18a1e3846d7bd8bba6d00e9718a165ed07e8491d4d0a36f6c5"
+        },
+        {
+          "file": "pre-turn-return-fit441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "40c030aefbd93f32feee513a2becd395412a7af9c0a845304b5f1da7c2da0ee7"
+        },
+        {
+          "file": "pre-turn-return-fit441-report.json",
+          "bytes": 6472,
+          "sha256": "383a09fe03641af2724b9cf0bdd3d5cbd3c326cdffd7e396f7a8276ec6801c43"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-short441",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-short441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "e1337212e5c0fbe5328d660a9b8759347502614c47a34a79b9399c9cc821a0ba"
+        },
+        {
+          "file": "pre-turn-return-short441-console.jpg",
+          "bytes": 225307,
+          "sha256": "3fa958654e1e6330d041b13f77883c99e7a267c87d38d7daaba1df0a51804ad9"
+        },
+        {
+          "file": "pre-turn-return-short441-events.txt",
+          "bytes": 394634,
+          "sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba"
+        },
+        {
+          "file": "pre-turn-return-short441-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-short441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "7f7d95a7c2a127373cb4d731179b88b9135d06c99d85fe2f155d5e393acea612"
+        },
+        {
+          "file": "pre-turn-return-short441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "438a40ffeaad8786b0c8aee7b882eea4af6cb9936b4256f63b293013dfc9f773"
+        },
+        {
+          "file": "pre-turn-return-short441-report.json",
+          "bytes": 9535,
+          "sha256": "9901d1fed69e0607ba5298ce1c8dbef80d51886b8b8b138274df6b094f501c55"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-short48",
+      "retained_in_git": true,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-short48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "1d8d84306f06b7c5c2802925fc565f48b8e907e9d59fb9df9fc1adc569606bfb"
+        },
+        {
+          "file": "pre-turn-return-short48-console.jpg",
+          "bytes": 224680,
+          "sha256": "fe4a3dd15ffba521591f3d5d6c3342416445cde603338728f5e924a0355d5e99"
+        },
+        {
+          "file": "pre-turn-return-short48-events.txt",
+          "bytes": 413795,
+          "sha256": "aa58b9591056f1b100616639e18602d14c81d7e580ed73570a16d3be14741e89"
+        },
+        {
+          "file": "pre-turn-return-short48-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-short48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "cf2d3882d35f606d79b44e23d1135ece1e1d3425d63c47aa0d49cfd3459ffcf2"
+        },
+        {
+          "file": "pre-turn-return-short48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "15096c18a3209e059689ce641242c137d51a10ce70536d3c34d76babc28bc515"
+        },
+        {
+          "file": "pre-turn-return-short48-report.json",
+          "bytes": 8181,
+          "sha256": "77dab53b7eebe09b62988c177a32a88038e40f77e359eaf5cf11e3a5242b5f3c"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-turns441",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-turns441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "fb44b706cdaee420fd9eb82e39486dd5ce484b3dcb16da0a9e99cd171e2b6b71"
+        },
+        {
+          "file": "pre-turn-return-turns441-console.jpg",
+          "bytes": 224503,
+          "sha256": "2141cd9385aa70be094ede0c297f5c9871b7b877d8b20c0c3f3409bc9def381b"
+        },
+        {
+          "file": "pre-turn-return-turns441-events.txt",
+          "bytes": 65740,
+          "sha256": "db473195148f1272b38220548c21b3d24238d0d3c585f67175a9313d910a6049"
+        },
+        {
+          "file": "pre-turn-return-turns441-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-turns441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "5d1b95248f5c23d5fa123ffca9ce4d938f5c6b40f8865086c468f986fde64ce7"
+        },
+        {
+          "file": "pre-turn-return-turns441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "59b32f0e37f1a6ea79daf4e49dc91d96724229492396d123d33aaf8e4ce20b51"
+        },
+        {
+          "file": "pre-turn-return-turns441-report.json",
+          "bytes": 4736,
+          "sha256": "c4c8b09bc231a74d8627c0a7b504a1641040b1311e3f3174c0ca901815f2c495"
+        }
+      ]
+    },
+    {
+      "name": "pre-turn-return-turns48",
+      "retained_in_git": false,
+      "player_sha256": "a5eedf5a1cbd0d2872946c86aed5ccb3b2e23f54e6a1105dd94ffeb37484bf16",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "pre-turn-return-turns48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "3ea5cea76641e894b924903ae9baf40d91a86c77f1ba12b967eec7d9095420fd"
+        },
+        {
+          "file": "pre-turn-return-turns48-console.jpg",
+          "bytes": 224686,
+          "sha256": "4573af367488875090311332d5d4c4131813607d7e9adfe87dafb9b8bf295175"
+        },
+        {
+          "file": "pre-turn-return-turns48-events.txt",
+          "bytes": 64088,
+          "sha256": "1998065640f34994d1ccfad54679f29d7d9ba73349669d7dd18ca5572754f0f6"
+        },
+        {
+          "file": "pre-turn-return-turns48-manifest.json",
+          "bytes": 58564,
+          "sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda"
+        },
+        {
+          "file": "pre-turn-return-turns48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "7c7ce0255285dc29a0621bd5d191436ced1d9cb1b62350fd7084ae15ade8c1aa"
+        },
+        {
+          "file": "pre-turn-return-turns48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "e5c9482b9c89f2f83f5cdc27936d776c6ccfb66de7ba78d7f54a45c1e31883cd"
+        },
+        {
+          "file": "pre-turn-return-turns48-report.json",
+          "bytes": 4790,
+          "sha256": "12e9bb4d0b40cd60e5c2dfdce8e8aa86eebdeee8a7b4af4fbdd913296a611cf1"
+        }
+      ]
+    },
+    {
+      "name": "timing-short48",
+      "retained_in_git": true,
+      "player_sha256": "aea7fe3736ccb65a8eae172034574ee00c4e6cb9b6c95e1a1afed278758fa3fc",
+      "reader_fade_limit_sha256": null,
+      "artifacts": [
+        {
+          "file": "timing-short48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "1d976f989f42f930d8e679214737d51ff0bab372a222f3a3109767a2df61b4d0"
+        },
+        {
+          "file": "timing-short48-console.jpg",
+          "bytes": 222203,
+          "sha256": "e5c25c26378a24c0d14219f7026b257d4da022cb00491b555622b51078bb9cc2"
+        },
+        {
+          "file": "timing-short48-events.txt",
+          "bytes": 413828,
+          "sha256": "106be7de234171c5e81f4b84427d1f979d00f770498ad1f02d6b0e7440823f86"
+        },
+        {
+          "file": "timing-short48-manifest.json",
+          "bytes": 49205,
+          "sha256": "4707ffb337319a6f783e9cba0ca978178bf8f8bc68c58be2f6b05a0f0c40f619"
+        },
+        {
+          "file": "timing-short48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "aff855819b4a7b47a99dfcd71e01c9c923c8694684fab5e3d8002e52ccd65378"
+        },
+        {
+          "file": "timing-short48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "2f7f63824ef62a2cc602da4c1686ee54bd3670026479f60724b2a866df7048a9"
+        },
+        {
+          "file": "timing-short48-report.json",
+          "bytes": 130325,
+          "sha256": "f20be311bf468ff29639f784abcd0688f68f49ee2674c97252b5655dda94b43b"
+        }
+      ]
+    },
+    {
+      "name": "timing441",
+      "retained_in_git": true,
+      "player_sha256": "aea7fe3736ccb65a8eae172034574ee00c4e6cb9b6c95e1a1afed278758fa3fc",
+      "reader_fade_limit_sha256": null,
+      "artifacts": [
+        {
+          "file": "timing441-capture.wav",
+          "bytes": 24693840,
+          "sha256": "a75dfe4a175faa0c4fe0934d16d0dffffc7d84c90b73a9b76d972965791cbb6c"
+        },
+        {
+          "file": "timing441-console.jpg",
+          "bytes": 222581,
+          "sha256": "ccdafac30a9d810ccdafde4701291788eb9f8b7fb7e46ac5b1fcfe75fb946aac"
+        },
+        {
+          "file": "timing441-events.txt",
+          "bytes": 299656,
+          "sha256": "dc73e7592dd234b66c497a69a3330cd935c8b6ed2ea4fec0cf3c1d0a95930050"
+        },
+        {
+          "file": "timing441-manifest.json",
+          "bytes": 49205,
+          "sha256": "4707ffb337319a6f783e9cba0ca978178bf8f8bc68c58be2f6b05a0f0c40f619"
+        },
+        {
+          "file": "timing441-readers1.wav",
+          "bytes": 24693840,
+          "sha256": "c2ef636eacc789d264c4c9ade4d84e8c3e9555746e731feee1f683a612e15a38"
+        },
+        {
+          "file": "timing441-readers2.wav",
+          "bytes": 24693840,
+          "sha256": "7c7f5ed81d8f1ebb9717973fb65644d3384b30bfa227313f47a20a6c071af1df"
+        },
+        {
+          "file": "timing441-report.json",
+          "bytes": 6682,
+          "sha256": "885d2e6631401dd5b5a292d6000aa875ff96ea2fe9a39efc793370d15879ca79"
+        }
+      ]
+    },
+    {
+      "name": "timing48",
+      "retained_in_git": true,
+      "player_sha256": "aea7fe3736ccb65a8eae172034574ee00c4e6cb9b6c95e1a1afed278758fa3fc",
+      "reader_fade_limit_sha256": null,
+      "artifacts": [
+        {
+          "file": "timing48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "95fe4a8de971aa9b0ccbf34fb9e614e22c358f5115ec47a408e5512ba28cee42"
+        },
+        {
+          "file": "timing48-console.jpg",
+          "bytes": 222222,
+          "sha256": "05c71b641303f63498e53d12788b84417ae7c7be322cc5efbd493bc533b9d79a"
+        },
+        {
+          "file": "timing48-events.txt",
+          "bytes": 319526,
+          "sha256": "63826cfdfccb7e427265ea7701d00679ff6096e97d2f778294fd5f2824166273"
+        },
+        {
+          "file": "timing48-manifest.json",
+          "bytes": 49205,
+          "sha256": "4707ffb337319a6f783e9cba0ca978178bf8f8bc68c58be2f6b05a0f0c40f619"
+        },
+        {
+          "file": "timing48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "af9d81f3c61db2d8363d51a5392e81a496f127b0c546156be131654ad0a2bf8a"
+        },
+        {
+          "file": "timing48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "ed03d533d52d8db9c258cd94f17f8d9767eb19b5733628bd49c7ee3e14a75446"
+        },
+        {
+          "file": "timing48-report.json",
+          "bytes": 6455,
+          "sha256": "8bf28a97e5ce3501f146b29802f87df22399945b2deaf1bf08faef17500458d3"
+        }
+      ]
+    },
+    {
+      "name": "turn-return-probe-short48",
+      "retained_in_git": false,
+      "player_sha256": "f60e2c083440b89d878d32f4f280069a170b66df76fd512574839d439a7619f9",
+      "reader_fade_limit_sha256": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+      "artifacts": [
+        {
+          "file": "turn-return-probe-short48-capture.wav",
+          "bytes": 26880080,
+          "sha256": "61991e02f9a146369549326e7780fd45f79d6f63ea06b29eae0939efad36d0ec"
+        },
+        {
+          "file": "turn-return-probe-short48-console.jpg",
+          "bytes": 224685,
+          "sha256": "6054fd250b98ae7e6ec86938cc92dc82de6277e39f3d249be7e29bc76d162da8"
+        },
+        {
+          "file": "turn-return-probe-short48-events.txt",
+          "bytes": 413795,
+          "sha256": "aa58b9591056f1b100616639e18602d14c81d7e580ed73570a16d3be14741e89"
+        },
+        {
+          "file": "turn-return-probe-short48-manifest.json",
+          "bytes": 58564,
+          "sha256": "bdcdc5dbd7da5cbfa94e8e45ced648cdfbe9e2a4ecaa8f621d347766ca178675"
+        },
+        {
+          "file": "turn-return-probe-short48-readers1.wav",
+          "bytes": 26880080,
+          "sha256": "57a2fbff2b1acc84438cf9f145b2a4232f64ba977edb1281a8c692742825bb70"
+        },
+        {
+          "file": "turn-return-probe-short48-readers2.wav",
+          "bytes": 26880080,
+          "sha256": "ed03d533d52d8db9c258cd94f17f8d9767eb19b5733628bd49c7ee3e14a75446"
+        },
+        {
+          "file": "turn-return-probe-short48-report.json",
+          "bytes": 7811,
+          "sha256": "f66f5edece479c9e916f311d48b905de8d150c9d735a0fe08d8dcb33a6670a5a"
+        }
+      ]
+    }
+  ],
+  "exploration_location": "/tmp/plugmlr-loop-exploration"
+}

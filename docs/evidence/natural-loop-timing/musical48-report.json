@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "checks": {
+    "bounded": true,
+    "finite": true,
+    "no_reader_resets": true,
+    "running_gain_unity": true,
+    "pause_stop_silent": true,
+    "mixer_gain": true,
+    "both_lanes_and_mixer_stop": true
+  },
+  "post_master_peak": 0.5091233253479004,
+  "post_master_rms": 0.10031355917453766,
+  "player_a_rms_by_second": [
+    0.2376519739627838,
+    0.19266022741794586,
+    0.22415107488632202,
+    0.12687844038009644,
+    0.21942315995693207,
+    0.18052883446216583,
+    0.21992187201976776,
+    0.28320202231407166,
+    0.29177719354629517,
+    0.3445768356323242,
+    0.2963096499443054,
+    0.34786564111709595
+  ],
+  "max_step_LR": [
+    0.4341579079627991,
+    0.43302518129348755
+  ],
+  "listening": "Pending. Musical sample steps have no sine-fixture click bound."
+}

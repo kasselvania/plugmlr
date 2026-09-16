@@ -1,0 +1,8 @@
+{
+  "native_pre_fade_reconstruction_errors": {
+    "timing48": 7.914925104213211e-08,
+    "timing441": 7.518407041384734e-08
+  },
+  "fixed_source_frame_offset": 1,
+  "note": "Empirical existing source-to-tap alignment, not a change to public indexing."
+}

@@ -1,0 +1,686 @@
+[
+  {
+    "file": "timing48-readers1.wav",
+    "archive": "timing48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 4656064,
+    "raw_sha256": "af9d81f3c61db2d8363d51a5392e81a496f127b0c546156be131654ad0a2bf8a",
+    "archive_sha256": "9b48e20e606d9f02fc85063a682fa358cdeb89c36855af189c38b5c8908f5fe3",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline441-capture.wav",
+    "archive": "final-deadline441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 11730192,
+    "raw_sha256": "d453c9eb9e497639d6a44f0cf75a6a75d979da5eec321f49878053800613d42f",
+    "archive_sha256": "9977db25f6b865f204f674f51493f2b9d357e2868d55d7722301b36eb8f83a2e",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing48-readers2.wav",
+    "archive": "timing48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2001960,
+    "raw_sha256": "ed03d533d52d8db9c258cd94f17f8d9767eb19b5733628bd49c7ee3e14a75446",
+    "archive_sha256": "d2bd6e7ffc9113db00c2033ce7351711f810c27c13188a609071010f9900725e",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns441-events.txt",
+    "archive": "final-turns441-events.txt.xz",
+    "raw_bytes": 65740,
+    "archived_bytes": 10400,
+    "raw_sha256": "db473195148f1272b38220548c21b3d24238d0d3c585f67175a9313d910a6049",
+    "archive_sha256": "4a44ca15efafbad4c9babbd76e6cd415ce0b5943dde40c66883d1b011d9373af",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline48-events.txt",
+    "archive": "final-deadline48-events.txt.xz",
+    "raw_bytes": 555504,
+    "archived_bytes": 13380,
+    "raw_sha256": "3e0ecf43e5beda3f810b7c9d5e409f69e7c9f7748520be673e8b9714f71ea61d",
+    "archive_sha256": "d4cb310bbf672aea3aa09873660171a1cecc8ca51016652fcabd74eb0d55e35c",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short441-events.txt",
+    "archive": "final-short441-events.txt.xz",
+    "raw_bytes": 394634,
+    "archived_bytes": 51656,
+    "raw_sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba",
+    "archive_sha256": "7311cee43cc99c35e56f4ae57f13fd4f13786d8f555f8b6f48497499706f1492",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline48-readers2.wav",
+    "archive": "final-deadline48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2008068,
+    "raw_sha256": "49edad7d1a21be5782425ff183a8642d46f58252ea3302cb33f49c6a7e418c8e",
+    "archive_sha256": "d59eef78fed8cad458117e0899c8e0e7d4c38b103e0b3ac68f7df7d1acc5365e",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short48-events.txt",
+    "archive": "final-short48-events.txt.xz",
+    "raw_bytes": 413795,
+    "archived_bytes": 48700,
+    "raw_sha256": "aa58b9591056f1b100616639e18602d14c81d7e580ed73570a16d3be14741e89",
+    "archive_sha256": "cb5a06d7a9431f67dd15ac4429281c938c6939a23d2cc07d7d342c33eccb156d",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing441-events.txt",
+    "archive": "timing441-events.txt.xz",
+    "raw_bytes": 299656,
+    "archived_bytes": 44532,
+    "raw_sha256": "dc73e7592dd234b66c497a69a3330cd935c8b6ed2ea4fec0cf3c1d0a95930050",
+    "archive_sha256": "45bec0ecf5f6f141a0d58893f8451a3e9e2b95ef86bb122e27f9b2c4d3b67314",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-fit441-manifest.json",
+    "archive": "final-fit441-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant441-readers2.wav",
+    "archive": "final-constant441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2473988,
+    "raw_sha256": "d657c8226401f1b75cb89f8d9f6cb0d4aa3606cadb3af0fb677c8b1f698b3e17",
+    "archive_sha256": "0ed1d0891fed08e0a5e19fabd243a1113c10f60b6c926b35bb37fae2747ac888",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-musical48-readers1.wav",
+    "archive": "final-musical48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 5075976,
+    "raw_sha256": "505ec357d92c37dd962d2ff3b63916adccfb5fd95d6fb87f09c7ba3b440e7d9f",
+    "archive_sha256": "e928d0eb8815859cea6fb2dbea017a33aa8aa8fd10ee442facdd118346e21acc",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-subframe-turns441-events.txt",
+    "archive": "pre-subframe-turns441-events.txt.xz",
+    "raw_bytes": 65773,
+    "archived_bytes": 10424,
+    "raw_sha256": "0242e0beaf53b3479eda9a2da899102cc3adec20e3dfa7ae9bd3a7475995aed7",
+    "archive_sha256": "66033ad0c57eeaedf2fb515d9901563c22031f54a1e49922b9634b200f8f7a02",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-turn-return-short48-readers2.wav",
+    "archive": "pre-turn-return-short48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2001960,
+    "raw_sha256": "15096c18a3209e059689ce641242c137d51a10ce70536d3c34d76babc28bc515",
+    "archive_sha256": "0d3b6f40d7fb815f959aade849e5b550fb8323397cd14ab754953c3c418442cf",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing48-events.txt",
+    "archive": "timing48-events.txt.xz",
+    "raw_bytes": 319526,
+    "archived_bytes": 38764,
+    "raw_sha256": "63826cfdfccb7e427265ea7701d00679ff6096e97d2f778294fd5f2824166273",
+    "archive_sha256": "dac35b5416ae9a647d3388087086fac9653df44a14c8e2fb1a9b54317c7a5cd5",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline48-readers1.wav",
+    "archive": "final-deadline48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 1541188,
+    "raw_sha256": "48caa6b31a39187a769bb7ca640141cedbdc4be278130bab9d59c2f715ed07ef",
+    "archive_sha256": "8b84d0c66c91d98d2e461830a5f691991bce45b66525e1b243ae4f7c44f5b2bc",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing441-capture.wav",
+    "archive": "timing441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 15184088,
+    "raw_sha256": "a75dfe4a175faa0c4fe0934d16d0dffffc7d84c90b73a9b76d972965791cbb6c",
+    "archive_sha256": "79d6ae0bcd106f16dab58cb6befb99332574b3994f60a351831c8216e5da02be",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant441-readers1.wav",
+    "archive": "final-constant441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2288080,
+    "raw_sha256": "52cfa5480dbda3b92588f28f681b7629c27114709711ad6f27e455414a5dcb0e",
+    "archive_sha256": "51dd4ff2f2e8f944055473784614c3e85d1a3c9b625b69513b553794ea7d90d4",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-musical48-readers2.wav",
+    "archive": "final-musical48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2005248,
+    "raw_sha256": "db3d74811c2f8911866e7eeab914a4fa9c996d3b141c7d5de49ba14664f04152",
+    "archive_sha256": "701e5fe3c6c5b48e2bcb319fc2e35ddc809c59edcd47760b360d315900e37aa0",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-turn-return-short48-readers1.wav",
+    "archive": "pre-turn-return-short48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 5191520,
+    "raw_sha256": "cf2d3882d35f606d79b44e23d1135ece1e1d3425d63c47aa0d49cfd3459ffcf2",
+    "archive_sha256": "9aa2c58a977d10cba4dde4bc0bad12446c7dec5e44930cf5b71e086b4244825f",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant48-manifest.json",
+    "archive": "final-constant48-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline48-capture.wav",
+    "archive": "final-deadline48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 10821932,
+    "raw_sha256": "a4157b41a7fbc8a7233d90dfe1a7ddac40cd645ba31ae5b02963cf9248a6f154",
+    "archive_sha256": "9dc5d0dbf482291050d82bbbd4d2b61ca5762d9cfabbd2a23a30988aee022751",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short441-readers1.wav",
+    "archive": "final-short441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 5425104,
+    "raw_sha256": "9badea642b9f1f285ff55645241c4354d550b13ded6dd9f4c9f2498e3fa3940b",
+    "archive_sha256": "8d678b42ac08b8be818fa839b612f551692cddc6e38d7374609f17a4d1279bb8",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns48-readers1.wav",
+    "archive": "final-turns48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2514492,
+    "raw_sha256": "bce9eab8528ffa7973ba5b38eb2948e6f28b7c8d5031bfcfac7ba851f95cbf61",
+    "archive_sha256": "35780c664a309b55f9326ed0641a075ae89931fbae0bb1fede25498f58d39e32",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing441-readers2.wav",
+    "archive": "timing441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2533168,
+    "raw_sha256": "7c7f5ed81d8f1ebb9717973fb65644d3384b30bfa227313f47a20a6c071af1df",
+    "archive_sha256": "b4c912711f75f4ee007da72f351f32314bb2579217792c7a66b66fa7a66e0a45",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short48-manifest.json",
+    "archive": "final-short48-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant48-capture.wav",
+    "archive": "final-constant48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 8358916,
+    "raw_sha256": "4d013b46739b36fa0e7b007a064cf91664022cb4f7e82ae4809eadaebce5a305",
+    "archive_sha256": "821646682886903724882c5e22629c8fd5c11198ad5d0d9f8051ef7380d954c8",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing48-manifest.json",
+    "archive": "timing48-manifest.json.xz",
+    "raw_bytes": 49205,
+    "archived_bytes": 1668,
+    "raw_sha256": "4707ffb337319a6f783e9cba0ca978178bf8f8bc68c58be2f6b05a0f0c40f619",
+    "archive_sha256": "09226666b7c09c8e69d98cc4e01799d926cce75fc38d616c80e1566c12ca7f60",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short441-readers2.wav",
+    "archive": "final-short441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2502072,
+    "raw_sha256": "6082c3d784c67351c3c916cd091182f701aadc058c1343d7e2c244034cf5cf40",
+    "archive_sha256": "88dff193450f9c2734d2182e268b45cd9a2286e4eed4b4efff04da749e728565",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns48-readers2.wav",
+    "archive": "final-turns48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2031808,
+    "raw_sha256": "37baf18d70bc39d0d5c89196f1eab2440a40a8b4081dccfe4c087874b8a8dc13",
+    "archive_sha256": "1fcf02c17f0784da57d4c104c269b6113c9fd1b61cf403c1f68d1120aaacaf35",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-musical48-capture.wav",
+    "archive": "final-musical48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 15170548,
+    "raw_sha256": "2b3f1b57eea5e918dd55355b1cceaacf432162f8b0fab6eaacfa5c46d102d1c8",
+    "archive_sha256": "d39425d145ed02345c5d10c474e2c04641e38eecbd7d5285c1563ed752168179",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short441-capture.wav",
+    "archive": "final-short441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 15015704,
+    "raw_sha256": "6afb64b74123a9111c21c9b09f5c77198912502eef081341eaf5dc0d2f8bd465",
+    "archive_sha256": "00e59416a9457b1ae1077e44df9edb5fc8ce967a9e3f3d30848995053bc0127a",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing441-readers1.wav",
+    "archive": "timing441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 4773964,
+    "raw_sha256": "c2ef636eacc789d264c4c9ade4d84e8c3e9555746e731feee1f683a612e15a38",
+    "archive_sha256": "d3bb2321aea63e6936d015c4c49fd145073745be2e5ca0e8ee804e2d8e338b8a",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns441-manifest.json",
+    "archive": "final-turns441-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-subframe-turns441-capture.wav",
+    "archive": "pre-subframe-turns441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 13085984,
+    "raw_sha256": "47a9c7f27aec0005062bdad61f867a28ccdc4195ee5633f4ec5fc18634331470",
+    "archive_sha256": "9414e4d7c370d4ac9e4f2261b1217965817a58dcf0f1593ff520510854757143",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short48-readers1.wav",
+    "archive": "final-short48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 5277588,
+    "raw_sha256": "8d242c196227ee79f932eb10cbfb914515e29d1c81375b6322887670e3a2a82f",
+    "archive_sha256": "f059917e6c0771185302f4c7c3e6c0a037062cc4a0b178426d0af741477f83ab",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns441-readers2.wav",
+    "archive": "final-turns441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2533248,
+    "raw_sha256": "59b32f0e37f1a6ea79daf4e49dc91d96724229492396d123d33aaf8e4ce20b51",
+    "archive_sha256": "ee6e66ef1039e2854cc1d9ab69ea791c283cec1f981d9a483889933c0c47c173",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns48-events.txt",
+    "archive": "final-turns48-events.txt.xz",
+    "raw_bytes": 64088,
+    "archived_bytes": 7792,
+    "raw_sha256": "0faa3d0e01163b27d6a96e1c83e41443afbfc22b49cd906a455a36ce4a6e0e85",
+    "archive_sha256": "edc90144e0725b02bb05284911dbd107305b17b899bb15f16f61bc917da61900",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short48-readers2.wav",
+    "archive": "final-short48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2001960,
+    "raw_sha256": "88c7d9cedc2739df5ae82719bc357d304777c4224f83843e167b446b84413990",
+    "archive_sha256": "51dfc67b7bc181a61d737f60ebe5272d5e53e48cffc7d90b02f51768d0e9b25d",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-musical48-manifest.json",
+    "archive": "final-musical48-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns441-capture.wav",
+    "archive": "final-turns441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 13116044,
+    "raw_sha256": "f599634a1b3cb89bbcff752670cc3fd29ab0008cd87f3df8b7172b385730cbda",
+    "archive_sha256": "59060089fd121d286ad3f4173948a07b7fb6643110e8bda8830f4bb419dcbffa",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing441-manifest.json",
+    "archive": "timing441-manifest.json.xz",
+    "raw_bytes": 49205,
+    "archived_bytes": 1668,
+    "raw_sha256": "4707ffb337319a6f783e9cba0ca978178bf8f8bc68c58be2f6b05a0f0c40f619",
+    "archive_sha256": "09226666b7c09c8e69d98cc4e01799d926cce75fc38d616c80e1566c12ca7f60",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-musical48-events.txt",
+    "archive": "final-musical48-events.txt.xz",
+    "raw_bytes": 313236,
+    "archived_bytes": 35936,
+    "raw_sha256": "f36e4e75ecad9bbc4add0f59dc942c6d4f9ce21ae1e045b0ab72223eb7e8fc85",
+    "archive_sha256": "3513c96724676573acc9b1fe3779c7d662781f9983ee1490b3b5d2b06f3126b1",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns441-readers1.wav",
+    "archive": "final-turns441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 3111784,
+    "raw_sha256": "23a4f79991070b6cba0dcfc175bcd9e83d48a41ec198b7964f0e9a1e7b9e7ac7",
+    "archive_sha256": "ff2c174534647ac41999095af7b69f2221bcf32e4c08ff20085a38ca838d4c3e",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns48-manifest.json",
+    "archive": "final-turns48-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-fit441-readers2.wav",
+    "archive": "final-fit441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2494308,
+    "raw_sha256": "40c030aefbd93f32feee513a2becd395412a7af9c0a845304b5f1da7c2da0ee7",
+    "archive_sha256": "3526f773e72613162e004077e86fcee54ecb36b36d1bf3e773b596149047a547",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline441-events.txt",
+    "archive": "final-deadline441-events.txt.xz",
+    "raw_bytes": 558265,
+    "archived_bytes": 18500,
+    "raw_sha256": "4a7c8f2487437ad95eba557978fd0b48e790a4ec9d6adc1a0f17de40664e4050",
+    "archive_sha256": "b0f014c38193f49c717f897e42d07de4a19c0967ee60d2be25ca81799a6563be",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant441-events.txt",
+    "archive": "final-constant441-events.txt.xz",
+    "raw_bytes": 394634,
+    "archived_bytes": 51656,
+    "raw_sha256": "d8af77c992eabdd6aa140a8164a87af1993483196ec50b1138980cd5da6952ba",
+    "archive_sha256": "7311cee43cc99c35e56f4ae57f13fd4f13786d8f555f8b6f48497499706f1492",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-fit441-events.txt",
+    "archive": "final-fit441-events.txt.xz",
+    "raw_bytes": 166070,
+    "archived_bytes": 25108,
+    "raw_sha256": "02da0d0002992e475f60f7841a3bfb2f8a664af21f201a06d8e97ab72d6b29bf",
+    "archive_sha256": "62657118eac2585dcb274edeffa9474ef952f5b628f5b6c827019d5d0f448dd3",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant48-readers1.wav",
+    "archive": "final-constant48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2037668,
+    "raw_sha256": "ddada29fcb1328ed00ff6ce7ed35abe27956653864526c91f3cd1fe70396d0e5",
+    "archive_sha256": "d50c5b5455086f4e46ce823435dddb1219c3e6063c12a990aff40a1c9bc5c3f4",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-turn-return-short48-manifest.json",
+    "archive": "pre-turn-return-short48-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1900,
+    "raw_sha256": "488587fc5422e90e44b65281635152b21e7d8929c857a62ebbe7636023abedda",
+    "archive_sha256": "1b3ebf021cb470e58e9e69ab9fa2538a3020ab908d362c404b9534ee811a586c",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing-short48-manifest.json",
+    "archive": "timing-short48-manifest.json.xz",
+    "raw_bytes": 49205,
+    "archived_bytes": 1668,
+    "raw_sha256": "4707ffb337319a6f783e9cba0ca978178bf8f8bc68c58be2f6b05a0f0c40f619",
+    "archive_sha256": "09226666b7c09c8e69d98cc4e01799d926cce75fc38d616c80e1566c12ca7f60",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant48-events.txt",
+    "archive": "final-constant48-events.txt.xz",
+    "raw_bytes": 413828,
+    "archived_bytes": 48872,
+    "raw_sha256": "106be7de234171c5e81f4b84427d1f979d00f770498ad1f02d6b0e7440823f86",
+    "archive_sha256": "a7685277f3d7172c7834f061f7cb545f0346ce30b61953284d18eeef8a13bfb3",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-fit441-readers1.wav",
+    "archive": "final-fit441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 4100416,
+    "raw_sha256": "95918a1b59d62da5701666e67a323d3f3cc964d6e44ccce13aa20d9cc3eebaec",
+    "archive_sha256": "56c832a3db086103bf5325ec9c8959fac6138c45459696b3d774bdd9c1eeee5e",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant48-readers2.wav",
+    "archive": "final-constant48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2008100,
+    "raw_sha256": "ee08a0be2555fc23620c5a075c6ae8c1db677d5fd9208054128c69c95c181028",
+    "archive_sha256": "a148edf8c0cf6d5f6ccc286b6225ffa91fd1cdcc9d0eee5c99af1cddf6ddedac",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline441-readers1.wav",
+    "archive": "final-deadline441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2883380,
+    "raw_sha256": "38a72a2f90973b2927a6b9a7b9e9ed341b2569aa43a1edb8f272859d79028720",
+    "archive_sha256": "b234ae5a7141517e796909550ba44ecd1fcf1cd03d7f6baecacc322d855a21cd",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline48-manifest.json",
+    "archive": "final-deadline48-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing-short48-readers1.wav",
+    "archive": "timing-short48-readers1.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 5300592,
+    "raw_sha256": "aff855819b4a7b47a99dfcd71e01c9c923c8694684fab5e3d8002e52ccd65378",
+    "archive_sha256": "b8284dbb4fc6334e5579dceeb5762b2413155ee85593881a20dcfbe92abc1920",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-subframe-turns441-readers2.wav",
+    "archive": "pre-subframe-turns441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2494324,
+    "raw_sha256": "0008ac9dad7f17d7b1680abb19b2dda1fb657491d9277bf59ce3f2ee125d997f",
+    "archive_sha256": "c90504847be3a097d17af06a5ede916dc83e87dc6dfee859ba52b953897e03de",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing-short48-capture.wav",
+    "archive": "timing-short48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 15111020,
+    "raw_sha256": "1d976f989f42f930d8e679214737d51ff0bab372a222f3a3109767a2df61b4d0",
+    "archive_sha256": "2aadc98ee416f2e924b158ce4803dec16855017173a8b53abde012bc1017d0fb",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-turn-return-short48-events.txt",
+    "archive": "pre-turn-return-short48-events.txt.xz",
+    "raw_bytes": 413795,
+    "archived_bytes": 48700,
+    "raw_sha256": "aa58b9591056f1b100616639e18602d14c81d7e580ed73570a16d3be14741e89",
+    "archive_sha256": "cb5a06d7a9431f67dd15ac4429281c938c6939a23d2cc07d7d342c33eccb156d",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline441-readers2.wav",
+    "archive": "final-deadline441-readers2.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 2494312,
+    "raw_sha256": "b3846c7d292cc76f6594a5f176eb8ef6de86a8b0e5711bfdf5dc20ae305a520e",
+    "archive_sha256": "488546263134a499312291a2057d2510468a43fe2971f802701c59eb8be544d2",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing-short48-readers2.wav",
+    "archive": "timing-short48-readers2.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 2031724,
+    "raw_sha256": "2f7f63824ef62a2cc602da4c1686ee54bd3670026479f60724b2a866df7048a9",
+    "archive_sha256": "90fad4999735137ccf2e41e72d3e35aa5c0490dd9fe83b2ef8e8bbb742a57226",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "lane-source.wav",
+    "archive": "lane-source.wav.xz",
+    "raw_bytes": 384092,
+    "archived_bytes": 307544,
+    "raw_sha256": "9ea2ae9971bb2ee053c37d766e8084e54d7ed75156af0e11f037f1adb42fcfff",
+    "archive_sha256": "12530b03907db51010eb7248db9ff42374486a4f5e06822eb77f9ffb0fc55e05",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short441-manifest.json",
+    "archive": "final-short441-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-subframe-turns441-readers1.wav",
+    "archive": "pre-subframe-turns441-readers1.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 3170820,
+    "raw_sha256": "2b03d4f424f6f10eb23023f279354fc8d2ddefecbe141a27a839875bd6fa4abe",
+    "archive_sha256": "dc7aa57aee3545e957f578b181a54cb258ad2d41bc0c7cc54f69d7cd08938779",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant441-capture.wav",
+    "archive": "final-constant441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 8982500,
+    "raw_sha256": "4727b24c484131ab1f75be212da6b8c8537c1f18154302598bd3ccfeac91348f",
+    "archive_sha256": "d2ec060622e9c5634b1e4ffd83f11b5f777d97db349aedb8a3e85680b024e2b5",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing-short48-events.txt",
+    "archive": "timing-short48-events.txt.xz",
+    "raw_bytes": 413828,
+    "archived_bytes": 48872,
+    "raw_sha256": "106be7de234171c5e81f4b84427d1f979d00f770498ad1f02d6b0e7440823f86",
+    "archive_sha256": "a7685277f3d7172c7834f061f7cb545f0346ce30b61953284d18eeef8a13bfb3",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-fit441-capture.wav",
+    "archive": "final-fit441-capture.wav.xz",
+    "raw_bytes": 24693840,
+    "archived_bytes": 14326824,
+    "raw_sha256": "3fa9df93e03be2c85f1d1098aef6fd2dfc0c85f7b654ff16010948e58bcd42ac",
+    "archive_sha256": "ee7b8f0c21845d3982d0a54bf2a76ea810e039459ab24ea9bd3cf04811801100",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-turn-return-short48-capture.wav",
+    "archive": "pre-turn-return-short48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 15071528,
+    "raw_sha256": "1d8d84306f06b7c5c2802925fc565f48b8e907e9d59fb9df9fc1adc569606bfb",
+    "archive_sha256": "c698a7e6068f5ed53a068cc744e1319e45c9e91b94015ece1dac70deff3a55d9",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-turns48-capture.wav",
+    "archive": "final-turns48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 12512552,
+    "raw_sha256": "6712121ee5f357086c22ee75f5e9043945d1ff13c4b0200584af60df741f2a0d",
+    "archive_sha256": "815ab379497cad8e99d20bb91843d912b02ba15d7cf2eea50e5ae974f599907f",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "timing48-capture.wav",
+    "archive": "timing48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 14920276,
+    "raw_sha256": "95fe4a8de971aa9b0ccbf34fb9e614e22c358f5115ec47a408e5512ba28cee42",
+    "archive_sha256": "e713ce5e934cdfdc4e77fed2d2d3d800ab9ca7f76839dfe69f557e16a93c0f46",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-short48-capture.wav",
+    "archive": "final-short48-capture.wav.xz",
+    "raw_bytes": 26880080,
+    "archived_bytes": 15059248,
+    "raw_sha256": "a8570daa6d5b297fe9fe45a5be28c47e56692a938846f40e946d35c35f07ca95",
+    "archive_sha256": "4a54e38c48fb6e8abbbb11f99f3e850c1f7bb470456fc0450fca7a02e90d6187",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-deadline441-manifest.json",
+    "archive": "final-deadline441-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "pre-subframe-turns441-manifest.json",
+    "archive": "pre-subframe-turns441-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "b1dbb79f5ae438da0c41692b735412727653384593d5177c3f12253a92f760e5",
+    "archive_sha256": "a91e3c6d124ff6128941aad9a17e100606b02ea1946a53382637efc61354b5ae",
+    "roundtrip_exact": true
+  },
+  {
+    "file": "final-constant441-manifest.json",
+    "archive": "final-constant441-manifest.json.xz",
+    "raw_bytes": 58564,
+    "archived_bytes": 1896,
+    "raw_sha256": "79b2c77e4430dfa6c4a51718e665b74ae16a4e11b69c94267257f83f2e349515",
+    "archive_sha256": "7dff77508c9cd40aa026386a1ce9c25839bc08f604eee771528198f68f7eb752",
+    "roundtrip_exact": true
+  }
+]

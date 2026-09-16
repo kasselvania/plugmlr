@@ -44,15 +44,19 @@
   Recording direction/speed/slew are authorized artistic follow-up, not implemented
   by the playback controls. Retain the recording-continuity exact-boundary Reverse
   failure until its player handoff is repaired and checked in actual audio.
-  Loop endpoints now use separate directional edges and validate against the
-  existing logical ramp before handing off. The control check reads the original
-  0=forward / 1=reverse state, not the signal selector's 1/2 convention. Preserve
-  the recorded-boundary and stale-edge failure controls in loop-boundary-handoff.
+  Natural wraps now schedule from the original frame-ramp duration, replacing
+  audio-block edge detection. New trajectories replace the deadline; transport
+  and pending cuts cancel it. Keep the original handoff order and 0=forward /
+  1=reverse convention. Preserve the recorded-boundary and stale-edge controls.
   The user chose a local Pd stereo bus between standalone patches for this slice;
   cross-instance pdlink transport fails stereo timing and remains separate.
   Validate type AND number selection, reselection, empty buffers, interrupted
   switches, stereo ordering and safe load/clear in the native original player.
-  Keep the 6/9 ms fades and shutdown cancellation; test loops, cuts and interrupted transport in the actual player.
+  Keep the 6/9 ms fade defaults and shutdown cancellation. reader-fade-limit may
+  shorten an envelope before reuse, never extend it. A turn back to the preceding
+  natural loop's outgoing endpoint preserves that fade until handoff; cuts and
+  changed endpoints do not get this exception. Refuse full sub-sample cycles.
+  Retain the failed fade candidates and test all transition audio/reader gains.
   Playback Stop must finish its fade/cleanup before a queued Play rechecks buffer
   readiness. Another Stop cancels that Play. Keep recording Stop's direct timing
   separate from playback shutdown, and check empty-buffer playbar output is finite.
@@ -121,8 +125,9 @@
   signals and post-master output, including file/host rate mismatch and cut collisions.
   Bound sampled glide reports to the last applied rate/new-target interval;
   preserve fitted rates outside the five free presets. The playback-slew-review
-  evidence retains unresolved natural-loop timing and short-loop reader reuse.
-  Do not describe the bounded rate repair as full playback acceptance.
+  evidence retains the original natural-loop timing and reader-reuse failures;
+  natural-loop-timing contains their repair and final native regression suite.
+  Neither checkpoint is full playback acceptance or direction-slew acceptance.
 
 - Host validation must name host and file rates separately. Passive message-to-signal
   rate reporting and reader taps can span two 64-frame blocks at command boundaries;

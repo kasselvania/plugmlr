@@ -1,0 +1,17 @@
+{
+  "source": "final-musical48-capture.wav.xz",
+  "channels": [
+    6,
+    7
+  ],
+  "source_sha256": "2b3f1b57eea5e918dd55355b1cceaacf432162f8b0fab6eaacfa5c46d102d1c8",
+  "output": "listening.wav",
+  "output_sha256": "86e685fc05d04e0b6cfe05994d180f8b23dd4a78722ac5f850f4fc29f2991b03",
+  "rate": 48000,
+  "frames": 671836,
+  "seconds": 13.996583333333334,
+  "pcm_bits": 24,
+  "normalization": false,
+  "maximum_conversion_error": 1.1897625284973401e-07,
+  "listening_acceptance": "pending"
+}

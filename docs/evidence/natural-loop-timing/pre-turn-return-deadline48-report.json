@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "checks": {
+    "bounded": true,
+    "finite": true,
+    "player_taps_match": true,
+    "no_reader_resets": true,
+    "all_transition_steps_bounded": true,
+    "running_gain_unity": true,
+    "no_running_dropouts": true,
+    "pause_and_refusal_silent": true,
+    "both_lanes_and_mixer_stop": true,
+    "mixer_gain": true,
+    "subsample_cycle_refused_once": true,
+    "invalid_ranges_reported": true,
+    "sustained_2ms_periods": true,
+    "no_reader_reposition_with_gain_above_1e_6": true,
+    "lane_b_sample_resolution_phase": true
+  },
+  "metrics": {
+    "long_loop": {
+      "passed": true,
+      "wraps": 4400,
+      "seconds": [
+        3.6,
+        12.4
+      ],
+      "nominal_ms": 2.0,
+      "interval_frames": [
+        96
+      ],
+      "mean_period_ms": 2.0,
+      "maximum_accumulated_error_host_samples": 5.820766091346741e-11
+    },
+    "max_step_LR": [
+      0.012603741139173508,
+      0.011107198894023895
+    ],
+    "step_limits": [
+      0.013165814071962592,
+      0.01147046021593009
+    ],
+    "refusal_ms": [
+      1008.0
+    ],
+    "gain_min_max": [
+      1.0,
+      1.0
+    ]
+  },
+  "strict_reset_counts": [
+    0,
+    0,
+    0,
+    0
+  ]
+}

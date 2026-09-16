@@ -1,0 +1,207 @@
+{
+  "native_numerical_suite_passed": false,
+  "checks": {
+    "final-short441": true,
+    "final-constant441": true,
+    "final-turns441": true,
+    "final-deadline441": true,
+    "final-short48": true,
+    "final-constant48": true,
+    "final-turns48": true,
+    "final-deadline48": true,
+    "final-fit441": true,
+    "paired_lane_b_independent": false,
+    "same_final_production_sources": true,
+    "timing_only_reader_reuse_failure_retained": true,
+    "subsample_fade_failure_retained": true,
+    "turn_return_fade_failure_retained": true
+  },
+  "case_reports": {
+    "final-short441": "final-short441-report.json",
+    "final-constant441": "final-constant441-report.json",
+    "final-turns441": "final-turns441-report.json",
+    "final-deadline441": "final-deadline441-report.json",
+    "final-short48": "final-short48-report.json",
+    "final-constant48": "final-constant48-report.json",
+    "final-turns48": "final-turns48-report.json",
+    "final-deadline48": "final-deadline48-report.json",
+    "final-fit441": "final-fit441-report.json"
+  },
+  "lane_b_comparisons": {
+    "441": {
+      "audio_max_error": 2.3640692234039307e-05,
+      "master_frame_max_error": 0.001953125
+    },
+    "48": {
+      "audio_max_error": 0.0,
+      "master_frame_max_error": 0.0
+    }
+  },
+  "lane_b_periods": {
+    "final-short441": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        44100
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-constant441": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        44100
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-turns441": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        44100
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-deadline441": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        44100
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-short48": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        48000
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-constant48": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        48000
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-turns48": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        48000
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-deadline48": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        48000
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    },
+    "final-fit441": {
+      "passed": true,
+      "wraps": 11,
+      "seconds": [
+        1.2,
+        12.4
+      ],
+      "nominal_ms": 1000,
+      "interval_frames": [
+        44100
+      ],
+      "mean_period_ms": 1000.0,
+      "maximum_accumulated_error_host_samples": 0.0
+    }
+  },
+  "production_hashes": {
+    "final-short441": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-constant441": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-turns441": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-deadline441": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-short48": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-constant48": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-turns48": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-deadline48": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ],
+    "final-fit441": [
+      "d2b26301ee2fa5eec86f670267606daffe1ad45a14170a8b71eddf1f1b382e49",
+      "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3"
+    ]
+  },
+  "listening_acceptance": "Pending. Numerical bounds are not universal click-free, hardware or DAW acceptance."
+}
