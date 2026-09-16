@@ -1,0 +1,51 @@
+{
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3",
+  "device": "CoreAudio 8A",
+  "device_buffer_frames": 512,
+  "pd_block_frames": 64,
+  "oversampling": 1,
+  "host_sample_rates": [
+    48000,
+    44100
+  ],
+  "fixture_file_sample_rate": 48000,
+  "restored_host_sample_rate": 48000,
+  "dac_connected": false,
+  "user_audio_files_loaded": false,
+  "capture_automatic_stop_ms": 14000,
+  "independent_watchdog_ms": 16000,
+  "sources": [
+    {
+      "path": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/DrumLoop.wav",
+      "sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6"
+    },
+    {
+      "path": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/tests/fixtures/stop-wave-48.wav",
+      "sha256": "35aab01dd8331051158fdee27a0409f3d72a58f3297f80a373dae81a083bdddc"
+    },
+    {
+      "path": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/tests/fixtures/stop-constant-48.wav",
+      "sha256": "7dd25b8680bba53bcbb646e4549670546966fd3357f199086ecccdfee3c9cb61"
+    },
+    {
+      "path": "/tmp/plugmlr-record-session/input.wav",
+      "sha256": "ee352d22329ac48958c23227390fc3d470aff3e6784ce9506a73d2ecb3402e9f"
+    },
+    {
+      "path": "/tmp/plugmlr-record-session/lane.wav",
+      "sha256": "9ea2ae9971bb2ee053c37d766e8084e54d7ed75156af0e11f037f1adb42fcfff"
+    },
+    {
+      "path": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/tests/build_record_session_check.py",
+      "sha256": "560afed3be0d26b800a729c7760c69d1ee66c25102bed1c244fec96624904ffa"
+    },
+    {
+      "path": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/tests/analyze_playback_slew.py",
+      "sha256": "9e4a6c79ccdba171505b5628dd68d491a2d1bcd6869f622f9f79c24979e835fa"
+    },
+    {
+      "path": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/tests/analyze_record_session.py",
+      "sha256": "4fc6c5597040d414a15588bebb01fa7e2157801eb697debc51b4dee611ac6738"
+    }
+  ]
+}

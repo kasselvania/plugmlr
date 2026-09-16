@@ -1,0 +1,200 @@
+[
+  {
+    "path": "baseline441-capture.wav.xz",
+    "native_wav_sha256": "c374ea81a94cf056ce489d914ff9cbe6d09e733a26ded1d8e7f54daa8208f258",
+    "native_bytes": 24693840,
+    "xz_bytes": 13036848
+  },
+  {
+    "path": "baseline441-readers1.wav.xz",
+    "native_wav_sha256": "158dd79a529d01885646b862765b559483bdd61521758b38e522092bc88be294",
+    "native_bytes": 24693840,
+    "xz_bytes": 3861656
+  },
+  {
+    "path": "baseline441-readers2.wav.xz",
+    "native_wav_sha256": "8ba7d7fee68540e3bc8ea2db916e58f9c8c32abc3b75bdbfae240a9c16d37dd7",
+    "native_bytes": 24693840,
+    "xz_bytes": 507736
+  },
+  {
+    "path": "baseline48-capture.wav.xz",
+    "native_wav_sha256": "ba3774c0fb10d0e77b5b8be0796d4b5f516a9e75a3eee3842009869da37a9bd9",
+    "native_bytes": 26880080,
+    "xz_bytes": 13002408
+  },
+  {
+    "path": "baseline48-readers1.wav.xz",
+    "native_wav_sha256": "d87414d61acb763ed8ad2664393d0c0fad0d2f4422c9afc94c88b3a023fff8a8",
+    "native_bytes": 26880080,
+    "xz_bytes": 3818356
+  },
+  {
+    "path": "baseline48-readers2.wav.xz",
+    "native_wav_sha256": "60a76ba98931905f58403e76c82339ee95e9808be9032c41d48c859216ff880d",
+    "native_bytes": 26880080,
+    "xz_bytes": 499712
+  },
+  {
+    "path": "constant48-capture.wav.xz",
+    "native_wav_sha256": "0856b869bd6ca59913acc83caf932908133de442b694df788e395cf329484a9b",
+    "native_bytes": 26880080,
+    "xz_bytes": 6458564
+  },
+  {
+    "path": "constant48-readers1.wav.xz",
+    "native_wav_sha256": "280f6096886a6b5fd4b3fe5bb4f9fed2902731b61563c61782e80426639e081a",
+    "native_bytes": 26880080,
+    "xz_bytes": 1175696
+  },
+  {
+    "path": "constant48-readers2.wav.xz",
+    "native_wav_sha256": "a76e524643e4641acd8c382ee2a68dc12cfb5794545c297a78cfac2469e8549c",
+    "native_bytes": 26880080,
+    "xz_bytes": 462848
+  },
+  {
+    "path": "fit441-capture.wav.xz",
+    "native_wav_sha256": "834165a910014af23716da8945ff11f05b531b1c1755598cac224cf4226e9daa",
+    "native_bytes": 24693840,
+    "xz_bytes": 11426480
+  },
+  {
+    "path": "fit441-readers1.wav.xz",
+    "native_wav_sha256": "1966f2308e9c3c8197ecf0c0935cf50fb632ccc32d495601f940f029593b778a",
+    "native_bytes": 24693840,
+    "xz_bytes": 2394832
+  },
+  {
+    "path": "fit441-readers2.wav.xz",
+    "native_wav_sha256": "104c40ed42e90a3ce5e690ca53bb749a1d3d643514450fdf75cae0b606cbd2b1",
+    "native_bytes": 24693840,
+    "xz_bytes": 507644
+  },
+  {
+    "path": "repaired-constant48-capture.wav.xz",
+    "native_wav_sha256": "3958856d99587f2a9f13b9731db00b29fd41557f443a1f1655f25f2e35c39aee",
+    "native_bytes": 26880080,
+    "xz_bytes": 6492232
+  },
+  {
+    "path": "repaired-constant48-readers1.wav.xz",
+    "native_wav_sha256": "be0731011a75fcd3dad5378d76c501e813ab5619c33fa4328450655dc97deafa",
+    "native_bytes": 26880080,
+    "xz_bytes": 1201524
+  },
+  {
+    "path": "repaired-constant48-readers2.wav.xz",
+    "native_wav_sha256": "8bb834cc7ce4a53d019b44cc4ab2720d7285c26f560832617fc5f5603b3dc2e0",
+    "native_bytes": 26880080,
+    "xz_bytes": 459128
+  },
+  {
+    "path": "repaired-short441-capture.wav.xz",
+    "native_wav_sha256": "d7388bcb43fbf91040e93fe563643b9938fc09c7d205f224665792886ecd0cde",
+    "native_bytes": 24693840,
+    "xz_bytes": 12897300
+  },
+  {
+    "path": "repaired-short441-readers1.wav.xz",
+    "native_wav_sha256": "34c9a2016b57fa81de980011c6b8cba6cf5635d35538df03fcc2a0547b2d27f5",
+    "native_bytes": 24693840,
+    "xz_bytes": 3919528
+  },
+  {
+    "path": "repaired-short441-readers2.wav.xz",
+    "native_wav_sha256": "c644428ef7130cb9d5cb9638392dc0f807081a430513187b6049133d936a2d2a",
+    "native_bytes": 24693840,
+    "xz_bytes": 471308
+  },
+  {
+    "path": "repaired441-capture.wav.xz",
+    "native_wav_sha256": "bb31f89f889cfb896ffea39478f858a0dd17d55a091aae5ab8dd549255f029a6",
+    "native_bytes": 24693840,
+    "xz_bytes": 13050556
+  },
+  {
+    "path": "repaired441-readers1.wav.xz",
+    "native_wav_sha256": "6dee674f5f21afcd55832f4f2c60f1ecaaa3a2ae7602af28dad5bf9f990f7983",
+    "native_bytes": 24693840,
+    "xz_bytes": 3736424
+  },
+  {
+    "path": "repaired441-readers2.wav.xz",
+    "native_wav_sha256": "fead8faf596c068602e601ebdce1d029d88be2255c20cdd5ec5e9d99c9446675",
+    "native_bytes": 24693840,
+    "xz_bytes": 507656
+  },
+  {
+    "path": "repaired48-capture.wav.xz",
+    "native_wav_sha256": "8870e32570a8bbc93b1125edc9e2981a3a7f22e20577dcdf68517aa8538af137",
+    "native_bytes": 26880080,
+    "xz_bytes": 13014032
+  },
+  {
+    "path": "repaired48-readers1.wav.xz",
+    "native_wav_sha256": "8c2ad144533e3d5e78d1b28d9c73fa6fdd3bb092ba1dedfe616952de843ecea0",
+    "native_bytes": 26880080,
+    "xz_bytes": 3806660
+  },
+  {
+    "path": "repaired48-readers2.wav.xz",
+    "native_wav_sha256": "151732e8cda89b747de73c89a8f4d2c19b25631eb432ec766ebeb3f4c9471df3",
+    "native_bytes": 26880080,
+    "xz_bytes": 499384
+  },
+  {
+    "path": "short-constant48-capture.wav.xz",
+    "native_wav_sha256": "46213ebcdfb9b8b5e69856851b83e8c6834889d8484eff4524edc0f74580bd0c",
+    "native_bytes": 26880080,
+    "xz_bytes": 6608444
+  },
+  {
+    "path": "short-constant48-readers1.wav.xz",
+    "native_wav_sha256": "8b6d1e35f0b4a8836b3b840db0896161100f845e0fcf67a8f025e9dd4f3690de",
+    "native_bytes": 26880080,
+    "xz_bytes": 1463628
+  },
+  {
+    "path": "short-constant48-readers2.wav.xz",
+    "native_wav_sha256": "a76e524643e4641acd8c382ee2a68dc12cfb5794545c297a78cfac2469e8549c",
+    "native_bytes": 26880080,
+    "xz_bytes": 462848
+  },
+  {
+    "path": "short441-capture.wav.xz",
+    "native_wav_sha256": "18bdab6def0daf2a0200532146ecd00492d807c164a579364fcb58ffaf685f66",
+    "native_bytes": 24693840,
+    "xz_bytes": 12908804
+  },
+  {
+    "path": "short441-readers1.wav.xz",
+    "native_wav_sha256": "d40c6dbe93007596e4d515306194bdded3e17d7a9fac0fa4669ebf9dcf06d1a3",
+    "native_bytes": 24693840,
+    "xz_bytes": 3950912
+  },
+  {
+    "path": "short441-readers2.wav.xz",
+    "native_wav_sha256": "c644428ef7130cb9d5cb9638392dc0f807081a430513187b6049133d936a2d2a",
+    "native_bytes": 24693840,
+    "xz_bytes": 471308
+  },
+  {
+    "path": "short48-capture.wav.xz",
+    "native_wav_sha256": "30efc3c1cc706b6ac6ed401039f9dae25a2103ce73a8114a369918b7919322b9",
+    "native_bytes": 26880080,
+    "xz_bytes": 13474752
+  },
+  {
+    "path": "short48-readers1.wav.xz",
+    "native_wav_sha256": "be8e60f6fbf2587fd18da35957bb1df16677c5dd966a2de9f93af8547ee109ec",
+    "native_bytes": 26880080,
+    "xz_bytes": 4275464
+  },
+  {
+    "path": "short48-readers2.wav.xz",
+    "native_wav_sha256": "84f466c52c4485f8a6ec85a49f5e55953b71a1b7583a3fad5671e3c20b53559a",
+    "native_bytes": 26880080,
+    "xz_bytes": 463016
+  }
+]

@@ -7,6 +7,72 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Playback and slew review — 2026-09-11
+
+Continue from `b85982ab8845ac54e9380b6212314e6f573d3d75` on the separate
+`codex/playback-slew-review` branch. PR #34 remains draft and unmerged; remote
+main is `29ab51e653eded9db9c5aa09850ec4a1352d97e9`. The initial worktree was
+clean and native plugdata was at Home with DSP On and no patch open.
+
+Before implementation: retain the five speed presets, their existing
+0..2000 ms glide duration and -1..0 curve, and instant Reverse. The current
+audio-rate `curve~` supplies rates every 5 ms; `vline~` generates the audio-rate
+reader positions. This is piecewise ramp motion, not continuous integration of
+speed. A new speed target cancels/replaces the old glide from its current curve
+value. Duration/curve edits apply to the next target. A glide may advance while
+paused/stopped, but its reports must not start or reposition audible playback.
+Resume uses the saved position and current rate. Internal units remain file
+frames and milliseconds; public loop bounds remain seconds with exclusive end.
+No tape direction slew or zero-rate transport is promised by this pass.
+
+Trace and test both readers and the actual mixer across interrupted and very
+short glides, paused/stopped changes, reversals and progressively smaller loops.
+Keep short-loop failures separate from already qualified loop sizes; do not
+silently clamp the requested region. Captures must auto-stop independently.
+The frontend redesign, recorder tape motion and reusable utility extraction
+remain subsequent work, informed by this source trace.
+
+The native 44.1 kHz baseline adds one bounded repair: on replacing a target,
+store the interval between the last applied speed and the new target before
+starting the existing curve. Clamp sampled curve reports to that interval.
+Zero-duration and completion still publish their exact validated target;
+`curve~`, reporting cadence and all position/reader logic remain unchanged.
+This prevents a measured `4.000227451` report at the 4x endpoint, without a
+new motion owner. Natural-loop timing and short-loop reader reuse remain
+separate failures to retain, not changes to conceal in this small rate fix.
+
+Implemented with **three Pd objects**, one comment and eight wire changes in
+the original player root. All nested canvases and every other production patch
+remain byte-identical. The existing curve, dual stereo readers, transport,
+buffer selection, recording and mixer are retained. The current responsibility
+map and future extraction boundaries are in the
+[source review and native evidence](evidence/playback-slew-review/observations.md).
+
+Eleven auto-stopping native captures were run in plugdata **0.9.4 nightly
+98ae0f78b / Pd 0.56.3**, CoreAudio **8A / 512 frames / 1×**, at 48 and 44.1 kHz
+with 48 kHz files. The endpoint-rate regression is repaired. Standard glides
+retain stereo, unity reader gain, finite output, no running zero dropouts and
+reader continuity through interrupted commands, Pause/Resume, Stop and Reverse.
+Fit also passes the 1/64x and 16/3x targets. The second lane remains independent.
+The exact captures, hashes, checks and separate listening material are retained;
+**no new user listening acceptance** is inferred.
+
+The broader pass finds **two unresolved loop faults**. Natural wrap waits for
+an audio-block notification: a nominal 25 ms cycle measures 25.333 ms at 48 kHz
+and 26.122 ms at 44.1 kHz. Short cycles can also revisit the outgoing reader
+before its 6 ms fade finishes; the measured nonzero-gain resets and waveform-step
+failures remain in the reports after this rate repair. Constant audio can retain
+perfect gain while the reader is mishandled, so the constant test alone is
+insufficient. `results.json` distinguishes the passed bounded rate repair from
+**full_playback_acceptance=false**. An overly strict first hold analysis was
+corrected to include the existing pending-cut wait, with its reason retained.
+
+Next: repair natural-loop scheduling and establish exact periods at both rates,
+then address short-loop fade reuse. These precede new direction-slew behavior
+and the broader frontend cleanup. All test patches are now closed; plugdata is
+at Home, DSP On, recording stopped, and **48 kHz is restored**. This branch is a
+focused successor to PR #34; neither branch has been merged in this pass.
+
 ## Loop-boundary handoff repair — 2026-09-11
 
 Authorized follow-up to PR #34 at `1e708b7316810afc233daeeaa20829a3ee7cdcb6`.

@@ -1601,6 +1601,10 @@
 #X obj -580 900 tempo-fit \$0 \$1;
 #X obj 1700 4300 grid-playback-state \$0 \$1;
 #X obj 1700 4350 grid-loop-region \$0 \$1;
+#X obj -350 1100 t f f;
+#X obj -350 1150 expr min($f1 \, $f2) \; max($f1 \, $f2);
+#X obj -609 1438 clip 0.015625 64;
+#X text -345 1220 Bound reports to the last applied rate and new target. curve~ can round past an endpoint.;
 #X connect 527 0 142 0;
 #X connect 528 0 142 0;
 #X connect 526 0 33 0;
@@ -1895,12 +1899,12 @@
 #X connect 298 1 314 0;
 #X connect 300 0 302 0;
 #X connect 301 0 311 1;
-#X connect 301 0 299 0;
+#X connect 301 0 538 0;
 #X connect 301 1 292 0;
 #X connect 301 2 294 0;
 #X connect 302 0 298 0;
 #X connect 302 1 305 0;
-#X connect 303 0 318 0;
+#X connect 303 0 540 0;
 #X connect 305 0 303 0;
 #X connect 306 0 290 0;
 #X connect 306 1 307 0;
@@ -2088,3 +2092,9 @@
 #X connect 535 0 312 0;
 
 #X connect 525 0 142 0;
+#X connect 538 1 539 0;
+#X connect 539 0 540 1;
+#X connect 539 1 540 2;
+#X connect 180 0 539 1;
+#X connect 538 0 299 0;
+#X connect 540 0 318 0;

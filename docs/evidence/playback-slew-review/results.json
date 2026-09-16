@@ -1,0 +1,47 @@
+{
+  "rate_repair_passed": true,
+  "full_playback_acceptance": false,
+  "repair_checks": {
+    "baseline_reproduces_rate_overshoot": true,
+    "repaired_441_rate_bounded": true,
+    "fit_including_1_over_64_and_16_over_3_passes": true,
+    "normal_repaired_scores_fail_only_known_loop_timing": true,
+    "short_loop_failure_retained": true,
+    "other_lane_unchanged": true
+  },
+  "other_lane_comparisons": {
+    "repaired48": {
+      "reference": "baseline48",
+      "lane_b_audio_max_error": 0.0,
+      "lane_b_master_position_max_error": 0.0
+    },
+    "repaired441": {
+      "reference": "baseline441",
+      "lane_b_audio_max_error": 3.725290298461914e-08,
+      "lane_b_master_position_max_error": 1.52587890625e-05
+    },
+    "repaired-short441": {
+      "reference": "short441",
+      "lane_b_audio_max_error": 0.0,
+      "lane_b_master_position_max_error": 0.0
+    }
+  },
+  "open_failures": [
+    "Natural loops wait for block-boundary notification, extending nominal periods.",
+    "Short loops reuse a reader before its outgoing fade completes."
+  ],
+  "case_reports": {
+    "baseline48": "baseline48-report.json",
+    "constant48": "constant48-report.json",
+    "short48": "short48-report.json",
+    "short-constant48": "short-constant48-report.json",
+    "baseline441": "baseline441-report.json",
+    "short441": "short441-report.json",
+    "repaired441": "repaired441-report.json",
+    "repaired-short441": "repaired-short441-report.json",
+    "fit441": "fit441-report.json",
+    "repaired48": "repaired48-report.json",
+    "repaired-constant48": "repaired-constant48-report.json"
+  },
+  "listening": "Not collected for these new captures."
+}

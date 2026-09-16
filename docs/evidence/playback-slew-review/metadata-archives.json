@@ -1,0 +1,134 @@
+[
+  {
+    "path": "baseline441-events.txt.xz",
+    "original_sha256": "fda119ede37876df0160fb587a84c7e0d8c031e169d910999daf551c4d5dd20b",
+    "original_bytes": 309646,
+    "xz_bytes": 44780
+  },
+  {
+    "path": "baseline441-manifest.json.xz",
+    "original_sha256": "132eeea3af7f979fa0262b5aa82f76d2de12698ec12fc2787b4ade43f8bd7835",
+    "original_bytes": 46140,
+    "xz_bytes": 1528
+  },
+  {
+    "path": "baseline48-events.txt.xz",
+    "original_sha256": "5f84539623fc8f68bcb5382efb5251f9eefbb939f6c7c7d797fa2bb2443f63f9",
+    "original_bytes": 327922,
+    "xz_bytes": 39228
+  },
+  {
+    "path": "baseline48-manifest.json.xz",
+    "original_sha256": "132eeea3af7f979fa0262b5aa82f76d2de12698ec12fc2787b4ade43f8bd7835",
+    "original_bytes": 46140,
+    "xz_bytes": 1528
+  },
+  {
+    "path": "constant48-events.txt.xz",
+    "original_sha256": "b86b12fb4fe8818a99eb2a7a3a5e2f475ad0a83887e1240a34eb482627c6147a",
+    "original_bytes": 327955,
+    "xz_bytes": 38796
+  },
+  {
+    "path": "constant48-manifest.json.xz",
+    "original_sha256": "132eeea3af7f979fa0262b5aa82f76d2de12698ec12fc2787b4ade43f8bd7835",
+    "original_bytes": 46140,
+    "xz_bytes": 1528
+  },
+  {
+    "path": "fit441-events.txt.xz",
+    "original_sha256": "fead215be7bfec51f09b1576201eda623205b9fa6f8139c5413192c68c1723a9",
+    "original_bytes": 171987,
+    "xz_bytes": 25684
+  },
+  {
+    "path": "fit441-manifest.json.xz",
+    "original_sha256": "08fc4c63eba4fa3f38bf6c993574b42fef0129e43079a22ad5b5f4b52d324161",
+    "original_bytes": 49205,
+    "xz_bytes": 1668
+  },
+  {
+    "path": "repaired-constant48-events.txt.xz",
+    "original_sha256": "7a5e43d47af0ef8118b92e8b88b0b927cfafb4d01f1227d656720c2771a99f6b",
+    "original_bytes": 327416,
+    "xz_bytes": 38752
+  },
+  {
+    "path": "repaired-constant48-manifest.json.xz",
+    "original_sha256": "08fc4c63eba4fa3f38bf6c993574b42fef0129e43079a22ad5b5f4b52d324161",
+    "original_bytes": 49205,
+    "xz_bytes": 1668
+  },
+  {
+    "path": "repaired-short441-events.txt.xz",
+    "original_sha256": "3cf46387c623fed480af1a631a9f2d44f9e29527623d49199e49ef3b9fb00169",
+    "original_bytes": 414108,
+    "xz_bytes": 52520
+  },
+  {
+    "path": "repaired-short441-manifest.json.xz",
+    "original_sha256": "85391097c6b357fde1f1e694ae5a11d9259c76732fa6739931d693d33727a13a",
+    "original_bytes": 46140,
+    "xz_bytes": 1532
+  },
+  {
+    "path": "repaired441-events.txt.xz",
+    "original_sha256": "22e3f534eba45be287e2dc783c615719f945081cc83e05c312fbd4476152db2a",
+    "original_bytes": 308569,
+    "xz_bytes": 44348
+  },
+  {
+    "path": "repaired441-manifest.json.xz",
+    "original_sha256": "85391097c6b357fde1f1e694ae5a11d9259c76732fa6739931d693d33727a13a",
+    "original_bytes": 46140,
+    "xz_bytes": 1532
+  },
+  {
+    "path": "repaired48-events.txt.xz",
+    "original_sha256": "0c4a807cff03cbcf101307da397f66d20a40062675b9e4eed11d16364394ee54",
+    "original_bytes": 327383,
+    "xz_bytes": 39100
+  },
+  {
+    "path": "repaired48-manifest.json.xz",
+    "original_sha256": "08fc4c63eba4fa3f38bf6c993574b42fef0129e43079a22ad5b5f4b52d324161",
+    "original_bytes": 49205,
+    "xz_bytes": 1668
+  },
+  {
+    "path": "short-constant48-events.txt.xz",
+    "original_sha256": "41ad56bbfeea9b1c426527b461f455568827ac4767ee6e271edf4914ac0ded59",
+    "original_bytes": 435227,
+    "xz_bytes": 48448
+  },
+  {
+    "path": "short-constant48-manifest.json.xz",
+    "original_sha256": "132eeea3af7f979fa0262b5aa82f76d2de12698ec12fc2787b4ade43f8bd7835",
+    "original_bytes": 46140,
+    "xz_bytes": 1528
+  },
+  {
+    "path": "short441-events.txt.xz",
+    "original_sha256": "a51e9bb95155d11e4ad2f4e4f0b6d07e65f7189a7ed15fca3860f797828dc1cc",
+    "original_bytes": 415192,
+    "xz_bytes": 52624
+  },
+  {
+    "path": "short441-manifest.json.xz",
+    "original_sha256": "132eeea3af7f979fa0262b5aa82f76d2de12698ec12fc2787b4ade43f8bd7835",
+    "original_bytes": 46140,
+    "xz_bytes": 1528
+  },
+  {
+    "path": "short48-events.txt.xz",
+    "original_sha256": "41ad56bbfeea9b1c426527b461f455568827ac4767ee6e271edf4914ac0ded59",
+    "original_bytes": 435227,
+    "xz_bytes": 48448
+  },
+  {
+    "path": "short48-manifest.json.xz",
+    "original_sha256": "132eeea3af7f979fa0262b5aa82f76d2de12698ec12fc2787b4ade43f8bd7835",
+    "original_bytes": 46140,
+    "xz_bytes": 1528
+  }
+]
