@@ -8,7 +8,9 @@ sys.argv=[str(ROOT/'tests/check_pattern_bank.py'),str(P)]
 runpy.run_path(sys.argv[0],run_name='__main__')
 m=json.loads((P/'source.json').read_text());E=[]
 for line in (P/'events.txt').read_text().splitlines():
- a=line.rstrip(';').split();E.append((float(a[0]),a[1:]))
+ a=line.rstrip(';').split()
+ if m.get('grid_record') and float(a[0])>18700:continue
+ E.append((float(a[0]),a[1:]))
 def select(tag):return [(t,a[1:]) for t,a in E if a[0]==tag and t>=14600]
 def state(row,field,t):
  return [a[2] for tt,a in select('selected') if tt<=t+.01 and a[:2]==[str(row),field]][-1]

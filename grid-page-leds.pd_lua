@@ -1,6 +1,6 @@
 -- One receive-only renderer for the active Grid page. No musical commands.
 local C=pd.Class:new():register('grid-page-leds')
-local fields={'position','playing','paused','ready','switching','first','last','loop-start','loop-end','direction','speed'}
+local fields={'position','playing','paused','ready','switching','first','last','loop-start','loop-end','direction','speed','record'}
 local function finite(v) return type(v)=='number' and v==v and math.abs(v)<math.huge end
 function C:initialize(_,args)
     self.inlets,self.outlets=1,1
@@ -124,6 +124,7 @@ function C:render()
         elseif self.page=='cut' then self:row(row,cuts(s))
         else
             local r=blank()
+            r[1]=s.record or 0
             for x=3,6 do r[x]=self.focus==row and 10 or 3 end
             r[8]=s.direction==1 and 12 or (s.direction==0 and 3 or 0)
             for i=0,4 do r[10+i]=s.speed==i and 12 or 3 end

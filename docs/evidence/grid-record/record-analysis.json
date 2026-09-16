@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "takes": [
+    {
+      "slot": 901,
+      "rate": 48000,
+      "frames": 14400,
+      "capacity": 48000,
+      "amplitude": [
+        0.09999992494240162,
+        0.1999998461198996
+      ],
+      "max_sine_residual": [
+        8.152218511827541e-07,
+        3.610904884265853e-07
+      ]
+    },
+    {
+      "slot": 902,
+      "rate": 48000,
+      "frames": 9600,
+      "capacity": 9600,
+      "amplitude": [
+        0.09999992157909664,
+        0.1999998465571841
+      ],
+      "max_sine_residual": [
+        5.398671041670355e-07,
+        2.676357444830746e-07
+      ]
+    },
+    {
+      "slot": 903,
+      "rate": 48000,
+      "frames": 3392,
+      "capacity": 48000,
+      "amplitude": [
+        0.09999992410784635,
+        0.1999998461081597
+      ],
+      "max_sine_residual": [
+        1.9894216066185244e-07,
+        1.7343970337702075e-07
+      ]
+    },
+    {
+      "slot": 904,
+      "rate": 48000,
+      "frames": 9600,
+      "capacity": 48000,
+      "amplitude": [
+        0.0999999238818808,
+        0.19999984668337367
+      ],
+      "max_sine_residual": [
+        5.432371179073248e-07,
+        2.6598670005428815e-07
+      ]
+    }
+  ],
+  "unchanged_components": [
+    "audio-in-subpatch.pd",
+    "beat-reset.pd",
+    "buffer-browse.pd_lua",
+    "buffer-name.pd_lua",
+    "buffer-panel.pd",
+    "buffer-selection.pd",
+    "buffer-view-data.pd_lua",
+    "clock-display-state.pd",
+    "cut-pattern.pd_lua",
+    "debug-print.pd",
+    "fixed-record~.pd",
+    "grid-loop-region.pd",
+    "grid-play-controls.pd",
+    "grid-playback-row.pd",
+    "grid-playback-state.pd",
+    "grid-row-leds.pd_lua",
+    "input-receive~.pd",
+    "input-send~.pd",
+    "live-buffer.pd",
+    "live-record.pd",
+    "live_buffer.pd",
+    "loop-region-control.pd",
+    "loop-region-live.pd",
+    "loop-window-control.pd",
+    "mixer.pd",
+    "mlr-grid-compat.pd_lua",
+    "mlr-grid.pd",
+    "mlr.pd",
+    "monome_grid_handler.pd_lua",
+    "monome_grid_handler_fixed.pd_lua",
+    "old-sample-data.pd",
+    "old-sample-playback.pd",
+    "old-sample_playback_new.pd",
+    "pattern-bank-panel.pd",
+    "pattern-player.pd",
+    "pending-cut-delay.pd",
+    "performance-pattern.pd_lua",
+    "performance-player.pd_lua",
+    "player-overview-bridge.pd",
+    "player-panel-state.pd",
+    "player-panel.pd",
+    "player-sample-edit.pd",
+    "player-sample-load.pd",
+    "player-waveform.pd_lua",
+    "previous_live-buffer.pd",
+    "rate-change.pd",
+    "reader-fade-limit.pd",
+    "record-controls.pd",
+    "record-input.pd",
+    "record-length.pd",
+    "record-progress.pd",
+    "record-storage.pd",
+    "record-take-row.pd",
+    "record-takes-panel.pd",
+    "sample-bank-panel.pd",
+    "sample-bank-row.pd",
+    "sample-data-new.pd",
+    "sample-data.pd",
+    "sample-editor-panel.pd",
+    "sample-editor.pd_lua",
+    "sample-playback.pd",
+    "sample-trim.pd_lua",
+    "sample_playback_new.pd",
+    "sample_player_rebuild.pd",
+    "sampler_playback.pd",
+    "sampler_playback_third.pd",
+    "slice-mode-control.pd",
+    "slice-panel.pd",
+    "standalone-clock-panel.pd",
+    "take-clear-control.pd_lua",
+    "take-save-control.pd_lua",
+    "take-save.pd",
+    "tempo-fit.pd",
+    "track-overview-row.pd",
+    "ui-open-view.pd",
+    "voice.pd"
+  ],
+  "checks": [
+    "Remembered target after sample selection",
+    "Shared buffer refusal",
+    "Input/content refusal",
+    "Selection handoff refusal",
+    "Automatic fixed completion",
+    "External Finish releases ownership",
+    "Duplicate held key does not stop",
+    "Detach/reconnect preserves active take",
+    "Actual stereo writer audio, order, level, continuity and unwritten tail",
+    "115 pattern and 17 buffer request regressions"
+  ],
+  "limitations": [
+    "48k standalone only in this slice",
+    "No physical Grid or hardware-input listening acceptance",
+    "No overdub, resampling, record quantization or new save workflow"
+  ]
+}

@@ -123,3 +123,8 @@
 #X connect 50 0 53 0;
 #X connect 53 1 54 0;
 #X connect 54 0 55 0;
+
+#X obj 450 850 grid-record-control;
+#X obj 450 900 print grid-record;
+#X connect 2 10 56 0;
+#X connect 56 0 57 0;
