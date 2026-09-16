@@ -1,0 +1,1242 @@
+{
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "checks": {
+    "48k_host_44k1_file_15s_finite": true,
+    "first_loaded_slice_reaches_mixer": false,
+    "stop_cancels_pending_launch": true,
+    "quantized_launch_waits_for_tick": true,
+    "pause_stop_cancel_quantized_launch": true,
+    "invalid_slice_requests_stay_silent": true,
+    "final_stop_silence": true,
+    "all_41_requested_entries_correct": true,
+    "queued_play_replaces_slice": true,
+    "all_32_stereo_cells_audible_correct_pitch": false,
+    "active_audio_no_dropouts_or_mixer_gain_error": false,
+    "second_lane_independent_gain_continuity": false,
+    "second_lane_single_uninterrupted_trajectory": true,
+    "qualified_loop_release_preserves_running_position": true,
+    "ordinary_slice_restores_full_content": true,
+    "all_transition_samples_bounded": false
+  },
+  "passed": false,
+  "detail": {
+    "entries": [
+      {
+        "request_ms": 200,
+        "cell": 4,
+        "direction": 1,
+        "expected_frame": 44100.0,
+        "matching_trajectories": [
+          [
+            201.0,
+            44100.0,
+            176400.0,
+            3000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 750,
+        "cell": 8,
+        "direction": 1,
+        "expected_frame": 88200.0,
+        "matching_trajectories": [
+          [
+            751.0,
+            88200.0,
+            176400.0,
+            2000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 1101,
+        "cell": 12,
+        "direction": 1,
+        "expected_frame": 132300.0,
+        "matching_trajectories": [
+          [
+            1112.0,
+            132300.0,
+            176400.0,
+            1000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 2000,
+        "cell": 15,
+        "direction": 1,
+        "expected_frame": 165375.0,
+        "matching_trajectories": [
+          [
+            2001.0,
+            165375.0,
+            176400.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 2500,
+        "cell": 4,
+        "direction": -1,
+        "expected_frame": 55125.0,
+        "matching_trajectories": [
+          [
+            2501.0,
+            55125.0,
+            0.0,
+            1250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 2950,
+        "cell": 8,
+        "direction": -1,
+        "expected_frame": 99225.0,
+        "matching_trajectories": [
+          [
+            2951.0,
+            99225.0,
+            0.0,
+            2250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 3650,
+        "cell": 6,
+        "direction": 1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            3651.0,
+            66150.0,
+            176400.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 4700,
+        "cell": 0,
+        "direction": -1,
+        "expected_frame": 11025.0,
+        "matching_trajectories": [
+          [
+            4711.0,
+            11025.0,
+            0.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 8112,
+        "cell": 6,
+        "direction": 1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            8112.0,
+            66150.0,
+            176400.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9000,
+        "cell": 0,
+        "direction": 1,
+        "expected_frame": 0.0,
+        "matching_trajectories": [
+          [
+            9001.0,
+            0.0,
+            176400.0,
+            4000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9150,
+        "cell": 1,
+        "direction": 1,
+        "expected_frame": 11025.0,
+        "matching_trajectories": [
+          [
+            9151.0,
+            11025.0,
+            176400.0,
+            3750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9300,
+        "cell": 2,
+        "direction": 1,
+        "expected_frame": 22050.0,
+        "matching_trajectories": [
+          [
+            9301.0,
+            22050.0,
+            176400.0,
+            3500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9450,
+        "cell": 3,
+        "direction": 1,
+        "expected_frame": 33075.0,
+        "matching_trajectories": [
+          [
+            9451.0,
+            33075.0,
+            176400.0,
+            3250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9600,
+        "cell": 4,
+        "direction": 1,
+        "expected_frame": 44100.0,
+        "matching_trajectories": [
+          [
+            9601.0,
+            44100.0,
+            176400.0,
+            3000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9750,
+        "cell": 5,
+        "direction": 1,
+        "expected_frame": 55125.0,
+        "matching_trajectories": [
+          [
+            9751.0,
+            55125.0,
+            176400.0,
+            2750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9900,
+        "cell": 6,
+        "direction": 1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            9901.0,
+            66150.0,
+            176400.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10050,
+        "cell": 7,
+        "direction": 1,
+        "expected_frame": 77175.0,
+        "matching_trajectories": [
+          [
+            10051.0,
+            77175.0,
+            176400.0,
+            2250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10200,
+        "cell": 8,
+        "direction": 1,
+        "expected_frame": 88200.0,
+        "matching_trajectories": [
+          [
+            10201.0,
+            88200.0,
+            176400.0,
+            2000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10350,
+        "cell": 9,
+        "direction": 1,
+        "expected_frame": 99225.0,
+        "matching_trajectories": [
+          [
+            10351.0,
+            99225.0,
+            176400.0,
+            1750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10500,
+        "cell": 10,
+        "direction": 1,
+        "expected_frame": 110250.0,
+        "matching_trajectories": [
+          [
+            10501.0,
+            110250.0,
+            176400.0,
+            1500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10650,
+        "cell": 11,
+        "direction": 1,
+        "expected_frame": 121275.0,
+        "matching_trajectories": [
+          [
+            10651.0,
+            121275.0,
+            176400.0,
+            1250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10800,
+        "cell": 12,
+        "direction": 1,
+        "expected_frame": 132300.0,
+        "matching_trajectories": [
+          [
+            10801.0,
+            132300.0,
+            176400.0,
+            1000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10950,
+        "cell": 13,
+        "direction": 1,
+        "expected_frame": 143325.0,
+        "matching_trajectories": [
+          [
+            10951.0,
+            143325.0,
+            176400.0,
+            750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11100,
+        "cell": 14,
+        "direction": 1,
+        "expected_frame": 154350.0,
+        "matching_trajectories": [
+          [
+            11101.0,
+            154350.0,
+            176400.0,
+            500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11250,
+        "cell": 15,
+        "direction": 1,
+        "expected_frame": 165375.0,
+        "matching_trajectories": [
+          [
+            11251.0,
+            165375.0,
+            176400.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11800,
+        "cell": 0,
+        "direction": -1,
+        "expected_frame": 11025.0,
+        "matching_trajectories": [
+          [
+            11801.0,
+            11025.0,
+            0.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11950,
+        "cell": 1,
+        "direction": -1,
+        "expected_frame": 22050.0,
+        "matching_trajectories": [
+          [
+            11951.0,
+            22050.0,
+            0.0,
+            500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12100,
+        "cell": 2,
+        "direction": -1,
+        "expected_frame": 33075.0,
+        "matching_trajectories": [
+          [
+            12101.0,
+            33075.0,
+            0.0,
+            750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12250,
+        "cell": 3,
+        "direction": -1,
+        "expected_frame": 44100.0,
+        "matching_trajectories": [
+          [
+            12251.0,
+            44100.0,
+            0.0,
+            1000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12400,
+        "cell": 4,
+        "direction": -1,
+        "expected_frame": 55125.0,
+        "matching_trajectories": [
+          [
+            12401.0,
+            55125.0,
+            0.0,
+            1250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12550,
+        "cell": 5,
+        "direction": -1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            12551.0,
+            66150.0,
+            0.0,
+            1500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12700,
+        "cell": 6,
+        "direction": -1,
+        "expected_frame": 77175.0,
+        "matching_trajectories": [
+          [
+            12701.0,
+            77175.0,
+            0.0,
+            1750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12850,
+        "cell": 7,
+        "direction": -1,
+        "expected_frame": 88200.0,
+        "matching_trajectories": [
+          [
+            12851.0,
+            88200.0,
+            0.0,
+            2000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13000,
+        "cell": 8,
+        "direction": -1,
+        "expected_frame": 99225.0,
+        "matching_trajectories": [
+          [
+            13001.0,
+            99225.0,
+            0.0,
+            2250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13150,
+        "cell": 9,
+        "direction": -1,
+        "expected_frame": 110250.0,
+        "matching_trajectories": [
+          [
+            13151.0,
+            110250.0,
+            0.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13300,
+        "cell": 10,
+        "direction": -1,
+        "expected_frame": 121275.0,
+        "matching_trajectories": [
+          [
+            13301.0,
+            121275.0,
+            0.0,
+            2750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13450,
+        "cell": 11,
+        "direction": -1,
+        "expected_frame": 132300.0,
+        "matching_trajectories": [
+          [
+            13451.0,
+            132300.0,
+            0.0,
+            3000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13600,
+        "cell": 12,
+        "direction": -1,
+        "expected_frame": 143325.0,
+        "matching_trajectories": [
+          [
+            13601.0,
+            143325.0,
+            0.0,
+            3250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13750,
+        "cell": 13,
+        "direction": -1,
+        "expected_frame": 154350.0,
+        "matching_trajectories": [
+          [
+            13751.0,
+            154350.0,
+            0.0,
+            3500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13900,
+        "cell": 14,
+        "direction": -1,
+        "expected_frame": 165375.0,
+        "matching_trajectories": [
+          [
+            13901.0,
+            165375.0,
+            0.0,
+            3750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 14050,
+        "cell": 15,
+        "direction": -1,
+        "expected_frame": 176400.0,
+        "matching_trajectories": [
+          [
+            14051.0,
+            176400.0,
+            0.0,
+            4000.0
+          ]
+        ]
+      }
+    ],
+    "stereo_frequency_checks": [
+      {
+        "cell": 0,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          160,
+          200.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 1,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          200,
+          250.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 2,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          240,
+          300.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 3,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          280,
+          350.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 4,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          320,
+          400.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 5,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          360,
+          450.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 6,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          400,
+          500.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 7,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          440,
+          550.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 8,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          480,
+          600.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 9,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          520,
+          650.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 10,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          560,
+          700.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 11,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          600,
+          750.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 12,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          640,
+          800.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 13,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          680,
+          850.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 14,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          720,
+          900.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 15,
+        "direction": 1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          760,
+          950.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 0,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          160,
+          200.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 1,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          200,
+          250.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 2,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          240,
+          300.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 3,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          280,
+          350.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 4,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          320,
+          400.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 5,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          360,
+          450.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 6,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          400,
+          500.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 7,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          440,
+          550.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 8,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          480,
+          600.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 9,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          520,
+          650.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 10,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          560,
+          700.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 11,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          600,
+          750.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 12,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          640,
+          800.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 13,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          680,
+          850.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 14,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          720,
+          900.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "cell": 15,
+        "direction": -1,
+        "actual_hz": [
+          0.0,
+          0.0
+        ],
+        "expected_hz": [
+          760,
+          950.0
+        ],
+        "lr_rms": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "active_windows": [
+      {
+        "seconds": [
+          0.25,
+          0.65
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 19200
+      },
+      {
+        "seconds": [
+          0.78,
+          1.05
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 12960
+      },
+      {
+        "seconds": [
+          1.13,
+          1.5
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 17760
+      },
+      {
+        "seconds": [
+          2.05,
+          2.23
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 8640
+      },
+      {
+        "seconds": [
+          2.55,
+          2.8
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 12000
+      },
+      {
+        "seconds": [
+          2.98,
+          3.28
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 14400
+      },
+      {
+        "seconds": [
+          3.68,
+          3.88
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 9600
+      },
+      {
+        "seconds": [
+          5.02,
+          5.18
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 7680
+      },
+      {
+        "seconds": [
+          6.22,
+          6.38
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          6.68,
+          6.95
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 12960
+      },
+      {
+        "seconds": [
+          7.5,
+          7.95
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 21600
+      },
+      {
+        "seconds": [
+          8.13,
+          8.28
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 7200
+      },
+      {
+        "seconds": [
+          8.35,
+          8.48
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      }
+    ],
+    "max_adjacent_step_all_audio_channels": [
+      0.07151269167661667,
+      0.025257619097828865,
+      0.0,
+      0.0,
+      0.17878171801567078,
+      0.06314404308795929,
+      0.0,
+      0.0
+    ],
+    "global_peak_all_channels": [
+      0.07323802262544632,
+      0.036619093269109726,
+      0.0,
+      0.0,
+      0.1830950528383255,
+      0.09154772758483887,
+      0.0,
+      0.0
+    ]
+  },
+  "limitations": "No new listening or physical Grid acceptance. Bounds are fixture-specific, not universal click-free proof."
+}

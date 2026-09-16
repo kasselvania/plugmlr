@@ -1,0 +1,1242 @@
+{
+  "host_rate": 48000,
+  "file_rate": 44100,
+  "checks": {
+    "48k_host_44k1_file_15s_finite": true,
+    "first_loaded_slice_reaches_mixer": true,
+    "stop_cancels_pending_launch": true,
+    "quantized_launch_waits_for_tick": true,
+    "pause_stop_cancel_quantized_launch": true,
+    "invalid_slice_requests_stay_silent": true,
+    "final_stop_silence": true,
+    "all_41_requested_entries_correct": true,
+    "queued_play_replaces_slice": true,
+    "all_32_stereo_cells_audible_correct_pitch": true,
+    "active_audio_no_dropouts_or_mixer_gain_error": true,
+    "second_lane_independent_gain_continuity": true,
+    "second_lane_single_uninterrupted_trajectory": true,
+    "qualified_loop_release_preserves_running_position": false,
+    "ordinary_slice_restores_full_content": true,
+    "all_transition_samples_bounded": false
+  },
+  "passed": false,
+  "detail": {
+    "entries": [
+      {
+        "request_ms": 200,
+        "cell": 4,
+        "direction": 1,
+        "expected_frame": 44100.0,
+        "matching_trajectories": [
+          [
+            201.0,
+            44100.0,
+            176400.0,
+            3000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 750,
+        "cell": 8,
+        "direction": 1,
+        "expected_frame": 88200.0,
+        "matching_trajectories": [
+          [
+            751.0,
+            88200.0,
+            176400.0,
+            2000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 1101,
+        "cell": 12,
+        "direction": 1,
+        "expected_frame": 132300.0,
+        "matching_trajectories": [
+          [
+            1112.0,
+            132300.0,
+            176400.0,
+            1000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 2000,
+        "cell": 15,
+        "direction": 1,
+        "expected_frame": 165375.0,
+        "matching_trajectories": [
+          [
+            2001.0,
+            165375.0,
+            176400.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 2500,
+        "cell": 4,
+        "direction": -1,
+        "expected_frame": 55125.0,
+        "matching_trajectories": [
+          [
+            2501.0,
+            55125.0,
+            0.0,
+            1250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 2950,
+        "cell": 8,
+        "direction": -1,
+        "expected_frame": 99225.0,
+        "matching_trajectories": [
+          [
+            2951.0,
+            99225.0,
+            0.0,
+            2250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 3650,
+        "cell": 6,
+        "direction": 1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            3651.0,
+            66150.0,
+            176400.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 4700,
+        "cell": 0,
+        "direction": -1,
+        "expected_frame": 11025.0,
+        "matching_trajectories": [
+          [
+            4711.0,
+            11025.0,
+            0.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 8112,
+        "cell": 6,
+        "direction": 1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            8112.0,
+            66150.0,
+            176400.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9000,
+        "cell": 0,
+        "direction": 1,
+        "expected_frame": 0.0,
+        "matching_trajectories": [
+          [
+            9001.0,
+            0.0,
+            176400.0,
+            4000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9150,
+        "cell": 1,
+        "direction": 1,
+        "expected_frame": 11025.0,
+        "matching_trajectories": [
+          [
+            9151.0,
+            11025.0,
+            176400.0,
+            3750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9300,
+        "cell": 2,
+        "direction": 1,
+        "expected_frame": 22050.0,
+        "matching_trajectories": [
+          [
+            9301.0,
+            22050.0,
+            176400.0,
+            3500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9450,
+        "cell": 3,
+        "direction": 1,
+        "expected_frame": 33075.0,
+        "matching_trajectories": [
+          [
+            9451.0,
+            33075.0,
+            176400.0,
+            3250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9600,
+        "cell": 4,
+        "direction": 1,
+        "expected_frame": 44100.0,
+        "matching_trajectories": [
+          [
+            9601.0,
+            44100.0,
+            176400.0,
+            3000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9750,
+        "cell": 5,
+        "direction": 1,
+        "expected_frame": 55125.0,
+        "matching_trajectories": [
+          [
+            9751.0,
+            55125.0,
+            176400.0,
+            2750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 9900,
+        "cell": 6,
+        "direction": 1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            9901.0,
+            66150.0,
+            176400.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10050,
+        "cell": 7,
+        "direction": 1,
+        "expected_frame": 77175.0,
+        "matching_trajectories": [
+          [
+            10051.0,
+            77175.0,
+            176400.0,
+            2250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10200,
+        "cell": 8,
+        "direction": 1,
+        "expected_frame": 88200.0,
+        "matching_trajectories": [
+          [
+            10201.0,
+            88200.0,
+            176400.0,
+            2000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10350,
+        "cell": 9,
+        "direction": 1,
+        "expected_frame": 99225.0,
+        "matching_trajectories": [
+          [
+            10351.0,
+            99225.0,
+            176400.0,
+            1750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10500,
+        "cell": 10,
+        "direction": 1,
+        "expected_frame": 110250.0,
+        "matching_trajectories": [
+          [
+            10501.0,
+            110250.0,
+            176400.0,
+            1500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10650,
+        "cell": 11,
+        "direction": 1,
+        "expected_frame": 121275.0,
+        "matching_trajectories": [
+          [
+            10651.0,
+            121275.0,
+            176400.0,
+            1250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10800,
+        "cell": 12,
+        "direction": 1,
+        "expected_frame": 132300.0,
+        "matching_trajectories": [
+          [
+            10801.0,
+            132300.0,
+            176400.0,
+            1000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 10950,
+        "cell": 13,
+        "direction": 1,
+        "expected_frame": 143325.0,
+        "matching_trajectories": [
+          [
+            10951.0,
+            143325.0,
+            176400.0,
+            750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11100,
+        "cell": 14,
+        "direction": 1,
+        "expected_frame": 154350.0,
+        "matching_trajectories": [
+          [
+            11101.0,
+            154350.0,
+            176400.0,
+            500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11250,
+        "cell": 15,
+        "direction": 1,
+        "expected_frame": 165375.0,
+        "matching_trajectories": [
+          [
+            11251.0,
+            165375.0,
+            176400.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11800,
+        "cell": 0,
+        "direction": -1,
+        "expected_frame": 11025.0,
+        "matching_trajectories": [
+          [
+            11801.0,
+            11025.0,
+            0.0,
+            250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 11950,
+        "cell": 1,
+        "direction": -1,
+        "expected_frame": 22050.0,
+        "matching_trajectories": [
+          [
+            11951.0,
+            22050.0,
+            0.0,
+            500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12100,
+        "cell": 2,
+        "direction": -1,
+        "expected_frame": 33075.0,
+        "matching_trajectories": [
+          [
+            12101.0,
+            33075.0,
+            0.0,
+            750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12250,
+        "cell": 3,
+        "direction": -1,
+        "expected_frame": 44100.0,
+        "matching_trajectories": [
+          [
+            12251.0,
+            44100.0,
+            0.0,
+            1000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12400,
+        "cell": 4,
+        "direction": -1,
+        "expected_frame": 55125.0,
+        "matching_trajectories": [
+          [
+            12401.0,
+            55125.0,
+            0.0,
+            1250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12550,
+        "cell": 5,
+        "direction": -1,
+        "expected_frame": 66150.0,
+        "matching_trajectories": [
+          [
+            12551.0,
+            66150.0,
+            0.0,
+            1500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12700,
+        "cell": 6,
+        "direction": -1,
+        "expected_frame": 77175.0,
+        "matching_trajectories": [
+          [
+            12701.0,
+            77175.0,
+            0.0,
+            1750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 12850,
+        "cell": 7,
+        "direction": -1,
+        "expected_frame": 88200.0,
+        "matching_trajectories": [
+          [
+            12851.0,
+            88200.0,
+            0.0,
+            2000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13000,
+        "cell": 8,
+        "direction": -1,
+        "expected_frame": 99225.0,
+        "matching_trajectories": [
+          [
+            13001.0,
+            99225.0,
+            0.0,
+            2250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13150,
+        "cell": 9,
+        "direction": -1,
+        "expected_frame": 110250.0,
+        "matching_trajectories": [
+          [
+            13151.0,
+            110250.0,
+            0.0,
+            2500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13300,
+        "cell": 10,
+        "direction": -1,
+        "expected_frame": 121275.0,
+        "matching_trajectories": [
+          [
+            13301.0,
+            121275.0,
+            0.0,
+            2750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13450,
+        "cell": 11,
+        "direction": -1,
+        "expected_frame": 132300.0,
+        "matching_trajectories": [
+          [
+            13451.0,
+            132300.0,
+            0.0,
+            3000.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13600,
+        "cell": 12,
+        "direction": -1,
+        "expected_frame": 143325.0,
+        "matching_trajectories": [
+          [
+            13601.0,
+            143325.0,
+            0.0,
+            3250.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13750,
+        "cell": 13,
+        "direction": -1,
+        "expected_frame": 154350.0,
+        "matching_trajectories": [
+          [
+            13751.0,
+            154350.0,
+            0.0,
+            3500.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 13900,
+        "cell": 14,
+        "direction": -1,
+        "expected_frame": 165375.0,
+        "matching_trajectories": [
+          [
+            13901.0,
+            165375.0,
+            0.0,
+            3750.0
+          ]
+        ]
+      },
+      {
+        "request_ms": 14050,
+        "cell": 15,
+        "direction": -1,
+        "expected_frame": 176400.0,
+        "matching_trajectories": [
+          [
+            14051.0,
+            176400.0,
+            0.0,
+            4000.0
+          ]
+        ]
+      }
+    ],
+    "stereo_frequency_checks": [
+      {
+        "cell": 0,
+        "direction": 1,
+        "actual_hz": [
+          159.66796875,
+          199.951171875
+        ],
+        "expected_hz": [
+          160,
+          200.0
+        ],
+        "lr_rms": [
+          0.05179925635457039,
+          0.02588927559554577
+        ]
+      },
+      {
+        "cell": 1,
+        "direction": 1,
+        "actual_hz": [
+          199.951171875,
+          249.755859375
+        ],
+        "expected_hz": [
+          200,
+          250.0
+        ],
+        "lr_rms": [
+          0.051784828305244446,
+          0.02588934451341629
+        ]
+      },
+      {
+        "cell": 2,
+        "direction": 1,
+        "actual_hz": [
+          240.234375,
+          300.29296875
+        ],
+        "expected_hz": [
+          240,
+          300.0
+        ],
+        "lr_rms": [
+          0.051873620599508286,
+          0.025889288634061813
+        ]
+      },
+      {
+        "cell": 3,
+        "direction": 1,
+        "actual_hz": [
+          279.78515625,
+          350.09765625
+        ],
+        "expected_hz": [
+          280,
+          350.0
+        ],
+        "lr_rms": [
+          0.05182153731584549,
+          0.02588939480483532
+        ]
+      },
+      {
+        "cell": 4,
+        "direction": 1,
+        "actual_hz": [
+          320.068359375,
+          399.90234375
+        ],
+        "expected_hz": [
+          320,
+          400.0
+        ],
+        "lr_rms": [
+          0.05165022239089012,
+          0.025889292359352112
+        ]
+      },
+      {
+        "cell": 5,
+        "direction": 1,
+        "actual_hz": [
+          360.3515625,
+          449.70703125
+        ],
+        "expected_hz": [
+          360,
+          450.0
+        ],
+        "lr_rms": [
+          0.051826104521751404,
+          0.025889938697218895
+        ]
+      },
+      {
+        "cell": 6,
+        "direction": 1,
+        "actual_hz": [
+          399.90234375,
+          500.244140625
+        ],
+        "expected_hz": [
+          400,
+          500.0
+        ],
+        "lr_rms": [
+          0.05178481340408325,
+          0.025889256969094276
+        ]
+      },
+      {
+        "cell": 7,
+        "direction": 1,
+        "actual_hz": [
+          440.185546875,
+          550.048828125
+        ],
+        "expected_hz": [
+          440,
+          550.0
+        ],
+        "lr_rms": [
+          0.051844991743564606,
+          0.02588927559554577
+        ]
+      },
+      {
+        "cell": 8,
+        "direction": 1,
+        "actual_hz": [
+          479.736328125,
+          599.853515625
+        ],
+        "expected_hz": [
+          480,
+          600.0
+        ],
+        "lr_rms": [
+          0.051761168986558914,
+          0.025889253243803978
+        ]
+      },
+      {
+        "cell": 9,
+        "direction": 1,
+        "actual_hz": [
+          520.01953125,
+          649.658203125
+        ],
+        "expected_hz": [
+          520,
+          650.0
+        ],
+        "lr_rms": [
+          0.051719121634960175,
+          0.025889288634061813
+        ]
+      },
+      {
+        "cell": 10,
+        "direction": 1,
+        "actual_hz": [
+          560.302734375,
+          700.1953125
+        ],
+        "expected_hz": [
+          560,
+          700.0
+        ],
+        "lr_rms": [
+          0.05182715132832527,
+          0.025889378041028976
+        ]
+      },
+      {
+        "cell": 11,
+        "direction": 1,
+        "actual_hz": [
+          599.853515625,
+          750.0
+        ],
+        "expected_hz": [
+          600,
+          750.0
+        ],
+        "lr_rms": [
+          0.051784902811050415,
+          0.025889253243803978
+        ]
+      },
+      {
+        "cell": 12,
+        "direction": 1,
+        "actual_hz": [
+          640.13671875,
+          799.8046875
+        ],
+        "expected_hz": [
+          640,
+          800.0
+        ],
+        "lr_rms": [
+          0.05182403698563576,
+          0.025889204815030098
+        ]
+      },
+      {
+        "cell": 13,
+        "direction": 1,
+        "actual_hz": [
+          679.6875,
+          850.341796875
+        ],
+        "expected_hz": [
+          680,
+          850.0
+        ],
+        "lr_rms": [
+          0.05174010992050171,
+          0.02588922530412674
+        ]
+      },
+      {
+        "cell": 14,
+        "direction": 1,
+        "actual_hz": [
+          719.970703125,
+          900.146484375
+        ],
+        "expected_hz": [
+          720,
+          900.0
+        ],
+        "lr_rms": [
+          0.05176134407520294,
+          0.02588987536728382
+        ]
+      },
+      {
+        "cell": 15,
+        "direction": 1,
+        "actual_hz": [
+          760.25390625,
+          949.951171875
+        ],
+        "expected_hz": [
+          760,
+          950.0
+        ],
+        "lr_rms": [
+          0.05181993544101715,
+          0.025889214128255844
+        ]
+      },
+      {
+        "cell": 0,
+        "direction": -1,
+        "actual_hz": [
+          159.66796875,
+          199.951171875
+        ],
+        "expected_hz": [
+          160,
+          200.0
+        ],
+        "lr_rms": [
+          0.05178392305970192,
+          0.02588929608464241
+        ]
+      },
+      {
+        "cell": 1,
+        "direction": -1,
+        "actual_hz": [
+          199.951171875,
+          249.755859375
+        ],
+        "expected_hz": [
+          200,
+          250.0
+        ],
+        "lr_rms": [
+          0.05178488790988922,
+          0.025889284908771515
+        ]
+      },
+      {
+        "cell": 2,
+        "direction": -1,
+        "actual_hz": [
+          240.234375,
+          300.29296875
+        ],
+        "expected_hz": [
+          240,
+          300.0
+        ],
+        "lr_rms": [
+          0.05186351016163826,
+          0.02588927373290062
+        ]
+      },
+      {
+        "cell": 3,
+        "direction": -1,
+        "actual_hz": [
+          279.78515625,
+          350.09765625
+        ],
+        "expected_hz": [
+          280,
+          350.0
+        ],
+        "lr_rms": [
+          0.05184505507349968,
+          0.025889374315738678
+        ]
+      },
+      {
+        "cell": 4,
+        "direction": -1,
+        "actual_hz": [
+          320.068359375,
+          399.90234375
+        ],
+        "expected_hz": [
+          320,
+          400.0
+        ],
+        "lr_rms": [
+          0.05164821818470955,
+          0.025889286771416664
+        ]
+      },
+      {
+        "cell": 5,
+        "direction": -1,
+        "actual_hz": [
+          360.3515625,
+          449.70703125
+        ],
+        "expected_hz": [
+          360,
+          450.0
+        ],
+        "lr_rms": [
+          0.05181252956390381,
+          0.025889970362186432
+        ]
+      },
+      {
+        "cell": 6,
+        "direction": -1,
+        "actual_hz": [
+          399.90234375,
+          500.244140625
+        ],
+        "expected_hz": [
+          400,
+          500.0
+        ],
+        "lr_rms": [
+          0.051784761250019073,
+          0.025889279320836067
+        ]
+      },
+      {
+        "cell": 7,
+        "direction": -1,
+        "actual_hz": [
+          440.185546875,
+          550.048828125
+        ],
+        "expected_hz": [
+          440,
+          550.0
+        ],
+        "lr_rms": [
+          0.051840752363204956,
+          0.025889281183481216
+        ]
+      },
+      {
+        "cell": 8,
+        "direction": -1,
+        "actual_hz": [
+          479.736328125,
+          599.853515625
+        ],
+        "expected_hz": [
+          480,
+          600.0
+        ],
+        "lr_rms": [
+          0.05178578197956085,
+          0.025889301672577858
+        ]
+      },
+      {
+        "cell": 9,
+        "direction": -1,
+        "actual_hz": [
+          520.01953125,
+          649.658203125
+        ],
+        "expected_hz": [
+          520,
+          650.0
+        ],
+        "lr_rms": [
+          0.051706600934267044,
+          0.025889258831739426
+        ]
+      },
+      {
+        "cell": 10,
+        "direction": -1,
+        "actual_hz": [
+          560.302734375,
+          700.1953125
+        ],
+        "expected_hz": [
+          560,
+          700.0
+        ],
+        "lr_rms": [
+          0.05181803181767464,
+          0.025889361277222633
+        ]
+      },
+      {
+        "cell": 11,
+        "direction": -1,
+        "actual_hz": [
+          599.853515625,
+          750.0
+        ],
+        "expected_hz": [
+          600,
+          750.0
+        ],
+        "lr_rms": [
+          0.05178506672382355,
+          0.025889242067933083
+        ]
+      },
+      {
+        "cell": 12,
+        "direction": -1,
+        "actual_hz": [
+          640.13671875,
+          799.8046875
+        ],
+        "expected_hz": [
+          640,
+          800.0
+        ],
+        "lr_rms": [
+          0.051826633512973785,
+          0.025889240205287933
+        ]
+      },
+      {
+        "cell": 13,
+        "direction": -1,
+        "actual_hz": [
+          679.6875,
+          850.341796875
+        ],
+        "expected_hz": [
+          680,
+          850.0
+        ],
+        "lr_rms": [
+          0.051760874688625336,
+          0.025889215990900993
+        ]
+      },
+      {
+        "cell": 14,
+        "direction": -1,
+        "actual_hz": [
+          719.970703125,
+          900.146484375
+        ],
+        "expected_hz": [
+          720,
+          900.0
+        ],
+        "lr_rms": [
+          0.051740895956754684,
+          0.025889895856380463
+        ]
+      },
+      {
+        "cell": 15,
+        "direction": -1,
+        "actual_hz": [
+          760.25390625,
+          949.951171875
+        ],
+        "expected_hz": [
+          760,
+          950.0
+        ],
+        "lr_rms": [
+          0.051816947758197784,
+          0.02588917501270771
+        ]
+      }
+    ],
+    "active_windows": [
+      {
+        "seconds": [
+          0.25,
+          0.65
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          0.78,
+          1.05
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          1.13,
+          1.5
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          2.05,
+          2.23
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          2.55,
+          2.8
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          2.98,
+          3.28
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          3.68,
+          3.88
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          5.02,
+          5.18
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          6.22,
+          6.38
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          6.68,
+          6.95
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          7.5,
+          7.95
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          8.13,
+          8.28
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      },
+      {
+        "seconds": [
+          8.35,
+          8.48
+        ],
+        "mixer_gain_error": 0.0,
+        "longest_zero_frames": 0
+      }
+    ],
+    "max_adjacent_step_all_audio_channels": [
+      0.02655782178044319,
+      0.016441913321614265,
+      0.0034675628412514925,
+      0.002165054203942418,
+      0.06639455258846283,
+      0.04110478237271309,
+      0.011558542028069496,
+      0.007216847036033869
+    ],
+    "global_peak_all_channels": [
+      0.0732412189245224,
+      0.03662100434303284,
+      0.05492999404668808,
+      0.027465712279081345,
+      0.1831030398607254,
+      0.09155251085758209,
+      0.18309997022151947,
+      0.09155236929655075
+    ]
+  },
+  "limitations": "No new listening or physical Grid acceptance. Bounds are fixture-specific, not universal click-free proof."
+}

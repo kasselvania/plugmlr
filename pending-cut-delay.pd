@@ -27,3 +27,6 @@
 #X connect 9 0 10 0;
 #X connect 10 0 11 0;
 #X connect 11 0 4 0;
+
+#X obj 600 60 r \$1-stop-fade;
+#X connect 16 0 4 0;
