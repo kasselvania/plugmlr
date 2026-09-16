@@ -278,7 +278,7 @@
   remains available. Keep cut-pattern and its evidence as the previous checkpoint.
   Run performance_pattern_spec.lua and build_performance_pattern_check.py /
   check_performance_pattern.py in native plugdata; distinguish exact event timing
-  from audible or physical Grid acceptance. Patterns remain volatile and free-time.
+  from audible or physical Grid acceptance. Patterns remain free-time; persist explicitly through the bank file interface.
 
 - Pattern slots 1–8 use top-row keys 5–12. One slot records/plays at a time through
   one logical scheduler. Switching finishes and retains an outgoing recording;
@@ -288,4 +288,14 @@
   Detach/DSP Off stops the active timeline but retains all slots. Preserve the
   single-slot regression within build_pattern_bank_check.py/check_pattern_bank.py.
   Test native LEDs/routing separately from physical eight-slot acceptance. Patterns
-  remain volatile; do not restart the user's application without preserving work.
+  are lost unless explicitly saved; do not restart the user's application without preserving work.
+
+- Pattern-bank persistence is data only: never evaluate loaded files. Validate the
+  entire bank before changing slots or cancelling the current scheduler. Unsaved
+  replacement requires explicit Replace; edits invalidate a staged candidate.
+  Load installs stopped patterns without player commands; audio/project recall
+  remains separate. Refuse file operations during pattern recording. Keep file I/O
+  bounded and document that it is synchronous. Run pattern_bank_file_spec.lua,
+  performance_pattern_spec.lua, and the native build_pattern_files_check.py /
+  check_pattern_files.py; preserve the PR48 source boundary as well as prior
+  timeline/slot regressions. Native chooser checks do not prove disk-latency audio safety.

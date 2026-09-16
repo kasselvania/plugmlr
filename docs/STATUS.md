@@ -1,3 +1,98 @@
+## Accepted application checkpoint / merge authorization — 2026-09-16
+
+The user tested pattern-bank Save/Load and accepted it for now: “The sequencing
+is a little odd, but that's perfectly fine. I am okay with that for now. I think
+the instructional read out is awesome.” This is hands-on save/load feedback;
+the unspecified sequencing quirk remains follow-up, not a diagnosed or fixed bug.
+Preserve the instructional feedback. The user authorized merging PR #49 and its
+prerequisites. The exact dependency chain is PRs #34–#49, from main
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9` to the tested application
+`c6818bec42a5625d569362c8f7d45b5359600baa`, plus this documentation-only receipt.
+PR #1 (the rejected R1 experiment) is excluded. Merge in dependency order using
+merge commits; retain original source commits and their evidence.
+
+Pre-merge refresh: clean checkout; remote heads and ancestry verified. Both Lua
+pattern suites passed. The retained native persistence evidence re-analysis
+passed 125 expected replay commands and the 75-component source guard. These are
+re-analysis and unit tests, not a new native runtime/audio session. No PR in the
+chain has hosted check runs. Existing historical UI-check failure, one-frame loop
+transition limit, home-tab focus limitation, synchronous I/O and untested DAW/
+recording cases remain documented; merging does not turn them into acceptance.
+No engine/gesture changes or next feature are part of this checkpoint.
+
+## Pattern-bank files — implemented checkpoint, 2026-09-15
+
+The main overview now has Save bank, Load bank, Replace bank and Cancel load with
+file/unsaved/error feedback. `pattern-bank-file.lua` owns the versioned data codec;
+`performance-pattern.pd_lua` owns dirty/staged-load state and scheduling;
+`pattern-bank-panel.pd` owns the native choosers. Existing Grid keys and player DSP
+are unchanged. The user accepted the preceding eight-slot musical behavior:
+“multiple recordings work very well.” That is not yet a save/load usability report.
+
+Native plugdata 0.9.4 nightly **98ae0f78b**, Pd 0.56.3, pdlua 0.12.23 (Lua 5.5)
+executed the finite, no-DAC/no-recording fixture. 125 expected replay commands
+passed (77 original timeline, 38 bank, 10 persistence), including fresh-recorder
+reload, failed-load playback continuity, stopped installation, empty banks, dirty
+replacement/cancellation, edit invalidation and save-during-play. Actual native
+Save/Load choosers handled a spaced Unicode filename; disk bytes matched the
+programmatic roundtrip. Main UI and console were inspected directly.
+
+The first native run exposed a doubled file extension; it was repaired and
+covered by a literal-path core regression. Lua codec tests include maximum-size
+banks, malformed/version/truncated/nonfinite input and failed destination rename.
+The historical `check_ui_overview.py` still fails at its old Grid-controller
+comparison; it is not treated as passing or weakened here. The new current-base
+check verifies all 75 other components unchanged, all nested `mlr.pd` content
+unchanged, and only the specified footer/root repositioning and file-bus wires.
+Main console displayed the existing unattached-Grid diagnostic; the isolated
+persistence test produced no Lua/object/connection errors.
+
+No new audio recording, listening claim, physical Grid persistence acceptance,
+Bitwig lifecycle test, autosave, project recall or asynchronous disk guarantee.
+Keep audio/buffer assignment recall separate. Retained source hashes, events,
+bank files, numerical results and native screenshots:
+[evidence](evidence/pattern-files/observations.md).
+
+## Save/load performance-pattern banks — contract before implementation, 2026-09-15
+
+Base `912ec750a157a6d05353ed475d95d8b146cf5755` (PR #48); branch
+`codex/pattern-bank-files`. Remote main resolved to
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; checkout clean. User reports that multiple
+recordings work very well. Save/load is the next authorized slice; no new gestures.
+At the start of this slice, native plugdata was on its home screen with no patch open.
+
+Save one versioned `.plugmlr-patterns` file containing all eight slots: elapsed
+milliseconds, typed track actions, full duration, and participating tracks' starting
+speed/direction. No audio, sample paths/assignments, tempo, glide/Fit configuration,
+current position, active transport or whole-project recall. Loaded slots use the
+current players/buffers and are stopped until explicitly launched.
+
+Add compact Save bank / Load bank controls on the main overview. Native file
+choosers pass paths as symbols, including spaces. Empty/cancelled paths do nothing.
+Refuse Save/Load/Replace during pattern recording: finish the take first. Save can
+snapshot a playing bank without stopping its scheduler. File I/O is synchronous,
+bounded control data, not background audio rendering. Never claim arbitrary disk
+latency is audio-safe.
+
+Strict text parsing, no eval: exactly eight slots, at most4096 actions per slot,
+length0 for empty or10..300000ms for populated, nondecreasing finite action times
+within duration, known action types/ranges, unique starting states for exactly the
+participating tracks. Reject oversized (>4MiB), truncated, unknown-version and
+malformed files before changing the current bank or scheduler.
+
+A valid load replaces all eight slots atomically in memory and stops only pattern
+scheduling. If the current bank has unsaved edits, stage the validated file and
+require the panel's explicit Replace bank button; Cancel keeps the current bank.
+New recording/edits invalidate staged replacement. Failed saves/loads retain the
+current bank; save writes a unique sibling temporary file and renames only after
+successful write/close, preserving an existing destination on failure.
+
+Plain `save PATH`, `load PATH`, `replace`, `cancel-load`, `file-status` messages
+share the same interface as the UI. Pattern mutations set dirty; successful Save
+or Load clears it. This is manual persistence, not auto-save or a close/quit guard.
+Validate round trips and rejection cases, native save/load/replay, and actual
+panel/file chooser behavior separately from user musical acceptance.
+
 ## Eight performance-pattern slots — contract before implementation, 2026-09-15
 
 Base `d25b266364fc2b52821cf5c6751614b49d90ae85` (PR #47); branch

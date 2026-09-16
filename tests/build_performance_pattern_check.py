@@ -14,7 +14,7 @@ for n in names:
  text=(ROOT/(n+'.pd_lua')).read_text().replace("register('"+n+"')","register('"+prefix+n+"')")
  if n=='performance-player':text=text.replace('a[2]','a[2]-900',1).replace('mlr-pattern-snapshot','pcheck-snapshot')
  (OUT/(prefix+n+'.pd_lua')).write_text(text)
-f=OUT/'pattern-player.pd';f.write_text(f.read_text().replace('performance-player ',prefix+'performance-player ').replace('mlr-pattern-event','pcheck-event'))
+f=OUT/'pattern-player.pd';f.write_text(f.read_text().replace('performance-player ',prefix+'performance-player ').replace('mlr-pattern-file','pcheck-file').replace('mlr-pattern-event','pcheck-event'))
 # Extra passive original-player state and target-speed probes, no control rewiring.
 f=OUT/'sample_player_rebuild.pd';s=f.read_text();p=Patch(count(s));o,c=p.add,p.wire
 for name in ['is_paused_flag','playback_speed_dial','pattern-transport']:
@@ -22,7 +22,7 @@ for name in ['is_paused_flag','playback_speed_dial','pattern-transport']:
 f.write_text(s+'\n'+p.text())
 s=(ROOT/'grid-cut-control.pd').read_text()
 for n in names:s=s.replace(n+';',prefix+n+(' 90;' if n=='grid-page-leds' else ';'))
-s=s.replace('mlr-pattern-event','pcheck-event').replace('mlr-pattern-snapshot','pcheck-snapshot').replace('mlr-grid-','pcheck-').replace('s monome_in;','s pcheck-led;').replace('makefilename %d-','makefilename 90%d-').replace('mlr-close-views','pcheck-close-views').replace('r pd;','r pcheck-pd;').replace('90%d-open-player-view','unused-%d-view')
+s=s.replace('mlr-pattern-file','pcheck-file').replace('mlr-pattern-event','pcheck-event').replace('mlr-pattern-snapshot','pcheck-snapshot').replace('mlr-grid-','pcheck-').replace('s monome_in;','s pcheck-led;').replace('makefilename %d-','makefilename 90%d-').replace('mlr-close-views','pcheck-close-views').replace('r pd;','r pcheck-pd;').replace('90%d-open-player-view','unused-%d-view')
 p=Patch(count(s));o,c=p.add,p.wire
 for src,out,label in [(32,0,'replay'),(32,1,'status'),(2,8,'button'),(2,0,'key-cut')]:
  t=o(f'obj 20 {900+len(p.objects)*30} list prepend {label}');r=o('obj 250 920 s pcheck-log');c(src,t,out);c(t,r)

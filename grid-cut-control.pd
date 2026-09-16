@@ -102,3 +102,10 @@
 #X connect 34 0 36 0;
 #X connect 36 1 37 0;
 #X connect 32 2 46 0;
+
+#X obj 1100 780 r mlr-pattern-file;
+#X obj 1100 820 s mlr-pattern-file-status;
+#X obj 1100 860 s mlr-pattern-file-chooser;
+#X connect 47 0 32 0;
+#X connect 32 3 48 0;
+#X connect 32 4 49 0;

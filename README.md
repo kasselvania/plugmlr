@@ -244,9 +244,30 @@ changes the material it plays.
 
 This is a free-time performance timeline: no later tempo-follow or bar rounding.
 It does not record loop gestures, buffer selection, Fit/glide changes, gain or audio.
-Patterns are volatile and lost on closing. Per-slot limits: 4096 actions / five minutes;
+Unsaved patterns are lost on closing. Per-slot limits: 4096 actions / five minutes;
 reaching either limit stops recording and retains the events. Minimum loop is 10 ms.
 [Native checks and remaining limits](docs/evidence/pattern-bank/observations.md).
+
+### Save and load the pattern bank
+
+Use **Save bank** beneath the main overview's track list to save all eight slots
+in one `.plugmlr-patterns` file. The extension is added if omitted. Finish any
+pattern recording first. The status line reports success or a file error.
+
+**Load bank** reads all eight slots. If there are unsaved edits, choose **Save bank**
+to keep them, then **Replace bank** to install the selected file; **Cancel load**
+keeps the current bank. Recording or clearing a slot cancels a pending replacement.
+Loaded patterns are stopped: press their Grid slot to play. Tracks already playing
+keep moving; loading does not send player transport commands.
+
+Files contain timing, cuts, transport, direction/speed events and participating
+tracks' initial speed/direction. They do **not** contain audio, buffer assignments,
+tempo, glide/Fit settings or project state. Reload your audio separately; patterns
+act on the tracks' current buffers. Saving the Pd patch alone does not save patterns.
+There is no autosave or quit warning. File I/O is synchronous; this is not a guarantee
+against slow-disk interruptions during performance.
+
+[Persistence checks and native UI evidence](docs/evidence/pattern-files/observations.md).
 
 ### Grid quick reference
 
