@@ -1,0 +1,14 @@
+{
+  "runtime": "plugdata 0.9.4 nightly 98ae0f78b; Pd 0.56.3",
+  "fixture": "DrumLoop.wav",
+  "file_sample_rate": 44100,
+  "frames": 631881,
+  "channels": 2,
+  "sample_count_equal": true,
+  "max_absolute_array_error": 0.0,
+  "cancel_export_files_identical": true,
+  "source_sha256": "bd3986375276ea5ff0204de532b890778d45276cd93976726a29e2d1ab2f21f6",
+  "export_before_sha256": "6d97fa66982ea500d5c135a1bad6ebf9a7581905d04bedf5d72744872a060e01",
+  "export_after_sha256": "6d97fa66982ea500d5c135a1bad6ebf9a7581905d04bedf5d72744872a060e01",
+  "audio_playback_test": false
+}
