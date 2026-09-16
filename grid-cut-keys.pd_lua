@@ -5,9 +5,9 @@ local function integer(v, lo, hi)
     return type(v)=='number' and v==v and v%1==0 and v>=lo and v<=hi
 end
 function C:initialize()
-    self.inlets, self.outlets = 3, 9
+    self.inlets, self.outlets = 3, 10
     self.connected, self.alt, self.mod = false, false, false
-    self.page, self.focus = 'cut', 1
+    self.page, self.focus, self.bank = 'cut', 1, 'sample'
     self.down, self.routes, self.held, self.pairs = {}, {}, {}, {}
     return true
 end
@@ -42,6 +42,7 @@ function C:in_2_float(v)
     self:cancel_gestures()
     self.connected,self.alt,self.mod,self.down=connected,false,false,{}
     self:display('page',self.page)
+    self:display('bank',self.bank)
     self:display('focus',self.focus)
     self:display('alt',0);self:display('mod',0)
     self:display('connected',connected and 1 or 0)
@@ -109,6 +110,8 @@ function C:in_1_list(a)
     if y==0 then
         if x==15 then self.alt=true;self:clear_pairs();self:display('alt',1)
         elseif x==13 then self.mod=true;self:clear_pairs();self:display('mod',1)
+        elseif x==14 and self.alt and not self.mod then
+            self:cancel_gestures();self.page='buffer';self:display('page','buffer')
         elseif x>=4 and x<=11 then
             if self.alt then self:outlet(9,'clear',{x-3})
             elseif not self.mod then self:outlet(9,'toggle',{x-3}) end
@@ -118,6 +121,16 @@ function C:in_1_list(a)
                 self:cancel_gestures();self.page=page;self:display('page',page)
             end
             self:outlet(8,page,{self.focus}) -- Explicit page press also selects the screen.
+        end
+    elseif self.page=='buffer' and not self.alt and not self.mod then
+        if y<=6 then
+            self:set_focus(y,true)
+            self:outlet(10,'list',{y,self.bank,x+1})
+        elseif x==0 or x==15 then
+            local bank=x==0 and 'sample' or 'live'
+            if bank~=self.bank then
+                self:cancel_gestures();self.bank=bank;self:display('bank',bank)
+            end
         end
     elseif self.page=='cut' and y<=6 then
         -- Simultaneous CUT gestures on different rows remain independent.

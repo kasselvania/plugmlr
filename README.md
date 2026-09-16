@@ -206,10 +206,41 @@ six track rows. Ordinary slices start or resume the selected cell; quantized sli
 wait for a matching clock tick. Hardware-global intensity below 15 remains
 unsupported. Connection details: [adapter checkpoint](docs/STATUS.md#grid-adapter-review-candidate--2026-09-11).
 
+### BUFFER: select a track’s audio from the Grid
+
+Hold **ALT (top-right key 16)** and press **top-row key 15 (Q)**, then release ALT.
+This borrows mlre’s ALT+Q tape-page navigation; our page selects independent
+sample/live buffer slots, not regions/splices within a tape.
+
+| BUFFER area | Action |
+| --- | --- |
+| Top row | PLAY (1), CUT (2), patterns (5–12), MOD (14), Q/BUFFER (15), ALT (16). BUFFER lights key 15. |
+| Rows 2–7 | Tracks 1–6. Press column 1–16 to assign that buffer slot to the row’s track. |
+| Bottom-left (1) | View imported **Sample** slots. |
+| Bottom-right (16) | View **Live** slots, including empty recording destinations. |
+
+The bright bottom key identifies the viewed bank. Changing banks only changes
+what you see. Slot lights are faint when empty, dim when populated, and brightest
+for the track’s committed selection. A switching track briefly dims its previous
+selection. A track assigned to the other bank has no selected cell in this view.
+Selections made on screen update the same lights.
+
+A slot press focuses its track without opening a window; **CUT** then opens that
+player. Release held keys when changing bank/page. ALT/MOD suppress slot selection.
+The existing selection behavior applies: playing tracks restart at the new buffer’s
+direction-aware edge; empty targets stop; stopped/paused tracks do not launch.
+Selecting an empty Live slot does **not** start recording. No Record/Clear/file
+loading controls or pattern capture of buffer assignments are added here.
+
+Save live takes **and the pattern bank**, fully quit/reopen plugdata, then reopen
+`mlr.pd` for this update. The currently open session is left intact. Native control
+checks passed; physical BUFFER-page usability remains to be tested.
+[Evidence and repeat procedure](docs/evidence/grid-buffer/observations.md).
+
 ### Eight pattern slots: record and switch performances
 
 After fully quitting/reopening plugdata and reopening `mlr.pd`, **top-row keys 5–12**
-are Patterns 1–8 on both PLAY and CUT. Save any live audio before quitting.
+are Patterns 1–8 on PLAY, CUT and BUFFER. Save any live audio before quitting.
 
 1. Press a dim pattern key to **start recording now** (flashing). Any wait before your
    first action is part of the phrase.

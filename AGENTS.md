@@ -299,3 +299,12 @@
   performance_pattern_spec.lua, and the native build_pattern_files_check.py /
   check_pattern_files.py; preserve the PR48 source boundary as well as prior
   timeline/slot regressions. Native chooser checks do not prove disk-latency audio safety.
+
+- BUFFER adapts mlre ALT+Q navigation, not tape-splice semantics. Keep bank viewing
+  separate from assigning a track; all sixteen Sample/Live slots remain selectable.
+  Route through buffer-selection; render population from owner metadata and the
+  selected cell from committed buffer_ID readback, never an optimistic key press.
+  Preserve modifier/held-key cancellation and the permanent pattern bank. Run
+  tests/grid_buffer_spec.lua and the finite native build_grid_buffer_check.py /
+  check_grid_buffer.py suite; distinguish its private-ID control evidence from
+  physical Grid acceptance. Do not reload a user's unsaved session to test Lua.

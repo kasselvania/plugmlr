@@ -6,6 +6,7 @@ function C:initialize(_,args)
     self.inlets,self.outlets=1,1
     self.page,self.focus,self.connected,self.alt,self.mod='cut',1,false,0,0
     self.rows,self.frames,self.receivers={},{},{}
+    self.bank,self.buffers='sample',{sample={},live={}}
     self.patterns,self.recording,self.flash={},nil,false
     for i=1,8 do self.patterns[i]='empty' end
     -- Optional bus prefix allows isolated native fixtures, without a device session.
@@ -15,7 +16,29 @@ function C:initialize(_,args)
 end
 function C:postinitialize()
     self.blink=pd.Clock:new():register(self,'blink_pattern')
+    for _,kind in ipairs({'sample','live'}) do
+        local method='metadata_'..kind
+        self[method]=function(s,sel,a)
+            if sel~='list' or #a~=6 then return end
+            for _,v in ipairs(a) do if not finite(v) then return end end
+            local slot=a[1]
+            if slot%1~=0 or slot<1 or slot>16 then return end
+            s.buffers[kind][slot]=kind=='sample' and (a[2]~=0 and a[6]>a[5]) or
+                (kind=='live' and a[6]~=0 and a[4]>a[3])
+            s:render()
+        end
+        local bus=kind=='sample' and 's_b_buffer_states' or 'l_b_buffer_states'
+        self.receivers[#self.receivers+1]=pd.Receive:new():register(self,bus,method)
+    end
     for row=1,6 do
+        local method='buffer_'..row
+        self[method]=function(s,sel,a)
+            if sel~='symbol' or #a~=1 or type(a[1])~='string' then return end
+            local kind,n=a[1]:match('^(%a+)_buffer_(%d+)$');local slot=tonumber(n)
+            if not s.buffers[kind] or not slot or slot<1 or slot>16 then return end
+            s.rows[row].kind,s.rows[row].slot=kind,slot;s:render()
+        end
+        self.receivers[#self.receivers+1]=pd.Receive:new():register(self,self.prefix..row..'-grid-buffer',method)
         for _,field in ipairs(fields) do
             local method='state_'..row..'_'..field
             self[method]=function(s,sel,a)
@@ -43,7 +66,8 @@ function C:in_1(sel,a)
     end
     if #a~=1 then return end
     local v=a[1]
-    if sel=='page' and (v=='cut' or v=='play') then self.page=v
+    if sel=='page' and (v=='cut' or v=='play' or v=='buffer') then self.page=v
+    elseif sel=='bank' and (v=='sample' or v=='live') then self.bank=v
     elseif sel=='focus' and finite(v) and v%1==0 and v>=1 and v<=6 then self.focus=v
     elseif sel=='connected' and (v==0 or v==1) then
         self.connected=v==1;self.frames={};self.blink:unset()
@@ -84,6 +108,7 @@ function C:render()
     if not self.connected then return end
     local nav=blank()
     nav[1]=self.page=='play' and 12 or 4;nav[2]=self.page=='cut' and 12 or 4
+    nav[15]=self.page=='buffer' and 12 or (self.alt==1 and 4 or 0)
     nav[14]=self.mod==1 and 15 or 4;nav[16]=self.alt==1 and 15 or 4
     for i=1,8 do
         nav[i+4]=({empty=2,recording=self.flash and 15 or 2,playing=10,stopped=5})[self.patterns[i]]
@@ -91,7 +116,12 @@ function C:render()
     self:row(0,nav)
     for row=1,6 do
         local s=self.rows[row]
-        if self.page=='cut' then self:row(row,cuts(s))
+        if self.page=='buffer' then
+            local r=blank()
+            for i=1,16 do r[i]=self.buffers[self.bank][i] and 5 or 1 end
+            if s.kind==self.bank and s.slot then r[s.slot]=s.switching==1 and 8 or 15 end
+            self:row(row,r)
+        elseif self.page=='cut' then self:row(row,cuts(s))
         else
             local r=blank()
             for x=3,6 do r[x]=self.focus==row and 10 or 3 end
@@ -103,5 +133,7 @@ function C:render()
             self:row(row,r)
         end
     end
-    self:row(7,self.page=='play' and cuts(self.rows[self.focus]) or blank())
+    local bottom=self.page=='play' and cuts(self.rows[self.focus]) or blank()
+    if self.page=='buffer' then bottom[1]=self.bank=='sample' and 15 or 5;bottom[16]=self.bank=='live' and 15 or 5 end
+    self:row(7,bottom)
 end
