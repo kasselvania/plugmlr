@@ -39,6 +39,22 @@ and start position; speed, reverse, glide, quantization, Fit and Beat Reset stay
 set. Cancel leaves the buffer alone. Players using the replaced slot stop before
 loading; press Play when ready. The button is hidden for Live buffers.
 
+**Edit an imported sample:** open its player and click **Edit sample** on the
+waveform. The player waveform now has a seconds ruler and separate `S1–S16`
+slice labels. In the editor, drag either selection edge or enter Start/End in
+seconds; zoom, scroll, or Fit selection for detail. **Audition loop** uses the
+current player and its speed/direction; **Stop** ends it. **Set player loop**
+applies the selection without trimming the sample.
+
+**Trim sample** changes the shared buffer's usable range and stops its readers.
+All 16 slices then divide that range. **Restore original** restores the full
+loaded sample. Both channels and the original arrays remain intact in memory;
+no source file is changed. Times retain their coordinates in the original file,
+so trimming 3–11 seconds gives an 8-second sample with ruler endpoints 3 and 11.
+Trim is not saved by saving the Pd patch. Export of an edited imported sample,
+project recall and offline tuning/stretching are not included in this slice.
+[Editor checks and capture](docs/evidence/sample-editor/observations.md).
+
 **Save a take:** Finish recording, stop all players, open **Live takes / Finish**,
 and click **Save WAV** on the desired buffer row. Choose a destination. Feedback
 reports success or refusal; the row changes to Saved. Export includes only written

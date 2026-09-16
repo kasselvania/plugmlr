@@ -217,3 +217,12 @@
 - Clear/Discard must stay blocked throughout buffer selection, until its new live
   target is installed. Drop transient requests; never replay them against another slot.
   Pd connections must follow both object declarations; inspect native console too.
+
+- Sample trim is buffer-owned, non-destructive first/exclusive-end metadata over
+  retained stereo arrays. Stop shared readers before committing; new loads cancel
+  pending trim. Reselection keeps trim and Restore returns original bounds.
+  Keep source-file seconds explicit and add first_index to whole-content slices.
+  Editor gestures stage selection; original loop/transport paths own audition.
+  Zoom uses cancellable buffer-owned peak jobs, never audio work inside paint.
+  Test nonzero starts, both directions, shared readers, reload races and native
+  UI separately. Isolate native test Lua class names from already loaded user code.

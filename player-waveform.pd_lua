@@ -72,15 +72,15 @@ function C:paint(g)
     g:set_color(250,248,242);g:fill_all()
     g:set_color(40,61,58)
     local name=self.name or 'Empty'
-    if #name>68 then name=name:sub(1,32)..'...'..name:sub(-32) end
-    g:draw_text((self.kind=='live' and 'Live ' or 'Sample ')..(self.slot and string.format('%d',self.slot) or '')..'  |  '..name,12,6,618,12)
+    if #name>52 then name=name:sub(1,22)..'...'..name:sub(-27) end
+    g:draw_text((self.kind=='live' and 'Live ' or 'Sample ')..(self.slot and string.format('%d',self.slot) or '')..'  |  '..name,12,6,500,12)
     local duration=(self.rate or 0)>0 and math.max(0,self.last-self.first)/self.rate or 0
     local label=string.format('%.3f s  |  %s',duration,self.status)
     if self.ready==1 and not self.peaks then label=label..'  |  Building waveform...' end
     if self.status=='Recording' then label='Recording - waveform available after Finish' end
     g:draw_text(label,12,25,618,11)
     for channel=0,1 do
-        local mid=channel==0 and 65 or 101
+        local mid=channel==0 and 58 or 86
         g:set_color(210,217,207);g:draw_line(24,mid,632,mid,1)
         g:set_color(90,111,106);g:draw_text(channel==0 and 'L' or 'R',8,mid-7,14,10)
         if self.peaks then
@@ -88,7 +88,7 @@ function C:paint(g)
             for i=0,399 do
                 local low,high=self.peaks[4+i*4+channel*2],self.peaks[5+i*4+channel*2]
                 local x=24+i*608/400
-                g:draw_line(x,mid-math.max(-1,math.min(1,high))*16,x,mid-math.max(-1,math.min(1,low))*16,1.6)
+                g:draw_line(x,mid-math.max(-1,math.min(1,high))*12,x,mid-math.max(-1,math.min(1,low))*12,1.6)
             end
         end
     end
@@ -99,16 +99,21 @@ function C:paint_layer_2(g)
     if length<=0 then return end
     local a,b=clamp((self.loopstart-self.first)/length),clamp((self.loopend-self.first)/length)
     if b>a and (a>0.000001 or b<0.999999) then
-        g:set_color(183,94,73,0.18);g:fill_rect(24+608*a,44,608*(b-a),73)
-        g:set_color(183,94,73);g:draw_line(24+608*a,44,24+608*a,117,2);g:draw_line(24+608*b,44,24+608*b,117,2)
+        g:set_color(183,94,73,0.18);g:fill_rect(24+608*a,44,608*(b-a),56)
+        g:set_color(183,94,73);g:draw_line(24+608*a,44,24+608*a,100,2);g:draw_line(24+608*b,44,24+608*b,100,2)
     end
     g:set_color(110,129,120,0.45)
-    for i=0,16 do g:draw_line(24+608*i/16,44,24+608*i/16,117,1) end
+    for i=0,16 do g:draw_line(24+608*i/16,44,24+608*i/16,100,1) end
     g:set_color(80,99,91)
-    for i=0,15 do g:draw_text(tostring(i+1),26+608*i/16,117,35,9) end
+    -- Slice IDs have an explicit S prefix; seconds are a separate ruler.
+    for i=0,15 do g:draw_text('S'..(i+1),26+608*i/16,118,35,9) end
+    for i=0,4 do
+        local seconds=(self.first+length*i/4)/self.rate
+        g:draw_text(string.format('%.2fs',seconds),math.min(581,24+608*i/4),103,52,10)
+    end
 end
 function C:paint_layer_3(g)
     if self.ready~=1 or self.switching then return end
     local x=24+608*self.position
-    g:set_color(183,94,73);g:draw_line(x,44,x,117,2)
+    g:set_color(183,94,73);g:draw_line(x,44,x,100,2)
 end
