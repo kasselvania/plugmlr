@@ -41,6 +41,14 @@ Playback stays in RAM. This synchronous export requires a stopped instrument;
 background saving, disk playback and project recall remain future work.
 [Native checks, screenshots and listening file](docs/evidence/waveform-take-tools/observations.md).
 
+**Protecting takes:** Clear on an unsaved live buffer asks for a separate
+**Discard** within five seconds; repeated Clear never confirms. Switching buffers,
+changing views, saving or changing the take cancels that request. Saved/empty
+buffers retain one-step Clear; recording/storage activity refuses it. **Save WAV
+before closing**: saving the Pd patch does not save live audio, and this patch
+cannot veto closing or recover a crashed session.
+[Take-protection and fresh-launch evidence](docs/evidence/take-protection/observations.md).
+
 **Player view:** click **Open** on track 1.
 The dedicated view keeps the existing player controls together with transport,
 direction, selected speed, clock source/BPM/count, and reset feedback. Run controls

@@ -1,0 +1,238 @@
+{
+  "base": "566c8608e4d3244471db81118ed1939b471c3eca",
+  "case": "clear-route",
+  "production_sha256": {
+    "grid-cut-control.pd": "bfeca9788cfdb70e4e250928c88611841d149b65e0e7c526796d6660e5175f62",
+    "fixed-record~.pd": "8c880db614f8d1d94a8a40a8a1ef8d169cfc72ff9e807e918cec779e0e08a6cd",
+    "sample_playback_new.pd": "c5bdeac6a784c7190b5211f7fa6c4bc97f87fdefac36bb7ca0b6eba90bbb5295",
+    "record-storage.pd": "4ff2658baea4f7eba87eb27618312febdeb19280d3fcc3cb6e244f8e965b5deb",
+    "record-take-row.pd": "ce834fbabc1ff08ed13f4549b6b6aa8fb81baeca4a53e46814b43d84f44833f3",
+    "grid-loop-region.pd": "29bfae3042476225ca74ba6fff2e606badebdc6eea392560194fd9ca1a23725d",
+    "record-progress.pd": "acf55d0449446116ae7de08ef408d3c06fd0bec0a90caf838bd5e103ff3b2a15",
+    "sample_player_rebuild.pd": "fb348ecfacbcd8220c63963e28e959bae3ec9b44d1fd2b10de3c43cf8abcad8a",
+    "slice-panel.pd": "bccc60ac7ae6038596799fa29e234ff664d1adc31e10750cd695f5fbc6136d45",
+    "buffer-view-data.pd_lua": "5cc4f1611038200aef6575957a3bcb50c6a13ff5623c7029d7a1eaf6eabbf471",
+    "sample-bank-row.pd": "38d2f81816a6564773bdd9372d9a270fb23207125a3dde7dd00f6d14b8fdbc48",
+    "audio-in-subpatch.pd": "eefd026a14812a9dd6022fe73dac3bea44647ceca5bdf720645fa526700c898d",
+    "pending-cut-delay.pd": "65507976a1a7a5360e6667d9e7f46f7d1d471501d0d1d3b1bb54eec7795907f5",
+    "loop-region-live.pd": "954fff55939a7c977f95d758390fb40e6c5acd45c91bed78740127ad1e824bcb",
+    "player-panel-state.pd": "632ac6a8cd2a623a78886b920a4b3ce35196753c6e5a8c1b319f6eb8b95e2492",
+    "beat-reset.pd": "c181f83860a612fd226094fb212553aaee101fa09dcceb2e06cdb1ace47db430",
+    "rate-change.pd": "5865bf9d057c1051c12eff2ac64fa51acb3eec311872c17663a0dc5e0706b5f0",
+    "player-waveform.pd_lua": "ddec6770410cd0e3dc793c06610acf549cd76ee178ce5e8fd0d889238187227c",
+    "clock-display-state.pd": "fc41c9a15f9e1d766cf5c9c546970f71c1c56b9426a77aa0fe870c0792c39549",
+    "sampler_playback_third.pd": "06632d91139dc9e18aaafa7035b51f0b12508f2eecc434bad67c42ffd4e8f289",
+    "mlr-grid-compat.pd_lua": "cbb2284acc2fe9a74bfa97d7f9aee324cc83e27147f908f90b5b6a3a4e93998e",
+    "record-input.pd": "4ccc7609117b248c7fe0f6df5796fac5c69eb35e38a51a1f6e10124756946c74",
+    "debug-print.pd": "a645cbdf08f24b7b141dda0b680194a06a15b500616de373b69f023af4b9e292",
+    "previous_live-buffer.pd": "271ca952937c23c64f8a68fa77b18d2ac14094ec9048bba53cdcb54643cf883a",
+    "monome_grid_handler_fixed.pd_lua": "05c9239c9dd373952d0282678221d3e0b4385c6382d6d34b59441514e6a252e7",
+    "grid-cut-keys.pd_lua": "e5308de62bfd304e010530c45edba843faae789ab909751ba49c933775c6aa91",
+    "monome_grid_handler.pd_lua": "2387205c64cd88db1837b47a0b993d51886a032c37cf9d516fa8802a2dd29c84",
+    "old-sample-data.pd": "5f142c5f8750ea976c928f0f363c7b6bf08edc612d50b1a8859ce7d45ae05970",
+    "buffer-browse.pd_lua": "8a7730970a637d88ea9d6b6a8780715fd902e07e7b8bfeb832b70d1b0c4afff7",
+    "slice-mode-control.pd": "74f1121045c769843bbd705522ffbc4e0a170c7d5a4211eb1bad39e3103246e7",
+    "old-sample-playback.pd": "964761e840b206c59975472ef785ffda2b4bfb9ecbd6a49c8f5f63e79a37eebf",
+    "take-save.pd": "3c35edf58ba279172766257f63cbe52cb6d9732a746fd1a2500c0c288f32a426",
+    "reader-fade-limit.pd": "ab4b0c1adfdf006636820d8f20b772e645c2f387b8a5eace933f437cb574dee3",
+    "grid-playback-state.pd": "70cb3d4c34b6e79443f88029993df4bd2c567b515c385690a433b3792928b011",
+    "grid-playback-row.pd": "e067bc65bac5516a80fab343ede8147354d169e06fdaea2bd047ea0e1f99b8e6",
+    "grid-row-leds.pd_lua": "68ff122d4e7ebd87961c1509eb58cf3460af43f9076d20a2637b25496025f52c",
+    "take-save-control.pd_lua": "87b63c7fe8ca30b40ae0fb45a78a48264bfc77536aba032d429ace3fc1c99562",
+    "mlr-grid.pd": "7bb380aabd2d2784647990dfc8836b2f27cd6c195120e201e704027830459e53",
+    "voice.pd": "adf9a54a5de266759faf43c35c2805be6a3441c287e8f6cbd586d5d1e9b0ccdf",
+    "live_buffer.pd": "e017088304cc0fc61bb44c26aae8d6556ef8e05fbf74ef360618755ca922da1a",
+    "tempo-fit.pd": "be659044d371f6827f4fa24a7794363aef5c4d069bdbee35221350afc9e92543",
+    "loop-region-control.pd": "d7d42fb1fa79954a2f1091c2d4b6bbbb6923f8489fd35737730e23d60e0d465d",
+    "input-receive~.pd": "af236fcbdf54d429424e3363516377e48b189708e28c7310a0cb7478872d9ddd",
+    "take-clear-control.pd_lua": "46670d1c3a466006aa1e15753a5b06810f3ea01dc92ce8a86aa2c8021306544f",
+    "sample-bank-panel.pd": "b0567f6b42008326746419dfc4b04026e33b81f3efc409e1a631560dbb218400",
+    "sampler_playback.pd": "4da35e05309ea3ad9fd44efade3b70829a84501cae5a097f595436493ddb876e",
+    "live-record.pd": "2e2472dc4ea46625782036d96b1d3cf37b0947a33ab95822b737e197a0417ff8",
+    "player-panel.pd": "66ea388c24358b369ea0818135e6d9332f52096bb5fd433fe60f487a3ad9f6a1",
+    "ui-open-view.pd": "5df2d83713a00d40ab72a47a1c4ea72bba7493a262fae7b91399cdffebf21e35",
+    "player-overview-bridge.pd": "d459e94756aa117a2203099cb1889254d27d582e1a165fcb139167d385d01d27",
+    "standalone-clock-panel.pd": "1e90ac0aaea0c53c91737f790f28d2ee5855993ef8752f82ef806a4451667767",
+    "old-sample_playback_new.pd": "c5bdeac6a784c7190b5211f7fa6c4bc97f87fdefac36bb7ca0b6eba90bbb5295",
+    "mlr.pd": "4b447022fc97d8c9d776088d47b807e0208369c557fa6e0ad853ab10031a1e2a",
+    "input-send~.pd": "016257f5b675d8ef1f14f04633a373f02a3c5e262d14f949df89dc6a8687dd64",
+    "live-buffer.pd": "68facdee1c8e3fda3f773452c171992834b9e5ebcb2b81d77371bed7f237bc6b",
+    "buffer-name.pd_lua": "9119b5199d701a06af6736e8e448317be84d45b564fd25e4a243e2c638ec1ea8",
+    "sample-data-new.pd": "2f0f98ee0ef6a286907bcd08ad698e5d060d1ae26433ed201749a340ac35bdf0",
+    "record-length.pd": "436ae6cee0b90e278317f1aeaee796d469816516d59e44c1bd28ae47368f60fc",
+    "mixer.pd": "fda6d15a2a236a142e97d09bf60a167d676ca8c71501bd713024ced6d1c67f95",
+    "record-controls.pd": "1ed0455c500e47b39756fe25618b4046e213fd204f1237205fb02cbed20578d0",
+    "sample-playback.pd": "964761e840b206c59975472ef785ffda2b4bfb9ecbd6a49c8f5f63e79a37eebf",
+    "sample-data.pd": "81cd973dbc922c3774e1998a5689c93cae47144c6ad6d81b1c855acbe5a113b7",
+    "record-takes-panel.pd": "a7d500906f2ea83887efef617351cb66026983925d957fb19e2f1a616c9ee473",
+    "buffer-panel.pd": "d71498e8f84716915da906bb3a781484837628064a3bf1d05c24737a85be0f4f",
+    "track-overview-row.pd": "a8909ea40ac46a4333f41aa39fb077b4500c594b3ad4571821cf4c00fca96a87",
+    "buffer-selection.pd": "5f278836dd6469ef599b91c40af47360b0565e5030be425f28bf82ae6e2c0b41"
+  },
+  "fixture_sha256": "12d27d41ab8b9efc539841ff2096e31b7e19b36c302664b8ba840df8a8cc8a1e",
+  "score": [
+    [
+      0,
+      "global-transport",
+      "0"
+    ],
+    [
+      0,
+      "3_l_b_length",
+      "seconds 0.1"
+    ],
+    [
+      0,
+      "4_l_b_length",
+      "seconds 0.1"
+    ],
+    [
+      100,
+      "3_l_b_record",
+      "start"
+    ],
+    [
+      100,
+      "4_l_b_record",
+      "start"
+    ],
+    [
+      300,
+      "1-buffer-select",
+      "live 3"
+    ],
+    [
+      400,
+      "live_buffer_3-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      400,
+      "live_buffer_4-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      500,
+      "1-buffer-select",
+      "live 4"
+    ],
+    [
+      501,
+      "take-player-1",
+      "clear"
+    ],
+    [
+      502,
+      "take-player-1",
+      "discard"
+    ],
+    [
+      550,
+      "live_buffer_3-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      550,
+      "live_buffer_4-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      600,
+      "1-buffer-select",
+      "sample 1"
+    ],
+    [
+      601,
+      "take-player-1",
+      "clear"
+    ],
+    [
+      602,
+      "take-player-1",
+      "discard"
+    ],
+    [
+      650,
+      "live_buffer_3-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      650,
+      "live_buffer_4-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      700,
+      "1-buffer-select",
+      "live 3"
+    ],
+    [
+      750,
+      "take-player-1",
+      "clear"
+    ],
+    [
+      760,
+      "live_buffer_3-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      800,
+      "take-player-1",
+      "discard"
+    ],
+    [
+      850,
+      "live_buffer_3-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      850,
+      "live_buffer_4-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      900,
+      "take-player-1",
+      "discard"
+    ],
+    [
+      950,
+      "live_buffer_3-view-get",
+      "info clear-route-reply"
+    ],
+    [
+      1000,
+      "1-buffer-select",
+      "live 4"
+    ],
+    [
+      1100,
+      "1-open-player-view",
+      "bang"
+    ],
+    [
+      2000,
+      "ui-check-stop",
+      "bang"
+    ]
+  ],
+  "duration_ms": 2000,
+  "watchdog_ms": 4000,
+  "channels": [
+    "master L",
+    "master R",
+    "player1 L",
+    "player1 R",
+    "player2 L",
+    "player2 R",
+    "input L",
+    "input R"
+  ],
+  "fixture_files_sha256": {
+    "check.pd": "12d27d41ab8b9efc539841ff2096e31b7e19b36c302664b8ba840df8a8cc8a1e",
+    "observed-player.pd": "6dd0d15d0f26306f606d18d4f323ea3342e2ceaafcf42c124a6b373b209424be",
+    "observed-panel.pd": "658e755fcdf6c354da53ad57e00f28ced9670f938e64ee7fdcaf03a42840e1c7",
+    "score.txt": "3c296f2985a8f5118d74bfb4a985afd8d7938d543f70c41680a9ae0cb268209a"
+  }
+}

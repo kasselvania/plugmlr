@@ -1,0 +1,18 @@
+{
+  "file": "long-run-listening.wav",
+  "sha256": "3157007b3c070e5ac5a5f0eebb76bd9b28fc55522552067ed297c125b3f49191",
+  "source": "long48/capture.wav.xz",
+  "source_uncompressed_sha256": "3aa89d3c0f6db071d972ea7476d17505e306291fcd3d25d48395bd619ae5375a",
+  "source_seconds": [
+    16,
+    40
+  ],
+  "channels": "actual post-master L/R (channels 1/2 of eight-channel capture)",
+  "processing": "24-second crop to stereo float32 WAV; no normalization or gain adjustment",
+  "events_seconds_in_clip": {
+    "loop_apply": 4,
+    "reverse": 10,
+    "forward": 18
+  },
+  "listening_observation": "No new human listening report. Prior accepted captures do not accept this one."
+}

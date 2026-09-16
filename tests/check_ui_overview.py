@@ -41,6 +41,23 @@ def run():
             # buffer views append receive-only metadata observers. Original
             # objects/connections still match this checkpoint exactly.
             current = current.replace('debug-print ', 'print ')
+            # Take protection inserts a gate before the unchanged Clear path.
+            if name == 'sample_player_rebuild.pd':
+                initialization = '#X obj 900 390 loadbang;\n#X text 900 430 No slice is pending at load. Allow the first natural wrap.;\n#X connect 31 0 16 0;\n'
+                assert current.count(initialization) == 1, 'Missing first-wrap initialization'
+                current = current.replace(initialization, '')
+            if name == 'live_buffer.pd':
+                current = current.replace('#X obj 1806 18 take-clear-control \\$1;',
+                                          '#X obj 1806 18 r \\$1_l_b_delete_buffer, f 21;')
+            if name == 'buffer-selection.pd':
+                switch_guard = '\n#X obj 1140 940 spigot 1;\n#X obj 1370 865 r \\$1-buffer-switching;\n#X obj 1370 900 == 0;\n#X text 1080 1040 Ignore Clear/Discard until selection has installed the new target.;\n#X connect 95 0 80 0;\n#X connect 96 0 97 0;\n#X connect 97 0 95 1;\n#X connect 79 0 95 0;\n'
+                assert current.endswith(switch_guard), 'Missing Clear switch guard'
+                current = current[:-len(switch_guard)]
+                # Restore the removed old edge at any point after its objects.
+                current = current.replace('#X connect 78 0 79 0;', '#X connect 78 0 79 0;\n#X connect 79 0 80 0;')
+                suffix = '\n#X obj 25 1100 s mlr-cancel-clear;\n#X connect 24 0 94 0;\n'
+                assert current.endswith(suffix), 'Unexpected discard-cancellation wiring'
+                current = current[:-len(suffix)]
             if name in ('sample-data.pd', 'live_buffer.pd'):
                 suffix = current[len(old(name)):]
                 expected = {'sample-data.pd': '\n#X obj 355 355 buffer-view-data sample \\$1;\n#X connect 40 1 51 0;\n',
@@ -78,7 +95,7 @@ def run():
         assert all(b[1]-a[1]>=height for a,b in zip(rows,rows[1:])), f'Overlapping rows: {name}'
     structures = [check(ROOT/name) for name in sorted(UI|NEW)]
     assert all(not s['errors'] for s in structures)
-    return {'base':BASE,'protected_engine_files':protected,'allowed_changes':'Routine print gates and append-only buffer preview observers; original engine connections preserved','original_nested_engines_preserved':True,
+    return {'base':BASE,'protected_engine_files':protected,'allowed_changes':'Routine print gates, buffer preview observers, Clear gate and selection cancellation; first-wrap initialization; original DSP connections preserved','original_nested_engines_preserved':True,
             'only_nested_mixer_change':'Master widget replaced by its named receiver; original connections unchanged',
             'all_16_rows_distinct_and_nonoverlapping':True,'structures':structures,
             'native_or_listening_acceptance':False}

@@ -1,0 +1,167 @@
+{
+  "case": "guards",
+  "audio": {
+    "rate": 48000,
+    "channels": 8,
+    "declared_frames": 864000,
+    "trailing_bytes": 0,
+    "sha256": "471b252c25046c93519a546b9ab5a3013cbcd3c8b7a0cfeb40cfbde7b1703212"
+  },
+  "checks": {
+    "bounded_capture": true,
+    "eight_native_channels": true,
+    "finite_all_samples": true,
+    "whole_capture_master_gain_bound": true,
+    "busy_Clear_and_Discard_refused": true,
+    "repeated_Clear_never_confirms": true,
+    "selection_cancels_discard": true,
+    "navigation_cancels_discard": true,
+    "expiry_cancels_discard": true,
+    "deliberate_discard_clears_only_its_buffer": true,
+    "save_cancels_pending_discard": true,
+    "saved_Clear_succeeds": true,
+    "changed_bounds_cancel_discard": true,
+    "storage_change_cancels_discard": true,
+    "explicit_cancel": true,
+    "later_fresh_discard_succeeds": true,
+    "old_discard_cannot_clear_new_take": true,
+    "protected_audio_continues_1_1.29": true,
+    "protected_audio_continues_1.56_1.79": true,
+    "protected_audio_continues_1.81_2.19": true,
+    "protected_audio_continues_2.21_7.49": true,
+    "protected_audio_keeps_advancing": true,
+    "deliberate_Clear_stops_affected_playback": true
+  },
+  "metrics": {},
+  "clear_messages": [
+    [
+      150.0,
+      "Live 3: finish recording or storage changes first"
+    ],
+    [
+      160.0,
+      "Live 3: finish recording or storage changes first"
+    ],
+    [
+      1000.0,
+      "Live 3: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      1100.0,
+      "Live 3: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      1300.0,
+      "Live 3: discard cancelled"
+    ],
+    [
+      1500.0,
+      "Live 3: press Clear before Discard"
+    ],
+    [
+      1800.0,
+      "Live 3: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      1900.0,
+      "Live 3: discard cancelled"
+    ],
+    [
+      2000.0,
+      "Live 3: press Clear before Discard"
+    ],
+    [
+      2200.0,
+      "Live 3: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      7200.0,
+      "Live 3: discard expired - press Clear again"
+    ],
+    [
+      7300.0,
+      "Live 3: press Clear before Discard"
+    ],
+    [
+      7500.0,
+      "Live 3: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      7600.0,
+      "Live 3: clearing audio"
+    ],
+    [
+      8000.0,
+      "Live 4: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      8130.0,
+      "Live 4: discard cancelled"
+    ],
+    [
+      8200.0,
+      "Live 4: press Clear before Discard"
+    ],
+    [
+      8500.0,
+      "Live 4: clearing audio"
+    ],
+    [
+      9400.0,
+      "Live 4: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      9500.0,
+      "Live 4: discard cancelled"
+    ],
+    [
+      9600.0,
+      "Live 4: press Clear before Discard"
+    ],
+    [
+      9800.0,
+      "Live 4: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      9900.0,
+      "Live 4: discard cancelled"
+    ],
+    [
+      10000.0,
+      "Live 4: finish recording or storage changes first"
+    ],
+    [
+      10200.0,
+      "Live 4: press Clear before Discard"
+    ],
+    [
+      10400.0,
+      "Live 4: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      10500.0,
+      "Live 4: discard cancelled"
+    ],
+    [
+      10600.0,
+      "Live 4: press Clear before Discard"
+    ],
+    [
+      10800.0,
+      "Live 4: unsaved - Save WAV or Discard within 5s"
+    ],
+    [
+      10900.0,
+      "Live 4: clearing audio"
+    ],
+    [
+      11700.0,
+      "Live 4: press Clear before Discard"
+    ]
+  ],
+  "max_adjacent_steps": [
+    0.1489468812942505,
+    0.00636658351868391
+  ],
+  "listening": "Pending; numerical results do not establish audibility or general background reliability."
+}
