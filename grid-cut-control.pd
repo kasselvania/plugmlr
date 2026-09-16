@@ -68,12 +68,12 @@
 #X connect 30 0 31 1;
 #X connect 29 0 31 0;
 
-#X obj 600 560 cut-pattern;
-#X obj 600 510 r mlr-pattern-cut;
-#X obj 600 610 unpack f f;
-#X obj 600 650 makefilename %d-pattern-slice;
-#X obj 600 690 t b s;
-#X obj 800 650 f;
+#X obj 600 560 performance-pattern;
+#X obj 600 510 r mlr-pattern-event;
+#X obj 600 610 t l l;
+#X obj 600 650 makefilename %d-pattern-command;
+#X obj 600 690 list split 1;
+#X obj 800 650 list trim;
 #X obj 600 735 send;
 #X obj 940 560 sel 0;
 #X msg 940 600 stop;
@@ -84,11 +84,6 @@
 #X connect 2 8 32 0;
 #X connect 33 0 32 1;
 #X connect 32 0 34 0;
-#X connect 34 1 37 1;
-#X connect 34 0 35 0;
-#X connect 35 0 36 0;
-#X connect 36 1 38 1;
-#X connect 36 0 37 0;
 #X connect 37 0 38 0;
 #X connect 32 1 8 0;
 #X connect 1 0 39 0;
@@ -98,3 +93,12 @@
 #X connect 42 0 39 0;
 #X connect 32 1 43 0;
 #X connect 43 0 44 0;
+
+#X obj 900 780 unpack f;
+#X obj 600 780 s mlr-pattern-snapshot;
+#X connect 34 1 45 0;
+#X connect 45 0 35 0;
+#X connect 35 0 38 1;
+#X connect 34 0 36 0;
+#X connect 36 1 37 0;
+#X connect 32 2 46 0;

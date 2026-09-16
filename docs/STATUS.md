@@ -1,3 +1,53 @@
+## Free-time performance timeline — contract before implementation, 2026-09-15
+
+Base `fe0a5d49027a0eb0cb75f20d87063e34ca0f9810`; branch
+`codex/grid-performance-timeline`. Current remote main resolved as
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; checkout was clean.
+
+User approved changing Pattern 1 from first-cut arming to immediate recording:
+Record press starts Pd logical elapsed time; Finish defines the entire duration,
+including leading/intermediate/trailing spaces. Record typed actions with track
+identity: accepted post-quantizer cuts, speed preset, absolute direction and
+resolved play/pause/stop. Replay does not quantize these events a second time.
+Use the original player controls and fades; no per-sample Lua/audio replacement.
+Live actions remain available while a pattern plays. Pattern Stop/Clear cancel
+future pattern actions without implicitly stopping the tracks.
+
+At Record, capture initial control states; only participating tracks restore
+those states at each cycle boundary. Empty recording returns empty without
+starting audio. Minimum duration remains 10 ms, bounds 4096 events / 300 seconds.
+No pattern persistence, overdub, beat-time mode, quantized launch, loop-gesture
+capture or buffer snapshot in this slice. Shared quantization across interfaces
+is an agreed later direction, not an implementation here.
+
+Resolved musical choice: restore only each participating track's starting speed
+preset and absolute direction through the existing glide paths. Leave tape position
+and transport alone at cycle boundaries. Recorded cuts / Play / Pause / Stop act
+only at their recorded timestamps. Untouched tracks receive no restoration.
+No snapshot of playback position, buffer identity, Fit settings or glide settings.
+
+Implementation checkpoint continues from foundation commit `1efd530`. Observe
+resolved transport at the original accepted Play/Resume/Pause/Stop paths rather
+than infer transport commands from incidental flag changes. The original post-
+quantizer cut observation remains. The adapters publish typed control events;
+replay uses the same original controls with explicit states, not blind toggles.
+The old cut-only component remains a historical reference and is no longer the
+active Pattern 1 engine after integration. Current native runtime is plugdata
+0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23. The user's open application
+and loaded/paused Track 1 are preserved during isolated checks.
+
+Implemented and checked: active Pattern 1 now uses `performance-pattern` and the
+original-player `performance-player` adapter. Native check passed 77 typed replay
+commands, both phrase gaps, original transport/readback, rapid queued/cancelled
+transport, quantizer bypass, continuous position at parameter-only boundaries,
+stopped-tape preservation, and detach/DSP-message cancellation. 73 prior components
+are unchanged; original-player additions are passive transport taps only.
+Lua limits/state checks and Pd structure checks passed. No new console errors.
+[Retained native evidence and repeatable procedure](evidence/performance-pattern/observations.md).
+Physical Grid/listening acceptance remains open; no audio capture was made.
+The user's live patch was preserved, not restarted: fully reopen plugdata and
+`mlr.pd` to use the new Lua implementation after saving any live audio.
+
 ## One Grid cut-pattern slot — contract before implementation, 2026-09-15
 
 Base `06e8bc64787fcbb4df46837eed37677edddad1c7`; branch `codex/grid-cut-pattern`.
