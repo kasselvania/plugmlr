@@ -7,6 +7,468 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Loop-boundary handoff repair — 2026-09-11
+
+Authorized follow-up to PR #34 at `1e708b7316810afc233daeeaa20829a3ee7cdcb6`.
+Remote main remains `29ab51e653eded9db9c5aa09850ec4a1352d97e9` and the
+worktree is clean before this repair. Native plugdata is at Home, DSP On.
+
+Before implementation: keep the existing logical ramp, loop entry, transport
+guards, pending-cut ownership and dual-reader crossover. Give forward and
+reverse endpoint conditions independent rising-edge detection, so a direction
+change cannot inherit an already-high detector from the opposite direction.
+Both detectors call the same existing handoff. No new musical head, transport
+state or message-rate audio timer. Validate the retained exact-end failure,
+the opposite-direction boundary, nearby/rapid turns, and actual reader gain and
+audio through those transitions. A moving position alone is insufficient.
+
+The user's longer-term order is: deepen playback/slew validation, then organize
+the actual patch/front end for readable controls, navigation and layout; later
+address saving, modulation and additional heads per buffer, followed by expanded
+Grid and optional Arc functionality. Reusable transport, buffer, recording,
+playback and buffer-manipulation utilities are the architectural destination,
+including use outside MLR and by the norns community. Extract understood,
+validated behavior behind clear interfaces and ownership, rather than starting
+another replacement engine. This handoff repair does not begin that broader UI
+or modularization work.
+
+### Implemented and validated
+
+Only `pd loop_logic` and `pd current_position` inside the original
+`sample_player_rebuild.pd` change. Everything outside those two subpatches is
+byte-identical to the starting player. The unused early-boundary diagnostic
+branch is removed; the existing readers, 6/9 ms fades, shutdown cancellation,
+slice ownership, buffer selection and mixer are retained.
+
+Two faults are addressed. A shared rising edge could stay high across an exact
+forward-wrap/Reverse collision and lose the reverse wrap. Independent directional
+edges fix that. Separately, an edge describing the preceding audio block could
+arrive after a loop-range cut committed, causing another handoff and a reader
+reset at nonzero gain. Each signal notification now queries the existing logical
+ramp and checks the current bounds, transport, rate and direction before wrapping.
+This reuses the same calculation as Reverse, Speed, Pause and live loop edits.
+No new position tracker, fade policy, public interface or timing delay is added.
+Public loop positions remain seconds; this internal check uses file frames and
+the existing exclusive end. The control check reads 0=forward / 1=reverse;
+the signal detector retains its existing 1/2 selector convention.
+
+Native **plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3**, CoreAudio **8A**,
+**512 device frames**, **1×**: five final captures pass. The original recorded
+3.1-second-buffer collision passes **21 recorder + 14 playback/reader checks**.
+The broader waveform/constant scores pass **37/38 checks at 48 kHz**, and
+**36/37 at 44.1 kHz using 48 kHz files**. Tests cover both boundary directions,
+0.2 ms repeated turns, .25/1/2/4x motion, interrupted speed glides, pending cuts,
+loop edits, endpoint Pause/Resume, Stop/queued Play and empty-buffer recovery.
+No audible-gain reader resets, non-finite output or exact-zero running dropouts
+occur in the final captures. Reader gains sum to one through running transitions.
+Constant stereo error is at most `7.45e-9`; all transition samples are retained.
+The steady second lane repeats exactly at 48 kHz; paired 44.1 kHz captures differ
+by at most `3.73e-8` in its actual stereo audio. Production mixer gain is preserved.
+
+The unchanged prior player reproduces the loop-range reader reset. Intermediate
+failures are retained too: the first edge-only fix did not solve stale range
+events; my first logical check incorrectly relied on an uninitialized 1/2 message
+selector and stalled the untouched lane. The final check uses existing 0/1 player
+state. A proposed rounding tolerance did not fix that error and is absent from
+the final code. The original stuck-Reverse evidence remains unchanged in
+`recording-continuity`; it is now a regression control, not a current failure.
+
+[Procedure, audio, reports and console/settings views](evidence/loop-boundary-handoff/observations.md).
+The captures contain actual player/reader and mixer signals, with automatic
+14-second Stop and an independent 16-second watchdog. No DAC or Grid is connected
+in the fixture. plugdata is left at Home, all captures closed, with **48 kHz restored**.
+**Listening acceptance remains open**; [stereo listening file](evidence/loop-boundary-handoff/listening.wav)
+is retained for later. Very short natural loops below the crossover duration,
+full-app/device delivery, Bitwig and active-recording sample-rate changes are not
+qualified by this repair. The recording checkpoint's other open gates remain.
+
+## Recording continuity and artistic follow-up — 2026-09-11
+
+Continue PR #34 from `f3c22f403d9c5a9aa751f78901350331b8ce9daa`;
+remote main is still `29ab51e653eded9db9c5aa09850ec4a1352d97e9`.
+At the start of this follow-up, native plugdata was read at Home, DSP On,
+with no patch open.
+
+Before implementation: keep current input capture at normal host rate. Playback
+speed/direction must not change that capture. Add an instrument-scoped take view
+onto the existing buffer-owned writers: buffer number, active indication, elapsed
+seconds, frozen limit seconds and Finish for that exact buffer. Multiple live
+buffers can remain active; browsing does not move a writer or its Finish control.
+Publish display progress at 20 Hz while active, with final/initial state updates;
+no display timer drives sample writing. Inactive rows show zero elapsed/limit.
+
+DSP Off finishes the completed written portion through the normal Stop path;
+DSP On must not restart that take. This explicitly defines a user-visible
+interruption. Host sample-rate changes that do not deliver a Pd DSP-off message
+remain unqualified until exercised. Validate growth with the original playback
+and mixer components, then audition the early-stop content bounds. Keep all
+captures independently bounded and retain listening material for the user's return.
+
+The user has explicitly added **recording direction and speed changes** to the
+artistic work, with implementation choices delegated here. Preserve that as an
+intentional tape mode to develop after this reliability pass: independent signed
+write motion, optional relationship to playback motion, abrupt versus slewed
+turns, punch transitions, zero speed, and correct stereo writes across fractional
+or greater-than-one rates. The historical playback-address-driven writer is a
+reference for the musical idea; its address fade and unwired overdub control
+are not a working variable-rate recorder. Do not silently repurpose the existing
+playback Reverse/Speed controls or claim this mode is implemented yet.
+
+Artistic defaults to carry into that later slice: keep ordinary capture as the
+simple default; make tape writing an explicit mode with independent signed speed
+and an optional link to playback. Offer instant changes and a tape slew. At zero
+speed, fade writing out instead of repeatedly overwriting one frame. Retained
+audio/input gain, fractional-rate resampling and boundaries must be established
+in the audio path before dubbing is advertised. Quantized Start/Finish is a
+separate choice from this free motion, not automatic synchronization.
+
+### Implemented and observed
+
+- `record-progress.pd` reads completed frames from the existing audio-rate writer
+  and the frozen frame-limit/host-rate tuple. It publishes
+  `BUFFER ELAPSED_SECONDS LIMIT_SECONDS ACTIVE` on `<instrument>-record-progress`
+  at 20 Hz while active. `<instrument>-record-progress-get` requests current state.
+- `record-takes-panel.pd` / `record-take-row.pd` show the existing 16 live buffers.
+  `<instrument>-record-takes-open` opens the view; `<instrument>-record-finish N`
+  and that row's Finish button share an active-gated Stop to `N_l_b_record`.
+  `mlr.pd` adds only the panel instance and its open button. These scoped display
+  messages do not remove the application's existing global buffer names.
+- `live-record.pd` listens for Pd `dsp 0` while recording and uses its existing
+  Stop/completed-frame path. A Start during Stop cleanup is still refused, not queued.
+  DSP On is not connected to recording Start.
+- The actual native take view showed Live 1 and 2 recording together, with
+  separate elapsed values and frozen 60/4-second limits. It returned to idle after
+  completion. The original MLR button opens that instrument's panel; an idle
+  Finish does nothing. This is agent UI readback, not user usability acceptance.
+
+Native runtime: **plugdata 0.9.4 nightly `98ae0f78b` / Pd 0.56.3**, CoreAudio
+**8A**, **48 kHz**, **512-frame device buffer**, 1× oversampling. The silent
+fixture loads the current sample/live buffers and original player/mixer components.
+Its player copy is the production file verbatim with appended control and passive
+trace taps. A common 0.75 multiplier follows the two actual mixer outputs; this
+does not stand in for full-application or device-output acceptance.
+
+| Actual native case | Result |
+| --- | --- |
+| Free Live 1 and fixed Live 2 while another lane plays | 148,800 / 134,400 recorded frames, each in 192,000-frame stereo storage. Every written sample equals captured input with one shared L/R offset per take; unused tails are zero. |
+| Browse and change playback Reverse/Speed while recording | Writer destination and forward 1x input capture stay unchanged. Changing the next Free limit to 0.4 s leaves the active limit at 60 s. |
+| Finish Live 1 after browsing; then Finish Live 2 | Separate written bounds, separate completion, Live 2 still active after Live 1 finishes. |
+| Other lane during growth, then playback of the recorded take | Other lane's repeated audio is sample-identical before/during/after growth. Normal forward/reverse/.5x/2x playback stays within written content and stops silently. Mixer gain is unchanged outside its intentional 5 ms opening envelope; all transition samples are retained. |
+| DSP Off at 2.5 s, On at 3 s | 57,600 written frames (1.2 s); Loaded at 2.503 s and still Loaded after DSP returns. No recording restart. |
+| Same-tick Start/Stop; retry during cleanup; later Start | First take stays Empty. Retry at +1 ms reports Buffer_busy. Start at +20 ms succeeds and Finish retains 52,800 frames (1.1 s). |
+
+All recorder checks pass in these captures. **A separate exact-boundary Reverse
+case fails playback**, and remains a failing test rather than an accepted exception:
+at 8 s, the natural forward wrap installs `0 148800 3100`; the direction command
+then sees position `0.00404825` and installs a near-zero-duration reverse ramp to
+zero. Subsequent audio/position remains stuck there even through speed changes.
+The source's `pd loop_logic` uses a single `edge~` across both directional endpoint
+conditions; this trace is consistent with the condition staying asserted across
+the turn, so no fresh boundary edge arrives. The existing endpoint retry then
+waits for that missing handoff. This identifies the repair site; it is not yet a
+validated repair. No playback source was changed in this recording follow-up.
+
+With the turn moved to 8.3 s, the natural wrap and later reverse/.5x/2x motion all
+pass. Both the original failure and its traced reproduction are retained.
+The first fixture load also exposed missing sibling paths in the native console;
+it was closed before recording, and the fixture now links the actual source
+siblings into its temporary directory. No failed-load audio is used as evidence.
+
+Procedure, hashes, numerical reports, native screenshots and listening WAV:
+[recording continuity evidence](evidence/recording-continuity/observations.md).
+The user is away; **no new listening report**. All captures stopped automatically.
+Remaining gates: exact-boundary Reverse repair, user listening/UI acceptance,
+real device delivery during growth, native 44.1 kHz Free growth, forced allocation
+failure, and sample-rate changes without Pd DSP Off. Timed recording launch,
+pause/append, overdub, tape write motion, physical shrink and project recall remain
+separate future work. Grid recording is still on hold.
+
+## Recording source recovery — 2026-09-11
+
+The user set the Grid/UI proposal below aside: finish the recording/dubbing
+traces, harden the working recorder, then clarify the plugdata controls before
+designing Grid recording interaction. PR #34 is being revised around that work.
+Native plugdata was inspected first: Home screen, DSP On, no patch visible.
+
+### Free-recording recovery contract (before implementation)
+
+Recover the original 90%-capacity/doubling behavior from `sampler_playback.pd`
+through the current stereo `poke~` writer and buffer-owned storage. Do not load
+the alternative player as a replacement. Record in host frames at normal input
+rate, independently of playback speed/direction. The existing `dynamic` length
+message selects Free; seconds/bars retain their current fixed behavior.
+
+For this first recovery checkpoint, Free starts with one second of stereo
+capacity, doubles near 90% occupancy, and stops at the existing 60-second ceiling
+or an explicit Stop. This ceiling is provisional, not a claim of unlimited
+recording. Both channel allocations must read back correctly before writing or
+continuing. A failed allocation stops the writer with a buffer-addressed error.
+Clear and a second Start remain refused during a take. Buffer selection cannot
+redirect the writer. Only completed written frames become playable on Stop;
+backing capacity is retained rather than physically shrunk under the DSP graph.
+No queued record start, recording pause/resume, overdub mix or Grid change yet.
+
+Source findings to preserve during recovery: the old writer fades its **address**
+with `line~` instead of fading input; growth uses the player argument while writer
+targets can select another slot; timed Stop has no receiver; the timed BPM store
+has no hot-inlet trigger; the visible Overdub knob has neither wires nor sends;
+the write input has no retained-audio feedback mix. The old input subpatch sends
+both 0 and 1 to its DSP switch for every record-control message. Its resize
+notification publishes capacity through the old last-index route and then updates
+the ramp before requesting its snapshot. These are separate recovery defects,
+not evidence that the original musical idea was absent.
+
+### Trace and disposition
+
+These are source/connection findings, including right-to-left trigger order,
+not a claim that every historical branch was exercised in the runtime.
+`mlr.pd` still loads `sample_player_rebuild`; the alternative `sampler_playback`
+and `previous_live-buffer` patches remain preserved and are not loaded as replacements.
+
+| Stage | Actual path and finding | Disposition |
+| --- | --- | --- |
+| Input | `audio-in-subpatch` → local `input-send~`/`input-receive~` → `record-input` → instrument stereo send → buffer writer. Input enable permits Start; it neither proves source presence nor stops an active take. | Accepted local transport retained. Old `pdlink~` branch remains separate; its record-control fanout sends both 0 and 1 rather than selecting the requested state. |
+| Length | `record-length` stores mode/amount and resolves 4/4 bars with project BPM. It describes the **next** take, not existing content or allocated capacity. | Retained. Free's public `dynamic` message and zero fixed target now have a writer interpretation. Fixed targets remain 64 frames through 60 seconds at 44.1/48 kHz. Invalid length edits retain the prior setting; Start rejects unusable fixed targets. |
+| Ownership | `record-controls` addresses the selected live slot; `live_buffer` owns stereo arrays and `live-record`. Old writer table selection uses `record_head_id`, while its growth table names use the player argument (`sampler_playback`, lines 830–929). | Growth now receives the owning buffer ID. Selection still cannot retarget a running writer. Current full applications still share global names; no new instance-isolation claim. |
+| Launch | Old `timed_record` stores a pending flag; ppq modulo 64 dispatches it. The stored BPM in `f` has no hot-inlet trigger. Its frame target also multiplies by playback rate. | Not transplanted. Current Record remains immediate and freezes normal-rate input frames. Slice quantization is a separate path. |
+| Timed cancellation | `$0-timed_record_stop` has senders but no receiver in the scanned production patches. The old pending/timer path therefore has no complete cancellation through that symbol. | Explicit remaining repair; Stop must eventually cancel pending launch as well as active recording. |
+| Stereo write | Old audio inputs reach two `poke~` objects. The two-millisecond `line~` multiplies the **write index**, not incoming samples. | Keep the current stereo counter/`poke~` writer with off index −1 and a signal frame limit. The only new writer output reports completed frames per DSP block. |
+| Growth | Original position ≥ 90% capacity → edge → capacity × 2 → stereo resize. Its metadata/snapshot fanout updates the trajectory before requesting a snapshot. | Recover the occupancy/doubling policy in `record-storage`; no playback-ramp update is needed. Read back both allocations and stop on mismatch. Allocation-failure behavior still needs native fault testing. |
+| Finish/trim | Old endless Stop disarms, turns writing off, sends Stop/resets the ramp, then snapshots and publishes bounds (`sampler_playback`, lines 1207, 1296). There is no endpoint-sized physical shrink in that chain. Exact historical snapshot timing is unverified. | Current writer reports completed frames after Stop. Publish those as content end, leave backing capacity allocated, and use the existing buffer readiness/selection handoff. No automatic playback. |
+| Dubbing | Old `overdub_on/off` operate the address ramp. The visible Overdub knob (line 1392) is unconnected, and no retained-audio mix feeds the write input. Searched overdub flag receivers lack publishers. | Classify the old path as write/replace gating. Retention mix, overdub amount, feedback decay and undo are not implemented by those labels. Preserve and recover deliberately later. |
+| Recording pause | Historical resize/resume/snapshot symbols do not establish a complete public pause/resume-recording path. Playback Pause is a separate, accepted behavior. | Recording still finishes on Stop; append/resume recording is open. |
+| Native feedback | `buffer-panel` follows selection. A rejected command previously replaced the Recording label with its error; an active take can also disappear from view when selection moves. | This change separates recording state from Last error, names Free and its cap, and distinguishes content readiness from recording. A persistent active-take view/Finish action across selection remains open. |
+
+### Implemented first recovery and validation
+
+`record-storage.pd` is a small native Pd allocation helper used by `live-record`.
+It takes `LIMIT INITIAL_CAPACITY`, written-frame progress and writer enable, and
+returns `ready LIMIT`, `grew CAPACITY` or `error REASON`. Free allocates one host
+second initially; fixed recording allocates its frozen target. Resize notifications
+use the already repaired capacity-only update in `live_buffer`; they do not extend
+playable content. Public times stay in seconds, internal lengths are zero-based
+host frames and content end is exclusive. The provisional Free limit is 60 seconds.
+
+The original player's stereo readers, crossover, speed, loops, slices, Grid and
+mixer are unchanged. The input switch is now labelled Enable recording input;
+its existing public symbol and behavior are unchanged. The buffer panel shows
+Free / sec / bars, Amount (fixed), Limit seconds, immediate Start/Stop, actual
+content length, recording state and a separate Last error. State refresh clears
+that error display. This is a local clarification, not the full recording UI proposal.
+
+Actual headful Mac plugdata: **0.9.4 nightly `98ae0f78b` / Pd 0.56.3**,
+CoreAudio **8A**, **48,000 Hz**, **512-frame device buffer**, 1× oversampling.
+The silent fixture instantiates the production live buffer/writer and captures
+its actual stereo input beside exported buffer storage. Its independent watchdog
+is armed before capture; no DAC, hardware input, Grid session or companion is used.
+
+| Native scenario | Written / retained capacity | Result |
+| --- | --- | --- |
+| Free, explicit Stop after 3.1 s | 148,800 / 192,000 frames; growth to 2 s then 4 s | Every recorded stereo frame equals the input; unwritten tail is zero. Repeat Record and Clear are refused. Changing the next target to 0.4 s does not alter this take. |
+| Fixed 2 s | 96,000 / 96,000 frames; no growth | Exact input equality and automatic Stop. Changing next mode to Free does not alter the running fixed take. |
+| Free, automatic ceiling | 2,880,000 / 2,880,000 frames | Exact input equality through growth at 2/4/8/16/32/60 s capacity; writer finishes at exactly 60 s. |
+
+All retained output is finite. A single common stereo alignment is used; no
+transition samples are excluded and no channel is independently shifted. Native
+panel readback confirms Recording survives a refused command, followed by Loaded
+and the actual 3.1-second content length. Test development exposed a fixture
+`select`/selector mismatch and then an error-label `makefilename` mismatch; both
+were fixed from the visible console and the final short run was repeated.
+
+Full procedure, numerical results, raw captures, rejected-label screenshot and
+final UI readback: [free-recording evidence](evidence/free-recording/observations.md).
+The user is away: **no listening report for this recovery**. This is not a claim
+of click-free monitoring, device continuity, or accepted recording UX. The test
+patch was closed after its final completion; plugdata returned to Home, DSP On,
+with the original 48 kHz settings unchanged.
+
+### Next work before Grid recording
+
+1. The continuity follow-up above now covers actual player/mixer concurrency,
+   early-stop playback and zero-frame Stop/restart. Repair its newly exposed
+   exact-boundary Reverse failure. Add native 44.1 kHz Free growth and allocation-
+   failure checks; signal captures do not prove device delivery during allocation.
+2. The new take view keeps Finish and actual elapsed/frozen-limit feedback visible
+   across selection. User usability/listening acceptance remains open.
+3. Recover timed launch and cancellation through one recording command path.
+   Specify immediate versus clock-quantized Start/Finish separately from fixed
+   length and existing slice-key quantization. No clock-lock claim yet.
+4. Establish the retained-audio/input mix and write-position behavior for dubbing,
+   then test recording pause/append and a considered larger memory limit. The
+   original Free idea is preserved; this first 60-second ceiling is not the final design.
+
+## Recording UI proposal — 2026-09-11 (on hold)
+
+**Earlier design review, retained as context; the recovery above supersedes its
+implementation inventory.** The user is away from the computer and asked for a
+recording behavior/layout recommendation grounded in mlre. Base and remote main
+were verified at `29ab51e653eded9db9c5aa09850ec4a1352d97e9`. No patch, runtime,
+input, recording, Grid session or installed dependency was changed for this review.
+
+### Reference and actual code
+
+The [pinned mlre v2.2 manual](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/doc/mlre%20v2.2%20-%20user%20manual.pdf)
+pages 5–6 were read and their REC diagrams rendered and visually inspected;
+pages 19–20 explain tape/splice ownership. The matching
+[REC handlers](https://github.com/sonocircuit/mlre/blob/ba88531bd31656ec33b54beee4f67c5438ae7d35/lib/grid_mlre.lua#L368)
+and `mlre.lua` recording functions were also inspected. Upstream REC toggles tape
+recording; ARM waits for an input threshold; ALT adds one-shot/auto-length modes;
+MOD+REC recalls a backup. Its eight splices are overlapping windows into a tape,
+not eight separate files or our live-buffer slots. Its main/temporary tape sides
+are not our imported/live buffer types. Preserve the spatial language without
+claiming those recording capabilities here.
+
+| Current source | What is actually wired / design consequence |
+| --- | --- |
+| `audio-in-subpatch.pd`, `input-send~`, `input-receive~` | Host L/R → input gain → local stereo bus. Monitor gain is separate and defaults muted. Saved host-channel defaults are 1/2; the accepted hardware session used 3/4. Show the actual source configuration, never hardcode the last session. |
+| `mlr.pd`, `record-input.pd` | One bus-1 receiver feeds the instrument's stereo recording input. Input arm plus running DSP permits Start. Meters are `env~` level measurements, not peak/clip or sender-presence detection. Disarming does not stop an active take. |
+| `record-controls.pd` | Player Record sends **start**, not a toggle; player Stop sends **stop**, both to the selected live buffer. Imported-buffer Record is gated out. A Grid toggle therefore needs to consult actual buffer recording state. |
+| `record-length.pd` | Seconds or whole 4/4 bars resolve to seconds using project BPM. The displayed grow mode has settings only; the writer rejects its zero target. |
+| `live_buffer.pd`, `live-record.pd` | The live buffer owns both arrays and its writer. Start requires empty, non-busy storage, enabled input, a valid fixed target and supported host rate. Clear/Record protect the same storage. Status is `Empty`, `Recording` or `Loaded`, plus buffer-addressed errors. |
+| `fixed-record~.pd` | Original stereo `poke~` pattern driven by an audio-rate counter. Target is frozen at Start; Stop reports completed frames after settling. Written-frame progress exists privately; it has no public UI progress outlet yet. |
+| `buffer-selection.pd`, `buffer-panel.pd` | Selecting another buffer does not move a running writer. The existing panel follows selection, so the previous take and its early-stop action can disappear from view. Completion exposes only written content; there is no automatic playback. |
+
+**Correction after the user's reminder:** the earlier draft traced the active
+fixed recorder but did not carry forward the existing dynamic-recording recovery
+path. `sampler_playback.pd` already contains substantive endless recording code:
+
+- `pd poke_write_processing` compares the recording position with 90% of capacity;
+  `edge~` triggers doubling of both stereo arrays and a size/metadata refresh
+  (lines 830–857, 903–930). This is real growth logic, not merely a mode label.
+- `$0-endless_buffer_record_logic` enables writing, disables reading, sets the
+  endless flag and snapshots the starting position (lines 1257, 1324–1328).
+- `$0-stop_endless_buffer_recording` enters a right-to-left trigger sequence that
+  disarms, clears the endless flag, stops writing, snapshots the endpoint, publishes
+  first/last indices and marks the first recording complete (lines 1296, 1207,
+  649–654, 789–799). This establishes the recorded playback window. I did not find
+  an endpoint-sized physical array shrink in that Stop chain; usable-content trim
+  and storage shrink must be distinguished.
+
+The original source map below already identified this file's growable recording
+behavior. It remains in place, but `mlr.pd` instantiates `sample_player_rebuild`,
+not `sampler_playback`. Thus **existing implementation to recover, absent from the
+currently accepted path** is the correct classification. Growth uses names based
+on the abstraction's `$1`, while writer selection is retargetable; selected-buffer
+ownership and Stop/snapshot order need tracing before reuse. No reliability claim
+for long growth, resize continuity or trim follows from this source inspection.
+The UI should make room for **Fixed / Free** now; recovery must precede any claim
+that Free is operational, and should precede new recording launch features.
+
+The accepted fixed/early-stop/hardware evidence remains in
+[the recording checkpoint below](#recording-checkpoint-with-the-new-hardware-source).
+This review adds source findings, not new runtime or listening acceptance.
+
+### Recommended first REC layout
+
+Physical coordinates are one-based. Keep the permanent top navigation, six-row
+shape and focused-track strip from mlre. Initially enable only Players 1/2;
+rows for Players 3–6 remain dark until individually brought into scope.
+
+| Position | Proposed first behavior |
+| --- | --- |
+| Top row 1 / 2 | REC / CUT page selection. Page changes do not start, stop or erase audio. |
+| Track column 1 | **REC / Finish take** for that row's selected live buffer. Fresh key-down acts once; release and duplicate-down do nothing. |
+| Track column 2 | Reserve mlre's threshold ARM position; leave inactive. Do not repurpose it as the global input-enable switch. |
+| Track columns 3–6 | Focus that player without recording or changing its buffer. Screen names the selected buffer. No fake main/temporary-side indicators. |
+| Track column 7 | Reserve warble, inactive. |
+| Track column 8 | Reverse through the existing direction control. It changes playback, never the forward input writer. |
+| Track columns 10–14 | Existing five presets: 0.25, 0.5, 1, 2, 4x. Keep 1x at mlre's column 12; leave 9/15 inactive rather than add its unqualified 0.125/8x presets. Existing speed glide and Fit rules still apply. |
+| Track column 16 | Existing Play/Pause/Resume. Immediate, distinct from Finish take and hard Stop. |
+| Bottom row | Focused player's existing 16-way whole-content cuts, loops and actual playback marker. Empty/recording buffers have no playable strip. Preserve current CUT gesture/release policy. |
+
+Keep top MOD/ALT positions and existing CUT behavior. On REC, bottom-row gestures
+retain those modifiers; unsupported modified record/focus/speed/transport chords
+do nothing. In particular, do not inherit upstream destructive ALT+page shortcuts,
+undo, threshold, overdub or fade-out behavior. Changing page/focus clears pending
+held-key gestures and requires fresh downs; it never replays a held key as REC.
+LED rendering must have one active page owner inside the existing adapter, using
+the pinned Monome package's session/cache boundary.
+
+### Screen and recording behavior
+
+Keep one focused recording section in the existing player view, with this order:
+
+1. **Player 1 · Live 2 · Empty / Recording / Take ready.** Player, buffer and input
+   bus remain separate identities. Buffer chooser distinguishes Live from Sample,
+   and shows occupied/empty/recording slots. An imported sample offers selection
+   of an empty Live buffer; Record never silently switches or clears it.
+2. **Input enabled**, stereo L/R levels and actual source/bus. Rename the visible
+   input-arm label for clarity while preserving its current meaning. Input enable
+   permits new takes; it is not recording, threshold waiting or monitoring. Keep
+   input gain and Monitor controls in the companion, with a direct way to open it.
+   Until the companion publishes its channel assignment, show that assignment as
+   unknown here rather than infer it from bus 1 or last session's channels 3/4.
+3. **Next take: 2 bars · 4/4 · 110 BPM · 4.364 s**, or a seconds value. Reuse
+   fixed-length settings. Display the actual clock source and **Start: immediate**
+   separately: a bar-sized take is not a quantized launch or phase lock. Provide
+   space for **Fixed / Free**; Free is the original grow-to-fit behavior to recover,
+   not a new feature to invent. In the first operational UI it remains clearly
+   unavailable until recovered and tested. Changing tempo affects the next take.
+4. **Record / Finish take**, then **Play/Pause** and separate hard **Stop**. Start
+   requires empty storage; existing content offers “Choose another Live buffer”
+   or explicit named Clear in the screen. No erase-and-record chord in this slice.
+   Starting/stopping uses the buffer's writer status, not a UI toggle latch.
+5. **Recording 2.1 / 4.364 s → Live 2**, with a progress strip and **Finish Live 2**.
+   Keep a compact active-take strip visible across focus, buffer and page changes;
+   Finish addresses the displayed buffer ID directly. Shared selections show the
+   same buffer recording state, not independent recordings. A rejected command
+   names its buffer and reason without replacing another active take's status.
+
+Start freezes the actual frame limit and host rate. At the limit, or on Finish,
+wait for writer completion before showing Take ready and enabling playback. Early
+Finish exposes only the written duration; a zero-frame result is Empty. No automatic
+playback initially: press PLY to audition, then cut normally. Existing Loop, Fit,
+Reverse and speed affect playback only, not take length or captured input pitch.
+Target changes during a take are labelled **Next take**, while its frozen target
+stays visible. Global clock Stop and input disarm do not masquerade as Finish.
+
+Record light: **off = unavailable**, **dim 4 = can start**, **solid 15 = writing**.
+The screen explains unavailable states (input disabled, existing content, busy,
+bad length/rate). Use short acknowledgement/error feedback without latching a
+false recording state. Reserve pulsing REC for future genuine launch-waiting;
+input enabled alone never pulses. PLY shows actual stopped/paused/running state;
+the bottom strip keeps accepted loop level 4 / running marker 12. On disconnect,
+clear held keys only: the bounded writer continues, with on-screen Finish available.
+Reconnect redraws actual buffer state and never restarts recording.
+
+The progress display needs a small **read-only written-frame export** from the
+existing writer, rate-limited for UI. Do not animate elapsed wall time and call it
+recorded audio. Likewise, source presence and peak/clip detection need actual new
+signals before such indicators can be shown. There is no need for another writer,
+playback engine or per-sample Lua work.
+
+For the recovered **Free** mode, the intended interaction is Record → count up in
+seconds → Finish → playable content ending at the captured endpoint. There is no
+target-length progress fraction and no required bar amount. Record remains manual
+initially. Backing-array capacity is not displayed as take length. A practical
+resource ceiling and behavior when extension cannot continue belong in the recovery
+contract; “Free” must not promise unlimited memory. Reuse and harden the original
+growth/endpoint path rather than implement an unrelated recorder.
+
+### Small implementation sequence after design review
+
+First finish tracing the preserved grow/endpoint path against its original writer,
+including allocation, selected-buffer names, extension, Stop order and usable versus
+physical trim. This corrects the earlier fixed-only framing; do not finalize the
+recording UI's scope before that recovery review. Expose trustworthy status/progress
+and named Finish in the current screen. Then add REC page routing and two-row controls, reusing the existing writer and
+player commands. Keep buffer management on screen initially. Validate a take on
+one lane while the other keeps playing, then reverse the roles; concurrent takes
+and shared-buffer controls need their own explicit checks before acceptance.
+Exercise both completion paths, unavailable input/target/storage, rapid repeated
+keys, focus/buffer/page changes, detach/reconnect and actual writer/mixer audio.
+Physical LEDs, human usability/listening and 44.1 kHz recording remain separate
+acceptance work; the existing native hardware recording evidence is at 48 kHz.
+
+Prioritize recovery of existing Free recording alongside the fixed-recording UI
+work. After that: explicit immediate/beat/bar recording launch with real waiting
+and cancel feedback, then overdub with input/retained-audio levels and a recoverable previous take.
+Threshold launch can then occupy ARM; auto-length can follow mlre's ALT+ARM.
+Saving a useful take should be a small subsequent job, before calling this a
+dependable recording instrument: existing takes still have no product export or
+recall UI. Tape sides/splices, resampling routes, and separate-process/Bitwig
+transport are distinct later capabilities. None are implemented by this proposal.
+
 ## End-of-day playable CUT checkpoint — 2026-09-11
 
 Accepted PRs #27–#32 are merged. Runtime/evidence checkpoint on main is

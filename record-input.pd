@@ -1,6 +1,6 @@
 #N canvas 100 80 1200 1000 12;
 #X text 15 10 Recording input (local bus);
-#X obj 15 45 tgl 24 0 \$1-record-arm empty Arm_recording_input 30 12 0 12 #e3dfd9 #333333 #333333 0 1;
+#X obj 15 45 tgl 24 0 \$1-record-arm empty Enable_recording_input 30 12 0 12 #e3dfd9 #333333 #333333 0 1;
 #X obj 275 45 nbx 7 20 -100 20 0 0 empty \$0-left L_dBFS 0 -9 0 12 #e3dfd9 #333333 #333333 -100 256;
 #X obj 385 45 nbx 7 20 -100 20 0 0 empty \$0-right R_dBFS 0 -9 0 12 #e3dfd9 #333333 #333333 -100 256;
 #X text 15 90 Set hardware channels and input gain in audio-in-subpatch.pd. Match the companion and receiver bus.;

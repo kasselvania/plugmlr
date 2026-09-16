@@ -1,0 +1,174 @@
+{
+  "passed": true,
+  "checks": {
+    "finite_all_signals": true,
+    "bounded_capture": true,
+    "player_taps_match_capture": true,
+    "master_inside_file": true,
+    "no_audible_reader_resets": true,
+    "lane_b_keeps_moving_1s": true,
+    "lane_b_keeps_moving_2s": true,
+    "lane_b_keeps_moving_3s": true,
+    "lane_b_keeps_moving_4s": true,
+    "lane_b_keeps_moving_5s": true,
+    "lane_b_keeps_moving_6s": true,
+    "lane_b_keeps_moving_7s": true,
+    "lane_b_keeps_moving_8s": true,
+    "lane_b_keeps_moving_9s": true,
+    "lane_b_keeps_moving_10s": true,
+    "lane_b_keeps_moving_11s": true,
+    "unity_combined_gain_while_running": true,
+    "no_silent_dropouts_while_running": true,
+    "stopped_paused_empty_player_silent": true,
+    "both_players_and_mixer_stop": true,
+    "motion_0.15s": true,
+    "motion_0.38s": true,
+    "motion_1.12s": true,
+    "motion_1.38s": true,
+    "motion_2.38s": true,
+    "motion_3.3s": true,
+    "motion_4.2s": true,
+    "motion_5.38s": true,
+    "motion_6.62s": true,
+    "motion_6.82s": true,
+    "motion_7.88s": true,
+    "motion_8.38s": true,
+    "motion_9.5s": true,
+    "motion_10.62s": true,
+    "lane_b_exact_repeats": true,
+    "mixer_preserves_gain_outside_open": true,
+    "all_transition_steps_bounded": true
+  },
+  "capture": {
+    "rate": 48000,
+    "channels": 10,
+    "declared_frames": 671836,
+    "trailing_bytes": 6560,
+    "sha256": "f552ffb28198c2f9e03dd44847fd2eb0edd516173cbf4488d2c1fd0b5893fc76"
+  },
+  "reader_captures": [
+    {
+      "rate": 48000,
+      "channels": 10,
+      "declared_frames": 671836,
+      "trailing_bytes": 6560,
+      "sha256": "6601c783b2f020436e4b3f93bf10770a5b0dd78df2c39455e174f76177e7bec9"
+    },
+    {
+      "rate": 48000,
+      "channels": 10,
+      "declared_frames": 671836,
+      "trailing_bytes": 6560,
+      "sha256": "0f7b97a403082ed05995a5afcd6895b8d21bb9eab6b2a9c05520a2ece9555c71"
+    }
+  ],
+  "file_rate": 48000,
+  "metrics": {
+    "audible_reader_jumps_a": [],
+    "audible_reader_jumps_b": [],
+    "player_max_adjacent_step_all_samples": [
+      0.012603759765625,
+      0.011078533716499805
+    ],
+    "fixture_step_limits": [
+      0.013165814071962592,
+      0.01147046021593009
+    ],
+    "running_gain_min_max": [
+      1.0,
+      1.0
+    ],
+    "longest_zero_run_running_frames": 0,
+    "lane_b_repeat_residual": 0.0,
+    "constant_stereo_error": null,
+    "mixer_max_residual_all_samples": 0.0016151117160916328,
+    "mixer_max_residual_outside_open": 0.0,
+    "motion": [
+      {
+        "from": 0.15,
+        "to": 0.3,
+        "expected_multiplier": 1,
+        "measured_multiplier": 1.0
+      },
+      {
+        "from": 0.38,
+        "to": 0.98,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      },
+      {
+        "from": 1.12,
+        "to": 1.34,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      },
+      {
+        "from": 1.38,
+        "to": 1.98,
+        "expected_multiplier": 1,
+        "measured_multiplier": 1.0
+      },
+      {
+        "from": 2.38,
+        "to": 2.98,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      },
+      {
+        "from": 3.3,
+        "to": 3.98,
+        "expected_multiplier": -2,
+        "measured_multiplier": -2.0
+      },
+      {
+        "from": 4.2,
+        "to": 4.98,
+        "expected_multiplier": -4,
+        "measured_multiplier": -4.0
+      },
+      {
+        "from": 5.38,
+        "to": 5.98,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      },
+      {
+        "from": 6.62,
+        "to": 6.78,
+        "expected_multiplier": 1,
+        "measured_multiplier": 1.0
+      },
+      {
+        "from": 6.82,
+        "to": 6.98,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      },
+      {
+        "from": 7.88,
+        "to": 7.98,
+        "expected_multiplier": -0.25,
+        "measured_multiplier": -0.25
+      },
+      {
+        "from": 8.38,
+        "to": 8.98,
+        "expected_multiplier": 1,
+        "measured_multiplier": 1.0
+      },
+      {
+        "from": 9.5,
+        "to": 9.98,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      },
+      {
+        "from": 10.62,
+        "to": 12.48,
+        "expected_multiplier": -1,
+        "measured_multiplier": -1.0
+      }
+    ]
+  },
+  "listening": "Not collected. No universal click-free or DAW acceptance claim."
+}

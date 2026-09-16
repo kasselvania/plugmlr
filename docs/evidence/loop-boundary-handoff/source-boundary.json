@@ -1,0 +1,10 @@
+{
+  "before_commit": "1e708b7316810afc233daeeaa20829a3ee7cdcb6",
+  "before_player_sha256": "8e999d078e1b37061ead981456d6718b2d701f74a749965778816eef5cd5b550",
+  "after_player_sha256": "8232e2067115c7b4e41791c6c98688ff08e2e68a52a55316caffeade00b53f46",
+  "only_production_changes": [
+    "sample_player_rebuild.pd:pd loop_logic",
+    "sample_player_rebuild.pd:pd current_position"
+  ],
+  "everything_outside_these_subpatches_byte_identical": true
+}

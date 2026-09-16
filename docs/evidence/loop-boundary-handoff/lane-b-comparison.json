@@ -1,0 +1,16 @@
+{
+  "48": {
+    "stereo_output_identical": true,
+    "stereo_residual": 0.0,
+    "logical_position_and_direction_identical": true,
+    "whole_reader_dump_identical": false,
+    "note": "Inactive internal reader held positions can differ before Play; comparison covers all actual stereo output samples and master state."
+  },
+  "441": {
+    "stereo_output_identical": false,
+    "stereo_residual": 3.725290298461914e-08,
+    "logical_position_and_direction_identical": false,
+    "whole_reader_dump_identical": false,
+    "note": "Inactive internal reader held positions can differ before Play; comparison covers all actual stereo output samples and master state."
+  }
+}

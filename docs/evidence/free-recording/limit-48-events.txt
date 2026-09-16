@@ -1,0 +1,16 @@
+0 buffer 48 0 96000 6000 0;
+20 buffer 48 0 0 0 0;
+100 buffer 48 0 0 0 0;
+100 buffer 48 0 0 0 0;
+100 state Recording;
+100 storage ready 2.88e+06;
+1000 storage grew 96000;
+1900 storage grew 192000;
+3700 storage grew 384000;
+7300 storage grew 768000;
+14500 storage grew 1.536e+06;
+28900 storage grew 2.88e+06;
+60103 buffer 48 0 2.88e+06 180000 1;
+60103 buffer 48 0 2.88e+06 180000 1;
+60103 state Loaded;
+60600 state Loaded;
