@@ -1,3 +1,39 @@
+## Grid page buttons select the screen — 2026-09-15
+
+Base `4da7e6d364fa0c70e3bfd447de37cde89a5c1a76`, branch
+`codex/grid-screen-navigation`. The user reports PLAY/CUT "works great".
+
+Contract before implementation: every fresh unmodified CUT page press opens the
+currently Grid-focused player's existing panel, even when CUT is already selected.
+PLAY invokes the existing Overview path. Focus changes alone stay screen-silent.
+Release, duplicate downs, modified page presses, initialization and reconnect do
+not open screens. Page navigation retains the existing held-key cancellation and
+changes no audio, recorder, quantization, buffer or device ownership behavior.
+Reuse the existing ui-open-view routing; verify the real native screen, not just
+that an open message was emitted. This is explicit page navigation, not a new
+browser or patch-window architecture.
+
+Observed implementation results: the eighth classifier outlet requests explicit
+screen navigation; the first seven outlets retain their prior roles. Native
+plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23 passed 32 routing
+records, including all six focused tracks, CUT reselection, duplicate releases,
+modifiers and reconnect. 72 other Pd/Lua components remain byte-identical to the
+base. The actual native screen showed Player 2 on CUT, and the native console
+showed test completion without new errors. Existing grid_not_attached warning
+was present. No audio, recording or physical Grid tests were run here.
+
+**Open limitation:** PLAY's existing close-views action does not reliably focus
+home: the unrelated test tab remained selected. Sending vis 0 / delayed vis 1
+to pd-mlr.pd also failed visibly and was removed. The matching
+[plugdata source](https://github.com/plugdata-team/plugdata/blob/98ae0f78b/Source/Pd/Instance.cpp#L343-L355)
+explicitly ignores top-level canvas visibility. Do not ship that workaround or
+claim the full requested home behavior works. A dedicated selectable home view
+would require a separate interface move; the user has been asked to choose that
+or the limited close-player behavior. Evidence is in
+`docs/evidence/grid-screen-navigation/`, including both rejected native outcomes.
+The test patch has been closed and the main PLUGMLR overview left visible.
+Current application Lua remains the previous loaded version until a restart.
+
 ## PLAY/CUT Grid navigation contract — 2026-09-15
 
 Base `ca75d98b77ead7382bc5e330a62249a2f0c8f221`, dedicated branch
