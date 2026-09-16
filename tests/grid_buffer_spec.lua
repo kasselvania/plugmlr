@@ -55,3 +55,11 @@ local events=#l.events;l:metadata_sample('list',{99,1,48,0,0,16});l:buffer_1('sy
 assert(row(7)[3]==15 and row(7)[18]==5)
 l:in_1('connected',{0});l:in_1('bank',{'live'});assert(#l.events==events);l:in_1('connected',{1});assert(row(7)[18]==15)
 print('PASS 96 sample assignments, live destinations, bank/page/modifier/duplicate cancellation, patterns, 80ms loop regression and readback-only LEDs')
+
+-- New PLAY Record/Finish address: no release/duplicate/modifier/cross-page launch.
+k:in_2_float(1);tap(0,0);local before=#count(11)
+for r=1,6 do key(0,r,1);key(0,r,1);key(0,r,0)end
+assert(#count(11)==before+6)
+for _,mod in ipairs({13,15})do key(mod,0,1);tap(0,1);key(mod,0,0)end
+assert(#count(11)==before+6);tap(1,0);tap(0,1);assert(#count(11)==before+6)
+print('PASS six PLAY Record/Finish addresses; modifiers, duplicate and CUT separation')

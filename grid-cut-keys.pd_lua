@@ -5,7 +5,7 @@ local function integer(v, lo, hi)
     return type(v)=='number' and v==v and v%1==0 and v>=lo and v<=hi
 end
 function C:initialize()
-    self.inlets, self.outlets = 3, 10
+    self.inlets, self.outlets = 3, 11
     self.connected, self.alt, self.mod = false, false, false
     self.page, self.focus, self.bank = 'cut', 1, 'sample'
     self.down, self.routes, self.held, self.pairs = {}, {}, {}, {}
@@ -138,7 +138,8 @@ function C:in_1_list(a)
     elseif self.page=='play' and y==7 then
         self.routes[key]=self.focus;self:cut(x,self.focus,1)
     elseif self.page=='play' and y<=6 and not self.alt and not self.mod then
-        if x>=2 and x<=5 then self:set_focus(y,true)
+        if x==0 then self:outlet(11,'float',{y})
+        elseif x>=2 and x<=5 then self:set_focus(y,true)
         elseif x==7 then self:outlet(6,'float',{y})
         elseif x>=9 and x<=13 then self:outlet(7,'list',{y,x-9})
         elseif x==15 then self:outlet(2,'float',{y}) end

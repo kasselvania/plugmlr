@@ -1,3 +1,56 @@
+## Grid Record/Finish — contract before implementation, 2026-09-16
+
+PR50 BUFFER was physically accepted (“Works great”) and merged as
+`4c3caff961680a9207c52022ee2244e4b34bd1c1`. Next slice: PLAY column1 on each of
+six track rows is Record/Finish. Fresh down only; release/duplicates and ALT/MOD
+are inert. Existing PLAY/CUT/BUFFER/pattern controls keep their meanings.
+
+Start addresses the committed selected Live buffer, only outside selection handoff.
+The existing live-record owner validates content, input arm, storage and length.
+Remember a track's target only when that request actually starts recording. A second
+press finishes that remembered buffer even after selecting another buffer, including
+an imported Sample. Natural completion or external Finish clears the remembered take.
+Another track selecting the same recording buffer cannot take ownership or stop it.
+One remembered take per track; no overwrite/Clear, auto-play, overdub or quantization.
+Existing Free/sec/bar settings, 60-second cap and stereo writer are unchanged.
+
+PLAY column1: dark=no selected Live destination; dim3=Live selected (not an input-ready
+promise); medium7=that buffer records elsewhere; bright15=this track owns a running
+take. Readback owns light state. Page changes/detach do not finish audio recording;
+existing buffer Finish/DSP-off/limit still work. Ownership is session-local.
+Refused Grid routing prints a concise reason; writer errors remain visible.
+Validate actual writer starts/stops, target changes, shared-slot refusal, fixed finish,
+input/content refusal, LEDs and original controls. Finite test has an independent
+stop watchdog and uses a private generated stereo bus, with no DAC or user input.
+Physical recording workflow acceptance remains separate.
+
+### Recording implementation and validation
+
+`grid-record-control.pd_lua` is a message-only six-track bridge: committed buffer
+and switching readback choose Start; actual per-buffer recording flags retain or
+release ownership. PLAY column1 routes fresh presses to it, and the sole existing
+renderer shows its readback. Three existing Grid files change; all original player,
+input, writer/storage, buffer, main-patch and pattern implementations stay unchanged.
+
+Local native plugdata 0.9.4 nightly98ae0f78b / Pd0.56.3 / pdlua0.12.23 at48kHz:
+four actual private stereo takes exercised remembered Finish after Sample selection,
+fixed automatic finish, external Finish, and detach/reconnect/held-key handling.
+Expected unarmed/content/shared-slot/switching refusals were visible in the actual
+console. All115 pattern and17 buffer-request regression cases passed, plus Lua
+six-track ownership, routing, modifiers, timeline and persistence suites.
+
+The first audio fixture had a mono send~ declaration and a silent right channel.
+Retained that failure; corrected the fixture to the application's existing two-channel
+bus declaration. Final four exports passed stereo order, amplitude, fitted waveform
+continuity, finite samples, content duration and silent unwritten-tail checks.
+No production audio fix was needed. Test score finishes at20.5s; independent32s
+watchdog also stops every private writer. Test closed; user main remained open.
+
+[Evidence and reproduction](evidence/grid-record/observations.md). No new physical
+Grid/hardware listening, 44.1k, Bitwig, overdub/resampling or record-quantization
+acceptance. Save/clear UI remains on screen. Existing60s ceiling and synchronous
+WAV saving remain. New Lua requires a full application restart after saving work.
+
 ## Grid BUFFER page — contract before implementation, 2026-09-16
 
 Base/remote main `42c4754d8e8bc2e6a26d4f35891a4d6653497c58`; clean checkout,

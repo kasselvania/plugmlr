@@ -308,3 +308,10 @@
   tests/grid_buffer_spec.lua and the finite native build_grid_buffer_check.py /
   check_grid_buffer.py suite; distinguish its private-ID control evidence from
   physical Grid acceptance. Do not reload a user's unsaved session to test Lua.
+
+- PLAY column1 Record/Finish remembers only an admitted live take. Existing writer
+  recording flags own completion; changing selection must never retarget Finish.
+  Another track cannot adopt an active take. Reject starts during selection handoff.
+  Keep writer, input admission, content protection, limits and DSP-off behavior in
+  their original components. Test actual stereo writer output with a two-channel
+  send~ bus, not merely command logs; retain a finite independent writer Stop.

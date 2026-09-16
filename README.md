@@ -156,13 +156,14 @@ comparison. Bitwig audio/clock and plugin-instance isolation remain open. See
 **PLAY and CUT:** the first two top-row keys now select PLAY and CUT. CUT is
 selected on startup. Both pages cover Players 1–6; the current page is brighter.
 The layout follows the [pinned mlre reference](docs/STATUS.md#mlre-control-reference-and-next-grid-slice--2026-09-11),
-with a PLAY name because recording controls are not active on this page yet.
+with a PLAY name; column 1 now adds Record/Finish through the existing live writer.
 
 On **PLAY**, each of the six rows below navigation controls its corresponding player.
 Count columns from the left, starting at 1:
 
 | Columns | Action / feedback |
 | --- | --- |
+| 1 | Record/Finish the track’s take. Bright = its running take; medium = selected buffer records elsewhere; dim = Live selected; dark = unavailable. |
 | 3–6 | Select the focused track without playing or opening a window. The selected block is brighter. |
 | 8 | Reverse. Bright = reverse; dim = forward. |
 | 10–14 | ¼, ½, 1, 2, 4× presets. The chosen preset is brighter; existing glide and tempo Fit still apply. |
@@ -236,6 +237,30 @@ Save live takes **and the pattern bank**, fully quit/reopen plugdata, then reope
 `mlr.pd` for this update. The currently open session is left intact. Native control
 checks passed; physical BUFFER-page usability remains to be tested.
 [Evidence and repeat procedure](docs/evidence/grid-buffer/observations.md).
+
+### Record/Finish from PLAY
+
+1. Set up the existing stereo input and enable **Enable_recording_input** on screen.
+2. Use BUFFER to assign an **empty Live slot**. Free/sec/bars and length are still
+   set on the player panel; bars set duration, not a quantized start.
+3. Return to **PLAY** and press **column 1** on that track’s row. It lights brightly
+   only when the writer reports recording. Press again to **Finish**.
+
+That button remembers the take it started. You may select another buffer or Sample;
+pressing the original track’s Record/Finish still finishes the original take.
+Fixed-length completion and the on-screen Live takes / Finish action clear that
+responsibility automatically. Another track looking at that buffer cannot stop it.
+
+Dim means a Live destination is selected, not that input is armed or audible.
+Medium means recording started elsewhere; use its owning track or on-screen Finish.
+No overwrite: populated buffers refuse Record until deliberately cleared on screen.
+Errors appear in the console. ALT/MOD and duplicate held presses do not trigger it.
+Page changes or Grid disconnection do not end a take; the existing frozen limit,
+DSP Off and on-screen Finish remain available. No automatic playback follows Finish.
+Audio recording actions are not captured by performance patterns in this slice.
+
+Save takes and pattern bank before fully quitting/reopening plugdata to load this
+update. [Native checks and physical playtest](docs/evidence/grid-record/observations.md).
 
 ### Eight pattern slots: record and switch performances
 
@@ -334,8 +359,7 @@ the pair until all row keys are released. Full content has no dim background.
 
 The preceding CUT gestures have physical acceptance; the combined two-lane capture
 also has numerical and listening acceptance. The new page layout is not yet physically accepted. See the [current checkpoint](docs/STATUS.md).
-Grid audio-recording controls remain reserved. PLAY and its focused bottom
-cut strip are described above.
+Grid Record/Finish and PLAY’s focused bottom cut strip are described above.
 
 ## Run the original application
 
