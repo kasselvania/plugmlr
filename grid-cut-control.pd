@@ -109,3 +109,17 @@
 #X connect 47 0 32 0;
 #X connect 32 3 48 0;
 #X connect 32 4 49 0;
+
+#X obj 30 850 t l l;
+#X obj 220 890 unpack f;
+#X obj 220 930 makefilename %d-buffer-select;
+#X obj 30 890 list split 1;
+#X obj 30 930 list trim;
+#X obj 30 970 send;
+#X connect 2 9 50 0;
+#X connect 50 1 51 0;
+#X connect 51 0 52 0;
+#X connect 52 0 55 1;
+#X connect 50 0 53 0;
+#X connect 53 1 54 0;
+#X connect 54 0 55 0;

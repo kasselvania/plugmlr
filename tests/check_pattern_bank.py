@@ -56,6 +56,7 @@ assert nav(13120)[0]==12 and nav(13120)[8]==10 # PLAY switch retains slot5.
 # All original audio, player adapters, bank wiring and device dependency files unchanged.
 allowed={'performance-pattern.pd_lua','grid-cut-keys.pd_lua','grid-page-leds.pd_lua'}
 if m.get('files'):allowed.update({'mlr.pd','grid-cut-control.pd'})
+if m.get('grid_buffers'):allowed.add('grid-playback-state.pd')
 protected=[]
 for name in subprocess.check_output(['git','ls-tree','--name-only',m['bank_base']],cwd=ROOT,text=True).splitlines():
  if name.endswith(('.pd','.pd_lua')) and name not in allowed:

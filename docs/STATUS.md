@@ -1,3 +1,77 @@
+## Grid BUFFER page — contract before implementation, 2026-09-16
+
+Base/remote main `42c4754d8e8bc2e6a26d4f35891a4d6653497c58`; clean checkout,
+branch `codex/grid-buffer-page`. The user approved adapting mlre's ALT+Q tape
+navigation to our separate sample/live buffers. This is not splice emulation.
+Native main is open with Player 1 paused on Sample 1 and a saved pattern bank;
+preserve that session. Isolated fixtures must not claim the Grid or use its buses.
+
+Physical one-based layout: ALT (top16) + Q (top15) enters BUFFER. Top1 PLAY and
+top2 CUT return normally; top5–12 patterns, MOD14 and ALT16 retain their roles.
+Top15 is lit on BUFFER, otherwise available while ALT is held. Plain Q outside
+BUFFER remains reserved. Rows2–7 are Tracks1–6; columns1–16 assign that track's
+slot in the viewed bank. Bottom1 selects Sample, bottom16 selects Live; the chosen
+bank key is bright. Other bottom keys are inactive. Start viewing Sample; remember
+the viewed bank across page changes. Bank viewing itself sends no player command.
+Release ALT before assigning; ALT/MOD track/bank presses do nothing. Assign on
+fresh key-down only, never key-up/duplicates. Entering/leaving pages or changing
+bank cancels unfinished loop gestures and consumes held keys until release.
+Slot assignment focuses its row without opening a window. CUT explicitly opens it.
+
+Reuse `<track>-buffer-select sample|live <1..16>` without new playback/recording
+logic. All slots are selectable, including empty live destinations. Selecting an
+empty sample also uses the existing empty-buffer behavior. Latest request and
+playing/paused/stopped transitions remain owned by buffer-selection.pd. No file
+chooser, Record/Finish, Clear, or pattern buffer-assignment capture in this slice.
+
+Single grid-page-leds renderer: empty slots1, populated5, committed assignment15;
+while switching retain the old committed slot at8 until actual readback installs
+the new assignment. If assigned to the other bank, no false selected cell is shown.
+Metadata broadcasts drive population; the internal player's committed buffer_ID
+is exported read-only as `<track>-grid-buffer`. No state queries that retrigger a
+buffer or extra polling/blink clock. Bottom bank lights5/15 distinguish availability
+and current view; other bottom cells remain dark. Global buffer buses are inherited
+from this application; this does not claim full instrument-instance isolation.
+
+Validate original gesture/timeline regressions, all six row routes, 16 columns,
+page/bank/held-key cancellation, empty and shared buffers, rapid assignments,
+readback/LED updates after on-screen changes, reconnect, and retained pattern
+controls in native plugdata. Physical Grid usability remains a separate playtest.
+
+### Implemented result and evidence
+
+Only grid-cut-keys, grid-page-leds, grid-cut-control and grid-playback-state change
+in production. The original selector, player, stereo DSP, buffers, recording,
+pattern scheduler/persistence, main patch and device dependency are unchanged.
+The classifier emits an ordinary assignment; the existing selector owns its 20 ms
+handoff. Receive-only buffer identity joins the existing Grid state feed.
+
+Native **plugdata 0.9.4 nightly 98ae0f78b / Pd 0.56.3 / pdlua 0.12.23** completed
+the finite six-player check: 17 assignment requests, 16 committed targets (rapid
+requests coalesced), and all 115 preceding pattern replay checks. Lua exercised
+96 Sample addresses plus Live destinations, invalid readbacks, page/bank/held-key
+cancellation and the unchanged 80 ms loop threshold. Pattern timeline and file
+codec suites also passed. The current-slice source guard verifies 75 untouched
+patch/Lua components. No new audio or listening acceptance is claimed.
+
+Native console inspection initially caught two fixture setup failures: private
+IDs rejected by take-clear-control and a missing silent input bus. The isolated
+test copy now accepts only its private IDs and supplies explicit stereo zero;
+production Clear/input behavior is unchanged. The corrected run reached
+`pattern-check-done: bang` without additional errors observed. The old console
+messages were retained, not hidden. Test closed; user's loaded main stayed open.
+
+Existing paused selection becomes stopped; it does not resume automatically.
+Empty buffer selection is valid and stops playback. Tests seed live-owner content
+metadata to verify the selection/display path; they do not record a new take or
+exercise Clear/Discard. Global buffer identity remains inherited. Pattern buffer
+assignment capture, Grid recording controls, and physical BUFFER usability remain
+open. No full-app isolation, additional audio, or Bitwig claims.
+
+[Native evidence, exact reproduction and physical playtest](evidence/grid-buffer/observations.md).
+The running main retains cached old Lua: save takes and pattern bank before fully
+quitting/reopening plugdata to use the new page. No forced restart was performed.
+
 ## Accepted application checkpoint / merge authorization — 2026-09-16
 
 The user tested pattern-bank Save/Load and accepted it for now: “The sequencing
