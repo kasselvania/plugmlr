@@ -41,6 +41,10 @@ def run():
             # buffer views append receive-only metadata observers. Original
             # objects/connections still match this checkpoint exactly.
             current = current.replace('debug-print ', 'print ')
+            if name == 'loop-region-control.pd':
+                extension = '\n#X obj 1500 1050 loop-window-control \\$1 \\$2;\n'
+                assert current.endswith(extension), 'Unexpected live loop control attachment'
+                current = current[:-len(extension)]
             if name == 'sample_player_rebuild.pd':
                 gate = '\n#X obj 2700 125 r \\$0-stop-direction-reset;\n#X connect 545 0 509 1;\n'
                 assert current.endswith(gate), 'Unexpected direction preservation gate'

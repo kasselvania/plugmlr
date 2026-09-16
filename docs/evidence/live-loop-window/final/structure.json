@@ -1,0 +1,26 @@
+[
+  {
+    "file": "loop-window-control.pd",
+    "canvases": 1,
+    "objects": 46,
+    "connections": 64,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "loop-region-control.pd",
+    "canvases": 1,
+    "objects": 74,
+    "connections": 96,
+    "errors": [],
+    "native_load_or_audio_test": false
+  },
+  {
+    "file": "slice-panel.pd",
+    "canvases": 1,
+    "objects": 101,
+    "connections": 101,
+    "errors": [],
+    "native_load_or_audio_test": false
+  }
+]
