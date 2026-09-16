@@ -1,0 +1,113 @@
+{
+  "audio": {
+    "rate": 48000,
+    "channels": 6,
+    "declared_frames": 335918,
+    "trailing_bytes": 1968,
+    "sha256": "5e3f4f1f77dca9d3e986d33c651d4b4f3b2f93a945b3c362a080cc23cbf5ddd8"
+  },
+  "checks": {
+    "bounded": true,
+    "finite_all_samples": true,
+    "expected_stereo_mix_and_initial_master": true,
+    "all_sample_gain_bound": true,
+    "pause_silent_at_player1": true,
+    "stop_silent_at_player1": true,
+    "final_silence_all_taps": true,
+    "useful_output": true,
+    "level_readback_no_echo": true,
+    "master_readback_no_echo": true,
+    "shared_sample1_readback": true,
+    "lane2_not_stopped_by_lane1_or_navigation": true,
+    "navigation_continues_position_1": true,
+    "navigation_continues_position_2": true,
+    "internal_clock_120bpm": true,
+    "clock_stops_independently": true,
+    "bpm_readback": true,
+    "opens_player16": true,
+    "navigation_does_not_finish_recording": true
+  },
+  "gain_windows": [
+    {
+      "start": 0.4,
+      "end": 1.4,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 1.55,
+      "end": 1.75,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 1.85,
+      "end": 2.25,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 2.35,
+      "end": 2.55,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 2.65,
+      "end": 2.95,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 3.05,
+      "end": 3.45,
+      "track1_gain": 0.2,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 3.55,
+      "end": 3.95,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 4.05,
+      "end": 4.45,
+      "track1_gain": 0.4,
+      "master": 0.5,
+      "max_error": 0.0
+    },
+    {
+      "start": 4.55,
+      "end": 6.25,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    },
+    {
+      "start": 6.35,
+      "end": 6.45,
+      "track1_gain": 0.4,
+      "master": 0.75,
+      "max_error": 0.0
+    }
+  ],
+  "peak_stereo": [
+    0.511735200881958,
+    0.5104986429214478
+  ],
+  "max_adjacent_step_all_samples": [
+    0.3632405698299408,
+    0.3627493977546692
+  ],
+  "longest_running_exact_zero_frames": 15,
+  "listening": "Not performed; no user report for this capture.",
+  "limitations": "Steady gain windows exclude intentional mixer attacks. Whole-recording bounds retain every transition sample. No universal click-free or hardware recording claim."
+}

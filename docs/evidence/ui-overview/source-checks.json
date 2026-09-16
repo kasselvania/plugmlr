@@ -1,0 +1,148 @@
+{
+  "base": "95a2d612fbb8c799c309850fc53d106d8211ff44",
+  "unchanged_pd_files": [
+    "audio-in-subpatch.pd",
+    "beat-reset.pd",
+    "buffer-selection.pd",
+    "clock-display-state.pd",
+    "fixed-record~.pd",
+    "grid-cut-control.pd",
+    "grid-loop-region.pd",
+    "grid-playback-row.pd",
+    "grid-playback-state.pd",
+    "input-receive~.pd",
+    "input-send~.pd",
+    "live-buffer.pd",
+    "live-record.pd",
+    "live_buffer.pd",
+    "loop-region-control.pd",
+    "loop-region-live.pd",
+    "mixer.pd",
+    "mlr-grid.pd",
+    "old-sample-data.pd",
+    "old-sample-playback.pd",
+    "old-sample_playback_new.pd",
+    "pending-cut-delay.pd",
+    "player-panel-state.pd",
+    "previous_live-buffer.pd",
+    "rate-change.pd",
+    "reader-fade-limit.pd",
+    "record-controls.pd",
+    "record-input.pd",
+    "record-length.pd",
+    "record-progress.pd",
+    "record-storage.pd",
+    "sample-data-new.pd",
+    "sample-data.pd",
+    "sample-playback.pd",
+    "sample_playback_new.pd",
+    "sample_player_rebuild.pd",
+    "sampler_playback.pd",
+    "sampler_playback_third.pd",
+    "standalone-clock-panel.pd",
+    "tempo-fit.pd",
+    "voice.pd"
+  ],
+  "original_nested_engines_preserved": true,
+  "only_nested_mixer_change": "Master widget replaced by its named receiver; original connections unchanged",
+  "all_16_rows_distinct_and_nonoverlapping": true,
+  "structures": [
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/buffer-panel.pd",
+      "canvases": 1,
+      "objects": 90,
+      "connections": 92,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/mlr.pd",
+      "canvases": 6,
+      "objects": 309,
+      "connections": 223,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/player-overview-bridge.pd",
+      "canvases": 1,
+      "objects": 10,
+      "connections": 5,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/player-panel.pd",
+      "canvases": 1,
+      "objects": 71,
+      "connections": 6,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/record-take-row.pd",
+      "canvases": 1,
+      "objects": 22,
+      "connections": 17,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/record-takes-panel.pd",
+      "canvases": 1,
+      "objects": 31,
+      "connections": 5,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/sample-bank-panel.pd",
+      "canvases": 1,
+      "objects": 26,
+      "connections": 1,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/sample-bank-row.pd",
+      "canvases": 1,
+      "objects": 15,
+      "connections": 13,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/slice-mode-control.pd",
+      "canvases": 1,
+      "objects": 9,
+      "connections": 5,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/slice-panel.pd",
+      "canvases": 1,
+      "objects": 96,
+      "connections": 100,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/track-overview-row.pd",
+      "canvases": 1,
+      "objects": 24,
+      "connections": 10,
+      "errors": [],
+      "native_load_or_audio_test": false
+    },
+    {
+      "file": "/Users/peterkassel/Documents/ChatGPT/plug-norns/plugmlr/ui-open-view.pd",
+      "canvases": 1,
+      "objects": 13,
+      "connections": 10,
+      "errors": [],
+      "native_load_or_audio_test": false
+    }
+  ],
+  "native_or_listening_acceptance": false
+}

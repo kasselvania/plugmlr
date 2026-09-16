@@ -7,6 +7,62 @@ documentation only; the authorized load-refresh repair is recorded below.
 The current job is to understand and harden the existing musical path in
 small steps; the broad R1 implementation plan has been set aside.
 
+## Frontend organization — 2026-09-12
+
+Authorized UI pass on `codex/ui-overview`, from PR #36 at
+`95a2d612fbb8c799c309850fc53d106d8211ff44`. Remote main remains
+`29ab51e653eded9db9c5aa09850ec4a1352d97e9`; the worktree was clean.
+PR #36 is still draft/unmerged and its new listening acceptance remains open.
+
+Before implementation: one stacked overview exposes the existing 16 tracks,
+with focused player views for musical controls. Sample loading belongs to a
+separate 16-slot bank, not an implied one-to-one track/buffer relationship.
+Live recording keeps its existing selected-buffer controls and buffer-specific
+Finish destinations. Transport, direction, loop position, buffer readiness and
+recording state must reflect existing engine messages, not independent UI state.
+Clock Run controls ticks; player Play/Pause controls playback. Display units are
+seconds, quarter-note beats / 4/4 bars, rate multipliers, and linear 0..1 levels.
+Use consistent spacing, readable labels and distinct transport/recording sections.
+
+Preserve playback/recording algorithms and controller mapping. Views may send
+existing commands through small named adapters; no new transport, recorder,
+clock or audio-rate work. Moving the master control must keep the same gain
+path and initialization. Readbacks must not issue commands. Remove or quarantine
+obsolete visible controls and retain accessible wiring. Opening MLR should show
+the overview, not auto-open internal canvases. Sample loading retains the existing
+chooser and safe-load behavior; do not launch an input companion automatically.
+
+Validation: native load/console, actual screenshots at usable scale, all 16
+rows/navigation, command/readback isolation, sample load-to-player-to-mixer,
+recording navigation and stopped/reopened state. Any diagnostic audio capture
+must stop independently. UI usability requires user review; no prior listening
+report accepts this layout or closes PR #36. Scope does not include direction
+slew, save/recall, modulation, new heads, Grid gestures or service changes.
+
+Implemented: the main now presents all 16 original tracks with Open, Play/Pause,
+Stop, selected buffer, state, position and Level. Master moved from the nested
+mixer with its 0.75 default. Focused player controls are grouped; the imported
+bank and live-take destinations have separate views. Overview closes secondary
+views without stopping playback. Obsolete visible input knobs and duplicate
+controls are removed; original engine wiring remains accessible below the UI.
+No playback/recording algorithms, device ownership or musical Grid mapping change.
+
+Native inspection caught navigation focus, overlap and accidental nested-wire
+edits during development. The clock and Grid bodies were restored verbatim before
+final validation. Source checks now protect 41 unchanged Pd files and the nested
+engine bodies. Actual native 48 kHz / 44.1 kHz-file audio passes 19 checks for
+stereo mixer gains, independent transport, navigation continuity, no gain-command
+echoes, finite output and internal-clock BPM/Stop behavior. Four short captures
+ran; all stopped automatically. The final source/score and exact audio are retained.
+
+The actual overview buttons, bank chooser, track 1/16 views, idle Finish buttons,
+BPM entry, Run feedback and existing Grid view were inspected in plugdata. The
+[UI evidence and procedure](evidence/ui-overview/observations.md) distinguishes
+native observations, development errors, numerical results and open acceptance.
+The normal main is open with DrumLoop in Sample 1 and everything stopped. User
+usability/listening, active recording interaction in this layout, smaller screens,
+DAW editor layout and PR #36 listening remain open. No merge was performed.
+
 ## Natural-loop timing and short-reader reuse — 2026-09-12
 
 Continue from PR #35 at `b7e64009cf2cf53740bea851ff7da4f6a81169c9`

@@ -1,0 +1,16 @@
+#N canvas 80 60 1100 800 12;
+#X text 20 15 UI adapter only. Args: player ID / track / panel ID. No audio or state owner.;
+#X obj 20 70 r \$2-ui-stop;
+#X obj 20 150 s \$1-stop_button;
+#X obj 250 70 r \$3-transport;
+#X obj 250 150 s \$2-ui-transport;
+#X obj 480 70 r \$1-incoming_global_buffer_route;
+#X obj 480 150 s \$2-ui-slot;
+#X msg 480 110 set \$1;
+#X obj 20 220 r \$1-buffer-kind;
+#X obj 20 300 s \$2-ui-kind;
+#X connect 1 0 2 0;
+#X connect 3 0 4 0;
+#X connect 5 0 7 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
