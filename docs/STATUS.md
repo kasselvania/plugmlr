@@ -12,6 +12,10 @@ The complete implementation and its evidence remain preserved at
 `codex/archive-stretch-crash-review-2026-09-17` and unmerged PR #52.
 Do not restore or exercise that integration during ordinary testing pending review.
 
+Previously ignored rendered copies and worker bytecode were preserved outside
+the active checkout at `../plugmlr-quarantine/stretch-2026-09-17/`, with a
+size/SHA-256 manifest. No generated audio was deleted or uploaded.
+
 Reason: the operator reports recurring crashes beginning after the stretch
 integration. An unsafe receiver callback was previously repaired; subsequent
 short successful captures do not establish stability. The first failed Jev pilot
