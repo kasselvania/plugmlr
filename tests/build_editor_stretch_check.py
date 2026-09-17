@@ -4,7 +4,7 @@ Run bang starts an 8s capture with independent 10s stop. No live session changes
 from pathlib import Path
 import hashlib, json, re, shutil, sys, wave, struct, math
 ROOT=Path(__file__).resolve().parents[1]
-OUT=Path('/tmp/plugmlr-editor-stretch');OUT.mkdir(exist_ok=True)
+OUT=Path('/tmp/plugmlr-editor-handoff');OUT.mkdir(exist_ok=True)
 sys.path.insert(0,str(ROOT/'tests'))
 from check_patch_connections import check
 changed=['sample-editor','sample-stretch','buffer-view-data']
@@ -27,7 +27,7 @@ def o(s):objects.append('#X '+s+';');return len(objects)-1
 def c(a,b,ao=0,bi=0):edges.append(f'#X connect {a} {ao} {b} {bi};')
 o('text 20 10 Production sample editor test / isolated slots 901–916 / NO DAC / automatic 8s stop')
 for slot in range(901,917):o(f'obj {20+(slot-901)%8*130} {60+(slot-901)//8*40} sample-data {slot}')
-for slot in [901,902]:
+for slot in range(901,917):
  o(f'obj 20 {140+(slot-901)*40} sample_player_rebuild {slot}')
  o(f'obj 400 {140+(slot-901)*40} {prefix}buffer-view-data live {slot}')
  o(f'obj 650 {140+(slot-901)*40} array define 0-live_buffer_{slot} 4');o(f'obj 950 {140+(slot-901)*40} array define 1-live_buffer_{slot} 4')
@@ -57,10 +57,11 @@ s+=f'\n#X obj 2900 5100 r stretch-open-\\$1;\n#X obj 2900 5140 s \\$0-open-sampl
 s=(OUT/'sample-editor-panel.pd').read_text();count=sum(l.startswith(('#X obj ','#X msg ','#X text ','#X floatatom ')) for l in s.splitlines())
 s+=f'\n#X obj 100 2100 r stretch-test-\\$2;\n#X obj 100 2140 s \\$0-stretch-command;\n#X connect {count} 0 {count+1} 0;\n';(OUT/'sample-editor-panel.pd').write_text(s)
 (OUT/'check.pd').write_text('#N canvas 100 80 1150 620 12;\n'+'\n'.join(objects+edges)+'\n')
-events=[(0,'901-sample-path',f'symbol {OUT}/source.wav'),(30,'902-sample-path',f'symbol {OUT}/source.wav'),(80,'901-buffer-select','sample 901'),(80,'902-buffer-select','sample 902'),(120,'audio-901-out','0.4'),(120,'audio-902-out','0.4'),(150,'901-press_play','bang'),(150,'902-press_play','bang'),(250,'stretch-open-901','bang'),(300,'901-sample-editor','start 0.5'),(300,'901-sample-editor','finish 1.5'),(400,'stretch-test-901','ratio 2'),(400,'stretch-test-901','pitch 12'),(500,'stretch-test-901','render'),(3000,'stretch-test-901','load'),(3400,'901-sample-editor','audition'),(7600,'901-sample-editor','stop'),(7600,'902-sample-editor','stop'),(8000,'editor-stretch-stop','bang')]
+events=[(0,'901-sample-path',f'symbol {OUT}/source.wav'),(30,'902-sample-path',f'symbol {OUT}/source.wav'),(80,'901-buffer-select','sample 901'),(80,'902-buffer-select','sample 902'),(120,'audio-901-out','0.4'),(120,'audio-902-out','0.4'),(150,'901-press_play','bang'),(150,'902-press_play','bang'),(250,'stretch-open-901','bang'),(300,'901-sample-editor','start 0.5'),(300,'901-sample-editor','finish 1.5'),(400,'stretch-test-901','ratio 2'),(400,'stretch-test-901','pitch 12'),(500,'stretch-test-901','render'),(3000,'stretch-test-901','load'),(3400,'901-sample-editor','audition'),(4200,'stretch-test-901','load'),(4800,'stretch-test-901','load'),(5400,'stretch-test-901','load'),(6000,'stretch-test-901','load'),(6600,'stretch-test-901','load'),(7600,'901-sample-editor','stop'),(7600,'902-sample-editor','stop'),(8000,'editor-stretch-stop','bang')]
+events.sort(key=lambda e:e[0])
 last=0;score=[]
 for time,receiver,message in events:score.append(f'{time-last} {receiver} {message};');last=time
 (OUT/'score.txt').write_text('\n'.join(score)+'\n')
 for file in ['check.pd','sample-editor-panel.pd','sample_player_rebuild.pd']:assert not check(OUT/file)['errors'],check(OUT/file)
-(OUT/'manifest.json').write_text(json.dumps(dict(prefix=prefix,changes='Unique Lua names, IDs901–916, public command probes, no DAC, bounded capture',production={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [*(ROOT/(n+'.pd_lua') for n in changed),ROOT/'sample-editor-panel.pd',ROOT/'scripts/render_sample.py']}),indent=2))
+(OUT/'manifest.json').write_text(json.dumps(dict(prefix=prefix,changes='Unique Lua names, 16 original players and sample owners IDs901–916, six imports with multiple listeners, public command probes, no DAC, bounded capture',production={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [*(ROOT/(n+'.pd_lua') for n in changed),ROOT/'sample-editor-panel.pd',ROOT/'scripts/render_sample.py']}),indent=2))
 print(OUT/'check.pd')

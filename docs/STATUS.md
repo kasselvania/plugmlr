@@ -1,3 +1,20 @@
+## Editor handoff crash repair — 2026-09-17
+
+User crash invalidated the earlier handoff-safety conclusion. `copy_loaded` freed
+its own receiver while Pd was dispatching a shared completion bang. The installed
+ARM64 bindlist traversal and crash stack agree with a receiver-lifetime failure.
+The old fixture lacked the ordinary player listener for its destination slot.
+
+Completion now only schedules the existing clock; receiver removal and buffer
+selection happen after message dispatch returns. The revised native fixture has
+all16 original players and passed six successive imports, with clean console and
+finite stereo audio. Regression checks fail on the old callback and pass on the
+repair. See [exact evidence and limits](evidence/editor-stretch/handoff-repair/observations.md).
+No intentional crash reproduction was run against the user's application. Full
+application physical testing and DAW acceptance remain open. The Render/Load UI
+and BPM model are unchanged in this repair; musical controls and one-action
+preparation are the next design work, not part of this commit.
+
 ## Sample editor Rubber Band integration — contract (2026-09-17)
 
 Requested after PR52's separate workbench was not a useful user workflow. Add

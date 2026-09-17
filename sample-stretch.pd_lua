@@ -64,6 +64,15 @@ function C:command(sel,a)
 end
 function C:poll()
  if self.loaded then
+  if self.load_complete then
+   -- This clock runs after the entire Pd send/bindlist traversal has returned.
+   local slot=self.destination
+   self.loaded:destruct();self.loaded=nil;self.load_complete=false
+   if self.selected and self.selected[1]~=self.load_key then self:status('Copy loaded in Sample '..slot..'; current selection kept');return end
+   pd.send(self.track..'-buffer-select','sample',{slot})
+   self:status('Sample '..slot..' selected — use Audition loop above. Original: Sample '..tostring(self.origin))
+   return
+  end
   self.load_polls=self.load_polls+1
   if self.load_polls>=50 then
    self.loaded:destruct();self.loaded=nil;self:status('Copy load did not complete; rendered file preserved')
@@ -96,15 +105,14 @@ function C:load_copy()
  if not self.empty then self:status('Sample bank full; original and rendered file are preserved');return end
  local slot=self.empty
  self.loaded=pd.Receive:new():register(self,tostring(slot)..'-sample-loaded','copy_loaded')
- self.destination=slot;self.load_polls=0;self.load_key=self.selected and self.selected[1]
+ self.destination=slot;self.load_polls=0;self.load_complete=false;self.load_key=self.selected and self.selected[1]
  self:status('Loading copy into Sample '..slot..'; original remains in Sample '..tostring(self.origin))
  pd.send(tostring(slot)..'-sample-path','symbol',{self.result})
  self.clock:delay(100)
 end
 function C:copy_loaded()
- local slot=self.destination
- self.loaded:destruct();self.loaded=nil
- if self.selected and self.selected[1]~=self.load_key then self:status('Copy loaded in Sample '..slot..'; current selection kept');return end
- pd.send(self.track..'-buffer-select','sample',{slot})
- self:status('Sample '..slot..' selected — use Audition loop above. Original: Sample '..tostring(self.origin))
+ -- Never free this receiver or switch buffers within its own callback. The
+ -- shared completion bus also has the ordinary player's buffer-selection receiver.
+ if not self.loaded or self.load_complete then return end
+ self.load_complete=true;self.clock:delay(0)
 end

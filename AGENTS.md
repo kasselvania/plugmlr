@@ -317,3 +317,9 @@
   build_editor_stretch_check.py; preserve independent capture stop and unique Lua
   fixture names. A synchronous Load copy is not guaranteed dropout-free. Do not
   restart an unsaved user session merely to refresh cached Lua classes.
+
+- Never destroy a Pd Receive from its own callback or mutate receiver bindings
+  during a synchronous send. Defer completion/adoption using a Pd clock. Native
+  handoff fixtures must instantiate the destination slot's ordinary player listener;
+  a lone temporary receiver does not exercise bindlist dispatch. User's PR52 crash
+  invalidates the earlier two-player fixture as handoff-safety acceptance.
