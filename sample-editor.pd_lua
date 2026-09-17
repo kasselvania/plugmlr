@@ -15,7 +15,7 @@ function C:postinitialize()
   self.receivers[#self.receivers+1]=pd.Receive:new():register(self,n,m)
  end
  bind(self.player..'-buffer_ID',function(s,_,a) s:select(a[1]) end)
- bind(self.player..'-buffer-switching',function(s,_,a) s.switching=a[1]~=0;s.drag=nil end)
+ bind(self.player..'-buffer-switching',function(s,_,a) s.switching=a[1]~=0;s.drag=nil;s:selection_report() end)
  bind(self.reply,function(s,sel,a) s:reply_message(sel,a) end)
  bind(self.track..'-sample-editor',function(s,sel,a) s:in_1(sel,a) end)
  bind(self.ui..'-editor-command',function(s,sel,a) s:in_1(sel,a) end)
@@ -39,7 +39,12 @@ end
 function C:status(message)
  pd.send(self.ui..'-editor-status','label',{message})
 end
+function C:selection_report()
+ local valid=self:valid()
+ pd.send(self.ui..'-editor-selection','list',valid and {self.key,tonumber(self.slot),self.a,self.b,self.rate} or {'none'})
+end
 function C:fields()
+ self:selection_report()
  for name,v in pairs({start=self.a/self.rate,finish=self.b/self.rate,length=(self.b-self.a)/self.rate}) do
   if name=='length' then pd.send(self.ui..'-editor-length','label',{string.format('Length %.6f s',v)})
   else pd.send(self.ui..'-editor-'..name,'set',{v}) end
@@ -51,6 +56,7 @@ function C:select(key)
  if self.changed then self.changed:destruct();self.changed=nil end
  if self.closing then self.closing:destruct();self.closing=nil end
  self.key,self.slot,self.ready,self.peaks,self.drag=nil,nil,false,nil,nil
+ self:selection_report()
  if type(key)=='string' then self.slot=key:match('^sample_buffer_(%d+)$') end
  if not self.slot then self:status('Select an imported Sample buffer');self:repaint();return end
  self.key=key
@@ -60,9 +66,11 @@ function C:select(key)
 end
 function C:buffer_closed()
  self.key,self.ready,self.drag=nil,false,nil
+ self:selection_report()
 end
 function C:refresh()
  if self.key then pd.send(self.key..'-view-get','info',{self.reply}) end
+ self:selection_report()
 end
 function C:reply_message(sel,a)
  if sel=='info' then

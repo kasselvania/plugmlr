@@ -1,3 +1,57 @@
+## Sample editor Rubber Band integration — contract (2026-09-17)
+
+Requested after PR52's separate workbench was not a useful user workflow. Add
+Render copy to the existing sample editor, then explicitly Load copy into an
+empty Sample slot and audition with the existing player. Never replace an occupied
+slot or alter the source arrays/file. Keep the existing player controls.
+
+Selection uses source-file seconds, rounded to first/inclusive and end/exclusive
+frames. Duration multiplier 0.25–4 and pitch -24–24 semitones are independent;
+1 / 0 preserves duration/pitch. Initial input: stereo PCM/float WAV, at its file
+sample rate, at least four frames; output capped at 600 seconds. Processing reads
+the source file (which must still match loaded audio), crops it and runs installed
+Rubber Band in a separate low-priority process. No signal processing in a Lua
+clock. Cancel/close prevents adoption; a bounded worker stops on cancellation or
+a 120-second timeout. Render jobs do not change playback. Explicit Load copy uses
+the existing synchronous sample loader; this import is not guaranteed stall-free.
+Completed WAV copies remain in ignored `renders/` beside the patch, with a manifest.
+Missing tools/files, invalid inputs, a busy worker or full bank report in the editor.
+Native UI, process launch, resulting audio and occupied-slot safety require testing.
+
+Implementation and results: added the controls to `sample-editor-panel.pd`;
+`sample-stretch.pd_lua` launches/polls a detached worker, while
+`scripts/render_sample.py` handles crop, low-priority processing, bounded lifetime,
+and persistent WAV/manifest output. `buffer-view-data` retains source identity and
+answers an explicit vacant-slot query. `sample-editor` publishes its validated
+selection. Original DSP, loading transaction, track selection and audition remain
+in use. No new compiled object, installed service or recording change.
+
+Native 0.9.4 nightly **98ae0f78b**, Pd0.56.3, 48kHz: editor controls rendered,
+background process launched from Pd, a one-second region became two seconds at
++12 semitones, and Load copy selected isolated Sample916. Captured original-player
+output measured **440/660Hz**, matching the new WAV; a second original player
+remained audible at stable measured level. The eight-second capture stopped
+through its scheduled control with a separate ten-second fallback. Tests use
+isolated slots/classes, no DAC, and left the user's paused tracks/patterns intact.
+First runs exposed numeric-atom formatting defects in frame argv and slot names;
+those failures and the passing run are retained under
+[evidence/editor-stretch](evidence/editor-stretch/observations.md).
+
+Five worker checks, Lua controller checks, existing editor/trim checks, Lua syntax
+and Pd connection checks pass. A separate worker run also accepted the repository's
+24-bit 44.1kHz DrumLoop.wav, producing five seconds from four at1.25x/+7 semitones.
+That real-file run is not native 44.1kHz host or host/file-mismatch acceptance.
+
+Still open: user's musical quality and physical-button acceptance, device/Bitwig
+underruns, large-file stress, redistribution/dependency packaging. Native UI
+automation failed to activate controls reliably; the successful run drives the
+same editor command buses with a bounded score. Existing console warnings from
+an initially incomplete fixture and failed first load are recorded separately.
+No newly rendered audio has user listening acceptance. The current user session
+still has cached prior classes: **save patterns/live takes, fully restart plugdata,
+open mlr.pd and load a sample** before testing this editor integration. No restart
+or overwrite of the user's current session was performed.
+
 ## Separate offline-stretch compatibility experiment — 2026-09-17
 
 User requested investigation in a separate patch before choosing a stretcher.

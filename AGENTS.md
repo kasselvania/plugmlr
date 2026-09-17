@@ -308,3 +308,12 @@
   tests/grid_buffer_spec.lua and the finite native build_grid_buffer_check.py /
   check_grid_buffer.py suite; distinguish its private-ID control evidence from
   physical Grid acceptance. Do not reload a user's unsaved session to test Lua.
+
+- Editor stretch is optional, source-file based and background only. Keep its UI in
+  sample-editor-panel; original loader/player own adoption/audition. Never render
+  over source audio or load over an occupied/pending slot. Use owner `vacant`, not
+  ready=0 alone. Pd numeric atoms can stringify with `.0`: integer-format IDs and
+  frame arguments. Run check_sample_stretch.lua, check_render_sample.py and native
+  build_editor_stretch_check.py; preserve independent capture stop and unique Lua
+  fixture names. A synchronous Load copy is not guaranteed dropout-free. Do not
+  restart an unsaved user session merely to refresh cached Lua classes.

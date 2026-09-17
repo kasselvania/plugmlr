@@ -48,7 +48,11 @@ t:command('trim',{0.0006,0.0051});t.clock:fire();assert(t.first==1 and t.last==5
 t:finalize()
 dofile('buffer-view-data.pd_lua')
 local b=object('buffer-view-data',{'sample',7})
-b:in_1_symbol('/test/original.wav');b:metadata('list',source);assert(b.name=='original.wav')
+b:request('vacant',{'vacancy'});assert(sent[#sent][3][2]==1)
+b:in_1_symbol('/test/original.wav');b:request('vacant',{'vacancy'});assert(sent[#sent][3][2]==0)
+b:metadata('list',source);assert(b.name=='original.wav')
+b:request('source',{'source-reply'});assert(sent[#sent][3][1]=='/test/original.wav')
+b:request('vacant',{'vacancy'});assert(sent[#sent][3][2]==0)
 b:metadata('list',{7,0,1,625,0,10000});b:metadata('list',{7,1,1,125,1000,3000});assert(b.name=='original.wav')
 b:request('range',{'detail1',1100,1250});b:request('range',{'detail2',2000,2500});b:request('peaks',{'whole'})
 for i=1,30 do b.clock:fire() end

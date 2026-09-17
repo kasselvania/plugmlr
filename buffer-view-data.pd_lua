@@ -58,6 +58,7 @@ function C:metadata(_,a)
     if self.kind=='sample' and ready==1 and self.pending then
         self.name=self.pending:match('([^/]+)$') or self.pending
         self.loaded_name=self.name
+        self.source_path=self.pending
         self.pending=nil; changed=true
     elseif self.kind=='sample' and ready==1 then self.name=self.loaded_name or self.name
     elseif self.kind=='live' then self.name='Live '..self.slot end
@@ -78,6 +79,12 @@ function C:publish()
 end
 function C:request(sel,a)
     if type(a[1])~='string' then return end
+    if sel=='vacant' then
+        pd.send(a[1],'vacant',{self.slot,(self.ready==0 and not self.pending and not self.source_path) and 1 or 0});return
+    end
+    if sel=='source' then
+        pd.send(a[1],'source',{self.ready==1 and self.source_path or ''});return
+    end
     if sel=='cancel' then
         self.waiters[a[1]]=nil
         if not next(self.waiters) and self.job then self.clock:unset();self.job=nil end
