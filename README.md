@@ -438,3 +438,10 @@ Installing a lease daemon alone does not migrate other legacy patches.
 Alternative and historical patches remain alongside the entry point. Their names
 do not establish which behavior works. The rejected shared-playback rewrite is
 preserved separately and is not the current application; details are in STATUS.
+
+## Separate stretch compatibility experiment
+
+The [offline-stretch workbench](experiments/offline-stretch/README.md) investigates
+bundled phase-vocoder rendering, an optional external processor and threaded file
+loading. It does not modify the sample editor or application engine. Read its
+measured limitations before treating it as an editing feature.

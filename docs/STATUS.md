@@ -1,3 +1,40 @@
+## Separate offline-stretch compatibility experiment — 2026-09-17
+
+User requested investigation in a separate patch before choosing a stretcher.
+Branch codex/offline-stretch-workbench starts from main4c3caff; recording PR51
+is preserved separately, unmerged. No application patch/Lua files changed.
+
+`experiments/offline-stretch/workbench.pd` exposes bundled `pvoc.player~`, private
+threaded `sfload -t` staging, and continuous reference oscillators. Manual RUN starts
+an automatically bounded capture, with an independent14s Stop. No DAC, input,
+global fast-forward, main dependency or application buffer writes. `render_worker.py`
+runs the already installed Rubber Band4.0.0 separately from a terminal. It is an
+optional test worker, not an adopted or in-patch dependency. No installation occurred.
+
+Native plugdata0.9.4 nightly98ae0f78b / Pd0.56.3 / ELSE1.0-rc14 / pdlua0.12.23,
+48kHz: both bundled objects created; console reported vocoder completion and threaded
+load of192000 stereo frames. Actual samples: Rubber Band2x duration/+12 semitones
+produced4s at440/660Hz; staged data matched exactly. Independent internal oscillator
+references remained continuous during this small render/load. This is not device
+underrun or another actual application track acceptance.
+
+Bundled vocoder measured438/657.33Hz (failed2Hz tolerance), about3dB higher level,
+and residual sound after its completion bang. It is signal-rate processing in the
+same Pd scheduler, not background/offline work. Existing ELSE batch.rec~ sends global
+Pd fast-forward; inspected only and excluded from this playing-session test.
+Inspected rc14 sfload source decodes on a worker but resizes/copies arrays in its
+result callback: final import cost remains to be measured under realistic loads.
+
+No candidate adopted. Gates: musical-quality listening, transient/stereo phase
+behavior, exact end handling, large-file/import stress with post-master/device
+monitoring, safe process launch from standalone and Bitwig plugin, optional binary
+packaging/licensing, and existing-editor/buffer integration. No new UI page proposed;
+the existing sample editor is the eventual destination. User's Player2 remained
+paused; experiment closed after capture completion. No new listening acceptance.
+
+[Run steps and findings](../experiments/offline-stretch/README.md),
+[retained numerical evidence](evidence/offline-stretch/analysis.json).
+
 ## Grid BUFFER page — contract before implementation, 2026-09-16
 
 Base/remote main `42c4754d8e8bc2e6a26d4f35891a4d6653497c58`; clean checkout,
