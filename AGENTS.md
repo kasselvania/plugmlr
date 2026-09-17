@@ -323,3 +323,11 @@
   handoff fixtures must instantiate the destination slot's ordinary player listener;
   a lone temporary receiver does not exercise bindlist dispatch. User's PR52 crash
   invalidates the earlier two-player fixture as handoff-safety acceptance.
+
+- Musical stretch tempo is Sample-owned session metadata: manual BPM or explicitly
+  entered beats/selected duration, never an inferred detection claim. Reset on source
+  replacement, retain through trim/selection. One target mode drives linked values.
+  Render snapshots metadata/settings; navigation or edits suppress automatic adoption.
+  Test 90→120, seconds/ratio, unknown tempo, shared owner metadata and cancellation
+  along with the deferred bindlist handoff. Native --musical fixture uses all16
+  original players, automatic adoption and no separate load command.

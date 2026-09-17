@@ -1,0 +1,11 @@
+{
+  "prefix": "stretch779e6b14-",
+  "changes": "Unique Lua names, 16 original players and sample owners IDs901\u2013916, repeated imports with multiple listeners, public command probes, no DAC, bounded capture",
+  "production": {
+    "sample-editor.pd_lua": "d69ccdf072348b1123d40cb60e361c1866cc02a72964600251bc821feafe8254",
+    "sample-stretch.pd_lua": "29d7acd4d6c57e5a69adaba62daae635a193e621720f62dffc31e89e099dc6d4",
+    "buffer-view-data.pd_lua": "e7b2acd58d8c29966aac2b1f9582a7fdc8a0542a724eb68e3fbdef4caa24ff56",
+    "sample-editor-panel.pd": "29a281c313a2a8b6b2b895126a5e2d7dbc9c3d7e2bc21636e260579aba281836",
+    "scripts/render_sample.py": "aab15bb6b625dde66ec1e711cead25dc260958d152806056e9c5cf07248eb1d5"
+  }
+}

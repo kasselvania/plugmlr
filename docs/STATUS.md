@@ -1,3 +1,39 @@
+## Musical stretch controls — implementation contract (2026-09-17)
+
+Source BPM is unknown until entered by the user or calculated from beats in the
+selection. It belongs to the loaded Sample owner, survives track selection/trim,
+and resets on file replacement. It is session metadata; rendered manifests retain
+its provenance. No detector or confidence estimates are invented. Beat count uses
+quarter-note beats, no implicit meter. Source BPM = beats * 60 / selected seconds.
+Target mode has one driver: BPM, seconds, or advanced duration multiplier. Ratio
+is source BPM / target BPM or target seconds / source seconds; pitch is independent
+and defaults to zero. Unknown BPM blocks BPM mode, but seconds/ratio remain usable.
+Tempo range1–999 BPM; ratio0.25–4; pitch±24; output cap600 seconds remain explicit.
+
+Render & use copy snapshots the region and musical settings, renders in the
+existing worker and automatically invokes the repaired load handoff. Original
+source audio remains untouched; a vacant Sample slot is required. Selection or
+settings changes while rendering suppress automatic adoption; the file is kept.
+Cancel also suppresses an already loading copy's later selection. No auto-play of
+a stopped player; the existing audition/transport controls retain that decision.
+Copies receive derived tempo metadata after loading. Player speed/Tempo Fit are
+preserved and may further alter audition; the editor says so. No new DSP, detector,
+third bank, overwrite/revert workflow or engine dependency is included.
+
+Implementation now adds the musical fields in the existing editor, session tempo
+metadata in `buffer-view-data`, linked calculations and automatic adoption in
+`sample-stretch`, and tempo/provenance fields in the worker manifest. No player DSP
+changes. Existing deferred completion remains covered by its regression check.
+
+Native validation: four consecutive single-action renders with all16 original
+players, source90→target120 BPM, one-second selection→0.75s/36000 frames, pitch0.
+Copies inherit120 BPM; all4 auto-load/adopt without a separate Load message.
+Stereo finite audio, pitch within2Hz FFT tolerance and stable other-track level.
+Eight-second capture stopped normally; console showed no new errors.
+[Evidence and limits](evidence/musical-stretch/observations.md). Musical listening,
+physical UI use and device/DAW deadlines remain open; no new acceptance inferred.
+User separately accepted the preceding receiver-lifetime handoff repair.
+
 ## Editor handoff crash repair — 2026-09-17
 
 User crash invalidated the earlier handoff-safety conclusion. `copy_loaded` freed

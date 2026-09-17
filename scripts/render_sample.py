@@ -74,7 +74,7 @@ def wav_region(source, dest, first, end, expected_rate):
             'rate': rate, 'first': first, 'end': end, 'channels': channels}
 
 
-def render(base, source, first, end, rate, ratio, pitch, output_dir):
+def render(base, source, first, end, rate, ratio, pitch, output_dir, tempo=None):
     if not all(math.isfinite(x) for x in (rate, ratio, pitch)) or rate <= 0 or not .25 <= ratio <= 4 or not -24 <= pitch <= 24:
         raise ValueError('Duration must be 0.25–4x; pitch must be -24–24 semitones')
     if (end - first) / rate * ratio > 600:
@@ -121,14 +121,17 @@ def render(base, source, first, end, rate, ratio, pitch, output_dir):
             shutil.move(temp / 'render.wav', result)
             version = subprocess.run([exe, '--version'], capture_output=True, text=True, timeout=5)
             result.with_suffix('.json').write_text(json.dumps(dict(source=identity, duration_multiplier=ratio, pitch_semitones=pitch,
+                tempo=tempo, target_duration_seconds=(end-first)/rate*ratio, engine="rubberband-r3",
                 executable=exe, version=(version.stdout + version.stderr).strip(), elapsed_seconds=time.monotonic()-started, log=diagnostic), indent=2))
-            status(base, 'ready', 'Copy ready — Load copy, then Audition loop', str(result))
+            status(base, 'ready', 'Render finished; preparing copy', str(result))
 
 
 def main():
     base = Path(sys.argv[1])
     try:
-        render(base, Path(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]), Path(sys.argv[8]))
+        render(base, Path(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]), float(sys.argv[6]), float(sys.argv[7]), Path(sys.argv[8]),
+               dict(source_bpm=float(sys.argv[9]),target_bpm=float(sys.argv[10]),beats=float(sys.argv[11]),
+                    confirmation_source=sys.argv[12],target_mode=sys.argv[13]) if len(sys.argv)>9 else None)
     except Exception as error:
         status(base, 'error', str(error).replace('\n', ' ')[:180])
         return 1
