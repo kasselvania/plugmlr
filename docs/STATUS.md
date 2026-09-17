@@ -1,3 +1,31 @@
+## Stretch quarantine — 2026-09-17
+
+The working checkout resumes testing from pre-stretch main
+`4c3caff961680a9207c52022ee2244e4b34bd1c1` on
+`codex/quarantine-stretch-2026-09-17`. All playback, Grid, pattern, buffer,
+and original sample-editor code is unchanged from that checkpoint.
+
+The four subsequent stretch commits are excluded from this branch: the offline
+workbench, editor integration, deferred handoff repair, and musical tempo controls.
+The complete implementation and its evidence remain preserved at
+`c56ee2174f17fee6188a68f8af74116465d17bdd` on the pushed branch
+`codex/archive-stretch-crash-review-2026-09-17` and unmerged PR #52.
+Do not restore or exercise that integration during ordinary testing pending review.
+
+Reason: the operator reports recurring crashes beginning after the stretch
+integration. An unsafe receiver callback was previously repaired; subsequent
+short successful captures do not establish stability. The first failed Jev pilot
+(PID 63146, launched 12:44:16 on September 17) also crashed during teardown at
+12:51:00; process disappearance was not clean-shutdown evidence. The report's
+FileChooser/JUCE teardown stack does not by itself establish the initiating cause.
+Causation of the separate Messages crash is not established.
+
+This quarantine changes the on-disk checkout only. No application launch, restart,
+settings change, dependency uninstall, or new native acceptance test was performed.
+An already-open patch or cached Lua class must not be treated as refreshed by a Git
+switch: preserve unsaved audio/patterns before closing and reopening for testing.
+The pre-stretch baseline is a comparison point, not a claim that all crashes are fixed.
+
 ## Grid BUFFER page — contract before implementation, 2026-09-16
 
 Base/remote main `42c4754d8e8bc2e6a26d4f35891a4d6653497c58`; clean checkout,
