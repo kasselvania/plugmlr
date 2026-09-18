@@ -17,3 +17,8 @@ Instrumentation differences: copied sample-stretch gains appended method wrapper
 Offline tests validate checker rejection and source syntax/connections. Native crash/audio/lifecycle acceptance remains OPEN. Do not run300 until basic and lifecycle fixtures pass under sole UI operator.
 
 Deterministic observer argument1 enables rr-observation forwarding to the driver. UI observer leaves it off. Bridge rr-event messages log once and reach the driver directly; readback events log once and reach it on the separate observation bus. tests/check_receiver_driver.lua exercises the actual observer, driver and owner together.
+
+UI fixtures exclude the deterministic `rr-hook` callback wrapper because they
+have no driver subscriber. Check the generated UI bridge with
+`lua tests/check_receiver_ui_probe.lua /path/to/fixture/sample-stretch.pd_lua`.
+This test preserves deferred completion while rejecting unbound probe sends.

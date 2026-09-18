@@ -28,7 +28,13 @@ def build(out,mode="ui",monome=None):
   target=out/'dependencies/monome'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(subprocess.check_output(['git','show',dep_commit+':'+name],cwd=monome))
  (out/'scripts').mkdir();(out/'scripts/render_sample.py').write_bytes(subprocess.check_output(['git','show',f'{CANDIDATE}:scripts/render_sample.py'],cwd=ROOT))
  (out/'rr-observer.pd_lua').write_bytes((ROOT/'tests/receiver_lifetime/observer.pd_lua').read_bytes())
- f=out/'sample-stretch.pd_lua';f.write_text(f.read_text()+'\n'+(ROOT/'tests/receiver_lifetime/bridge_probe.lua').read_text())
+ probe=(ROOT/'tests/receiver_lifetime/bridge_probe.lua').read_text()
+ if mode=='ui':
+  # Only deterministic fixtures bind the driver timing hook.
+  first=probe.index('local probed_loaded=C.copy_loaded')
+  last=probe.index('local original_load=C.load_copy')
+  probe=probe[:first]+probe[last:]
+ f=out/'sample-stretch.pd_lua';f.write_text(f.read_text()+'\n'+probe)
  f=out/'sample_player_rebuild.pd';f.write_text(append(f.read_text(),['obj 2900 5100 r \\$0-buffer_ID','obj 2900 5140 list prepend \\$1','obj 2900 5180 s rr-track','obj 3100 5100 r rr-open-\\$1','obj 3100 5140 s \\$0-open-sample-editor'],[(0,0,1,0),(1,0,2,0),(3,0,4,0)]))
  f=out/'sample-editor-panel.pd';f.write_text(append(f.read_text(),['obj 100 2300 r rr-command-\\$2','obj 100 2340 s \\$0-stretch-command'],[(0,0,1,0)]))
  with wave.open(str(out/'source.wav'),'wb')as w:

@@ -1,3 +1,14 @@
+## UI-only probe repair — offline, 2026-09-17
+
+The UI operator reported one successful adoption with a subsequent unbound
+rr-hook warning. That fixture has no deterministic driver. UI generation now
+omits only the driver timing hook; callback/deferred lifetime observations remain.
+The new actual-bridge regression fails on the preserved protocolfix fixture and
+passes on cleanhook. Observer, driver and twelve Python checker tests also pass.
+The prior native UI result remains a scoped success with a console warning;
+a clean native rerun is pending. Lifecycle/campaign fixtures are untouched.
+No application source changes, app actions, or production restoration here.
+
 ## Observer-to-driver delivery repair — offline, 2026-09-17
 
 Pre-lifecycle review found that track/load/owner events were written to disk but
