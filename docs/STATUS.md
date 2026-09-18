@@ -1,3 +1,23 @@
+## Receiver lifetime regression fixtures — offline preparation, 2026-09-17
+
+Separate review worktree/branch `codex/stretch-receiver-regression`, based on
+archived candidate `c56ee2174f17fee6188a68f8af74116465d17bdd`. Production checkout
+remains quarantined at `574d9cd`; no application changes or runtime actions here.
+
+`tests/build_receiver_lifetime.py` builds isolated full-MLR one-adoption UI,
+five-case deterministic lifetime, or finite 300-completion fixtures from pinned
+Git source. `tests/check_receiver_lifetime.py --fixture PATH --not-before EPOCH`
+provides a read-only PENDING/PASS/FAIL receipt for the existing Jev harness.
+See `tests/receiver_lifetime/README.md` for instrumentation, native deadlines,
+fresh generated-instance policy, and precise differences from production.
+
+Offline validation: 11 checker tests, existing sample-stretch Lua regression,
+Lua syntax and generated Pd connections pass. All three fresh fixtures report
+PENDING/zero attempts; no native execution, crash closure, audio continuity,
+300-operation acceptance, or successful teardown is claimed. Full-application UI
+fixture must run in a fresh isolated runtime to avoid cached Lua/MLR global buses.
+The separate UI operator owns launch, live decisions, crash attribution and cleanup.
+
 ## Musical stretch controls — implementation contract (2026-09-17)
 
 Source BPM is unknown until entered by the user or calculated from beats in the
