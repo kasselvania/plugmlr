@@ -1,6 +1,6 @@
 -- Test-only passive durable observer; no receiver mutation or GUI work in callbacks.
 local C=pd.Class:new():register('rr-observer')
-local function hex(s) return tostring(s):gsub('.',function(c)return string.format('%02x',string.byte(c))end) end
+local function hex(s) return (tostring(s):gsub('.',function(c)return string.format('%02x',string.byte(c))end)) end
 function C:initialize(_,a) self.inlets,self.outlets=0,0;self.seq=0;self.receivers={};return true end
 function C:log(kind,a)
  self.seq=self.seq+1

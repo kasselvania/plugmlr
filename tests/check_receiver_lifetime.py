@@ -21,7 +21,7 @@ def cycle(root,ev,case,birth):
  loaded=[e for e in rows('loaded')if num(e[2][0])>=3]
  if not(callbacks and loaded):return None
  slot=num(callbacks[0][2][1]);assert slot==16,'Unexpected fresh destination'
- assert all(e[2][2:]==['1','1']for e in callbacks),'Receiver freed or incomplete inside callback'
+ assert all(list(map(num,e[2][2:]))==[1,1]for e in callbacks),'Receiver freed or incomplete inside callback'
  entered=[e for e in rows('callback-enter')if num(e[2][0])==1]
  assert len(entered)==len(callbacks),'Unreturned callback'
  if case=='duplicate':assert len(callbacks)==3,'Duplicate completion not exercised'
@@ -31,12 +31,12 @@ def cycle(root,ev,case,birth):
   finals=[e for e in rows('finalize-enter')if num(e[2][0])==1]
   exits=[e for e in rows('finalize-return')if num(e[2][0])==1]
   if not(finals and exits):return None
-  assert len(finals)==len(exits)==1 and finals[0][0]>callbacks[-1][0] and finals[0][2][1:]==['1','1'],'Wrong pending destruction order'
+  assert len(finals)==len(exits)==1 and finals[0][0]>callbacks[-1][0] and list(map(num,finals[0][2][1:]))==[1,1],'Wrong pending destruction order'
   assert not later and not [e for e in rows('deferred-enter')if num(e[2][0])==1],'Deferred callback survived destruction'
  else:
   if not later:return None
-  assert len(later)==1 and later[0][0]>callbacks[-1][0] and later[0][2][2]=='0','Nondeferred or duplicate cleanup'
-  assert later[0][2][3]==('1'if case in ('cancel','manual')else '0'),'Wrong cancellation state'
+  assert len(later)==1 and later[0][0]>callbacks[-1][0] and num(later[0][2][2])==0,'Nondeferred or duplicate cleanup'
+  assert num(later[0][2][3])==(1 if case in ('cancel','manual')else 0),'Wrong cancellation state'
  # Independently observed track ID comes from original player committed buffer_ID.
  tracks=[e for e in rows('track')if num(e[2][0])==1]
  if not tracks:return None

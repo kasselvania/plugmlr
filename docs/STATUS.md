@@ -1,3 +1,16 @@
+## Native observer preflight repair — 2026-09-17
+
+The UI operator reported malformed hex events before any render attempt. The
+actual Lua observer encoder returned both gsub values; file:write appended the
+substitution count. Parenthesizing the return restricts it to the encoded string.
+`tests/check_receiver_observer.lua` exercises the actual observer with real file
+write varargs and failed before this repair, then passed. Native Pd numeric atoms
+also stringify as1.0; checker lifetime flags now compare numerically, covered by a
+new regression. Twelve Python checker tests pass. Fresh ui/lifecycle/campaign
+fixtures generated under encoderfix paths; prior failed fixtures/events untouched.
+This fixes test instrumentation, not application source. No native run performed
+here; production quarantine and candidate c56 remain unchanged.
+
 ## Receiver lifetime regression fixtures — offline preparation, 2026-09-17
 
 Separate review worktree/branch `codex/stretch-receiver-regression`, based on

@@ -20,6 +20,15 @@ class Checks(unittest.TestCase):
  def test_old_process(self):self.complete();self.event('track',1,'sample_buffer_16');self.assertEqual(inspect(self.p,(self.p/'events.tsv').stat().st_birthtime+1)['status'],'FAIL')
  def test_source_changed(self):self.complete();(self.p/'source.wav').write_bytes(b'changed');self.assertEqual(inspect(self.p)['status'],'FAIL')
  def test_callback_freed(self):self.complete();self.events=[x.rsplit('\t',2)[0]+'\t30\t31' if '\tcallback-return\t'in x else x for x in self.events];(self.p/'events.tsv').write_text('\n'.join(self.events)+'\n');self.assertEqual(inspect(self.p)['status'],'FAIL')
+ def test_native_float_atoms(self):
+  self.complete();self.event('track',1,'sample_buffer_16');ev=read_events(self.p/'events.tsv');self.events=[]
+  for _,kind,args in ev:
+   converted=[]
+   for a in args:
+    try:converted.append(str(float(a)))
+    except ValueError:converted.append(a)
+   self.event(kind,*converted)
+  r=inspect(self.p);self.assertEqual(r['status'],'PASS',r)
  def test_cancel_suppresses_adoption(self):
   self.complete();self.event('track',1,'sample_buffer_1');ev=read_events(self.p/'events.tsv')
   ev=[(i,k,[*a[:3],'1'] if k=='deferred-return'else a)for i,k,a in ev]
