@@ -48,3 +48,19 @@ schedule. No new architecture or implementation is proposed for this narrow fix.
 External detailed report: local Jev harness RECEIVER_JOBS.md, with compressed event
 logs and fixture/job manifests under validation/receiver-jobs. Earlier before/fixed
 comparison is in RUBBER_BAND_REPRO.md and validation/stretch-before-crash.json.
+
+## Cleanup authority and readback
+
+The user directly instructed the source task: "Okay, then first, delete the audio
+files and any excess disk pressure this plugdata patch may be putting on the
+computer and I’ll send the cut for review." The source task performed cleanup;
+the Jev/runtime task neither requested nor performed it. No further deletion is
+part of this handoff.
+
+Manifest was written immediately before deletions at2026-09-17T18:39:17.189588-07:00
+(filesystem mtime, not a separately logged per-file deletion timestamp). Path:
+`/private/tmp/plugmlr-receiver-closure-offline-20260917/audio-cleanup-manifest.json`.
+The committed copy sits beside this review. Live readback after final receipts:
+0/300 campaign output WAVs remain;0/5 lifecycle output WAVs remain;1/1 clean UI
+output remains at `/private/tmp/plugmlr-rr-ui-cleanhook-20260917/renders/source-stretch-900dec753361.wav`.
+Logs, JSON receipts, source and hashes were not deleted.
