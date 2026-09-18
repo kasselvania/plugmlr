@@ -1,3 +1,15 @@
+## Observer-to-driver delivery repair — offline, 2026-09-17
+
+Pre-lifecycle review found that track/load/owner events were written to disk but
+not delivered to rr-driver. A focused test instantiates the actual observer,
+driver and buffer-view-data owner with multiple-receiver dispatch; it reproduced
+missing track delivery. The observer now optionally forwards those readbacks on
+a separate rr-observation bus (enabled only in deterministic fixtures); rr-event
+logging is unchanged, preventing recursive forwarding or double logs. Driver
+subscribes to both buses. Combined delivery test and existing observer/checker
+checks pass. Lifecycle/campaign regenerated under driverfix paths; successful UI
+protocolfix fixture and evidence remain unchanged. No native actions here.
+
 ## Observer owner-protocol repair — offline, 2026-09-17
 
 Native preflight also reported sample_buffer_1.0-view-get. A new regression passes

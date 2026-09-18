@@ -44,7 +44,7 @@ def build(out,mode="ui",monome=None):
    parts += [f'obj 20 {slot*30} sample-data {slot}',f'obj 250 {slot*30} sample_player_rebuild {slot}',f'obj 550 {slot*30} array define 0-live_buffer_{slot} 4',f'obj 800 {slot*30} array define 1-live_buffer_{slot} 4',f'obj 1050 {slot*30} buffer-view-data live {slot}']
   (out/'rr-session.pd').write_text(append('#N canvas 100 100 1300 600 12;\n',parts,[]))
   count=300 if mode=='campaign' else 5
-  (out/'check.pd').write_text('#N canvas 100 100 900 400 12;\n#X obj 20 20 rr-observer;\n#N canvas 100 100 400 300 rr-session-container 0;\n#X restore 20 60 pd rr-session-container;\n'+f'#X obj 20 100 rr-driver {count} {mode};\n')
+  (out/'check.pd').write_text('#N canvas 100 100 900 400 12;\n#X obj 20 20 rr-observer 1;\n#N canvas 100 100 400 300 rr-session-container 0;\n#X restore 20 60 pd rr-session-container;\n'+f'#X obj 20 100 rr-driver {count} {mode};\n')
  for name in ['check.pd','sample_player_rebuild.pd','sample-editor-panel.pd']:assert not check(out/name)['errors'],check(out/name)
  manifest={'candidate_commit':CANDIDATE,'dependency_commit':dep_commit,'mode':mode,'expected':(1 if mode=='ui' else 300 if mode=='campaign' else 5),'source_sha256':sha(out/'source.wav'),'original_source_hashes':originals,'input_hashes':{str(f.relative_to(out)):sha(f)for f in out.rglob('*')if f.is_file()},'instrumentation':['passive file observer + additional completion listeners','method wrappers log return order without modifying candidate bodies','private test command and track readback taps','setup-only wrapper; actual mlr DAC/Grid retained; no playback commands'],'native_qualified':False}
  (out/'receipt.json').write_text(json.dumps(manifest,indent=2)+'\n');return out

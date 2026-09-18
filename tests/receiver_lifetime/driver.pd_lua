@@ -9,6 +9,7 @@ function C:postinitialize()
  self.timer=pd.Clock:new():register(self,'step');self.turn=pd.Clock:new():register(self,'intervene')
  self.hook=pd.Receive:new():register(self,'rr-hook','completion')
  self.events=pd.Receive:new():register(self,'rr-event','observe')
+ self.observations=pd.Receive:new():register(self,'rr-observation','observe')
  self.timer:delay(1000)
 end
 function C:observe(sel,a)
@@ -78,5 +79,5 @@ function C:step()
  end
 end
 function C:finalize()
- self.alarm:destruct();self.timer:destruct();self.turn:destruct();self.hook:destruct();self.events:destruct()
+ self.alarm:destruct();self.timer:destruct();self.turn:destruct();self.hook:destruct();self.events:destruct();self.observations:destruct()
 end
