@@ -1,0 +1,113 @@
+{
+  "incident": "5777BB41-9FAF-45AF-8668-E9706DF2FB6F",
+  "faulting_thread": 10,
+  "name": "com.apple.audio.IOThread.client",
+  "exception": {
+    "codes": "0x0000000000000001, 0x00000000007261e9",
+    "rawCodes": [
+      1,
+      7496169
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x00000000007261e9"
+  },
+  "frames": [
+    {
+      "imageOffset": 5457632,
+      "symbol": "bindlist_bang",
+      "symbolLocation": 16,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 5457648,
+      "symbol": "bindlist_bang",
+      "symbolLocation": 32,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 5546340,
+      "symbol": "pack_anything",
+      "symbolLocation": 136,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 5450996,
+      "symbol": "outlet_anything",
+      "symbolLocation": 196,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 3920556,
+      "symbol": "PluginProcessor::processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&)",
+      "symbolLocation": 624,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 8094604,
+      "symbol": "juce::AudioProcessorPlayer::audioDeviceIOCallbackWithContext(float const* const*, int, float* const*, int, int, juce::AudioIODeviceCallbackContext const&)",
+      "symbolLocation": 1684,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 13415344,
+      "symbol": "juce::AudioDeviceManager::audioDeviceIOCallbackInt(float const* const*, int, float* const*, int, int, juce::AudioIODeviceCallbackContext const&)",
+      "symbolLocation": 484,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 13462888,
+      "symbol": "juce::CallbackMaxSizeEnforcer::audioDeviceIOCallbackWithContext(float const* const*, int, float* const*, int, int, juce::AudioIODeviceCallbackContext const&)",
+      "symbolLocation": 352,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 13489032,
+      "symbol": "juce::CoreAudioClasses::CoreAudioInternal::processBufferChunk(unsigned long, unsigned long, AudioTimeStamp const*, AudioTimeStamp const*, AudioBufferList const*, AudioBufferList*)",
+      "symbolLocation": 648,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 13488240,
+      "symbol": "juce::CoreAudioClasses::CoreAudioInternal::audioCallback(AudioTimeStamp const*, AudioTimeStamp const*, AudioBufferList const*, AudioBufferList*)",
+      "symbolLocation": 584,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 13487588,
+      "symbol": "juce::CoreAudioClasses::CoreAudioInternal::audioIOProc(unsigned int, AudioTimeStamp const*, AudioBufferList const*, AudioTimeStamp const*, AudioBufferList*, AudioTimeStamp const*, void*)",
+      "symbolLocation": 28,
+      "imageIndex": 0
+    },
+    {
+      "imageOffset": 2109372,
+      "symbol": "HALC_ProxyIOContext::IOWorkLoop()",
+      "symbolLocation": 10448,
+      "imageIndex": 15
+    },
+    {
+      "imageOffset": 2097232,
+      "symbol": "invocation function for block in HALC_ProxyIOContext::HALC_ProxyIOContext(unsigned int, unsigned int)",
+      "symbolLocation": 172,
+      "imageIndex": 15
+    },
+    {
+      "imageOffset": 3924144,
+      "symbol": "HALC_IOThread::Entry(void*)",
+      "symbolLocation": 88,
+      "imageIndex": 15
+    },
+    {
+      "imageOffset": 27736,
+      "symbol": "_pthread_start",
+      "symbolLocation": 136,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 7196,
+      "symbol": "thread_start",
+      "symbolLocation": 8,
+      "imageIndex": 6
+    }
+  ]
+}

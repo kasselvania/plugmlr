@@ -1,0 +1,28 @@
+{
+  "capture_seconds": 8.0,
+  "render_seconds": 2.0,
+  "render_pitch_hz": [
+    440.0,
+    660.0
+  ],
+  "adopted_player_pitch_hz": [
+    440.0,
+    660.0
+  ],
+  "finite": true,
+  "other_original_player_min_10ms_rms": [
+    0.022317101538980522,
+    0.044379789705544036
+  ],
+  "other_original_player_relative_rms": [
+    1.0000001635088145,
+    0.9999999923603399
+  ],
+  "output_file": "source-stretch-1cfad85c2c64.wav",
+  "limitations": [
+    "Internal original mixer output, not device/DAW underrun proof",
+    "Synthetic stereo source, not musical listening acceptance",
+    "Explicit copy load remains synchronous",
+    "Native control sequence, physical mouse activation not established"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "source": {
+    "path": "/private/tmp/plugmlr-musical-stretch/renders/source-stretch-ec03b48a0938-stretch-f773195438ba.wav",
+    "size": 144044,
+    "mtime_ns": 1789667596982194935,
+    "rate": 48000,
+    "first": 0,
+    "end": 36000,
+    "channels": 2
+  },
+  "duration_multiplier": 1.0,
+  "pitch_semitones": 0.0,
+  "tempo": {
+    "source_bpm": 120.0,
+    "target_bpm": 120.0,
+    "beats": 1.5,
+    "confirmation_source": "rendered",
+    "target_mode": "bpm"
+  },
+  "target_duration_seconds": 0.75,
+  "engine": "rubberband-r3",
+  "executable": "/opt/homebrew/bin/rubberband",
+  "version": "4.0.0",
+  "elapsed_seconds": 0.11571691697463393,
+  "log": "Using R3 (finer) engine\nUsing time ratio 1 and frequency ratio 1\nPass 1: Studying...\n\n0% \n2% \n5% \n8% \n11% \n14% \n17% \n19% \n22% \n25% \n28% \n31% \n34% \n36% \n39% \n42% \n45% \n48% \n51% \n54% \n56% \n59% \n62% \n65% \n68% \n71% \n73% \n76% \n79% \n82% \n85% \n88% \n91% \n93% \n96% \n99% \nCalculating profile...\nPass 2: Processing...\n\n0% \n2% \n5% \n8% \n11% \n14% \n17% \n19% \n22% \n25% \n28% \n31% \n34% \n36% \n39% \n42% \n45% \n48% \n51% \n54% \n56% \n59% \n62% \n65% \n68% \n71% \n73% \n76% \n79% \n82% \n85% \n88% \n91% \n93% \n96% \n99% \n    \nin: 36000, out: 36000, ratio: 1, ideal output: 36000, error: 0\nelapsed time: 0.061209 sec, in frames/sec: 588148, out frames/sec: 588148\n"
+}

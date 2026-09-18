@@ -1,3 +1,147 @@
+## Musical stretch controls — implementation contract (2026-09-17)
+
+Source BPM is unknown until entered by the user or calculated from beats in the
+selection. It belongs to the loaded Sample owner, survives track selection/trim,
+and resets on file replacement. It is session metadata; rendered manifests retain
+its provenance. No detector or confidence estimates are invented. Beat count uses
+quarter-note beats, no implicit meter. Source BPM = beats * 60 / selected seconds.
+Target mode has one driver: BPM, seconds, or advanced duration multiplier. Ratio
+is source BPM / target BPM or target seconds / source seconds; pitch is independent
+and defaults to zero. Unknown BPM blocks BPM mode, but seconds/ratio remain usable.
+Tempo range1–999 BPM; ratio0.25–4; pitch±24; output cap600 seconds remain explicit.
+
+Render & use copy snapshots the region and musical settings, renders in the
+existing worker and automatically invokes the repaired load handoff. Original
+source audio remains untouched; a vacant Sample slot is required. Selection or
+settings changes while rendering suppress automatic adoption; the file is kept.
+Cancel also suppresses an already loading copy's later selection. No auto-play of
+a stopped player; the existing audition/transport controls retain that decision.
+Copies receive derived tempo metadata after loading. Player speed/Tempo Fit are
+preserved and may further alter audition; the editor says so. No new DSP, detector,
+third bank, overwrite/revert workflow or engine dependency is included.
+
+Implementation now adds the musical fields in the existing editor, session tempo
+metadata in `buffer-view-data`, linked calculations and automatic adoption in
+`sample-stretch`, and tempo/provenance fields in the worker manifest. No player DSP
+changes. Existing deferred completion remains covered by its regression check.
+
+Native validation: four consecutive single-action renders with all16 original
+players, source90→target120 BPM, one-second selection→0.75s/36000 frames, pitch0.
+Copies inherit120 BPM; all4 auto-load/adopt without a separate Load message.
+Stereo finite audio, pitch within2Hz FFT tolerance and stable other-track level.
+Eight-second capture stopped normally; console showed no new errors.
+[Evidence and limits](evidence/musical-stretch/observations.md). Musical listening,
+physical UI use and device/DAW deadlines remain open; no new acceptance inferred.
+User separately accepted the preceding receiver-lifetime handoff repair.
+
+## Editor handoff crash repair — 2026-09-17
+
+User crash invalidated the earlier handoff-safety conclusion. `copy_loaded` freed
+its own receiver while Pd was dispatching a shared completion bang. The installed
+ARM64 bindlist traversal and crash stack agree with a receiver-lifetime failure.
+The old fixture lacked the ordinary player listener for its destination slot.
+
+Completion now only schedules the existing clock; receiver removal and buffer
+selection happen after message dispatch returns. The revised native fixture has
+all16 original players and passed six successive imports, with clean console and
+finite stereo audio. Regression checks fail on the old callback and pass on the
+repair. See [exact evidence and limits](evidence/editor-stretch/handoff-repair/observations.md).
+No intentional crash reproduction was run against the user's application. Full
+application physical testing and DAW acceptance remain open. The Render/Load UI
+and BPM model are unchanged in this repair; musical controls and one-action
+preparation are the next design work, not part of this commit.
+
+## Sample editor Rubber Band integration — contract (2026-09-17)
+
+Requested after PR52's separate workbench was not a useful user workflow. Add
+Render copy to the existing sample editor, then explicitly Load copy into an
+empty Sample slot and audition with the existing player. Never replace an occupied
+slot or alter the source arrays/file. Keep the existing player controls.
+
+Selection uses source-file seconds, rounded to first/inclusive and end/exclusive
+frames. Duration multiplier 0.25–4 and pitch -24–24 semitones are independent;
+1 / 0 preserves duration/pitch. Initial input: stereo PCM/float WAV, at its file
+sample rate, at least four frames; output capped at 600 seconds. Processing reads
+the source file (which must still match loaded audio), crops it and runs installed
+Rubber Band in a separate low-priority process. No signal processing in a Lua
+clock. Cancel/close prevents adoption; a bounded worker stops on cancellation or
+a 120-second timeout. Render jobs do not change playback. Explicit Load copy uses
+the existing synchronous sample loader; this import is not guaranteed stall-free.
+Completed WAV copies remain in ignored `renders/` beside the patch, with a manifest.
+Missing tools/files, invalid inputs, a busy worker or full bank report in the editor.
+Native UI, process launch, resulting audio and occupied-slot safety require testing.
+
+Implementation and results: added the controls to `sample-editor-panel.pd`;
+`sample-stretch.pd_lua` launches/polls a detached worker, while
+`scripts/render_sample.py` handles crop, low-priority processing, bounded lifetime,
+and persistent WAV/manifest output. `buffer-view-data` retains source identity and
+answers an explicit vacant-slot query. `sample-editor` publishes its validated
+selection. Original DSP, loading transaction, track selection and audition remain
+in use. No new compiled object, installed service or recording change.
+
+Native 0.9.4 nightly **98ae0f78b**, Pd0.56.3, 48kHz: editor controls rendered,
+background process launched from Pd, a one-second region became two seconds at
++12 semitones, and Load copy selected isolated Sample916. Captured original-player
+output measured **440/660Hz**, matching the new WAV; a second original player
+remained audible at stable measured level. The eight-second capture stopped
+through its scheduled control with a separate ten-second fallback. Tests use
+isolated slots/classes, no DAC, and left the user's paused tracks/patterns intact.
+First runs exposed numeric-atom formatting defects in frame argv and slot names;
+those failures and the passing run are retained under
+[evidence/editor-stretch](evidence/editor-stretch/observations.md).
+
+Five worker checks, Lua controller checks, existing editor/trim checks, Lua syntax
+and Pd connection checks pass. A separate worker run also accepted the repository's
+24-bit 44.1kHz DrumLoop.wav, producing five seconds from four at1.25x/+7 semitones.
+That real-file run is not native 44.1kHz host or host/file-mismatch acceptance.
+
+Still open: user's musical quality and physical-button acceptance, device/Bitwig
+underruns, large-file stress, redistribution/dependency packaging. Native UI
+automation failed to activate controls reliably; the successful run drives the
+same editor command buses with a bounded score. Existing console warnings from
+an initially incomplete fixture and failed first load are recorded separately.
+No newly rendered audio has user listening acceptance. The current user session
+still has cached prior classes: **save patterns/live takes, fully restart plugdata,
+open mlr.pd and load a sample** before testing this editor integration. No restart
+or overwrite of the user's current session was performed.
+
+## Separate offline-stretch compatibility experiment — 2026-09-17
+
+User requested investigation in a separate patch before choosing a stretcher.
+Branch codex/offline-stretch-workbench starts from main4c3caff; recording PR51
+is preserved separately, unmerged. No application patch/Lua files changed.
+
+`experiments/offline-stretch/workbench.pd` exposes bundled `pvoc.player~`, private
+threaded `sfload -t` staging, and continuous reference oscillators. Manual RUN starts
+an automatically bounded capture, with an independent14s Stop. No DAC, input,
+global fast-forward, main dependency or application buffer writes. `render_worker.py`
+runs the already installed Rubber Band4.0.0 separately from a terminal. It is an
+optional test worker, not an adopted or in-patch dependency. No installation occurred.
+
+Native plugdata0.9.4 nightly98ae0f78b / Pd0.56.3 / ELSE1.0-rc14 / pdlua0.12.23,
+48kHz: both bundled objects created; console reported vocoder completion and threaded
+load of192000 stereo frames. Actual samples: Rubber Band2x duration/+12 semitones
+produced4s at440/660Hz; staged data matched exactly. Independent internal oscillator
+references remained continuous during this small render/load. This is not device
+underrun or another actual application track acceptance.
+
+Bundled vocoder measured438/657.33Hz (failed2Hz tolerance), about3dB higher level,
+and residual sound after its completion bang. It is signal-rate processing in the
+same Pd scheduler, not background/offline work. Existing ELSE batch.rec~ sends global
+Pd fast-forward; inspected only and excluded from this playing-session test.
+Inspected rc14 sfload source decodes on a worker but resizes/copies arrays in its
+result callback: final import cost remains to be measured under realistic loads.
+
+No candidate adopted. Gates: musical-quality listening, transient/stereo phase
+behavior, exact end handling, large-file/import stress with post-master/device
+monitoring, safe process launch from standalone and Bitwig plugin, optional binary
+packaging/licensing, and existing-editor/buffer integration. No new UI page proposed;
+the existing sample editor is the eventual destination. User's Player2 remained
+paused; experiment closed after capture completion. No new listening acceptance.
+
+[Run steps and findings](../experiments/offline-stretch/README.md),
+[retained numerical evidence](evidence/offline-stretch/analysis.json).
+
 ## Grid BUFFER page — contract before implementation, 2026-09-16
 
 Base/remote main `42c4754d8e8bc2e6a26d4f35891a4d6653497c58`; clean checkout,

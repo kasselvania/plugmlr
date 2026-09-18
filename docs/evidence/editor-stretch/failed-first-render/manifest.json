@@ -1,0 +1,11 @@
+{
+  "prefix": "stretch562f0953-",
+  "changes": "Unique Lua names, IDs901\u2013916, public command probes, no DAC, bounded capture",
+  "production": {
+    "sample-editor.pd_lua": "d69ccdf072348b1123d40cb60e361c1866cc02a72964600251bc821feafe8254",
+    "sample-stretch.pd_lua": "e45e6e64e17ccbd501416f35d9446ac225488a37028faa46202843ebb7d70ab6",
+    "buffer-view-data.pd_lua": "8d83eed4bba45a1e701bbfaa78b52c4021ede18195020f356265b301cda783af",
+    "sample-editor-panel.pd": "b9c14e7bbee9c75ac6c83dd8e306fdd1c2fa767b0209493785be5171f0ed9843",
+    "scripts/render_sample.py": "c4f9fa10a6838b8b9ccca1e400e0138f44d8c8b99ed578e905e5e2895aa78687"
+  }
+}

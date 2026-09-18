@@ -1,0 +1,28 @@
+{
+  "capture_seconds": 8.0,
+  "render_seconds": 0.75,
+  "render_pitch_hz": [
+    220.00000000000003,
+    329.0909090909091
+  ],
+  "adopted_player_pitch_hz": [
+    220.0,
+    331.0
+  ],
+  "finite": true,
+  "other_original_player_min_10ms_rms": [
+    0.022317112113609806,
+    0.04437983002825709
+  ],
+  "other_original_player_relative_rms": [
+    1.0000001597556107,
+    0.9999999756626183
+  ],
+  "output_file": "source-stretch-7fd14a108c5d-stretch-fcc8ad64d31e-stretch-432-stretch-1a1cb1c26686.wav",
+  "limitations": [
+    "Internal original mixer output, not device/DAW underrun proof",
+    "Synthetic stereo source, not musical listening acceptance",
+    "Copy import uses the synchronous loader",
+    "Native control sequence, physical mouse activation not established"
+  ]
+}

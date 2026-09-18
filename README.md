@@ -39,6 +39,35 @@ and start position; speed, reverse, glide, quantization, Fit and Beat Reset stay
 set. Cancel leaves the buffer alone. Players using the replaced slot stop before
 loading; press Play when ready. The button is hidden for Live buffers.
 
+**Stretch / tune in the editor:** select Start/End, enter **Source BPM** or
+**Beats in selection**, then enter **Target BPM** (or **Target seconds**).
+For example,90→120 BPM makes the region0.75× as long. **Pitch semitones** is
+independent;0 keeps tuning. Half/Double BPM and4/8/16/32-beat shortcuts help describe
+a loop. Tempo is **unknown** until you supply it; there is no automatic detector.
+Entering a target field makes it the driver; the other values update as readouts.
+The radio also selects BPM, seconds or the advanced ratio mode without changing
+a valid current target. Seconds/ratio work even when source tempo is unknown.
+
+Click **Render and use copy** once. It renders in the background, loads into an
+unused Sample slot, and selects the result through the existing player. Use
+**Audition loop** if playback is stopped. Original audio remains intact. Editing
+selection/settings during processing suppresses automatic selection; Cancel does
+so even during the load handoff. Rendered files are retained in `renders/` alongside
+the patch, with source/target BPM, beats, region, pitch and engine provenance.
+Source tempo belongs to the loaded Sample and is shared by its players. It survives
+trim/reselection but resets on file reload; rendered-copy tempo is installed for
+this session. Manifests are retained, but automatic metadata recall from them is
+not yet implemented. Player speed/reverse/Tempo Fit are preserved: use speed1 and
+Fit off to hear the rendered tempo without additional tape-speed changes.
+
+This optional Mac feature requires Python3 and the Rubber Band CLI (already
+installed on the development Mac). Source files must be unchanged, accessible
+stereo PCM/float WAV. Supported tempo1–999 BPM, ratio0.25–4x, pitch±24 semitones,
+output at most600 seconds. Background rendering does not resize an audio array;
+the automatic import still uses the existing synchronous loader and may briefly
+stall audio. Save patterns/live takes and fully restart plugdata after an update
+to refresh its cached Lua classes. Open `mlr.pd`, load a sample and use its editor.
+
 **Edit an imported sample:** open its player and click **Edit sample** on the
 waveform. The player waveform now has a seconds ruler and separate `S1–S16`
 slice labels. In the editor, drag either selection edge or enter Start/End in
@@ -438,3 +467,10 @@ Installing a lease daemon alone does not migrate other legacy patches.
 Alternative and historical patches remain alongside the entry point. Their names
 do not establish which behavior works. The rejected shared-playback rewrite is
 preserved separately and is not the current application; details are in STATUS.
+
+## Separate stretch compatibility experiment
+
+The [offline-stretch workbench](experiments/offline-stretch/README.md) investigates
+bundled phase-vocoder rendering, an optional external processor and threaded file
+loading. It does not modify the sample editor or application engine. Read its
+measured limitations before treating it as an editing feature.

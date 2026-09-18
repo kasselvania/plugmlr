@@ -1,0 +1,3 @@
+# Editor-generated audio copies; never commit user samples.
+/renders/
+__pycache__/
