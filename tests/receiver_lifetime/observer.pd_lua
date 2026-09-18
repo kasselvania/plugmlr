@@ -19,7 +19,8 @@ function C:postinitialize()
   bind(reply,function(s,sel,a)local b={slot};for _,v in ipairs(a)do b[#b+1]=v end;s:log(sel,b)end)
  end
  bind('rr-query',function(s,_,a)
-  local slot=tonumber(a[1]);if not slot then return end
+  local value=tonumber(a[1]);local slot=value and math.tointeger(value)
+  if not slot or slot<1 or slot>16 then return end
   local key='sample_buffer_'..slot..'-view-get';local reply='rr-owner-'..slot
   pd.send(key,'info',{reply});pd.send(key,'source',{reply});pd.send(key,'tempo',{reply})
  end)

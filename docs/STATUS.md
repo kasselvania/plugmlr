@@ -1,3 +1,16 @@
+## Observer owner-protocol repair — offline, 2026-09-17
+
+Native preflight also reported sample_buffer_1.0-view-get. A new regression passes
+Pd-style1.0 through the actual observer and actual buffer-view-data owner under a
+strict send shim. It reproduced an unbound receiver before repair. Observer now
+integer-validates slots1..16 before symbol concatenation; deterministic duplicate
+completion destination also uses integer conversion. The test checks exact
+info/source/tempo messages, one-string reply atom lists, and roundtrip metadata.
+It passes with the encoding regression and12 Python checks. This establishes the
+symbol/protocol correction offline, not that the native invalid-atoms console
+message is fully explained or resolved. New protocolfix fixture directories retain
+all previous failed artifacts; no native actions here.
+
 ## Native observer preflight repair — 2026-09-17
 
 The UI operator reported malformed hex events before any render attempt. The

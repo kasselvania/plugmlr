@@ -24,7 +24,7 @@ end
 function C:deadline() self:fail('Overall finite deadline exceeded')end
 function C:completion(_,a)
  if tonumber(a[1])~=1 or self.hooked then return end
- self.hooked=true;self.destination=tonumber(a[2]);self.turn:delay(0)
+ self.hooked=true;self.destination=math.tointeger(a[2]);self.turn:delay(0)
 end
 function C:intervene()
  self:event('intervention',{self.index,self.case})
