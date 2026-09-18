@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "candidate_commit": "c56ee2174f17fee6188a68f8af74116465d17bdd",
+  "attempted": 5,
+  "completed": 5,
+  "expected": 5,
+  "destinations": [
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "checks": {
+    "source_and_fixture_unchanged": true,
+    "actual_native_load": true,
+    "lifetime_order": true,
+    "expected_adoption_or_suppression": true,
+    "unique_render_per_completion": true
+  },
+  "evidence": {
+    "fixture": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917",
+    "events": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917/events.tsv",
+    "outputs": [
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917/renders/source-stretch-6805a45c37d0.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917/renders/source-stretch-03487dc7e294.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "duplicate"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917/renders/source-stretch-4e063e98f823.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "cancel"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917/renders/source-stretch-a94865e2424e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "manual"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-lifecycle-driverfix-20260917/renders/source-stretch-58a2e20145ae.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "destroy"
+      }
+    ]
+  },
+  "counts_observed_epoch": 1789694933.26577,
+  "reason": "",
+  "worker_outcome": "verified",
+  "pid": 37830,
+  "process_identity": "37830 Thu Sep 17 18:28:43 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+  "started_epoch": 1789694925.079713,
+  "process_launched_epoch": 1789694923.0,
+  "finished_epoch": 1789694933.286439,
+  "job": "/Users/peterkassel/Documents/Codex/2026-09-17/i-want-to-explore-the-new/outputs/jev-application-harness/local/closure-20260917/lifecycle-job.json",
+  "job_sha256": "44b472ac53eb758b2d01b22f875bfbdec87bd6f253e73881bf6725c9426ad064",
+  "crash_reports": []
+}

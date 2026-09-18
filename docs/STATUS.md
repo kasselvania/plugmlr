@@ -1,3 +1,14 @@
+## Receiver-dispatch defect: bounded native acceptance — 2026-09-17
+
+Candidate c56ee217 passed the clean full-MLR UI handoff1/1, five lifecycle cases,
+and300 actual native render/load operations. Normal quit/process disappearance
+and delayed crash checks passed; numeric exit status was unavailable. This supports
+closure of receiver destruction during synchronous dispatch, not general stretch
+feature acceptance. Production stays quarantined; no merge or issue closure.
+Operator-requested temporary WAV cleanup followed verification; hashes and results
+are retained, and the removed audio must be regenerated for new content checks.
+See [review and exact receipts](evidence/receiver-lifetime/review.md).
+
 ## UI-only probe repair — offline, 2026-09-17
 
 The UI operator reported one successful adoption with a subsequent unbound

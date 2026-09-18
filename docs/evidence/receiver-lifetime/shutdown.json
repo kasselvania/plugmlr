@@ -1,0 +1,71 @@
+{
+  "final_normal_quit_requested_epoch": 1789695605.2858639,
+  "final_normal_quit_accepted": true,
+  "final_process_exit_observed_epoch": 1789695605.6564639,
+  "immediate_check_epoch": 1789695605.6564639,
+  "immediate_checks": [
+    {
+      "run": "closure-ui-001",
+      "pid": 22633,
+      "launch_identity": "22633 Thu Sep 17 18:22:00 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    },
+    {
+      "run": "closure-lifecycle-001",
+      "pid": 37830,
+      "launch_identity": "37830 Thu Sep 17 18:28:43 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    },
+    {
+      "run": "closure-campaign-001",
+      "pid": 40444,
+      "launch_identity": "40444 Thu Sep 17 18:29:53 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    },
+    {
+      "run": "closure-ui-clean-001",
+      "pid": 60324,
+      "launch_identity": "60324 Thu Sep 17 18:38:23 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    }
+  ],
+  "delayed_check": "complete",
+  "limitation": "Normal quit request and process disappearance observed; exit status unavailable for LaunchServices-owned process.",
+  "delayed_check_epoch": 1789695724.590921,
+  "seconds_after_final_exit": 118.91244220733643,
+  "delayed_checks": [
+    {
+      "run": "closure-ui-001",
+      "pid": 22633,
+      "launch_identity": "22633 Thu Sep 17 18:22:00 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    },
+    {
+      "run": "closure-lifecycle-001",
+      "pid": 37830,
+      "launch_identity": "37830 Thu Sep 17 18:28:43 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    },
+    {
+      "run": "closure-campaign-001",
+      "pid": 40444,
+      "launch_identity": "40444 Thu Sep 17 18:29:53 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    },
+    {
+      "run": "closure-ui-clean-001",
+      "pid": 60324,
+      "launch_identity": "60324 Thu Sep 17 18:38:23 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+      "process_absent": true,
+      "matching_crash_reports": []
+    }
+  ],
+  "status": "PASS"
+}

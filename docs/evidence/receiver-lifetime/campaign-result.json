@@ -1,0 +1,2133 @@
+{
+  "status": "PASS",
+  "candidate_commit": "c56ee2174f17fee6188a68f8af74116465d17bdd",
+  "attempted": 300,
+  "completed": 300,
+  "expected": 300,
+  "destinations": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "checks": {
+    "source_and_fixture_unchanged": true,
+    "actual_native_load": true,
+    "lifetime_order": true,
+    "expected_adoption_or_suppression": true,
+    "unique_render_per_completion": true
+  },
+  "evidence": {
+    "fixture": "/private/tmp/plugmlr-rr-300-driverfix-20260917",
+    "events": "/private/tmp/plugmlr-rr-300-driverfix-20260917/events.tsv",
+    "outputs": [
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8ba99b3c6d7d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1b7bcbc7c730.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-44bb28198702.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0c383baf1cf2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-134459fec43d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3bf803320e81.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5aa00bb7e02a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-12f3a65da412.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6c1cb4a0afa2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6b38c57edbe6.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d046e8fff650.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bb9f37fc43ad.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-dc3fb53e8d24.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f653836e7011.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-70a1cd2d8729.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-071134d47d0c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b5d54d4a0876.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-692ee08d5826.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-77073f3a0a33.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-98b537bd54b5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4580df29ac4e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f7751cb52d08.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d17417feca6c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-97b9076388a2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-94c2f3f4187d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-dc0517315c41.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-71907c44f95c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-570de7f45dec.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-aa68cf5f5130.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-68c36820a046.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c759d8c3dbc9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3a266b923fc4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-524b7e39353f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-cc9c092758eb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-2f0b7706c5de.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6fc6ea06699a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ab7143e12a6f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-713d742b6bb5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8edbe0af203d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-aab6ae94604d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f3da81371a86.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-60912302a2c6.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-436bb944d257.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3becb282242c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f3058afbc140.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a7ce12068aa1.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ffeb13aff480.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ec8691b57971.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-227a806faa53.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-cef0b13be9b8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-197f46c3c003.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6be19a90a7a4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-44c7191ca494.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0c5771b68199.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-58b842aee476.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b5fa6ad06092.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-32d2d919e64a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0a16c5c36885.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1cd44ecbcd9b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-beb36cd11ff3.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c52e840bcb47.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-70e53e2061d7.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-631bcfac875c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-14a425457dbc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-93191ce292eb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-09873825db6b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-fcba7e3b8431.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-14e74839d2a5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0a9b2897f224.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-7327b853cdd6.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-55fcecf2e83e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ada537707ebe.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e321a13d2a1c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e43f6c1be14d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e729e461cec3.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-fe02463e5b33.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1970a3cc8cf6.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d6c0823e4e96.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e0d5439796cc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b6b88ad31372.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0895013d0485.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-69416e1ffb16.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a9ea2257c801.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bd1e53c8b2e9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1d15c51a0733.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-50fc0c0d9979.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-837564480d8b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-285c21e636d9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a1065494a898.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5d5962ffeb52.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-563c1e1783f5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-810a505c2185.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bc51b685ad37.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a5b98dfb0ad8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1126344cfff3.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-01a694ac0bdc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-56c58beca008.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b6eaddd1da9e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-48f82b42f286.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-084653ca341d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-93271700dabe.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e3f1e453356d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4fca5404d116.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-2fe8db4f64b4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f62de9b08008.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-490dc013b50e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-71f26b1b9d43.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-72b5bd7ef6c9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a44fb1851b71.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c45bd42e925d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-56db54814cc9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-53cf1bd68e08.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-11f9d055d132.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-744191190715.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bd1cf1905c50.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4e9e106a6e2b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-482fb522e15e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3f324b8b2c47.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-aa163669b7db.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-84f0a58ab901.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ef12c3609f6d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-63b3539ba4d8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4c161a42bf7b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-37262a00542b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bfef3607a58b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-68c4de0f0569.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5c56b746e586.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5df592119b1a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-07ec9f4130eb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c2d19a0ae211.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ee27098c6375.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f6f2065193cf.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-33c28ad454a2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6bc585429c29.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b630590474a3.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-78378cb09554.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-2a8f5fdf9b92.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6e07ac0245ee.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-caaeacee68b6.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-feb08fc5467d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8d6a59c86e69.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-90ea1e85b5db.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f14e0419851a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d636762ef3f9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3f760f25cfc5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-35c5d74e13f0.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6ee6bfbf8908.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-eb334578c9f4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-881a9d4c5659.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-853402264d66.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d5e85838fefd.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-381bfa9e54f8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-88a684f163b1.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ab92475f6dce.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-9773d7ceb8fd.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e03944d5396f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-01a705766ceb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ebc73dda1d5e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ea13d29956a4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-adf88f9450ad.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4ba488fdbd78.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-81706e546d92.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-da087f7a8522.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8314dad34e42.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-2a580744d9e2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f81d4a526116.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6ea7665ceb09.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e4ed59bc201b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6e7078399b1a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c37aad16d4e6.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-73f40d58f9d7.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-187a655e2f80.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3fc63b064dbc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-294f094802ad.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d85eae8d9639.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a7b1cad78f0f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-689438ccc48f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bdf96e77ad33.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1638c84a9aca.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a15e12ca770c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5040a038d505.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0cab40cb0237.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f7632b463dac.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-de7b00ea712b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-fb69e49119be.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a8bc808c129c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-184444430ff9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5bb563dae3e4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-9bc8db36635a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-85bb45996987.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-50102bfd073b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8c586ef450ce.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f2e7dc3f5bf8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0cd194fd1111.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-667fd508827a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4151e12b5d90.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-31e90a9fddff.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-64fdacf190dc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-38b6e06e0b6e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-af210e37207f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-504964f7ec03.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-21cb986d6e1e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-fbbc10e0e2c1.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-7750826e8535.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-46af5b444cca.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-03b978bc1021.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b2c7371e90ad.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-223d77a8bcea.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b4fa996a0cfc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f26d6f74e06a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-da3bfba7b315.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b69fe90bd1df.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-776bc91d58c3.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5fb875aed103.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-caedbec20147.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e7722c7ff5d3.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-128a3f788199.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0df63dc8ece9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b02ab2206992.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0c05d4fb558c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-043fd5ea71c2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a8ac959c2e41.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bd0f417ea3ac.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-931e3c71794e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-9996a42671b8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3b135f1dadd8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c921a19248d9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c09a228feb3b.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1db1e6c84f03.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-2ee861f0c3fc.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8015261ecf7f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d4e598511209.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5bb4e060ba04.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3dce5c68a392.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0b066a99e976.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d1486ab0e7e5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a683511052eb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4d40adc52234.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-362fef5e0a2d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5dacbe901989.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-c3063b731a24.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-aabe7b966c39.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-35c79d5b7b37.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-64b24765dcf0.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-5cdb723cbd21.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-bbbecde81ebb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-7983919842c8.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0054c8926eaf.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-144c3f51cc15.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-a97979af5b36.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-004fbbdb001f.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8d65433f288c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0aad2097bd8d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-d6c6e3968e81.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-170e6226e99a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-004b537d3af2.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-17a493881bbf.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-65432523aeb7.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-830098451883.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3db462495526.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-34e5521e988d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-b93075d1b96d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8b1eb819eb65.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-9370f5c3135a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1b3c868207ab.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ae19e6c15ca1.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4eadaa420871.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e7d6c830960e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-7f3dfdda4058.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-976f9c464f3d.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-57f197c0b007.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-481cffbf38cd.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6e2f1a1d6752.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-4e66a1a85eb0.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-fa5cecfdc5db.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-90ae7b39996a.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-abaf566c5d19.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1aafe577a6e4.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e37dd11d6eb5.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-78394845c2bb.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e23f28492d3c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-0abe7b42644c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-75ffbb5da632.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-58530827fb26.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-107fdf8be79e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-86182c1f5132.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e2bc47e4e028.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-679176948c66.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8344b40f1c11.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-e803b726a849.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-fe914f492d31.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-386dbc043a44.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-28c3bea2762e.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-1b0e1f65920c.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-ca024f811ea9.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-6265540b5049.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-f90685d71386.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-8a7ec86f2acf.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-269ba3b59f46.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      },
+      {
+        "destination": 16,
+        "file": "/private/tmp/plugmlr-rr-300-driverfix-20260917/renders/source-stretch-3d15342ef124.wav",
+        "sha256": "afd5db383e98653ad7466b8d838cd85e921945236acdc162f7d01e2146b2d3e8",
+        "case": "normal"
+      }
+    ]
+  },
+  "counts_observed_epoch": 1789695458.762478,
+  "reason": "",
+  "worker_outcome": "verified",
+  "pid": 40444,
+  "process_identity": "40444 Thu Sep 17 18:29:53 2026     /Applications/plugdata.app/Contents/MacOS/plugdata",
+  "started_epoch": 1789694994.667479,
+  "process_launched_epoch": 1789694993.0,
+  "finished_epoch": 1789695458.771221,
+  "job": "/Users/peterkassel/Documents/Codex/2026-09-17/i-want-to-explore-the-new/outputs/jev-application-harness/local/closure-20260917/campaign-job.json",
+  "job_sha256": "94eb1d23274d63e7f03a63b42f2addedbccb9b748ba3d3eaf1acfccd0255c9eb",
+  "crash_reports": []
+}
