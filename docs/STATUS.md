@@ -1,3 +1,13 @@
+## Private demo sample removed from the alpha tree — 2026-09-21
+
+`DrumLoop.wav` came from a purchased sample pack and is not cleared for community
+redistribution. It is removed from the current alpha branch and ignored at the
+repository root. Historical sections below retain the filename because it identifies
+the exact source used for those past observations; they do not authorize distributing
+the source or derivative captures. Historical analyzers that require it are not
+clean-clone release checks. The private fixture identity is recorded in
+`tests/PRIVATE_FIXTURES.md` for local custody without committing the file again.
+
 ## Stretch quarantine — 2026-09-17
 
 The working checkout resumes testing from pre-stretch main

@@ -90,16 +90,16 @@ Do not tag or publish alpha.1 until all of the following are true:
 
 1. The maintainer confirms redistribution authority for the initial uploaded
    patches and chooses an explicit project license.
-2. `DrumLoop.wav` receives documented redistribution terms or is replaced by a
-   clearly licensed/generated demo fixture.
+2. The removed `DrumLoop.wav` and any derived captures remain excluded from the
+   release archive; any replacement demo receives documented redistribution terms.
 3. The companion `PlugData-Monome-Devices` content receives an explicit license
    that permits it to be materialized in the release archive.
 4. Third-party notices are completed for the exact distributed payload.
 5. The newcomer installation and first-run documentation is complete.
 6. A curated archive and automated release check exist.
-7. The manual clean-install, first-sound, Grid claim/input/LED/release, WAV-save,
-   pattern-save/load, restart, and console-inspection checklist passes on the
-   supported target.
+7. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
+   claim/input/LED/release, WAV-save, pattern-save/load, restart, and
+   console-inspection checklist passes on the supported target.
 
 The first four items are licensing/provenance gates, not documentation polish.
 Until they close, this public repository is source-visible but does not grant a

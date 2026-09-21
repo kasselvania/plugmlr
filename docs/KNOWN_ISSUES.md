@@ -40,8 +40,9 @@ and detailed reproduction artifacts remain in `STATUS.md` and `docs/evidence/`.
   shrinking are not implemented.
 - Reconfiguring the audio interface while DSP remains on is not qualified as a
   safe recording interruption.
-- The included development drum loop has roughly half a second of quiet material
-  at its end, which can make slow reverse/reset demonstrations sound silent.
+- No demo audio is distributed. Testers must choose a stereo WAV they have
+  permission to use; results depend on that material's channel layout, rate,
+  duration, level, and silence.
 
 ## Grid and UI
 
@@ -73,3 +74,11 @@ of alpha.1. A narrow receiver-lifetime defect has a retained repair and regressi
 campaign, but wider teardown, audio-quality, alternate-host, failure-path, and
 redistribution checks remain separate. Do not copy the stretch files from remote
 main into this release line or describe the alpha as supporting time stretch.
+
+## Historical private fixture
+
+`DrumLoop.wav` came from a purchased sample pack and was removed from the alpha
+tree. Historical status entries and some retained evidence analyzers still name
+the exact private fixture used at the time. Those references document past runs;
+they are not clean-clone release checks. The private source and any evidence audio
+derived from it must remain outside the alpha archive.

@@ -1,0 +1,4 @@
+# Private source audio and generated local artifacts; never commit user samples.
+/DrumLoop.wav
+/renders/
+__pycache__/

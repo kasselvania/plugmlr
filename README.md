@@ -349,14 +349,13 @@ cut strip are described above.
 
 1. Open this checkout's `mlr.pd` in plugdata. Keep its sibling patches together.
 2. Enable DSP and open plugdata's console, with messages and errors visible.
-3. Click **Sample bank**, then **Load** beside Sample 1. Choose the included
-   `DrumLoop.wav` or a stereo file. Check **Loaded** and its duration in seconds.
+3. Click **Sample bank**, then **Load** beside Sample 1. Choose a stereo WAV you
+   have permission to use. Check **Loaded** and its duration in seconds.
 4. Click **Overview**, then **Open** on track 1. Its source should show
    **Sample**, slot **1**. Cuts/loops, timing, speed and recording are grouped here.
 5. Return to **Overview**. Raise track 1's **Level** cautiously and check
    **Master** (default 0.75). Press **Play / pause**. The state and position marker
    follow the original player. Press again to Pause; **Stop** resets its position.
-   The included drum file has about half a second of silence at its end.
 
 To share a buffer, open another track and choose the same **Sample** slot.
 To audition a different buffer through track 1, load Sample 2 in the bank and

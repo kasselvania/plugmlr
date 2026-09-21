@@ -40,16 +40,22 @@ retain attribution for the design references.
 
 ## Demo audio
 
-`DrumLoop.wav` was added by commit `3d13a4e` on 2025-05-30. It is a 24-bit stereo
-44.1 kHz WAV, but the repository does not state its creator, original source, or
-redistribution license.
+`DrumLoop.wav` was added by commit `3d13a4e` on 2025-05-30. The maintainer has
+now identified it as a purchased sample-pack asset for which the project does not
+have redistribution rights. It was removed from the alpha branch and added to the
+root ignore list so a private local copy cannot be recommitted accidentally.
 
-Publication requires one of these outcomes:
+Alpha publication therefore requires all of the following:
 
-1. record the creator/source and an explicit license permitting redistribution;
-2. replace it with a newly generated or recorded fixture owned by the project;
-3. replace it with an asset under a compatible license and preserve the notice; or
-4. omit demo audio and adjust the first-run guide accordingly.
+1. omit the private source from the release archive;
+2. exclude retained evidence audio derived from it from the release archive;
+3. make first-run instructions require a tester-supplied stereo WAV; and
+4. if a demo is added later, use a newly generated/project-owned or compatibly
+   licensed asset with an explicit notice.
+
+Removal from the current tree does not erase the object from existing Git history.
+Purging published history and cached GitHub objects is a separate destructive
+repository operation and is not authorized by this documentation change.
 
 ## Companion device project
 
@@ -90,15 +96,15 @@ terms, and notices before redistribution.
 
 ## License decision gate
 
-No root `LICENSE` file is added while initial-source and demo-audio authority are
-unresolved. Public visibility does not grant permission to copy, modify, or
-redistribute the repository.
+No root `LICENSE` file is added while initial-source authority and the companion
+device project's license are unresolved. Public visibility does not grant
+permission to copy, modify, or redistribute the repository.
 
 After the maintainer confirms the initial source origin and desired grant:
 
 1. add the selected root license;
 2. add copyright/attribution notices where required;
 3. license `PlugData-Monome-Devices` compatibly;
-4. resolve or replace `DrumLoop.wav`;
+4. keep `DrumLoop.wav` and its derived evidence out of the release archive;
 5. update `THIRD_PARTY_NOTICES.md` with exact versions and license links; and
 6. re-run the release boundary review before tagging.

@@ -39,10 +39,13 @@ confirmed license and notice.
   separate commercial licensing option.
   Revisit those terms before distributing an installer, binary, or integration.
 
-## Project assets awaiting provenance
+## Project assets excluded from distribution
 
-- `DrumLoop.wav` is currently unlicensed in the repository record. It must be
-  licensed, replaced, or omitted before publication.
+- `DrumLoop.wav` is a purchased sample-pack asset for which the project does not
+  have redistribution rights. It has been removed from the alpha tree and must
+  not appear in a release archive.
+- Historical audio captures derived from that private sample remain engineering
+  evidence only and must also be excluded from the release archive.
 
 See `docs/PROVENANCE.md` for the complete release gate and unresolved initial
 source ownership questions.
