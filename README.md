@@ -4,6 +4,14 @@ An MLR-style stereo instrument for plugdata, built from the original sample/live
 buffers, playback controls and dual-reader crossfades. The wider direction is a
 reusable musical toolkit; the failed replacement engine is not the active path.
 
+> **Alpha preparation:** `v0.1.0-alpha.1` is being prepared from the pre-stretch
+> application checkpoint. It is not published yet because licensing and source/audio
+> provenance still have unresolved release gates. Start with the
+> [alpha boundary](docs/ALPHA_RELEASE.md), [feature status](docs/FEATURE_STATUS.md),
+> [known issues](docs/KNOWN_ISSUES.md), and [provenance record](docs/PROVENANCE.md).
+> The long [STATUS](docs/STATUS.md) file is retained engineering history, not the
+> current end-user support statement.
+
 The current checkpoint includes imported/live buffer selection, forward/reverse
 playback, five speeds and speed glide, Stop/Pause, 16 whole-content slices,
 editable loops, fixed-length stereo recording, and an internal slice clock.
