@@ -11,6 +11,22 @@ PlugData, visible console diagnostics, explicit device ownership, incomplete
 session persistence, and reporting exact reproduction details. It is not a
 general-purpose or production-ready looper.
 
+## Newcomer path
+
+The release-facing route is now:
+
+1. [Installation](INSTALLATION.md) for the exact source and runtime;
+2. [First sound](FIRST_SOUND.md) for the smallest sample-playback check;
+3. [User guide](USER_GUIDE.md) for the included instrument workflows;
+4. [Grid guide](GRID_GUIDE.md) for select, probe, claim, performance, and release;
+5. [Troubleshooting](TROUBLESHOOTING.md) for symptom-based recovery and reports.
+
+The root README is the landing page for that route. `STATUS.md` remains the
+engineering evidence history and is not a prerequisite for first use. Until a
+tag and curated archive exist, Installation truthfully names the preparation
+branch and the exact-runtime acquisition gap; step 3 must reconcile those
+instructions with the final package.
+
 ## Source authority
 
 - Application-code checkpoint: `4c3caff961680a9207c52022ee2244e4b34bd1c1`.
@@ -97,9 +113,8 @@ Do not tag or publish alpha.1 until all of the following are true:
 2. The companion `PlugData-Monome-Devices` content receives an explicit license
    that permits it to be materialized in the release archive.
 3. Third-party notices are completed for the exact distributed payload.
-4. The newcomer installation and first-run documentation is complete.
-5. A curated archive and automated release check exist.
-6. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
+4. A curated archive and automated release check exist.
+5. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
    claim/input/LED/release, WAV-save, pattern-save/load, restart, and
    console-inspection checklist passes on the supported target.
 
