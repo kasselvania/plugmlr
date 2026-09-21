@@ -14,8 +14,10 @@ Check these in order:
 4. The track **Level** is above zero and **Master** is at a safe audible value.
 5. Press Play again after loading or replacing the buffer; replacement stops its
    readers deliberately.
-6. Try a clearly audible stereo WAV. No demo file is shipped, and source silence,
-   unusual channel layout, or very low level can be mistaken for a transport bug.
+6. Try a clearly audible 16-bit PCM stereo WAV. No demo file is shipped, and an
+   unsupported encoding, source silence, unusual channel layout, or very low
+   level can be mistaken for a transport bug. In the clean-package rehearsal,
+   this runtime rejected 32-bit signed-integer PCM and accepted 16-bit PCM.
 7. Look for object-creation, Lua, or file-read errors in the console.
 
 If a clean restart is needed, save takes and patterns first, fully quit PlugData,
@@ -63,9 +65,9 @@ Saving the Pd patch is not project persistence.
 ## `DrumLoop.wav` is missing
 
 This is intentional. It came from a purchased sample pack and cannot be
-redistributed. Use your own licensed stereo WAV. Historical evidence may still
-name the private fixture, but neither it nor audio derived from it belongs in the
-alpha archive.
+redistributed. Use your own licensed 16-bit PCM stereo WAV for the first-run
+lane. Historical evidence may still name the private fixture, but neither it nor
+audio derived from it belongs in the alpha archive.
 
 ## Grid problems
 

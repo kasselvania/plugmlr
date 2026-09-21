@@ -12,6 +12,7 @@ buffer-selection.pd
 buffer-view-data.pd_lua
 clock-display-state.pd
 debug-print.pd
+docs/ALPHA_ACCEPTANCE.md
 docs/ALPHA_RELEASE.md
 docs/FEATURE_STATUS.md
 docs/FIRST_SOUND.md

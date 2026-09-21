@@ -122,9 +122,10 @@ Do not tag or publish alpha.1 until all of the following are true:
    release archive; any replacement demo receives documented redistribution terms.
 2. Third-party notices remain complete for the exact distributed payload.
 3. The automated release gate passes on the exact commit selected for tagging.
-4. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
-   claim/input/LED/release, WAV-save, pattern-save/load, restart, and
-   console-inspection checklist passes on the supported target.
+4. The manual clean-install, first-sound with a tester-supplied 16-bit PCM stereo
+   WAV, Grid claim/input/LED/release, WAV-save, pattern-save/load, restart, and
+   console-inspection checklist in [ALPHA_ACCEPTANCE.md](ALPHA_ACCEPTANCE.md)
+   passes on the supported target.
 
 The project license now grants community use, modification, and redistribution
 of project-owned plugmlr and companion source. It does not grant rights to

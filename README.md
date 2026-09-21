@@ -35,7 +35,7 @@ The deliberately narrow supported lane is:
 | --- | --- |
 | Computer | Apple-silicon Mac |
 | Runtime | PlugData standalone 0.9.4 nightly `98ae0f78b` |
-| Audio | 48 kHz primary lane; tester-supplied stereo WAV |
+| Audio | 48 kHz primary lane; tester-supplied 16-bit PCM stereo WAV |
 | Instances | One open plugmlr application instance |
 | Controller | Legacy Grid `m1000853`, 16 columns by 8 rows |
 | Device layer | packaged at `620b22c641003b3dcbca8ec94858839737a495bb`; tested runtime source at parent `18b489399d01a9178e4667b849ec4368d72533db` |
@@ -54,7 +54,8 @@ or Rubber Band time stretching. The exact boundary is maintained in the
 
 ## Protect your work
 
-- No demo audio is distributed. Load a stereo WAV you have permission to use.
+- No demo audio is distributed. For first sound, load a 16-bit PCM stereo WAV
+  you have permission to use.
 - Live takes exist in memory until you explicitly save them as WAV files.
 - Performance patterns require a separate **Save bank** action.
 - Saving the Pd patch does not create a complete plugmlr project.
@@ -73,6 +74,7 @@ or Rubber Band time stretching. The exact boundary is maintained in the
 | [Grid guide](docs/GRID_GUIDE.md) | Connection lifecycle, page map, gestures, and tested boundary |
 | [Troubleshooting](docs/TROUBLESHOOTING.md) | Symptom-based recovery and useful report details |
 | [Alpha boundary](docs/ALPHA_RELEASE.md) | Supported target, claims, non-claims, and publication gates |
+| [Acceptance record](docs/ALPHA_ACCEPTANCE.md) | Exact clean-package results and open tag blockers |
 | [Feature status](docs/FEATURE_STATUS.md) | Included, experimental, and excluded functionality |
 | [Known issues](docs/KNOWN_ISSUES.md) | Release-facing limitations and safety notes |
 | [Provenance](docs/PROVENANCE.md) | Source, dependency, and asset custody |

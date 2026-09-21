@@ -7,7 +7,7 @@ current claim ceiling; it is not a roadmap promise.
 
 | Area | Included boundary | Evidence ceiling |
 | --- | --- | --- |
-| Sample buffers | Load stereo files, select Sample slots 1–16, replace a slot through the guarded loader | Native load/selection and shared-buffer checks; no arbitrary-format promise |
+| Sample buffers | Load 16-bit PCM stereo WAV files, select Sample slots 1–16, replace a slot through the guarded loader | Native load/selection and shared-buffer checks; no arbitrary-format promise |
 | Live buffers | Select Live slots 1–16, record a fresh take, finish early or at its fixed/free limit | Primary recording evidence is 48 kHz standalone |
 | Playback | Play, Pause/Resume, hard Stop, forward/reverse, 0.25/0.5/1/2/4x speed, bounded glide | Original dual-reader stereo engine; not universally click-free |
 | Slices and loops | Sixteen whole-content cuts, immediate/quantized launch, live Start/End/Move, Grid one-cell/two-key loops | Native numerical/listening evidence plus bounded physical Grid checks |

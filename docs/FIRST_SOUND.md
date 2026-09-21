@@ -7,7 +7,8 @@ recording input, a DAW, or the private demo sample used during development.
 
 - Complete [Installation](INSTALLATION.md).
 - Use PlugData standalone, not a DAW plugin.
-- Have one stereo WAV you have permission to use.
+- Have one 16-bit PCM stereo WAV you have permission to use. Other formats may
+  work, but they are not the first-run acceptance lane.
 - Start with speakers or headphones at a conservative level.
 
 ## Load and play one sample
@@ -15,7 +16,7 @@ recording input, a DAW, or the private demo sample used during development.
 1. Launch PlugData normally and open this checkout's `mlr.pd`.
 2. Enable DSP and open PlugData's console. Keep errors visible.
 3. Click **Sample bank**.
-4. On the Sample 1 row, click **Load** and choose your stereo WAV.
+4. On the Sample 1 row, click **Load** and choose your 16-bit PCM stereo WAV.
 5. Confirm that the row reports **Loaded** and shows a non-zero duration.
 6. Click **Overview**, then **Open** on track 1.
 7. Confirm that the player source is **Sample**, slot **1**. If it is not, set

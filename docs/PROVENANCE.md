@@ -51,7 +51,7 @@ Alpha publication therefore requires all of the following:
 
 1. omit the private source from the release archive;
 2. exclude retained evidence audio derived from it from the release archive;
-3. make first-run instructions require a tester-supplied stereo WAV; and
+3. make first-run instructions require a tester-supplied 16-bit PCM stereo WAV; and
 4. if a demo is added later, use a newly generated/project-owned or compatibly
    licensed asset with an explicit notice.
 

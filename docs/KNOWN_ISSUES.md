@@ -40,9 +40,11 @@ and detailed reproduction artifacts remain in `STATUS.md` and `docs/evidence/`.
   shrinking are not implemented.
 - Reconfiguring the audio interface while DSP remains on is not qualified as a
   safe recording interruption.
-- No demo audio is distributed. Testers must choose a stereo WAV they have
-  permission to use; results depend on that material's channel layout, rate,
-  duration, level, and silence.
+- No demo audio is distributed. The accepted first-run input is a 16-bit PCM
+  stereo WAV the tester has permission to use. The exact runtime rejected a
+  32-bit signed-integer PCM WAV during clean-package rehearsal. Other encodings
+  are not covered by the first-run claim; results also depend on channel layout,
+  rate, duration, level, and silence.
 
 ## Grid and UI
 

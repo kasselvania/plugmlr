@@ -10,7 +10,7 @@ alpha claim.
 - an Apple-silicon Mac;
 - Git;
 - PlugData standalone 0.9.4 nightly build `98ae0f78b`;
-- one stereo WAV you have permission to use; and
+- one 16-bit PCM stereo WAV you have permission to use; and
 - for Grid use only: a 16-by-8 Monome Grid, Homebrew, Apple Command Line Tools,
   and the pinned SerialOSC service described below.
 
