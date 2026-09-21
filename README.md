@@ -8,9 +8,10 @@ claimed Monome Grid.
 
 > **Alpha preparation:** `v0.1.0-alpha.1` has not been published. The current
 > release line deliberately excludes the later Rubber Band stretch work.
-> Companion-project licensing, packaging, and clean-install validation remain
-> open release gates. See the [alpha boundary](docs/ALPHA_RELEASE.md) before
-> describing or distributing this build.
+> The companion source is licensed and the curated package gate is in place;
+> clean-install validation and the release tag remain open. See the
+> [alpha boundary](docs/ALPHA_RELEASE.md) before describing or distributing
+> this build.
 
 ## Start here
 
@@ -37,7 +38,7 @@ The deliberately narrow supported lane is:
 | Audio | 48 kHz primary lane; tester-supplied stereo WAV |
 | Instances | One open plugmlr application instance |
 | Controller | Legacy Grid `m1000853`, 16 columns by 8 rows |
-| Device layer | `PlugData-Monome-Devices` at `18b489399d01a9178e4667b849ec4368d72533db` |
+| Device layer | packaged at `620b22c641003b3dcbca8ec94858839737a495bb`; tested runtime source at parent `18b489399d01a9178e4667b849ec4368d72533db` |
 | SerialOSC | Lease candidate `7187832c349202b1a94a9b10080ae57d40069946` |
 
 The alpha includes sample and live-buffer playback, forward/reverse operation,
@@ -75,7 +76,7 @@ or Rubber Band time stretching. The exact boundary is maintained in the
 | [Feature status](docs/FEATURE_STATUS.md) | Included, experimental, and excluded functionality |
 | [Known issues](docs/KNOWN_ISSUES.md) | Release-facing limitations and safety notes |
 | [Provenance](docs/PROVENANCE.md) | Source, dependency, and asset custody |
-| [Engineering status](docs/STATUS.md) | Detailed historical evidence; not the user support statement |
+| Engineering status (`docs/STATUS.md` in the full repository) | Detailed historical evidence; intentionally omitted from the curated archive |
 
 ## License
 

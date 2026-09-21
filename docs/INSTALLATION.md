@@ -39,8 +39,12 @@ git submodule status dependencies/monome
 It must begin with:
 
 ```text
-18b489399d01a9178e4667b849ec4368d72533db dependencies/monome
+620b22c641003b3dcbca8ec94858839737a495bb dependencies/monome
 ```
+
+That release commit adds the companion MIT license, notices, and documentation
+to runtime revision `18b489399d01a9178e4667b849ec4368d72533db`; it does not
+change device behavior.
 
 After alpha.1 is tagged, the release tag or curated archive will replace this
 temporary branch instruction. Do not assemble a release from moving `main`:
@@ -67,8 +71,9 @@ shasum -a 256 /Applications/plugdata.app/Contents/MacOS/plugdata
 
 If the exact artifact is no longer obtainable, stop treating the environment as
 the supported alpha lane. A newer build reporting only “0.9.4” is not identical
-evidence; it needs the release checks repeated. Making the pinned runtime easily
-obtainable is still a packaging gate for step 3.
+evidence; it needs the release checks repeated. The source archive does not
+redistribute PlugData, so an unavailable pinned runtime blocks the clean-install
+acceptance gate.
 
 Launch PlugData through Finder, Spotlight, the Dock, or LaunchServices:
 
@@ -91,9 +96,8 @@ with [First sound](FIRST_SOUND.md). A Grid is optional for sample playback.
 
 ## 4. Optional: install the Grid service
 
-Skip this section if you are not using a Grid. The companion repository is still
-a separate licensing gate and must not be copied into a public alpha archive
-until it receives an explicit compatible license.
+Skip this section if you are not using a Grid. The curated source archive
+materializes the exact licensed companion revision under `dependencies/monome`.
 
 The Grid path uses the lease-aware SerialOSC candidate. The candidate manager
 requires the accepted stable service to exist as a rollback, so install them in

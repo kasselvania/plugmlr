@@ -1,0 +1,32 @@
+name: Alpha release gate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-source-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact source and submodule
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Use Python 3.13
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Build and verify twice
+        run: |
+          python3 scripts/build_alpha_release.py --output-dir /tmp/plugmlr-alpha-a
+          python3 scripts/build_alpha_release.py --verify /tmp/plugmlr-alpha-a/plugmlr-v0.1.0-alpha.1.zip
+          python3 scripts/build_alpha_release.py --output-dir /tmp/plugmlr-alpha-b
+          cmp /tmp/plugmlr-alpha-a/plugmlr-v0.1.0-alpha.1.zip /tmp/plugmlr-alpha-b/plugmlr-v0.1.0-alpha.1.zip
+          cmp /tmp/plugmlr-alpha-a/plugmlr-v0.1.0-alpha.1.zip.sha256 /tmp/plugmlr-alpha-b/plugmlr-v0.1.0-alpha.1.zip.sha256

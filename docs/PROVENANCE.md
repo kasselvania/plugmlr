@@ -63,14 +63,16 @@ repository operation and is not authorized by this documentation change.
 
 `dependencies/monome` is a Git submodule of
 `kasselvania/PlugData-Monome-Devices`, pinned here at
-`18b489399d01a9178e4667b849ec4368d72533db`. That repository owns device
+`620b22c641003b3dcbca8ec94858839737a495bb`. That repository owns device
 discovery, registry, lease/session behavior, normalized Grid/Arc events, and LED
-cache behavior. The plugmlr adapter owns the musical mapping.
+cache behavior. The plugmlr adapter owns the musical mapping. The pinned release
+commit licenses project-owned companion source under MIT and adds notices and
+documentation; its runtime code is unchanged from tested parent
+`18b489399d01a9178e4667b849ec4368d72533db`.
 
-The companion repository currently has no root license. Its contents must not be
-materialized into a public plugmlr release archive until the maintainer grants an
-explicit compatible license there. A Git submodule pointer is an exact source pin,
-not redistribution permission.
+The curated archive materializes this exact revision without Git metadata and
+retains the companion `LICENSE` and `THIRD_PARTY_NOTICES.md`. The companion MIT
+grant does not relicense SerialOSC, PlugData, Pure Data, or their libraries.
 
 ## SerialOSC
 
@@ -96,17 +98,17 @@ Band source in the pre-stretch application tree. Any future installer or bundle
 must separately record the exact version, installation source, GPL/commercial
 terms, and notices before redistribution.
 
-## Project license and remaining gate
+## Project licenses and remaining gate
 
 The root MIT License grants permission to use, modify, and redistribute the
-project-owned plugmlr source. It does not grant rights to the companion device
-repository, runtime prerequisites, purchased audio, or any other third-party
-material.
+project-owned plugmlr source. The companion repository grants the same permission
+for its project-owned source under its own MIT License. Neither grant covers
+runtime prerequisites, purchased audio, or any other third-party material.
 
 Before tagging alpha.1:
 
-1. license `PlugData-Monome-Devices` compatibly before materializing it in an
-   archive;
-2. keep `DrumLoop.wav` and its derived evidence out of the release archive;
-3. complete `THIRD_PARTY_NOTICES.md` for the exact distributed payload; and
-4. re-run the release boundary review.
+1. keep `DrumLoop.wav` and its derived evidence out of the release archive;
+2. retain both projects' licenses and notices in the exact distributed payload;
+3. require the deterministic package gate to pass on the proposed tag commit;
+4. complete the clean-install/manual acceptance checklist; and
+5. re-run the release boundary review before tagging.

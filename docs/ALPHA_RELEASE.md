@@ -22,10 +22,9 @@ The release-facing route is now:
 5. [Troubleshooting](TROUBLESHOOTING.md) for symptom-based recovery and reports.
 
 The root README is the landing page for that route. `STATUS.md` remains the
-engineering evidence history and is not a prerequisite for first use. Until a
-tag and curated archive exist, Installation truthfully names the preparation
-branch and the exact-runtime acquisition gap; step 3 must reconcile those
-instructions with the final package.
+engineering evidence history in the full repository and is intentionally absent
+from the curated user archive. Until a tag exists, Installation truthfully names
+the preparation branch and exact-runtime acquisition gap.
 
 ## Source authority
 
@@ -38,6 +37,10 @@ instructions with the final package.
 - The final release tag must point to a reviewed descendant of the application
   checkpoint containing only release documentation, packaging, and validation
   changes. It must not silently acquire later feature commits.
+- The packaged companion commit is
+  `620b22c641003b3dcbca8ec94858839737a495bb`. It adds an MIT license, notices,
+  and documentation only; its runtime source is the tested parent
+  `18b489399d01a9178e4667b849ec4368d72533db`.
 
 This split is deliberate. The receiver-lifetime repair closes one identified
 synchronous callback defect, but it does not close the broader stretch, teardown,
@@ -53,7 +56,9 @@ The first alpha supports one deliberately narrow lane:
 - Pd 0.56.3 and pdlua 0.12.23 as carried by that tested PlugData runtime;
 - one open plugmlr application instance;
 - 48 kHz as the primary playback/recording lane;
-- the pinned `PlugData-Monome-Devices` submodule at `18b489399d01a9178e4667b849ec4368d72533db`;
+- the licensed `PlugData-Monome-Devices` package revision
+  `620b22c641003b3dcbca8ec94858839737a495bb`, whose runtime source is the tested
+  parent `18b489399d01a9178e4667b849ec4368d72533db`;
 - the lease-aware `kasselvania/serialosc` candidate at
   `7187832c349202b1a94a9b10080ae57d40069946`; and
 - legacy Grid `m1000853` (16-by-8) as the instrument's physically exercised
@@ -106,20 +111,22 @@ Project-owned plugmlr source is MIT licensed. The maintainer confirmed on
 2026-09-21 that the six files in the initial upload are wholly their own work and
 may be shared.
 
+The curated package builder now materializes the exact companion revision,
+excludes private media and engineering evidence, records source authorities,
+generates per-file and whole-archive SHA-256 manifests, enforces a bounded
+payload, and is exercised twice by CI to prove deterministic output.
+
 Do not tag or publish alpha.1 until all of the following are true:
 
 1. The removed `DrumLoop.wav` and any derived captures remain excluded from the
    release archive; any replacement demo receives documented redistribution terms.
-2. The companion `PlugData-Monome-Devices` content receives an explicit license
-   that permits it to be materialized in the release archive.
-3. Third-party notices are completed for the exact distributed payload.
-4. A curated archive and automated release check exist.
-5. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
+2. Third-party notices remain complete for the exact distributed payload.
+3. The automated release gate passes on the exact commit selected for tagging.
+4. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
    claim/input/LED/release, WAV-save, pattern-save/load, restart, and
    console-inspection checklist passes on the supported target.
 
 The project license now grants community use, modification, and redistribution
-of project-owned plugmlr source. It does not grant rights to the companion
-repository, private sample-pack audio, derived captures, or other third-party
-material. The remaining gates control what may be placed in the alpha archive
-and what the alpha may claim.
+of project-owned plugmlr and companion source. It does not grant rights to
+private sample-pack audio, derived captures, runtime prerequisites, or other
+third-party material. The remaining gates control what the alpha may claim.

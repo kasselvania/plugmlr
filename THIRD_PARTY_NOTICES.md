@@ -1,8 +1,9 @@
-# Third-party notices for alpha preparation
+# Third-party notices for alpha.1
 
-This is a preparation record, not a completed redistribution notice. Alpha.1 must
-not be published until every component actually present in its archive has a
-confirmed license and notice.
+This notice covers the curated source archive produced by
+`scripts/build_alpha_release.py`. Runtime applications, services, and libraries
+named below are prerequisites or acquisition targets; they are not copied into
+that archive.
 
 ## plugmlr project code
 
@@ -25,11 +26,14 @@ or assets listed below, which remain under their own terms or are excluded.
 ## Pinned source dependency intended for the archive
 
 - **[PlugData-Monome-Devices](https://github.com/kasselvania/PlugData-Monome-Devices)**
-  — Git submodule revision
-  `18b489399d01a9178e4667b849ec4368d72533db`.
+  — materialized from Git revision
+  `620b22c641003b3dcbca8ec94858839737a495bb`.
   It supplies discovery, explicit selection, probe/claim/renew/release, normalized
-  Grid events, and LED caching. It currently has no root license, so its source
-  may not yet be copied into the public alpha archive.
+  Grid events, and LED caching. Its project-owned source is MIT licensed,
+  copyright 2025-2026 Peter Kassel; the archive includes its `LICENSE` and
+  `THIRD_PARTY_NOTICES.md`. Commit `620b22c` adds only those release records and
+  documentation to tested runtime revision
+  `18b489399d01a9178e4667b849ec4368d72533db`.
 
 ## Behavioral references not distributed in the archive
 
@@ -53,5 +57,4 @@ or assets listed below, which remain under their own terms or are excluded.
 - Historical audio captures derived from that private sample remain engineering
   evidence only and must also be excluded from the release archive.
 
-See `docs/PROVENANCE.md` for the complete release gate and the remaining
-dependency and asset boundaries.
+See `docs/PROVENANCE.md` for the complete dependency and asset boundaries.
