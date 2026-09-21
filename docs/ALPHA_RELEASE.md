@@ -86,21 +86,25 @@ Alpha.1 does not claim:
 
 ## Publication gates
 
+Project-owned plugmlr source is MIT licensed. The maintainer confirmed on
+2026-09-21 that the six files in the initial upload are wholly their own work and
+may be shared.
+
 Do not tag or publish alpha.1 until all of the following are true:
 
-1. The maintainer confirms redistribution authority for the initial uploaded
-   patches and chooses an explicit project license.
-2. The removed `DrumLoop.wav` and any derived captures remain excluded from the
+1. The removed `DrumLoop.wav` and any derived captures remain excluded from the
    release archive; any replacement demo receives documented redistribution terms.
-3. The companion `PlugData-Monome-Devices` content receives an explicit license
+2. The companion `PlugData-Monome-Devices` content receives an explicit license
    that permits it to be materialized in the release archive.
-4. Third-party notices are completed for the exact distributed payload.
-5. The newcomer installation and first-run documentation is complete.
-6. A curated archive and automated release check exist.
-7. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
+3. Third-party notices are completed for the exact distributed payload.
+4. The newcomer installation and first-run documentation is complete.
+5. A curated archive and automated release check exist.
+6. The manual clean-install, first-sound with a tester-supplied stereo WAV, Grid
    claim/input/LED/release, WAV-save, pattern-save/load, restart, and
    console-inspection checklist passes on the supported target.
 
-The first four items are licensing/provenance gates, not documentation polish.
-Until they close, this public repository is source-visible but does not grant a
-general community redistribution or modification license.
+The project license now grants community use, modification, and redistribution
+of project-owned plugmlr source. It does not grant rights to the companion
+repository, private sample-pack audio, derived captures, or other third-party
+material. The remaining gates control what may be placed in the alpha archive
+and what the alpha may claim.

@@ -5,12 +5,20 @@ buffers, playback controls and dual-reader crossfades. The wider direction is a
 reusable musical toolkit; the failed replacement engine is not the active path.
 
 > **Alpha preparation:** `v0.1.0-alpha.1` is being prepared from the pre-stretch
-> application checkpoint. It is not published yet because licensing and source/audio
-> provenance still have unresolved release gates. Start with the
+> application checkpoint. It is not published yet because companion-dependency
+> licensing, archive composition, and release validation remain open. Start with the
 > [alpha boundary](docs/ALPHA_RELEASE.md), [feature status](docs/FEATURE_STATUS.md),
 > [known issues](docs/KNOWN_ISSUES.md), and [provenance record](docs/PROVENANCE.md).
 > The long [STATUS](docs/STATUS.md) file is retained engineering history, not the
 > current end-user support statement.
+
+## License
+
+Project-owned plugmlr source is licensed under the [MIT License](LICENSE).
+Third-party dependencies and assets remain under their own terms; see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the
+[provenance record](docs/PROVENANCE.md). The purchased `DrumLoop.wav` sample and
+captures derived from it are not distributed.
 
 The current checkpoint includes imported/live buffer selection, forward/reverse
 playback, five speeds and speed glide, Stop/Pause, 16 whole-content slices,

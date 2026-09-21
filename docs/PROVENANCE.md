@@ -1,9 +1,9 @@
 # Source and asset provenance
 
 This record identifies what is known well enough for engineering custody and what
-must still be confirmed before granting a community license or publishing an
-alpha archive. Git authorship is useful evidence, but it is not by itself proof
-that every uploaded source or media asset may be relicensed.
+must still be confirmed before publishing an alpha archive. Git authorship is
+useful evidence, but it is not by itself proof that every uploaded source or
+media asset may be relicensed.
 
 ## Repository authorship
 
@@ -21,13 +21,15 @@ The root commit `3a912cf29baaa836c7a4d73c44c7654f9ffde0dc` introduced:
 - `monome-object.pd`; and
 - `monome_grid_handler.pd_lua`.
 
-Before release, the maintainer must confirm whether these are wholly original,
-adapted from another named project, or contain copied portions. Any upstream
-copyright and license must be recorded file-by-file when adaptation occurred.
+On 2026-09-21, the maintainer confirmed that all six files are wholly their own
+work and may be shared. Project-owned plugmlr source is therefore licensed under
+the root MIT License, copyright 2025-2026 Peter Kassel. No upstream source
+attribution or withholding requirement applies to those six files.
 
 Later work in this repository has been developed and reviewed as plugmlr-specific
-repair, UI, recording, pattern, editor, and Grid integration work. That history
-does not resolve the origin of the initial upload.
+repair, UI, recording, pattern, editor, and Grid integration work and is covered
+by the same project license. That grant does not relicense third-party
+dependencies, runtime components, references, or private assets.
 
 ## Behavioral references
 
@@ -94,17 +96,17 @@ Band source in the pre-stretch application tree. Any future installer or bundle
 must separately record the exact version, installation source, GPL/commercial
 terms, and notices before redistribution.
 
-## License decision gate
+## Project license and remaining gate
 
-No root `LICENSE` file is added while initial-source authority and the companion
-device project's license are unresolved. Public visibility does not grant
-permission to copy, modify, or redistribute the repository.
+The root MIT License grants permission to use, modify, and redistribute the
+project-owned plugmlr source. It does not grant rights to the companion device
+repository, runtime prerequisites, purchased audio, or any other third-party
+material.
 
-After the maintainer confirms the initial source origin and desired grant:
+Before tagging alpha.1:
 
-1. add the selected root license;
-2. add copyright/attribution notices where required;
-3. license `PlugData-Monome-Devices` compatibly;
-4. keep `DrumLoop.wav` and its derived evidence out of the release archive;
-5. update `THIRD_PARTY_NOTICES.md` with exact versions and license links; and
-6. re-run the release boundary review before tagging.
+1. license `PlugData-Monome-Devices` compatibly before materializing it in an
+   archive;
+2. keep `DrumLoop.wav` and its derived evidence out of the release archive;
+3. complete `THIRD_PARTY_NOTICES.md` for the exact distributed payload; and
+4. re-run the release boundary review.

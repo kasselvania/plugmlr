@@ -4,6 +4,12 @@ This is a preparation record, not a completed redistribution notice. Alpha.1 mus
 not be published until every component actually present in its archive has a
 confirmed license and notice.
 
+## plugmlr project code
+
+Project-owned plugmlr source is licensed under the MIT License, copyright
+2025-2026 Peter Kassel. See `LICENSE`. This grant does not cover the components
+or assets listed below, which remain under their own terms or are excluded.
+
 ## Runtime prerequisites not distributed by plugmlr
 
 - **[PlugData](https://github.com/plugdata-team/plugdata)** — supported alpha
@@ -47,5 +53,5 @@ confirmed license and notice.
 - Historical audio captures derived from that private sample remain engineering
   evidence only and must also be excluded from the release archive.
 
-See `docs/PROVENANCE.md` for the complete release gate and unresolved initial
-source ownership questions.
+See `docs/PROVENANCE.md` for the complete release gate and the remaining
+dependency and asset boundaries.
